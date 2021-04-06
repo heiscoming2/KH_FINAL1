@@ -1,0 +1,29 @@
+/* */
+
+/* insert 영역 전체 */
+.study_insertwrap {
+    width:50%;
+    margin:0 auto;
+}
+
+/* 입력항목 (th) 너비 */
+.study_inserttable th {
+    width:150px;
+}
+
+/* 필수 입력(*) 강조 */
+.study_inserttable th span {
+    color:red;
+}
+
+/* 인원수 선택 박스 너비 */
+.study_inserttable input[type=number] {
+    width:80px;
+}
+
+/* select option 영역 */
+.study_inserttable select {
+    width:auto;
+    margin-right: 10px;
+}
+
