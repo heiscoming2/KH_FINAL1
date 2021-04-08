@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-kljkljlkjkljklkjkl
+
 	<jsp:forward page="front/main.jsp"></jsp:forward>
+
+<%
+    response.sendRedirect("front/main.jsp");    
+%>
+
+>>>>>>> 19c20105958c8fdd2fad4d90316c5a1074d35533
 </body>
 </html>
