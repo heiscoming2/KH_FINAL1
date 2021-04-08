@@ -34,7 +34,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="images/user.jpg" alt="" class="user-img mr-2">
+							<img src="../images/user.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
@@ -82,7 +82,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="images/user.jpg" alt="" class="user-img mr-2">
+							<img src="../images/user.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
@@ -122,7 +122,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="images/user.jpg" alt="" class="user-img mr-2">
+							<img src="../images/user1.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
@@ -162,7 +162,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="images/user.jpg" alt="" class="user-img mr-2">
+							<img src="../images/user2.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
@@ -202,7 +202,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="images/user.jpg" alt="" class="user-img mr-2">
+							<img src="../images/user3.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
