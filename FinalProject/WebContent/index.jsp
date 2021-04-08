@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+kljkljlkjkljklkjkl
 	<jsp:forward page="front/main.jsp"></jsp:forward>
 </body>
 </html>
