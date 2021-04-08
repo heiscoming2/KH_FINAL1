@@ -10,7 +10,7 @@
 <%
     response.sendRedirect("front/main.jsp");    
 %>
-
->>>>>>> 19c20105958c8fdd2fad4d90316c5a1074d35533
+asdfadsfsdafasddsf
+>>>>>>> 19c20105958c8fdd2fad4d90316c5a1074d35533asdf
 </body>
 </html>
