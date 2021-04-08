@@ -1,0 +1,82 @@
+
+.study_wrap {
+    width:1000px;
+    margin: 0 auto;
+}
+/* 게시판 버튼 wrap 영역 잡기 */
+.study_btnwrap {
+    float:left;
+    margin-bottom: 10px;
+}
+
+/* 게시글 한 줄 (td 영역 잡기) */
+.study_table td {
+    padding:0; 
+    width:100%; 
+    display: block;
+}
+
+/* 글 번호 span 영역 css */
+.study_no {
+    width:80px; 
+    display: inline-block; 
+    vertical-align: middle;
+
+}
+
+/* 글 번호 a태그 css */
+.study_no > a {
+    font-size: 15px; 
+    color: rgb(112, 112, 112) !important;
+}
+
+/* 글 제목(+댓글) wrap */
+.study_title {
+    width:720px; 
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+/* 글 제목 */
+.study_title > a {
+    font-size: 15px; 
+    color: #212529;
+}
+
+/* 댓글 */ 
+.study_title > a > span {
+    color:green; 
+    font-weight: bold;
+}
+
+/* 프로필 영역 wrap */
+.study_profile {
+    width:180px; 
+    display: inline-block; 
+    vertical-align: middle; 
+}
+
+/* 프로필 이미지 영역 잡기 */
+.study_profile > img {
+    float: left; 
+    margin-top: 5px;
+}
+
+/* 프로필 아이디 영역 */
+.study_profile > .study_writer {
+    display: block; 
+    position: relative; 
+    top:5px;
+    font-size:15px;
+}
+
+/* 프로필 작성일 영역 */
+.study_profile > .study_regdate {
+    font-size: 13px; 
+    color:rgb(112, 112, 112); 
+    position: relative; 
+    bottom:2px;
+}
+
+
+

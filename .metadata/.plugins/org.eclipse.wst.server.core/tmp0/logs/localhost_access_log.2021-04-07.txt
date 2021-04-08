@@ -1,0 +1,14 @@
+127.0.0.1 - - [07/Apr/2021:00:01:55 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:01:57 +0900] "GET /FinalProject/index.jsp HTTP/1.1" 200 16869
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:01:57 +0900] "GET /css/sidebar.css HTTP/1.1" 404 826
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:01:57 +0900] "GET /css/common.css HTTP/1.1" 404 825
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:01:57 +0900] "GET /FinalProject/images/user.jpg HTTP/1.1" 200 1599
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:01:57 +0900] "GET /js/sidebar.js HTTP/1.1" 404 824
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/front/main.jsp HTTP/1.1" 200 16869
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/css/sidebar.css HTTP/1.1" 200 5403
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/css/common.css HTTP/1.1" 200 599
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/front/images/user.jpg HTTP/1.1" 404 853
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/js/sidebar.js HTTP/1.1" 200 44840
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/front/images/user.jpg HTTP/1.1" 404 853
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:11 +0900] "GET /FinalProject/front/images/user.jpg HTTP/1.1" 404 853
+0:0:0:0:0:0:0:1 - - [07/Apr/2021:00:02:12 +0900] "GET /favicon.ico HTTP/1.1" 404 818
