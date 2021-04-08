@@ -59,7 +59,7 @@
 							<div style="margin-bottom: 8px;">
 								<p style="font-size: 8px; margin:0; padding:0;">
 									<b>· 주 사용 언어</b><br>
-									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT</span>
+									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT </span>
 								</p>
 							</div>
 							<div style="margin-bottom: 8px;">
