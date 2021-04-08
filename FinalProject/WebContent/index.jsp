@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-asdfsdaasdfsadfsaddfasdfadsf
+asdfsdaasdfsadfsaddfasdfadsfasdfadsf
 <%
     response.sendRedirect("front/main.jsp");    
 %>
