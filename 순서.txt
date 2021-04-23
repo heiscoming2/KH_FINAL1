@@ -1,0 +1,86 @@
+SpringMVC03
+1.pom.xml: ojdbc6(+repository), mybatis, mybatis-spring, commons-dbcp, spring-orm
+  -ojdbc는 따로 url을 추가해줘야 한다. / 프로젝트 오른쪽 클릭-Maven-Update project 를 해준다.
+
+2.web.xml: applicationContext.xml, mapping, encoding filter
+  -root-Context.xml -> applicationContext.xml 로 바꾼다. 그런 뒤 이 파일을 appServlet 파일 안에 옮겨놓는다. 
+  -servlet mapping을 *.do 로 변경
+  -encoding filter 는 SpringMVC02의 web.xml에서 가져온다. 
+
+3./WEB-INF/spring/sqls/test.sql  
+   -Help-install new software-http://download.eclipse.org/releases/neon 검색-Database Development 설치
+   
+4.dto, dao, biz, controller
+
+5.src/main/resources/mybatis/board-mapper.xml
+ -mybatis에 가서 mapper 가져오기
+ 
+6.src/main/resources/mybatis/db.properties
+
+7./WEB-INF/spring/sqls/config.xml
+ -mybatis에 가서 config 가져오기
+
+8.applicationContextxml, servlet-context.xml
+
+
+_filter
+9.com/mvc/upgrade/common/filter/LogFilter(impl javax.servlet.Filter)
+
+10. web.xml: filter
+
+
+_aop
+11.pom.xml : aspectjweaver, aspectjrt
+ aspectjrt는 이미 등록되어 있다. aspectjweaver만 추가하면 된다. 
+ 
+12.com/mvc/upgrade/common/aop/LogAop
+ 	클래스 생성
+ 	
+13.WEB-INF/spring/appServlet/aop-context.xml
+ 
+14.web.xml : aop-context 추가(init-param)
+ 
+15.src/main/resources/log4j.xml(logger 추가 및 log level trace) 
+ 
+ 
+ _login
+16.pom.xml : jackson-bind, jackson-core
+ 
+17.WEB-INF/spring/sqls/test.sql
+ 
+18.DTO, DAO, BIZ, CONTROLLER
+ 
+19.src/main/resources/mybatis/member-mapper.xml
+
+20.WEB-INF/spring/sqls/config.xml 
+ 
+ 
+ _interceptor
+ 21. com/mvc/upgrade/common/interceptor/LoginInterceptor(impl HandlerInterceptor)
+ 
+ 22.servlet-context.xml : interceptor  추가 
+ 
+ 
+ _transaction
+ 23.(Board) dao, biz, controller
+ 
+ 24.servlet-context.xml:tx
+ -servlet-caontext.xml에 namespaces-tx 추가+ <tx:annotation-driven/> 추가
+ 
+ 25.applicationContext.xml : transactionManager
+ 
+ 26.index.html
+ 
+ 27.common/interceptor/LoginInterceptor 
+ 
+ 
+ _security
+ 28.pom.xml : spring-security-web
+ 
+ 29./WEB-INF/spring/appServlet/security-context.xml
+ 
+ 30.web.xml : security-context 추가(init-param)
+ 
+ 31.dao, biz, controller : insert 추가
+ 
+ 32.member-mapper.xml
