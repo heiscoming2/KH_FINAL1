@@ -18,22 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor{
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 		logger.info("[Interceptor] : preHandle");
-		//loginform.do-로그인폼 로그인하고자 하는 폼, ajaxlogin 로그인,  getAttribute("login")-로그인한 상태
-		if(request.getRequestURI().contains("/loginform.do")
-				||request.getRequestURI().contains("/ajaxlogin.do")
-				||request.getSession().getAttribute("login") != null
-				||request.getRequestURI().contains("/test.do")
-				||request.getRequestURI().contains("/registerform.do")
-				||request.getRequestURI().contains("register.do")) {
-			return true;
-		}
-		
-		if(request.getSession().getAttribute("login")==null) {
-			response.sendRedirect("loginform.do");
-			return false;
-		}
-		
-		return false;
+		return true;
 	};
 	
 	//view 단으로 forward 되기 전에 수행

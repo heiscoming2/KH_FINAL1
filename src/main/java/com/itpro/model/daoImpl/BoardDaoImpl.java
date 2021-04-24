@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dto.BoardDto;
+import com.itpro.model.dto.BoardDto;
 
 @Repository
 public class BoardDaoImpl implements BoardDao{
@@ -86,32 +87,12 @@ public class BoardDaoImpl implements BoardDao{
 		return res;
 	}
 
-	
-	
-	
-	
 	@Override
 	public String test() {
+		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

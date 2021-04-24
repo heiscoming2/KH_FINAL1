@@ -42,7 +42,7 @@ public class LogFilter implements Filter{
 		
 		String remoteAddr = req.getRemoteAddr();  //IP 주소, IPv6주소로 로컬호스트 ip
 		String uri = req.getRequestURI();
-		String url = req.getRequestURI().toString();
+		String url = req.getRequestURL().toString();
 		String queryString = req.getQueryString();
 		
 		String referer = req.getHeader("referer"); //이전페이지 (보내는 페이지) url
