@@ -1,0 +1,12 @@
+.joblist_wrap {
+	width:1190px;
+	margin:0 auto;
+}
+
+tr:hover td{
+ 	background-color: rgb(220, 245, 255) !important;
+}
+
+tr:hover td {
+    cursor:pointer;
+}

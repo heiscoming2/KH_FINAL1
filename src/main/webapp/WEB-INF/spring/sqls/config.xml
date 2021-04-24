@@ -4,13 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.mvc.upgrade.model.dto.BoardDto" alias="boardDto"/>
-		<typeAlias type="com.mvc.upgrade.model.dto.MemberDto" alias="memberDto"/>
+		<typeAlias type="com.itpro.model.dto.BoardDto" alias="boardDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mybatis/board-mapper.xml"/>
-		<mapper resource="/mybatis/member-mapper.xml"/>
 	</mappers>
 
 </configuration>
