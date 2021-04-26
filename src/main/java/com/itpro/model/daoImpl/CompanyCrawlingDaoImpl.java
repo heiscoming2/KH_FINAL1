@@ -22,6 +22,7 @@ public class CompanyCrawlingDaoImpl implements CompanyCrawlingDao {
 
 	@Override
 	public int insert(List<CompanyCrawlingDto> list) {
+		
 		return 0;
 	}
 

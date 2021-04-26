@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,9 +26,14 @@ public class CompanyCrawler {
 	private int post_of_page;
 	private int all_of_page_cnt;
 	
+	public CompanyCrawler() {
+		logger.info("CompanyCrawler() 생성");
+	}
+	
 	//URL을 통해 전체 채용 공고수, 페이지당 공고수, 총 페이지수를 계산하여 필드에 저장하는 메서드
 	public void updateUrlInfo() {
 		
+		logger.info("CompanyCrawler => updateUrilInfo() 호출");
 		//DOCUMENT를 가져올 URL 주소
 		String url = "https://www.saramin.co.kr/zf_user/jobs/list/job-category?page=1&"
 				   + "cat_cd=404%2C407%2C408%2C402%2C409%2C416%2C413%2C412%2C411%2C410&"
@@ -58,17 +65,18 @@ public class CompanyCrawler {
 	
 	//필드값을 이용해서 모든 페이지를 돌면서 채용정보를 LIST로 담아둔당
 	public List<CompanyCrawlingDto> getCompanyCrawlingList() {
+		logger.info("CompanyCrawler => getCompanyCrawlingList() 호출");
 		//필드값 초기화를 먼저 수행
 		updateUrlInfo();
 		//채용정보 1건을 담을 dto 생성
-		CompanyCrawlingDto companycrawlingdto = new CompanyCrawlingDto();
+		CompanyCrawlingDto companycrawlingdto;
 		//채용정보들을 담을 list 생성
 		List<CompanyCrawlingDto> companycrawlinglist = new ArrayList<CompanyCrawlingDto>();
 		//이중 for문을 도는데 첫 for문은 페이지 수이다.
 		//매 페이지마다 url의 document를 가지고
 		//채용정보와 관련된 엘리먼트만을 추출한다.
 		//그리고 추출한 엘리먼트를 for문을 통해서(각 건의 채용정보를) DTO에 담아서 LIST에 담는다.
-		for(int i=1; i<all_of_page_cnt; i++) {
+		for(int i=1; i<5; i++) {
 			String url = "https://www.saramin.co.kr/zf_user/jobs/list/job-category?page"+i+"&"
 					   + "cat_cd=404%2C407%2C408%2C402%2C409%2C416%2C413%2C412%2C411%2C410&"
 					   + "search_optional_item=n&search_done=y&"
@@ -82,15 +90,49 @@ public class CompanyCrawler {
 					   + "searchParamCount=1#searchTitle";
 			try {
 				Document doc=Jsoup.connect(url).get();
-				
-				
+				Elements elements = doc.select(".list_recruiting .list_item");
+				for(Element e : elements) {
+					companycrawlingdto = new CompanyCrawlingDto();
+					companycrawlingdto.setCc_name(e.select(".company_nm .str_tit>span").text().toString());
+					companycrawlingdto.setCc_title(e.select(".job_tit .str_tit>span").text().toString());
+					companycrawlingdto.setCc_career(e.select(".career").text().toString());
+					companycrawlingdto.setCc_education(e.select(".education").text().toString());
+					companycrawlingdto.setCc_meta(e.select(".job_meta").text().toString());
+					if(e.select(".work_place").text().toString()==null||e.select(".work_place").text().toString().equals("")) {
+						continue;
+					}
+					companycrawlingdto.setCc_addr1(e.select(".work_place").text().toString().substring(0,2));
+					int tmp = e.select(".work_place").text().toString().lastIndexOf(" ");
+					if(tmp<0) {
+						companycrawlingdto.setCc_addr2("전체");
+					} else if(tmp==2) {
+						companycrawlingdto.setCc_addr2(e.select(".work_place").text().toString().substring(3));
+					} else {
+						companycrawlingdto.setCc_addr2(e.select(".work_place").text().toString().substring(tmp+1));
+					}
+					companycrawlingdto.setCc_code(Integer.parseInt(e.select(".job_tit .str_tit").attr("href").toString().substring(48,56)));
+					companycrawlingdto.setCc_deadline(e.select(".deadlines").html().split("<")[0]);
+					companycrawlinglist.add(companycrawlingdto);
+				}
 				
 				
 				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+			
+			
+			for(CompanyCrawlingDto dto : companycrawlinglist) {
+				System.out.println(dto.getCc_addr1());
+				System.out.println(dto.getCc_addr2());
+				System.out.println(dto.getCc_name());
+				System.out.println(dto.getCc_title());
+				System.out.println(dto.getCc_deadline());
+				System.out.println(dto.getCc_career());
+				System.out.println(dto.getCc_education());
+				System.out.println(dto.getCc_meta());
+				System.out.println(dto.getCc_code());
+			}
 		
 		}
 		

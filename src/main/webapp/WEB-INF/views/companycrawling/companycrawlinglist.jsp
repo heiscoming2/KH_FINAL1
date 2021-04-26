@@ -22,7 +22,7 @@
       <div class="job_btn_wrap">
         <input type="button" class="btn btn-primary" value="필터" onclick="filter_toggle();">
         <input type="button" class="btn btn-primary" value="전체 조회">
-        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='guininsertform.html'">
+        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingupdate.do'">
       </div>
       
       <div style="display:none;" class="filter_innerwrap">
