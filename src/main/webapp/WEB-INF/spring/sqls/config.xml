@@ -5,10 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.itpro.model.dto.BoardDto" alias="boardDto"/>
+		<typeAlias type="com.itpro.model.dto.CompanyCrawlingDto" alias="CompanyCrawlingDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mybatis/board-mapper.xml"/>
+		<mapper resource="/mybatis/companycrawling-mapper.xml"/>
 	</mappers>
 
 </configuration>

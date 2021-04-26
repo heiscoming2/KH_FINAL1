@@ -6,6 +6,8 @@ import com.itpro.model.dto.CompanyCrawlingDto;
 
 public interface CompanyCrawlingBiz {
 	
-	public int insert(List<CompanyCrawlingDto> companyCrawlingList);
+	public int insertlist(List<CompanyCrawlingDto> companyCrawlingList);
+	public int deletelist();
+	public List<CompanyCrawlingDto> selectList();
 
 }

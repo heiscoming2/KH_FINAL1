@@ -27,7 +27,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, 
 				ModelAndView modelAndView) {
 		logger.info("[Interceptor] : postHndle");
-		
 	}
 	
 	//view까지 처리가 끝난 후에 수행
