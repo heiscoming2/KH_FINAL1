@@ -17,6 +17,7 @@ public class HomeController {
 	@RequestMapping(value="/main.do")
 	public String getMain(Model model,HttpServletRequest request) {
 		logger.info(request.getSession().getServletContext().getRealPath("/"));
+		logger.info(request.getSession().getServletContext().toString());
 		logger.info("main.do");
 		return "main";
 	}
