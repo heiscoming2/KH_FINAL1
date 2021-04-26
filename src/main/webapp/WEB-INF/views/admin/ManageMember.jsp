@@ -15,13 +15,10 @@
 <!-- 본문 시작 -->
 
 
-<h1>hi</h1>
+
 
 
 <!-- 본문 종료 -->
-
-<!-- sidebar 시작 -->
-<%@include file="../inc/_sidebar_admin.jspf" %>
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
