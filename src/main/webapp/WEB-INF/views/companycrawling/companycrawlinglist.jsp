@@ -22,10 +22,13 @@
       <div class="job_btn_wrap">
         <input type="button" class="btn btn-primary" value="필터" onclick="filter_toggle();">
         <input type="button" class="btn btn-primary" value="전체 조회">
-        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingupdate.do'">
+	      <div class="admin_btn" style="float:right;">
+	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingupdate.do'">
+	        <input type="button" class="btn btn-success" value="전체삭제" onclick="location.href='companycrawlingdelete.do'">
+	      </div>
       </div>
       
-      <div style="display:none;" class="filter_innerwrap">
+      <div style="display:none;" class="filter_innerwrap mt-3">
         <div>
           <input type="button" class="btn btn-primary" value="지역별 조회">
           <input type="button" class="btn btn-primary" value="경력 선택">
@@ -34,7 +37,7 @@
         </div>
       </div>
       
-      <table class="table">
+      <table class="table mt-4">
       	<!-- 게시물 th(첫 줄) 영역 -->
       	<col width="212px">
       	<col width="503px">
@@ -52,71 +55,30 @@
       		<th>마감일</th>
       	</tr>
       	
-      	<tr>
-      		<td>삼성전자</td>
-      		<td>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      			<br>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      		</td>
-      		<td>신입/경력</td>
-      		<td>고졸이상</td>
-      		<td>서울시 강남구</td>
-      		<td>D~5</td>
-      	</tr>
-      	
-      	<tr>
-      		<td>삼성전자</td>
-      		<td>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      			<br>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      		</td>
-      		<td>신입/경력</td>
-      		<td>고졸이상</td>
-      		<td>서울시 강남구</td>
-      		<td>D~5</td>
-      	</tr>
-      	
-      	<tr>
-      		<td>삼성전자</td>
-      		<td>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      			<br>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      		</td>
-      		<td>신입/경력</td>
-      		<td>고졸이상</td>
-      		<td>서울시 강남구</td>
-      		<td>D~5</td>
-      	</tr>
-      	
-      	<tr>
-      		<td>삼성전자</td>
-      		<td>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      			<br>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      		</td>
-      		<td>신입/경력</td>
-      		<td>고졸이상</td>
-      		<td>서울시 강남구</td>
-      		<td>D~5</td>
-      	</tr>
-      	
-      	<tr>
-      		<td>삼성전자</td>
-      		<td>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      			<br>
-      			<span>채용정보입니다채용정보입니다채용정보입니다채용정보입니다</span>
-      		</td>
-      		<td>신입/경력</td>
-      		<td>고졸이상</td>
-      		<td>서울시 강남구</td>
-      		<td>D~5</td>
-      	</tr>
-      	
+      	<c:choose>
+      		<c:when test="${empty companyCrawlingList }">
+				<tr>
+					<td colspan="6" align="center">조회할 정보가 없습니다.</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="companyCrawlingDto" items="${companyCrawlingList }">
+			      	<tr>
+			      		<td>${companyCrawlingDto.cc_name }</td>
+			      		<td>
+			      			<span>${companyCrawlingDto.cc_title}</span>
+			      			<br>
+			      			<span>${companyCrawlingDto.cc_meta }</span>
+			      		</td>
+			      		<td>${companyCrawlingDto.cc_career }</td>
+			      		<td>${companyCrawlingDto.cc_education }</td>
+			      		<td>${companyCrawlingDto.cc_addr1}&nbsp;${companyCrawlingDto.cc_addr2 }</td>
+			      		<td>${companyCrawlingDto.cc_deadline }</td>
+			      	</tr>
+				</c:forEach>
+			</c:otherwise>
+      	</c:choose>
+
       	
       </table>
       <!-- 페이징 -->

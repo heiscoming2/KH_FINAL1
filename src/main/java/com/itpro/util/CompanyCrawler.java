@@ -3,6 +3,7 @@ package com.itpro.util;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -77,17 +78,7 @@ public class CompanyCrawler {
 		//채용정보와 관련된 엘리먼트만을 추출한다.
 		//그리고 추출한 엘리먼트를 for문을 통해서(각 건의 채용정보를) DTO에 담아서 LIST에 담는다.
 		for(int i=1; i<5; i++) {
-			String url = "https://www.saramin.co.kr/zf_user/jobs/list/job-category?page"+i+"&"
-					   + "cat_cd=404%2C407%2C408%2C402%2C409%2C416%2C413%2C412%2C411%2C410&"
-					   + "search_optional_item=n&search_done=y&"
-					   + "panel_count=y%5Cr%5Cn&isAjaxRequest=0&"
-					   + "page_count="+post_of_page+"&"
-					   + "sort=RL&"
-					   + "type=job-category&"
-					   + "is_param=1&"
-					   + "isSearchResultEmpty=1&"
-					   + "isSectionHome=0&"
-					   + "searchParamCount=1#searchTitle";
+			String url = "https://www.saramin.co.kr/zf_user/jobs/list/job-category?page="+i+"&cat_cd=404%2C407%2C408%2C402%2C409%2C416%2C413%2C412%2C411%2C410&search_optional_item=n&search_done=y&panel_count=y%5Cr%5Cn&isAjaxRequest=0&page_count="+post_of_page+"&sort=RL&type=job-category&is_param=1&isSearchResultEmpty=1&isSectionHome=0&searchParamCount=1#searchTitle";
 			try {
 				Document doc=Jsoup.connect(url).get();
 				Elements elements = doc.select(".list_recruiting .list_item");
@@ -111,6 +102,9 @@ public class CompanyCrawler {
 						companycrawlingdto.setCc_addr2(e.select(".work_place").text().toString().substring(tmp+1));
 					}
 					companycrawlingdto.setCc_code(Integer.parseInt(e.select(".job_tit .str_tit").attr("href").toString().substring(48,56)));
+					if(e.select(".deadlines").html().split("<")[0]==null||e.select(".deadlines").html().split("<")[0].equals("")) {
+						continue;
+					}
 					companycrawlingdto.setCc_deadline(e.select(".deadlines").html().split("<")[0]);
 					companycrawlinglist.add(companycrawlingdto);
 				}
@@ -119,26 +113,11 @@ public class CompanyCrawler {
 				
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			
-			
-			for(CompanyCrawlingDto dto : companycrawlinglist) {
-				System.out.println(dto.getCc_addr1());
-				System.out.println(dto.getCc_addr2());
-				System.out.println(dto.getCc_name());
-				System.out.println(dto.getCc_title());
-				System.out.println(dto.getCc_deadline());
-				System.out.println(dto.getCc_career());
-				System.out.println(dto.getCc_education());
-				System.out.println(dto.getCc_meta());
-				System.out.println(dto.getCc_code());
-			}
-		
+			} 
+					
 		}
 		
 		return companycrawlinglist;
 	}
 	
-
-
 }
