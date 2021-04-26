@@ -1,0 +1,5 @@
+<meta charset="UTF-8">
+<!-- 부트스트랩 css -->
+<link href="resources/bootstrap/bootstrap_5.0.0_min.css" rel="stylesheet">
+<!-- common.css -->
+<link href="resources/css/common.css" rel="stylesheet">

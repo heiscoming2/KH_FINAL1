@@ -18,6 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor{
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 		logger.info("[Interceptor] : preHandle");
+		System.out.println(request.getServletContext().getRealPath("/"));
 		return true;
 	};
 	

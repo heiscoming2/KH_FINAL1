@@ -3,33 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 
-<!-- 부트스트랩 cdn -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-	<!-- right/left 방향이미지 적용을 위한 cdn-->
-	<link rel="stylesheet" type="text/css"
-		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- css -->
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/slidebar.css">
-
-	<!-- 공통 css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
+<title>IT PRO</title>
+<%@include file="./inc/_head.jspf" %>
+<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
 <!-- HEADER 시작 -->
-<div id="header">
-		<jsp:include page="./inc/header.jsp" />
-</div>
+<%@include file="./inc/_header.jspf" %>
 <!-- HEADER 종료 -->
 
-<div>
-<!-- 슬라이드 이미지 영역 -->
+<!-- 인기 포트폴리오 슬라이드 시작 -->
 	<section id="testimonial" class="section-100 mt-5">
 		<div class="container">
 			<div class="testimonial-view">
@@ -38,7 +24,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="${pageContext.request.contextPath}/resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
+							<img src="testimages/testprofile.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
@@ -86,7 +72,7 @@
 					<!-- 프로필 시작 -->
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="${pageContext.request.contextPath}/resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
+							<img src="resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
 							<div>
 								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
 								</h6>
@@ -248,10 +234,9 @@
 			</div>
 		</div>
 	</section>
-	<!-- 슬라이드 이미지 영역 -->
+	<!-- 인기 포트폴리오 슬라이드 종료 -->
 	
-	<!-- 게시판 -->
-	<div>
+	<!-- 게시판 시작 -->
 	<div class="container w-75">
         <div class="bg-light" style="text-align: center">
           <h5>공지사항</h5>
@@ -297,16 +282,14 @@
           </table>
         </div>
     </div>
-	</div>
+	<!-- 게시판 종료 -->
 
-	<!-- jquery -->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/slidebar.js"></script>
-
-</div>
-
-<div id="footer">
-		<jsp:include page="./inc/footer.jsp" />
-</div>
+	<!-- FOOTER 시작 -->
+	<%@include file="./inc/_footer.jspf" %>
+	<!-- FOOTER 종료 -->
+	
+	<%@include file="./inc/_foot.jspf" %>
+	<script type="text/javascript" src="resources/js/slidebar.js"></script>
+	
 </body>
 </html>
