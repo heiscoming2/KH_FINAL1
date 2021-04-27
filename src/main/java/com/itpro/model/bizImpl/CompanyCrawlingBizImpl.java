@@ -19,9 +19,9 @@ public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 	
 	@Override
 	@Transactional
-	public int insertlist(List<CompanyCrawlingDto> companyCrawlingList) {
+	public int updatelist(List<CompanyCrawlingDto> companyCrawlingList) {
 		deletelist();
-		return companyCrawlingDaoImpl.insertlist(companyCrawlingList);
+		return companyCrawlingDaoImpl.updatelist(companyCrawlingList);
 	}
 
 	@Override
@@ -30,8 +30,13 @@ public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 	}
 
 	@Override
-	public List<CompanyCrawlingDto> selectList() {
-		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingDaoImpl.selectList();
+	public List<CompanyCrawlingDto> selectList(int page) {
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingDaoImpl.selectList(page);
 		return companyCrawlingList;
+	}
+
+	@Override
+	public int getCompanyCrawlingContentCnt() {
+		return companyCrawlingDaoImpl.getCompanyCrawlingContentCnt();
 	}
 }

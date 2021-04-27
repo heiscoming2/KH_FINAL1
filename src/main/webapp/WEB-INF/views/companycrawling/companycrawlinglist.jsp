@@ -7,7 +7,7 @@
 <head>
 <title>Insert title here</title>
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/companycrawlinglist.css">
+<link rel="stylesheet" href="resources/css/companycrawlinglist.css?ver=1.1">
 
 </head>
 <body>
@@ -20,24 +20,66 @@
 	<div class="joblist_wrap mt-5">
       <h3>채용 정보</h3>
       <div class="job_btn_wrap">
-        <input type="button" class="btn btn-primary" value="필터" onclick="filter_toggle();">
-        <input type="button" class="btn btn-primary" value="전체 조회">
+        <input type="button" class="btn btn-primary" value="필터/검색" onclick="filter_toggle();">
+        <input type="button" class="btn btn-primary" value="전체 조회" onclick="selectPage(1)">
 	      <div class="admin_btn" style="float:right;">
 	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingupdate.do'">
 	        <input type="button" class="btn btn-success" value="전체삭제" onclick="location.href='companycrawlingdelete.do'">
 	      </div>
       </div>
       
-      <div style="display:none;" class="filter_innerwrap mt-3">
-        <div>
-          <input type="button" class="btn btn-primary" value="지역별 조회">
-          <input type="button" class="btn btn-primary" value="경력 선택">
-          <input type="button" class="btn btn-primary" value="학력 선택">
-          <input type="button" class="btn btn-primary" value="선택 조회">
-        </div>
+      <div class="filter_innerwrap mt-3">
+       <div>
+       	<form action="test.do" id="test">
+       	  <table class="filter_table">
+       	  <tr>
+	          <td><span>지역선택</span></td>
+	          <td style="display:flex;">
+	          <select class="form-control sidoselect" name="sido1"></select>
+	          &nbsp;&nbsp;
+  	          <select class="form-control gugunselect" name="gugun1"></select>
+       	  	  </td>
+       	  	  <td>
+       	  	  </td>
+       	  </tr>
+       	  <tr>
+       	      <td><span>경력선택</span></td>
+       	      <td>
+  	          <select class="form-control">
+	          	<option>전체</option>
+	          	<option></option>
+	          	<option>부산</option>
+	          </select>
+	          </td>   
+
+       	  </tr>
+       	  <tr>
+       	  	  <td>
+	          <span>학력선택</span></td>
+	          <td><select class="form-control">
+	          	<option>전체</option>
+	          	<option>고졸</option>
+	          	<option>대졸(2년제)</option>
+	    	    <option>대졸(4년제)</option>
+	          </select>     	  	  
+       	  	  </td>	
+       	  </tr>
+       	  <tr>
+       	  <td colspan="3">
+        <!-- 검색창 -->
+	    <div class="mb-3">
+	      <input type="button" class="btn btn-primary" value="조회" onclick="store_search();">
+	      <input name="searchbox" type="text" placeholder="회사명 or 공고내용" class="form-control search-bar cc_search"
+	          onkeyup="store_search_ent();">
+	    </div>
+	    </td>
+       	  </tr>
+	    </table>
+	    </form>
+      </div>
       </div>
       
-      <table class="table mt-4">
+      <table class="companycrawlingtable table mt-4">
       	<!-- 게시물 th(첫 줄) 영역 -->
       	<col width="212px">
       	<col width="503px">
@@ -63,12 +105,12 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="companyCrawlingDto" items="${companyCrawlingList }">
-			      	<tr>
-			      		<td>${companyCrawlingDto.cc_name }</td>
+			      	<tr onclick="openDetailUrl('${companydetailurl}${companyCrawlingDto.cc_code}');">      		
+			      		<td onclick="testfunction();">${companyCrawlingDto.cc_name }</td>
 			      		<td>
-			      			<span>${companyCrawlingDto.cc_title}</span>
+			      			<span class="cc_title">${companyCrawlingDto.cc_title}</span>
 			      			<br>
-			      			<span>${companyCrawlingDto.cc_meta }</span>
+			      			<span class="cc_meta">${companyCrawlingDto.cc_meta }</span>
 			      		</td>
 			      		<td>${companyCrawlingDto.cc_career }</td>
 			      		<td>${companyCrawlingDto.cc_education }</td>
@@ -81,28 +123,39 @@
 
       	
       </table>
+      
+      
       <!-- 페이징 -->
-      <div class="text-center">
-        <ul class="pagination" style="justify-content: center;">
-          <li class="page-item"><a class="page-link" onclick="">이전</a></li>
-          <li class="page-item">
-            <a style="color:red;" class="page-link" onclick="">
-              <b>1</b>
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" onclick="">2</a>
-          </li>
-          <li><a class="page-link" onclick="page_next();">다음</a></li>
+      <div class="text-center mt-5 mb-5">
+        <ul class="pagination" style="justify-content: center; cursor:pointer;">
+       	  	<li class="page-item"><a class="page-link" onclick="selectPage(1)">처음</a></li>
+         	<li class="page-item"><a class="page-link" onclick="selectPage('${pageProcessing.prevPage}')">이전</a></li>
+          <c:forEach var="pageNum" begin="${pageProcessing.startPage}" end="${pageProcessing.endPage }">
+          	<c:choose>
+          		<c:when test="${pageNum eq pageProcessing.curPage }">
+		            <li class="page-item">
+		               <a style="color:red;" class="page-link" onclick="selectPage('${pageNum}');">
+		                 <b>${pageNum}</b>
+		               </a>
+		          </li>
+          		</c:when>
+          		<c:otherwise>
+	          		<li class="page-item">
+	          			<a class="page-link" onclick="selectPage(${pageNum});">
+	          			  ${pageNum}
+	          			</a>
+	          		</li>
+          		</c:otherwise>
+          	</c:choose>
+	      </c:forEach>
+	         <li><a class="page-link" onclick="selectPage('${pageProcessing.nextPage}')">다음</a></li>
+         	 <li><a class="page-link" onclick="selectPage('${pageProcessing.pageCnt}')">끝</a></li>
         </ul>
       </div>
 	</div>
-      <!-- 검색창 -->
-      <div class="text-center mb-5">
-        <input name="searchbox" type="text" placeholder="검색" value="" class="form-control search-bar"
-          onkeyup="store_search_ent();" style="width:200px; display:inline-block; padding-bottom:11px;">
-        <input type="button" class="btn btn-primary" value="검색" onclick="store_search();">
-      </div>
+	<!-- 페이징 종료 -->
+	
+
 
 	<!-- 본문 종료 -->
 		
@@ -111,6 +164,6 @@
 	<!-- FOOTER 종료 -->
 
 <%@include file="../inc/_foot.jspf" %>
-<script type="text/javascript" src="resources/js/companycrawlinglist.js"></script>	
+<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.1"></script>	
 </body>
 </html>

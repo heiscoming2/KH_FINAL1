@@ -3,14 +3,52 @@
 	margin:0 auto;
 }
 
-tr:hover td{
+.companycrawlingtable tr:hover td{
  	background-color: rgb(220, 245, 255) !important;
-}
-
-tr:hover td {
     cursor:pointer;
 }
 
-td {
+.companycrawlingtable td {
 	vertical-align:middle;
+	font-size:14px;
 }
+
+.companycrawlingtable th {
+	font-size:15px;
+	font-weight:normal !important;
+	background-color:rgb(220, 245, 255);
+}
+
+.cc_title {
+	font-weight:bold;
+}
+
+.cc_meta {
+	color:#999;
+}
+
+.filter_innerwrap {
+	display:none;
+}
+
+.cc_search {
+	width:200px;
+	display:inline-block;
+	padding-bottom:11px;
+}
+
+.filter_innerwrap tr {
+	margin-bottom:5px !important;
+}
+
+.filter_innerwrap td {
+	margin-bottom:5px;
+}
+
+.filter_table {
+	border-spacing:10px 20px;
+	border-collapse:separate;
+}
+
+.sidoselect,.gugunselect{width:150px !important;}
+.cc_search{width:312px; margin-left:9px;}

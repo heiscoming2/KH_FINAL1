@@ -22,6 +22,11 @@ public class CompanyCrawler {
 	//리스트 뿌려줄때, 이거를 컨트롤러에서 호출해서 MODEL에 담아서 JSP단에서 ${DETAILURL}${NNNN패턴} 이런 식으로 주소값을 주어서 처리한다.
 	String Detail_URL="https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=";
 	
+	//url 가져올때 쓴다.
+	public String getDetail_URL() {
+		return Detail_URL;
+	}
+
 	//순서대로 총 채용 공고수 , 페이지당 채용 공고수, 총 페이지수
 	private int all_of_post_cnt;
 	private int post_of_page;
