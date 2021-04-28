@@ -37,13 +37,27 @@
 	          	  <span>지역선택</span>
 	          </td>
 	          <td style="display:flex;">
-		          <select class="form-control sidoselect" name="sido1">
-		          	<c:if test='${companyCrawlingSearchDto ne null }'>
-		          		<option>${companyCrawlingSearchDto.src_a1 }</option>
-		          	</c:if>
-		          </select>
+                   <select class="sidoselect form-control" id="sidoselect" onchange="change(this.selectedIndex);">
+                       <option value='전체'>전체</option>
+                       <option value='서울'>서울</option>
+                       <option value='부산'>부산</option>
+                       <option value='대구'>대구</option>
+                       <option value='인천'>인천</option>
+                       <option value='광주'>광주</option>
+                       <option value='대전'>대전</option>
+                       <option value='울산'>울산</option>
+                       <option value='경기'>경기</option>
+                       <option value='강원'>강원</option>
+                       <option value='충북'>충북</option>
+                       <option value='충남'>충남</option>
+                       <option value='전북'>전북</option>
+                       <option value='전남'>전남</option>
+                       <option value='경북'>경북</option>
+                       <option value='경남'>경남</option>
+                       <option value='제주'>제주</option>
+                    </select>                                                  
 		          &nbsp;&nbsp;
-	  	          <select class="form-control gugunselect" name="gugun1"></select>
+	  	          <select class="form-control gugunselect" name="gugunselect"></select>
        	  	  </td>
        	  </tr>
        	  <tr>
@@ -171,6 +185,13 @@
 	<!-- FOOTER 종료 -->
 
 <%@include file="../inc/_foot.jspf" %>
+
+<!-- 검색정보가 있다면 지역 정보를 hidden 태그로 전달하고 이 값으로 지역선택 초기값을 설정한다. -->
+<c:if test="${companyCrawlingSearchDto ne null}">
+	<input type="hidden" id="addr1" value="${companyCrawlingSearchDto.src_a1 }">
+	<input type="hidden" id="addr2" value="${companyCrawlingSearchDto.src_a2 }">
+</c:if>
+	
 <script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.0"></script>	
 </body>
 </html>
