@@ -3,7 +3,9 @@ package com.itpro.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,7 +37,10 @@ public class CompanyCrawlingController {
 	@RequestMapping(value="/companycrawlinglist.do")
 	public String companyCrawlingList
 		(Model model, 
-		 @RequestParam(value="page", required=false, defaultValue="1") int page) {
+		 @RequestParam(value="page", required=false, defaultValue="1") int page
+		 ) {
+		
+		logger.info("companycrawlinglist 컨트롤러");
 		
 		//페이징 처리를 위해 게시글의 총 갯수를 가지고 온다.
 		int companyCrawlingContentCnt = companyCrawlingBizImpl.getCompanyCrawlingContentCnt();
@@ -43,8 +48,12 @@ public class CompanyCrawlingController {
 		//페이징 처리를 위한 class, 총 게시물 수와 보여줄 페이지를 매개변수로 주어 필요한 값들을 계산한다. 
 		PageProcessing pageProcessing = new PageProcessing(companyCrawlingContentCnt,page);
 		
-		//LIST를 가져오는데 page를 주어 해당 page의 게시물을 들고오도록 한다.
-		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBizImpl.selectList(page);
+		//LIST를 가져오는데 페이지의 시작할 글번호와 마지막 글 번호를 map에 담아서 (mapper에서 매개변수를 여러개 못 주겠어서 map에 담음)
+		//전달해준다.
+		Map<String,Object> companyCrawlingPageMap = new HashMap<String,Object>();
+		companyCrawlingPageMap.put("start", pageProcessing.getStartIndex());
+		companyCrawlingPageMap.put("end", pageProcessing.getEndIndex());
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBizImpl.selectList(companyCrawlingPageMap);
 		
 		//받아온 페이지 정보를 model에 담아둔다.
 		model.addAttribute("pageProcessing",pageProcessing);
@@ -57,7 +66,50 @@ public class CompanyCrawlingController {
 		
 		return "companycrawling/companycrawlinglist";
 	}
-
+	
+	
+	//검색 조건이 있을 경우 이 쪽으로 타고와서 list를 뿌려준다.
+	@RequestMapping(value="/companycrawlinglistandsearch.do")
+	public String companyCrawlingList
+		(Model model, 
+		 @RequestParam(value="page", required=false, defaultValue="1") int page,
+		 CompanyCrawlingSearchDto companyCrawlingSearchDto) {
+		
+		logger.info("companycrawsearchlinglist 컨트롤러");
+		logger.info(companyCrawlingSearchDto.getSrc_a1());
+		logger.info(companyCrawlingSearchDto.getSrc_a2());
+		logger.info(companyCrawlingSearchDto.getSrc_cer());
+		logger.info(companyCrawlingSearchDto.getSrc_edu());
+		logger.info(companyCrawlingSearchDto.getSrc_key());
+		
+		//페이징 처리를 위해 게시글 조건에 맞는 총 갯수를 가지고 온다.
+		int companycrawlingsearchcnt = companyCrawlingBizImpl.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
+		logger.info("companyCrawlingContentCnt : " + companycrawlingsearchcnt);
+		
+		//페이징 처리를 위한 class, 총 게시물 수와 보여줄 페이지를 매개변수로 주어 필요한 값들을 계산한다. 
+		PageProcessing pageProcessing = new PageProcessing(companycrawlingsearchcnt,page);
+	    
+		//LIST를 가져오는데 이동할 페이지의 시작 글 번호, 마지막 글 번호, 검색 정보를 map에 담아 매개변수로 전달한다.
+		Map<String,Object> companyCrawlingMap = new HashMap<String,Object>();
+		companyCrawlingMap.put("start", pageProcessing.getStartIndex());
+		companyCrawlingMap.put("end", pageProcessing.getEndIndex());
+		companyCrawlingMap.put("companyCrawlingSearchDto", companyCrawlingSearchDto);
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBizImpl.selectschList(companyCrawlingMap);
+		
+		//검색 정보를 list에 되돌려주기 위해 model에 담아준다.
+		model.addAttribute("companyCrawlingSearchDto",companyCrawlingSearchDto);
+		
+		//받아온 페이지 정보를 model에 담아둔다.
+		model.addAttribute("pageProcessing",pageProcessing);
+		
+		//받아온 list를 model에 담아준다.
+		model.addAttribute("companyCrawlingList",companyCrawlingList);
+		
+		//채용정보 눌렀을때 url 정보의 앞부분을 가져온다.
+		model.addAttribute("companydetailurl",new CompanyCrawler().getDetail_URL());
+		
+		return "companycrawling/companycrawlinglist";
+	}
 	
 	@RequestMapping(value="/companycrawlingupdate.do")
 	public String companyCrawlingInsert(Model model) {

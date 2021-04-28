@@ -91,7 +91,11 @@ public class CompanyCrawler {
 					companycrawlingdto = new CompanyCrawlingDto();
 					companycrawlingdto.setCc_name(e.select(".company_nm .str_tit>span").text().toString());
 					companycrawlingdto.setCc_title(e.select(".job_tit .str_tit>span").text().toString());
-					companycrawlingdto.setCc_career(e.select(".career").text().toString());
+					if(e.select(".career").text().toString().contains("무관")) {
+						companycrawlingdto.setCc_career("무관");
+					} else {
+						companycrawlingdto.setCc_career(e.select(".career").text().toString());
+					}
 					companycrawlingdto.setCc_education(e.select(".education").text().toString());
 					companycrawlingdto.setCc_meta(e.select(".job_meta").text().toString());
 					if(e.select(".work_place").text().toString()==null||e.select(".work_place").text().toString().equals("")) {

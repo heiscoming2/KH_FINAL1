@@ -12,6 +12,7 @@ public class CompanyCrawlingDto {
 	private String cc_addr2;
 	private String cc_deadline;
 	
+	
 	public int getCc_code() {
 		return cc_code;
 	}

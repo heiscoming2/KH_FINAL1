@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.dao.CompanyCrawlingDao;
 import com.itpro.model.dto.CompanyCrawlingDto;
+import com.itpro.model.dto.CompanyCrawlingSearchDto;
 
 @Repository
 public class CompanyCrawlingDaoImpl implements CompanyCrawlingDao {
@@ -19,13 +20,8 @@ public class CompanyCrawlingDaoImpl implements CompanyCrawlingDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<CompanyCrawlingDto> selectList(int page) {
-		int start = 1+(page-1)*10;
-		int end = 10*page;
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("start", start);
-		map.put("end", end);
-		List<CompanyCrawlingDto> companyCrawlingList = sqlSession.selectList(NAMESPACE+"selectList",map);
+	public List<CompanyCrawlingDto> selectList(Map companyCrawlingPageMap) {
+		List<CompanyCrawlingDto> companyCrawlingList = sqlSession.selectList(NAMESPACE+"selectList",companyCrawlingPageMap);
 		return companyCrawlingList;
 	}
 
@@ -60,4 +56,30 @@ public class CompanyCrawlingDaoImpl implements CompanyCrawlingDao {
 		return CompanyCrawlingContentCnt;
 	}
 
+	@Override
+	public int getCompanyCrawlingSearchCnt(CompanyCrawlingSearchDto companyCrawlingSearchDto) {
+		int CompanyCrawlingSearchCnt = 0;
+		CompanyCrawlingSearchCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectschlistcnt",companyCrawlingSearchDto).toString().replace("[","").replace("]", ""));
+		return CompanyCrawlingSearchCnt;
+	}
+
+	@Override
+	public List<CompanyCrawlingDto> selectschList(Map<String, Object> companyCrawlingPageMap) {
+		List<CompanyCrawlingDto> companyCrawlingList = sqlSession.selectList(NAMESPACE+"selectschlist",companyCrawlingPageMap);
+		return companyCrawlingList;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

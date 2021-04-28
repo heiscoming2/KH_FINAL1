@@ -21,55 +21,62 @@
       <h3>채용 정보</h3>
       <div class="job_btn_wrap">
         <input type="button" class="btn btn-primary" value="필터/검색" onclick="filter_toggle();">
-        <input type="button" class="btn btn-primary" value="전체 조회" onclick="selectPage(1)">
+        <input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='companycrawlinglist.do'">
 	      <div class="admin_btn" style="float:right;">
 	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingupdate.do'">
 	        <input type="button" class="btn btn-success" value="전체삭제" onclick="location.href='companycrawlingdelete.do'">
 	      </div>
       </div>
       
-      <div class="filter_innerwrap mt-3">
+      <div class="filter_innerwrap mt-3" style="<c:if test='${companyCrawlingSearchDto ne null }'>display:block;</c:if>">
        <div>
        	<form action="test.do" id="test">
        	  <table class="filter_table">
        	  <tr>
-	          <td><span>지역선택</span></td>
+	          <td>
+	          	  <span>지역선택</span>
+	          </td>
 	          <td style="display:flex;">
-	          <select class="form-control sidoselect" name="sido1"></select>
-	          &nbsp;&nbsp;
-  	          <select class="form-control gugunselect" name="gugun1"></select>
-       	  	  </td>
-       	  	  <td>
+		          <select class="form-control sidoselect" name="sido1">
+		          	<c:if test='${companyCrawlingSearchDto ne null }'>
+		          		<option>${companyCrawlingSearchDto.src_a1 }</option>
+		          	</c:if>
+		          </select>
+		          &nbsp;&nbsp;
+	  	          <select class="form-control gugunselect" name="gugun1"></select>
        	  	  </td>
        	  </tr>
        	  <tr>
-       	      <td><span>경력선택</span></td>
        	      <td>
-  	          <select class="form-control">
-	          	<option>전체</option>
-	          	<option></option>
-	          	<option>부산</option>
-	          </select>
+       	      	  <span>경력선택</span>
+       	      </td>
+       	      <td>
+	  	          <select class="form-control careerselect">
+		          	<option>전체</option>
+		          	<option>신입</option>
+		          	<option>경력</option>
+		          </select>
 	          </td>   
-
        	  </tr>
        	  <tr>
        	  	  <td>
-	          <span>학력선택</span></td>
-	          <td><select class="form-control">
-	          	<option>전체</option>
-	          	<option>고졸</option>
-	          	<option>대졸(2년제)</option>
-	    	    <option>대졸(4년제)</option>
-	          </select>     	  	  
+	         	   <span>학력선택</span>
+	          </td>
+	          <td>
+		          <select class="form-control eduselect">
+		          	<option>전체</option>
+		          	<option>학력무관</option>
+		          	<option>고등학교 졸업 이하</option>
+		          	<option>대학교 졸업 이하 (2/3년제)</option>
+		          </select>     	  	  
        	  	  </td>	
        	  </tr>
        	  <tr>
        	  <td colspan="3">
         <!-- 검색창 -->
 	    <div class="mb-3">
-	      <input type="button" class="btn btn-primary" value="조회" onclick="store_search();">
-	      <input name="searchbox" type="text" placeholder="회사명 or 공고내용" class="form-control search-bar cc_search"
+	      <input type="button" class="btn btn-primary" value="조회" onclick="selectPage(1)">
+	      <input name="searchbox" type="text" placeholder="회사명 or 채용정보" class="form-control search-bar cc_search"
 	          onkeyup="store_search_ent();">
 	    </div>
 	    </td>
@@ -164,6 +171,6 @@
 	<!-- FOOTER 종료 -->
 
 <%@include file="../inc/_foot.jspf" %>
-<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.1"></script>	
+<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.0"></script>	
 </body>
 </html>

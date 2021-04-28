@@ -20,15 +20,17 @@ public class PageProcessing {
     private int startPage = 1;
     /** 끝 페이지 **/
     private int endPage = 1;
-    /** 시작 index **/
+    /** 보여줄 페이지의 시작할 글 번호 **/
     private int startIndex = 0;
+    /** 보여줄 페이지의 마지막 글 번호 **/
+    private int endIndex = 0;
     /** 이전 페이지 **/
     private int prevPage;
     /** 다음 페이지 **/
     private int nextPage;
     
     public PageProcessing() {
-		// TODO Auto-generated constructor stub
+
 	}
     
     public PageProcessing(int listCnt, int curPage) {
@@ -52,8 +54,9 @@ public class PageProcessing {
         /** 3. 블럭(range) setting **/
         rangeSetting(curPage);
         
-        /** DB 질의를 위한 startIndex 설정 **/
+        /** DB 질의를 위한 startIndex/endIndex 설정 **/
         setStartIndex(curPage);
+        setEndIndex(curPage);
     }
     
     
@@ -82,7 +85,6 @@ public class PageProcessing {
         this.rangeCnt = (int) Math.ceil(pageCnt*1.0/rangeSize);
     }
     public void rangeSetting(int curPage){
-        
         setCurRange(curPage);        
         this.startPage = (curRange - 1) * rangeSize + 1;
         this.endPage = startPage + rangeSize - 1;
@@ -106,7 +108,11 @@ public class PageProcessing {
     }
     
     public void setStartIndex(int curPage) {
-        this.startIndex = (curPage-1) * pageSize;
+        this.startIndex = ((curPage-1)*pageSize)+1;
+    }
+    
+    public void setEndIndex(int curPage) {
+    	this.endIndex = curPage*pageSize;
     }
 
 	public int getPageSize() {
@@ -171,6 +177,10 @@ public class PageProcessing {
 
 	public int getStartIndex() {
 		return startIndex;
+	}
+	
+	public int getEndIndex() {
+		return endIndex;
 	}
     
     
