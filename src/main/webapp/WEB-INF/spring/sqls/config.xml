@@ -7,11 +7,13 @@
 		<typeAlias type="com.itpro.model.dto.BoardDto" alias="boardDto"/>
 		<typeAlias type="com.itpro.model.dto.CompanyCrawlingDto" alias="CompanyCrawlingDto"/>
 		<typeAlias type="com.itpro.model.dto.CompanyCrawlingSearchDto" alias="CompanyCrawlingSearchDto"/>
+		<typeAlias type="com.itpro.model.dto.ProjectDto" alias="ProjectDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mybatis/board-mapper.xml"/>
 		<mapper resource="/mybatis/companycrawling-mapper.xml"/>
+		<mapper resource="/mybatis/project-mapper.xml"/>
 	</mappers>
 
 </configuration>
