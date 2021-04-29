@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +14,20 @@
 
 <!-- 본문 시작 -->
 
-<!-- 회원명단 -->
-<h1>회원관리</h1>
+<!-- 신고관리 -->
+<h1>신고관리</h1>
 
 <table border="1">
 <col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
 	<thead>
 	<tr>
 		<th>No</th>
-		<th>결제회원ID</th>
-		<th>결제방법</th>
-		<th>결제일</th>
-		<th>결제자명</th>
-		<th>결제자 전화번호</th>
-		<th>결제자 이메일 </th>
+		<th>신고자</th>
+		<th>신고날짜,시간</th>
+		<th>제목</th>
+		<th>Type</th>
+		<th>피신고자</th>
+		<th>신고이유</th>
 	</tr>
 	</thead>
 	
@@ -38,12 +36,14 @@
 		<c:choose>
 		<c:when test="${empty list }">
 			<tr>
-				<td>===회원명단이 존재하지 않습니다.===</td>
+				<td>===신고목록이 존재하지 않습니다.===</td>
 			</tr>
 		</c:when>
 		<c:otherwise>
 			<c:forEach var="" items="">
 				<tr>
+					<td></td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -57,13 +57,13 @@
 	</tbody>
 </table>
 
-<!-- 쪽지보내기 -->
-
-
 
 
 
 <!-- 본문 종료 -->
+
+<!-- sidebar 시작 -->
+<%@include file="../inc/_sidebar_admin.jspf" %>
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>

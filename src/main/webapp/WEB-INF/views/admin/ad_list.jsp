@@ -22,12 +22,11 @@
 	<thead>
 	<tr>
 		<th>No</th>
-		<th>결제회원ID</th>
-		<th>결제방법</th>
-		<th>결제일</th>
-		<th>결제자명</th>
-		<th>결제자 전화번호</th>
-		<th>결제자 이메일 </th>
+		<th>ID</th>
+		<th>업체분류</th>
+		<th>제목</th>
+		<th>결제현황</th>
+		<th>광고시작일</th>
 	</tr>
 	</thead>
 	
