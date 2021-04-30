@@ -14,8 +14,6 @@
 
 <!-- 본문 시작 -->
 
-
-<h2>dks</h2>
 <!-- 본문 종료 -->
 
 <!-- FOOTER 시작 -->
@@ -24,6 +22,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="./inc/_foot.jspf" %>
+
 	
 </body>
 </html>
