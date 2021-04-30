@@ -236,53 +236,250 @@
 	</section>
 	<!-- 인기 포트폴리오 슬라이드 종료 -->
 	
-	<!-- 게시판 시작 -->
-	<div class="container w-75">
-        <div class="bg-light" style="text-align: center">
-          <h5>공지사항</h5>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-sm" style='text-align: center' >
+	<!--게시판 시작-->
+    <div class="container w-75 mt-5">
+      <div class="row">
+        <div class="col"><!--왼쪽 상단 게시판 목록-->
+          <div class="row" style="text-align: center">
+            <h5 class="fw-bold">공지사항</h5>
+          </div>
+          <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
               <tr>
-            <th class="col-lg-1">글번호</th>
-            <th class="col-lg-4">제목</th>
-            <th class="col-lg-2">작성자</th>
-            <th class="col-lg-2">일자</th>
-            <th class="col-lg-2">조회수</th>
-            <th class="col-lg-1">추천수</th>
+                <th class="col-lg-1">No.</th>
+                <th class="col-lg-4">제목</th>
+                <th class="col-lg-2">작성자</th>
+                <th class="col-lg-2">일자</th>
+                <th class="col-lg-1">조회</th>
+                <th class="col-lg-1">추천</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-            <td>1</td>
-            <td>프로젝트어쩌구 저쩌구</td>
-            <td>홍길동</td>
-            <td>2020-00-00</td>
-            <td>10</td>
-            <td>5</td>
+                <td>1</td>
+                <td>광고 결제 방법</td>
+                <td>관리자</td>
+                <td>20-00-00</td>
+                <td>10</td>
+                <td>5</td>
               </tr>
               <tr>
-            <td>2</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
-            <td>3</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
         </div>
+        <div class="col"><!--오른쪽 상단 게시판 목록-->
+          <div class="row" style="text-align: center">
+            <h5 class="fw-bold">베스트 게시글</h5>
+          </div>
+          <table class="table table-sm table-hover" style='text-align: center' >
+            <thead>
+              <tr>
+            <th class="col-lg-1">No.</th>
+            <th class="col-lg-4">제목</th>
+            <th class="col-lg-2">작성자</th>
+            <th class="col-lg-2">일자</th>
+            <th class="col-lg-1">조회</th>
+            <th class="col-lg-1">추천</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>팀플 성공법</td>
+                <td>황시목</td>
+                <td>20-00-00</td>
+                <td>10</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col"><!--왼쪽 하단 게시판 목록-->
+          <div class="row" style="text-align: center">
+            <h5 class="fw-bold">베스트 프로젝트</h5>
+          </div>
+          <table class="table table-sm table-hover" style='text-align: center' >
+            <thead>
+              <tr>
+                <th class="col-lg-1">No.</th>
+                <th class="col-lg-4">제목</th>
+                <th class="col-lg-2">작성자</th>
+                <th class="col-lg-2">일자</th>
+                <th class="col-lg-1">조회</th>
+                <th class="col-lg-1">추천</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>프로젝트입니다</td>
+                <td>김자바</td>
+                <td>20-00-00</td>
+                <td>10</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col"><!--오른쪽 하단 게시판 목록-->
+          <div class="row" style="text-align: center">
+            <h5 class="fw-bold">스터디</h5>
+          </div>
+          <table class="table table-sm table-hover" style='text-align: center' >
+            <thead>
+              <tr>
+            <th class="col-lg-1">No.</th>
+            <th class="col-lg-4">제목</th>
+            <th class="col-lg-2">작성자</th>
+            <th class="col-lg-2">일자</th>
+            <th class="col-lg-1">조회</th>
+            <th class="col-lg-1">추천</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>스터디원 구인</td>
+                <td>홍길동</td>
+                <td>20-00-00</td>
+                <td>10</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-	<!-- 게시판 종료 -->
+<!--게시판 종료-->
 
 	<!-- FOOTER 시작 -->
 	<%@include file="./inc/_footer.jspf" %>
