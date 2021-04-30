@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+      <div class="text-center mt-5 mb-5">
+        <ul class="pagination" style="justify-content: center; cursor:pointer;">
+       	  	<li class="page-item"><a class="page-link" onclick="selectPage(1)">처음</a></li>
+         	<li class="page-item"><a class="page-link" onclick="selectPage('${pageProcessing.prevPage}')">이전</a></li>
+          <c:forEach var="pageNum" begin="${pageProcessing.startPage}" end="${pageProcessing.endPage }">
+          	<c:choose>
+          		<c:when test="${pageNum eq pageProcessing.curPage }">
+		            <li class="page-item">
+		               <a style="color:red;" class="page-link" onclick="selectPage('${pageNum}');">
+		                 <b>${pageNum}</b>
+		               </a>
+		          </li>
+          		</c:when>
+          		<c:otherwise>
+	          		<li class="page-item">
+	          			<a class="page-link" onclick="selectPage(${pageNum});">
+	          			  ${pageNum}
+	          			</a>
+	          		</li>
+          		</c:otherwise>
+          	</c:choose>
+	      </c:forEach>
+	         <li><a class="page-link" onclick="selectPage('${pageProcessing.nextPage}')">다음</a></li>
+         	 <li><a class="page-link" onclick="selectPage('${pageProcessing.pageCnt}')">끝</a></li>
+        </ul>
+      </div>

@@ -48,7 +48,7 @@
                 <a class="nav-link ms-5" href="#">Q & A</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link ms-5" href="#">스터디 구인</a>
+                <a class="nav-link ms-5" href="studylist.do">스터디 구인</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link ms-5" href="companycrawlinglist.do">채용 정보</a>

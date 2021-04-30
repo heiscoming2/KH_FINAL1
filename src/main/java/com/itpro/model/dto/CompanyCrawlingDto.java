@@ -11,7 +11,8 @@ public class CompanyCrawlingDto {
 	private String cc_addr1;
 	private String cc_addr2;
 	private String cc_deadline;
-	
+	private int cc_carlevel;
+	private int cc_edulevel;
 	
 	public int getCc_code() {
 		return cc_code;
@@ -36,12 +37,28 @@ public class CompanyCrawlingDto {
 	}
 	public void setCc_career(String cc_career) {
 		this.cc_career = cc_career;
+		if(cc_career.contains("무관")) {
+			this.cc_carlevel=1;
+		} else if(cc_career.contains("신입")) {
+			this.cc_carlevel=2;
+		} else {
+			this.cc_carlevel=3;
+		}
 	}
 	public String getCc_education() {
 		return cc_education;
 	}
 	public void setCc_education(String cc_education) {
 		this.cc_education = cc_education;
+		if(cc_education.contains("무관")) {
+			this.cc_edulevel=1;
+		} else if(cc_education.contains("고졸")) {
+			this.cc_edulevel=2;
+		} else if(cc_education.contains("대학(2,3년)")) {
+			this.cc_edulevel=3;
+		} else {
+			this.cc_edulevel=4;
+		}
 	}
 	public String getCc_meta() {
 		return cc_meta;
@@ -67,8 +84,22 @@ public class CompanyCrawlingDto {
 	public void setCc_deadline(String cc_deadline) {
 		this.cc_deadline = cc_deadline;
 	}
+	public int getCc_carlevel() {
+		return cc_carlevel;
+	}
+	public void setCc_carlevel(int cc_carlevel) {
+		this.cc_carlevel = cc_carlevel;
+	}
+	public int getCc_edulevel() {
+		return cc_edulevel;
+	}
+	public void setCc_edulevel(int cc_edulevel) {
+		this.cc_edulevel = cc_edulevel;
+	}
+		
+	
 	public CompanyCrawlingDto(int cc_code, String cc_name, String cc_title, String cc_career, String cc_education,
-			String cc_meta, String cc_addr1, String cc_addr2, String cc_deadline) {
+			String cc_meta, String cc_addr1, String cc_addr2, String cc_deadline, int cc_carlevel, int cc_edulevel) {
 		super();
 		this.cc_code = cc_code;
 		this.cc_name = cc_name;
@@ -79,7 +110,10 @@ public class CompanyCrawlingDto {
 		this.cc_addr1 = cc_addr1;
 		this.cc_addr2 = cc_addr2;
 		this.cc_deadline = cc_deadline;
+		this.cc_carlevel = cc_carlevel;
+		this.cc_edulevel = cc_edulevel;
 	}
+	
 	public CompanyCrawlingDto() {
 		// TODO Auto-generated constructor stub
 	}
