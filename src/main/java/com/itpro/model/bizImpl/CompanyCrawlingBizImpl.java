@@ -17,29 +17,29 @@ import com.itpro.model.dto.CompanyCrawlingSearchDto;
 public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 	
 	@Autowired
-	private CompanyCrawlingDao companyCrawlingDaoImpl;
+	private CompanyCrawlingDao companyCrawlingDao;
 	
 	@Override
 	@Transactional
 	public int updatelist(List<CompanyCrawlingDto> companyCrawlingList) {
 		deletelist();
-		return companyCrawlingDaoImpl.updatelist(companyCrawlingList);
+		return companyCrawlingDao.updatelist(companyCrawlingList);
 	}
 
 	@Override
 	public int deletelist() {
-		return companyCrawlingDaoImpl.deletelist();
+		return companyCrawlingDao.deletelist();
 	}
 
 	@Override
 	public List<CompanyCrawlingDto> selectList(Map<String,Object> companyCrawlingPageMap) {
-		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingDaoImpl.selectList(companyCrawlingPageMap);
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingDao.selectList(companyCrawlingPageMap);
 		return companyCrawlingList;
 	}
 
 	@Override
 	public int getCompanyCrawlingContentCnt() {
-		return companyCrawlingDaoImpl.getCompanyCrawlingContentCnt();
+		return companyCrawlingDao.getCompanyCrawlingContentCnt();
 	}
 
 	@Override
@@ -49,12 +49,12 @@ public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 		System.out.println(companyCrawlingSearchDto.getSrc_cer());
 		System.out.println(companyCrawlingSearchDto.getSrc_edu());
 		System.out.println(companyCrawlingSearchDto.getSrc_key());
-		return companyCrawlingDaoImpl.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
+		return companyCrawlingDao.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
 	}
 
 	@Override
 	public List<CompanyCrawlingDto> selectschList(Map<String, Object> companyCrawlingPageMap) {
 		
-		return companyCrawlingDaoImpl.selectschList(companyCrawlingPageMap);
+		return companyCrawlingDao.selectschList(companyCrawlingPageMap);
 	}
 }

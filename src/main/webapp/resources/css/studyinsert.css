@@ -23,7 +23,7 @@
 
 /* select option 영역 */
 .study_inserttable select {
-    width:auto;
+    width:150px;
     margin-right: 10px;
 }
 

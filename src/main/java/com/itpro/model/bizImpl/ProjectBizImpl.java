@@ -26,7 +26,6 @@ public class ProjectBizImpl implements ProjectBiz{
 
 	@Override
 	public int deletelist() {
-
 		return ProjectDaoImpl.deletelist();
 	}
 

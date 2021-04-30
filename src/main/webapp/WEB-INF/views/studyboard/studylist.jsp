@@ -19,10 +19,10 @@
 		<div class="study_btnwrap">
 			<input type="button" class="btn btn-primary" value="필터" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회"> 
-			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='studyinsert.do'">
+			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='studyinsertform.do'">
 		</div>
 		<div class="loc_toggle" style="clear: both; display: none;">
-			 <div style="display:inline-block;">
+			 <div>
 			 <span>지역설정</span>
 			 <span style="display:flex; width:300px;">
 				<select class="form-control select_sido">
@@ -37,7 +37,7 @@
 				</select>
 			</span>
 			</div>
-			<div style="display:inline-block;">
+			<div>
 			<span>모집여부</span>
 			<span style="display:flex; width:300px;">
 				<select class="form-control">
@@ -47,7 +47,7 @@
 				</select>
 			</span>
 			</div>
-			<div style="display:inline-block; position:relative; bottom:1px;">
+			<div style="position:relative; bottom:1px;">
 			<span>검색</span>
 				<div class="text-center">
 				<input name="searchbox" type="text" placeholder="검색" value=""
@@ -104,6 +104,10 @@
 		</table>
 		</div>
 <!-- 본문 종료 -->
+
+<!-- 페이징 시작 -->
+<%@include file="../inc/_page.jspf" %>
+<!-- 페이징 종료 -->
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>

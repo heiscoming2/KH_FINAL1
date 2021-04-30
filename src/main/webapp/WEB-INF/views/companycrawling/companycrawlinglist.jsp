@@ -40,13 +40,13 @@
                    <select class="sidoselect form-control" id="sidoselect" onchange="change(this.selectedIndex);">
                        <option value=''>전체</option>
                        <option value='서울'>서울</option>
-                       <option value='부산'>부산</option>
+                       <option value='경기'>경기</option> 
                        <option value='대구'>대구</option>
                        <option value='인천'>인천</option>
                        <option value='광주'>광주</option>
                        <option value='대전'>대전</option>
                        <option value='울산'>울산</option>
-                       <option value='경기'>경기</option>
+                       <option value='부산'>부산</option>
                        <option value='강원'>강원</option>
                        <option value='충북'>충북</option>
                        <option value='충남'>충남</option>
@@ -167,6 +167,7 @@
 	<input type="hidden" id="h_searchbox" value="${companyCrawlingSearchDto.src_key }">
 </c:if>
 	
-<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.2"></script>	
+<script type="text/javascript" src="resources/js/companycrawlinglist.js"></script>
+<script type="text/javascript" src="resources/js/address.js"></script>
 </body>
 </html>

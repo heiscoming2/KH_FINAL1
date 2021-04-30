@@ -30,7 +30,7 @@ public class CompanyCrawlingController {
 	private static final Logger logger = LoggerFactory.getLogger(CompanyCrawlingController.class);
 	
 	@Autowired
-	private CompanyCrawlingBiz companyCrawlingBizImpl;
+	private CompanyCrawlingBiz companyCrawlingBiz;
 	
 	//채용정보 list를 가져와서 뿌려주는 컨트롤러
 	//매개변수로 model, 이동할 페이지, 검색정보가 담긴 dto를 받아서 처리한다.
@@ -43,7 +43,7 @@ public class CompanyCrawlingController {
 		logger.info("companycrawlinglist 컨트롤러");
 		
 		//페이징 처리를 위해 게시글의 총 갯수를 가지고 온다.
-		int companyCrawlingContentCnt = companyCrawlingBizImpl.getCompanyCrawlingContentCnt();
+		int companyCrawlingContentCnt = companyCrawlingBiz.getCompanyCrawlingContentCnt();
 		
 		//페이징 처리를 위한 class, 총 게시물 수와 보여줄 페이지를 매개변수로 주어 필요한 값들을 계산한다. 
 		PageProcessing pageProcessing = new PageProcessing(companyCrawlingContentCnt,page);
@@ -53,7 +53,7 @@ public class CompanyCrawlingController {
 		Map<String,Object> companyCrawlingPageMap = new HashMap<String,Object>();
 		companyCrawlingPageMap.put("start", pageProcessing.getStartIndex());
 		companyCrawlingPageMap.put("end", pageProcessing.getEndIndex());
-		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBizImpl.selectList(companyCrawlingPageMap);
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBiz.selectList(companyCrawlingPageMap);
 		
 		//받아온 페이지 정보를 model에 담아둔다.
 		model.addAttribute("pageProcessing",pageProcessing);
@@ -83,7 +83,7 @@ public class CompanyCrawlingController {
 		logger.info(companyCrawlingSearchDto.getSrc_key());
 		
 		//페이징 처리를 위해 게시글 조건에 맞는 총 갯수를 가지고 온다.
-		int companycrawlingsearchcnt = companyCrawlingBizImpl.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
+		int companycrawlingsearchcnt = companyCrawlingBiz.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
 		logger.info("companyCrawlingContentCnt : " + companycrawlingsearchcnt);
 		
 		//페이징 처리를 위한 class, 총 게시물 수와 보여줄 페이지를 매개변수로 주어 필요한 값들을 계산한다. 
@@ -94,7 +94,7 @@ public class CompanyCrawlingController {
 		companyCrawlingMap.put("start", pageProcessing.getStartIndex());
 		companyCrawlingMap.put("end", pageProcessing.getEndIndex());
 		companyCrawlingMap.put("companyCrawlingSearchDto", companyCrawlingSearchDto);
-		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBizImpl.selectschList(companyCrawlingMap);
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingBiz.selectschList(companyCrawlingMap);
 		
 		//검색 정보를 list에 되돌려주기 위해 model에 담아준다.
 		model.addAttribute("companyCrawlingSearchDto",companyCrawlingSearchDto);
@@ -121,7 +121,7 @@ public class CompanyCrawlingController {
 		List<CompanyCrawlingDto> companyCrawlingList = companyCralwer.getCompanyCrawlingList();
 		
 		//list를 테이블에 저장
-		companyCrawlingBizImpl.updatelist(companyCrawlingList);
+		companyCrawlingBiz.updatelist(companyCrawlingList);
 		
 		//companycrawlinglist 화면으로 가는 컨트롤러한테 보냄
 		//나중에 insert 결과값(성공 실패 여부)에 따라 return 및 alert 출력할수 있게 수정하기
@@ -131,7 +131,7 @@ public class CompanyCrawlingController {
 	@RequestMapping(value="/companycrawlingdelete.do")
 	public String companyCrawlingDelete(HttpServletResponse response) {
 		//나중에 결과값(성공 실패 여부)에 따라 return 및 alert 출력할수 있게 수정하기
-		companyCrawlingBizImpl.deletelist();
+		companyCrawlingBiz.deletelist();
 		return "companycrawling/companycrawlinglist";
 		
 	}

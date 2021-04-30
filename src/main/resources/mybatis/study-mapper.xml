@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Study">
+
+
+	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
+	<insert id="insert" parameterType="StudyDto">
+		INSERT ALL
+		INTO BOARD 
+		VALUES (
+		50000,
+		#{bd_title},
+		'반갑습니다',
+		SYSDATE,
+		NULL,
+		0,
+		0,
+		#{bd_writerip},
+		3,
+		1) 
+		INTO STUDY 
+		VALUES (
+		50000,
+		'Y',
+		#{st_addr1},
+		#{st_addr2},
+		#{st_addrdetail},
+		#{st_nowperson},
+		#{st_closeperson})
+		SELECT * FROM DUAL
+	</insert>
+</mapper>
