@@ -35,29 +35,25 @@ public class LogFilter implements Filter{
 		 * 	삭제: server가 응답 시
 		 * 	Request 중인 동안에만 존재
 		 * */
-		
-		
-		
 		HttpServletRequest req = (HttpServletRequest)request;
 		
-		String remoteAddr = req.getRemoteAddr();  //IP 주소, IPv6주소로 로컬호스트 ip
+		//String remoteAddr = req.getRemoteAddr();  //IP 주소, IPv6주소로 로컬호스트 ip
 		String uri = req.getRequestURI();
 		String url = req.getRequestURL().toString();
 		String queryString = req.getQueryString();
 		
-		String referer = req.getHeader("referer"); //이전페이지 (보내는 페이지) url
-		String agent = req.getHeader("User-Agent"); //사용자 정보(browser, os 등)
+		//String referer = req.getHeader("referer"); //이전페이지 (보내는 페이지) url
+		//String agent = req.getHeader("User-Agent"); //사용자 정보(browser, os 등)
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("remoteAddr: "+remoteAddr+ "\n")
+		sb//.append("remoteAddr: "+remoteAddr+ "\n")
 		.append("uri: "+uri+"\n")
 		.append("url: "+url+"\n")
-		.append("queryString: " +queryString+"\n")
-		.append("referer: "+referer+"\n")
-		.append("agent: "+agent+"\n");
+		.append("queryString: " +queryString+"\n");
+		//.append("referer: "+referer+"\n")
+		//.append("agent: "+agent+"\n");
  		
 		logger.info("[LOG FILTER]\n"+sb);
-
 		chain.doFilter(req,response);
 	}
 

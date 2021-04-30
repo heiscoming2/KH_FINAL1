@@ -23,7 +23,7 @@
         <input type="button" class="btn btn-primary" value="필터/검색" onclick="filter_toggle();">
         <input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='companycrawlinglist.do'">
 	      <div class="admin_btn" style="float:right;">
-	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingupdate.do'">
+	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingwating.do'">
 	        <input type="button" class="btn btn-success" value="전체삭제" onclick="location.href='companycrawlingdelete.do'">
 	      </div>
       </div>
@@ -38,15 +38,15 @@
 	          </td>
 	          <td style="display:flex;">
                    <select class="sidoselect form-control" id="sidoselect" onchange="change(this.selectedIndex);">
-                       <option value='전체'>전체</option>
+                       <option value=''>전체</option>
                        <option value='서울'>서울</option>
-                       <option value='부산'>부산</option>
+                       <option value='경기'>경기</option> 
                        <option value='대구'>대구</option>
                        <option value='인천'>인천</option>
                        <option value='광주'>광주</option>
                        <option value='대전'>대전</option>
                        <option value='울산'>울산</option>
-                       <option value='경기'>경기</option>
+                       <option value='부산'>부산</option>
                        <option value='강원'>강원</option>
                        <option value='충북'>충북</option>
                        <option value='충남'>충남</option>
@@ -57,7 +57,9 @@
                        <option value='제주'>제주</option>
                     </select>                                                  
 		          &nbsp;&nbsp;
-	  	          <select class="form-control gugunselect" name="gugunselect"></select>
+	  	          <select class="form-control gugunselect" name="gugunselect" id="gugunselect">
+	  	          	   <option value=''>전체</option>
+	  	          </select>
        	  	  </td>
        	  </tr>
        	  <tr>
@@ -65,10 +67,11 @@
        	      	  <span>경력선택</span>
        	      </td>
        	      <td>
-	  	          <select class="form-control careerselect">
-		          	<option>전체</option>
-		          	<option>신입</option>
-		          	<option>경력</option>
+	  	          <select class="form-control careerselect" id="careerselect">
+		          	<option value=4>전체</option>
+		          	<option value="1">무관</option>
+		          	<option value="2">신입</option>
+		          	<option value="3">경력</option>
 		          </select>
 	          </td>   
        	  </tr>
@@ -77,11 +80,11 @@
 	         	   <span>학력선택</span>
 	          </td>
 	          <td>
-		          <select class="form-control eduselect">
-		          	<option>전체</option>
-		          	<option>학력무관</option>
-		          	<option>고등학교 졸업 이하</option>
-		          	<option>대학교 졸업 이하 (2/3년제)</option>
+		          <select class="form-control eduselect" id="eduselect">
+		          	<option value=4>전체</option>
+		          	<option value="1">학력무관</option>
+		          	<option value="2">고등학교 졸업 이하</option>
+		          	<option value="3">대학교 졸업 이하 (2/3년제)</option>
 		          </select>     	  	  
        	  	  </td>	
        	  </tr>
@@ -90,7 +93,7 @@
         <!-- 검색창 -->
 	    <div class="mb-3">
 	      <input type="button" class="btn btn-primary" value="조회" onclick="selectPage(1)">
-	      <input name="searchbox" type="text" placeholder="회사명 or 채용정보" class="form-control search-bar cc_search"
+	      <input id="searchbox" type="text" placeholder="회사명 or 채용정보" class="form-control search-bar cc_search"
 	          onkeyup="store_search_ent();">
 	    </div>
 	    </td>
@@ -141,57 +144,30 @@
 				</c:forEach>
 			</c:otherwise>
       	</c:choose>
-
-      	
       </table>
-      
-      
       <!-- 페이징 -->
-      <div class="text-center mt-5 mb-5">
-        <ul class="pagination" style="justify-content: center; cursor:pointer;">
-       	  	<li class="page-item"><a class="page-link" onclick="selectPage(1)">처음</a></li>
-         	<li class="page-item"><a class="page-link" onclick="selectPage('${pageProcessing.prevPage}')">이전</a></li>
-          <c:forEach var="pageNum" begin="${pageProcessing.startPage}" end="${pageProcessing.endPage }">
-          	<c:choose>
-          		<c:when test="${pageNum eq pageProcessing.curPage }">
-		            <li class="page-item">
-		               <a style="color:red;" class="page-link" onclick="selectPage('${pageNum}');">
-		                 <b>${pageNum}</b>
-		               </a>
-		          </li>
-          		</c:when>
-          		<c:otherwise>
-	          		<li class="page-item">
-	          			<a class="page-link" onclick="selectPage(${pageNum});">
-	          			  ${pageNum}
-	          			</a>
-	          		</li>
-          		</c:otherwise>
-          	</c:choose>
-	      </c:forEach>
-	         <li><a class="page-link" onclick="selectPage('${pageProcessing.nextPage}')">다음</a></li>
-         	 <li><a class="page-link" onclick="selectPage('${pageProcessing.pageCnt}')">끝</a></li>
-        </ul>
-      </div>
-	</div>
+	<%@include file="../inc/_page.jspf" %>
 	<!-- 페이징 종료 -->
-	
-
-
+	</div>
 	<!-- 본문 종료 -->
 		
 	<!-- FOOTER 시작 -->
 	<%@include file="../inc/_footer.jspf" %>
 	<!-- FOOTER 종료 -->
 
+
 <%@include file="../inc/_foot.jspf" %>
 
-<!-- 검색정보가 있다면 지역 정보를 hidden 태그로 전달하고 이 값으로 지역선택 초기값을 설정한다. -->
+<!-- 넘어온 검색정보가 있다면 지역 정보를 hidden 태그로 전달하고 이 값으로 지역선택 초기값을 설정한다. -->
 <c:if test="${companyCrawlingSearchDto ne null}">
-	<input type="hidden" id="addr1" value="${companyCrawlingSearchDto.src_a1 }">
-	<input type="hidden" id="addr2" value="${companyCrawlingSearchDto.src_a2 }">
+	<input type="hidden" id="h_addr1" value="${companyCrawlingSearchDto.src_a1 }">
+	<input type="hidden" id="h_addr2" value="${companyCrawlingSearchDto.src_a2 }">
+	<input type="hidden" id="h_careerselect" value="${companyCrawlingSearchDto.src_cer }">
+	<input type="hidden" id="h_eduselect" value="${companyCrawlingSearchDto.src_edu }">
+	<input type="hidden" id="h_searchbox" value="${companyCrawlingSearchDto.src_key }">
 </c:if>
 	
-<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.0"></script>	
+<script type="text/javascript" src="resources/js/companycrawlinglist.js"></script>
+<script type="text/javascript" src="resources/js/address.js"></script>
 </body>
 </html>

@@ -17,70 +17,44 @@ import com.itpro.model.dto.CompanyCrawlingSearchDto;
 public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 	
 	@Autowired
-	private CompanyCrawlingDao companyCrawlingDaoImpl;
+	private CompanyCrawlingDao companyCrawlingDao;
 	
 	@Override
 	@Transactional
 	public int updatelist(List<CompanyCrawlingDto> companyCrawlingList) {
 		deletelist();
-		return companyCrawlingDaoImpl.updatelist(companyCrawlingList);
+		return companyCrawlingDao.updatelist(companyCrawlingList);
 	}
 
 	@Override
 	public int deletelist() {
-		return companyCrawlingDaoImpl.deletelist();
+		return companyCrawlingDao.deletelist();
 	}
 
 	@Override
 	public List<CompanyCrawlingDto> selectList(Map<String,Object> companyCrawlingPageMap) {
-		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingDaoImpl.selectList(companyCrawlingPageMap);
+		List<CompanyCrawlingDto> companyCrawlingList = companyCrawlingDao.selectList(companyCrawlingPageMap);
 		return companyCrawlingList;
 	}
 
 	@Override
 	public int getCompanyCrawlingContentCnt() {
-		return companyCrawlingDaoImpl.getCompanyCrawlingContentCnt();
+		return companyCrawlingDao.getCompanyCrawlingContentCnt();
 	}
 
 	@Override
 	public int getCompanyCrawlingSearchCnt(CompanyCrawlingSearchDto companyCrawlingSearchDto) {
-		if(companyCrawlingSearchDto.getSrc_a1().equals("시/도 선택")) {
-			companyCrawlingSearchDto.setSrc_a1("");
-		}
-		if(companyCrawlingSearchDto.getSrc_a2().equals("전체")) {
-			companyCrawlingSearchDto.setSrc_a2("");
-		}
-		if(companyCrawlingSearchDto.getSrc_cer().equals("전체")) {
-			companyCrawlingSearchDto.setSrc_cer("");
-		}
-		if(companyCrawlingSearchDto.getSrc_edu().equals("전체")) {
-			companyCrawlingSearchDto.setSrc_edu("");
-		}
 		System.out.println(companyCrawlingSearchDto.getSrc_a1());
 		System.out.println(companyCrawlingSearchDto.getSrc_a2());
 		System.out.println(companyCrawlingSearchDto.getSrc_cer());
 		System.out.println(companyCrawlingSearchDto.getSrc_edu());
 		System.out.println(companyCrawlingSearchDto.getSrc_key());
-		return companyCrawlingDaoImpl.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
+		return companyCrawlingDao.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
 	}
 
 	@Override
 	public List<CompanyCrawlingDto> selectschList(Map<String, Object> companyCrawlingPageMap) {
 		
-		CompanyCrawlingSearchDto companyCrawlingSearchDto = (CompanyCrawlingSearchDto) companyCrawlingPageMap.get("companyCrawlingSearchDto"); 
-		if(companyCrawlingSearchDto.getSrc_a1()=="시/도 선택") {
-			companyCrawlingSearchDto.setSrc_a1("");
-		}
-		if(companyCrawlingSearchDto.getSrc_a2()=="전체") {
-			companyCrawlingSearchDto.setSrc_a2("");
-		}
-		if(companyCrawlingSearchDto.getSrc_cer()=="전체") {
-			companyCrawlingSearchDto.setSrc_cer("");
-		}
-		if(companyCrawlingSearchDto.getSrc_edu()=="전체") {
-			companyCrawlingSearchDto.setSrc_edu("");
-		}
-		companyCrawlingPageMap.put("companyCrawlingSearchDto", companyCrawlingSearchDto);
-		return companyCrawlingDaoImpl.selectschList(companyCrawlingPageMap);
+		return companyCrawlingDao.selectschList(companyCrawlingPageMap);
 	}
 }

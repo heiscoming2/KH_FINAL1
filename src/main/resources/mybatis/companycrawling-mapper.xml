@@ -19,7 +19,10 @@
 		 #{company.cc_meta},
 		 #{company.cc_addr1},
 		 #{company.cc_addr2},
-		 #{company.cc_deadline})
+		 #{company.cc_deadline},
+		 #{company.cc_carlevel},
+		 #{company.cc_edulevel}
+		 )
 		</foreach>
 	</update>
 	
@@ -39,13 +42,18 @@
 	</select>
 	
 	
+	<!-- CDATA : WHERE 조건절에서 값을 비교하기 위해 특수문자 사용때문에  -->
 	<select id="selectschlistcnt" resultType="int" parameterType="CompanyCrawlingSearchDto">
 		SELECT COUNT(CC_CODE) 
 		FROM COMPANYCRAWLING
 		WHERE CC_ADDR1 LIKE '%${src_a1}%'
 	    AND CC_ADDR2 LIKE '%${src_a2}%'
-		AND CC_CAREER LIKE '%${src_cer}%'
-		AND CC_EDUCATION LIKE '%${src_edu}%'
+	    <if test="src_cer!=4">
+		AND CC_CARLEVEL <![CDATA[=]]> #{src_cer}
+	    </if>
+		<![CDATA[
+		AND CC_EDULEVEL <= #{src_edu}
+		]]>
 		AND (CC_META LIKE '%${src_key}%' OR CC_TITLE LIKE '%${src_key}%' OR CC_NAME LIKE '%${src_key}%')
 	</select>
 	
@@ -55,9 +63,24 @@
 		FROM COMPANYCRAWLING
 		WHERE CC_ADDR1 LIKE '%${companyCrawlingSearchDto.src_a1}%'
 	    AND CC_ADDR2 LIKE '%${companyCrawlingSearchDto.src_a2}%'
-		AND CC_CAREER LIKE '%${companyCrawlingSearchDto.src_cer}%'
-		AND CC_EDUCATION LIKE '%${companyCrawlingSearchDto.src_edu}%'
+	    <if test="companyCrawlingSearchDto.src_cer!=4">
+		AND CC_CARLEVEL <![CDATA[=]]> #{companyCrawlingSearchDto.src_cer}
+	    </if>
+	    <![CDATA[
+		AND CC_EDULEVEL <= #{companyCrawlingSearchDto.src_edu}
+		]]>
 		AND (CC_META LIKE '%${companyCrawlingSearchDto.src_key}%' OR CC_TITLE LIKE '%${companyCrawlingSearchDto.src_key}%' OR CC_NAME LIKE '%${companyCrawlingSearchDto.src_key}%')) RN
         WHERE RN BETWEEN #{start} AND #{end}	
     </select>	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
