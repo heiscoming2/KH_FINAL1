@@ -176,11 +176,6 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: "Roboto", sans-serif;
-    background: #f9f9f9;
-}
-
 .testimonial-view {
     margin-bottom: 30px;
     position: relative;

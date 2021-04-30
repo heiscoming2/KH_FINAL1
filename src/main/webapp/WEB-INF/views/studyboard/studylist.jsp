@@ -25,16 +25,28 @@
 			 <div>
 			 <span>지역설정</span>
 			 <span style="display:flex; width:300px;">
-				<select class="form-control select_sido">
-					<option>서울시</option>
-					<option>경기도</option>
-					<option>광주광역시</option>
-				</select> 
-				<select class="form-control select_sigu">
-					<option>관악구</option>
-					<option>어디구</option>
-					<option>어디구</option>
-				</select>
+                <select class="sidoselect form-control" name="st_addr1" onchange="change(this.selectedIndex);">
+                       <option value=''>전체</option>
+                       <option value='서울'>서울</option>
+                       <option value='경기'>경기</option>
+                       <option value='대구'>대구</option>
+                       <option value='인천'>인천</option>
+                       <option value='광주'>광주</option>
+                       <option value='대전'>대전</option>
+                       <option value='울산'>울산</option>
+                       <option value='부산'>부산</option>
+                       <option value='강원'>강원</option>
+                       <option value='충북'>충북</option>
+                       <option value='충남'>충남</option>
+                       <option value='전북'>전북</option>
+                       <option value='전남'>전남</option>
+                       <option value='경북'>경북</option>
+                       <option value='경남'>경남</option>
+                       <option value='제주'>제주</option>
+                    </select>                                                  
+	  	          <select class="form-control gugunselect" id="gugunselect" name="st_addr2">
+	  	          	   <option value=''>전체</option>
+	  	          </select>
 			</span>
 			</div>
 			<div>
@@ -77,29 +89,40 @@
 			</tr>
 			<!-- 게시물 한 줄 시작-->
 			<tr>
-				<!-- 글 번호 시작 --> 
-				<td>123123</td>
-				<td>모집중</td>
-				<td>서울시 관악구</td>
-				<td>1 / 3</td>
-				<td>자바 초보자 구합니다. [7]</td>
-				<td>12312</td>
-				<td>
-				    <div class="study_profile">
-						<img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-						<div class="study_writer"> 
-							<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
-								hyojun9292 
-							</a> 
-							<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-								<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-								<li><a class="dropdown-item" href="#">이력서 열람</a></li>
-							</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
-						</div> 
-						<span class="study_regdate"> 2021-03-28 13:13 </span>
-					</div>
-				</td>
+				<c:choose>
+					<c:when test="${empty studyList }">
+						<td colspan="7" align="center">
+							조회할 게시물이 존재하지 않습니다.
+						</td>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="studyDto" items="${studyList }">
+							<!-- 글 번호 시작 --> 
+							<td>${studyDto.bd_no} </td>
+							<td>${studyDto.st_status} </td>
+							<td>${studyDto.st_addr1 } ${st_addr2 }</td>
+							<td>${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
+							<td><a href="studydetail.do">${studyDto.bd_title } [${studyDto.bd_replycount }]</a></td>
+							<td>${studyDto.bd_viewcount }</td>
+							<td>
+							    <div class="study_profile">
+									<img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+									<div class="study_writer"> 
+										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+											${studyDto.m_name } 
+										</a> 
+										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+											<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
+										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
+									</div> 
+									<span class="study_regdate"> ${studyDto.bd_createddate } </span>
+								</div>
+							</td>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</tr>	
 		</table>
 		</div>
@@ -115,6 +138,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-	
+<script type=text/javascript src="resources/js/studylist.js"></script>
+<script type=text/javascript src="resources/js/address.js"></script>
 </body>
 </html>

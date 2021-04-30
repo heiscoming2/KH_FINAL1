@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 
 <title>IT PRO</title>
 <%@include file="./inc/_head.jspf" %>
-<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css">
+<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.0">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -17,11 +18,12 @@
 
 <!-- 인기 포트폴리오 슬라이드 시작 -->
 	<section id="testimonial" class="section-100 mt-5">
-		<div class="container">
+		<div style="width:90%; margin:0 auto;">
 			<div class="testimonial-view">
 				<h5 class="text-center"><b>TOP 10 인기 포트폴리오</b></h5>
 				<div class="owl-carousel">
 					<!-- 프로필 시작 -->
+					<c:forEach begin="0" end="20" step="1" varStatus="loop">
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
 							<img src="testimages/testprofile.jpg" alt="" class="user-img mr-2">
@@ -68,168 +70,8 @@
 							</div>
 						</div>
 					</div>
+					</c:forEach>
 					<!-- 프로필 종료 -->
-					<!-- 프로필 시작 -->
-					<div class="testimonial-box">
-						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
-							<div>
-								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
-								</h6>
-
-								<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
-									&nbsp;&nbsp;&nbsp;<span
-										style="text-decoration: underline;">92.10.24</span><span>&nbsp;(N년차)</span><br>
-									&nbsp;&nbsp;&nbsp;<span style="color:black"><b>프론트 개발</b></span>
-								</p>
-							</div>
-						</div>
-						<hr class="mb-2" style="width:80%; margin: 0 auto;">
-						<div style="width:80%; margin: 0 auto;">
-							<div style="margin-bottom: 8px;">
-								<p style="font-size: 8px; margin:0; padding:0;">
-									<b>· 주 사용 언어</b><br>
-									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT</span>
-								</p>
-							</div>
-							<div style="margin-bottom: 8px;">
-								<div style="font-size: 8px; margin:0; padding:0;"><b>· 최근 대표 이력</b></div>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) ㅇㅇ회사 근무
-								</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) KH학원
-								</p>
-							</div>
-							<div>
-								<p style="font-size: 8px; margin:0; padding:0;"><b>· 최근 개발 프로젝트</b></p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 요리 소개
-									사이트 개발</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 무언가를
-									개발개발</p>
-							</div>
-						</div>
-					</div>
-					<!-- 프로필 종료 -->
-					<!-- 프로필 시작 -->
-					<div class="testimonial-box">
-						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
-							<div>
-								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
-								</h6>
-
-								<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
-									&nbsp;&nbsp;&nbsp;<span
-										style="text-decoration: underline;">92.10.24</span><span>&nbsp;(N년차)</span><br>
-									&nbsp;&nbsp;&nbsp;<span style="color:black"><b>프론트 개발</b></span>
-								</p>
-							</div>
-						</div>
-						<hr class="mb-2" style="width:80%; margin: 0 auto;">
-						<div style="width:80%; margin: 0 auto;">
-							<div style="margin-bottom: 8px;">
-								<p style="font-size: 8px; margin:0; padding:0;">
-									<b>· 주 사용 언어</b><br>
-									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT</span>
-								</p>
-							</div>
-							<div style="margin-bottom: 8px;">
-								<div style="font-size: 8px; margin:0; padding:0;"><b>· 최근 대표 이력</b></div>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) ㅇㅇ회사 근무
-								</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) KH학원
-								</p>
-							</div>
-							<div>
-								<p style="font-size: 8px; margin:0; padding:0;"><b>· 최근 개발 프로젝트</b></p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 요리 소개
-									사이트 개발</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 무언가를
-									개발개발</p>
-							</div>
-						</div>
-					</div>
-					<!-- 프로필 종료 -->
-					<!-- 프로필 시작 -->
-					<div class="testimonial-box">
-						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
-							<div>
-								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
-								</h6>
-
-								<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
-									&nbsp;&nbsp;&nbsp;<span
-										style="text-decoration: underline;">92.10.24</span><span>&nbsp;(N년차)</span><br>
-									&nbsp;&nbsp;&nbsp;<span style="color:black"><b>프론트 개발</b></span>
-								</p>
-							</div>
-						</div>
-						<hr class="mb-2" style="width:80%; margin: 0 auto;">
-						<div style="width:80%; margin: 0 auto;">
-							<div style="margin-bottom: 8px;">
-								<p style="font-size: 8px; margin:0; padding:0;">
-									<b>· 주 사용 언어</b><br>
-									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT</span>
-								</p>
-							</div>
-							<div style="margin-bottom: 8px;">
-								<div style="font-size: 8px; margin:0; padding:0;"><b>· 최근 대표 이력</b></div>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) ㅇㅇ회사 근무
-								</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) KH학원
-								</p>
-							</div>
-							<div>
-								<p style="font-size: 8px; margin:0; padding:0;"><b>· 최근 개발 프로젝트</b></p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 요리 소개
-									사이트 개발</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 무언가를
-									개발개발</p>
-							</div>
-						</div>
-					</div>
-					<!-- 프로필 종료 -->
-					<!-- 프로필 시작 -->
-					<div class="testimonial-box">
-						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="resources/images/testimages/testprofile.jpg" alt="" class="user-img mr-2">
-							<div>
-								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
-								</h6>
-
-								<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
-									&nbsp;&nbsp;&nbsp;<span
-										style="text-decoration: underline;">92.10.24</span><span>&nbsp;(N년차)</span><br>
-									&nbsp;&nbsp;&nbsp;<span style="color:black"><b>프론트 개발</b></span>
-								</p>
-							</div>
-						</div>
-						<hr class="mb-2" style="width:80%; margin: 0 auto;">
-						<div style="width:80%; margin: 0 auto;">
-							<div style="margin-bottom: 8px;">
-								<p style="font-size: 8px; margin:0; padding:0;">
-									<b>· 주 사용 언어</b><br>
-									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT</span>
-								</p>
-							</div>
-							<div style="margin-bottom: 8px;">
-								<div style="font-size: 8px; margin:0; padding:0;"><b>· 최근 대표 이력</b></div>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) ㅇㅇ회사 근무
-								</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) KH학원
-								</p>
-							</div>
-							<div>
-								<p style="font-size: 8px; margin:0; padding:0;"><b>· 최근 개발 프로젝트</b></p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 요리 소개
-									사이트 개발</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 무언가를
-									개발개발</p>
-							</div>
-						</div>
-					</div>
-					<!-- 프로필 종료 -->
-
 				</div>
 			</div>
 		</div>
@@ -486,7 +328,7 @@
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="./inc/_foot.jspf" %>
-	<script type="text/javascript" src="resources/js/slidebar.js"></script>
+	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 	
 </body>
 </html>

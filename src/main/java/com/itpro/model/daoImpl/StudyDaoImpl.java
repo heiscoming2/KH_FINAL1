@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.StudyDto;
+import com.itpro.model.dto.StudyListDto;
 
 @Repository
 public class StudyDaoImpl implements StudyDao {
@@ -16,9 +17,15 @@ public class StudyDaoImpl implements StudyDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<StudyDto> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StudyListDto> selectList() {
+		
+		List<StudyListDto> studyList = null;
+		try {
+			studyList = sqlSession.selectList(NAMESPACE+"selectstudylist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studyList;
 	}
 
 	@Override
@@ -29,7 +36,11 @@ public class StudyDaoImpl implements StudyDao {
 
 	@Override
 	public int insert(StudyDto studyDto) {
-		sqlSession.insert(NAMESPACE+"insert",studyDto);
+		try {
+			sqlSession.insert(NAMESPACE+"studyinsert",studyDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

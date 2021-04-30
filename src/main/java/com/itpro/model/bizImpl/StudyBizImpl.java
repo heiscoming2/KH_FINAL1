@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.StudyDto;
+import com.itpro.model.dto.StudyListDto;
 
 @Service
 public class StudyBizImpl implements StudyBiz {
@@ -16,9 +17,8 @@ public class StudyBizImpl implements StudyBiz {
 	private StudyDao studyDao;
 	
 	@Override
-	public List<StudyDto> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StudyListDto> selectList() {
+		return studyDao.selectList();
 	}
 
 	@Override

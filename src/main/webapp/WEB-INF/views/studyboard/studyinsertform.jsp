@@ -6,6 +6,7 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <link href="resources/css/studyinsert.css?ver=1.2" rel="stylesheet">
+<!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <title>IT PRO 스터디 글 쓰기</title>
 </head>
@@ -84,7 +85,7 @@
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
 	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
-	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='guinboard.html'" style="float:right;" >
+	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='studylist.do'" style="float:right;" >
 	   </div>
     </form>
     
@@ -98,10 +99,12 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<script type="text/javascript" src="resources/js/studyinsert.js"></script>
+<!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
+<!-- STUDYINSERT 개별 JS -->
 <script type="text/javascript" src="resources/js/studyinsert.js"></script>
+<!-- 주소 정보 JS -->
 <script type="text/javascript" src="resources/js/address.js"></script>
 
 </body>

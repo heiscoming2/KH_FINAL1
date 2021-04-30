@@ -16,7 +16,7 @@
 <!-- 본문 시작 -->
 	<br><br><br><br>
 	<h1 class="text-center">채용 정보를 가져오고 있습니다</h1>
-	<h1 class="text-center">약 3~5분 소요(완료 시 자동으로 페이지 이동)</h1>
+	<h1 class="text-center">약 20초 소요 (완료 시 자동으로 페이지 이동)</h1>
 	<div id="loader"></div>
 
 <!-- 본문 종료 -->

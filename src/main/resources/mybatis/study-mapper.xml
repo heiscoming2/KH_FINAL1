@@ -7,13 +7,13 @@
 
 
 	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
-	<insert id="insert" parameterType="StudyDto">
+	<insert id="studyinsert" parameterType="StudyDto">
 		INSERT ALL
 		INTO BOARD 
 		VALUES (
 		50013,
 		#{bd_title},
-		'반갑습니다',
+		#{bd_content},
 		SYSDATE,
 		NULL,
 		0,
@@ -32,5 +32,18 @@
 		#{st_closeperson})
 		SELECT * FROM DUAL
 	</insert>
+	
+	
+	<select id="selectstudylist" resultType="StudyListDto">
+		SELECT B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
+		       S.ST_ADDR2, S.ST_NOWPERSON, S.ST_CLOSEPERSON, 
+		       B.BD_TITLE, B.BD_REPLYCOUNT, B.BD_VIEWCOUNT, M.M_IMG_PATH,
+		       M.M_IMG,M.M_NAME,B.BD_CREATEDDATE
+		FROM BOARD B, STUDY S, IT_MEMBER M
+		WHERE B.BD_NO = S.BD_NO
+		AND B.M_NO = M.M_NO
+	</select>
+	
+	
 	
 </mapper>
