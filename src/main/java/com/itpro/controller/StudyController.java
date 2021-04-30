@@ -32,6 +32,7 @@ public class StudyController {
 	}
 	@RequestMapping(value="/studyinsert.do")
 	public String studyInsert(HttpServletRequest request, StudyDto studyDto) {
+		logger.info("STUDY INSERT");
 		studyDto.setBd_writerip(new ClientInfo().getClientIp(request));
 		studyBiz.insert(studyDto);
 		return "studyboard/studyinsertform";

@@ -11,7 +11,7 @@
 		INSERT ALL
 		INTO BOARD 
 		VALUES (
-		50000,
+		50013,
 		#{bd_title},
 		'반갑습니다',
 		SYSDATE,
@@ -23,7 +23,7 @@
 		1) 
 		INTO STUDY 
 		VALUES (
-		50000,
+		50013,
 		'Y',
 		#{st_addr1},
 		#{st_addr2},
@@ -32,4 +32,5 @@
 		#{st_closeperson})
 		SELECT * FROM DUAL
 	</insert>
+	
 </mapper>
