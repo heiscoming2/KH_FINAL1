@@ -3,5 +3,7 @@
 <link href="resources/bootstrap/bootstrap_5.0.0_min.css" rel="stylesheet">
 <!-- common.css -->
 <link href="resources/css/common.css" rel="stylesheet">
-<!-- JSTL -->
+<!-- JSTL C -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<!-- JSTL FMT -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>

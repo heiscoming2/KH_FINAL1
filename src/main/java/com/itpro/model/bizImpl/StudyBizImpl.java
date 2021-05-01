@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.StudyDao;
+import com.itpro.model.dto.StudyDetailDto;
 import com.itpro.model.dto.StudyDto;
 import com.itpro.model.dto.StudyListDto;
 
@@ -22,14 +23,13 @@ public class StudyBizImpl implements StudyBiz {
 	}
 
 	@Override
-	public StudyDto selectOne(int bd_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public StudyDetailDto selectOne(int bd_no) {
+		return studyDao.selectOne(bd_no);
 	}
 
 	@Override
-	public int insert(StudyDto studyDto) {
-		return studyDao.insert(studyDto);
+	public int studyInsert(StudyDto studyDto) {
+		return studyDao.studyInsert(studyDto);
 	}
 
 	@Override

@@ -78,7 +78,7 @@
               </td>
             </tr>
         </table>
-        <textarea id="summernote"></textarea>
+        <textarea id="summernote" name="bd_content"></textarea>
         <br>
       <!-- 스터디 모집 작성 글 영역 종료-->
 
