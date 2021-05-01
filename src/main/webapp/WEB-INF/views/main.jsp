@@ -17,11 +17,12 @@
 <!-- HEADER 종료 -->
 
 <!-- 점보트론 -->
-<div style="height:300px; width:850px; margin:0 auto;">
+<div class="mt-3" style="height:300px; width:850px; margin:0 auto;">
 	<div style="float:left; padding-top:30px;">
 		<h2><b>IT PRO 에서는</b></h2>
 		<h3><b>개발자들의 다양한</b></h3>
 		<h3><b>포트폴리오를 공유합니다</b></h3>
+		<br>
 		<h6>내 포트폴리오를 등록하고</h6>
 		<h6>채용 기업/개발자들의</h6>
 		<h6>실제 평가를 받아 볼 수 있습니다.</h6>
