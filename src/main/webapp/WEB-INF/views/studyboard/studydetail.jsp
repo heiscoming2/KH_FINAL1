@@ -75,6 +75,8 @@
 			${studyDetailDto.bd_content }
               <br>
               <br>
+            <div class="text-center">
+            	<input type="button" class="btn btn-primary" value="추천(30)">
             </div>
             <!-- 글 내용 종료 -->
           </td>

@@ -7,7 +7,7 @@
 	
 	<!-- insert all 사용 시 update 태그를 사용하여야 오류가 안남 -->
 	<update id="updatelist" parameterType="java.util.List">
-		<!-- 오라클은 INSERT 묶어서 foreach 돌리고 mysql에서는 values 다음부터 묶어서 돌리면 된다. -->
+		<!-- 오라클은 전체 구문을 묶어서 foreach 돌리고 mysql에서는 values 다음부터 묶어서 돌리면 된다. -->
 		<foreach item="company" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
 		INTO COMPANYCRAWLING 
 		VALUES

@@ -64,6 +64,10 @@ public class StudyController {
 	public String studyDetail(Model model, @RequestParam(value="bd_no") int bd_no) {
 		logger.info("STUDY DETAIL");
 		
+		//조회수 중복 카운트 방지를 위해 쿠기 사용
+		//bd_no가 쿠키에 있는 경우 조회수 증가, 그렇지 않은 경우 조회수 유지
+		//
+		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		
