@@ -23,7 +23,7 @@
             <div class="list-group col-md-3 list-group-flush">
                 <a href="modify_user.do" class="list-group-item list-group-item-action"><h4>회원정보수정</h4></a>
                 <a href="resume_list.do" class="list-group-item list-group-item-action"><h4>이력서 등록/관리</h4></a>
-                <a href="note_list.do" class="list-group-item list-group-item-action"><h4>쪽지관리</h4></a>
+                <a href="note_receivelist.do" class="list-group-item list-group-item-action"><h4>쪽지관리</h4></a>
                 <a href="post_list.do" class="list-group-item list-group-item-action"><h4>작성글 확인</h4></a>
             </div>
         </div>

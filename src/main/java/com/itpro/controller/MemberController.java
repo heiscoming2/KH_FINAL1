@@ -93,11 +93,17 @@ public class MemberController {
 	
 	
 	//쪽지 관련 컨트롤러
-	@RequestMapping(value="/note_list.do")
-	public String noteList() {
-		logger.info("NOTE LIST");
+	@RequestMapping(value="/note_sendlist.do")
+	public String noteSendList() {
+		logger.info("NOTE SEND LIST");
 		
-		return "login_join/note_list";
+		return "login_join/note_sendlist";
+	}
+	@RequestMapping(value="/note_receivelist.do")
+	public String noteReceiveList() {
+		logger.info("NOTE RECEIVE LIST");
+		
+		return "login_join/note_receivelist";
 	}
 	
 	//

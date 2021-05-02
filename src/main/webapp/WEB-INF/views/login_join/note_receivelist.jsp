@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<title>로그인</title>
+<title>받은쪽지</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -15,8 +15,8 @@
 <!-- 본문 시작 -->
 
  <div class="container mt-5 mb-5">
-        <button class="btn btn-default">받은쪽지</button>
-        <button class="btn btn-default">보낸쪽지</button>
+        <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
+        <button class="btn btn-default" onclick="location.href='note_sendlist.do'">보낸쪽지</button>
         <button class="btn btn-default" data-bs-toggle="modal" data-bs-target="#sendmessage">쓰기</button>
         <button class="btn btn-default">삭제</button>
 
