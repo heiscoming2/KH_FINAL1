@@ -12,6 +12,7 @@ public class StudyDetailDto {
 	private int bd_no;
 	private String bd_title;
 	private String bd_content;
+	private String bd_recommandcount;
 	private String st_addr1;
 	private String st_addr2;
 	private String st_addrdetail;
@@ -65,6 +66,12 @@ public class StudyDetailDto {
 	}
 	public void setBd_content(String bd_content) {
 		this.bd_content = bd_content;
+	}
+	public String getBd_recommandcount() {
+		return bd_recommandcount;
+	}
+	public void setBd_recommandcount(String bd_recommandcount) {
+		this.bd_recommandcount = bd_recommandcount;
 	}
 	public String getSt_addr1() {
 		return st_addr1;

@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>Insert title here</title>
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/companycrawlinglist.css?ver=1.1">
+<link rel="stylesheet" href="resources/css/companycrawlinglist.css?ver=1.3">
 
 </head>
 <body>
@@ -31,7 +30,7 @@
       <div class="filter_innerwrap mt-3" style="<c:if test='${companyCrawlingSearchDto ne null }'>display:block;</c:if>">
        <div>
        	<form action="test.do" id="test">
-       	  <table class="filter_table">
+       	  <table class="filter_table" >
        	  <tr>
 	          <td>
 	          	  <span>지역선택</span>
@@ -113,7 +112,7 @@
       	<col width="100px">
       	
       	<tr>
-      		<th>기업명</th>
+      		<th class="cc_name_th"><a>기업명</a></th>
       		<th>제목</th>
       		<th>경력</th>
       		<th>학력</th>
@@ -124,22 +123,22 @@
       	<c:choose>
       		<c:when test="${empty companyCrawlingList }">
 				<tr>
-					<td colspan="6" align="center">조회할 정보가 없습니다.</td>
+					<td colspan="6" align="center">조회할 게시물이 존재하지 않습니다.</td>
 				</tr>
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="companyCrawlingDto" items="${companyCrawlingList }">
 			      	<tr onclick="openDetailUrl('${companydetailurl}${companyCrawlingDto.cc_code}');">      		
-			      		<td onclick="testfunction();">${companyCrawlingDto.cc_name }</td>
+			      		<td class="cc_name"><a>${companyCrawlingDto.cc_name }</a></td>
 			      		<td>
 			      			<span class="cc_title">${companyCrawlingDto.cc_title}</span>
 			      			<br>
 			      			<span class="cc_meta">${companyCrawlingDto.cc_meta }</span>
 			      		</td>
-			      		<td>${companyCrawlingDto.cc_career }</td>
-			      		<td>${companyCrawlingDto.cc_education }</td>
-			      		<td>${companyCrawlingDto.cc_addr1}&nbsp;${companyCrawlingDto.cc_addr2 }</td>
-			      		<td>${companyCrawlingDto.cc_deadline }</td>
+			      		<td class="cc_career">${companyCrawlingDto.cc_career }</td>
+			      		<td class="cc_education">${companyCrawlingDto.cc_education }</td>
+			      		<td class="cc_addr1_2">${companyCrawlingDto.cc_addr1}&nbsp;${companyCrawlingDto.cc_addr2 }</td>
+			      		<td class="cc_deadline">${companyCrawlingDto.cc_deadline }</td>
 			      	</tr>
 				</c:forEach>
 			</c:otherwise>

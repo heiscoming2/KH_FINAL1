@@ -55,7 +55,7 @@
 
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary">
+              <input type="button" value="수정" class="btn btn-primary" onclick="studyUpdate.do">
               <input type="button" value="삭제" class="btn btn-primary">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 

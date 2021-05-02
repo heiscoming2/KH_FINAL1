@@ -38,8 +38,8 @@ public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 	}
 
 	@Override
-	public int getCompanyCrawlingContentCnt() {
-		return companyCrawlingDao.getCompanyCrawlingContentCnt();
+	public int getCompanyCrawlingListCnt() {
+		return companyCrawlingDao.getCompanyCrawlingListCnt();
 	}
 
 	@Override

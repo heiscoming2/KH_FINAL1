@@ -43,7 +43,7 @@ public class CompanyCrawlingDaoImpl implements CompanyCrawlingDao {
 	}
 
 	@Override
-	public int getCompanyCrawlingContentCnt() {
+	public int getCompanyCrawlingListCnt() {
 		int CompanyCrawlingContentCnt=0;
 		try {
 			CompanyCrawlingContentCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));

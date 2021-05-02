@@ -13,6 +13,7 @@ public class StudyListDto {
 	private String bd_title;
 	private int bd_replycount;
 	private int bd_viewcount;
+	private int bd_recommandcount;
 	private String m_img_path;
 	private String m_img;
 	private String m_name;
@@ -71,6 +72,13 @@ public class StudyListDto {
 	}
 	public void setBd_viewcount(int bd_viewcount) {
 		this.bd_viewcount = bd_viewcount;
+	}
+	
+	public int getBd_recommandcount() {
+		return bd_recommandcount;
+	}
+	public void setBd_recommandcount(int bd_recommandcount) {
+		this.bd_recommandcount = bd_recommandcount;
 	}
 	public String getM_img_path() {
 		return m_img_path;

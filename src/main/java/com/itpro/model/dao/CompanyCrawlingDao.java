@@ -13,7 +13,7 @@ public interface CompanyCrawlingDao {
 	public List<CompanyCrawlingDto> selectschList(Map<String,Object> companyCrawlingPageMap);
 	public int updatelist(List<CompanyCrawlingDto> companyCrawlingList);
 	public int deletelist();
-	public int getCompanyCrawlingContentCnt();
+	public int getCompanyCrawlingListCnt();
 	public int getCompanyCrawlingSearchCnt(CompanyCrawlingSearchDto companyCrawlingSearchDto);
 	
 }

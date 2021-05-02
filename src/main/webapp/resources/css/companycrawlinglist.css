@@ -9,14 +9,27 @@
 }
 
 .companycrawlingtable td {
-	vertical-align:middle;
-	font-size:14px;
+	padding:0 !important;
+	margin:0 !important;
+	vertical-align:middle !important;
 }
 
 .companycrawlingtable th {
-	font-size:15px;
-	font-weight:normal !important;
-	background-color:rgb(220, 245, 255);
+	font-size:12px;
+	padding:8px 0px !important;
+	font-weight:100 !important;
+	color:#616161;
+	background-color:#fafafa !important;
+	border-top:1px solid skyblue;
+	border-bottom:1px solid skyblue !important;
+}
+
+.cc_name {
+	color:#0b5ed7;
+}
+
+.cc_name > a, .cc_name_th > a{
+	margin-left:10px;
 }
 
 .cc_title {
@@ -27,9 +40,15 @@
 	color:#999;
 }
 
+.cc_meta, .cc_career, .cc_education,.cc_addr1_2,.cc_deadline{
+	font-size:14px;
+}
+
+
 .filter_innerwrap {
 	display:none;
 }
+
 
 .cc_search {
 	width:200px;

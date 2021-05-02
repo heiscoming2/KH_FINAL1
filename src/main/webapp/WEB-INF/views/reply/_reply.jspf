@@ -1,47 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
       <table class="table table-bordered" style="width:100%;">
+      
+      <!-- 댓글 갯수 및 여백 시작 -->
         <tr>
           <td style="margin:0; padding:0;">
             <div style="background-color: rgb(230, 230, 230); margin:0; padding:15px 0px;">&nbsp;&nbsp;댓글 0</div>
           </td>
         </tr>
-        <c:forEach begin="0" end="3" step="1" varStatus="loop">
-	        <tr>
-	          <td>
-	              <!-- 프로필이미지, 아이디, 작성일 div -->
-	              <div>
-	                <div style="float:right">
-	                  <input type="button" class="btn btn-primary" value="수정" onclick="replyupdate();">
-	                  <input type="button" class="btn btn-primary" value="삭제" onclick="replydelete();">
-	                </div>
-	              <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
-	                style="float: left; margin-top: 5px;">
-	              <div>
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  style="font-size:15px; width:500px; margin:0;" data-bs-toggle="dropdown" aria-expanded="false">
-	                  hyojun9292
-	                </a>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	                <br>
-	                <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">
-	              2021-03-28 13:13 (작성됨) 2021-03-28 13:13 (수정됨)</span>
-	              </div>
-		            </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
-	            <div class="reply1">
-	              참가하고 싶네요 어디로 연락을 드리면 될까요?
-	              참가하고 싶네요 어디로 연락을 드리면 될까요?
-	              참가하고 싶네요 어디로 연락을 드리면 될까요?
-	              참가하고 싶네요 어디로 연락을 드리면 될까요?
-	            </div>
-	          </td>
-	        </tr>
-		</c:forEach>
+      <!-- 댓글 갯수 및 여백 종료 --> 
+		
+		
+	  <!-- 댓글 LIST 시작 -->	
+        <tr>
+          <td>
+              <!-- 프로필이미지, 아이디, 작성일 div -->
+              <div>
+                <div style="float:right;">
+                  <input type="button" class="btn btn-primary" value="수정" onclick="reply();">
+                  <input type="button" class="btn btn-primary" value="삭제" onclick="delConFirmReply()">
+                </div>
+              <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+                style="float: left; margin-top: 5px;">
+              <div>
+                <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
+                  style="font-size:15px;" data-bs-toggle="dropdown" aria-expanded="false">
+                  hyojun9292
+                </a>
+                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
+                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
+                </ul>
+              </div>
+              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">2021-03-28 13:13 (작성됨)
+                2021-03-28 13:13 (수정됨)</span>
+            </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
+            <div id="reply1">
+              참가하고 싶네요 어디로 연락을 드리면 될까요?
+              참가하고 싶네요 어디로 연락을 드리면 될까요?
+              참가하고 싶네요 어디로 연락을 드리면 될까요?
+              참가하고 싶네요 어디로 연락을 드리면 될까요?
+            </div>
+          </td>
+        </tr>
+		<!-- 댓글 LIST 종료 -->	
+
+
+
+        <!-- 댓글 작성 영역 시작 (로그인 시에만 보여준다.) -->
+        <tr>
+          <td>
+              <!-- 프로필이미지, 아이디, 작성일 div -->
+            <div class="comment_wrap">
+              <!-- 프로필 영역-->
+              <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+                style="float: left; margin-top: 5px;">
+              <span>
+                <a class="" id=""
+                  style="font-size:15px; color:black;">
+                  hyojun9292
+                </a>
+              </span>
+            </div> 
+            <br>
+            <br>
+			<div id="replyArea"></div>
+            <br>
+            <input type="button" class="btn btn-primary" value="댓글 등록" style="float:right;">
+            <br>
+			</td>
+		</tr>	
+       <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
+
+
         <!-- 비로그인 시 보여줄 댓글 작성 영역 시작 -->
         <tr>
           <td class="text-center">
@@ -49,19 +81,4 @@
           </td>
         </tr>
         <!-- 비로그인 시 보여줄 댓글 작성 영역 종료 -->       
-
-
       </table>
-      
-      <script type="text/javascript">
-      	function replyupdate() {
-      	    $('.reply1').summernote({
-        	      placeholder: '댓글을 작성해주세요.',
-        	      height:150
-        	    });
-      	}
-      	
-      	function replydelete() {
-      		let deleteconfirm = confirm("정말 삭제하시겠습니까?");
-      	}
-      </script>

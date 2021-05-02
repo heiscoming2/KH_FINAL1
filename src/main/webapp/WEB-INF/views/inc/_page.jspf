@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
       <div class="text-center mt-5 mb-5">
-        <ul class="pagination" style="justify-content: center; cursor:pointer;">
+        <ul class="pagination" style="justify-content: center;">
        	  	<li class="page-item"><a class="page-link" onclick="selectPage(1)">처음</a></li>
          	<li class="page-item"><a class="page-link" onclick="selectPage('${pageProcessing.prevPage}')">이전</a></li>
           <c:forEach var="pageNum" begin="${pageProcessing.startPage}" end="${pageProcessing.endPage }">
@@ -27,3 +27,4 @@
          	 <li><a class="page-link" onclick="selectPage('${pageProcessing.pageCnt}')">끝</a></li>
         </ul>
       </div>
+

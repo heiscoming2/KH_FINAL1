@@ -43,10 +43,10 @@ public class CompanyCrawlingController {
 		logger.info("companycrawlinglist 컨트롤러");
 		
 		//페이징 처리를 위해 게시글의 총 갯수를 가지고 온다.
-		int companyCrawlingContentCnt = companyCrawlingBiz.getCompanyCrawlingContentCnt();
+		int companyCrawlingListCnt = companyCrawlingBiz.getCompanyCrawlingListCnt();
 		
 		//페이징 처리를 위한 class, 총 게시물 수와 보여줄 페이지를 매개변수로 주어 필요한 값들을 계산한다. 
-		PageProcessing pageProcessing = new PageProcessing(companyCrawlingContentCnt,page);
+		PageProcessing pageProcessing = new PageProcessing(companyCrawlingListCnt,page);
 		
 		//LIST를 가져오는데 페이지의 시작할 글번호와 마지막 글 번호를 map에 담아서 (mapper에서 매개변수를 여러개 못 주겠어서 map에 담음)
 		//전달해준다.

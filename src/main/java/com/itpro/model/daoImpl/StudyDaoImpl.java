@@ -1,6 +1,7 @@
 package com.itpro.model.daoImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -22,11 +23,11 @@ public class StudyDaoImpl implements StudyDao {
 	private Logger logger = LoggerFactory.getLogger(StudyDaoImpl.class);
 	
 	@Override
-	public List<StudyListDto> selectList() {
+	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
 		
 		List<StudyListDto> studyList = null;
 		try {
-			studyList = sqlSession.selectList(NAMESPACE+"selectlist");
+			studyList = sqlSession.selectList(NAMESPACE+"selectlist",studyPageMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,7 +48,6 @@ public class StudyDaoImpl implements StudyDao {
 	@Override
 	public int studyInsert(StudyDto studyDto) {
 		try {
-			logger.info(studyDto.getBd_content());
 			sqlSession.insert(NAMESPACE+"insert",studyDto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,6 +65,17 @@ public class StudyDaoImpl implements StudyDao {
 	public int update() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getStudyListCnt() {
+		int StudyListCnt = 0;
+		try {
+			StudyListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return StudyListCnt;
 	}
 
 }

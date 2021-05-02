@@ -15,9 +15,7 @@
 
 /* 글 번호 span 영역 css */
 .study_no {
-	
     vertical-align: middle;
-
 }
 
 /* 글 번호 a태그 css */
@@ -45,7 +43,7 @@
 
 /* 프로필 영역 wrap */
 .study_profile {
-    width:250px; 
+    width:180px; 
     vertical-align: middle; 
 }
 
@@ -107,5 +105,39 @@
 	top:10px;
 }
 
+.st_addr1_2 {
+	font-weight:bold;
+	font-size:14px;
+}
 
+.bd_recommandcount {
+	color:red;
+	font-size:14px;	
+}
 
+.bd_no {
+	font-size:10px;
+	color:lightgray;
+}
+
+.bd_viewcount {
+	font-size:14px;
+	color:lightgray;
+}
+
+.replycount {
+	color:#137f13; 
+	font-size:14px;
+}
+
+.st_person {
+	font-size:14px;
+}
+
+.bd_no_th > a{
+	margin-left:10px;
+}
+
+.bd_no > a{
+	margin-left:10px;
+}

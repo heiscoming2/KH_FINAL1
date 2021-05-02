@@ -24,3 +24,21 @@ a:link,
 a:visited {
   text-decoration: none !important;
 }
+
+/* 페이지에 마우스 올리면 커서 모양, 나중에 boardcommon 을 만들어서 옮기는게 좋을듯....*/
+.page-link, .page-item {
+	cursor:pointer;
+}
+
+/* 로고영역 왼쪽으로 조금 이동 */
+.navbar-brand {
+	margin-left:100px;
+}
+/* 헤더 item 간격 설정 */
+.navbar-nav .nav-item{
+	margin: 0 15px;
+}
+
+.nav-item {
+	width:100px;
+}

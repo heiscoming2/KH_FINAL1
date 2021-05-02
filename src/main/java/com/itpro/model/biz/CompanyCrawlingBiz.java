@@ -12,6 +12,6 @@ public interface CompanyCrawlingBiz {
 	public int deletelist();
 	public List<CompanyCrawlingDto> selectList(Map<String,Object> companyCrawlingPageMap);
 	public List<CompanyCrawlingDto> selectschList(Map<String,Object> companyCrawlingPageMap);
-	public int getCompanyCrawlingContentCnt();
+	public int getCompanyCrawlingListCnt();
 	public int getCompanyCrawlingSearchCnt(CompanyCrawlingSearchDto companyCrawlingSearchDto);
 }

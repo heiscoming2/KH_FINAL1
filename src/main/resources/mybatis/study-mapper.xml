@@ -35,25 +35,33 @@
 	</insert>
 	
 	
-	<select id="selectlist" resultType="StudyListDto">
-		SELECT B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
+	<select id="selectlist" resultType="StudyListDto" parameterType="hashMap">
+        SELECT * FROM 
+               (SELECT ROWNUM RN, B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
 		       S.ST_ADDR2, S.ST_NOWPERSON, S.ST_CLOSEPERSON, 
-		       B.BD_TITLE, B.BD_REPLYCOUNT, B.BD_VIEWCOUNT, M.M_IMG_PATH,
+		       B.BD_TITLE, B.BD_REPLYCOUNT, B.BD_VIEWCOUNT,B.BD_RECOMMANDCOUNT , M.M_IMG_PATH,
 		       M.M_IMG,M.M_NAME,B.BD_CREATEDDATE
-		FROM BOARD B, STUDY S, IT_MEMBER M
-		WHERE B.BD_NO = S.BD_NO
-		AND B.M_NO = M.M_NO
-		ORDER BY B.BD_NO DESC
+               FROM BOARD B, STUDY S, IT_MEMBER M
+		       WHERE B.BD_NO = S.BD_NO
+		       AND B.M_NO = M.M_NO
+		       ORDER BY B.BD_CREATEDDATE ASC)
+        WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="selectone" resultType="StudyDetailDto" parameterType="int">
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
-		       B.BD_NO, B.BD_TITLE, B.BD_CONTENT, S.ST_ADDR1,S.ST_ADDR2, S.ST_ADDRDETAIL, 
+		       B.BD_NO, B.BD_TITLE, B.BD_CONTENT, B.BD_RECOMMANDCOUNT, S.ST_ADDR1,S.ST_ADDR2, S.ST_ADDRDETAIL, 
 	           S.ST_NOWPERSON, S.ST_CLOSEPERSON
 		FROM BOARD B, STUDY S, IT_MEMBER M
 		WHERE B.BD_NO = S.BD_NO
 		  AND B.M_NO = M.M_NO
 		  AND B.BD_NO = #{bd_no}
+	</select>
+	
+	<select id="selectlistcnt" resultType="int">
+		SELECT COUNT(BD_NO)
+		FROM BOARD
+		WHERE BC_CODE=3 
 	</select>
 	
 	

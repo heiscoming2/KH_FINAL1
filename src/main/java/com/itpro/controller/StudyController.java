@@ -2,7 +2,9 @@ package com.itpro.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,7 @@ import com.itpro.model.dto.StudyDetailDto;
 import com.itpro.model.dto.StudyDto;
 import com.itpro.model.dto.StudyListDto;
 import com.itpro.util.ClientInfo;
+import com.itpro.util.PageProcessing;
 
 @Controller
 public class StudyController {
@@ -35,13 +38,36 @@ public class StudyController {
 	private ReplyBiz replyBiz;
 	
 	@RequestMapping(value="/studylist.do")
-	public String studyList(Model model) {
-		
+	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 		logger.info("STUDY LIST");
-		//스터디 글 목록을 받아 model에 담아준다.
-		List<StudyListDto> studyList = studyBiz.selectList();
-		model.addAttribute("studyList",studyList);
 		
+		//페이징을 위해 총 게시물수 count
+		int studyListCnt = studyBiz.getStudyListCnt();
+		
+		//테스트 훟 삭제
+		logger.info("studyListCnt : "+studyListCnt);
+		
+		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
+		PageProcessing pageProcessing = new PageProcessing(studyListCnt,page);
+		
+		//테스트 훟 삭제
+		logger.info(Integer.toString(pageProcessing.getCurPage()));
+		logger.info(Integer.toString(pageProcessing.getCurRange()));
+		logger.info(Integer.toString(pageProcessing.getEndPage()));
+		logger.info(Integer.toString(pageProcessing.getPageSize()));
+		logger.info(Integer.toString(pageProcessing.getEndIndex()));
+		
+		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
+		//(이 부분은 나중에 PageProcessing 클래스에서 map을 바로 리턴받는 형태로 변경하는게 나을듯)
+		Map<String,Object> studyPageMap = new HashMap<String,Object>();
+		studyPageMap.put("start", pageProcessing.getStartIndex());
+		studyPageMap.put("end", pageProcessing.getEndIndex());
+		List<StudyListDto> studyList = studyBiz.selectList(studyPageMap);
+		
+		//페이징 처리 model에 담아줌 (_page.jspf에서 받아서 사용됨)
+		model.addAttribute("pageProcessing",pageProcessing);
+		//스터디 글 목록을 받아 model에 담아준다.
+		model.addAttribute("studyList",studyList);
 		return "studyboard/studylist";
 	}
 	
@@ -71,21 +97,6 @@ public class StudyController {
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		
-		//테스트 나중에 삭제
-		logger.info(""+studyDetailDto.getM_img_path());
-		logger.info(""+studyDetailDto.getM_img());
-		logger.info(""+studyDetailDto.getM_name());
-		logger.info(""+studyDetailDto.getBd_createddate());
-		logger.info(""+studyDetailDto.getBd_modifydate());
-		logger.info(""+studyDetailDto.getBd_no());
-		logger.info(""+studyDetailDto.getBd_title());
-		logger.info(""+studyDetailDto.getBd_content());
-		logger.info(""+studyDetailDto.getSt_addr1());
-		logger.info(""+studyDetailDto.getSt_addr2());
-		logger.info(""+studyDetailDto.getSt_addrdetail());
-		logger.info(""+studyDetailDto.getSt_nowperson());
-		logger.info(""+studyDetailDto.getSt_closeperson());
-		
 		model.addAttribute("studyDetailDto",studyDetailDto);
 		
 		//댓글 list받아와 model에 담아준다.
@@ -93,5 +104,13 @@ public class StudyController {
 		model.addAttribute("replyList",replyList);
 		
 		return "studyboard/studydetail";
-	}	
+	}
+	
+	@RequestMapping(value="/studyupdate.do")
+	public String studyUpdate(Model model) {
+		
+		logger.info("STUDY UPDATE");
+		return "studyboard/studyupdate";
+	}
+		
 }

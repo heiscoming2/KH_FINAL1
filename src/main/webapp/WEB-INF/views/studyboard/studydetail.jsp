@@ -46,7 +46,7 @@
               </span>
               
             </div> <!-- 프로필이미지, 아이디, 작성일 div 종료 -->
-
+			<hr>
             <!-- 글 번호 / 제목 영역 시작 -->
             <div style="margin: 10px 0px;">
               <span class="detail_no">${studyDetailDto.bd_no }</span> <!-- 글 번호 -->
@@ -54,12 +54,13 @@
               <span class="detail_title">${studyDetailDto.bd_title }</span> <!-- 글 제목 -->
             </div>
             <!-- 글 번호 / 제목 영역 종료 --> 
-
+			<hr>
             <br>
-            <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="모집완료" class="btn btn-primary">
-              <input type="button" value="수정" class="btn btn-primary">
-              <input type="button" value="삭제" class="btn btn-primary">
+            <div style="float:right; position:relative; top:-105px;"> <!-- 작성자에게만 보여질 버튼 -->
+              <input type="button" value="신고" class="btn btn-danger">
+              <input type="button" value="모집완료" class="btn btn-primary" onclick="statusChangeConfirm();"> <!-- 나중에 상태값을 담아서 매개변수로 뿌려주고 yn에 따라 confirm 메시지 출력-->
+              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='studyupdate.do'">
+              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm();">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
             <!-- 필수 입력 정보 노출 시작 -->
@@ -76,7 +77,7 @@
               <br>
               <br>
             <div class="text-center">
-            	<input type="button" class="btn btn-primary" value="추천(30)">
+            	<input type="button" class="btn btn-success" value="추천(${studyDetailDto.bd_recommandcount })">
             </div>
             <!-- 글 내용 종료 -->
           </td>
@@ -86,7 +87,7 @@
 
       <!-- 본문 / 댓글 중간 여백 영역 시작 -->
       <div style="width:100%; display: block; height:80px;">
-            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;">
+            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='studylist.do'">
       </div>
       <!-- 본문 / 댓글 중간 여백 영역 종료 -->
 
@@ -106,6 +107,6 @@
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
-<script type="text/javascript" src="resources/js/studydetail.js"></script>
+<script type="text/javascript" src="resources/js/studydetail.js?ver=1.1"></script>
 </body>
 </html>

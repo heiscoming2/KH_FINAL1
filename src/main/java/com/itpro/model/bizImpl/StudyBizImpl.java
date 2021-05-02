@@ -1,6 +1,7 @@
 package com.itpro.model.bizImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ public class StudyBizImpl implements StudyBiz {
 	private StudyDao studyDao;
 	
 	@Override
-	public List<StudyListDto> selectList() {
-		return studyDao.selectList();
+	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
+		return studyDao.selectList(studyPageMap);
 	}
 
 	@Override
@@ -42,6 +43,12 @@ public class StudyBizImpl implements StudyBiz {
 	public int update() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getStudyListCnt() {
+		// TODO Auto-generated method stub
+		return studyDao.getStudyListCnt();
 	}
 
 }

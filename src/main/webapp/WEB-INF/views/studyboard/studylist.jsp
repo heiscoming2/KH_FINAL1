@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/studylist.css">
+<link rel="stylesheet" href="resources/css/studylist.css?ver=1.1">
 <title>IT PRO 스터디 글 목록</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
 <!-- 본문 시작 -->
 	<div class="study_wrap mt-5">
 		<h3>스터디 구인</h3>
-		<div class="study_btnwrap">
+		<div class="study_btnwrap mb-4">
 			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='studyinsertform.do'">
@@ -75,35 +75,38 @@
 			<col width="80px;">
 			<col width="150px;">
 			<col width="100px;">
-			<col width="500px;">
+			<col width="420px;">
+			<col width="80px;">
 			<col width="80px;">
 			<col width="200px;">
 			<tr>
-				<th>번호</th>
+				<th class="bd_no_th"><a>번호</a></th>
 				<th>모집여부</th>
 				<th>지역</th>
 				<th>인원수</th>
 				<th>제목</th>
+				<th>추천수</th>
 				<th>조회수</th>
-				<th>작성자/작성일</th>
+				<th>작성정보</th>
 			</tr>
 			<!-- 게시물 한 줄 시작-->
 			<c:choose>
 				<c:when test="${empty studyList }">
 					<tr>
-						<td colspan="7" align="center">조회할 게시물이 존재하지 않습니다.</td>
+						<td colspan="8" align="center">조회할 게시물이 존재하지 않습니다.</td>
 					</tr>			
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="studyDto" items="${studyList }">
 					<tr>
 							<!-- 글 번호 시작 --> 
-							<td>${studyDto.bd_no} </td>
+							<td class="bd_no"><a>${studyDto.bd_no}</a> </td>
 							<td>${studyDto.st_status} </td>
-							<td>${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
-							<td>${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-							<td><a href="studydetail.do?bd_no=${studyDto.bd_no }">${studyDto.bd_title } [${studyDto.bd_replycount }]</a></td>
-							<td>${studyDto.bd_viewcount }</td>
+							<td class="st_addr1_2">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
+							<td class="st_person">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
+							<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;">${studyDto.bd_title } <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+							<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
+							<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
 							<td>
 							    <div class="study_profile">
 									<img src="${studyDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
@@ -139,7 +142,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js"></script>
+<script type=text/javascript src="resources/js/studylist.js?ver=1.0"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
 </body>
 </html>
