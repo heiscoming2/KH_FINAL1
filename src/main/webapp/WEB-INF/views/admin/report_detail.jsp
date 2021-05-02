@@ -14,49 +14,41 @@
 
 <!-- 본문 시작 -->
 
-<!-- 신고관리 -->
-<h1>신고관리</h1>
+<!-- 신고 상세내용 -->
+	<h1>신고 상세내용</h1>
 
-<table border="1">
-<col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
-	<thead>
-	<tr>
-		<th>No</th>
-		<th>신고자</th>
-		<th>신고날짜,시간</th>
-		<th>제목</th>
-		<th>Type</th>
-		<th>피신고자</th>
-		<th>신고이유</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	<tr>
-		<c:choose>
-		<c:when test="${empty list }">
+	<table border="1">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<body>
 			<tr>
-				<td>===신고목록이 존재하지 않습니다.===</td>
-			</tr>
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="" items="">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</c:forEach>
-		</c:otherwise>
-		</c:choose>
-	</tr>	
-	</tbody>
-</table>
+				<td>No</td><td>1</td>
+            </tr>
+            <tr>
+				<td>신고자</td><td>user1</td>
+            </tr>
+            <tr>
+				<td>피신고자</td><td><a href="">user2</a></td>
+            </tr>
+            <tr>
+				<td>신고글</td><td><a href="">역세권 지하철 2분거리 분양....</a></td>
+            </tr>
+            <tr>
+				<td>type</td><td>게시글</td>
+            </tr>
+            <tr>
+				<td>신고이유</td><td>광고성 글을 게재했습니다.</td>
+            </tr>
+            
+		</body>
 
+	
+	</table>
 
 
 
