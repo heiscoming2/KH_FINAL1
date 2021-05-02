@@ -1,0 +1,30 @@
+/* */
+
+/* insert 영역 전체 */
+.portfolio_insertwrap {
+    width:1190px;
+    margin:0 auto;
+   
+}
+
+/* 입력항목 table 상하 간격 */
+.portfolio_inserttable {
+    border-collapse: separate;
+  	border-spacing: 0 15px;
+}
+
+/* 입력항목 (th) 너비 */
+.portfolio_inserttable th {
+    width:150px;
+}
+
+/* 인원수 선택 박스 너비 */
+.portfolio_inserttable input[type=text] {
+    width: 400px;
+}
+
+/* 필수 입력(*) 강조 */
+.portfolio_inserttable th span {
+    color:red;
+}
+

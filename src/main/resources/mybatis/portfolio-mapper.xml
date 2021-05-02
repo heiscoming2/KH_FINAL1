@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Portfolio">
+	
+	<update id="insertlist" parameterType="java.util.List">
+		<foreach item="portfolio" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
+		INSERT INTO PORTFOLIO 
+		VALUES
+		(#{project.port_prize},
+		 #{project.port_develop},
+		 #{project.port_name},
+		 #{project.port_edu},
+		 #{project.port_email},
+		 #{project.port_phone},
+		 #{project.port_link},
+		 #{project.port_title},
+		 #{project.port_edu_start},
+		 #{project.port_edu_end})
+		 
+
+		</foreach>
+	</update>
+	
+	<delete id="deletelist">
+		DELETE FROM PORTFOLIO
+	</delete>
+	
+	<select id="selectList" resultType="PortfolioDto">
+		SELECT * FROM PORTFOLIO
+	</select>
+	
+</mapper>
