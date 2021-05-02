@@ -1,0 +1,25 @@
+/* */
+
+/* insert 영역 전체 */
+.qna_insertwrap {
+    width:1190px;
+    margin:0 auto;
+   
+}
+
+/* 입력항목 table 상하 간격 */
+.qna_inserttable {
+    border-collapse: separate;
+  	border-spacing: 0 15px;
+}
+
+/* 입력항목 (th) 너비 */
+.qna_inserttable th {
+    width:150px;
+}
+
+/* 필수 입력(*) 강조 */
+.qna_inserttable th span {
+    color:red;
+}
+
