@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
+<%@include file="../inc/_head.jspf" %>
+<title>로그인</title>
+</head>
+<body>
+<!-- HEADER 시작 -->
+<%@include file="../inc/_header.jspf" %>
+<!-- HEADER 종료 -->
+
+<!-- 본문 시작 -->
+
+ <div class="container mt-5 mb-5">
+        <button class="btn btn-default">받은쪽지</button>
+        <button class="btn btn-default">보낸쪽지</button>
+        <button class="btn btn-default" data-bs-toggle="modal" data-bs-target="#sendmessage">쓰기</button>
+        <button class="btn btn-default">삭제</button>
+
+        <table class="table table-bordered table-hover text-center">
+            <thead>
+                <tr class="d-flex">
+                    <th class="col-1">선택</th>
+                    <th class="col-2">등록일</th>
+                    <th class="col-4">보낸사람</th>
+                    <th class="col-5">내용</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="d-flex">
+                    <td class="col-1"><input type="checkbox"></td>
+                    <td class="col-2">21-00-00</td>
+                    <td class="col-4">아이디</td>     
+                    <td class="col-5">프로젝트어쩌구 포트폴리오 어쩌구랄라라</td>                
+                </tr>     
+                <tr class="d-flex">
+                    <td class="col-1"><input type="checkbox"></td>
+                    <td class="col-2">21-00-00</td>
+                    <td class="col-4">닉네임or아이디</td>     
+                    <td class="col-5">프로젝트어쩌구 포트폴리오 어쩌구랄라라</td>                
+                </tr>                    
+            </tbody>
+        </table>
+    </div>
+    
+    <!--쪽지 작성창-->
+    <div class="modal fade" id="sendmessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">쪽지 쓰기</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">받는사람:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">내용:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                  <span>보낸시간 : 2021-00-00</span>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-primary">보내기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<!-- 본문 종료 -->
+
+<!-- FOOTER 시작 -->
+<%@include file="../inc/_footer.jspf" %>
+<!-- FOOTER 종료 -->
+
+<!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
+<%@include file="../inc/_foot.jspf" %>
+	
+</body>
+</html>
