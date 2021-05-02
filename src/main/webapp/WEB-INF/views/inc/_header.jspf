@@ -1,66 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     
-    <nav class="navbar navbar-expand-sm navbar-light bg-dark">
-        <div class="container-fluid ">
-            
-            <nav class="navbar navbar-light bg-dark">
-                <div class="container-fluid">
-                  <a class="navbar-brand text-light" href="main.do">
-                    <img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png" alt="" width="35" height="35" class="d-inline-block align-text-top ">
-                    IT PRO
-                  </a>
-                </div>
-              </nav>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-         
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto ">
-                <form class="d-flex ms-4">
-                    <input class="form-control me-2" type="search" placeholder="키워드 검색" aria-label="Search">
-                    <img src="https://static.chief.io/media/products/searchads360_logo.png" alt="" width="35" height="35" class="d-inline-block align-text-top" class="btn btn-outline-success" type="submit">
-                </form>
-              <li class="nav-item ">
-                <a class="nav-link active ms-3 text-light" aria-current="page" href="login.do">로그인</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link active ms-3 text-light" aria-current="page" href="join.do">회원가입</a>
-              </li>
-             </ul>
-          </div>
+  <style>
+  #navbarNavDropdown{
+    position: relative;
+    left: 100px;
+  }
+</style>
+
+     <nav class="navbar navbar-expand-sm navbar-light bg-dark">
+    <div class="container-fluid ">
+
+      <nav class="navbar navbar-light bg-dark ">
+        <div class="container-fluid col-md-2">
+          <a class="navbar-brand text-light" href="main.do">
+            <img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png" alt=""
+              width="35" height="35" class="d-inline-block align-text-top ">
+            IT PRO
+          </a>
         </div>
       </nav>
-      
-      <!--navbar2-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ">
-              <li class="nav-item">
-                <a class="nav-link ms-5" href="portfoliolist.do">포트폴리오</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ms-5" href="projectlist.do">프로젝트</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ms-5" href="#">Q & A</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link ms-5" href="studylist.do">스터디 구인</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ms-5" href="companycrawlinglist.do">채용 정보</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ms-5" href="#">화상 면접</a>
-              </li>
-             
-            </ul>
-          </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" style="color:azure" ; href="projectlist.do">포트폴리오 / 프로젝트</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="color:azure" ; href="#">Q & A</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " style="color:azure" ; href="studylist.do">스터디 구인</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " style="color:azure" ; href="companycrawlinglist.do">채용 정보</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " style="color:azure" ; href="#">화상 면접</a>
+            </li>
+
+          </ul>
         </div>
-      </nav>
+      </div>
+      <div class="collapse navbar-collapse col-md-5" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto ">
+          <form class="d-flex ms-2">
+            <input class="form-control me-2" type="search" placeholder="키워드 검색" aria-label="Search">
+            <img src="https://static.chief.io/media/products/searchads360_logo.png" alt="" width="35" height="35"
+              class="d-inline-block align-text-top" class="btn btn-outline-success" type="submit">
+          </form>
+          <li class="nav-item ">
+            <a class="nav-link active  text-light" aria-current="page" href="#">로그인</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link active text-light" aria-current="page" href="#">회원가입</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
