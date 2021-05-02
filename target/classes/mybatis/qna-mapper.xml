@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Qna">
+	
+	<update id="insertlist" parameterType="java.util.List">
+		<foreach item="qna" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
+		INSERT INTO BOARD 
+		VALUES
+		(#{qna.bd_no},
+		 #{qna.bd_title},
+		 #{qna.bd_content},
+		 #{qna.bd_createddate},
+		 #{qna.bd_modifydate},
+		 #{qna.bd_viewcount},
+		 #{qna.bd_recommandcount},
+		 #{qna.bd_writerip},
+		 #{qna.bd_code},
+		 #{qna.bd_no},
+		 #{qna.bd_replycount);
+		 
+
+		</foreach>
+	</update>
+	
+	<delete id="deletelist">
+		DELETE FROM BOARD
+	</delete>
+	
+	<select id="selectList" resultType="QnaDto">
+		SELECT * FROM BOARD
+	</select>
+	
+</mapper>
