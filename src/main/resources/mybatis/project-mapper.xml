@@ -7,7 +7,7 @@
 	
 	<update id="insertlist" parameterType="java.util.List">
 		<foreach item="project" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
-		INTO PORTFOLIO 
+		INSERT INTO PORTFOLIO 
 		VALUES
 		(#{project.port_prize},
 		 #{project.port_develop},

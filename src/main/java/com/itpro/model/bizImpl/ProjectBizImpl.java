@@ -16,24 +16,37 @@ public class ProjectBizImpl implements ProjectBiz{
 
 	@Autowired
 	private ProjectDao ProjectDaoImpl;
+
 	
-	@Override
-	@Transactional
-	public int insertlist(List<ProjectDto> projectList) {
-		deletelist();
-		return ProjectDaoImpl.insertlist(projectList);
-	}
-
-	@Override
-	public int deletelist() {
-		return ProjectDaoImpl.deletelist();
-	}
-
 	@Override
 	public List<ProjectDto> selectList() {
-		List<ProjectDto> projectList = ProjectDaoImpl.selectList();
-		return projectList;
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+	@Override
+	public ProjectDto selectOne(int bd_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insert(ProjectDto projectDto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

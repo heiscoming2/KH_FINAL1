@@ -29,39 +29,12 @@ public class ProjectDto {
 	private String pro_function;
 	private String pro_erd;
 	
+	private String bd_writerip;
+	private int bd_no;
+	
 	
 	public ProjectDto() {
 		super();
-	}
-
-
-	public ProjectDto(String port_prize, String port_develop, String port_name, String port_edu, String port_email,
-			String port_phone, String port_link, Date port_edu_start, Date port_edu_end, String port_company,
-			Date port_co_start, Date port_co_end, String port_work, int pro_no, String pro_title, Date pro_start,
-			Date pro_end, String pro_link, String pro_develop, String pro_goal, String pro_function, String pro_erd) {
-		super();
-		this.port_prize = port_prize;
-		this.port_develop = port_develop;
-		this.port_name = port_name;
-		this.port_edu = port_edu;
-		this.port_email = port_email;
-		this.port_phone = port_phone;
-		this.port_link = port_link;
-		this.port_edu_start = port_edu_start;
-		this.port_edu_end = port_edu_end;
-		this.port_company = port_company;
-		this.port_co_start = port_co_start;
-		this.port_co_end = port_co_end;
-		this.port_work = port_work;
-		this.pro_no = pro_no;
-		this.pro_title = pro_title;
-		this.pro_start = pro_start;
-		this.pro_end = pro_end;
-		this.pro_link = pro_link;
-		this.pro_develop = pro_develop;
-		this.pro_goal = pro_goal;
-		this.pro_function = pro_function;
-		this.pro_erd = pro_erd;
 	}
 
 
@@ -285,15 +258,26 @@ public class ProjectDto {
 	}
 
 
-	@Override
-	public String toString() {
-		return "ProjectDto [port_prize=" + port_prize + ", port_develop=" + port_develop + ", port_name=" + port_name
-				+ ", port_edu=" + port_edu + ", port_email=" + port_email + ", port_phone=" + port_phone
-				+ ", port_link=" + port_link + ", port_edu_start=" + port_edu_start + ", port_edu_end=" + port_edu_end
-				+ ", port_company=" + port_company + ", port_co_start=" + port_co_start + ", port_co_end=" + port_co_end
-				+ ", port_work=" + port_work + ", pro_no=" + pro_no + ", pro_title=" + pro_title + ", pro_start="
-				+ pro_start + ", pro_end=" + pro_end + ", pro_link=" + pro_link + ", pro_develop=" + pro_develop
-				+ ", pro_goal=" + pro_goal + ", pro_function=" + pro_function + ", pro_erd=" + pro_erd + "]";
+	public String getBd_writerip() {
+		return bd_writerip;
 	}
+
+
+	public void setBd_writerip(String bd_writerip) {
+		this.bd_writerip = bd_writerip;
+	}
+
+
+	public int getBd_no() {
+		return bd_no;
+	}
+
+
+	public void setBd_no(int bd_no) {
+		this.bd_no = bd_no;
+	}
+
+
+	
 	
 }
