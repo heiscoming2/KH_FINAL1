@@ -2,7 +2,7 @@ package com.itpro.model.dto;
 
 import java.util.Date;
 
-public class ItMemberDto {
+public class MemberDto {
 	//회원 필드
 	private int m_no;//회원번호
 	private String m_id;//아이디
@@ -20,11 +20,11 @@ public class ItMemberDto {
 	private int m_regno;//사업자 번호
 	private char m_admin_cert;//관리자 인증
 	
-	public ItMemberDto() {
+	public MemberDto() {
 		super();
 	}
 
-	public ItMemberDto(int m_no, String m_id, String m_pw, String name, String m_email, char m_used, String m_act,
+	public MemberDto(int m_no, String m_id, String m_pw, String name, String m_email, char m_used, String m_act,
 			char m_mail_cert, String m_type, char auth, String m_img_path, Date m_regdate, int m_regno,
 			char m_admin_cert) {
 		super();

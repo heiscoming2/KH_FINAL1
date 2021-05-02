@@ -4,34 +4,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.itpro.model.biz.ProjectBiz;
-import com.itpro.model.dao.ProjectDao;
-import com.itpro.model.dto.CompanyCrawlingDto;
-import com.itpro.model.dto.ProjectDto;
+import com.itpro.model.biz.PortfolioBiz;
+import com.itpro.model.dao.PortfolioDao;
+import com.itpro.model.dto.PortfolioDto;
 
 @Service
-public class ProjectBizImpl implements ProjectBiz{
+public class PortfolioBizImpl implements PortfolioBiz{
 
 	@Autowired
-	private ProjectDao ProjectDaoImpl;
+	private PortfolioDao PortfolioDaoImpl;
 
-	
 	@Override
-	public List<ProjectDto> selectList() {
+	public List<PortfolioDto> selectList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProjectDto selectOne(int bd_no) {
+	public PortfolioDto selectOne(int bd_no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insert(ProjectDto projectDto) {
+	public int insert(PortfolioDto portfolioDto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -47,6 +44,8 @@ public class ProjectBizImpl implements ProjectBiz{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 
 }

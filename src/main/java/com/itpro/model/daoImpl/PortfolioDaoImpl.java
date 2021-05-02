@@ -6,25 +6,24 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.itpro.model.dao.ProjectDao;
-import com.itpro.model.dto.PortfolioDto;
+import com.itpro.model.dao.PortfolioDao;
 import com.itpro.model.dto.ProjectDto;
 
 @Repository
-public class ProjectDaoImpl implements ProjectDao {
+public class PortfolioDaoImpl implements PortfolioDao {
 
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<PortfolioDto> selectList() {
+	public List<ProjectDto> selectList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insertlist(List<PortfolioDto> portfolioList) {
+	public int insertlist(List<ProjectDto> projectList) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -34,6 +33,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 
 }

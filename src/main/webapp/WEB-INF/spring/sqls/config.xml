@@ -10,12 +10,14 @@
 		<typeAlias type="com.itpro.model.dto.StudyListDto" alias="StudyListDto"/>
 		<typeAlias type="com.itpro.model.dto.StudyDetailDto" alias="StudyDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.ProjectDto" alias="ProjectDto"/>
+		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="PortfolioDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mybatis/companycrawling-mapper.xml"/>
 		<mapper resource="/mybatis/study-mapper.xml"/>
 		<mapper resource="/mybatis/project-mapper.xml"/>
+		<mapper resource="/mybatis/portfolio-mapper.xml"/>
 	</mappers>
 
 </configuration>

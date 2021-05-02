@@ -2,14 +2,14 @@ package com.itpro.model.dao;
 
 import java.util.List;
 
-import com.itpro.model.dto.ProjectDto;
+import com.itpro.model.dto.PortfolioDto;
 
 public interface ProjectDao {
 
 	
-	String NAMESPACE = "Project.";
+	String NAMESPACE = "Portfolio.";
 
-	public List<ProjectDto> selectList();
-	public int insertlist(List<ProjectDto> projectList);
+	public List<PortfolioDto> selectList();
+	public int insertlist(List<PortfolioDto> portfolioList);
 	public int deletelist();
 }

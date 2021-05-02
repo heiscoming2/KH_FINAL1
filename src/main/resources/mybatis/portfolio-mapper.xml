@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="Project">
+<mapper namespace="Portfolio">
 	
 	<update id="insertlist" parameterType="java.util.List">
-		<foreach item="project" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
+		<foreach item="portfolio" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
 		INSERT INTO PORTFOLIO 
 		VALUES
 		(#{project.port_prize},
@@ -28,7 +28,7 @@
 		DELETE FROM PORTFOLIO
 	</delete>
 	
-	<select id="selectList" resultType="ProjectDto">
+	<select id="selectList" resultType="PortfolioDto">
 		SELECT * FROM PORTFOLIO
 	</select>
 	

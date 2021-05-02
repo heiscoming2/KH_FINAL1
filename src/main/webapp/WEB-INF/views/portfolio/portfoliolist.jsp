@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/projectlist.css">
+<link rel="stylesheet" href="resources/css/portfoliolist.css">
 <title>포트폴리오/프로젝트</title>
 </head>
 <body>
@@ -15,13 +15,13 @@
 
 <!-- 본문 시작 -->
 
-  <div class="project_wrap">
-        <h3>프로젝트 게시판</h3>
-        <div class="project_btnwrap">
-			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='projectinsertform.do'">
+  <div class="portfolio_wrap">
+        <h3>포트폴리오 게시판</h3>
+        <div class="portfolio_btnwrap">
+			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='portfolioinsertform.do'">
 		</div>
         
-        <table class="project_table">
+        <table class="portfolio_table">
 			<col width="80px;">
 			<col width="500px;">
 			<col width="80px;">
@@ -36,24 +36,24 @@
             <!-- 게시물 한 줄 시작-->
             <tr>
                 <c:choose>
-					<c:when test="${empty project }">
+					<c:when test="${empty portfolio }">
 						<td colspan="4" align="center">
 							조회할 게시물이 존재하지 않습니다.
 						</td>
 					</c:when>
 					<c:otherwise>
 
-                  	<c:forEach var="projectDto" items="${projectList }">
+                  	<c:forEach var="portfolioDto" items="${portfolioList }">
 							<!-- 글 번호 시작 --> 
-							<td>${projectDto.bd_no} </td>
-							<td>${projectDto.port_name} </td>
-							<td>${projectDto.port_prize }</td>
+							<td>${portfolioDto.bd_no} </td>
+							<td>${portfolioDto.port_name } </td>
+							<td>${portfolioDto.port_prize }</td>
 							<td>
-							    <div class="project_profile">
+							    <div class="portfolio_profile">
 									<img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-									<div class="project_writer"> 
+									<div class="portfolio_writer"> 
 										<a id="dropdownUser" data-bs-toggle="dropdown"> 
-											${projectDto.port_name } 
+											${portfolioDto.port_name} 
 										</a> 
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 										<ul aria-labelledby="dropdownUser">
@@ -61,7 +61,7 @@
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="project_regdate"> ${projectDto.port_edu_start } </span>
+									<span class="portfolio_regdate"> ${portfolioDto.port_edu_start } </span>
 								</div>
 							</td>
 						</c:forEach>
