@@ -117,5 +117,4 @@ public class CompanyCrawlingDto {
 	public CompanyCrawlingDto() {
 		// TODO Auto-generated constructor stub
 	}
-	
 }
