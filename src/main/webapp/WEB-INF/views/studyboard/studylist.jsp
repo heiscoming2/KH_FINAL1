@@ -17,15 +17,15 @@
 	<div class="study_wrap mt-5">
 		<h3>스터디 구인</h3>
 		<div class="study_btnwrap">
-			<input type="button" class="btn btn-primary" value="필터" onclick="loc_filter();"> 
+			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='studyinsertform.do'">
 		</div>
 		<div class="loc_toggle" style="clear: both; display: none;">
 			 <div>
-			 <span>지역설정</span>
-			 <span style="display:flex; width:300px;">
-                <select class="sidoselect form-control" name="st_addr1" onchange="change(this.selectedIndex);">
+			 <span>지역선택</span>
+			 <span style="display:flex; width:300px;" class="mb-2">
+                <select class="sidoselect form-control" style="margin-right:10px;" name="st_addr1" onchange="change(this.selectedIndex);">
                        <option value=''>전체</option>
                        <option value='서울'>서울</option>
                        <option value='경기'>경기</option>
@@ -52,7 +52,7 @@
 			<div>
 			<span>모집여부</span>
 			<span style="display:flex; width:300px;">
-				<select class="form-control">
+				<select class="form-control mb-2">
 					<option>전체</option>
 					<option>모집중</option>
 					<option>모집완료</option>
@@ -61,13 +61,13 @@
 			</div>
 			<div style="position:relative; bottom:1px;">
 			<span>검색</span>
-				<div class="text-center">
+			<div class="mb-4">
 				<input name="searchbox" type="text" placeholder="검색" value=""
 					class="form-control search-bar" onkeyup="store_search_ent();"
 					style="width: 200px; display: inline-block;">
 				<input type="button" class="btn btn-primary" value="검색"
 					onclick="store_search();">
-				</div>
+			</div>		
 			</div>
 		</div>
 		<table class="table study_table">
@@ -88,25 +88,25 @@
 				<th>작성자/작성일</th>
 			</tr>
 			<!-- 게시물 한 줄 시작-->
-			<tr>
-				<c:choose>
-					<c:when test="${empty studyList }">
-						<td colspan="7" align="center">
-							조회할 게시물이 존재하지 않습니다.
-						</td>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="studyDto" items="${studyList }">
+			<c:choose>
+				<c:when test="${empty studyList }">
+					<tr>
+						<td colspan="7" align="center">조회할 게시물이 존재하지 않습니다.</td>
+					</tr>			
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="studyDto" items="${studyList }">
+					<tr>
 							<!-- 글 번호 시작 --> 
 							<td>${studyDto.bd_no} </td>
 							<td>${studyDto.st_status} </td>
-							<td>${studyDto.st_addr1 } ${st_addr2 }</td>
+							<td>${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
 							<td>${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-							<td><a href="studydetail.do">${studyDto.bd_title } [${studyDto.bd_replycount }]</a></td>
+							<td><a href="studydetail.do?bd_no=${studyDto.bd_no }">${studyDto.bd_title } [${studyDto.bd_replycount }]</a></td>
 							<td>${studyDto.bd_viewcount }</td>
 							<td>
 							    <div class="study_profile">
-									<img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+									<img src="${studyDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
 									<div class="study_writer"> 
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
 											${studyDto.m_name } 
@@ -117,13 +117,14 @@
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="study_regdate"> ${studyDto.bd_createddate } </span>
+									<span class="study_regdate"> <fmt:formatDate value="${studyDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
 								</div>
 							</td>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</tr>	
+						<tr>	
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+				
 		</table>
 		</div>
 <!-- 본문 종료 -->

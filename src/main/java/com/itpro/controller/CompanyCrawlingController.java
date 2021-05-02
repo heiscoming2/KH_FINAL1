@@ -76,11 +76,6 @@ public class CompanyCrawlingController {
 		 CompanyCrawlingSearchDto companyCrawlingSearchDto) {
 		
 		logger.info("companycrawsearchlinglist 컨트롤러");
-		logger.info(companyCrawlingSearchDto.getSrc_a1());
-		logger.info(companyCrawlingSearchDto.getSrc_a2());
-		logger.info(Integer.toString(companyCrawlingSearchDto.getSrc_cer()));
-		logger.info(Integer.toString(companyCrawlingSearchDto.getSrc_edu()));
-		logger.info(companyCrawlingSearchDto.getSrc_key());
 		
 		//페이징 처리를 위해 게시글 조건에 맞는 총 갯수를 가지고 온다.
 		int companycrawlingsearchcnt = companyCrawlingBiz.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);

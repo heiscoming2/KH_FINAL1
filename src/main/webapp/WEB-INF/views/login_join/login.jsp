@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<title>샘플 페이지 입니다.</title>
+<title>로그인</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -14,7 +14,7 @@
 
 <!-- 본문 시작 -->
  <div class="container">
-        <div class="row d-flex flex-row justify-content-center mt-5">
+        <div class="row d-flex flex-row justify-content-center mt-5 mb-5">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
@@ -34,9 +34,9 @@
                                 </div>
                             </div>
                             
-                            <!--로그인 버튼-->
+                            <!--로그인 버튼 @@@@ 타입 변경 해야됨!!!-->
                             <div class="d-grid gap-2 col-5 mx-auto">
-                                <button class="btn btn-primary" type="submit" onclick="">로그인</button>
+                                <input type="button" class="btn btn-primary" value="로그인" onclick="location.href='mypage_user.do'">
                             </div>
                         </form>
                     </div>

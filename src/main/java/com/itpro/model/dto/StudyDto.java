@@ -15,6 +15,7 @@ public class StudyDto {
 	private String bd_writerip;
 	private int bc_code;
 	private int m_no;
+	private int bd_replycount;
 	private char st_status;
 	private String st_addr1;
 	private String st_addr2;
@@ -82,6 +83,12 @@ public class StudyDto {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
+	public int getBd_replycount() {
+		return bd_replycount;
+	}
+	public void setBd_replycount(int bd_replycount) {
+		this.bd_replycount = bd_replycount;
+	}
 	public char getSt_status() {
 		return st_status;
 	}
@@ -117,6 +124,15 @@ public class StudyDto {
 	}
 	public void setSt_closeperson(int st_closeperson) {
 		this.st_closeperson = st_closeperson;
+	}
+	@Override
+	public String toString() {
+		return "StudyDto [bd_no=" + bd_no + ", bd_title=" + bd_title + ", bd_content=" + bd_content
+				+ ", bd_createddate=" + bd_createddate + ", bd_modifydate=" + bd_modifydate + ", bd_viewcount="
+				+ bd_viewcount + ", bd_recommandcount=" + bd_recommandcount + ", bd_writerip=" + bd_writerip
+				+ ", bc_code=" + bc_code + ", m_no=" + m_no + ", st_status=" + st_status + ", st_addr1=" + st_addr1
+				+ ", st_addr2=" + st_addr2 + ", st_addrdetail=" + st_addrdetail + ", st_nowperson=" + st_nowperson
+				+ ", st_closeperson=" + st_closeperson + "]";
 	}
 	
 	
