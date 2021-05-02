@@ -14,54 +14,49 @@
 
 <!-- 본문 시작 -->
 
-<!-- 결제기록관리 -->
-<h1>결제기록관리</h1>
+	<!-- 광고문의 상세 게시판 -->
+	<h1>광고문의 상세 게시판</h1>
 
-<table border="1">
-<col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
-	<thead>
-	<tr>
-		<th>No</th>
-		<th>제목</th>
-		<th>업체분류</th>
-		<th>ID</th>
-		<th>업체명</th>
-		<th>전화번호</th>
-		<th>이메일 </th>
-		<th>희망시작일 </th>
-		<th>희망기간 </th>
-		<th>링크주소</th>
-		<th>업로드 이미지</th>
-		<th>결제금액 </th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	<tr>
-		<c:choose>
-		<c:when test="${empty list }">
+	<table border="1">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<col width="">
+		<body>
 			<tr>
-				<td>===광고목록이 존재하지 않습니다.===</td>
-			</tr>
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="" items="">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</c:forEach>
-		</c:otherwise>
-		</c:choose>
-	</tr>	
-	</tbody>
-</table>
+				<td>No</td><td>1</td>
+            </tr>
+            <tr>
+				<td>광고주</td><td><a href="">user1</a></td>
+            </tr>
+            <tr>
+				<td>업체분류</td><td>의료</td>
+            </tr>
+            <tr>
+				<td>희망시작일</td><td>2021.4.1</td>
+            </tr>
+            <tr>
+				<td>희망종료일</td><td>2021.4.30</td>
+            </tr>
+            <tr>
+				<td>총기간</td><td>30일</td>
+            </tr>
+            <tr>
+				<td>배너클릭시 사용될 url</td><td>thenavigators.co.kr</td>
+            </tr>
+            <tr>
+				<td>이미지 업로드</td><td></td>
+            </tr>
+            <tr>
+                <td>결제</td><td><a href="">결제기록보기</a></td>
+            </tr>
+		</body>
 
+	
+	</table>
 
 
 
