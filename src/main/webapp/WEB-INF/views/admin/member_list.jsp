@@ -8,9 +8,14 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
 <title>샘플 페이지 입니다.</title>
+
+
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+
+	//체크박스 모두 선택, 취소하기
 	function allChk(bool) {
 		var chks = document.getElementsByName("chk");
 		for (var i = 0; i < chks.length; i++) {
@@ -38,24 +43,23 @@
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
 	
-	<!-- SIDEBAR 시작 -->
+	<!-- ADMIN SIDEBAR 시작 -->
 	<%@include file="../inc/_sidebar_admin.jspf"%>
 	<!-- SIDEBAR 종료 -->
 	
 
 	<!-- 본문 시작 -->
 
+
 	<!-- 회원명단 -->
 	<h1>회원관리</h1>
-
+	<form action="#">
+			<div align="right">
+				<input type="text" class="control">
+				<input type="submit"value="검색" class="btn btn-default"></input> 
+			</div>
+			<br>
 	<table border="1">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="all"
@@ -97,7 +101,7 @@
 			</tr>
 		</tbody>
 	</table>
-
+	</form>
 	<!-- 쪽지보내기 -->
 
 	<input type="button" value="쪽지보내기" onclick="">
