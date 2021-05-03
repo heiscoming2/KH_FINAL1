@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.dao.CompanyCrawlingDao;
-import com.itpro.model.dto.CompanyCrawlingDto;
-import com.itpro.model.dto.CompanyCrawlingSearchDto;
+import com.itpro.model.dto.crawling.CompanyCrawlingDto;
+import com.itpro.model.dto.crawling.CompanyCrawlingSearchDto;
 
 @Repository
 public class CompanyCrawlingDaoImpl implements CompanyCrawlingDao {

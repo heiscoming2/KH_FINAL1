@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
-import com.itpro.model.dto.ReplyDto;
-import com.itpro.model.dto.StudyDetailDto;
-import com.itpro.model.dto.StudyDto;
-import com.itpro.model.dto.StudyListDto;
+import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.study.StudyDetailDto;
+import com.itpro.model.dto.study.StudyInsertDto;
+import com.itpro.model.dto.study.StudyListDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 
@@ -75,7 +75,7 @@ public class StudyController {
 	}
 	
 	@RequestMapping(value="/studyinsert.do")
-	public String studyInsert(HttpServletRequest request, HttpServletResponse response, StudyDto studyDto) {
+	public String studyInsert(HttpServletRequest request, HttpServletResponse response, StudyInsertDto studyDto) {
 		logger.info("STUDY INSERT");
 		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 StudyDto에 저장
 		studyDto.setBd_writerip(new ClientInfo().getClientIp(request));
@@ -94,8 +94,12 @@ public class StudyController {
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("studyDetailDto",studyDetailDto);
 		//댓글 list받아와 model에 담아준다.
-		List<ReplyDto> replyList = replyBiz.selectList(bd_no);
+		List<ReplyListDto> replyList = replyBiz.selectList(bd_no);
 		model.addAttribute("replyList",replyList);
+		
+		//댓글 총 갯수를 받아와 model에 담아준다.
+		int replyCnt = replyBiz.replyCnt(bd_no);
+		model.addAttribute("replyCnt",replyCnt);
 		return "studyboard/studydetail";
 	}
 	

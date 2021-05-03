@@ -4,12 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.itpro.model.dto.CompanyCrawlingDto" alias="CompanyCrawlingDto"/>
-		<typeAlias type="com.itpro.model.dto.CompanyCrawlingSearchDto" alias="CompanyCrawlingSearchDto"/>
-		<typeAlias type="com.itpro.model.dto.StudyDto" alias="StudyDto"/>
-		<typeAlias type="com.itpro.model.dto.StudyListDto" alias="StudyListDto"/>
-		<typeAlias type="com.itpro.model.dto.StudyDetailDto" alias="StudyDetailDto"/>
-		<typeAlias type="com.itpro.model.dto.ReplyDto" alias="ReplyDto"/>
+		<typeAlias type="com.itpro.model.dto.crawling.CompanyCrawlingDto" alias="CompanyCrawlingDto"/>
+		<typeAlias type="com.itpro.model.dto.crawling.CompanyCrawlingSearchDto" alias="CompanyCrawlingSearchDto"/>
+		<typeAlias type="com.itpro.model.dto.study.StudyInsertDto" alias="StudyInsertDto"/>
+		<typeAlias type="com.itpro.model.dto.study.StudyListDto" alias="StudyListDto"/>
+		<typeAlias type="com.itpro.model.dto.study.StudyDetailDto" alias="StudyDetailDto"/>
+		<typeAlias type="com.itpro.model.dto.reply.ReplyInsertDto" alias="ReplyInsertDto"/>
+		<typeAlias type="com.itpro.model.dto.reply.ReplyListDto" alias="ReplyListDto"/>
 		<typeAlias type="com.itpro.model.dto.ProjectDto" alias="ProjectDto"/>
 		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="QnaDto"/>

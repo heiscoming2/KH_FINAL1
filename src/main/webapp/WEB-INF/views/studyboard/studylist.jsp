@@ -112,7 +112,7 @@
 									<img src="${studyDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
 									<div class="study_writer"> 
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
-											${studyDto.m_name } 
+											${studyDto.m_nickname }
 										</a> 
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">

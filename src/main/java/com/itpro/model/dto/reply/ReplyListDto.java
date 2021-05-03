@@ -1,8 +1,8 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.reply;
 
 import java.util.Date;
 
-public class ReplyDto {
+public class ReplyListDto {
 	
 	private int re_no;
 	private Date re_createddate;

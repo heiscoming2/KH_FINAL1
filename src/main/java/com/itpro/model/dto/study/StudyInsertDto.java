@@ -1,8 +1,8 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.study;
 
 import java.util.Date;
 
-public class StudyDto {
+public class StudyInsertDto {
 	
 	
 	private int bd_no;

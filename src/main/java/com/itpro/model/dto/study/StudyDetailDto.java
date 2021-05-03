@@ -1,4 +1,4 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.study;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ public class StudyDetailDto {
 	
 	private String m_img_path;
 	private String m_img;
-	private String m_name;
+	private String m_nickname;
 	private Date bd_createddate;
 	private Date bd_modifydate;
 	private int bd_no;
@@ -31,11 +31,11 @@ public class StudyDetailDto {
 	public void setM_img(String m_img) {
 		this.m_img = m_img;
 	}
-	public String getM_name() {
-		return m_name;
+	public String getM_nickname() {
+		return m_nickname;
 	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
 	}
 	public Date getBd_createddate() {
 		return bd_createddate;
