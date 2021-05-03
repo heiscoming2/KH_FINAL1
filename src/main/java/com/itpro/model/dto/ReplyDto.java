@@ -61,7 +61,5 @@ public class ReplyDto {
 	public void setBd_no(int bd_no) {
 		this.bd_no = bd_no;
 	}
-	
-	
 
 }

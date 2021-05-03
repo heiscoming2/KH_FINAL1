@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
       <table class="table table-bordered" style="width:100%;">
       
       <!-- 댓글 갯수 및 여백 시작 -->
@@ -10,7 +11,17 @@
         </tr>
       <!-- 댓글 갯수 및 여백 종료 --> 
 		
-		
+	
+	<c:choose>
+	 <c:when test="${empty replyList}">
+	 	<tr>
+	 		<td align="center">
+	 			첫번째 댓글을 작성해보세요!
+	 		</td>
+	 	</tr>
+	 </c:when>
+	 <c:otherwise>
+	  <c:forEach var="replyDto" items="${replyList }">
 	  <!-- 댓글 LIST 시작 -->	
         <tr>
           <td>
@@ -33,19 +44,22 @@
                     <li><a class="dropdown-item" href="#">이력서 열람</a></li>
                 </ul>
               </div>
-              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">2021-03-28 13:13 (작성됨)
-                2021-03-28 13:13 (수정됨)</span>
+              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">
+                <fmt:formatDate value="${replyDto.re_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성됨)
+                <c:if test="${replyDto.re_modifydate ne null }">
+                <fmt:formatDate value="${replyDto.re_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정됨)
+                </c:if>
+                </span>
             </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
             <div id="reply1">
-              참가하고 싶네요 어디로 연락을 드리면 될까요?
-              참가하고 싶네요 어디로 연락을 드리면 될까요?
-              참가하고 싶네요 어디로 연락을 드리면 될까요?
-              참가하고 싶네요 어디로 연락을 드리면 될까요?
+              ${replyDto.re_content }
             </div>
           </td>
         </tr>
-		<!-- 댓글 LIST 종료 -->	
-
+        </c:forEach>
+        </c:otherwise>
+	</c:choose>
+	<!-- 댓글 LIST 종료 -->	
 
 
         <!-- 댓글 작성 영역 시작 (로그인 시에만 보여준다.) -->
@@ -59,7 +73,7 @@
               <span>
                 <a class="" id=""
                   style="font-size:15px; color:black;">
-                  hyojun9292
+                  hyojun9292 <!-- 로그인 세션 값 처리 -->
                 </a>
               </span>
             </div> 

@@ -6,5 +6,6 @@ import com.itpro.model.dto.ReplyDto;
 
 public interface ReplyBiz {
 	
-	public List<ReplyDto> selectList();
+	public List<ReplyDto> selectList(int bd_no);
+	public int replyCnt(int bd_no);
 }

@@ -44,9 +44,6 @@ public class StudyController {
 		//페이징을 위해 총 게시물수 count
 		int studyListCnt = studyBiz.getStudyListCnt();
 		
-		//테스트 훟 삭제
-		logger.info("studyListCnt : "+studyListCnt);
-		
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(studyListCnt,page);
 		
@@ -93,16 +90,12 @@ public class StudyController {
 		//조회수 중복 카운트 방지를 위해 쿠기 사용
 		//bd_no가 쿠키에 있는 경우 조회수 증가, 그렇지 않은 경우 조회수 유지
 		//
-		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
-		
 		model.addAttribute("studyDetailDto",studyDetailDto);
-		
 		//댓글 list받아와 model에 담아준다.
-		List<ReplyDto> replyList = replyBiz.selectList();
+		List<ReplyDto> replyList = replyBiz.selectList(bd_no);
 		model.addAttribute("replyList",replyList);
-		
 		return "studyboard/studydetail";
 	}
 	

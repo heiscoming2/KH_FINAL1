@@ -9,6 +9,7 @@
 		<typeAlias type="com.itpro.model.dto.StudyDto" alias="StudyDto"/>
 		<typeAlias type="com.itpro.model.dto.StudyListDto" alias="StudyListDto"/>
 		<typeAlias type="com.itpro.model.dto.StudyDetailDto" alias="StudyDetailDto"/>
+		<typeAlias type="com.itpro.model.dto.ReplyDto" alias="ReplyDto"/>
 		<typeAlias type="com.itpro.model.dto.ProjectDto" alias="ProjectDto"/>
 		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="QnaDto"/>
@@ -17,6 +18,7 @@
 	<mappers>
 		<mapper resource="/mybatis/companycrawling-mapper.xml"/>
 		<mapper resource="/mybatis/study-mapper.xml"/>
+		<mapper resource="/mybatis/reply-mapper.xml"/>
 		<mapper resource="/mybatis/project-mapper.xml"/>
 		<mapper resource="/mybatis/portfolio-mapper.xml"/>
 		<mapper resource="/mybatis/qna-mapper.xml"/>

@@ -16,8 +16,13 @@ public class ReplyBizImpl implements ReplyBiz {
 	public ReplyDao replyDao;
 	
 	@Override
-	public List<ReplyDto> selectList() {
-		return null;
+	public List<ReplyDto> selectList(int bd_no) {
+		return replyDao.selectList(bd_no);
+	}
+
+	@Override
+	public int replyCnt(int bd_no) {
+		return replyDao.replyCnt(bd_no);
 	}
 
 }
