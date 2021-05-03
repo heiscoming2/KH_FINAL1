@@ -37,6 +37,11 @@
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
+	
+	<!-- SIDEBAR 시작 -->
+	<%@include file="../inc/_sidebar_admin.jspf"%>
+	<!-- SIDEBAR 종료 -->
+	
 
 	<!-- 본문 시작 -->
 
@@ -79,7 +84,7 @@
 								<td><input type="checkbox" name="chk"
 									value="1"></td>
 								<td>1</td>
-								<td><a href="">user1</a></td>
+								<td><a href="member_detail.do">user1</a></td>
 								<td>개인회원</td>
 								<td>남자</td>
 								<td>2010/12/31</td>
