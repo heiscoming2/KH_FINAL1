@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.StudyDao;
-import com.itpro.model.dto.StudyDetailDto;
-import com.itpro.model.dto.StudyDto;
-import com.itpro.model.dto.StudyListDto;
+import com.itpro.model.dto.study.StudyDetailDto;
+import com.itpro.model.dto.study.StudyInsertDto;
+import com.itpro.model.dto.study.StudyListDto;
 
 @Repository
 public class StudyDaoImpl implements StudyDao {
@@ -46,7 +46,7 @@ public class StudyDaoImpl implements StudyDao {
 	}
 
 	@Override
-	public int studyInsert(StudyDto studyDto) {
+	public int studyInsert(StudyInsertDto studyDto) {
 		try {
 			sqlSession.insert(NAMESPACE+"insert",studyDto);
 		} catch (Exception e) {

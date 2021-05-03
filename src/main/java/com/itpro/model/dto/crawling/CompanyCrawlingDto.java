@@ -1,4 +1,4 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.crawling;
 
 public class CompanyCrawlingDto {
 	

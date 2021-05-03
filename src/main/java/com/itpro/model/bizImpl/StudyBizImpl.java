@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.StudyDao;
-import com.itpro.model.dto.StudyDetailDto;
-import com.itpro.model.dto.StudyDto;
-import com.itpro.model.dto.StudyListDto;
+import com.itpro.model.dto.study.StudyDetailDto;
+import com.itpro.model.dto.study.StudyInsertDto;
+import com.itpro.model.dto.study.StudyListDto;
 
 @Service
 public class StudyBizImpl implements StudyBiz {
@@ -29,7 +29,7 @@ public class StudyBizImpl implements StudyBiz {
 	}
 
 	@Override
-	public int studyInsert(StudyDto studyDto) {
+	public int studyInsert(StudyInsertDto studyDto) {
 		return studyDao.studyInsert(studyDto);
 	}
 

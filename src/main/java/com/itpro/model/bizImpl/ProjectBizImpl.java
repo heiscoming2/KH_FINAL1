@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.dao.ProjectDao;
-import com.itpro.model.dto.CompanyCrawlingDto;
 import com.itpro.model.dto.ProjectDto;
+import com.itpro.model.dto.crawling.CompanyCrawlingDto;
 
 @Service
 public class ProjectBizImpl implements ProjectBiz{

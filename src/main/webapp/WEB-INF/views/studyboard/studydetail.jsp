@@ -30,7 +30,7 @@
               <div class="profile_id">
                 <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  ${studyDetailDto.m_name }
+                  ${studyDetailDto.m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
@@ -42,7 +42,7 @@
                 <fmt:formatDate value="${studyDetailDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성됨)
                 <c:if test="${studyDetailDto.bd_modifydate ne null }">
                 	<fmt:formatDate value="${studyDetailDto.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정됨)
-				</c:if>              
+				</c:if>
               </span>
               
             </div> <!-- 프로필이미지, 아이디, 작성일 div 종료 -->
@@ -66,7 +66,7 @@
             <!-- 필수 입력 정보 노출 시작 -->
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
               인원수 : ${studyDetailDto.st_nowperson } / ${studyDetailDto.st_closeperson }<br>
-              장소 : ${studyDetailDto.st_addr1}${studyDetailDto.st_addr2 }${studyDetailDto.st_addrdetail }<br>
+              장소 : ${studyDetailDto.st_addr1}&nbsp;${studyDetailDto.st_addr2 }&nbsp;${studyDetailDto.st_addrdetail }<br>
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
             <br>
@@ -76,6 +76,7 @@
 			${studyDetailDto.bd_content }
               <br>
               <br>
+            </div>
             <div class="text-center">
             	<input type="button" class="btn btn-success" value="추천(${studyDetailDto.bd_recommandcount })">
             </div>
@@ -90,8 +91,11 @@
             <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='studylist.do'">
       </div>
       <!-- 본문 / 댓글 중간 여백 영역 종료 -->
-
+	
+	 
       <!-- 댓글 영역 시작 -->
+      	<!-- 댓글 작성 시 글번호를 넘겨주기 위해 hidden으로 심어준다. -->
+      <input type="hidden" name="bd_no" value=${studyDetailDto.bd_no } form="replyinsert">
       <%@include file="../reply/_reply.jspf" %>
       <!-- 댓글 영역 끝 -->
   </div>

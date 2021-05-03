@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.itpro.model.dto.CompanyCrawlingDto;
+import com.itpro.model.dto.crawling.CompanyCrawlingDto;
 
 public class CompanyCrawler {
 	

@@ -3,7 +3,7 @@ package com.itpro.model.biz;
 import java.util.List;
 
 import com.itpro.model.dto.ProjectDto;
-import com.itpro.model.dto.StudyDto;
+import com.itpro.model.dto.study.StudyInsertDto;
 
 public interface ProjectBiz {
 
