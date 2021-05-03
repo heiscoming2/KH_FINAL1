@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 주소 api스크립트 -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="./resources/js/resume_form.js"></script> 
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <title>이력서 등록</title>
@@ -25,7 +28,7 @@
                 </div>
                 </div>
                 <div class="col-1">
-                    <button class="btn btn-primary" type="button" onclick="location.href='resume_list.do'">목록</button>
+                    <button class="btn btn-primary" type="button">목록</button>
                 </div>
             </div>
             <br>
@@ -33,7 +36,7 @@
             <br>
             <div class="clearfix">
                 <!--이력서 이미지-->
-                <img src="./resources/images/profileimages/testprofile.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 200px; height: 200px;" alt="이력서 이미지">
+                <img src="./resources/images/profileimages/testprofile.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 170px; height: 180px;" alt="이력서 이미지">
                 
                 <!--기본 인적사항 입력폼-->              
                 <div class="row g-2">
@@ -76,16 +79,38 @@
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5>주 소</h5></div>
-                    <div class="col-5">            
-                        <input type="text" class="form-control col-6 px-2" aria-label="r_addr" placeholder="주소를 입력해 주세요">            
-                    </div>     
+                    <div class="col-3">            
+                        <input class="form-control form-control-sm" type="text" id="sample4_postcode" placeholder="우편번호">
+                    </div>
+                    <div class="col-2">
+                            <input class="btn btn-outline-dark btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+                    </div>
+                </div>
+                <div class="row g-2 mt-1">
+                    <div class="col-2"></div>
+                    <div class="col-3">            
+                        <input class="form-control form-control-sm" type="text" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control form-control-sm" type="text" id="sample4_jibunAddress" placeholder="지번주소" readonly>
+                        <span id="guide" style="color:#999;display:none"></span>
+                    </div>
+                </div>
+                <div class="row g-2 mt-1">
+                    <div class="col-2"></div>
+                    <div class="col-3">            
+                        <input class="form-control form-control-sm" type="text" id="sample4_detailAddress" placeholder="상세주소">
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control form-control-sm" type="text" id="sample4_extraAddress" placeholder="참고항목" readonly>
+                    </div>
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5>포트폴리오</h5></div>
                     <div class="col-5">            
                         <input type="text" class="form-control col-6 px-2" aria-label="r_addr" placeholder="ex) http://www.itpro.com/user">            
-                    </div>     
+                    </div>
                 </div>
                 <br>
                 <div class="row g-2">
@@ -198,10 +223,8 @@
             </div>
 
             <br><br>
-            
-            <!-- 버튼 타입 수정 -->
             <div class="d-grid gap-2 col-3 mx-auto">
-            	<input type="button" class="btn-lg btn-primary" value="저장" onclick="location.href='resume_list.do'"> 
+                <button class="btn-lg btn-primary" type="submit">저장</button>
             </div>
         </form>
     </div>

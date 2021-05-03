@@ -1,4 +1,4 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.resume;
 
 import java.util.Date;
 
