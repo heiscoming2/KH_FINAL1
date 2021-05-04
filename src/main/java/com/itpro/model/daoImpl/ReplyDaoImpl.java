@@ -1,6 +1,7 @@
 package com.itpro.model.daoImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dto.reply.ReplyInsertDto;
 import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.reply.ReplyUpdateDto;
 
 @Repository
 public class ReplyDaoImpl implements ReplyDao {
@@ -48,5 +50,29 @@ public class ReplyDaoImpl implements ReplyDao {
 			e.printStackTrace();
 		}
 		return replyInsertRes;
+	}
+
+	@Override
+	public int update(ReplyUpdateDto replyUpdateDto) {
+		
+		int replyUpdateRes = 0;
+		try {
+			replyUpdateRes = sqlSession.update(NAMESPACE+"update",replyUpdateDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return replyUpdateRes;
+	}
+
+	@Override
+	public int delete(int re_no) {
+		
+		int replyDeleteRes = 0;
+		try {
+			replyDeleteRes = sqlSession.delete(NAMESPACE+"delete",re_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return replyDeleteRes;
 	}
 }

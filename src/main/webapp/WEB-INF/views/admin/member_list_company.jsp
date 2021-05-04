@@ -60,7 +60,7 @@
 			</div>
 			<br>
 	<table border="1">
-		
+		<thead>
 			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);"></th>
@@ -72,30 +72,33 @@
 				<th>탈퇴여부</th>
 				<th>관리자승인</th>
 			</tr>
+		</thead>
 
+		<tbody>
+			<tr>
 				<c:choose>
-					<c:when test="${empty list }">
+					<c:when test="${empty member_list }">
 						<tr>
-							<td colspan="8" align="center">===회원명단이 존재하지 않습니다.===</td>
+							<td colspan="8" text-align="center">===회원명단이 존재하지 않습니다.===</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="dto" items="${list }">
+						<c:forEach var="i" items="${member_list }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="1"></td>
-								<td><a href="member_detail.do">${dto.m_nickname}</a></td>
-								<td>${dto.m_type}</td>
-								<td>${dto.m_regdate}</td>
-								<td>${dto.m_act}</td>
-								<td>${dto.m_used}</td>
-								<td>${dto.m_auth}</td>
+								<td><a href="member_detail.do">${i.m_nickname}</a></td>
+								<td>${i.type}</td>
+								<td>${i.m_regdate}</td>
+								<td>${i.m_act}</td>
+								<td>${i.m_used}</td>
+								<td>${i.admin_cert}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-		
-		
+			</tr>
+		</tbody>
 	</table>
 	<!-- 쪽지보내기 -->
 
@@ -107,7 +110,7 @@
 	</form>
 
 		<!-- FOOTER 시작 -->
-<!--  	<%@include file="../inc/_footer.jspf" %> -->
+	<%@include file="../inc/_footer.jspf" %>
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="../inc/_foot.jspf" %>

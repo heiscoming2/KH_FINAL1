@@ -1,7 +1,9 @@
 package com.itpro.model.biz;
 
-import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.LoginDto;
 
-public interface MemberBiz {
-	public MemberDto login(MemberDto dto);
+public interface MemberBiz {	
+	//로그인
+	public LoginDto login(LoginDto loginDto);
+	
 }

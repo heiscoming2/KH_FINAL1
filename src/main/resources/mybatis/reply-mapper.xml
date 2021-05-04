@@ -18,5 +18,13 @@
 	<insert id="insert" parameterType="ReplyInsertDto">
 		INSERT INTO REPLY VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},1000,#{bd_no})
 	</insert>
+	
+	<update id="update" parameterType="ReplyUpdateDto">
+		UPDATE REPLY SET RE_CONTENT = #{re_content}, RE_MODIFYDATE = SYSDATE WHERE RE_NO = #{re_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM REPLY WHERE RE_NO = #{re_no}
+	</delete>
 
 </mapper>

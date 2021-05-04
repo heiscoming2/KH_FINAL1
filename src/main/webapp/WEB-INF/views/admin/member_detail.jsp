@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,19 +21,11 @@
 	<h1>회원상세내용</h1>
 
 	<table border="1">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
+		
 		<body>
-			<tr>
-				<td>No</td><td>1</td>
-            </tr>
+			
             <tr>
-				<td>ID</td><td>1</td>
+				<td>ID</td><td>${m_id}</td>
             </tr>
             <tr>
 				<td>닉네임</td><td>1</td>

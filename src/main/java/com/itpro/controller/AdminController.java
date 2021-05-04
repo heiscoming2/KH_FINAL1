@@ -2,6 +2,8 @@ package com.itpro.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itpro.model.biz.ManageMemberBiz;
+import com.itpro.model.dto.QnaDto;
 import com.itpro.model.dto.admin.ManageMemberDto;
 
 @Controller
@@ -18,35 +21,38 @@ public class AdminController {
 	private Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
-	ManageMemberBiz managememberbiz;
+	ManageMemberBiz biz;
 	
 	
 	
 	//회원관리 컨트롤러
-	@RequestMapping(value="/member_list.do",  method = RequestMethod.GET)
+	@RequestMapping("/member_list.do")
 	public String member_list(Model model) {
-		List<ManageMemberDto> member_list=ManageMemberBiz.selectList();
-		model.addAttribute("member_list",member_list);
+		logger.info("select list");
+
+		model.addAttribute("list",biz.selectList());
 		
-		logger.info("member_list");
 		
 		return "admin/member_list";
 	}
 	
 	@RequestMapping(value="/member_detail.do")
-	public String join() {
+	public String member_detail(HttpServletRequest request, ManageMemberDto ManageMemberDto) {
+		
 		logger.info("member_detail");
 		
 		return "admin/member_detail";
 	}
-	/*
-	@RequestMapping(value="/join_user.do")
+	
+	
+	@RequestMapping(value="/report_list.do")
 	public String joinUser() {
 		logger.info("JOIN USER");
 		
 		return "login_join/join_user";
 	}
 	
+	/*
 	@RequestMapping(value="/join_biz.do")
 	public String joinBiz() {
 		logger.info("JOIN BIZ");

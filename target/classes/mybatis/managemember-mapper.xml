@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ManageMember">
+	
+	<resultMap type="ManageMemberDto" id="ManageMemberMap">
+		<result property="m_no" column="M_NO"/>
+		<result property="m_nickname" column="M_NICKNAME"/>
+		<result property="m_type" column="M_TYPE"/>
+		<result property="m_gender" column="M_GENDER"/>
+		<result property="m_regdate" column="M_REGDATE"/>
+		<result property="m_act" column="M_ACT"/>
+		<result property="m_used" column="M_USED"/>
+		<result property="m_auth" column="M_AUTH"/>
+	</resultMap>
+
+	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
+	
+	
+	
+	<select id="selectList" resultMap="ManageMemberMap">
+        SELECT M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH
+        FROM IT_MEMBER
+        ORDER BY M_NO DESC
+	</select>
+	
+	<select id="selectone" resultType="ManageMemberDto" parameterType="int">
+		
+	</select>
+	
+	
+	
+	<update id="update" parameterType="int">
+		
+	</update>
+	
+	
+	
+</mapper>

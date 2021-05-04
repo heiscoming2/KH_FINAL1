@@ -1,48 +1,60 @@
 package com.itpro.model.dto.admin;
 
-
 import java.util.Date;
 
 public class ManageMemberDto {
-	//회원 필드
+	//회원 입력사항
 	private int m_no;//회원번호
 	private String m_id;//아이디
 	private String m_pw;//비밀번호
-	private String name;//이름(닉네임, 회사명)
+	private String m_nickname;//닉네임
+	private String m_phone;//전화번호
 	private String m_email;//이메일
+	private String m_name;//이름
+	private Date m_birth;//생년월일
+	private String m_gender;//성별
+	private String m_addr;//주소	
+	//인증,권한
 	private char m_used;//탈퇴여부(탈퇴Y,회원N)
 	private String m_act;//활동여부(활동, 정지)
 	private char m_mail_cert;//메일 인증(미인증N,인증Y)
 	private String m_type;//회원타입(개인회원, 기업회원, 관리자)
-	private char auth;//권한(N회원Y관리자)
-	private String m_img_path;
-	private Date m_regdate;
+	private char m_auth;//권한(N회원Y관리자)
 	//기업회원 필드
 	private int m_regno;//사업자 번호
 	private char m_admin_cert;//관리자 인증
-	
+	//이미지
+	private String m_img_path;
+	private Date m_regdate;	
+
 	public ManageMemberDto() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public ManageMemberDto(int m_no, String m_id, String m_pw, String name, String m_email, char m_used, String m_act,
-			char m_mail_cert, String m_type, char auth, String m_img_path, Date m_regdate, int m_regno,
-			char m_admin_cert) {
+	public ManageMemberDto(int m_no, String m_id, String m_pw, String m_nickname, String m_phone, String m_email,
+			String m_name, Date m_birth, String m_gender, String m_addr, char m_used, String m_act, char m_mail_cert,
+			String m_type, char auth, int m_regno, char m_admin_cert, String m_img_path, Date m_regdate) {
 		super();
 		this.m_no = m_no;
 		this.m_id = m_id;
 		this.m_pw = m_pw;
-		this.name = name;
+		this.m_nickname = m_nickname;
+		this.m_phone = m_phone;
 		this.m_email = m_email;
+		this.m_name = m_name;
+		this.m_birth = m_birth;
+		this.m_gender = m_gender;
+		this.m_addr = m_addr;
 		this.m_used = m_used;
 		this.m_act = m_act;
 		this.m_mail_cert = m_mail_cert;
 		this.m_type = m_type;
-		this.auth = auth;
-		this.m_img_path = m_img_path;
-		this.m_regdate = m_regdate;
+		this.m_auth = auth;
 		this.m_regno = m_regno;
 		this.m_admin_cert = m_admin_cert;
+		this.m_img_path = m_img_path;
+		this.m_regdate = m_regdate;
 	}
 
 	public int getM_no() {
@@ -69,12 +81,20 @@ public class ManageMemberDto {
 		this.m_pw = m_pw;
 	}
 
-	public String getName() {
-		return name;
+	public String getM_nickname() {
+		return m_nickname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
+
+	public String getM_phone() {
+		return m_phone;
+	}
+
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
 	}
 
 	public String getM_email() {
@@ -83,6 +103,38 @@ public class ManageMemberDto {
 
 	public void setM_email(String m_email) {
 		this.m_email = m_email;
+	}
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
+	public Date getM_birth() {
+		return m_birth;
+	}
+
+	public void setM_birth(Date m_birth) {
+		this.m_birth = m_birth;
+	}
+
+	public String getM_gender() {
+		return m_gender;
+	}
+
+	public void setM_gender(String m_gender) {
+		this.m_gender = m_gender;
+	}
+
+	public String getM_addr() {
+		return m_addr;
+	}
+
+	public void setM_addr(String m_addr) {
+		this.m_addr = m_addr;
 	}
 
 	public char getM_used() {
@@ -117,12 +169,28 @@ public class ManageMemberDto {
 		this.m_type = m_type;
 	}
 
-	public char getAuth() {
-		return auth;
+	public char getM_auth() {
+		return m_auth;
 	}
 
-	public void setAuth(char auth) {
-		this.auth = auth;
+	public void setM_auth(char m_auth) {
+		this.m_auth = m_auth;
+	}
+
+	public int getM_regno() {
+		return m_regno;
+	}
+
+	public void setM_regno(int m_regno) {
+		this.m_regno = m_regno;
+	}
+
+	public char getM_admin_cert() {
+		return m_admin_cert;
+	}
+
+	public void setM_admin_cert(char m_admin_cert) {
+		this.m_admin_cert = m_admin_cert;
 	}
 
 	public String getM_img_path() {
@@ -141,21 +209,8 @@ public class ManageMemberDto {
 		this.m_regdate = m_regdate;
 	}
 
-	public int getM_regno() {
-		return m_regno;
-	}
-
-	public void setM_regno(int m_regno) {
-		this.m_regno = m_regno;
-	}
-
-	public char getM_admin_cert() {
-		return m_admin_cert;
-	}
-
-	public void setM_admin_cert(char m_admin_cert) {
-		this.m_admin_cert = m_admin_cert;
-	}	
+	
+	
 	
 	
 }
