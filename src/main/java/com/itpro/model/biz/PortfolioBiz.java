@@ -2,7 +2,7 @@ package com.itpro.model.biz;
 
 import java.util.List;
 
-import com.itpro.model.dto.PortfolioDto;
+import com.itpro.model.dto.portfolio.PortfolioDto;
 
 public interface PortfolioBiz {
 

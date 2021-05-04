@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.ManageMemberDao;
 import com.itpro.model.dao.QnaDao;
-import com.itpro.model.dto.QnaDto;
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.qna.QnaDto;
 
 @Repository
 public class ManageMemberDaoImpl implements ManageMemberDao {

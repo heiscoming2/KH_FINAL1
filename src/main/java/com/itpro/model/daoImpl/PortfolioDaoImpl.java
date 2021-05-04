@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.PortfolioDao;
-import com.itpro.model.dto.ProjectDto;
+import com.itpro.model.dto.project.ProjectListDto;
 
 @Repository
 public class PortfolioDaoImpl implements PortfolioDao {
@@ -17,13 +17,13 @@ public class PortfolioDaoImpl implements PortfolioDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<ProjectDto> selectList() {
+	public List<ProjectListDto> selectList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int insertlist(List<ProjectDto> projectList) {
+	public int insertlist(List<ProjectListDto> projectList) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

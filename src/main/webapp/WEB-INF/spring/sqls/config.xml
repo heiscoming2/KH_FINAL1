@@ -11,9 +11,11 @@
 		<typeAlias type="com.itpro.model.dto.study.StudyDetailDto" alias="StudyDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyInsertDto" alias="ReplyInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyListDto" alias="ReplyListDto"/>
-		<typeAlias type="com.itpro.model.dto.ProjectDto" alias="ProjectDto"/>
-		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="PortfolioDto"/>
-		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="QnaDto"/>
+		<typeAlias type="com.itpro.model.dto.project.ProjectListDto" alias="ProjectListDto"/>
+		<typeAlias type="com.itpro.model.dto.project.ProjectInsertDto" alias="ProjectInsertDto"/>
+		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
+		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDto" alias="PortfolioDto"/>
+		<typeAlias type="com.itpro.model.dto.qna.QnaDto" alias="QnaDto"/>
 	</typeAliases>
 	
 	<mappers>

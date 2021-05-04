@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.PortfolioBiz;
 import com.itpro.model.dao.PortfolioDao;
-import com.itpro.model.dto.PortfolioDto;
+import com.itpro.model.dto.portfolio.PortfolioDto;
 
 @Service
 public class PortfolioBizImpl implements PortfolioBiz{

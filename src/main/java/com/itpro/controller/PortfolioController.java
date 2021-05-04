@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itpro.model.biz.PortfolioBiz;
-import com.itpro.model.dto.PortfolioDto;
+import com.itpro.model.dto.portfolio.PortfolioDto;
 import com.itpro.util.ClientInfo;
 
 @Controller

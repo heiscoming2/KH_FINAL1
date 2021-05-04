@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.QnaBiz;
 import com.itpro.model.dao.QnaDao;
-import com.itpro.model.dto.QnaDto;
+import com.itpro.model.dto.qna.QnaDto;
 
 @Service
 public class QnaBizImpl implements QnaBiz{
