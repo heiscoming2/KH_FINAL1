@@ -1,6 +1,6 @@
 package com.itpro.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,16 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itpro.model.biz.MemberBiz;
+import com.itpro.model.biz.ManageMemberBiz;
+import com.itpro.model.dto.admin.ManageMemberDto;
 
 @Controller
 public class AdminController {
 	private Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
+	@Autowired
+	ManageMemberBiz managememberbiz;
+	
+	
+	
 	//회원관리 컨트롤러
-	@RequestMapping(value="/member_list.do")
-	public String login() {
+	@RequestMapping(value="/member_list.do",  method = RequestMethod.GET)
+	public String member_list(Model model) {
+		List<ManageMemberDto> member_list=ManageMemberBiz.selectList();
+		model.addAttribute("member_list",member_list);
+		
 		logger.info("member_list");
 		
 		return "admin/member_list";

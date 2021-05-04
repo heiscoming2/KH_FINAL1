@@ -64,7 +64,6 @@
 			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);"></th>
-				<th>No</th>
 				<th>ID</th>
 				<th>회원구분</th>
 				<th>성별</th>
@@ -77,17 +76,16 @@
 		<tbody>
 			<tr>
 				<c:choose>
-					<c:when test="${empty list }">
+					<c:when test="${empty member_list }">
 						<tr>
 							<td colspan="8" text-align="center">===회원명단이 존재하지 않습니다.===</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="" items="">
+						<c:forEach var="i" items="${member_list }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="1"></td>
-								<td>1</td>
 								<td><a href="member_detail.do">user1</a></td>
 								<td>개인회원</td>
 								<td>남자</td>
@@ -101,7 +99,6 @@
 			</tr>
 		</tbody>
 	</table>
-	</form>
 	<!-- 쪽지보내기 -->
 
 	<input type="button" value="쪽지보내기" onclick="">
@@ -109,13 +106,14 @@
 
 
 	<!-- 본문 종료 -->
+	</form>
 
-	<!-- FOOTER 시작 -->
-	<%@include file="../inc/_footer.jspf"%>
+		<!-- FOOTER 시작 -->
+	<%@include file="../inc/_footer.jspf" %>
 	<!-- FOOTER 종료 -->
-
-	<!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
-	<%@include file="../inc/_foot.jspf"%>
+	
+	<%@include file="../inc/_foot.jspf" %>
+	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 
 </body>
 </html>
