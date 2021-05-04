@@ -20,39 +20,40 @@
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
+                    
                         <form method="POST" action="">
 
                             <div class="mb-3 row"><!--아이디 입력 폼-->
                                 <label class="col-sm-4 col-form-label">아이디</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="m_id">
+                                  <input type="text" class="form-control" id="m_id" name="m_id" >
                                 </div>
                             </div>
 
                             <div class="mb-3 row"><!--비밀번호 입력 폼-->
                                 <label class="col-sm-4 col-form-label">비밀번호</label>
                                 <div class="col-sm-8">
-                                  <input type="password" class="form-control" id="m_password">
+                                  <input type="password" class="form-control" id="m_pw" name="m_pw">
                                 </div>
                             </div>
 
                             <div class="mb-3 row"><!--닉네임 입력 폼-->
                                 <label class="col-sm-4 col-form-label">닉네임</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="m_name">
+                                  <input type="text" class="form-control" id="m_nickname" name="m_nickname" >
                                 </div>
                             </div>
 
                             <div class="mb-3 row"><!--이메일 입력 폼-->
                                 <label class="col-sm-4 col-form-label">이메일</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="m_email">
+                                  <input type="text" class="form-control" id="m_email" name="m_email">
                                 </div>
                             </div>
                             
                             <!--회원가입 버튼 @@@버튼 타입 변경 해야됨!!-->
                             <div class="d-grid gap-2 col-5 mx-auto">
-                                <input type="button" class="btn btn-primary" value="회원가입" onclick="location.href='main.do'">
+                                <input type="submit" class="btn btn-primary" value="회원가입" onclick="location.href='main.do'">
                             </div>
                         </form>
                     </div>

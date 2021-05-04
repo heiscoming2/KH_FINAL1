@@ -14,6 +14,7 @@
 		<typeAlias type="com.itpro.model.dto.ProjectDto" alias="ProjectDto"/>
 		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.PortfolioDto" alias="QnaDto"/>
+		<typeAlias type="com.itpro.model.dto.member.LoginDto" alias="LoginDto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -23,6 +24,7 @@
 		<mapper resource="/mybatis/project-mapper.xml"/>
 		<mapper resource="/mybatis/portfolio-mapper.xml"/>
 		<mapper resource="/mybatis/qna-mapper.xml"/>
+		<mapper resource="/mybatis/member-mapper.xml"/>
 	</mappers>
 
 </configuration>

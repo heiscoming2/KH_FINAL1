@@ -17,7 +17,7 @@
  <div class="container row justify-content-center mt-5 mb-5">
         <div class="row justify-content-center align-items-center">
             <div class="float-left col-md-3 col-3">
-                <img src="./resources/images/profileimages/testprofile.jpg" class="img-fluid rounded-circle" alt="프로필 이미지" width="200">
+                <img src="./resources/images/profileimages/testprofile.jpg" class="img-fluid rounded-circle" alt="프로필 이미지" width="150" height="150">
                 <p>
                 <h5>닉네임 가운데...</h5>
                 </p>

@@ -1,9 +1,10 @@
 package com.itpro.model.dao;
 
-import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.LoginDto;
 
 public interface MemberDao {
-	String NAMESPACE="itmember.";
-	
-	public MemberDto login(MemberDto dto);
+	String NAMESPACE="ItMember.";
+
+	//로그인
+	public LoginDto login(LoginDto loginDto);
 }
