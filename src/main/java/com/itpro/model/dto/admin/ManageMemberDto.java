@@ -1,8 +1,9 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.admin;
+
 
 import java.util.Date;
 
-public class MemberDto {
+public class ManageMemberDto {
 	//회원 필드
 	private int m_no;//회원번호
 	private String m_id;//아이디
@@ -20,11 +21,11 @@ public class MemberDto {
 	private int m_regno;//사업자 번호
 	private char m_admin_cert;//관리자 인증
 	
-	public MemberDto() {
+	public ManageMemberDto() {
 		super();
 	}
 
-	public MemberDto(int m_no, String m_id, String m_pw, String name, String m_email, char m_used, String m_act,
+	public ManageMemberDto(int m_no, String m_id, String m_pw, String name, String m_email, char m_used, String m_act,
 			char m_mail_cert, String m_type, char auth, String m_img_path, Date m_regdate, int m_regno,
 			char m_admin_cert) {
 		super();

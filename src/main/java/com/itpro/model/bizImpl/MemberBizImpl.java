@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dao.MemberDao;
-import com.itpro.model.dto.MemberDto;
+import com.itpro.model.dto.member.MemberDto;
 
 public class MemberBizImpl implements MemberBiz{
 
