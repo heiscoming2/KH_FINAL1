@@ -2,7 +2,7 @@ package com.itpro.model.biz;
 
 import java.util.List;
 
-import com.itpro.model.dto.QnaDto;
+import com.itpro.model.dto.qna.QnaDto;
 
 public interface QnaBiz {
 

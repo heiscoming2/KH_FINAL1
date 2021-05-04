@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itpro.model.biz.ProjectBiz;
-import com.itpro.model.dto.ProjectDto;
+import com.itpro.model.dto.project.ProjectDetailDto;
+import com.itpro.model.dto.project.ProjectInsertDto;
+import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.util.ClientInfo;
 
 @Controller
@@ -26,7 +28,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	@RequestMapping(value="/projectlist.do")
 	public String projectList(Model model) {
 		
-		List<ProjectDto> projectList = projectBiz.selectList();
+		List<ProjectListDto> projectList = projectBiz.selectList();
 		model.addAttribute("projectList", projectList);
 		return "project/projectlist";
 	}
@@ -38,18 +40,25 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}
 	
 	@RequestMapping(value="/projectinsert.do")
-	public String projectInsert(HttpServletRequest request, ProjectDto projectDto) {
+	public String projectInsert(HttpServletRequest request, ProjectInsertDto projectDto) {
 		logger.info("PROJECT INSERT");
 		projectDto.setBd_writerip(new ClientInfo().getClientIp(request));
-		projectBiz.insert(projectDto);
-		return "project/projectinsertform";
+		projectBiz.projectInsert(projectDto);
+		return "redirect:projectlist.do";
 	}	
 	
 	
 	@RequestMapping(value="/projectdetail.do")
-	public String projectDetail(HttpServletRequest request, ProjectDto projectDto) {
+	public String projectDetail(HttpServletRequest request, ProjectDetailDto projectDto) {
 		logger.info("PROJECT DETAIL");
-		return "projectboard/projectdetail";
+		return "project/projectdetail";
 	}	
+	
+	@RequestMapping(value="/projectupdate.do")
+	public String projectUpdate(Model model) {
+		
+		logger.info("PROJECT UPDATE");
+		return "project/projectupdate";
+	}
 	
 }

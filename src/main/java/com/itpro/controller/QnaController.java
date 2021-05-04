@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itpro.model.biz.QnaBiz;
-import com.itpro.model.dto.QnaDto;
+import com.itpro.model.dto.qna.QnaDto;
 import com.itpro.util.ClientInfo;
 
 @Controller

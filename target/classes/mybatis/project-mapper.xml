@@ -5,31 +5,31 @@
   
 <mapper namespace="Project">
 	
-	<update id="insertlist" parameterType="java.util.List">
-		<foreach item="project" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
-		INSERT INTO PORTFOLIO 
-		VALUES
-		(#{project.port_prize},
-		 #{project.port_develop},
-		 #{project.port_name},
-		 #{project.port_edu},
-		 #{project.port_email},
-		 #{project.port_phone},
-		 #{project.port_link},
-		 #{project.port_title},
-		 #{project.port_edu_start},
-		 #{project.port_edu_end})
-		 
+	<insert id ="insert" parameterType="projectInsertDto">
+		INSERT ALL
+		INTO BOARD
+		VALUES(BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL,
+		#{bd_writerip}, 0, 0, 0} )
+		INTO PROJECT
+		VALUES(
+		BOARDSEQ.CURRVAL,
+		#{pro_title}, #{pro_start}, #{pro_end}, #{pro_link}, #{pro_develop},
+		#{pro_goal}, #{pro_function}, #{pro_erd} )
+	</insert>
+	
+	
+	
+	
+	
+	
 
-		</foreach>
-	</update>
+	<select id="selectList" resultType="ProjectListDto">
+		SELECT * FROM PROJECT
+	</select>
 	
 	<delete id="deletelist">
-		DELETE FROM PORTFOLIO
+		DELETE FROM PROJECT
 	</delete>
 	
-	<select id="selectList" resultType="ProjectDto">
-		SELECT * FROM PORTFOLIO
-	</select>
 	
 </mapper>
