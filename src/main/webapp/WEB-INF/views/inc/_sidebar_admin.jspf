@@ -1,68 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 50px;
-}
-
-.sidenav a {
-  padding: 6px 30px 40px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  font-weight: 900; 
-  color: #818181;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.main {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Tables - SB Admin</title>
+<link href="resources/css/sidebar_admin.css" rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
+	rel="stylesheet" crossorigin="anonymous" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+	crossorigin="anonymous"></script>
 </head>
 <body>
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav class="sb-sidenav accordion sb-sidenav-dark"
+				id="sidenavAccordion">
 
-<div class="sidenav">
-  <a href="#about">회원관리</a>
-  <a href="#services">광고관리</a>
-  <a href="#clients">신고관리</a>
-  <a href="#contact">공지사항</a>
-</div>
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<a class="nav-link collapsed" href="#" data-toggle="collapse"
+							data-target="#collapsePages" aria-expanded="false"
+							aria-controls="collapsePages">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-book-open"></i>
+							</div> 회원관리
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapsePages"
+							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav accordion"
+								id="sidenavAccordionPages">
+								<a class="nav-link collapsed" href="#" data-toggle="collapse"
+									data-target="#pagesCollapseAuth" aria-expanded="false"
+									aria-controls="pagesCollapseAuth"> 개인회원
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a> <a class="nav-link collapsed" href="#" data-toggle="collapse"
+									data-target="#pagesCollapseError" aria-expanded="false"
+									aria-controls="pagesCollapseError"> 기업회원
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
 
+							</nav>
+						</div>
+						<a class="nav-link collapsed" href="#" data-toggle="collapse"
+							data-target="" aria-expanded="false"
+							aria-controls="collapsePages">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-book-open"></i>
+							</div> 신고관리 <a class="nav-link collapsed" href="#"
+							data-toggle="collapse" data-target="#collapseAd"
+							aria-expanded="false" aria-controls="collapsePages">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-book-open"></i>
+								</div> 광고관리
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+						</a>
+							<div class="collapse" id="collapseAd"
+								aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+								<nav class="sb-sidenav-menu-nested nav accordion"
+									id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-toggle="collapse"
+										data-target="#pagesCollapseAuth" aria-expanded="false"
+										aria-controls="pagesCollapseAuth"> 결제관리
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a> <a class="nav-link collapsed" href="#" data-toggle="collapse"
+										data-target="#pagesCollapseError" aria-expanded="false"
+										aria-controls="pagesCollapseError"> 주문사항
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
 
+								</nav>
+							</div> <a class="nav-link" href="#">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-table"></i>
+								</div> 배너등록
+						</a>
+					</div>
+				</div>
+
+			</nav>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+			crossorigin="anonymous"></script>
+		<script src="resources/js/sidebar_admin.js"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+			crossorigin="anonymous"></script>
 </body>
-</html> 
-    
-    
-    
-    
-    
-    
-    
-    
+</html>
+
+

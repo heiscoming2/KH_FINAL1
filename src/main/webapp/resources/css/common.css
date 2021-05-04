@@ -36,7 +36,6 @@ a:visited {
 }
 /* 헤더 item 간격 설정 */
 .navbar-nav .nav-item{
-	margin: 0 15px;
 }
 
 .nav-item {

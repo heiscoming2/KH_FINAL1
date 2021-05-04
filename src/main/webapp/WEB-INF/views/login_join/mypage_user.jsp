@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<title>로그인</title>
+<title>회원마이페이지</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -14,19 +14,42 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-3 col-3 mt-5 ">
-                <img src="./resources/images/profileimages/testprofile.jpg" class="img-fluid rounded-circle" alt="프로필 이미지" width="200">
-                <p><h5>닉네임 닉네임</h5></p>
-            </div>
-            <div class="list-group col-md-3 list-group-flush">
-                <a href="modify_user.do" class="list-group-item list-group-item-action"><h4>회원정보수정</h4></a>
-                <a href="resume_list.do" class="list-group-item list-group-item-action"><h4>이력서 등록/관리</h4></a>
-                <a href="note_receivelist.do" class="list-group-item list-group-item-action"><h4>쪽지관리</h4></a>
-                <a href="post_list.do" class="list-group-item list-group-item-action"><h4>작성글 확인</h4></a>
-            </div>
+ <div class="container-sm mt-5 mb-5"style="max-width: 600px;">
+        <div class="mb-4"> <!-- 마이페이지 미니 프로필 -->
+            <img src="./resources/images/profileimages/testprofile.jpg" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+              style="float: left;">
+            <span class="fw-bold"style="display: block; position: relative; top:5px;">
+                	닉네임닉네임
+            </span>
         </div>
+        
+        <!-- 마이페이지 목록 -->
+        <div class="list-group">
+            <a href="modify_user.do" class="list-group-item list-group-item-action" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">회원정보</h5>
+              </div>
+              <p class="mb-1">비밀번호, 연락처, 프로필 정보를 확인하고 관리합니다.</p>
+            </a>
+            <a href="resume_list.do" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">이력서</h5>
+                </div>
+                <p class="mb-1">이력서 정보를 등록하고 확인, 관리합니다.</p>
+            </a>
+            <a href="note_receivelist.do" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">쪽지</h5>
+                </div>
+                <p class="mb-1">쪽지를 보내고 관리합니다.</p>
+            </a>
+            <a href="post_list.do" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">작성글</h5>
+                </div>
+                <p class="mb-1">그동안 작성한 게시글을 확인하고 관리합니다.</p>
+            </a>
+          </div>
     </div>
 
 

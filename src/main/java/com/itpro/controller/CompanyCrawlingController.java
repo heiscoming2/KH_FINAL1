@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.CompanyCrawlingBiz;
 import com.itpro.model.bizImpl.CompanyCrawlingBizImpl;
-import com.itpro.model.dto.CompanyCrawlingDto;
-import com.itpro.model.dto.CompanyCrawlingSearchDto;
+import com.itpro.model.dto.crawling.CompanyCrawlingDto;
+import com.itpro.model.dto.crawling.CompanyCrawlingSearchDto;
 import com.itpro.util.CompanyCrawler;
 import com.itpro.util.PageProcessing;
 

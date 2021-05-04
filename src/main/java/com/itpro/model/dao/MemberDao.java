@@ -1,6 +1,6 @@
 package com.itpro.model.dao;
 
-import com.itpro.model.dto.MemberDto;
+import com.itpro.model.dto.member.MemberDto;
 
 public interface MemberDao {
 	String NAMESPACE="itmember.";
