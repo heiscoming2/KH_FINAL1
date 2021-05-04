@@ -19,7 +19,7 @@ public class ManageMemberDto {
 	private String m_act;//활동여부(활동, 정지)
 	private char m_mail_cert;//메일 인증(미인증N,인증Y)
 	private String m_type;//회원타입(개인회원, 기업회원, 관리자)
-	private char auth;//권한(N회원Y관리자)
+	private char m_auth;//권한(N회원Y관리자)
 	//기업회원 필드
 	private int m_regno;//사업자 번호
 	private char m_admin_cert;//관리자 인증
@@ -50,7 +50,7 @@ public class ManageMemberDto {
 		this.m_act = m_act;
 		this.m_mail_cert = m_mail_cert;
 		this.m_type = m_type;
-		this.auth = auth;
+		this.m_auth = auth;
 		this.m_regno = m_regno;
 		this.m_admin_cert = m_admin_cert;
 		this.m_img_path = m_img_path;
@@ -169,12 +169,12 @@ public class ManageMemberDto {
 		this.m_type = m_type;
 	}
 
-	public char getAuth() {
-		return auth;
+	public char getM_auth() {
+		return m_auth;
 	}
 
-	public void setAuth(char auth) {
-		this.auth = auth;
+	public void setM_auth(char m_auth) {
+		this.m_auth = m_auth;
 	}
 
 	public int getM_regno() {
@@ -208,12 +208,7 @@ public class ManageMemberDto {
 	public void setM_regdate(Date m_regdate) {
 		this.m_regdate = m_regdate;
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

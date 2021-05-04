@@ -13,26 +13,24 @@ import com.itpro.model.dto.admin.ManageMemberDto;
 public class ManageMemberBizImpl implements ManageMemberBiz{
 
 	@Autowired
-	private ManageMemberDao ManageMemberDaoImpl;
+	private ManageMemberDao dao;
 
-	public static List<ManageMemberDto> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public List<ManageMemberDto> selectList() {
+		return dao.selectList();
 	}
 
 	@Override
 	public ManageMemberDto selectOne(int m_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(m_no);
 	}
-
 
 	@Override
-	public int update() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(ManageMemberDto dto) {
+		return dao.update(dto);
 	}
 
+	
 	
 
 

@@ -6,11 +6,8 @@ import com.itpro.model.dto.admin.ManageMemberDto;
 
 public interface ManageMemberBiz {
 
-	public static List<ManageMemberDto> selectList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<ManageMemberDto> selectList();
 	public ManageMemberDto selectOne(int m_no);
-	public int update();
+	public int update(ManageMemberDto dto);
 
 }

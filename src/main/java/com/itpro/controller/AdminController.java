@@ -21,17 +21,17 @@ public class AdminController {
 	private Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
-	ManageMemberBiz managememberbiz;
+	ManageMemberBiz biz;
 	
 	
 	
 	//회원관리 컨트롤러
-	@RequestMapping(value="/member_list.do",  method = RequestMethod.GET)
+	@RequestMapping("/member_list.do")
 	public String member_list(Model model) {
-		List<ManageMemberDto> member_list=ManageMemberBiz.selectList();
-		model.addAttribute("member_list",member_list);
+		logger.info("select list");
+
+		model.addAttribute("list",biz.selectList());
 		
-		logger.info("member_list");
 		
 		return "admin/member_list";
 	}

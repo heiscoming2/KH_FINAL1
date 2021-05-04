@@ -11,6 +11,7 @@ public interface ManageMemberDao {
 	String NAMESPACE = "ManageMember.";
 
 	public List<ManageMemberDto> selectList();
-	public int updatelist(List<ManageMemberDto> ManageMemberList);
+	public ManageMemberDto selectOne(int m_no);
+	public int update(ManageMemberDto dto);
 	
 }
