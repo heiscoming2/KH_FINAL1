@@ -2,6 +2,8 @@ package com.itpro.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itpro.model.biz.ManageMemberBiz;
+import com.itpro.model.dto.QnaDto;
 import com.itpro.model.dto.admin.ManageMemberDto;
 
 @Controller
@@ -34,19 +37,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/member_detail.do")
-	public String join() {
+	public String member_detail(HttpServletRequest request, ManageMemberDto ManageMemberDto) {
+		
 		logger.info("member_detail");
 		
 		return "admin/member_detail";
 	}
-	/*
-	@RequestMapping(value="/join_user.do")
+	
+	
+	@RequestMapping(value="/report_list.do")
 	public String joinUser() {
 		logger.info("JOIN USER");
 		
 		return "login_join/join_user";
 	}
 	
+	/*
 	@RequestMapping(value="/join_biz.do")
 	public String joinBiz() {
 		logger.info("JOIN BIZ");

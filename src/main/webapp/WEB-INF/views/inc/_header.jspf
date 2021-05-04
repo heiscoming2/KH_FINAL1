@@ -11,7 +11,7 @@
     <div class="container-fluid ">
 
       <nav class="navbar navbar-light bg-dark ">
-        <div class="container-fluid col-md-2">
+        <div class="container-fluid col-ml-2">
           <a class="navbar-brand text-light" href="main.do">
             <img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png" alt=""
               width="35" height="35" class="d-inline-block align-text-top ">
@@ -19,7 +19,7 @@
           </a>
         </div>
       </nav>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
