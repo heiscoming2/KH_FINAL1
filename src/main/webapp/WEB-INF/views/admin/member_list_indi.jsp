@@ -110,7 +110,7 @@
 	</form>
 
 		<!-- FOOTER 시작 -->
-<!--  	<%@include file="../inc/_footer.jspf" %> -->
+	<%@include file="../inc/_footer.jspf" %>
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="../inc/_foot.jspf" %>

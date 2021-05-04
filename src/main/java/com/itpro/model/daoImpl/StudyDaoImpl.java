@@ -56,9 +56,14 @@ public class StudyDaoImpl implements StudyDao {
 	}
 
 	@Override
-	public int delete() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int bd_no) {
+		int studyDeleteRes = 0;
+		try {
+			studyDeleteRes = sqlSession.delete(NAMESPACE+"delete",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studyDeleteRes;
 	}
 
 	@Override
