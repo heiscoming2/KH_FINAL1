@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.QnaDao;
-import com.itpro.model.dto.QnaDto;
+import com.itpro.model.dto.qna.QnaDto;
 
 @Repository
 public class QnaDaoImpl implements QnaDao {

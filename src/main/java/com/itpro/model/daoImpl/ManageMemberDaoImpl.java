@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.ManageMemberDao;
+<<<<<<< HEAD
+import com.itpro.model.dao.QnaDao;
+=======
+>>>>>>> e9448abb9498f01a69b4d0bf1574638569e52cd9
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.qna.QnaDto;
 
 @Repository
 public class ManageMemberDaoImpl implements ManageMemberDao {

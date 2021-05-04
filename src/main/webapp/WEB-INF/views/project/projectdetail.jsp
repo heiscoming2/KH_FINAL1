@@ -83,11 +83,14 @@
               <br>
               <br>
             </div>
+             <div class="text-center">
+            	<input type="button" class="btn btn-success" value="추천(${ProjectDto.bd_recommandcount })">
+            </div>
             <!-- 글 내용 종료 -->
           </td>
         </tr>
       </table>
-      <!-- 스터디모집 구인글 영역 종료-->
+      <!-- 프로젝트 디테일 영역 종료-->
 
       <!-- 본문 / 댓글 중간 여백 영역 시작 -->
       <div style="width:100%; display: block; height:80px;">

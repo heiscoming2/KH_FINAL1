@@ -1,8 +1,8 @@
-package com.itpro.model.dto;
+package com.itpro.model.dto.portfolio;
 
 import java.util.Date;
 
-public class ProjectDto {
+public class PortfolioDto {
 
 	private String port_prize;
 	private String port_develop;
@@ -33,7 +33,7 @@ public class ProjectDto {
 	private int bd_no;
 	
 	
-	public ProjectDto() {
+	public PortfolioDto() {
 		super();
 	}
 
