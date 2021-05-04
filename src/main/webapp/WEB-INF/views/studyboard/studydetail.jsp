@@ -59,7 +59,7 @@
             <div style="float:right; position:relative; top:-105px;"> <!-- 작성자에게만 보여질 버튼 -->
               <input type="button" value="신고" class="btn btn-danger">
               <input type="button" value="모집완료" class="btn btn-primary" onclick="statusChangeConfirm();"> <!-- 나중에 상태값을 담아서 매개변수로 뿌려주고 yn에 따라 confirm 메시지 출력-->
-              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='studyupdate.do'">
+              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='studyupdateform.do?bd_no=${studyDetailDto.bd_no}'">
               <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm();">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
