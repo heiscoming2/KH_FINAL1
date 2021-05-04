@@ -15,8 +15,7 @@ public class ManageMemberBizImpl implements ManageMemberBiz{
 	@Autowired
 	private ManageMemberDao ManageMemberDaoImpl;
 
-	@Override
-	public List<ManageMemberDto> selectList() {
+	public static List<ManageMemberDto> selectList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
