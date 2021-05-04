@@ -94,8 +94,8 @@ public class StudyController {
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("studyDetailDto",studyDetailDto);
 		//댓글 list받아와 model에 담아준다.
-		List<ReplyListDto> replyList = replyBiz.selectList(bd_no);
-		model.addAttribute("replyList",replyList);
+		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
+		model.addAttribute("replyListDto",replyListDto);
 		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
@@ -109,5 +109,14 @@ public class StudyController {
 		logger.info("STUDY UPDATE");
 		return "studyboard/studyupdate";
 	}
+	
+	@RequestMapping(value="/studydelete.do")
+	public String studyDelete(Model model, int bd_no) {
+		logger.info("STUDY DELETE");
+		int studyDeleteRes = studyBiz.delete(bd_no);
+		//나중에 int값으로 실패시 alert 처리
+		return "redirect:studylist.do";
+	}
+	
 		
 }

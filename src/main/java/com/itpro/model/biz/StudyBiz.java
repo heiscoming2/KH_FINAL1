@@ -12,7 +12,7 @@ public interface StudyBiz {
 	public List<StudyListDto> selectList(Map<String,Object> studyPageMap);
 	public StudyDetailDto selectOne(int bd_no);
 	public int studyInsert(StudyInsertDto studyDto);
-	public int delete();
+	public int delete(int bd_no);
 	public int update();
 	public int getStudyListCnt();
 

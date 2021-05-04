@@ -7,7 +7,7 @@
 
 <title>IT PRO</title>
 <%@include file="./inc/_head.jspf" %>
-<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.0">
+<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.1">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -109,6 +109,9 @@
 		</div>
 	</section>
 	<!-- 인기 포트폴리오 슬라이드 종료 -->
+	
+	
+	
 	
 	<!-- 광고배너2시작 -->
 	<br>

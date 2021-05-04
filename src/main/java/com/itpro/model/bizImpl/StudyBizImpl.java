@@ -34,9 +34,9 @@ public class StudyBizImpl implements StudyBiz {
 	}
 
 	@Override
-	public int delete() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(int bd_no) {
+		int studyDeleteRes = studyDao.delete(bd_no);
+		return studyDeleteRes;
 	}
 
 	@Override
