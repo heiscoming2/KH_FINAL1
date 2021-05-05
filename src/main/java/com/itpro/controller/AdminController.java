@@ -33,7 +33,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/member_detail.do")
-	public String member_detail(HttpServletRequest request, ManageMemberDto ManageMemberDto) {
+	public String member_detail(HttpServletRequest request, ManageMemberDto dto) {
 		
 		logger.info("member_detail");
 		
