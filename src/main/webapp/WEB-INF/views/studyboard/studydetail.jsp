@@ -8,6 +8,8 @@
 <link href="resources/css/studydetail.css" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
+<!-- 좋아요 css -->
+<link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
 <title>IT PRO - ${studyDetailDto.bd_title}</title>
 </head>
 <body>
@@ -77,10 +79,16 @@
               <br>
               <br>
             </div>
+            
+            <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
-            	<input type="button" class="btn btn-success" value="♥(${studyDetailDto.bd_recommandcount })">
-            	<input type="button" class="btn btn-success" value="♥(${studyDetailDto.bd_recommandcount })">
+				<div class="heart" onclick="likeclick()" style="margin:0 auto;">
+					<span style="color:orange; font-size:12px;"><b>추천수 ${studyDetailDto.bd_recommandcount}</b></span>
+				</div>
+				
             </div>
+            <!-- 좋아요 버튼 종료 -->
+            
             <!-- 글 내용 종료 -->
           </td>
         </tr>
@@ -116,5 +124,7 @@
 <script type="text/javascript" src="resources/js/studydetail.js?ver=1.1"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.2"></script>
+<!-- 좋아요 js -->
+<script type="text/javascript" src="resources/js/likebutton.js?ver=1.2"></script>
 </body>
 </html>

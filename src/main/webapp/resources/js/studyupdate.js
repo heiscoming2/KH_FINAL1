@@ -11,12 +11,19 @@ $(document).ready(function(){
 	let st_addr2 = $('#h_addr2').val();
 	let st_addrdetail = $('#h_addrdetail').val();
 	
-	
+	//일단 주소 1에 해당 하는 값을 채워주고
 	$('.sidoselect').val(st_addr1);
 	
-	change(3);
+	//selected된 index 값을 받아서
+	let sidoselectedindex = $('.sidoselect option').index($('.sidoselect option:selected'));
 	
-	//$('.gugunselect').val(st_addr2);
+	//해당 인덱스 값에 맞는 2번째 주소로 변환한뒤
+	change(sidoselectedindex);
+	
+	//2번째 주소를 히든 태그에 담긴값으로 selected 한다.
+	$('.gugunselect').val(st_addr2);
+	
+	//디테일 주소도 추가해준다.
 	$('.st_addrdetail').val(st_addrdetail);
 	
 });
