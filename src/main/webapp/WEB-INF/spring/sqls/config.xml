@@ -2,6 +2,7 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.itpro.model.dto.crawling.CompanyCrawlingDto" alias="CompanyCrawlingDto"/>
@@ -19,10 +20,13 @@
 		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaDto" alias="QnaDto"/>
+<<<<<<< HEAD
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.member.LoginDto" alias="LoginDto"/>
 		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto" alias="ManageMemberDto"/>
 
+=======
+>>>>>>> e88743aef4e07f53e2ea042975f526b6005c50b2
 	</typeAliases>
 	
 	<mappers>

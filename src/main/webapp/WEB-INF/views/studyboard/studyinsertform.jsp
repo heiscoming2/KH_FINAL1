@@ -28,7 +28,7 @@
                 <div style="position: relative; top:5px;">
                   <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
                     style="font-size:15px;">
-                    hyojun9292
+                    ${sessionScope.login.m_nickname}
                   </a>
                 </div>
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->

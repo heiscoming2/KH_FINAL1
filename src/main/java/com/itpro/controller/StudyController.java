@@ -103,11 +103,12 @@ public class StudyController {
 		return "studyboard/studydetail";
 	}
 	
-	@RequestMapping(value="/studyupdate.do")
-	public String studyUpdate(Model model) {
-		
-		logger.info("STUDY UPDATE");
-		return "studyboard/studyupdate";
+	@RequestMapping(value="/studyupdateform.do")
+	public String studyUpdate(Model model,@RequestParam(value="bd_no") int bd_no) {
+		logger.info("STUDY UPDATE FORM");
+		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
+		model.addAttribute("studyDetailDto",studyDetailDto);
+		return "studyboard/studyupdateform";
 	}
 	
 	@RequestMapping(value="/studydelete.do")

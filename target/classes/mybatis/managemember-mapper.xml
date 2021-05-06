@@ -11,9 +11,14 @@
 		<result property="m_type" column="M_TYPE"/>
 		<result property="m_gender" column="M_GENDER"/>
 		<result property="m_regdate" column="M_REGDATE"/>
-		<result property="m_act" column="M_ACT"/>
-		<result property="m_used" column="M_USED"/>
+		<result property="m_act" column="M_ACT"/> <!-- 활동여부 -->
+		<result property="m_used" column="M_USED"/> <!-- 탈퇴여부 -->
 		<result property="m_auth" column="M_AUTH"/>
+		<result property="m_name" column="M_NAME"/>
+		<result property="m_birth" column="M_BIRTH"/>
+		<result property="m_addr" column="M_ADDR"/>
+		<result property="m_regno" column="M_REGNO"/>
+		<result property="m_admin_cert" column="M_ADMIN_CERT"/>
 	</resultMap>
 
 	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
@@ -27,13 +32,17 @@
 	</select>
 	
 	<select id="selectone" resultType="ManageMemberDto" parameterType="int">
-		
+		SELECT M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH, M_NAME, M_BIRTH, M_ADDR, M_REGNO, M_ADMIN_CERT
+        FROM IT_MEMBER
+        WHERE M_NO=#{m_no}
 	</select>
 	
 	
 	
-	<update id="update" parameterType="int">
-		
+	<update id="update" parameterType="ManageMemberDto">
+		UPDATE IT_MEMBER
+		SET M_ACT=#{m_act}, M_AUTH=#{m_auth}, M_ADMIN_CERT=#{m_admin_cert}
+		WHERE M_NO=#{m_no}
 	</update>
 	
 	
