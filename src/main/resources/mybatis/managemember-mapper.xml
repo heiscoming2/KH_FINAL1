@@ -26,15 +26,16 @@
 	
 	
 	<select id="selectList" resultMap="ManageMemberMap">
-        SELECT M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH
+        SELECT *
         FROM IT_MEMBER
         ORDER BY M_NO DESC
 	</select>
 	
-	<select id="selectone" resultType="ManageMemberDto" parameterType="int">
-		SELECT M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH, M_NAME, M_BIRTH, M_ADDR, M_REGNO, M_ADMIN_CERT
-        FROM IT_MEMBER
-        WHERE M_NO=#{m_no}
+	<select id="selectOne" resultType="ManageMemberDto" parameterType="int">
+		SELECT *
+		FROM IT_MEMBER A, BIZ_MEMBER B
+		WHERE A.M_NO=B.M_NO 
+		AND A.M_NO=#{m_no};
 	</select>
 	
 	
