@@ -10,6 +10,7 @@
 		<typeAlias type="com.itpro.model.dto.study.StudyInsertDto" alias="StudyInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.study.StudyListDto" alias="StudyListDto"/>
 		<typeAlias type="com.itpro.model.dto.study.StudyDetailDto" alias="StudyDetailDto"/>
+		<typeAlias type="com.itpro.model.dto.study.StudyUpdateDto" alias="StudyUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyInsertDto" alias="ReplyInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyListDto" alias="ReplyListDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
@@ -20,6 +21,16 @@
 		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaDto" alias="QnaDto"/>
+		
+		
+		
+		
+		
+		
+		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
+		
+		
+		
 	</typeAliases>
 	
 	<mappers>
@@ -31,6 +42,10 @@
 		<mapper resource="/mybatis/qna-mapper.xml"/>
 		<mapper resource="/mybatis/member-mapper.xml"/>
 		<mapper resource="/mybatis/managemember-mapper.xml"/>
+		
+		
+		
+		<mapper resource="/mybatis/board-mapper.xml"/>
 	</mappers>
 
 </configuration>

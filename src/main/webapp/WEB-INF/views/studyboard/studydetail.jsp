@@ -85,7 +85,6 @@
 				<div class="heart" onclick="likeclick()" style="margin:0 auto;">
 					<span style="color:orange; font-size:12px;"><b>추천수 ${studyDetailDto.bd_recommandcount}</b></span>
 				</div>
-				
             </div>
             <!-- 좋아요 버튼 종료 -->
             
