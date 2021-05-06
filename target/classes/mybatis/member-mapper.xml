@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
  <mapper namespace="ItMember">
- 	
+ 	<!-- 회원로그인 -->
  	<select id="login" parameterType="loginDto" resultType="loginDto">
  		SELECT M_NO, M_ID, M_PW, M_NICKNAME
  		FROM IT_MEMBER
@@ -12,5 +12,9 @@
  		AND M_PW = #{m_pw}
  	</select>
  	
- 	
+ 	<!-- 회원가입 -->
+ 	<insert id="regMember" parameterType="RegDto">
+ 		INSERT INTO IT_MEMBER
+ 		VALUES(MEMBERNO_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_nickname}, #{m_phone}, #{m_email}, 'N', '활동', 'N', '개인회원', 'N', SYSDATE))
+ 	</insert> 	
  </mapper>
