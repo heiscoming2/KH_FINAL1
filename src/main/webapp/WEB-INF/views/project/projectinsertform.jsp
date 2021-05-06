@@ -28,7 +28,7 @@
                 <div style="position: relative; top:5px;">
                   <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
                     style="font-size:15px;">
-                    leehj
+                    ${sessionScope.login.m_nickname}
                   </a>
                 </div>
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
@@ -86,7 +86,7 @@
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
-	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
+	    <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='projectlist.do'" style="float:right; margin-left:10px;">
 	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='projectlist.do'" style="float:right;" >
 	   </div>
     </form>

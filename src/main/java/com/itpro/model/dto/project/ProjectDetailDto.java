@@ -8,6 +8,7 @@ public class ProjectDetailDto {
 	//게시판
 	private int bd_no; //게시글 번호
 	private String bd_title; //제목
+	private String bd_content; //글 내용
 	private int bd_createddate; //작성일
 	private Date bd_modifydate; //수정일
 	private String bd_writerip; //작성시 ip
@@ -41,6 +42,13 @@ public class ProjectDetailDto {
 	}
 	public void setBd_title(String bd_title) {
 		this.bd_title = bd_title;
+	}
+	
+	public String getBd_content() {
+		return bd_content;
+	}
+	public void setBd_content(String bd_content) {
+		this.bd_content = bd_content;
 	}
 	public int getBd_createddate() {
 		return bd_createddate;
