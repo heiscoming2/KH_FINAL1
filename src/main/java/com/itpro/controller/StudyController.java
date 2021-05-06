@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
+import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudyUpdateDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 
@@ -104,12 +106,44 @@ public class StudyController {
 	}
 	
 	@RequestMapping(value="/studyupdateform.do")
-	public String studyUpdate(Model model,@RequestParam(value="bd_no") int bd_no) {
+	public String studyUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
 		logger.info("STUDY UPDATE FORM");
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("studyDetailDto",studyDetailDto);
 		return "studyboard/studyupdateform";
 	}
+	
+	@RequestMapping(value="/studyupdate.do")
+	public String studyUpdate(Model model, StudyUpdateDto studyUpdateDto, BoardUpdateDto boardUpdateDto) {
+		logger.info("STUDY UPDATE");
+		logger.info(Integer.toString(studyUpdateDto.getBd_no()));
+		logger.info(Integer.toString(studyUpdateDto.getSt_closeperson()));
+		logger.info(Integer.toString(studyUpdateDto.getSt_nowperson()));
+		logger.info(boardUpdateDto.getBd_title());
+		logger.info(Integer.toString(boardUpdateDto.getBd_no()));
+		
+		int studyUpdateRes = studyBiz.update(studyUpdateDto,boardUpdateDto);
+		logger.info(Integer.toString(studyUpdateRes));
+		if(studyUpdateRes>0) {
+			int bd_no = studyUpdateDto.getBd_no();
+			return "redirect:studydetail.do?bd_no="+bd_no;
+		}
+		
+		//실패시 updateDto에 작성했던 수정 정보를 
+		//수정폼에서 사용하는 detailDto로 옮겨 담아주고
+		//그걸 model에 담아서 수정폼으로 return 시켜준다.
+		StudyDetailDto studyDetailDto = studyBiz.selectOne(studyUpdateDto.getBd_no()); 
+		studyDetailDto.setBd_title(boardUpdateDto.getBd_title());
+		studyDetailDto.setSt_nowperson(studyUpdateDto.getSt_nowperson());
+		studyDetailDto.setSt_closeperson(studyUpdateDto.getSt_closeperson());
+		studyDetailDto.setSt_addr1(studyUpdateDto.getSt_addr1());
+		studyDetailDto.setSt_addr2(studyUpdateDto.getSt_addr2());
+		studyDetailDto.setSt_addrdetail(studyUpdateDto.getSt_addrdetail());
+		studyDetailDto.setBd_content(boardUpdateDto.getBd_content());
+		model.addAttribute("studyDetailDto",studyDetailDto);
+		logger.info("업데이트 실패");
+		return "studyboard/studyupdateform";
+	}	
 	
 	@RequestMapping(value="/studydelete.do")
 	public String studyDelete(Model model, int bd_no) {
