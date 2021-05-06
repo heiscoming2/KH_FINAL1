@@ -23,7 +23,7 @@
         <br>
               <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
-                <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+                <img src="${projectDetailDto.m_img_path }${projectDetailDto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                   style="float: left;">
                 <div style="position: relative; top:5px;">
                   <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"

@@ -21,12 +21,12 @@
 		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaDto" alias="QnaDto"/>
-<<<<<<< HEAD
+
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.member.LoginDto" alias="LoginDto"/>
 		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto" alias="ManageMemberDto"/>
 
-=======
+
 		
 		
 		
@@ -36,8 +36,6 @@
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
 		
 		
-		
->>>>>>> fe9ecf41e8ea7adac197dbe6d7bcdb1fc052b342
 	</typeAliases>
 	
 	<mappers>
