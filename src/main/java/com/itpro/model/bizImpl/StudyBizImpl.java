@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.BoardDao;
@@ -13,6 +14,7 @@ import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 
 @Service
@@ -46,6 +48,7 @@ public class StudyBizImpl implements StudyBiz {
 	}
 
 	@Override
+	@Transactional
 	public int update(StudyUpdateDto studyUpdateDto,BoardUpdateDto boardUpdateDto) {
 		int res = 0;
 		int studyUpdateRes = studyDao.update(studyUpdateDto);
@@ -60,6 +63,11 @@ public class StudyBizImpl implements StudyBiz {
 	public int getStudyListCnt() {
 		// TODO Auto-generated method stub
 		return studyDao.getStudyListCnt();
+	}
+
+	@Override
+	public int getStudyListSearchCnt(StudySearchDto studySearchDto) {
+		return studyDao.getStudySearchListCnt(studySearchDto);
 	}
 
 }

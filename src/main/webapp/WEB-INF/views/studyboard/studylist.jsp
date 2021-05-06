@@ -52,7 +52,7 @@
 			<div>
 			<span>모집여부</span>
 			<span style="display:flex; width:300px;">
-				<select class="form-control mb-2">
+				<select class="form-control mb-2 status">
 					<option>전체</option>
 					<option>모집중</option>
 					<option>모집완료</option>
@@ -65,8 +65,7 @@
 				<input name="searchbox" type="text" placeholder="검색" value=""
 					class="form-control search-bar" onkeyup="store_search_ent();"
 					style="width: 200px; display: inline-block;">
-				<input type="button" class="btn btn-primary" value="검색"
-					onclick="store_search();">
+				<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
 			</div>		
 			</div>
 		</div>
@@ -142,7 +141,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js?ver=1.0"></script>
+<script type=text/javascript src="resources/js/studylist.js?ver=1.1"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
 </body>
 </html>

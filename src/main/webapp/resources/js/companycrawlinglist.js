@@ -38,20 +38,20 @@ function filter_toggle() {
 }
 
 function openDetailUrl(url) {
-	var _width = '1300';
-	var _height = '1000';
-	var _left = Math.ceil((window.screen.width - _width) / 2);
+	let _width = '1300';
+	let _height = '1000';
+	let _left = Math.ceil((window.screen.width - _width) / 2);
 	window.open(url, '', 'width=' + _width + ',left=' + _left + ',height='
 			+ _height);
 }
 
 function selectPage(i) {
-
-	var $sidoselect = $('.sidoselect').val();
-	var $gugunselect = $('.gugunselect').val();
-	var $careerselect = parseInt($('.careerselect').val());
-	var $eduselect = parseInt($('.eduselect').val());
-	var $cc_search = $('.cc_search').val();
+	
+	let $sidoselect = $('.sidoselect').val();
+	let $gugunselect = $('.gugunselect').val();
+	let $careerselect = parseInt($('.careerselect').val());
+	let $eduselect = parseInt($('.eduselect').val());
+	let $cc_search = $('.cc_search').val();
 
 	if (($sidoselect == null || $sidoselect == "")
 	 && ($gugunselect == null || $gugunselect == "" || $gugunselect == "전체")

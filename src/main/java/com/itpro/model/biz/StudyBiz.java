@@ -7,6 +7,7 @@ import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 
 public interface StudyBiz {
@@ -17,5 +18,6 @@ public interface StudyBiz {
 	public int delete(int bd_no);
 	public int update(StudyUpdateDto studyUpdateDto,BoardUpdateDto boardUpdateDto);
 	public int getStudyListCnt();
+	public int getStudyListSearchCnt(StudySearchDto studySearchDto);
 
 }

@@ -85,5 +85,25 @@
 	</update>
 	
 	
+	<select id="studysearchlistcnt" parameterType="StudySearchDto" resultType="int">
+		SELECT COUNT(*) 
+		FROM BOARD B, STUDY S 
+		WHERE B.BD_NO=S.BD_NO 
+		  AND B.BC_CODE=3 
+		  <if test= '#{a1}!=null'>
+		  AND S.ST_ADDR1 LIKE '%${a1}%'
+		  </if>
+		  <if test= '#{a2}!=null'>
+		  AND S.ST_ADDR2 LIKE '%${a2}%'
+		  </if>
+		  <if test= '#{stat}!=null'>
+		  AND S.ST_STATUS = #{stat}
+		  </if>
+		  <if test= '#{key}!=null'>
+		  AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%');
+		  </if>
+	</select>
+	
+	
 	
 </mapper>

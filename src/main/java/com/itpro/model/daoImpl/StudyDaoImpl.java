@@ -13,6 +13,7 @@ import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 
 @Repository
@@ -88,6 +89,17 @@ public class StudyDaoImpl implements StudyDao {
 			e.printStackTrace();
 		}
 		return StudyListCnt;
+	}
+
+	@Override
+	public int getStudySearchListCnt(StudySearchDto studySearchDto) {
+		int studySearchListCnt = 0;
+		try {
+			studySearchListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectsearchlistcnt",studySearchDto).toString());
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		return studySearchListCnt;
 	}
 
 }

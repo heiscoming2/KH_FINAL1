@@ -24,6 +24,7 @@ import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
@@ -153,5 +154,21 @@ public class StudyController {
 		return "redirect:studylist.do";
 	}
 	
+
+	@RequestMapping(value="/studysearch.do")
+	public String studySearch(Model model, StudySearchDto studySearchDto) {
+		logger.info("STUDY SEARCH");
+		int studySearchListCnt = studyBiz.getStudyListSearchCnt(studySearchDto);
+		//인포테스트 확인 후 삭제
+		logger.info(Integer.toString(studySearchListCnt));
+		//페이징 처리를 위해 갯수를 얻어온다.
 		
+		//갯수와 페이지 번호로 페이지 정보를 가져온다.
+		
+		//start와 end값, 검색 값으로 list를 가져온다
+		
+		return "studyboard/studylist";
+	}	
+	
+	
 }
