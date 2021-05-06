@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dto.member.LoginDto;
@@ -52,6 +53,20 @@ public class MemberController {
 		map.put("check", check);
 		return map;
 	}	
+	
+	//로그아웃
+	@RequestMapping("logout.do")
+	public ModelAndView ajaxLogout(HttpSession session) {
+		
+		biz.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:main.do");
+		mav.addObject("logout");
+		
+		return mav;
+	}
+	
+	
 	
 	
 	//회원가입 관련 컨트롤러

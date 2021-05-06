@@ -1,5 +1,7 @@
 package com.itpro.model.bizImpl;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,11 @@ public class MemberBizImpl implements MemberBiz{
 	public LoginDto login(LoginDto loginDto) {
 		
 		return dao.login(loginDto);
+	}
+
+	@Override
+	public void logout(HttpSession session) {
+		dao.logout(session);
 	}
 
 	

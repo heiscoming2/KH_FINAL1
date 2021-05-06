@@ -19,7 +19,7 @@
             <img src="./resources/images/profileimages/testprofile.jpg" alt="mdo" width="35" height="35" class="rounded-circle me-2"
               style="float: left;">
             <span class="fw-bold"style="display: block; position: relative; top:5px;">
-                	닉네임닉네임
+                	닉
             </span>
         </div>
         

@@ -5,7 +5,7 @@ public class LoginDto {
 	private String m_id;
 	private String m_pw;
 	private String m_nickname;
-	
+		
 	public LoginDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -50,6 +50,12 @@ public class LoginDto {
 	public void setM_nickname(String m_nickname) {
 		this.m_nickname = m_nickname;
 	}
+
+	
+	
+	
+
+	
 	
 	
 	
