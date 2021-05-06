@@ -6,6 +6,7 @@ import java.util.Map;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudyUpdateDto;
 
 public interface StudyDao {
 	
@@ -15,7 +16,7 @@ public interface StudyDao {
 	public StudyDetailDto selectOne(int bd_no);
 	public int studyInsert(StudyInsertDto studyDto);
 	public int delete(int bd_no);
-	public int update();
+	public int update(StudyUpdateDto studyUpdateDto);
 	public int getStudyListCnt();
 
 

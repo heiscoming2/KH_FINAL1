@@ -74,6 +74,16 @@
 		DELETE FROM STUDY
 	</delete>
 	
+	<update id="update" parameterType="studyUpdateDto">
+		UPDATE STUDY
+		SET ST_NOWPERSON = #{st_nowperson} ,
+		    ST_CLOSEPERSON = #{st_closeperson} ,
+		    ST_ADDR1 = #{st_addr1} ,
+		    ST_ADDR2 = #{st_addr2} ,
+		    ST_ADDRDETAIL = #{st_addrdetail}
+		WHERE BD_NO = #{bd_no}
+	</update>
+	
 	
 	
 </mapper>
