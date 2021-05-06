@@ -5,6 +5,11 @@
   
 <mapper namespace="Project">
 	
+	<select id="selectList" resultType="ProjectListDto">
+		SELECT * FROM PROJECT
+	</select>
+
+	
 	<insert id ="insert" parameterType="projectInsertDto">
 		INSERT ALL
 		INTO BOARD
@@ -17,16 +22,7 @@
 		#{pro_goal}, #{pro_function}, #{pro_erd} )
 	</insert>
 	
-	
-	
-	
-	
-	
 
-	<select id="selectList" resultType="ProjectListDto">
-		SELECT * FROM PROJECT
-	</select>
-	
 	<delete id="deletelist">
 		DELETE FROM PROJECT
 	</delete>
