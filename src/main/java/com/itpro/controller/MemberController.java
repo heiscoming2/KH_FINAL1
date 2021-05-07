@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dto.member.LoginDto;
+import com.itpro.model.dto.member.RegDto;
 
 @Controller
 public class MemberController {
@@ -53,8 +55,19 @@ public class MemberController {
 		return map;
 	}	
 	
+	//로그아웃
+	@RequestMapping("logout.do")
+	public ModelAndView ajaxLogout(HttpSession session) {
+		
+		biz.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:main.do");
+		mav.addObject("logout");
+		
+		return mav;
+	}	
 	
-	//회원가입 관련 컨트롤러
+	//회원가입 선택페이지
 	@RequestMapping(value="/join.do")
 	public String join() {
 		logger.info("JOIN");
@@ -62,13 +75,20 @@ public class MemberController {
 		return "login_join/join";
 	}
 	
+	//회원가입_개인
 	@RequestMapping(value="/join_user.do")
-	public String joinUser() {
+	public String RegMember(RegDto regDto) {
 		logger.info("JOIN USER");
 		
-		return "login_join/join_user";
+		int res = biz.RegMember(regDto);
+		if(res>0) {
+			return "redirect:login.do";
+		}else{
+			return "redirect:join_user.do";
+		}
 	}
 	
+	//회원가입_기업
 	@RequestMapping(value="/join_biz.do")
 	public String joinBiz() {
 		logger.info("JOIN BIZ");
