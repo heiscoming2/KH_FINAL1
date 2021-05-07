@@ -63,7 +63,7 @@
 			<span>검색</span>
 			<div class="mb-4">
 				<input name="searchbox" type="text" placeholder="검색" value=""
-					class="form-control search-bar" onkeyup="store_search_ent();"
+					class="form-control search-bar" onkeyup="enterKey();"
 					style="width: 200px; display: inline-block;">
 				<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
 			</div>		
@@ -129,6 +129,15 @@
 				
 		</table>
 		</div>
+<!-- 검색 결과를 히든 태그에 담아둔다. (없으면 null값이 담길것임) 이거를 js에서 받아서 -->
+<!-- null이 아닌 경우(검색 결과가 있는 경우) 해당하는 내용들을 보여지게끔 처리 -->
+<c:if test="${studySearchDto ne null }">
+	<input type="hidden" id="h_a1" value="${studySearchDto.a1 }">
+	<input type="hidden" id="h_a2" value="${studySearchDto.a2 }">
+	<input type="hidden" id="h_stat" value="${studySearchDto.stat }">
+	<input type="hidden" id="h_key" value="${studySearchDto.key }">
+</c:if>
+		
 <!-- 본문 종료 -->
 
 <!-- 페이징 시작 -->
@@ -141,7 +150,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js?ver=1.1"></script>
+<script type=text/javascript src="resources/js/studylist.js?ver=1.2"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
 </body>
 </html>

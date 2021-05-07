@@ -29,7 +29,6 @@
       
       <div class="filter_innerwrap mt-3" style="<c:if test='${companyCrawlingSearchDto ne null }'>display:block;</c:if>">
        <div>
-       	<form action="test.do" id="test">
        	  <table class="filter_table" >
        	  <tr>
 	          <td>
@@ -91,14 +90,13 @@
        	  <td colspan="3">
         <!-- 검색창 -->
 	    <div class="mb-3">
-	      <input type="button" class="btn btn-primary" value="조회" onclick="selectPage(1)">
+	      <input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1)">
 	      <input id="searchbox" type="text" placeholder="회사명 or 채용정보" class="form-control search-bar cc_search"
-	          onkeyup="store_search_ent();">
+	          onkeyup="enterKey();">
 	    </div>
 	    </td>
        	  </tr>
 	    </table>
-	    </form>
       </div>
       </div>
       
@@ -166,7 +164,7 @@
 	<input type="hidden" id="h_searchbox" value="${companyCrawlingSearchDto.src_key }">
 </c:if>
 	
-<script type="text/javascript" src="resources/js/companycrawlinglist.js"></script>
+<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.2"></script>
 <script type="text/javascript" src="resources/js/address.js"></script>
 </body>
 </html>

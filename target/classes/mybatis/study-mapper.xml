@@ -101,7 +101,7 @@
 		  AND S.ST_STATUS <![CDATA[=]]> #{stat}
 		  </if>
 		  <if test= '!key.equals("")'>
-		  AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%');
+		  AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%')
 		  </if>
 	</select>
 	
