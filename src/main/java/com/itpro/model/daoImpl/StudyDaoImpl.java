@@ -13,6 +13,7 @@ import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudyUpdateDto;
 
 @Repository
 public class StudyDaoImpl implements StudyDao {
@@ -67,9 +68,15 @@ public class StudyDaoImpl implements StudyDao {
 	}
 
 	@Override
-	public int update() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(StudyUpdateDto studyUpdateDto) {
+		int studyUpdateRes = 0;
+		try {
+			studyUpdateRes = sqlSession.update(NAMESPACE+"update",studyUpdateDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return studyUpdateRes;
 	}
 
 	@Override

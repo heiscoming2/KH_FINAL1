@@ -18,6 +18,7 @@
 <!-- 본문 시작 -->
     <div class="study_insertwrap mt-5">
       <form action="studyupdate.do" method="post">
+      <input type="hidden" name="bd_no" value=${studyDetailDto.bd_no }>
         <!-- 스터디 모집 작성 글 영역-->
         <h3>스터디 모집 글 수정</h3>
         <br>

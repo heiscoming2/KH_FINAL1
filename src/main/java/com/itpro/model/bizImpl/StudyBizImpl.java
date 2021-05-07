@@ -7,16 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.StudyBiz;
+import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dao.StudyDao;
+import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudyUpdateDto;
 
 @Service
 public class StudyBizImpl implements StudyBiz {
 	
 	@Autowired
 	private StudyDao studyDao;
+	
+	@Autowired
+	private BoardDao boardDao;
 	
 	@Override
 	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
@@ -40,9 +46,14 @@ public class StudyBizImpl implements StudyBiz {
 	}
 
 	@Override
-	public int update() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(StudyUpdateDto studyUpdateDto,BoardUpdateDto boardUpdateDto) {
+		int res = 0;
+		int studyUpdateRes = studyDao.update(studyUpdateDto);
+		int boardUpdateRes = boardDao.update(boardUpdateDto);
+		if(studyUpdateRes>0 && boardUpdateRes>0) {
+			res = 1;
+		}
+		return res; 
 	}
 
 	@Override
