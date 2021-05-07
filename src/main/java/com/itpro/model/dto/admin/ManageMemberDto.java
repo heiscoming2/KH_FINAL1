@@ -57,6 +57,27 @@ public class ManageMemberDto {
 		this.m_regdate = m_regdate;
 	}
 
+	
+	
+	
+	public ManageMemberDto(int m_no, String m_nickname, String m_name, Date m_birth, String m_gender, String m_addr,
+			char m_used, String m_act, String m_type, char m_auth, int m_regno, char m_admin_cert, Date m_regdate) {
+		super();
+		this.m_no = m_no;
+		this.m_nickname = m_nickname;
+		this.m_name = m_name;
+		this.m_birth = m_birth;
+		this.m_gender = m_gender;
+		this.m_addr = m_addr;
+		this.m_used = m_used;
+		this.m_act = m_act;
+		this.m_type = m_type;
+		this.m_auth = m_auth;
+		this.m_regno = m_regno;
+		this.m_admin_cert = m_admin_cert;
+		this.m_regdate = m_regdate;
+	}
+
 	public int getM_no() {
 		return m_no;
 	}
