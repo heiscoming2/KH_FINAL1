@@ -20,6 +20,7 @@ public interface StudyDao {
 	public int update(StudyUpdateDto studyUpdateDto);
 	public int getStudyListCnt();
 	public int getStudySearchListCnt(StudySearchDto studySearchDto);
+	public List<StudyListDto> selectSearchList(Map<String, Object> studySearchMap);
 
 
 }

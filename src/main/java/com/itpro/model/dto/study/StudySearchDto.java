@@ -5,9 +5,8 @@ public class StudySearchDto {
 	private int page;
 	private String a1;
 	private String a2;
-	private char stat;
+	private String stat;
 	private String key;
-	
 	public int getPage() {
 		return page;
 	}
@@ -26,11 +25,11 @@ public class StudySearchDto {
 	public void setA2(String a2) {
 		this.a2 = a2;
 	}
-	public char getStat() {
+	public String getStat() {
 		return stat;
 	}
-	public void setStat(char stat) {
-		stat = stat;
+	public void setStat(String stat) {
+		this.stat = stat;
 	}
 	public String getKey() {
 		return key;

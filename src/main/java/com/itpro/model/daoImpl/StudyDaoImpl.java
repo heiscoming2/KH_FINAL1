@@ -95,11 +95,22 @@ public class StudyDaoImpl implements StudyDao {
 	public int getStudySearchListCnt(StudySearchDto studySearchDto) {
 		int studySearchListCnt = 0;
 		try {
-			studySearchListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectsearchlistcnt",studySearchDto).toString());
+			studySearchListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"studysearchlistcnt",studySearchDto).toString().replace("[","").replace("]", ""));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		return studySearchListCnt;
+	}
+
+	@Override
+	public List<StudyListDto> selectSearchList(Map<String, Object> studySearchMap) {
+		List<StudyListDto> studyList = null;
+		try {
+			studyList = sqlSession.selectList(NAMESPACE+"selectsearchlist",studySearchMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studyList;
 	}
 
 }

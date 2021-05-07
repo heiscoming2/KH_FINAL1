@@ -9,10 +9,6 @@ function selectPage(i) {
 	let $gugunselect = $('.gugunselect').val();
 	let $status = $('.status').val();
 	let $searchbar = $('.search-bar').val();
-	alert($sidoselect);
-	alert($gugunselect);
-	alert($status);
-	alert($searchbar);	
 	if( ($sidoselect==null||$sidoselect=="") &&
 		($gugunselect==null||$gugunselect=="") &&
 		($status==null||$status=="") &&

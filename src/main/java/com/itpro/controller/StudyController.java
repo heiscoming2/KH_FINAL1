@@ -50,13 +50,6 @@ public class StudyController {
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(studyListCnt,page);
 		
-		//테스트 훟 삭제
-		logger.info(Integer.toString(pageProcessing.getCurPage()));
-		logger.info(Integer.toString(pageProcessing.getCurRange()));
-		logger.info(Integer.toString(pageProcessing.getEndPage()));
-		logger.info(Integer.toString(pageProcessing.getPageSize()));
-		logger.info(Integer.toString(pageProcessing.getEndIndex()));
-		
 		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
 		//(이 부분은 나중에 PageProcessing 클래스에서 map을 바로 리턴받는 형태로 변경하는게 나을듯)
 		Map<String,Object> studyPageMap = new HashMap<String,Object>();
@@ -158,14 +151,27 @@ public class StudyController {
 	@RequestMapping(value="/studysearch.do")
 	public String studySearch(Model model, StudySearchDto studySearchDto) {
 		logger.info("STUDY SEARCH");
-		int studySearchListCnt = studyBiz.getStudyListSearchCnt(studySearchDto);
-		//인포테스트 확인 후 삭제
-		logger.info(Integer.toString(studySearchListCnt));
+		
 		//페이징 처리를 위해 갯수를 얻어온다.
+		int studySearchListCnt = studyBiz.getStudyListSearchCnt(studySearchDto);
 		
 		//갯수와 페이지 번호로 페이지 정보를 가져온다.
+		PageProcessing pageProcessing = new PageProcessing(studySearchListCnt,studySearchDto.getPage());
 		
-		//start와 end값, 검색 값으로 list를 가져온다
+		//start와 end값, 검색 값으로 list를 가져오는데 map에 담아서 처리해준다.
+		Map<String,Object> studySearchMap = new HashMap<String,Object>();
+		studySearchMap.put("start", pageProcessing.getStartIndex());
+		studySearchMap.put("end", pageProcessing.getEndIndex());
+		studySearchMap.put("studySearchDto", studySearchDto);
+		List<StudyListDto> studyList = studyBiz.selectSearchList(studySearchMap);
+		
+		for(StudyListDto studyListDto : studyList) {
+			System.out.println(studyListDto.getBd_no());
+		}
+		
+		model.addAttribute("studyList",studyList);
+		model.addAttribute("pageProcessing",pageProcessing);
+		model.addAttribute("studySearchDto",studySearchDto);
 		
 		return "studyboard/studylist";
 	}	

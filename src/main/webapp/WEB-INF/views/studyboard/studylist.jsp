@@ -53,9 +53,9 @@
 			<span>모집여부</span>
 			<span style="display:flex; width:300px;">
 				<select class="form-control mb-2 status">
-					<option>전체</option>
-					<option>모집중</option>
-					<option>모집완료</option>
+					<option value=''>전체</option>
+					<option value='Y'>모집중</option>
+					<option value='N'>모집완료</option>
 				</select>
 			</span>
 			</div>

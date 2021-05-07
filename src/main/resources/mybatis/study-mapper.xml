@@ -33,7 +33,7 @@
 	</insert>
 	
 	
-	<select id="selectlist" resultType="StudyListDto" parameterType="hashMap">
+	<select id="selectlist" parameterType="hashMap" resultType="StudyListDto">
         SELECT * FROM 
                (SELECT ROWNUM RN, B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
 		       S.ST_ADDR2, S.ST_NOWPERSON, S.ST_CLOSEPERSON, 
@@ -45,6 +45,7 @@
                      (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
                      (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
 		       WHERE B.BD_NO = S.BD_NO 
+		       AND B.BC_CODE=3
 		       AND B.M_NO = M.M_NO
                AND RE.BD_NO(+) = B.BD_NO
                AND BR.BD_NO(+) = B.BD_NO
@@ -74,7 +75,7 @@
 		DELETE FROM STUDY
 	</delete>
 	
-	<update id="update" parameterType="studyUpdateDto">
+	<update id="update" parameterType="StudyUpdateDto">
 		UPDATE STUDY
 		SET ST_NOWPERSON = #{st_nowperson} ,
 		    ST_CLOSEPERSON = #{st_closeperson} ,
@@ -90,18 +91,50 @@
 		FROM BOARD B, STUDY S 
 		WHERE B.BD_NO=S.BD_NO 
 		  AND B.BC_CODE=3 
-		  <if test= '#{a1}!=null'>
+		  <if test= '!a1.equals("")'>
 		  AND S.ST_ADDR1 LIKE '%${a1}%'
 		  </if>
-		  <if test= '#{a2}!=null'>
+		  <if test= '!a2.equals("")'>
 		  AND S.ST_ADDR2 LIKE '%${a2}%'
 		  </if>
-		  <if test= '#{stat}!=null'>
-		  AND S.ST_STATUS = #{stat}
+		  <if test= 'stat.equalsIgnoreCase("y") or stat.equalsIgnoreCase("n")'>
+		  AND S.ST_STATUS <![CDATA[=]]> #{stat}
 		  </if>
-		  <if test= '#{key}!=null'>
+		  <if test= '!key.equals("")'>
 		  AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%');
 		  </if>
+	</select>
+	
+	<select id="selectsearchlist" parameterType="hashMap" resultType="StudyListDto">
+        SELECT * FROM 
+               (SELECT ROWNUM RN, B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
+		       S.ST_ADDR2, S.ST_NOWPERSON, S.ST_CLOSEPERSON, 
+		       B.BD_TITLE, 
+               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+               FROM BOARD B, STUDY S, IT_MEMBER M , 
+                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+		       WHERE B.BD_NO = S.BD_NO 
+		       AND B.BC_CODE=3 
+		       AND B.M_NO = M.M_NO
+               AND RE.BD_NO(+) = B.BD_NO
+               AND BR.BD_NO(+) = B.BD_NO
+               <if test= '!studySearchDto.a1.equals("")'>
+			   AND S.ST_ADDR1 LIKE '%${studySearchDto.a1}%'
+			   </if>
+			   <if test= '!studySearchDto.a2.equals("")'>
+			   AND S.ST_ADDR2 LIKE '%${studySearchDto.a2}%'
+			   </if>
+			   <if test= 'studySearchDto.stat.equalsIgnoreCase("y") or studySearchDto.stat.equalsIgnoreCase("n")'>
+		       AND S.ST_STATUS <![CDATA[=]]> #{studySearchDto.stat}
+			   </if>
+			   <if test= '!studySearchDto.key.equals("")'>
+			   AND (B.BD_TITLE LIKE '%${studySearchDto.key}%' OR B.BD_CONTENT LIKE '%${studySearchDto.key}%')
+			   </if>
+		       ORDER BY B.BD_CREATEDDATE DESC)
+        WHERE RN BETWEEN #{start} AND #{end}		
 	</select>
 	
 	

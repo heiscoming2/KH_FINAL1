@@ -70,4 +70,9 @@ public class StudyBizImpl implements StudyBiz {
 		return studyDao.getStudySearchListCnt(studySearchDto);
 	}
 
+	@Override
+	public List<StudyListDto> selectSearchList(Map<String, Object> studySearchMap) {
+		return studyDao.selectSearchList(studySearchMap);
+	}
+
 }
