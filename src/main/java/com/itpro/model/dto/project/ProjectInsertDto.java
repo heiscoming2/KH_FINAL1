@@ -1,6 +1,6 @@
 package com.itpro.model.dto.project;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProjectInsertDto {
 
@@ -9,7 +9,7 @@ public class ProjectInsertDto {
 	private int bd_no; //게시글 번호
 	private String bd_title; //제목
 	private String bd_content; //글 내용
-	private int bd_createddate; //작성일
+	private Date bd_createddate; //작성일
 	private Date bd_modifydate; //수정일
 	private String bd_writerip; //작성시 ip
 	private int bd_replycount; // 댓글수
@@ -26,11 +26,30 @@ public class ProjectInsertDto {
 	private String pro_function; //구현 기능
 	private String pro_erd; //erd 링크
 	
+	private String m_no; //작성자 id
 	
 	public ProjectInsertDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	
+	public String getM_no() {
+		return m_no;
+	}
+
+
+
+
+	public void setM_no(String m_no) {
+		this.m_no = m_no;
+	}
+
+
+
+
 	public int getBd_no() {
 		return bd_no;
 	}
@@ -43,15 +62,26 @@ public class ProjectInsertDto {
 	public void setBd_title(String bd_title) {
 		this.bd_title = bd_title;
 	}
-	public int getBd_createddate() {
+
+	
+	
+	
+	
+	
+	public Date getBd_createddate() {
 		return bd_createddate;
 	}
-	public void setBd_createddate(int bd_createddate) {
+
+
+
+
+	public void setBd_createddate(Date bd_createddate) {
 		this.bd_createddate = bd_createddate;
 	}
-	
-	
-	
+
+
+
+
 	public String getBd_content() {
 		return bd_content;
 	}

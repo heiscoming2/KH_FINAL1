@@ -5,22 +5,17 @@
   
 <mapper namespace="Project">
 	
-	<!-- <select id="selectList" resultType="ProjectListDto" parameterType="hashMap">
-		SELECT * FROM PROJECT
-	</select>
- -->
-	
-	<insert id ="insert" parameterType="projectInsertDto">
+	<insert id ="insert" parameterType="projectInsertDto" >
 		INSERT ALL
 		INTO BOARD VALUES(
-		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL,
-		#{bd_writerip}, 0, 0, 0} )
+		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL, 0,
+		#{bd_writerip}, 0, #{m_no})
 		INTO PROJECT VALUES(
 		PROJECTSEQ.NEXTVAL,
-		#{pro_title}, SYSDATE, SYSDATE, #{pro_link}, #{pro_develop},
+		#{pro_title}, #{pro_start}, #{pro_end}, #{pro_link}, #{pro_develop},
 		#{pro_goal}, #{pro_function}, #{pro_erd}, BOARDSEQ.CURRVAL)
 		
-		SELECT * FROM DUAL;
+		SELECT * FROM DUAL
 	</insert>
 	
 
@@ -45,7 +40,7 @@
                AND RE.BD_NO(+) = B.BD_NO
                AND BR.BD_NO(+) = B.BD_NO
 		       ORDER BY B.BD_CREATEDDATE DESC)
-        WHERE RN BETWEEN #{start} AND #{end}
+       
 	</select>
 	
 	<select id="selectone" resultType="ProjectDetailDto" parameterType="int">

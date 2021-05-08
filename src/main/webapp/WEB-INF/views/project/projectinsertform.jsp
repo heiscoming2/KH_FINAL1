@@ -43,12 +43,17 @@
               <td><input type=text class="form-control" name="bd_title"></td>
             </tr>
             <tr>
+            <th><span>* </span>설명 </th>
+            <td><input type=text name="bd_content"></td>
+            </tr>
+            
+            <tr>
               <th><span>* </span>프로젝트 제목</th>
-              <td><input type=text class="form-control" placeholder="프로젝트 제목을 입력해 주세요."></td>
+              <td><input type=text class="form-control" placeholder="프로젝트 제목을 입력해 주세요." name="pro_title"></td>
             </tr>
             <tr>
               <th><span>* </span>프로젝트 기간</th>
-              <td><input type='date'/> ~ <input type='date'/></td>
+              <td><input type='date' name="pro_start"/> ~ <input type='date' name="pro_end"/></td>
 
             </tr>
             <tr>
@@ -58,23 +63,23 @@
           </tr>
             <tr>
               <th><span>* </span>프로젝트 링크(Git) </th>
-              <td><input type="text" class="form-control" placeholder="ex) https://github.com/heiscoming2/KH_FINAL1"></td>
+              <td><input type="text" class="form-control" placeholder="ex) https://github.com/heiscoming2/KH_FINAL1" name="pro_link"></td>
             </tr>
             <tr>
               <th><span>* </span>ERD 링크 </th>
-              <td><input type="text" class="form-control" placeholder="ex) https://www.erdcloud.com/d/iKXvArFPz8qqZmiQD"></td>
+              <td><input type="text" class="form-control" placeholder="ex) https://www.erdcloud.com/d/iKXvArFPz8qqZmiQD" name="pro_erd"></td>
             </tr>
             <tr>
               <th><span>* </span>개발 환경 </th>
-              <td><input type="text" class="form-control" placeholder="ex) Java, HTML/CSS, API(지도, 결제) 등"></td>
+              <td><input type="text" class="form-control" placeholder="ex) Java, HTML/CSS, API(지도, 결제) 등" name="pro_develop"></td>
             </tr>
             <tr>
               <th><span>* </span>개발 목표 </th>
-              <td><input type="text" class="form-control" placeholder="개발 목표를 입력해 주세요."></td>
+              <td><input type="text" class="form-control" placeholder="개발 목표를 입력해 주세요." name="pro_goal"></td>
             </tr>
             <tr>
             <th><span>* </span>구현 기능 </th>
-            <td><textarea id="summernote"></textarea></td>
+            <td><textarea id="summernote" name="pro_function"></textarea></td>
             </tr>
             <tr>
             <td><input type="button" value="프로젝트 추가"></td>
@@ -84,13 +89,15 @@
         <br>
         
         <br>
-      </form>
+    
+     <!-- value 꼭 바꿔주기 로그인 기능 완성되면-->
+      <input type="hidden" value="1004" name="m_no">
 
       <!-- 프로젝트 작성 글 영역 종료-->
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
-	    <input type="submit" value="등록" class="btn btn-primary" onclick="location.href='projectlist.do'" style="float:right; margin-left:10px;">
+	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
 	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='projectlist.do'" style="float:right;" >
 	   </div>
     </form>

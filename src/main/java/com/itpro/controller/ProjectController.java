@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.dto.project.ProjectDetailDto;
@@ -44,7 +45,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(projectListCnt,page);
 		
-		//테스트 훟 삭제
 		logger.info(Integer.toString(pageProcessing.getCurPage()));
 		logger.info(Integer.toString(pageProcessing.getCurRange()));
 		logger.info(Integer.toString(pageProcessing.getEndPage()));
@@ -77,9 +77,9 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	
 	@RequestMapping(value="/projectinsert.do")
 	public String projectInsert(HttpServletRequest request, HttpServletResponse response, ProjectInsertDto projectDto) {
-		logger.info("PROJECT INSERT");
-		
 		projectDto.setBd_writerip(new ClientInfo().getClientIp(request));
+		logger.info("PROJECT INSERT : "+projectDto.getBd_title());
+		
 		projectBiz.projectInsert(projectDto);
 		return "redirect:projectlist.do";
 	}	
@@ -114,6 +114,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	public String projectDelete(Model model, int bd_no) {
 		logger.info("PROJECT DELETE");
 		int projectDeleteRes = projectBiz.delete(bd_no);
+		
 		//나중에 int값으로 실패시 alert 처리
 		return "redirect:projectlist.do";
 	}

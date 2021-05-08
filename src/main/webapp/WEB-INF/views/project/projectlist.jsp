@@ -38,7 +38,7 @@
             <!-- 게시물 한 줄 시작-->
             <tr>
                 <c:choose>
-					<c:when test="${empty project }">
+					<c:when test="${empty projectList }">
 						<td colspan="5" align="center">
 							조회할 게시물이 존재하지 않습니다.
 						</td>
@@ -48,7 +48,7 @@
                   	<c:forEach var="projectDto" items="${projectList }">
 							<!-- 글 번호 시작 --> 
 							<td>${projectDto.bd_no} </td>
-							<td>${projectDto.bd_title} </td>
+							<td><a href= "projectdetail.do?bd_no=${projectDto.bd_no}">${projectDto.bd_title}</a></td>
 							<td>${projectDto.bd_recommandcount }</td>
 							<td>${projectDto.bd_viewcount }</td>
 							<td>
