@@ -1,6 +1,7 @@
 function login(){
 		var m_id = $("#m_id").val().trim();
 		var m_pw = $("#m_pw").val().trim();
+		
 		console.log(m_id+"/"+m_pw);
 		
 		var loginVal = {

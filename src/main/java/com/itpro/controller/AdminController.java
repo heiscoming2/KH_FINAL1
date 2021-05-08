@@ -33,12 +33,25 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/member_detail.do")
-	public String member_detail(HttpServletRequest request, ManageMemberDto dto) {
+	public String member_detail(Model model, int m_no) {
 		
 		logger.info("member_detail");
 		
+		model.addAttribute("dto", biz.selectOne(m_no));
 		return "admin/member_detail";
 	}
+	
+	@RequestMapping(value="/member_updateform.do")
+	public String member_updateform(Model model, int m_no) {
+		
+		logger.info("member_updateform");
+		
+		model.addAttribute("dto", biz.selectOne(m_no));
+		return "admin/member_update";
+	}
+	
+	
+	
 	
 	
 	@RequestMapping(value="/report_list.do")

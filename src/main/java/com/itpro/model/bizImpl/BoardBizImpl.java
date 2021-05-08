@@ -14,7 +14,11 @@ public class BoardBizImpl implements BoardBiz {
 	private BoardDao boardDao;
 	
 	public int update(BoardUpdateDto boardUpdateDto) {
-		
 		return boardDao.update(boardUpdateDto);
+	}
+
+	@Override
+	public void updateviewcount(int bd_no) {
+		boardDao.updateviewcount(bd_no);
 	}
 }

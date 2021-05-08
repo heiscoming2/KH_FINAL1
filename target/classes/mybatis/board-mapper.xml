@@ -12,5 +12,16 @@
 			BD_MODIFYDATE = SYSDATE
 		WHERE BD_NO = #{bd_no}
 	</update>
+	
+	<update id="updateviewcount" parameterType="int">
+		UPDATE BOARD
+		SET BD_VIEWCOUNT = BD_VIEWCOUNT+1
+		WHERE BD_NO = ${bd_no}		
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM BOARD WHERE BD_NO = #{bd_no}
+	</delete>
+	
 
 </mapper>  

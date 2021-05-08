@@ -14,8 +14,33 @@ public class BoardDaoImpl implements BoardDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public int update(BoardUpdateDto boardUpdateDto) {
-		int BoardUpdateRes = sqlSession.update(NAMESPACE+"update",boardUpdateDto);
+		int BoardUpdateRes = 0; 
+		try {
+			BoardUpdateRes = sqlSession.update(NAMESPACE+"update",boardUpdateDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return BoardUpdateRes;
+	}
+
+	@Override
+	public void updateviewcount(int bd_no) {
+		try {
+			sqlSession.update(NAMESPACE+"updateviewcount",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public int delete(int bd_no) {
+		int BoardDeleteRes = 0;
+		try {
+			BoardDeleteRes = sqlSession.delete(NAMESPACE+"delete",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return BoardDeleteRes;
 	}
 	
 

@@ -14,7 +14,6 @@
 		<typeAlias type="com.itpro.model.dto.reply.ReplyInsertDto" alias="ReplyInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyListDto" alias="ReplyListDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
-		<typeAlias type="com.itpro.model.dto.member.LoginDto" alias="LoginDto"/>
 		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto" alias="ManageMemberDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectListDto" alias="ProjectListDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectInsertDto" alias="ProjectInsertDto"/>
@@ -25,6 +24,7 @@
 
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.member.LoginDto" alias="LoginDto"/>
+		<typeAlias type="com.itpro.model.dto.member.RegDto" alias="RegDto"/>
 		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto" alias="ManageMemberDto"/>
 
 
@@ -33,7 +33,7 @@
 		
 		
 		
-		
+		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
 		
 		

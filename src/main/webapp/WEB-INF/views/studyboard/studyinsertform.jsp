@@ -103,7 +103,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- STUDYINSERT 개별 JS -->
-<script type="text/javascript" src="resources/js/studyinsert.js"></script>
+<script type="text/javascript" src="resources/js/studyinsert.js?ver=1.1"></script>
 <!-- 주소 정보 JS -->
 <script type="text/javascript" src="resources/js/address.js"></script>
 

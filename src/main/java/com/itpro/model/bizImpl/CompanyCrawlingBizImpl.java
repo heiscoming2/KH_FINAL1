@@ -44,11 +44,6 @@ public class CompanyCrawlingBizImpl implements CompanyCrawlingBiz {
 
 	@Override
 	public int getCompanyCrawlingSearchCnt(CompanyCrawlingSearchDto companyCrawlingSearchDto) {
-		System.out.println(companyCrawlingSearchDto.getSrc_a1());
-		System.out.println(companyCrawlingSearchDto.getSrc_a2());
-		System.out.println(companyCrawlingSearchDto.getSrc_cer());
-		System.out.println(companyCrawlingSearchDto.getSrc_edu());
-		System.out.println(companyCrawlingSearchDto.getSrc_key());
 		return companyCrawlingDao.getCompanyCrawlingSearchCnt(companyCrawlingSearchDto);
 	}
 
