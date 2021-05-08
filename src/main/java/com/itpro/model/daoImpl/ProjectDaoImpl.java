@@ -92,6 +92,18 @@ public class ProjectDaoImpl implements ProjectDao {
 		return projectDeleteRes;
 	}
 
+
+	@Override
+	public int getProjectListCnt() {
+		int ProjectListCnt = 0;
+		try {
+			ProjectListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ProjectListCnt;
+	}
+
 	
 
 

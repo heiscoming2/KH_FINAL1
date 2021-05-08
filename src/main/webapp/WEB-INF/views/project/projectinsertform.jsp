@@ -39,6 +39,10 @@
           <table class="project_inserttable">
             <h5><b>프로젝트</b></h5>
             <tr>
+              <th><span>* </span>제목</th>
+              <td><input type=text class="form-control" name="bd_title"></td>
+            </tr>
+            <tr>
               <th><span>* </span>프로젝트 제목</th>
               <td><input type=text class="form-control" placeholder="프로젝트 제목을 입력해 주세요."></td>
             </tr>
