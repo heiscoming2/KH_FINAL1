@@ -1,7 +1,5 @@
 package com.itpro.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,15 +48,17 @@ public class AdminController {
 		return "admin/member_update";
 	}
 	
-	
-	
-	
-	
-	@RequestMapping(value="/report_list.do")
-	public String joinUser() {
-		logger.info("JOIN USER");
+	@RequestMapping(value="/MemberManage_update.do")
+	public String update(ManageMemberDto dto) {
+		logger.info("MemberManage_update");
+		int res = biz.update(dto);
 		
-		return "login_join/join_user";
+		if(res>0) {
+			return "redirect:admin/member_detail.do?myno="+dto.getM_no();
+		}else {
+			return "redirect:admin/updateform.do?myno="+dto.getM_no();
+		}
+		
 	}
 	
 	/*
