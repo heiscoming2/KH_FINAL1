@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
@@ -28,6 +29,7 @@ import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
+import com.itpro.util.ViewCount;
 
 @Controller
 public class StudyController {
@@ -39,6 +41,9 @@ public class StudyController {
 	
 	@Autowired
 	private ReplyBiz replyBiz;
+	
+	@Autowired
+	private BoardBiz boardBiz;
 	
 	@RequestMapping(value="/studylist.do")
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
@@ -80,12 +85,14 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydetail.do")
-	public String studyDetail(Model model, @RequestParam(value="bd_no") int bd_no) {
+	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no) {
 		logger.info("STUDY DETAIL");
 		
-		//조회수 중복 카운트 방지를 위해 쿠기 사용
-		//bd_no가 쿠키에 있는 경우 조회수 증가, 그렇지 않은 경우 조회수 유지
-		//
+		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
+		if(new ViewCount().viewCount(request, response, bd_no)) {
+			boardBiz.updateviewcount(bd_no);
+		}
+		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("studyDetailDto",studyDetailDto);
@@ -140,11 +147,18 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydelete.do")
-	public String studyDelete(Model model, int bd_no) {
+	public String studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		logger.info("STUDY DELETE");
+		//PrintWriter 공통으로 만들기
 		int studyDeleteRes = studyBiz.delete(bd_no);
-		//나중에 int값으로 실패시 alert 처리
-		return "redirect:studylist.do";
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('삭제 되었습니다.');");
+		out.print("location.href='studylist.do';");
+		out.print("</script>");
+		return null;
 	}
 	
 

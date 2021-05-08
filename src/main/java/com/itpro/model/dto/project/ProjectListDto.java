@@ -1,6 +1,6 @@
 package com.itpro.model.dto.project;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProjectListDto {
 
@@ -8,7 +8,7 @@ public class ProjectListDto {
 	//게시판
 	private int bd_no; //게시글 번호
 	private String bd_title; //제목
-	private int bd_createddate; //작성일
+	private Date bd_createddate; //작성일
 	private String writerip; //작성시 ip
 	private int bd_replycount; // 댓글수
 	private int bd_viewcount; // 조회수
@@ -32,6 +32,22 @@ public class ProjectListDto {
 	
 	
 	
+	public Date getBd_createddate() {
+		return bd_createddate;
+	}
+
+
+
+
+
+	public void setBd_createddate(Date bd_createddate) {
+		this.bd_createddate = bd_createddate;
+	}
+
+
+
+
+
 	public int getBd_no() {
 		return bd_no;
 	}
@@ -48,13 +64,6 @@ public class ProjectListDto {
 		this.bd_title = bd_title;
 	}
 
-	public int getBd_createddate() {
-		return bd_createddate;
-	}
-
-	public void setBd_createddate(int bd_createddate) {
-		this.bd_createddate = bd_createddate;
-	}
 
 	public String getWriterip() {
 		return writerip;

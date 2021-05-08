@@ -15,6 +15,7 @@ public interface ProjectBiz {
 	public int projectInsert(ProjectInsertDto projectDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
+	public int getProjectListCnt();
 	
 
 }

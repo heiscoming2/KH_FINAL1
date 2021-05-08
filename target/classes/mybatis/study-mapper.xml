@@ -72,7 +72,7 @@
 	</select>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM STUDY
+		DELETE FROM STUDY WHERE BD_NO = #{bd_no}
 	</delete>
 	
 	<update id="update" parameterType="StudyUpdateDto">
