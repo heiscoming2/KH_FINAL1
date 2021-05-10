@@ -74,6 +74,9 @@ pom.properties
 #classpath
 .classpath
 
+#MANIFEST.MF
+MANIFEST.MF
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
 
 
