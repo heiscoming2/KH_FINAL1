@@ -5,18 +5,20 @@ public class LoginDto {
 	private String m_id;
 	private String m_pw;
 	private String m_nickname;
+	private String m_email;
 		
 	public LoginDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LoginDto(int m_no, String m_id, String m_pw, String m_nickname) {
+	public LoginDto(int m_no, String m_id, String m_pw, String m_nickname, String m_email) {
 		super();
 		this.m_no = m_no;
 		this.m_id = m_id;
 		this.m_pw = m_pw;
 		this.m_nickname = m_nickname;
+		this.m_email = m_email;
 	}
 
 	public int getM_no() {
@@ -50,6 +52,16 @@ public class LoginDto {
 	public void setM_nickname(String m_nickname) {
 		this.m_nickname = m_nickname;
 	}
+
+	public String getM_email() {
+		return m_email;
+	}
+
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+
+	
 
 	
 	

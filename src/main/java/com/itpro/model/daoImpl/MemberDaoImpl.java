@@ -42,11 +42,25 @@ public class MemberDaoImpl implements MemberDao{
 		int res=0;
 		
 		try {
-			res = sqlSession.insert(NAMESPACE+"insert", regDto);
+			res = sqlSession.insert(NAMESPACE+"RegMember", regDto);
 			
 		} catch (Exception e) {
-			System.out.println("[error] : insert");
+			System.out.println("[error] : RegMember");
 			e.printStackTrace();
+		}		
+		
+		return res;
+	}
+	
+	//중복 아이디 체크
+	@Override
+	public int idCheck(String m_id) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"idCheck", m_id);
+		} catch (Exception e) {
+			
 		}		
 		
 		return res;

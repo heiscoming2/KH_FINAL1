@@ -18,9 +18,7 @@
         <div class="mb-4"><!-- 마이페이지 미니 프로필 -->
             <img src="./resources/images/profileimages/testprofile.jpg" alt="mdo" width="35" height="35" class="rounded-circle me-2"
               style="float: left;">
-            <span class="fw-bold"style="display: block; position: relative; top:5px;">
-            	회사명회사명
-            </span>
+            <span class="fw-bold"style="display: block; position: relative; top:5px;">${login.nickname }</span>
         </div>
         
         <!-- 마이페이지 목록 -->

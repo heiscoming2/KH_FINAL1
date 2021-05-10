@@ -19,37 +19,37 @@
             <div class="float-left col-md-3 col-3">
                 <img src="./resources/images/profileimages/testprofile.jpg" class="img-fluid rounded-circle" alt="프로필 이미지" width="150" height="150">
                 <p>
-                <h5>닉네임 가운데...</h5>
+                <h5>${login.m_nickname }</h5>
                 </p>
             </div>
             <div class="col-md-4 mt-5">
-                <form class="form-inline">
+                <form class="form-inline" action="mypage_user.do" method="post">
 
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_id" readonly value="hahaha">
+                            <input type="text" class="form-control-plaintext" id="m_id" readonly value="${login.m_id }">
                         </div>
                     </div>
 
                     <div class="mb-3 row"><!--비밀번호-->
                         <label class="col-sm-4 col-form-label">비밀번호</label>
                         <div class="col-sm-8">
-                            <input type="password" class="form-control" id="m_password">
+                            <input type="password" class="form-control" id="m_pw">
                         </div>
                     </div>
 
                     <div class="mb-3 row"><!--닉네임-->
                         <label class="col-sm-4 col-form-label">닉네임</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="m_name">
+                            <input type="text" class="form-control" id="m_nickname">
                         </div>
                     </div>
 
                     <div class="mb-3 row"><!--이메일-->
                         <label class="col-sm-4 col-form-label">이메일</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_email" readonly value="hahaha@itpro.com">
+                            <input type="text" class="form-control-plaintext" id="m_email" readonly value="${login.m_email }">
                         </div>
                     </div>
 
@@ -63,9 +63,8 @@
             </div>
         </div>
         
-        <!-- 버튼 타입 수정 button > submit -->
         <div class="row justify-content-center col-md-3">
-        	<input type="button" class="btn btn-primary mt-2" value="정보수정하기" onclick="location.href='mypage_user.do'">
+        	<input type="submit" class="btn btn-primary mt-2" value="정보수정하기">
         </div>
     </div>
 
