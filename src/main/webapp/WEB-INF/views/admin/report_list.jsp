@@ -18,18 +18,14 @@
 	  <h1>신고관리</h1>
 
 	<table border="1">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
+	
 		<thead>
 			<tr>
 				<th>No</th>
 				<th>신고자</th>
-				<th>피신고자</th>
-				<th>제목</th>
-				<th>신고날짜,시간</th>
+				<th>신고게시글</th>
+				<th>신고이유</th>
+				<th>신고일시</th>
 			</tr>
 		</thead>
 
@@ -44,17 +40,28 @@
 					<c:otherwise>
 						<c:forEach var="" items="">
 							<tr>
-								<td>1</td>
-								<td>user1</td>
-								<td>user2</td>
-								<td>광고성글 게재</td>
-								<td>2021/4/13 2:00 AM</td>
+								<td>${dto.report_no }</td>
+								<td>${dto.m_no }</td>
+								<td>${dto.bd_title }</td>
+								<td>${dto.report_reason }</td>
+								<td>${dto.report_date}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</tr>
 		</tbody>
+	</table>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<
+			
+			</tr>
+		</thead>
+	
+	
 	</table>
 
 
