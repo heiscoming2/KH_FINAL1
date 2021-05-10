@@ -44,12 +44,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(projectListCnt,page);
 		
-		logger.info(Integer.toString(pageProcessing.getCurPage()));
-		logger.info(Integer.toString(pageProcessing.getCurRange()));
-		logger.info(Integer.toString(pageProcessing.getEndPage()));
-		logger.info(Integer.toString(pageProcessing.getPageSize()));
-		logger.info(Integer.toString(pageProcessing.getEndIndex()));
-		
 		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
 		//(이 부분은 나중에 PageProcessing 클래스에서 map을 바로 리턴받는 형태로 변경하는게 나을듯)
 		Map<String,Object> projectPageMap = new HashMap<String,Object>();
