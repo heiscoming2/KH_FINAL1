@@ -16,4 +16,7 @@ public interface MemberDao {
 	
 	//회원가입
 	public int RegMember(RegDto regDto);
+	
+	//중복 아이디체크
+	public int idCheck(String m_id);
 }

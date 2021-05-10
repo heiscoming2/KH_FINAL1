@@ -22,10 +22,10 @@
         </div>
         <div class="row justify-content-center" style="text-align: center;">
             <span class="col-md-6">
-            	<input type="button" class="btn btn-primary btn-lg mt-2" value="개인회원" onclick="location.href='join_user.do'">
+            	<input type="button" class="btn btn-primary btn-lg mt-2" value="개인회원" onclick="location.href='join_userForm.do'">
             </span>
             <span class="col-md-6">
-            	<input type="button" class="btn btn-primary btn-lg mt-2" value="기업회원" onclick="location.href='join_biz.do'">
+            	<input type="button" class="btn btn-primary btn-lg mt-2" value="기업회원" onclick="location.href='join_bizForm.do'">
             </span>
         </div>
     </div>

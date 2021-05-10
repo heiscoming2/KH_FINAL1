@@ -59,7 +59,7 @@
 											${projectDto.m_nickname }
 										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-										<ul aria-labelledby="dropdownUser">
+										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
 											<li><a class="dropdown-item" href="#">쪽지 보내기</a></li>
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->

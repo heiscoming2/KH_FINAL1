@@ -44,5 +44,21 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
+	<!-- 메일 센더 빈 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- gmail 설정 -->
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="31940436z@gmail.com"/><!--이메일 아이디 -->
+		<property name="password" value="dhdldEhdld12"/><!-- 이메일 비밀번호 -->
+		<!-- 보안연결TLS관련 설정 -->
+		<property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+	</bean>
 
 </beans>

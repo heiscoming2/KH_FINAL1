@@ -32,7 +32,14 @@ public class MemberBizImpl implements MemberBiz{
 	//회원가입
 	@Override
 	public int RegMember(RegDto regDto) {
+		
 		return dao.RegMember(regDto);
+	}
+
+	@Override
+	public int idCheck(String m_id) {
+		
+		return dao.idCheck(m_id);
 	}
 
 	

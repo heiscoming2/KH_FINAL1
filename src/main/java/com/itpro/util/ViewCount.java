@@ -28,11 +28,15 @@ public class ViewCount {
 		//쿠키를 심어준다.
 		//그리고 true로 리턴하여 조회수 증가 로직을 실행
 		System.out.println("쿠기없음/생성");
+		
+		//쿠키 생성
 		Cookie cookie = new Cookie("viewCookie"+bd_no,bd_no+"");
 		
 		//60*60*24=하루
 		//일단 테스트를 위해 60 (1분) 동안만 쿠키가 유효하도록 설정
 		cookie.setMaxAge(60);
+		
+		//쿠키 추가
 		response.addCookie(cookie);
 		return true;
 	}

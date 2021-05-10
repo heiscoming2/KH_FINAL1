@@ -1,0 +1,35 @@
+
+/*아이디가 존재하지 않는 경우(중복X)*/
+.id_input_re1{
+	color:green;
+	display:none;
+}
+
+/*아이디가 존재하는 경우(중복O)*/
+.id_input_re2{
+	color:red;
+	display:none;
+}
+
+/*이메일이 존재하지 않는 경우(중복X)*/
+.email_input_re1{
+	color:green;
+	display:none;
+}
+
+/*이메일이 존재하는 경우(중복O)*/
+.email_input_re2{
+	color:red;
+	display:none;
+}
+
+/*이메일 인증번호 체크*/  
+.correct{
+    color : green;
+}
+.incorrect{
+    color : red;
+}
+
+
+ 
