@@ -34,8 +34,8 @@
 	<select id="selectOne" resultType="ManageMemberDto" parameterType="int">
 		SELECT *
 		FROM IT_MEMBER A, BIZ_MEMBER B
-		WHERE A.M_NO=B.M_NO 
-		AND A.M_NO=#{m_no};
+		WHERE A.M_NO=B.M_NO(+) 
+		AND A.M_NO=#{m_no}
 	</select>
 	
 	

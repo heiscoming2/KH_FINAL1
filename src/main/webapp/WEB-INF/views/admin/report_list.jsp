@@ -66,6 +66,7 @@
 	<%@include file="../inc/_sidebar_admin.jspf"%>
 
 	<!-- FOOTER 시작 -->
+	<br>
 	<%@include file="../inc/_footer.jspf"%>
 	<!-- FOOTER 종료 -->
 

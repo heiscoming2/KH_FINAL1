@@ -17,10 +17,12 @@
 
 	<!-- 본문 시작 -->
 
-	<!-- 회원상세내용 -->
+	<!-- 회원정보수정내용 -->
 	<h1>회원정보수정</h1>
-
+	<form action="ManageMember_update.do" method="post">
+	<input type="hidden" name="m_no" value="${dto.m_no }">
 	<table border="1" >
+	
 		<tr>
 			<th>nickname</th>
 			<td>${dto.m_nickname }</td>
@@ -39,7 +41,10 @@
 		</tr>
         <tr>
 			<th>act</th>
-			<td>${dto.m_act }</td>
+			<td><select name="act">
+				<option value="활동">활동</option>
+				<option value="정지">정지</option>			
+			</select></td>
 		</tr>
         <tr>
 			<th>used</th>
@@ -67,17 +72,19 @@
 		</tr>
         <tr>
 			<th>admin_cert</th>
-			<td>${dto.m_admin_cert }</td>
+			<td><select name="authority">
+				<option value="Y">관리자</option>
+				<option value="N">회원</option>			
+			</select></td></td>
 		</tr>
     	<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="목록" onclick="location.href='member_list.do'">
-				<input type="button" value="수정" onclick="location.href='member_updateform.do?m_no=${dto.m_no}'">
-				<input type="button" value="삭제" onclick="location.href='delete.do?myno=${dto.m_no}'">
+				<input type="submit" value="완료">
+				<input type="button" value="취소" onclick="location.href='member_detail.do?myno='+${dto.m_no}">
 			</td>
 		</tr>
 	</table>
-
+</form>
 	<!-- 쪽지보내기 -->
     <input type="button" value="쪽지보내기" onclick="">
 
