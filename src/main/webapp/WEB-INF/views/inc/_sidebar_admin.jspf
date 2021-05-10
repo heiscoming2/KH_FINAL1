@@ -25,7 +25,7 @@
 				id="sidenavAccordion">
 
 				<div class="sb-sidenav-menu">
-					<div class="nav">
+					<div class="nav" >
 						<a class="nav-link collapsed" href="member_list.do" data-toggle="collapse"
 							data-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages">
