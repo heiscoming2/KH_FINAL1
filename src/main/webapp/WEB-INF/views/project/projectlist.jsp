@@ -38,7 +38,7 @@
             <!-- 게시물 한 줄 시작-->
             <tr>
                 <c:choose>
-					<c:when test="${empty project }">
+					<c:when test="${empty projectList }">
 						<td colspan="5" align="center">
 							조회할 게시물이 존재하지 않습니다.
 						</td>
@@ -48,18 +48,18 @@
                   	<c:forEach var="projectDto" items="${projectList }">
 							<!-- 글 번호 시작 --> 
 							<td>${projectDto.bd_no} </td>
-							<td>${projectDto.bd_title} </td>
+							<td><a href= "projectdetail.do?bd_no=${projectDto.bd_no}">${projectDto.bd_title}</a></td>
 							<td>${projectDto.bd_recommandcount }</td>
 							<td>${projectDto.bd_viewcount }</td>
 							<td>
 							    <div class="project_profile">
-								<img src="${projectDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+								<img src="${projectDto.m_img_path }${projectDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
 									<div class="study_writer"> 
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
 											${projectDto.m_nickname }
 										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-										<ul aria-labelledby="dropdownUser">
+										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
 											<li><a class="dropdown-item" href="#">쪽지 보내기</a></li>
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->

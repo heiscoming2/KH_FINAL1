@@ -18,6 +18,7 @@
 		<typeAlias type="com.itpro.model.dto.project.ProjectListDto" alias="ProjectListDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectInsertDto" alias="ProjectInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
+		<typeAlias type="com.itpro.model.dto.project.ProjectUpdateDto" alias="ProjectUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDto" alias="PortfolioDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaDto" alias="QnaDto"/>
 
@@ -32,7 +33,7 @@
 		
 		
 		
-		
+		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
 		
 		

@@ -30,7 +30,6 @@
                 <div class="replyBtnWrap${replyListDto.re_no }" style="float:right;">
                   <input type="button" class="btn btn-primary updateformbtn" value="수정" onclick="replyUpdateForm('${replyListDto.re_no}');">
                   <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply('${replyListDto.re_no}')">
-                  
                 </div>
               <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                 style="float: left; margin-top: 5px;">
@@ -71,12 +70,10 @@
               <!-- 프로필 영역-->
               <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                 style="float: left; margin-top: 5px;">
-              <span>
                 <a class="" id=""
-                  style="font-size:15px; color:black;">
+                  style="font-size:15px; color:black; position:relative; top:10px;">
                   hyojun9292 <!-- 로그인 세션 값 처리 -->
                 </a>
-              </span>
             </div> 
             <br>
             <br>

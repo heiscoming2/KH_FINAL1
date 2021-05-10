@@ -46,6 +46,12 @@ public class ProjectBizImpl implements ProjectBiz{
 		return projectDeleteRes;
 	}
 
+	@Override
+	public int getProjectListCnt() {
+		// TODO Auto-generated method stub
+		return projectDao.getProjectListCnt();
+	}
+
 
 	
 	

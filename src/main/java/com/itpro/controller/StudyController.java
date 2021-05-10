@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
@@ -24,9 +25,11 @@ import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
 import com.itpro.model.dto.study.StudyListDto;
+import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
+import com.itpro.util.ViewCount;
 
 @Controller
 public class StudyController {
@@ -39,6 +42,9 @@ public class StudyController {
 	@Autowired
 	private ReplyBiz replyBiz;
 	
+	@Autowired
+	private BoardBiz boardBiz;
+	
 	@RequestMapping(value="/studylist.do")
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
 		logger.info("STUDY LIST");
@@ -48,13 +54,6 @@ public class StudyController {
 		
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(studyListCnt,page);
-		
-		//테스트 훟 삭제
-		logger.info(Integer.toString(pageProcessing.getCurPage()));
-		logger.info(Integer.toString(pageProcessing.getCurRange()));
-		logger.info(Integer.toString(pageProcessing.getEndPage()));
-		logger.info(Integer.toString(pageProcessing.getPageSize()));
-		logger.info(Integer.toString(pageProcessing.getEndIndex()));
 		
 		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
 		//(이 부분은 나중에 PageProcessing 클래스에서 map을 바로 리턴받는 형태로 변경하는게 나을듯)
@@ -86,12 +85,14 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydetail.do")
-	public String studyDetail(Model model, @RequestParam(value="bd_no") int bd_no) {
+	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no) {
 		logger.info("STUDY DETAIL");
 		
-		//조회수 중복 카운트 방지를 위해 쿠기 사용
-		//bd_no가 쿠키에 있는 경우 조회수 증가, 그렇지 않은 경우 조회수 유지
-		//
+		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
+		if(new ViewCount().viewCount(request, response, bd_no)) {
+			boardBiz.updateviewcount(bd_no);
+		}
+		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("studyDetailDto",studyDetailDto);
@@ -146,12 +147,48 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydelete.do")
-	public String studyDelete(Model model, int bd_no) {
+	public String studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		logger.info("STUDY DELETE");
+		//PrintWriter 공통으로 만들기
 		int studyDeleteRes = studyBiz.delete(bd_no);
-		//나중에 int값으로 실패시 alert 처리
-		return "redirect:studylist.do";
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('삭제 되었습니다.');");
+		out.print("location.href='studylist.do';");
+		out.print("</script>");
+		return null;
 	}
 	
+
+	@RequestMapping(value="/studysearch.do")
+	public String studySearch(Model model, StudySearchDto studySearchDto) {
+		logger.info("STUDY SEARCH");
 		
+		//페이징 처리를 위해 갯수를 얻어온다.
+		int studySearchListCnt = studyBiz.getStudyListSearchCnt(studySearchDto);
+		
+		//갯수와 페이지 번호로 페이지 정보를 가져온다.
+		PageProcessing pageProcessing = new PageProcessing(studySearchListCnt,studySearchDto.getPage());
+		
+		//start와 end값, 검색 값으로 list를 가져오는데 map에 담아서 처리해준다.
+		Map<String,Object> studySearchMap = new HashMap<String,Object>();
+		studySearchMap.put("start", pageProcessing.getStartIndex());
+		studySearchMap.put("end", pageProcessing.getEndIndex());
+		studySearchMap.put("studySearchDto", studySearchDto);
+		List<StudyListDto> studyList = studyBiz.selectSearchList(studySearchMap);
+		
+		for(StudyListDto studyListDto : studyList) {
+			System.out.println(studyListDto.getBd_no());
+		}
+		
+		model.addAttribute("studyList",studyList);
+		model.addAttribute("pageProcessing",pageProcessing);
+		model.addAttribute("studySearchDto",studySearchDto);
+		
+		return "studyboard/studylist";
+	}	
+	
+	
 }

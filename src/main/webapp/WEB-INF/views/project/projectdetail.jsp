@@ -69,8 +69,8 @@
             
               ※ 프로젝트 제목: ${projectDetailDto.pro_title } <br>
               ※ 프로젝트 기간: ${projectDetailDto.pro_start } ~ ${projectDetailDto.pro_end }<br>
-              ※ 프로젝트 링크: ${projectDetailDto.pro_start }<br>
-              ※ ERD 링크: ${projectDetailDto.pro_link }<br>
+              ※ 프로젝트 링크: ${projectDetailDto.pro_link }<br>
+              ※ ERD 링크: ${projectDetailDto.pro_erd }<br>
               ※ 개발 환경: ${projectDetailDto.pro_develop }<br>
               ※ 개발 목표: ${projectDetailDto.pro_goal }
             </div>
@@ -80,7 +80,7 @@
             <!-- 글 내용 시작 -->
             <b>구현 기능</b>
             <div class="detail_content">
-             ${projectDetailDto.bd_content }
+             ${projectDetailDto.pro_function }
               <br>
               <br>
             </div>

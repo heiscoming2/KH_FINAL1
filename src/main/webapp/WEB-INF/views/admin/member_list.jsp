@@ -84,7 +84,7 @@
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="1"></td>
-								<td><a href="member_detail.do">${dto.m_nickname}</a></td>
+								<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 								<td>${dto.m_type}</td>
 								<td>${dto.m_regdate}</td>
 								<td>${dto.m_act}</td>
