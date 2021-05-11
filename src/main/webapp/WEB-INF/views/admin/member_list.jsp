@@ -106,8 +106,9 @@
 	<!-- 본문 종료 -->
 	</form>
 
-		<!-- FOOTER 시작 -->
-	<%@include file="../inc/_footer.jspf" %>  
+	<!-- FOOTER 시작 -->
+	<%@include file="../inc/_footer.jspf" %>
+	
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="../inc/_foot.jspf" %>

@@ -19,7 +19,7 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public List<ReportDto> selectList() {
-		List<ReportDto> list = new ArrayList<ReportDto>();
+		List<ReportDto> list = null;
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"selectList");
@@ -27,6 +27,7 @@ public class ReportDaoImpl implements ReportDao {
 			System.out.println("[error] : select list");
 			e.printStackTrace();
 		}
+		System.out.println("re.selectlist"+list.get(0).getBd_no());
 		return list;
 	}
 	

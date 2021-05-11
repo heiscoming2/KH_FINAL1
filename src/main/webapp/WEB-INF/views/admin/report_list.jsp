@@ -37,8 +37,8 @@
 							<td colspan="5">===신고목록이 존재하지 않습니다.===</td>
 						</tr>
 					</c:when>
-					<c:otherwise>
-						<c:forEach var="" items="">
+				<c:otherwise>
+					<c:forEach var="dto" items="${list }">
 							<tr>
 								<td>${dto.report_no }</td>
 								<td>${dto.m_no }</td>
@@ -53,18 +53,6 @@
 		</tbody>
 	</table>
 	
-	<table border="1">
-		<thead>
-			<tr>
-				<
-			
-			</tr>
-		</thead>
-	
-	
-	</table>
-
-
 
 
 	<!-- 본문 종료 -->

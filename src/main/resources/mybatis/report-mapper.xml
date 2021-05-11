@@ -5,18 +5,8 @@
 
 <mapper namespace="Report">
 	
-	<resultMap type="ReportDto" id="ReportMap">
-		<result property="report_no" column="REPORT_NO"/>
-		<result property="m_no" column="M_NO"/>
-		<result property="bd_no" column="BD_NO"/>
-		<result property="report_board" column="REPORT_BOARD"/>
-		<result property="report_reason" column="REPORT_REASON"/>
-		<result property="report_date" column="REPORT_DATE"/>
-		<result property="report_sum" column="REPORT_SUM"/> 
-	</resultMap>
-
 	
-	<select id="selectList" resultMap="ReportMap">
+	<select id="selectList" resultType="ReportDto">
         SELECT *
         FROM REPORT A
         JOIN IT_MEMBER B

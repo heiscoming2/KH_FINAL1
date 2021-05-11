@@ -1,5 +1,7 @@
 package com.itpro.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,8 +93,8 @@ public class AdminController {
 	@RequestMapping(value="/report_list.do")
 	public String report_list(Model model) {
 		logger.info("report_list");
-		
-		model.addAttribute("list",rebiz.selectList());
+		List<ReportDto> list = rebiz.selectList();
+		model.addAttribute("list",list);
 		
 		return "admin/report_list";
 	}
