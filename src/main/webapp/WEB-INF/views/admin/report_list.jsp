@@ -6,15 +6,30 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
 <title>샘플 페이지 입니다.</title>
+<style type="text/css">
+	.container{
+		flex-basis: auto;
+	
+	}
+
+
+
+
+</style>
+
+
 </head>
 <body>
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
-
+<div class="container">
+	<%@include file="../inc/_sidebar_admin.jspf"%>
+</div>
 	<!-- 본문 시작 -->
 
 	<!-- 신고관리 -->
+<div class="container">
 	  <h1>신고관리</h1>
 
 	<table border="1">
@@ -53,13 +68,12 @@
 		</tbody>
 	</table>
 	
-
+</div>
 
 	<!-- 본문 종료 -->
 
 	<!-- sidebar 시작 -->
-	<%@include file="../inc/_sidebar_admin.jspf"%>
-
+	
 	<!-- FOOTER 시작 -->
 	<br>
 	<%@include file="../inc/_footer.jspf"%>
