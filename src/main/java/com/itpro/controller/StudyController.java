@@ -117,11 +117,6 @@ public class StudyController {
 	@RequestMapping(value="/studyupdate.do")
 	public String studyUpdate(Model model, StudyUpdateDto studyUpdateDto, BoardUpdateDto boardUpdateDto) {
 		logger.info("STUDY UPDATE");
-		logger.info(Integer.toString(studyUpdateDto.getBd_no()));
-		logger.info(Integer.toString(studyUpdateDto.getSt_closeperson()));
-		logger.info(Integer.toString(studyUpdateDto.getSt_nowperson()));
-		logger.info(boardUpdateDto.getBd_title());
-		logger.info(Integer.toString(boardUpdateDto.getBd_no()));
 		
 		int studyUpdateRes = studyBiz.update(studyUpdateDto,boardUpdateDto);
 		logger.info(Integer.toString(studyUpdateRes));
@@ -178,10 +173,6 @@ public class StudyController {
 		studySearchMap.put("end", pageProcessing.getEndIndex());
 		studySearchMap.put("studySearchDto", studySearchDto);
 		List<StudyListDto> studyList = studyBiz.selectSearchList(studySearchMap);
-		
-		for(StudyListDto studyListDto : studyList) {
-			System.out.println(studyListDto.getBd_no());
-		}
 		
 		model.addAttribute("studyList",studyList);
 		model.addAttribute("pageProcessing",pageProcessing);
