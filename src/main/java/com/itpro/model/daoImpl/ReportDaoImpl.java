@@ -19,15 +19,17 @@ public class ReportDaoImpl implements ReportDao {
 
 	@Override
 	public List<ReportDto> selectList() {
+	
+
 		List<ReportDto> list = null;
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"selectList");
+			System.out.println("list : " +  list);
 		} catch (Exception e) {
 			System.out.println("[error] : select list");
 			e.printStackTrace();
 		}
-		System.out.println("re.selectlist"+list.get(0).getBd_no());
 		return list;
 	}
 	

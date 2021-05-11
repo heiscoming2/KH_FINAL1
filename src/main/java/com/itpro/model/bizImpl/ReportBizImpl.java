@@ -18,6 +18,7 @@ public class ReportBizImpl implements ReportBiz{
 
 	@Override
 	public List<ReportDto> selectList() {
+		
 		return dao.selectList();
 	}
 

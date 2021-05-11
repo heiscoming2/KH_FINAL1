@@ -7,7 +7,6 @@ public class ReportDto {
 	private int report_no;
 	private int m_no;
 	private int bd_no;
-	private String report_board;
 	private String report_reason;
 	private Date report_date;
 	private int report_sum;
@@ -40,12 +39,7 @@ public class ReportDto {
 	public void setBd_no(int bd_no) {
 		this.bd_no = bd_no;
 	}
-	public String getReport_board() {
-		return report_board;
-	}
-	public void setReport_board(String report_board) {
-		this.report_board = report_board;
-	}
+	
 	public String getReport_reason() {
 		return report_reason;
 	}
@@ -66,4 +60,10 @@ public class ReportDto {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "ReportDto [report_no=" + report_no + ", m_no=" + m_no + ", bd_no=" + bd_no + ", report_reason="
+				+ report_reason + ", report_date=" + report_date + ", report_sum=" + report_sum + ", bd_title="
+				+ bd_title + "]";
+	}
 }

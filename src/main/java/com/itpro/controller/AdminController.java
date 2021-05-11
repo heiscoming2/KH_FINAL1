@@ -20,10 +20,12 @@ public class AdminController {
 	
 	@Autowired
 	ManageMemberBiz biz;
+	
+	@Autowired
 	ReportBiz rebiz;
 	
 	
-	//�쉶�썝愿�由� 而⑦듃濡ㅻ윭
+	
 	@RequestMapping("/member_list.do")
 	public String member_list(Model model) {
 		logger.info("select list");
@@ -95,7 +97,10 @@ public class AdminController {
 		logger.info("report_list");
 		List<ReportDto> list = rebiz.selectList();
 		model.addAttribute("list",list);
+		System.out.println("list : " +  list);
 		
+		System.out.println(""
+				+ "");
 		return "admin/report_list";
 	}
 	

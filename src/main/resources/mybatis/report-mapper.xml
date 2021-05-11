@@ -7,7 +7,7 @@
 	
 	
 	<select id="selectList" resultType="ReportDto">
-        SELECT *
+        SELECT A.REPORT_NO, A.M_NO, A.BD_NO, C.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, A.REPORT_SUM 
         FROM REPORT A
         JOIN IT_MEMBER B
         ON A.M_NO=B.M_NO
@@ -38,11 +38,7 @@
 		GROUP BY REPORT_BOARD
 	</select>
 	
-	<update id="update" parameterType="ManageMemberDto">
-		UPDATE IT_MEMBER
-		SET M_ACT=#{m_act}, M_AUTH=#{m_auth}, M_ADMIN_CERT=#{m_admin_cert}
-		WHERE M_NO=#{m_no}
-	</update>
+	
 	
 	
 	
