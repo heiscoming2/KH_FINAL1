@@ -59,14 +59,14 @@
 			<th>addr</th>
 			<td>${dto.m_addr }</td>
 		</tr>
-   <%-- <tr>
+    <tr>
 			<th>regno</th>
 			<td>${dto.m_regno }</td>
 		</tr>
        <tr>
 			<th>admin_cert</th>
 			<td>${dto.m_admin_cert }</td>
-		</tr>--%>
+		</tr>
     	<tr>
 			<td colspan="2" align="right">
 				<input type="button" value="목록" onclick="location.href='member_list.do'">

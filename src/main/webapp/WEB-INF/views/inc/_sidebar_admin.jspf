@@ -26,7 +26,7 @@
 
 				<div class="sb-sidenav-menu">
 					<div class="nav" >
-						<a class="nav-link collapsed" href="member_list.do" data-toggle="collapse"
+						<a class="nav-link collapsed" href="#" data-toggle="collapse"
 							data-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages" >
 							<div class="sb-nav-link-icon">
@@ -40,7 +40,7 @@
 							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion"
 								id="sidenavAccordionPages">
-								<a class="nav-link collapsed" href="member_list_indi.do" data-toggle="collapse"
+								<a class="nav-link collapsed" onclick="location.href='member_list.do'" data-toggle="collapse"
 									data-target="#pagesCollapseAuth" aria-expanded="false"
 									aria-controls="pagesCollapseAuth"> 개인회원
 									<div class="sb-sidenav-collapse-arrow">

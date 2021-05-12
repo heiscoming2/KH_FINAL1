@@ -19,7 +19,7 @@
 
 	<!-- 회원정보수정내용 -->
 	<h1>회원정보수정</h1>
-	<form action="ManageMember_update.do" method="post">
+	<form action="member_update.do" method="post">
 	<input type="hidden" name="m_no" value="${dto.m_no }">
 	<table border="1" >
 	
@@ -41,18 +41,24 @@
 		</tr>
         <tr>
 			<th>act</th>
-			<td><select name="act">
-				<option value="활동">활동</option>
-				<option value="정지">정지</option>			
+			<td><select name="m_act">
+				<option value="활동" >활동</option>
+				<option value="정지" >정지</option>			
+			</select></td>
+		</tr>
+         <tr>
+			<th>used</th>
+			<td><select name="m_used">
+				<option value="N">현재회원</option>
+				<option value="Y">탈퇴회원</option>			
 			</select></td>
 		</tr>
         <tr>
-			<th>used</th>
-			<td>${dto.m_used }</td>
-		</tr>
-        <tr>
 			<th>auth</th>
-			<td>${dto.m_auth }</td>
+			<td><select name="m_auth" >
+				<option value="N"> 관리자 권한 해지</option>
+				<option value="Y"> 관리자 권한 부여</option>			
+			</select></td>
 		</tr>
         <tr>
 			<th>name</th>
@@ -66,21 +72,21 @@
 			<th>addr</th>
 			<td>${dto.m_addr }</td>
 		</tr>
-        <tr>
+      <%--  <tr>
 			<th>regno</th>
 			<td>${dto.m_regno }</td>
 		</tr>
-        <tr>
+          <tr>
 			<th>admin_cert</th>
 			<td><select name="authority">
 				<option value="Y">인증</option>
 				<option value="N">미인증</option>			
 			</select></td></td>
-		</tr>
+		</tr> --%>
     	<tr>
 			<td colspan="2" align="right">
 				<input type="submit" value="완료">
-				<input type="button" value="취소" onclick="location.href='member_detail.do?myno='+${dto.m_no}">
+				<input type="button" value="취소" onclick="location.href='member_detail.do?m_no=${dto.m_no}'">
 			</td>
 		</tr>
 	</table>

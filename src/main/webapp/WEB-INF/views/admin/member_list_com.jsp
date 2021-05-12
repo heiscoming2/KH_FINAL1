@@ -33,7 +33,15 @@
 		});
 	});
 </script>
+<style type="text/css">
+.container{
+	display: inline-flex;
 
+}
+
+
+
+</style>
 
 
 
@@ -44,7 +52,7 @@
 	<!-- HEADER 종료 -->
 	
 	<!-- ADMIN SIDEBAR 시작 -->
-	<%@include file="../inc/_sidebar_admin.jspf"%>
+	<div class="container"><%@include file="../inc/_sidebar_admin.jspf"%></div>
 	<!-- SIDEBAR 종료 -->
 	
 
@@ -52,6 +60,7 @@
 
 
 	<!-- 회원명단 -->
+	<div class="container">
 	<h1>회원관리</h1>
 	<form action="#">
 			<div align="right">
@@ -60,7 +69,7 @@
 			</div>
 			<br>
 	<table border="1">
-		<thead>
+		
 			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);"></th>
@@ -70,35 +79,34 @@
 				<th>회원등록일</th>
 				<th>활동여부</th>
 				<th>탈퇴여부</th>
-				<th>관리자승인</th>
+				<th>관리자권한</th>
+				<th>사업자승인</th>
 			</tr>
-		</thead>
 
-		<tbody>
-			<tr>
 				<c:choose>
-					<c:when test="${empty member_list }">
+					<c:when test="${empty list }">
 						<tr>
-							<td colspan="8" text-align="center">===회원명단이 존재하지 않습니다.===</td>
+							<td colspan="8" align="center">===회원명단이 존재하지 않습니다.===</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="i" items="${member_list }">
+						<c:forEach var="dto" items="${list }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="1"></td>
-								<td><a href="member_detail.do">${i.m_nickname}</a></td>
-								<td>${i.type}</td>
-								<td>${i.m_regdate}</td>
-								<td>${i.m_act}</td>
-								<td>${i.m_used}</td>
-								<td>${i.admin_cert}</td>
+								<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
+								<td>${dto.m_type}</td>
+								<td>${dto.m_regdate}</td>
+								<td>${dto.m_act}</td>
+								<td>${dto.m_used}</td>
+								<td>${dto.m_auth}</td>
+								<td>${dto.m_admin_cert}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-			</tr>
-		</tbody>
+		
+		
 	</table>
 	<!-- 쪽지보내기 -->
 
@@ -108,9 +116,11 @@
 
 	<!-- 본문 종료 -->
 	</form>
+	</div>
 
-		<!-- FOOTER 시작 -->
+	<!-- FOOTER 시작 -->
 	<%@include file="../inc/_footer.jspf" %>
+	
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="../inc/_foot.jspf" %>
