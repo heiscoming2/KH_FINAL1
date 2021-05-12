@@ -4,9 +4,11 @@ import java.util.Date;
 
 public class StudyDetailDto {
 	
+	private int m_no;
 	private String m_img_path;
 	private String m_img;
 	private String m_nickname;
+	private String bd_writerip;
 	private Date bd_createddate;
 	private Date bd_modifydate;
 	private int bd_no;
@@ -19,6 +21,22 @@ public class StudyDetailDto {
 	private int st_nowperson;
 	private int st_closeperson;
 	
+	
+	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+	
+
+	public String getBd_writerip() {
+		return bd_writerip;
+	}
+	public void setBd_writerip(String bd_writerip) {
+		this.bd_writerip = bd_writerip;
+	}
 	public String getM_img_path() {
 		return m_img_path;
 	}

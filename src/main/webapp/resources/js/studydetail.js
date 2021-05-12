@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	$('.detail_no').text(window.location.href);
+	$('.detail_no').text(window.location.href+"클릭 시 클립보드 저장");
+	//detail 페이지에서 현재 주소를 보여주기 위함
 });
 
   /* 게시글 삭제 버튼 클릭 confirm*/

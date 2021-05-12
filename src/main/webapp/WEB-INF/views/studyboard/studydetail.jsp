@@ -41,6 +41,7 @@
                 </ul>
               </div>
               <span class="reg_date">
+                [ IP : ${studyDetailDto.bd_writerip} ]
                 <fmt:formatDate value="${studyDetailDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성됨)
                 <c:if test="${studyDetailDto.bd_modifydate ne null }">
                 	<fmt:formatDate value="${studyDetailDto.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정됨)
@@ -51,7 +52,7 @@
 			<hr>
             <!-- 글 번호 / 제목 영역 시작 -->
             <div style="margin: 10px 0px;">
-              <span class="detail_no">${studyDetailDto.bd_no }</span> <!-- 글 번호 -->
+              <span class="detail_no"></span> <!-- js에서 여기에 주소를 쏴줌 -->
               <br>
               <span class="detail_title">${studyDetailDto.bd_title }</span> <!-- 글 제목 -->
             </div>
@@ -103,7 +104,7 @@
 	 
       <!-- 댓글 영역 시작 -->
       	<!-- 댓글 작성 시 글번호를 넘겨주기 위해 hidden으로 심어준다. -->
-      <input type="hidden" name="bd_no" value=${studyDetailDto.bd_no } form="replyinsert">
+      <input type="hidden" name="m_no" value="${studyDetailDto.m_no }" form="replyinsert">
       <%@include file="../reply/_reply.jspf" %>
       <!-- 댓글 영역 끝 -->
   </div>

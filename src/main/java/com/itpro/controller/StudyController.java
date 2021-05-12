@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.member.LoginDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
@@ -46,8 +48,12 @@ public class StudyController {
 	private BoardBiz boardBiz;
 	
 	@RequestMapping(value="/studylist.do")
-	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
 		logger.info("STUDY LIST");
+		if(session.getAttribute("login")!=null) {
+			LoginDto login = (LoginDto) session.getAttribute("login");
+			logger.info(Integer.toString(login.getM_no()));
+		}
 		
 		//페이징을 위해 총 게시물수 count
 		int studyListCnt = studyBiz.getStudyListCnt();
@@ -103,6 +109,7 @@ public class StudyController {
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
 		model.addAttribute("replyCnt",replyCnt);
+		
 		return "studyboard/studydetail";
 	}
 	

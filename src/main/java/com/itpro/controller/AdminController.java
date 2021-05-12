@@ -23,10 +23,7 @@ public class AdminController {
 	@RequestMapping("/member_list.do")
 	public String member_list(Model model) {
 		logger.info("select list");
-
 		model.addAttribute("list",biz.selectList());
-		
-		
 		return "admin/member_list";
 	}
 	
