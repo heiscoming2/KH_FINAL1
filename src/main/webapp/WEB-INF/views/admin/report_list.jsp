@@ -6,30 +6,41 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
 <title>샘플 페이지 입니다.</title>
+<style type="text/css">
+	.container{
+		flex-basis: auto;
+	
+	}
+
+
+
+
+</style>
+
+
 </head>
 <body>
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
-
+<div class="container">
+	<%@include file="../inc/_sidebar_admin.jspf"%>
+</div>
 	<!-- 본문 시작 -->
 
 	<!-- 신고관리 -->
+<div class="container">
 	  <h1>신고관리</h1>
 
 	<table border="1">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
+	
 		<thead>
 			<tr>
 				<th>No</th>
 				<th>신고자</th>
-				<th>피신고자</th>
-				<th>제목</th>
-				<th>신고날짜,시간</th>
+				<th>신고게시글</th>
+				<th>신고이유</th>
+				<th>신고일시</th>
 			</tr>
 		</thead>
 
@@ -41,14 +52,14 @@
 							<td colspan="5">===신고목록이 존재하지 않습니다.===</td>
 						</tr>
 					</c:when>
-					<c:otherwise>
-						<c:forEach var="" items="">
+				<c:otherwise>
+					<c:forEach var="dto" items="${list }">
 							<tr>
-								<td>1</td>
-								<td>user1</td>
-								<td>user2</td>
-								<td>광고성글 게재</td>
-								<td>2021/4/13 2:00 AM</td>
+								<td>${dto.report_no }</td>
+								<td>${dto.m_no }</td>
+								<td>${dto.bd_title }</td>
+								<td>${dto.report_reason }</td>
+								<td>${dto.report_date}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -56,15 +67,13 @@
 			</tr>
 		</tbody>
 	</table>
-
-
-
+	
+</div>
 
 	<!-- 본문 종료 -->
 
 	<!-- sidebar 시작 -->
-	<%@include file="../inc/_sidebar_admin.jspf"%>
-
+	
 	<!-- FOOTER 시작 -->
 	<br>
 	<%@include file="../inc/_footer.jspf"%>

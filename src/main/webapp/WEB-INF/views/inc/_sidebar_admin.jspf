@@ -28,7 +28,7 @@
 					<div class="nav" >
 						<a class="nav-link collapsed" href="member_list.do" data-toggle="collapse"
 							data-target="#collapsePages" aria-expanded="false"
-							aria-controls="collapsePages">
+							aria-controls="collapsePages" >
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
 							</div> 회원관리
@@ -46,7 +46,8 @@
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
-								</a> <a class="nav-link collapsed" href="member_list_company.do" data-toggle="collapse"
+								</a> 
+								<a class="nav-link collapsed" onclick="location.href='member_list_company.do'" data-toggle="collapse"
 									data-target="#pagesCollapseError" aria-expanded="false"
 									aria-controls="pagesCollapseError"> 기업회원
 									<div class="sb-sidenav-collapse-arrow">
@@ -56,12 +57,21 @@
 
 							</nav>
 						</div>
-						<a class="nav-link collapsed" href="report_list.do" data-toggle="collapse"
+						<a class="nav-link collapsed" onclick="location.href='report_list.do'" data-toggle="collapse"
 							data-target="" aria-expanded="false"
-							aria-controls="collapsePages">
+							aria-controls="collapsePages" >
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> 신고관리 <a class="nav-link collapsed" href="#"
+							</div> 신고관리 </a>
+							
+							<a class="nav-link collapsed" onclick="location.href='report_list.do'" data-toggle="collapse"
+							data-target="" aria-expanded="false"
+							aria-controls="collapsePages" >
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-book-open"></i>
+							</div> 공지사항 </a>
+							
+							<a class="nav-link collapsed" href="ad_list.do"
 							data-toggle="collapse" data-target="#collapseAd"
 							aria-expanded="false" aria-controls="collapsePages">
 								<div class="sb-nav-link-icon">
@@ -71,6 +81,7 @@
 									<i class="fas fa-angle-down"></i>
 								</div>
 						</a>
+						
 							<div class="collapse" id="collapseAd"
 								aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
 								<nav class="sb-sidenav-menu-nested nav accordion"
@@ -99,6 +110,7 @@
 				</div>
 
 			</nav>
+			</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			crossorigin="anonymous"></script>

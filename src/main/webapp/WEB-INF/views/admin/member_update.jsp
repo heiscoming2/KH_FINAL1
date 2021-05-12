@@ -73,8 +73,8 @@
         <tr>
 			<th>admin_cert</th>
 			<td><select name="authority">
-				<option value="Y">관리자</option>
-				<option value="N">회원</option>			
+				<option value="Y">인증</option>
+				<option value="N">미인증</option>			
 			</select></td></td>
 		</tr>
     	<tr>

@@ -1,5 +1,7 @@
 package com.itpro.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itpro.model.biz.ManageMemberBiz;
+import com.itpro.model.biz.ReportBiz;
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.report.ReportDto;
 
 @Controller
 public class AdminController {
@@ -17,9 +21,11 @@ public class AdminController {
 	@Autowired
 	ManageMemberBiz biz;
 	
+	@Autowired
+	ReportBiz rebiz;
 	
 	
-	//회원관리 컨트롤러
+	
 	@RequestMapping("/member_list.do")
 	public String member_list(Model model) {
 		logger.info("select list");
@@ -51,39 +57,52 @@ public class AdminController {
 		int res = biz.update(dto);
 		
 		if(res>0) {
-			return "redirect:admin/member_detail.do?myno="+dto.getM_no();
+			return "redirect:member_detail.do?myno="+dto.getM_no();
 		}else {
-			return "redirect:admin/updateform.do?myno="+dto.getM_no();
+			return "redirect:updateform.do?myno="+dto.getM_no();
 		}
 		
 	}
 	
-	/*
-	@RequestMapping(value="/join_biz.do")
-	public String joinBiz() {
-		logger.info("JOIN BIZ");
+	//insert 입력페이지로 이동
+	@RequestMapping(value="/report_insertform.do")
+	public String insertform(Model model, int report_no) {
+		logger.info("report_insertform");
 		
-		return "login_join/join_biz";
+		model.addAttribute("dto", rebiz.selectOne(report_no));
+		return "report_insert";
+	}
+
+	
+	//insert에서 값이 넘어옴.
+	@RequestMapping(value="/report_insert.do")
+	public String insertRes(ReportDto dto) {
+		logger.info("report_insert");
+		
+		int res= rebiz.insert(dto);
+		
+		if(res>0) {
+			return "redirect:report_list.do";
+		}else {
+			return "redirect:report_insertform.do";
+		}
+		
+	}
+	//report list
+	@RequestMapping(value="/report_list.do")
+	public String report_list(Model model) {
+		logger.info("report_list");
+		List<ReportDto> list = rebiz.selectList();
+		model.addAttribute("list",list);
+		System.out.println("list : " +  list);
+		
+		System.out.println(""
+				+ "");
+		return "admin/report_list";
 	}
 	
-	
-	//개인회원 마이페이지 관련 컨트롤러
-	@RequestMapping(value="/mypage_user.do")
-	public String mypage() {
-		logger.info("MYPAGE USER");
-		
-		return "login_join/mypage_user";
-	}
-	
-	//개인 회원 정보수정 컨트롤러
-	@RequestMapping(value="/modify_user.do")
-	public String modify() {
-		logger.info("MYPAGE USER");
-		
-		return "login_join/modify_user";
-	}
-	
-	//이력서 관련 컨트롤러
+	/*	
+	//�씠�젰�꽌 愿��젴 而⑦듃濡ㅻ윭
 	@RequestMapping(value="/resume_list.do")
 	public String resumeList() {
 		logger.info("RESUEM LIST");
@@ -113,7 +132,7 @@ public class AdminController {
 	}
 	
 	
-	//쪽지 관련 컨트롤러
+	//履쎌� 愿��젴 而⑦듃濡ㅻ윭
 	@RequestMapping(value="/note_sendlist.do")
 	public String noteSendList() {
 		logger.info("NOTE SEND LIST");

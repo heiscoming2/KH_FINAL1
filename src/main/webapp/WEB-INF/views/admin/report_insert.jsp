@@ -16,31 +16,22 @@
 
 <!-- 신고 상세내용 -->
 	<h1>신고하기</h1>
-	<form action="insertres.do" method="post">
+	<form action="report_insert.do" method="post">
+	
 	<table border="1">
 	
 			
             <tr>
-				<td>신고자</td><td><input type="text" name="reportTitle"></td>
+				<th>신고게시글</th><td>${dto.bd_title }</td>
             </tr>
+            
             <tr>
-				<td>작성자</td><td></td>
+				<th>신고이유</th><td><textarea rows="60" cols="10"></textarea></td>
             </tr>
-            <tr>
-				<td>해당게시물</td><td></td>
-            </tr>
-            <tr>
-				<td>type</td><td><a href=""></a></td>
-            </tr>
-            <tr>
-				<td>신고이유</td><td><textarea rows="60" cols="10"></textarea></td>
-            </tr>
-            <tr>
-				<td>신고일시</td><td></td>
-            </tr>
+            
 			<tr>
 				<td><input type="submit" value="신고 등록" ></td>
-				<td><input type="button" value="취소" href=""></td>
+				<td><input type="button" value="취소" onclick=""></td>
 			</tr>
 	</table>
 
