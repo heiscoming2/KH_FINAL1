@@ -4,9 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 
 
-
-
-
       <table class="table table-bordered" style="width:100%;">
       
       <!-- 댓글 갯수 및 여백 시작 -->
@@ -16,7 +13,6 @@
           </td>
         </tr>
       <!-- 댓글 갯수 및 여백 종료 --> 
-		
 	
 	<c:choose>
 	 <c:when test="${empty replyListDto }">
@@ -33,8 +29,10 @@
           <td>
               <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
-                <!-- 현재 세션회원번호와, 댓글작성회원번호replyListDto.m_no 가 일치하는 경우에만 보여준다. -->
                 <div class="replyBtnWrap${replyListDto.re_no }" style="float:right;">
+                <!-- 나중에 세션처리 해야됨, 답글 : 모두 보여지게끔 처리하고, 인터셉터에서 세션이 없으면 튕기게한다.  -->
+                <!-- 수정/삭제는 현재 세션회원번호와, 댓글작성회원번호replyListDto.m_no 가 일치하는 경우에만 보여주면될듯 -->
+	              <input type="button" class="btn btn-primary rereplyinsertbtn" value="답글" onclick="rereplyInsertForm('${replyListDto.re_no}');">
                   <input type="button" class="btn btn-primary updateformbtn" value="수정" onclick="replyUpdateForm('${replyListDto.re_no}');">
                   <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply('${replyListDto.re_no}')">
                 </div>
@@ -65,17 +63,20 @@
                 <fmt:formatDate value="${replyListDto.re_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정됨)
                 </c:if>
                 </span>
-            </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
-            <div id="reply${replyListDto.re_no}">
-              ${replyListDto.re_content }
-            </div>
+            </div> 
+            <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
+            
+            <!-- 댓글 컨텐츠 영역 시작 -->
+            <div id="reply${replyListDto.re_no}">${replyListDto.re_content }</div>
+            <!-- 댓글 컨텐츠 영역 종료 -->
+            <!-- 대댓글 작성 시 여길로 썸머노트 입력폼 쏴준다 -->
+            <div id="rereply${replyListDto.re_no }"></div>
           </td>
         </tr>
         </c:forEach>
         </c:otherwise>
 	</c:choose>
 	<!-- 댓글 LIST 종료 -->	
-
 	
     <!-- 댓글 작성 영영 시작 -->
     <!-- 로그인 세션이 null이 아닌 경우 (있으면) 세션에서 회원 정보를 가져와 뿌려놓는다. -->
@@ -111,6 +112,4 @@
 	</c:choose>
 	<!-- 댓글 작성 영영 종료 -->
    </table>
-	
-	
 	

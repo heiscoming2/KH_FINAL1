@@ -108,9 +108,6 @@ public class StudyController {
 			likeDto.setBd_no(bd_no);
 			likeDto.setM_no(m_no);
 			int res = likeBiz.like_check(likeDto);
-			//res 0이면 추천을 안 한거
-			//res 1이면 추천을 한거
-			System.out.println("res:"+res);
 			model.addAttribute("likecheck",res);
 		}
 		
