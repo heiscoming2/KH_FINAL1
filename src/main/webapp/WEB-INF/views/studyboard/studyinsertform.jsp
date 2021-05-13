@@ -18,16 +18,17 @@
 <!-- 본문 시작 -->
     <div class="study_insertwrap mt-5">
       <form action="studyinsert.do" method="post">
+      <!-- 글 작성시 회원번호 히든에 담아둠 -->
+      <input type="hidden" name="m_no" value="${sessionScope.login.m_no }">
         <!-- 스터디 모집 작성 글 영역-->
         <h3>스터디 모집 글 작성</h3>
         <br>
               <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
-                <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+                <img src="${sessionScope.login.m_img_path}${sessionScope.login.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                   style="float: left;">
                 <div style="position: relative; top:5px;">
-                  <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
-                    style="font-size:15px;">
+                  <a class="d-flex align-items-center text-decoration-none" style="font-size:15px;">
                     ${sessionScope.login.m_nickname}
                   </a>
                 </div>

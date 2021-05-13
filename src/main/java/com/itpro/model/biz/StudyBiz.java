@@ -20,5 +20,6 @@ public interface StudyBiz {
 	public int getStudyListCnt();
 	public int getStudyListSearchCnt(StudySearchDto studySearchDto);
 	public List<StudyListDto> selectSearchList(Map<String, Object> studySearchMap);
+	public int updatestatus(int bd_no);
 	
 }

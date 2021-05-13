@@ -10,9 +10,30 @@ public class ReplyListDto {
 	private String re_content;
 	private String re_writerip;
 	private int m_no;
-	private int re_recommandcount;
+	private String m_img_path;
+	private String m_img;
+	private String m_nickname;
 	private int bd_no;
 	
+	
+	public String getM_img_path() {
+		return m_img_path;
+	}
+	public void setM_img_path(String m_img_path) {
+		this.m_img_path = m_img_path;
+	}
+	public String getM_img() {
+		return m_img;
+	}
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
+	public String getM_nickname() {
+		return m_nickname;
+	}
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
 	public int getRe_no() {
 		return re_no;
 	}
@@ -49,17 +70,14 @@ public class ReplyListDto {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	public int getRe_recommandcount() {
-		return re_recommandcount;
-	}
-	public void setRe_recommandcount(int re_recommandcount) {
-		this.re_recommandcount = re_recommandcount;
-	}
+
 	public int getBd_no() {
 		return bd_no;
 	}
 	public void setBd_no(int bd_no) {
 		this.bd_no = bd_no;
 	}
-
+	
+	
+	
 }

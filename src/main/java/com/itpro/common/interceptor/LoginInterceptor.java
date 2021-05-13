@@ -1,6 +1,7 @@
 package com.itpro.common.interceptor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+import org.springframework.ui.Model;
+>>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,10 +30,31 @@ public class LoginInterceptor implements HandlerInterceptor{
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+<<<<<<< HEAD
 		logger.info("[Interceptor] : preHandle");
 	//	logger.info("MemberBiz:", (memberBiz == null) ? "NULL" : memberBiz);
 		
 		setLoginDto(request);
+=======
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8"); 
+ 		logger.info("[Interceptor] : preHandle");
+		System.out.println(request.getServletContext().getRealPath("/"));
+		
+		if(request.getRequestURI().contains("/studyinsertform.do")) {
+			if(request.getSession().getAttribute("login")==null) {
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('로그인 후 작성 가능합니다.');");
+				out.print("location.href='login.do';");
+				out.print("</script>");
+				return false;
+			}
+		}
+		return true;
+		
+		
+>>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 		
 		System.out.println(request.getServletContext().getRealPath("/"));
 		
@@ -47,6 +73,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return true;
 		} 
 		
+<<<<<<< HEAD
 		if(request.getSession().getAttribute("login") == null) {//로그인 상태가 아니면 로그인 폼으로
 			response.sendRedirect("login.do");
 			return false;
@@ -71,6 +98,9 @@ public class LoginInterceptor implements HandlerInterceptor{
  		
 		session.setAttribute("login", loginDto);
  	}
+=======
+	};
+>>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 	
 	//view 단으로 forward 되기 전에 수행
 	@Override

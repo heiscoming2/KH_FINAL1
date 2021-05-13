@@ -12,49 +12,6 @@
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
 <title>IT PRO 상세보기</title>
 
-<!-- 
-<script>
-function like_func(){
-	  alert('like func start')
-	  
-	  
-	  var bd_no = $('#bd_no').val();
-	  var m_no = $('#m_no').val();
-	  console.log("bd_no, m_no : " + bd_no +","+ m_no);
-	  let likeno = {"bd_no":bd_no,"m_no":m_no};
-	  
-	  
-	  
-	$.ajax({
-		url: "like.do",
-	    type: "POST",
-	    cache: false,
-		data:JSON.stringify(likeno),	    
-	    dataType: "json",
-	    contentType:"application/json",
-	    success: function(data) {
-	      var msg = '';
-	      var like_img = '';
-	      msg += data.msg;
-	      alert(msg);
-	
-	      if(data.like_check == 0){
-	        like_img = "";
-	      } else {
-	        like_img = " ";
-	      }      
-	      $('#like_cnt').html(data.like_cnt);
-	      $('#like_check').html(data.like_check);
-	    },
-	    error: function(request, status, error){
-	      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    }
-	  });
-	}
-
-</script> -->
- <!-- https://shxrecord.tistory.com/6 -->
-
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -141,28 +98,33 @@ function like_func(){
 				
              <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
-				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func()" style="margin:0 auto;">
+				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no}, ${session.m_no })" style="margin:0 auto;">
 					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
-					
 				</div>
-				
             </div>
-            <!-- 좋아요 버튼 종료 -->`
+            <!-- 좋아요 버튼 종료 -->
+            
             <!-- 글 내용 종료 -->
           </td>
         </tr>
       </table>
       <!-- 프로젝트 디테일 영역 종료-->
 
-      <!-- 본문 / 댓글 중간 여백 영역 시작 -->
-      <div style="width:100%; display: block; height:80px;">
-            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;">
-      </div>
-      <!-- 본문 / 댓글 중간 여백 영역 종료 -->
-	
+	  <!-- 본문 / 댓글 중간 여백 영역 시작 -->
+	    <div style="width:100%; display: block; height:80px;">
+	        <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='studylist.do'">
+	    </div>
+	  <!-- 본문 / 댓글 중간 여백 영역 종료 -->
+		
+		 
+	   <!-- 댓글 영역 시작 -->
+	      <%@include file="../reply/_reply.jspf" %>
+	      <!-- 댓글 영역 끝 -->
+	  	</div>
+
 	  <!-- 댓글 영역 시작 -->
-	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
-	  <%@include file="../reply/_reply.jspf" %>	
+<%-- 	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
+	  <%@include file="../reply/_reply.jspf" %>	 --%>
       <!-- 댓글 영역 끝 -->
       
   </div>
@@ -179,8 +141,8 @@ function like_func(){
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 좋아요 js -->
-<script type="text/javascript" src="resources/js/likebutton.js?ver=1.1"></script>
+<script type="text/javascript" src="resources/js/likebutton.js?ver=1.3"></script>
 <!-- 댓글 js -->
-<script type="text/javascript" src="resources/js/reply.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/reply.js?ver=1.4"></script>
 </body>
 </html>

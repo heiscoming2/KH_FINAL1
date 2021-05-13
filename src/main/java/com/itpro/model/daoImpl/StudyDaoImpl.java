@@ -113,4 +113,16 @@ public class StudyDaoImpl implements StudyDao {
 		return studyList;
 	}
 
+	@Override
+	public int updatestatus(int bd_no) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"updatestatus",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("dao"+bd_no);
+		return res;
+	}
+
 }

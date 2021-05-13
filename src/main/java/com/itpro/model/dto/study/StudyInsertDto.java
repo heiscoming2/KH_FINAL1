@@ -16,7 +16,7 @@ public class StudyInsertDto {
 	private int bc_code;
 	private int m_no;
 	private int bd_replycount;
-	private char st_status;
+	private String st_status;
 	private String st_addr1;
 	private String st_addr2;
 	private String st_addrdetail;
@@ -89,10 +89,10 @@ public class StudyInsertDto {
 	public void setBd_replycount(int bd_replycount) {
 		this.bd_replycount = bd_replycount;
 	}
-	public char getSt_status() {
+	public String getSt_status() {
 		return st_status;
 	}
-	public void setSt_status(char st_status) {
+	public void setSt_status(String st_status) {
 		this.st_status = st_status;
 	}
 	public String getSt_addr1() {

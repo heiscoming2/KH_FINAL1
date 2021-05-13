@@ -93,7 +93,8 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	public String projectInsert(HttpServletRequest request, HttpServletResponse response, ProjectInsertDto projectDto) {
 		projectDto.setBd_writerip(new ClientInfo().getClientIp(request));
 		logger.info("PROJECT INSERT : "+projectDto.getBd_title());
-		
+		logger.info(projectDto.getPro_start().toString());
+		logger.info(projectDto.getPro_end().toString());
 		projectBiz.projectInsert(projectDto);
 		return "redirect:projectlist.do";
 	}	

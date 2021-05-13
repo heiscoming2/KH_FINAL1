@@ -31,10 +31,7 @@ public class AdminController {
 	@RequestMapping("/member_list.do")
 	public String member_list(Model model ) {
 		logger.info("select list");
-		List<ManageMemberDto> list=biz.selectList();
-		model.addAttribute("list",list);
-		
-		
+		model.addAttribute("list",biz.selectList());
 		return "admin/member_list";
 	}
 	
@@ -66,8 +63,12 @@ public class AdminController {
 		}else {
 			return "redirect:updateform.do?m_no="+dto.getM_no();
 		}
+<<<<<<< HEAD
 	}
 		
+=======
+	}	
+>>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 		
 	//// 기업회원 //////////////////////
 		@RequestMapping("/member_list_com.do")

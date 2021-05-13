@@ -6,6 +6,33 @@
     });
   });
   
+  /* 댓글 insert */
+  function replyInsert(bd_no,m_no) {
+	  
+	  let re_content = $('#replyArea').val(); 
+	  let replyInsertValue = {
+			  "bd_no":bd_no,
+			  "m_no":m_no,
+			  "re_content":re_content
+			  };
+	  $.ajax({
+		 type:'post',
+		 url:'replyinsert.do',
+		 data:JSON.stringify(replyInsertValue),
+		 contentType:"application/json",
+		 dataType:"json",
+		 success:function(bool) {
+			 if(bool) {
+				 location.reload();
+			 } else {
+				 alert('댓글 등록 실패');
+			 }
+		 },
+		 error:function() {
+			 alert('오류발생');
+		 }
+	  });
+  }
   
   /*댓글 삭제 버튼 클릭 confirm 후 처리*/
   function delConFirmReply(re_no) {
@@ -37,6 +64,7 @@
   	  let $div = $('.replyBtnWrap'+re_no);
   	  $div.children('.updateformbtn').remove();
   	  $div.children('.deleteformbtn').remove();
+  	  $div.children('.rereplyinsertbtn').remove();
 	  $div.append("<input type='button' class='btn btn-primary replyupdatebtn' style='margin-right:6px;' " +
 	  		      "value='수정완료' onclick='replyUpdate("+re_no+")'></input>");
 	  $div.append("<input type='button' class='btn btn-primary replyupdatecancelbtn' " +
@@ -51,9 +79,10 @@
 	  let $div = $('.replyBtnWrap'+re_no);
 	  $div.children('.replyupdatebtn').remove();
 	  $div.children('.replyupdatecancelbtn').remove();
+	  $div.append("<input type='button' class='btn btn-primary rereplyinsertbtn' style='margin-right:6px;' value='답글' onclick='rereplyInsertForm("+re_no+");'>");
 	  $div.append("<input type='button' class='btn btn-primary updateformbtn' style='margin-right:6px;' value='수정' " +
-	  		      "onclick='replyUpdateForm("+re_no+");'>")
-	  $div.append("<input type='button' class='btn btn-primary deleteformbtn' value='삭제' onclick='delConFirmReply()'>");
+	  		      "onclick='replyUpdateForm("+re_no+");'>");
+	  $div.append("<input type='button' class='btn btn-primary deleteformbtn' value='삭제' onclick='delConFirmReply("+re_no+")'>");
   }
   
   
@@ -74,10 +103,56 @@
 		 success:function(bool) {
 			 if(bool) {
 				 location.reload();
+			 } else {
+				 alert('댓글 수정 실패');
 			 }
 		 },
 		 error:function() {
-			 alert('댓글 수정 실패');
+			 alert('오류 발생');
 		 }
 	  });
   }
+  
+  
+  
+  //대댓글 INSERT FORM
+  function rereplyInsertForm(re_no) {
+	   
+	    $('#rereply'+re_no).summernote({
+	        placeholder: '댓글을 작성해주세요.',
+	        height:150
+	    });
+	    
+	    let $div = $('.replyBtnWrap'+re_no);
+	    $div.children('.rereplyinsertbtn').remove();
+	    $div.children('.updateformbtn').remove();
+	    $div.children('.deleteformbtn').remove();
+		$div.append("<input type='button' class='btn btn-primary rereplyinsertbtn' style='margin-right:6px;' value='답글 등록' " +
+	  		        "onclick='replyUpdateForm("+re_no+");'>");
+		$div.append("<input type='button' class='btn btn-primary rereplyinsertcancelbtn' " +
+	  		        "value='작성 취소' onclick='rereplyInsertCancel("+re_no+")'></input>");
+	  
+  }
+  
+  
+  //대댓글 INSERT FORM 취소
+  function rereplyInsertCancel(re_no) {
+	  
+	  $('#rereply'+re_no).summernote('destroy');
+	  let $div = $('#rereply'+re_no);
+	  $div.empty();
+	  
+	  //$div를 버튼 랩 div 로 교체함)
+	  $div = $('.replyBtnWrap'+re_no);
+	  $div.children('.rereplyinsertbtn').remove();
+	  $div.children('.rereplyinsertcancelbtn').remove();
+	  $div.append("<input type='button' class='btn btn-primary rereplyinsertbtn' style='margin-right:6px;' value='답글' onclick='rereplyInsertForm("+re_no+");'>");
+	  $div.append("<input type='button' class='btn btn-primary updateformbtn' style='margin-right:6px;' value='수정' " +
+	  		      "onclick='replyUpdateForm("+re_no+");'>");
+	  $div.append("<input type='button' class='btn btn-primary deleteformbtn' value='삭제' onclick='delConFirmReply("+re_no+")'>");	  
+  }
+  
+  
+  
+  
+  

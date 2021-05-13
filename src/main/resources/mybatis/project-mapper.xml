@@ -8,8 +8,8 @@
 	<insert id ="insert" parameterType="projectInsertDto" >
 		INSERT ALL
 		INTO BOARD VALUES(
-		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL, 0,
-		#{bd_writerip}, 0, #{m_no})
+		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL,
+		0, #{bd_writerip}, 1, #{m_no})
 		INTO PROJECT VALUES(
 		PROJECTSEQ.NEXTVAL,
 		#{pro_title}, #{pro_start}, #{pro_end}, #{pro_link}, #{pro_develop},
@@ -19,10 +19,6 @@
 	</insert>
 	
 
-	<!-- <delete id="deletelist">
-		DELETE FROM PROJECT
-	</delete> -->
-	
 	
 		<select id="selectList" resultType="ProjectListDto" parameterType="hashMap">		 
 		 SELECT * FROM
@@ -50,7 +46,7 @@
 	<select id="selectone" resultType="ProjectDetailDto" parameterType="int">
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		       B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
-		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND) BD_RECOMMANDCOUNT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
 		       P.PRO_TITLE, P.PRO_LINK, P.PRO_DEVELOP, 
 	           P.PRO_GOAL, P.PRO_FUNCTION, P.PRO_ERD
 		FROM BOARD B, PROJECT P, IT_MEMBER M

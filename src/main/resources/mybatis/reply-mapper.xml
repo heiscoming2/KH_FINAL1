@@ -6,17 +6,23 @@
 
 <mapper namespace="reply">
 
+	
 	<select id="selectList" parameterType="int" resultType="ReplyListDto">
-		SELECT * FROM REPLY WHERE BD_NO = #{bd_no}
+		SELECT R.RE_NO, R.RE_CREATEDDATE, R.RE_MODIFYDATE, R.RE_CONTENT, 
+		       R.RE_WRITERIP, R.M_NO, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, 
+		       B.BD_NO 
+		FROM REPLY R, IT_MEMBER M, BOARD B 
+		WHERE R.BD_NO=B.BD_NO 
+		AND R.M_NO=M.M_NO 
+		AND B.BD_NO = #{bd_no}
 	</select>
 	
 	<select id="replyCnt" parameterType="int" resultType="int">
 		SELECT COUNT(RE_NO) FROM REPLY WHERE BD_NO=#{bd_no}
 	</select>
 	
-	<!-- 나중에 1000 저거 session에 있는 회원값으로 수정될수있게 처리 m_no -->
 	<insert id="insert" parameterType="ReplyInsertDto">
-		INSERT INTO REPLY VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},1000,#{bd_no})
+		INSERT INTO REPLY VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no})
 	</insert>
 	
 	<update id="update" parameterType="ReplyUpdateDto">
