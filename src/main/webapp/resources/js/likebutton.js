@@ -1,4 +1,4 @@
-function like_func() {
+function like_func(bd_no, m_no) {
 
 	let bd_no = $('#bd_no').val(); //게시물 번호
 	let m_no = $('#m_no').val(); //회원 번호
