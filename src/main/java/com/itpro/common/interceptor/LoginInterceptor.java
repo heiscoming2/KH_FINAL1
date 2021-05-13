@@ -1,6 +1,7 @@
 package com.itpro.common.interceptor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +19,21 @@ public class LoginInterceptor implements HandlerInterceptor{
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-		logger.info("[Interceptor] : preHandle");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8"); 
+ 		logger.info("[Interceptor] : preHandle");
 		System.out.println(request.getServletContext().getRealPath("/"));
 		
-		
-
+		if(request.getRequestURI().contains("/studyinsertform.do")) {
+			if(request.getSession().getAttribute("login")==null) {
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('로그인 후 작성 가능합니다.');");
+				out.print("location.href='login.do';");
+				out.print("</script>");
+				return false;
+			}
+		}
 		return true;
 		
 		

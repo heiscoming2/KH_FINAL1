@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.BoardBiz;
+import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.LoginDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
@@ -48,6 +50,9 @@ public class StudyController {
 	
 	@Autowired
 	private BoardBiz boardBiz;
+	
+	@Autowired
+	private LikeBiz likeBiz;
 	
 	@RequestMapping(value="/studylist.do")
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
@@ -95,19 +100,25 @@ public class StudyController {
 	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
 		logger.info("STUDY DETAIL");
 		
+		//로그인 세션이있으면 회원번호를 꺼내서 해당 게시물 추천여부를 model에 담아준다. 
+		if(session.getAttribute("login")!=null) {
+			LoginDto loginDto = (LoginDto) session.getAttribute("login");
+			int m_no = loginDto.getM_no();
+			LikeDto likeDto = new LikeDto();
+			likeDto.setBd_no(bd_no);
+			likeDto.setM_no(m_no);
+			int res = likeBiz.like_check(likeDto);
+			//res 0이면 추천을 안 한거
+			//res 1이면 추천을 한거
+			System.out.println("res:"+res);
+			model.addAttribute("likecheck",res);
+		}
+		
 		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
 		if(new ViewCount().viewCount(request, response, bd_no)) {
 			boardBiz.updateviewcount(bd_no);
 		}
 		
-		//세션이있으면
-		if(session.getAttribute("login")!=null) {
-			LoginDto loginDto = (LoginDto) session.getAttribute("login");
-			int m_no = loginDto.getM_no();
-			
-			//m_no를 가지고 해당 회원정보를 select 해옴
-			//model에 담아줌
-		}
 		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);

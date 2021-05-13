@@ -19,7 +19,7 @@
 		0,
 		#{bd_writerip},
 		3,
-		1004) 
+		${m_no}) 
 		INTO STUDY 
 		VALUES (
 		BOARDSEQ.CURRVAL,
@@ -34,9 +34,10 @@
 	
 	
 	<select id="selectlist" parameterType="hashMap" resultType="StudyListDto">
-		SELECT * FROM
+		SELECT * 
+		FROM
        		  (SELECT ROWNUM RN, A.* 
-       		    FROM (
+       		   FROM (
                        SELECT B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
 		      		   S.ST_ADDR2, S.ST_NOWPERSON, S.ST_CLOSEPERSON,  B.BD_TITLE, 
            			   DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
@@ -58,7 +59,7 @@
 	<select id="selectone" resultType="StudyDetailDto" parameterType="int">
 		SELECT M.M_NO, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		       B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
-		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND) BD_RECOMMANDCOUNT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
 		       S.ST_STATUS, S.ST_ADDR1,S.ST_ADDR2, S.ST_ADDRDETAIL, 
 	           S.ST_NOWPERSON, S.ST_CLOSEPERSON
 		FROM BOARD B, STUDY S, IT_MEMBER M

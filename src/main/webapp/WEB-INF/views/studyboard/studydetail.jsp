@@ -59,21 +59,27 @@
             <!-- 글 번호 / 제목 영역 종료 --> 
 			<hr>
             <br>
-            <div style="float:right; position:relative; top:-105px;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="신고" class="btn btn-danger">
-              <!-- c태그에서 문자 char 를 비교하기 위해서는 비교대상에 .charAt(0) 을 붙여준다. -->
-              <!-- 안 그러면 문자열로 비교를 해서 오류가 난다. -->
-              <c:choose>
-              	<c:when test="${'Y'==dto.st_status}">
-	              <input type="button" value="모집완료" class="btn btn-primary" onclick="statusChangeConfirm('${dto.bd_no}');"> 
-              	</c:when>
-              	<c:otherwise>
-				  <input type="button" value="모집중" class="btn btn-primary" onclick="statusChangeConfirm('${dto.bd_no}');">               	
-              	</c:otherwise>
-              </c:choose>
-              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='studyupdateform.do?bd_no=${dto.bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
-            </div> <!-- 작성자에게만 보여질 버튼 종료 -->
+            
+            <!-- 작성자에게만 보여질 버튼 -->
+            <!-- 세션이 null이 아닌 경우, 세션값의 m_no와 글 작성자의 m_no가 같은 경우에만 보여준다. -->
+	        <div style="float:right; position:relative; top:-105px;"> 
+	             <input type="button" value="신고" class="btn btn-danger">
+	            	<c:if test="${sessionScope.login.m_no eq dto.m_no }">
+		              <!-- 모집상태가 y이면 모집완료를 아니면 모집중 버튼을 보이도록한다. (짧게 줄일 수 있을거 같은데.. 나중에 수정) -->
+		              <c:choose>
+		              	<c:when test="${'Y'==dto.st_status}">
+			              <input type="button" value="모집완료" class="btn btn-primary" onclick="statusChangeConfirm('${dto.bd_no}');"> 
+		              	</c:when>
+		              	<c:otherwise>
+						  <input type="button" value="모집중" class="btn btn-primary" onclick="statusChangeConfirm('${dto.bd_no}');">               	
+		              	</c:otherwise>
+		              </c:choose>
+		              <!-- 모집 버튼 종료 -->
+		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='studyupdateform.do?bd_no=${dto.bd_no}'">
+		              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
+		            </c:if>
+	        </div> 
+	            <!-- 작성자에게만 보여질 버튼 종료 -->
 			
             <!-- 필수 입력 정보 노출 시작 -->
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
@@ -90,10 +96,10 @@
               <br>
             </div>
             
-            <!-- 좋아요 버튼 시작 -->
+             <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
-				<div class="heart" onclick="likeclick()" style="margin:0 auto;">
-					<span style="color:orange; font-size:12px;"><b>추천수 ${dto.bd_recommandcount}</b></span>
+				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no},${dto.m_no })" style="margin:0 auto;">
+					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
 				</div>
             </div>
             <!-- 좋아요 버튼 종료 -->
