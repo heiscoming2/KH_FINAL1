@@ -30,13 +30,7 @@
 	<h1>신고 상세내용</h1>
 
 	<table border="1">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
-		<col width="">
+		
 		<body>
 			<tr>
 				<td>No</td><td>1</td>

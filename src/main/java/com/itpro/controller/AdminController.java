@@ -24,13 +24,15 @@ public class AdminController {
 	@Autowired
 	ReportBiz rebiz;
 	
+	////////////////////////////회원 관리 part/////////////////////////////////////////////////
 	
 	
+	////개인회원 + 관리자//////////////////////
 	@RequestMapping("/member_list.do")
-	public String member_list(Model model) {
+	public String member_list(Model model ) {
 		logger.info("select list");
-
-		model.addAttribute("list",biz.selectList());
+		List<ManageMemberDto> list=biz.selectList();
+		model.addAttribute("list",list);
 		
 		
 		return "admin/member_list";
@@ -54,17 +56,59 @@ public class AdminController {
 		return "admin/member_update";
 	}
 	
-	@RequestMapping(value="/MemberManage_update.do")
+	@RequestMapping(value="/member_update.do")
 	public String update(ManageMemberDto dto) {
-		logger.info("MemberManage_update");
+		logger.info("member_update");
 		int res = biz.update(dto);
 		
 		if(res>0) {
-			return "redirect:member_detail.do?myno="+dto.getM_no();
+			return "redirect:member_detail.do?m_no="+dto.getM_no();
 		}else {
-			return "redirect:updateform.do?myno="+dto.getM_no();
+			return "redirect:updateform.do?m_no="+dto.getM_no();
 		}
 		
+		
+	//// 기업회원 //////////////////////
+		@RequestMapping("/member_list_com.do")
+		public String member_list_com(Model model ) {
+			logger.info("select list");
+			List<ManageMemberDto> list=biz.selectList_com();
+			model.addAttribute("list",list);
+			
+			
+			return "admin/member_list_com";
+		}
+		
+		@RequestMapping(value="/member_detail_com.do")
+		public String member_detail_com(Model model, int m_no) {
+			
+			logger.info("member_detail");
+			
+			model.addAttribute("dto", biz.selectOne_com(m_no));
+			return "admin/member_detail_com";
+		}
+		
+		@RequestMapping(value="/member_updateform_com.do")
+		public String member_updateform_com(Model model, int m_no) {
+			
+			logger.info("member_updateform");
+			
+			model.addAttribute("dto", biz.selectOne_com(m_no));
+			return "admin/member_update_com";
+		}
+		
+		@RequestMapping(value="/member_update_com.do")
+		public String update_com(ManageMemberDto dto) {
+			logger.info("member_update_com");
+			int res = biz.update_com(dto);
+			
+			if(res>0) {
+				return "redirect:member_detail_com.do?m_no="+dto.getM_no();
+			}else {
+				return "redirect:updateform_com.do?m_no="+dto.getM_no();
+			}
+		
+		////////////////////////////신고 part//////////////////////////////////////
 	}
 	
 	//insert 입력페이지로 이동
