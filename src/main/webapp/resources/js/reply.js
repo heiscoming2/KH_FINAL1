@@ -6,6 +6,33 @@
     });
   });
   
+  /* 댓글 insert */
+  function replyInsert(bd_no,m_no) {
+	  
+	  let re_content = $('#replyArea').val(); 
+	  let replyInsertValue = {
+			  "bd_no":bd_no,
+			  "m_no":m_no,
+			  "re_content":re_content
+			  };
+	  $.ajax({
+		 type:'post',
+		 url:'replyinsert.do',
+		 data:JSON.stringify(replyInsertValue),
+		 contentType:"application/json",
+		 dataType:"json",
+		 success:function(bool) {
+			 if(bool) {
+				 location.reload();
+			 } else {
+				 alert('댓글 등록 실패');ㅣ
+			 }
+		 },
+		 error:function() {
+			 alert('오류발생');
+		 }
+	  });
+  }
   
   /*댓글 삭제 버튼 클릭 confirm 후 처리*/
   function delConFirmReply(re_no) {
@@ -74,10 +101,12 @@
 		 success:function(bool) {
 			 if(bool) {
 				 location.reload();
+			 } else {
+				 alert('댓글 수정 실패');
 			 }
 		 },
 		 error:function() {
-			 alert('댓글 수정 실패');
+			 alert('오류 발생');
 		 }
 	  });
   }

@@ -100,11 +100,10 @@
             <div class="text-center">
 				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no}, ${dto.m_no })" style="margin:0 auto;">
 					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
-					
 				</div>
-				
             </div>
-            <!-- 좋아요 버튼 종료 -->`
+            <!-- 좋아요 버튼 종료 -->
+            
             <!-- 글 내용 종료 -->
           </td>
         </tr>

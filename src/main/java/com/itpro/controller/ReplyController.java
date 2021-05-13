@@ -30,29 +30,18 @@ public class ReplyController {
 	private ReplyBiz replyBiz;
 	
 	@RequestMapping(value="/replyinsert.do", method=RequestMethod.POST)
-	public String replyInsert(HttpServletRequest request, Model model, ReplyInsertDto replyInsertDto) {
-		
+	@ResponseBody
+	public Boolean replyInsert(HttpServletRequest request, Model model, @RequestBody ReplyInsertDto replyInsertDto) {
 		logger.info("REPLY INSERT");
 		//요청한 클라이언트의 ip주소를 얻어와 dto에 담음
 		replyInsertDto.setRe_writerip(new ClientInfo().getClientIp(request));
 		int replyInsertRes = replyBiz.insert(replyInsertDto);
-		
-		//되돌아갈 게시글 번호를 얻어옴 (댓글 작성한 게시글 번호)
-		int bd_no = replyInsertDto.getBd_no();
-		
-		if(replyInsertRes>0) {
-			return "redirect:studydetail.do?bd_no="+bd_no;
-		}
-		//실패시 구별을 위해 일단 list로 돌아가게끔 해놓자
-		//나중에 공통으로 사용할 jsResponse를 생성해놓고
-		//실패시 alert 출력 후 기존글로 이동할수있도록 처리
-		return "redirect:studylist.do";
+		return replyInsertRes>0? true:false;
 	}
 	
 	@RequestMapping(value="/replyupdate.do" , method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean replyUpdate(@RequestBody ReplyUpdateDto replyUpdateDto) {
-		
 		logger.info("REPLY UPDATE");
 		boolean updateCheck = false;
 		int replyUpdateRes = replyBiz.update(replyUpdateDto);
@@ -60,13 +49,11 @@ public class ReplyController {
 			updateCheck = true;
 		}
 		return updateCheck;
-		
 	}
 	
 	@RequestMapping(value="/replydelete.do" , method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean replyDelete(@RequestParam(value="re_no") int re_no) {
-		
 		System.out.println("re_no "+re_no);
 		logger.info("REPLY DELETE");
 		boolean deleteCheck = false;

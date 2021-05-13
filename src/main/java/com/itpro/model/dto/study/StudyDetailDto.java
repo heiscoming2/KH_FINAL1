@@ -1,12 +1,14 @@
 package com.itpro.model.dto.study;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class StudyDetailDto {
 	
+	private int m_no;
 	private String m_img_path;
 	private String m_img;
 	private String m_nickname;
+	private String bd_writerip;
 	private Date bd_createddate;
 	private Date bd_modifydate;
 	private int bd_no;
@@ -17,8 +19,30 @@ public class StudyDetailDto {
 	private String st_addr2;
 	private String st_addrdetail;
 	private int st_nowperson;
+	private String st_status;
 	private int st_closeperson;
 	
+	
+	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+
+	public String getSt_status() {
+		return st_status;
+	}
+	public void setSt_status(String st_status) {
+		this.st_status = st_status;
+	}
+	public String getBd_writerip() {
+		return bd_writerip;
+	}
+	public void setBd_writerip(String bd_writerip) {
+		this.bd_writerip = bd_writerip;
+	}
 	public String getM_img_path() {
 		return m_img_path;
 	}
