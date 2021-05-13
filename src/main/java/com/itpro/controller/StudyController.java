@@ -15,8 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.ReplyBiz;
@@ -52,7 +54,6 @@ public class StudyController {
 		logger.info("STUDY LIST");
 		if(session.getAttribute("login")!=null) {
 			LoginDto login = (LoginDto) session.getAttribute("login");
-			logger.info(Integer.toString(login.getM_no()));
 		}
 		
 		//페이징을 위해 총 게시물수 count
@@ -91,7 +92,7 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydetail.do")
-	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no) {
+	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
 		logger.info("STUDY DETAIL");
 		
 		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
@@ -99,9 +100,18 @@ public class StudyController {
 			boardBiz.updateviewcount(bd_no);
 		}
 		
+		//세션이있으면
+		if(session.getAttribute("login")!=null) {
+			LoginDto loginDto = (LoginDto) session.getAttribute("login");
+			int m_no = loginDto.getM_no();
+			
+			//m_no를 가지고 해당 회원정보를 select 해옴
+			//model에 담아줌
+		}
+		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
-		model.addAttribute("studyDetailDto",studyDetailDto);
+		model.addAttribute("dto",studyDetailDto);
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
@@ -187,6 +197,20 @@ public class StudyController {
 		
 		return "studyboard/studylist";
 	}	
+	
+	@RequestMapping(value="/studystatchange.do")
+	@ResponseBody
+	public boolean studyStatchange(@RequestBody Map<String,Object> map) {
+		System.out.println("studychange");
+		int bd_no = Integer.parseInt(map.get("bd_no").toString());
+		System.out.println(bd_no);
+		int res = studyBiz.updatestatus(bd_no);
+		System.out.println(res);
+		System.out.println("test");
+		return res>0?true:false;
+	}
+	
+	
 	
 	
 }

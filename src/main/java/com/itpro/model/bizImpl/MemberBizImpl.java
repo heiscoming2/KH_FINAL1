@@ -36,10 +36,17 @@ public class MemberBizImpl implements MemberBiz{
 		return dao.RegMember(regDto);
 	}
 
+	//아이디 중복확인
 	@Override
 	public int idCheck(String m_id) {
 		
 		return dao.idCheck(m_id);
+	}
+
+	@Override
+	public int emailChk(String m_email) {
+		
+		return dao.emailCheck(m_email);
 	}
 
 	

@@ -7,23 +7,35 @@
  
  	<!-- 회원로그인 -->
  	<select id="login" parameterType="loginDto" resultType="loginDto">
- 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL
+ 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_AUTH, M_IMG_PATH, M_IMG
  		FROM IT_MEMBER
  		WHERE M_ID = #{m_id}
  		AND M_PW = #{m_pw}
  	</select>
  	
  	<!-- 회원가입 -->
- 	<insert id="RegMember" parameterType="RegDto">
+ 	<insert id="RegMember" parameterType="regDto">
  		INSERT INTO IT_MEMBER
- 		VALUES(MEMBERNO_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_nickname}, #{m_phone}, #{m_email}, 'N', '활동', 'N', '개인회원', 'N','', '', SYSDATE,'','','','')
+ 		VALUES(MEMBERNO_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_nickname}, #{m_phone}, #{m_email}, 'N', '활동', #{m_mail_cert}, '개인회원', 'N','', '', SYSDATE,'','','','')
  	</insert> 	
  	
  	<!-- 아이디 체크 -->
- 	<select id="idCheck" parameterType="String" resultType="int">
+ 	<select id="idCheck" resultType="int">
  		SELECT COUNT(*)
  		FROM IT_MEMBER 
  		WHERE M_ID = #{m_id}
  	</select>
  	
+ 	<!-- 아이디 체크 -->
+ 	<select id="emailCheck" resultType="int">
+ 		SELECT COUNT(*)
+ 		FROM IT_MEMBER 
+ 		WHERE M_EMAIL = #{m_email}
+ 	</select>
+ 	
+ 	<!-- 정보수정
+ 	<update id="">
+ 	
+ 	</update>
+ 	-->
  </mapper>

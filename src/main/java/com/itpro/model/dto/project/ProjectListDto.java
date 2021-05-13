@@ -1,52 +1,39 @@
 package com.itpro.model.dto.project;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ProjectListDto {
 
-	
-	//게시판
-	private int bd_no; //게시글 번호
-	private String bd_title; //제목
-	private Date bd_createddate; //작성일
-	private String writerip; //작성시 ip
+	// 게시판
+	private int bd_no; // 게시글 번호
+	private String bd_title; // 제목
+	private Date bd_createddate; // 작성일
+	private String writerip; // 작성시 ip
 	private int bd_replycount; // 댓글수
 	private int bd_viewcount; // 조회수
-	private int bd_recommandcount; //추천수
-	
-	//프로젝트 dto
-	private int pro_no; //프로젝트 번호
-	private String pro_title; //프로젝트 제목
-	
-	//회원
-	private String m_img_path; //프로필 이미지 경로
-	private String m_img; //프로필 이미지
-	private String m_nickname; //닉네임
-	
+	private int bd_recommandcount; // 추천수
+
+	// 프로젝트 dto
+	private int pro_no; // 프로젝트 번호
+	private String pro_title; // 프로젝트 제목
+
+	// 회원
+	private String m_img_path; // 프로필 이미지 경로
+	private String m_img; // 프로필 이미지
+	private String m_nickname; // 닉네임
+
 	public ProjectListDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	
-	
 	public Date getBd_createddate() {
 		return bd_createddate;
 	}
 
-
-
-
-
 	public void setBd_createddate(Date bd_createddate) {
 		this.bd_createddate = bd_createddate;
 	}
-
-
-
-
 
 	public int getBd_no() {
 		return bd_no;
@@ -63,7 +50,6 @@ public class ProjectListDto {
 	public void setBd_title(String bd_title) {
 		this.bd_title = bd_title;
 	}
-
 
 	public String getWriterip() {
 		return writerip;
@@ -113,58 +99,28 @@ public class ProjectListDto {
 		this.pro_title = pro_title;
 	}
 
-
-
-
-
 	public String getM_img_path() {
 		return m_img_path;
 	}
-
-
-
-
 
 	public void setM_img_path(String m_img_path) {
 		this.m_img_path = m_img_path;
 	}
 
-
-
-
-
 	public String getM_img() {
 		return m_img;
 	}
-
-
-
-
 
 	public void setM_img(String m_img) {
 		this.m_img = m_img;
 	}
 
-
-
-
-
 	public String getM_nickname() {
 		return m_nickname;
 	}
 
-
-
-
-
 	public void setM_nickname(String m_nickname) {
 		this.m_nickname = m_nickname;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +22,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 		System.out.println(request.getServletContext().getRealPath("/"));
 		
 		
-		
+
 		return true;
+		
+		
+		
+		
 	};
 	
 	//view 단으로 forward 되기 전에 수행

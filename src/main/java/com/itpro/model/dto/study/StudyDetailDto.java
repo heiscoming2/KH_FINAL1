@@ -1,6 +1,6 @@
 package com.itpro.model.dto.study;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class StudyDetailDto {
 	
@@ -19,6 +19,7 @@ public class StudyDetailDto {
 	private String st_addr2;
 	private String st_addrdetail;
 	private int st_nowperson;
+	private String st_status;
 	private int st_closeperson;
 	
 	
@@ -29,8 +30,13 @@ public class StudyDetailDto {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	
 
+	public String getSt_status() {
+		return st_status;
+	}
+	public void setSt_status(String st_status) {
+		this.st_status = st_status;
+	}
 	public String getBd_writerip() {
 		return bd_writerip;
 	}

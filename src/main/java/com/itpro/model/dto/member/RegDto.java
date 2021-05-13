@@ -11,7 +11,7 @@ public class RegDto {//일반회원 회원가입
 	private String m_email;//이메일
 	private String m_used;//탈퇴여부
 	private String m_act;//활동여부
-	private String m_mail_cert;
+	private String m_mail_cert;//메일인증
 	private String m_type;//회원타입
 	private String m_auth;//권한
 	private Date m_regdate;//등록일

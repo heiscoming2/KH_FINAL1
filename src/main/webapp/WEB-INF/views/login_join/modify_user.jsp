@@ -23,8 +23,9 @@
                 </p>
             </div>
             <div class="col-md-4 mt-5">
+            
                 <form class="form-inline" action="mypage_user.do" method="post">
-
+                	<input type="hidden" name="m_no" value="${login.m_no}">
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-8">

@@ -11,6 +11,8 @@
 	display:none;
 }
 
+/*****************************/
+
 /*이메일이 존재하지 않는 경우(중복X)*/
 .email_input_re1{
 	color:green;
