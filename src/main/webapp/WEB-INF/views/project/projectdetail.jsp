@@ -12,49 +12,6 @@
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
 <title>IT PRO 상세보기</title>
 
-<!-- 
-<script>
-function like_func(){
-	  alert('like func start')
-	  
-	  
-	  var bd_no = $('#bd_no').val();
-	  var m_no = $('#m_no').val();
-	  console.log("bd_no, m_no : " + bd_no +","+ m_no);
-	  let likeno = {"bd_no":bd_no,"m_no":m_no};
-	  
-	  
-	  
-	$.ajax({
-		url: "like.do",
-	    type: "POST",
-	    cache: false,
-		data:JSON.stringify(likeno),	    
-	    dataType: "json",
-	    contentType:"application/json",
-	    success: function(data) {
-	      var msg = '';
-	      var like_img = '';
-	      msg += data.msg;
-	      alert(msg);
-	
-	      if(data.like_check == 0){
-	        like_img = "";
-	      } else {
-	        like_img = " ";
-	      }      
-	      $('#like_cnt').html(data.like_cnt);
-	      $('#like_check').html(data.like_check);
-	    },
-	    error: function(request, status, error){
-	      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    }
-	  });
-	}
-
-</script> -->
- <!-- https://shxrecord.tistory.com/6 -->
-
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -141,7 +98,7 @@ function like_func(){
 				
              <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
-				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func()" style="margin:0 auto;">
+				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no}, ${dto.m_no })" style="margin:0 auto;">
 					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
 				</div>
             </div>
