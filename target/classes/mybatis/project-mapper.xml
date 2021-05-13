@@ -8,8 +8,8 @@
 	<insert id ="insert" parameterType="projectInsertDto" >
 		INSERT ALL
 		INTO BOARD VALUES(
-		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL, 0,
-		#{bd_writerip}, 0, #{m_no})
+		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL,
+		0, #{bd_writerip}, 1, #{m_no})
 		INTO PROJECT VALUES(
 		PROJECTSEQ.NEXTVAL,
 		#{pro_title}, #{pro_start}, #{pro_end}, #{pro_link}, #{pro_develop},
@@ -19,10 +19,6 @@
 	</insert>
 	
 
-	<!-- <delete id="deletelist">
-		DELETE FROM PROJECT
-	</delete> -->
-	
 	
 		<select id="selectList" resultType="ProjectListDto" parameterType="hashMap">		 
 		 SELECT * FROM
