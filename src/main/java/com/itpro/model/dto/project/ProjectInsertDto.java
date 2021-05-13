@@ -13,8 +13,9 @@ public class ProjectInsertDto {
 	private String bd_writerip; // 작성시 ip
 	private int bc_code; // 게시판 코드
 	private int bd_replycount; // 댓글수
-	private int bd_viewcount; // 조회수
-	private int bd_recommandcount; // 추천수
+	private int bd_viewcount; // 조회수 
+	private int bd_recommandcount; // 추천수 - 없
+	private String m_no; // 작성자 id
 
 	// 프로젝트 dto
 	private String pro_title; // 프로젝트 제목
@@ -26,7 +27,7 @@ public class ProjectInsertDto {
 	private String pro_function; // 구현 기능
 	private String pro_erd; // erd 링크
 
-	private String m_no; // 작성자 id
+	
 
 	public ProjectInsertDto() {
 		super();
