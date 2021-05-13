@@ -19,4 +19,7 @@ public interface MemberDao {
 	
 	//중복 아이디체크
 	public int idCheck(String m_id);
+	
+	//중복 이메일 체크
+	public int emailCheck(String m_email);
 }

@@ -18,4 +18,10 @@ public interface MemberBiz {
 	//중복아이디 체크
 	public int idCheck(String m_id);
 	
+	//중복 이메일 체크
+	public int emailChk(String m_email);
+	
+	
+	
+	
 }

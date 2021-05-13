@@ -124,17 +124,44 @@ public class MemberController {
 	@RequestMapping(value = "/memberIdChk.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberIdChkPOST(String m_id) {
+		logger.info("[memberIdChk]");
 
-		int result = biz.idCheck(m_id);
-		logger.info("결과값:" + result);
+		int res = biz.idCheck(m_id);
 
-		if (result != 0) {
-			return "fail";// 중복 아이디 존재
+		logger.info("결과값 = " + res);
+
+		if (res != 0) {
+
+			return "fail"; // 중복 아이디가 존재
 
 		} else {
-			return "success";// 중복 아이디X
+
+			return "success"; // 중복 아이디 x
+
 		}
 	}
+	
+	// 이메일 중복 검사
+		@RequestMapping(value = "/memberEmailChk.do", method = RequestMethod.POST)
+		@ResponseBody
+		public String memberEmailChkPOST(String m_email) {
+			logger.info("[memberEmailChk]");
+
+			int res = biz.emailChk(m_email);
+
+			logger.info("결과값 = " + res);
+
+			if (res != 0) {
+
+				return "fail"; // 중복 이메일 존재
+
+			} else {
+
+				return "success"; // 중복 이메일 존재 x
+
+			}
+		}
+	
 
 	// 이메일 인증
 	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
@@ -155,7 +182,7 @@ public class MemberController {
 		String toMail = email; // 입력한 이메일(수신)
 		String title = "회원가입 인증 메일";// 제목
 		String content = // 내용
-				"홈페이지 방문을 감사드립니다. <br><br> 인증번호는 " + checkNum + "입니다.<br> 해당 인증번호를 인증번호 확인란에 입력해주세요";
+				"홈페이지 방문을 감사드립니다. <br><br> 인증번호는 " + checkNum + " 입니다.<br> 해당 인증번호를 인증번호 확인란에 입력해주세요";
 
 		try {
 
@@ -170,8 +197,8 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String num = Integer.toString(checkNum);//int타입의 생성한 인증번호를 String타입으로 변환해 반환
+
+		String num = Integer.toString(checkNum);// int타입의 생성한 인증번호를 String타입으로 변환해 반환
 
 		return num;
 	}
