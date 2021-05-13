@@ -110,15 +110,21 @@
       </table>
       <!-- 프로젝트 디테일 영역 종료-->
 
-      <!-- 본문 / 댓글 중간 여백 영역 시작 -->
-      <div style="width:100%; display: block; height:80px;">
-            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;">
-      </div>
-      <!-- 본문 / 댓글 중간 여백 영역 종료 -->
-	
+	  <!-- 본문 / 댓글 중간 여백 영역 시작 -->
+	    <div style="width:100%; display: block; height:80px;">
+	        <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='studylist.do'">
+	    </div>
+	  <!-- 본문 / 댓글 중간 여백 영역 종료 -->
+		
+		 
+	   <!-- 댓글 영역 시작 -->
+	      <%@include file="../reply/_reply.jspf" %>
+	      <!-- 댓글 영역 끝 -->
+	  	</div>
+
 	  <!-- 댓글 영역 시작 -->
-	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
-	  <%@include file="../reply/_reply.jspf" %>	
+<%-- 	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
+	  <%@include file="../reply/_reply.jspf" %>	 --%>
       <!-- 댓글 영역 끝 -->
       
   </div>
@@ -135,8 +141,8 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 좋아요 js -->
-<script type="text/javascript" src="resources/js/likebutton.js?ver=1.1"></script>
+<script type="text/javascript" src="resources/js/likebutton.js?ver=1.3"></script>
 <!-- 댓글 js -->
-<script type="text/javascript" src="resources/js/reply.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/reply.js?ver=1.4"></script>
 </body>
 </html>
