@@ -52,6 +52,24 @@ public class ProjectBizImpl implements ProjectBiz{
 		return projectDao.getProjectListCnt();
 	}
 
+	@Override
+	public void like_cnt_up(int bd_no) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void like_cnt_down(int bd_no) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ProjectDetailDto read(int bd_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 	

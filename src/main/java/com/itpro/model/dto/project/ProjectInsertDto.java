@@ -1,6 +1,6 @@
 package com.itpro.model.dto.project;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ProjectInsertDto {
 
