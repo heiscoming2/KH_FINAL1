@@ -21,31 +21,52 @@
 		<result property="m_admin_cert" column="M_ADMIN_CERT"/>
 	</resultMap>
 
-	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
 	
+	<!-- 개인회원 + 관리자 -->
 	
-	
-	<select id="selectList" resultMap="ManageMemberMap">
-        SELECT *
+	<select id="selectList" resultType="ManageMemberDto">
+        SELECT M_NO, M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH
         FROM IT_MEMBER
+        WHERE M_TYPE='개인회원'
+        OR M_TYPE='관리자'
         ORDER BY M_NO DESC
 	</select>
 	
 	<select id="selectOne" resultType="ManageMemberDto" parameterType="int">
 		SELECT *
-		FROM IT_MEMBER A, BIZ_MEMBER B
-		WHERE A.M_NO=B.M_NO(+) 
-		AND A.M_NO=#{m_no}
+		FROM IT_MEMBER 
+		WHERE M_NO=#{m_no}
 	</select>
-	
-	
 	
 	<update id="update" parameterType="ManageMemberDto">
 		UPDATE IT_MEMBER
-		SET M_ACT=#{m_act}, M_AUTH=#{m_auth}, M_ADMIN_CERT=#{m_admin_cert}
+		SET M_ACT = #{m_act}, M_USED = #{m_used}, M_AUTH = #{m_auth}
 		WHERE M_NO=#{m_no}
 	</update>
 	
 	
+	<!-- 기업회원 -->
+	
+	<select id="selectList_com" resultType="ManageMemberDto">
+        SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, B.M_REGNO, B.M_ADMIN_CERT
+        FROM IT_MEMBER A, BIZ_MEMBER B
+        WHERE A.M_NO = B.M_NO(+) 
+        AND M_TYPE='기업회원'
+        ORDER BY M_NO DESC
+	</select>
+	
+	<select id="selectOne_com" resultType="ManageMemberDto" parameterType="int">
+		SELECT *
+		FROM IT_MEMBER A, BIZ_MEMBER B 
+		WHERE A.M_NO = B.M_NO(+)
+		AND M_NO=#{m_no}
+		ORDER BY M_NO DESC
+	</select>
+	
+	<update id="update_com" parameterType="ManageMemberDto">
+		UPDATE IT_MEMBER A, BIZ_MEMBER B
+		SET A.M_ACT = #{m_act}, A.M_USED = #{m_used}, A.M_AUTH = #{m_auth}, B.M_ADMIN_CERT = #{m_admin_cert}
+		WHERE M_NO=#{m_no}
+	</update>
 	
 </mapper>

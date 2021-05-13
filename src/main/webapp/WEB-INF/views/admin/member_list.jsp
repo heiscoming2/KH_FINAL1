@@ -33,7 +33,15 @@
 		});
 	});
 </script>
+<style type="text/css">
+.container{
+	display: inline-flex;
 
+}
+
+
+
+</style>
 
 
 
@@ -44,7 +52,7 @@
 	<!-- HEADER 종료 -->
 	
 	<!-- ADMIN SIDEBAR 시작 -->
-	<%@include file="../inc/_sidebar_admin.jspf"%>
+	<div class="container"><%@include file="../inc/_sidebar_admin.jspf"%></div>
 	<!-- SIDEBAR 종료 -->
 	
 
@@ -52,6 +60,7 @@
 
 
 	<!-- 회원명단 -->
+	<div class="container">
 	<h1>회원관리</h1>
 	<form action="#">
 			<div align="right">
@@ -70,7 +79,7 @@
 				<th>회원등록일</th>
 				<th>활동여부</th>
 				<th>탈퇴여부</th>
-				<th>관리자승인</th>
+				<th>관리자권한</th>
 			</tr>
 
 				<c:choose>
@@ -105,9 +114,11 @@
 
 	<!-- 본문 종료 -->
 	</form>
+	</div>
 
-		<!-- FOOTER 시작 -->
-	<%@include file="../inc/_footer.jspf" %>  
+	<!-- FOOTER 시작 -->
+	<%@include file="../inc/_footer.jspf" %>
+	
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="../inc/_foot.jspf" %>

@@ -1,5 +1,7 @@
 package com.itpro.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itpro.model.biz.ManageMemberBiz;
+import com.itpro.model.biz.ReportBiz;
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.report.ReportDto;
 
 @Controller
 public class AdminController {
@@ -17,14 +21,18 @@ public class AdminController {
 	@Autowired
 	ManageMemberBiz biz;
 	
+	@Autowired
+	ReportBiz rebiz;
+	
+	////////////////////////////회원 관리 part/////////////////////////////////////////////////
 	
 	
-	//회원관리 컨트롤러
+	////개인회원 + 관리자//////////////////////
 	@RequestMapping("/member_list.do")
-	public String member_list(Model model) {
+	public String member_list(Model model ) {
 		logger.info("select list");
-
-		model.addAttribute("list",biz.selectList());
+		List<ManageMemberDto> list=biz.selectList();
+		model.addAttribute("list",list);
 		
 		
 		return "admin/member_list";
@@ -48,45 +56,100 @@ public class AdminController {
 		return "admin/member_update";
 	}
 	
-	@RequestMapping(value="/MemberManage_update.do")
+	@RequestMapping(value="/member_update.do")
 	public String update(ManageMemberDto dto) {
-		logger.info("MemberManage_update");
+		logger.info("member_update");
 		int res = biz.update(dto);
 		
 		if(res>0) {
-			return "redirect:admin/member_detail.do?myno="+dto.getM_no();
+			return "redirect:member_detail.do?m_no="+dto.getM_no();
 		}else {
-			return "redirect:admin/updateform.do?myno="+dto.getM_no();
+			return "redirect:updateform.do?m_no="+dto.getM_no();
+		}
+		
+		
+	//// 기업회원 //////////////////////
+		@RequestMapping("/member_list_com.do")
+		public String member_list_com(Model model ) {
+			logger.info("select list");
+			List<ManageMemberDto> list=biz.selectList_com();
+			model.addAttribute("list",list);
+			
+			
+			return "admin/member_list_com";
+		}
+		
+		@RequestMapping(value="/member_detail_com.do")
+		public String member_detail_com(Model model, int m_no) {
+			
+			logger.info("member_detail");
+			
+			model.addAttribute("dto", biz.selectOne_com(m_no));
+			return "admin/member_detail_com";
+		}
+		
+		@RequestMapping(value="/member_updateform_com.do")
+		public String member_updateform_com(Model model, int m_no) {
+			
+			logger.info("member_updateform");
+			
+			model.addAttribute("dto", biz.selectOne_com(m_no));
+			return "admin/member_update_com";
+		}
+		
+		@RequestMapping(value="/member_update_com.do")
+		public String update_com(ManageMemberDto dto) {
+			logger.info("member_update_com");
+			int res = biz.update_com(dto);
+			
+			if(res>0) {
+				return "redirect:member_detail_com.do?m_no="+dto.getM_no();
+			}else {
+				return "redirect:updateform_com.do?m_no="+dto.getM_no();
+			}
+		
+		////////////////////////////신고 part//////////////////////////////////////
+	}
+	
+	//insert 입력페이지로 이동
+	@RequestMapping(value="/report_insertform.do")
+	public String insertform(Model model, int report_no) {
+		logger.info("report_insertform");
+		
+		model.addAttribute("dto", rebiz.selectOne(report_no));
+		return "report_insert";
+	}
+
+	
+	//insert에서 값이 넘어옴.
+	@RequestMapping(value="/report_insert.do")
+	public String insertRes(ReportDto dto) {
+		logger.info("report_insert");
+		
+		int res= rebiz.insert(dto);
+		
+		if(res>0) {
+			return "redirect:report_list.do";
+		}else {
+			return "redirect:report_insertform.do";
 		}
 		
 	}
-	
-	/*
-	@RequestMapping(value="/join_biz.do")
-	public String joinBiz() {
-		logger.info("JOIN BIZ");
+	//report list
+	@RequestMapping(value="/report_list.do")
+	public String report_list(Model model) {
+		logger.info("report_list");
+		List<ReportDto> list = rebiz.selectList();
+		model.addAttribute("list",list);
+		System.out.println("list : " +  list);
 		
-		return "login_join/join_biz";
+		System.out.println(""
+				+ "");
+		return "admin/report_list";
 	}
 	
-	
-	//개인회원 마이페이지 관련 컨트롤러
-	@RequestMapping(value="/mypage_user.do")
-	public String mypage() {
-		logger.info("MYPAGE USER");
-		
-		return "login_join/mypage_user";
-	}
-	
-	//개인 회원 정보수정 컨트롤러
-	@RequestMapping(value="/modify_user.do")
-	public String modify() {
-		logger.info("MYPAGE USER");
-		
-		return "login_join/modify_user";
-	}
-	
-	//이력서 관련 컨트롤러
+	/*	
+	//�씠�젰�꽌 愿��젴 而⑦듃濡ㅻ윭
 	@RequestMapping(value="/resume_list.do")
 	public String resumeList() {
 		logger.info("RESUEM LIST");
@@ -116,7 +179,7 @@ public class AdminController {
 	}
 	
 	
-	//쪽지 관련 컨트롤러
+	//履쎌� 愿��젴 而⑦듃濡ㅻ윭
 	@RequestMapping(value="/note_sendlist.do")
 	public String noteSendList() {
 		logger.info("NOTE SEND LIST");

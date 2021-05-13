@@ -46,6 +46,7 @@
 					<c:otherwise>
 
                   	<c:forEach var="projectDto" items="${projectList }">
+							<tr>
 							<!-- 글 번호 시작 --> 
 							<td>${projectDto.bd_no} </td>
 							<td><a href= "projectdetail.do?bd_no=${projectDto.bd_no}">${projectDto.bd_title}</a></td>
@@ -67,6 +68,7 @@
 									<span class="project_regdate"> <fmt:formatDate value="${projectDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
+							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -89,7 +91,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js"></script>
+<script type=text/javascript src="resources/js/projectlist.js"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
 </body>
 </html>

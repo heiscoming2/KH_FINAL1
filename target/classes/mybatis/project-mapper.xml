@@ -24,22 +24,26 @@
 	</delete> -->
 	
 	
-		<select id="selectList" resultType="ProjectListDto" parameterType="hashMap">
-        SELECT * FROM 
-               (SELECT ROWNUM RN, B.BD_NO, P.PRO_TITLE, P.PRO_LINK, P.PRO_DEVELOP, 
-	           P.PRO_GOAL, P.PRO_FUNCTION, P.PRO_ERD, 
-		       B.BD_TITLE, 
-               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
-               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
-		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
-               FROM BOARD B, PROJECT P, IT_MEMBER M , 
-                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
-                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
-		       WHERE B.BD_NO = P.BD_NO 
-		       AND B.M_NO = M.M_NO
-               AND RE.BD_NO(+) = B.BD_NO
-               AND BR.BD_NO(+) = B.BD_NO
-		       ORDER BY B.BD_CREATEDDATE DESC)
+		<select id="selectList" resultType="ProjectListDto" parameterType="hashMap">		 
+		 SELECT * FROM
+          (SELECT ROWNUM RN, A.* 
+               FROM (
+                     SELECT B.BD_NO, P.PRO_TITLE, P.PRO_LINK, P.PRO_DEVELOP, 
+	          		 P.PRO_GOAL, P.PRO_FUNCTION, P.PRO_ERD, B.BD_TITLE,
+                     DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+                     DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+            		 M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+                     FROM BOARD B, PROJECT P, IT_MEMBER M , 
+                       (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                       (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+            		 WHERE B.BD_NO = P.BD_NO 
+           		  AND B.BC_CODE=1
+           		  AND B.M_NO = M.M_NO
+                      AND RE.BD_NO(+) = B.BD_NO
+                      AND BR.BD_NO(+) = B.BD_NO
+             		ORDER BY B.BD_CREATEDDATE DESC) A  
+    				ORDER BY RN ASC) 
+				WHERE RN BETWEEN #{start} AND #{end}
        
 	</select>
 	
@@ -58,7 +62,7 @@
 	<select id="selectlistcnt" resultType="int">
 		SELECT COUNT(BD_NO)
 		FROM BOARD
-		WHERE BC_CODE=3 
+		WHERE BC_CODE=1
 	</select>
 	
 	<delete id="delete" parameterType="int">
