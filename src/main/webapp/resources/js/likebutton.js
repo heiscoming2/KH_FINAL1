@@ -25,6 +25,4 @@ function like_func(bd_no, m_no) {
 			
 			}
 	}); 
-
-
 }
