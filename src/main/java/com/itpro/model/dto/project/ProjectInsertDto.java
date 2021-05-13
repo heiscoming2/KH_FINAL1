@@ -125,10 +125,7 @@ public class ProjectInsertDto {
 	public java.sql.Date getPro_start() {
 		return pro_start;
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> c98c3aeac4a4699ca882dcad91a416c652d6e999
 	public void setPro_start(java.sql.Date pro_start) {
 		this.pro_start = pro_start;
 	}
@@ -136,10 +133,7 @@ public class ProjectInsertDto {
 	public java.sql.Date getPro_end() {
 		return pro_end;
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> c98c3aeac4a4699ca882dcad91a416c652d6e999
+	
 	public void setPro_end(java.sql.Date pro_end) {
 		this.pro_end = pro_end;
 	}
