@@ -5,6 +5,7 @@
 <head>	
 <!-- 회원가입 폼 css -->
 <link href="resources/css/join_form.css" rel="stylesheet">
+
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <script src="https://kit.fontawesome.com/817a0822ff.js" crossorigin="anonymous"></script>
 <%@include file="../inc/_head.jspf" %>
@@ -104,7 +105,7 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<!-- 회원가입 스크립트 -->
+<!-- 개인 회원가입 스크립트 -->
 <script type="text/javascript" src="./resources/js/join_form.js"></script>
 
 </body>

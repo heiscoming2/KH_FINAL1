@@ -66,6 +66,7 @@ public class AdminController {
 		}else {
 			return "redirect:updateform.do?m_no="+dto.getM_no();
 		}
+	}
 		
 		
 	//// 기업회원 //////////////////////

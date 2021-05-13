@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dto.member.LoginDto;
+import com.itpro.model.dto.member.RegBizDto;
 import com.itpro.model.dto.member.RegDto;
 
 @Controller
@@ -53,7 +54,8 @@ public class MemberController {
 
 		boolean check = false;
 		if (res != null) {
-			session.setAttribute("login", res);
+			// session.setAttribute("login", res);
+			session.setAttribute("m_no", res.getM_no());
 			check = true;
 		}
 
@@ -90,14 +92,6 @@ public class MemberController {
 		return "login_join/join_userForm";
 	}
 
-	// 회원가입_기업 입력 폼
-	@RequestMapping(value = "/join_bizForm.do")
-	public String bizForm() {
-		logger.info("[JOIN BIZ FORM]");
-
-		return "login_join/join_bizForm";
-	}
-
 	// 회원가입_개인
 	@RequestMapping(value = "/join_user.do")
 	public String RegMember(RegDto regDto) {
@@ -112,12 +106,26 @@ public class MemberController {
 		}
 	}
 
+	// 회원가입_기업 입력폼
+	@RequestMapping(value = "/join_bizForm.do")
+	public String joinBiz() {
+		logger.info("[JOIN BIZ FORM]");
+
+		return "login_join/join_bizForm";
+	}
+
 	// 회원가입_기업
 	@RequestMapping(value = "/join_biz.do")
-	public String joinBiz() {
-		logger.info("[JOIN BIZ]");
+	public String RegBizMember(RegBizDto regBizDto) {
+		logger.info("[JOIN USER]");
 
-		return "login_join/join_biz";
+		int res = biz.RegBizMember(regBizDto);
+		if (res > 0) {
+			return "redirect:main.do";
+
+		} else {
+			return "redirect:join_biz.do";
+		}
 	}
 
 	// 아이디 중복 검사
@@ -140,28 +148,27 @@ public class MemberController {
 
 		}
 	}
-	
+
 	// 이메일 중복 검사
-		@RequestMapping(value = "/memberEmailChk.do", method = RequestMethod.POST)
-		@ResponseBody
-		public String memberEmailChkPOST(String m_email) {
-			logger.info("[memberEmailChk]");
+	@RequestMapping(value = "/memberEmailChk.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberEmailChkPOST(String m_email) {
+		logger.info("[memberEmailChk]");
 
-			int res = biz.emailChk(m_email);
+		int res = biz.emailChk(m_email);
 
-			logger.info("결과값 = " + res);
+		logger.info("결과값 = " + res);
 
-			if (res != 0) {
+		if (res != 0) {
 
-				return "fail"; // 중복 이메일 존재
+			return "fail"; // 중복 이메일 존재
 
-			} else {
+		} else {
 
-				return "success"; // 중복 이메일 존재 x
+			return "success"; // 중복 이메일 존재 x
 
-			}
 		}
-	
+	}
 
 	// 이메일 인증
 	@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
@@ -203,20 +210,61 @@ public class MemberController {
 		return num;
 	}
 
+	// 사업자 중복 검사
+	@RequestMapping(value = "/memberRegnoChk.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberRegnoChkPOST(String m_regno) {
+		logger.info("[memberEmailChk]");
+
+		int res = biz.regnoChk(m_regno);
+
+		logger.info("결과값 = " + res);
+
+		if (res != 0) {
+
+			return "fail"; // 중복 이메일 존재
+
+		} else {
+
+			return "success"; // 중복 이메일 존재 x
+
+		}
+	}
+
 	// 개인회원 마이페이지 관련 컨트롤러
 	@RequestMapping(value = "/mypage_user.do")
 	public String mypage() {
 		logger.info("MYPAGE USER");
 
-		return "login_join/mypage_user";
+		return "member/mypage_user";
 	}
 
-	// 개인 회원 정보수정 컨트롤러
-	@RequestMapping(value = "/modify_user.do")
-	public String modify() {
+	// 개인회원 정보수정폼으로 이동
+	@RequestMapping(value = "/user_update_form.do")
+	public String modify(HttpSession session) {
 		logger.info("MYPAGE USER");
+		
+		/* 세션에 담긴거 컨트롤러로 가져와서 사용해야 할때
+		LoginDto loginDto = (LoginDto) session.getAttribute("login");		
+		logger.info("loginDto: " + loginDto);
+		logger.info("loginDto.getM_nickname(): " + loginDto.getM_nickname());
+		*/
 
-		return "login_join/modify_user";
+		return "member/update_user";
+	}
+
+	// 개인회원 정보수정 처리
+	@RequestMapping("/user_update.do")
+	public String update(LoginDto loginDto) {
+		logger.info("MEMBER UPDATE");
+
+		int res = biz.update(loginDto);
+		if (res > 0) {
+			return "redirect:mypage_user.do";
+
+		} else {
+			return "redirect:user_update_form.do";
+		}
 	}
 
 	// 이력서 관련 컨트롤러
@@ -268,6 +316,6 @@ public class MemberController {
 	public String postList() {
 		logger.info("NOTE LIST");
 
-		return "login_join/post_list";
+		return "member/post_list";
 	}
 }
