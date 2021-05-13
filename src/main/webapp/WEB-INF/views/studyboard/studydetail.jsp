@@ -52,7 +52,7 @@
 			<hr>
             <!-- 글 번호 / 제목 영역 시작 -->
             <div style="margin: 10px 0px;">
-              <span class="detail_no"></span> <!-- js에서 여기에 주소를 쏴줌 -->
+              <span class="detail_no" onclick="CopyUrlToClipBoard();"></span> <!-- js에서 여기에 주소를 쏴줌 -->
               <br>
               <span class="detail_title">${dto.bd_title }</span> <!-- 글 제목 -->
             </div>
@@ -98,7 +98,7 @@
             
              <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
-				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no},${dto.m_no })" style="margin:0 auto;">
+				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no},${sessionScope.login.m_no })" style="margin:0 auto;">
 					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
 				</div>
             </div>

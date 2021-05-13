@@ -18,8 +18,8 @@ public class ProjectInsertDto {
 	
 	//프로젝트 dto
 	private String pro_title; //프로젝트 제목
-	private Date pro_start; //프로젝트 시작일
-	private Date pro_end; //프로젝트 종료일
+	private java.sql.Date pro_start; //프로젝트 시작일
+	private java.sql.Date pro_end; //프로젝트 종료일
 	private String pro_link; //프로젝트 링크(깃)
 	private String pro_develop; //개발환경
 	private String pro_goal; //개발 목표
@@ -122,13 +122,13 @@ public class ProjectInsertDto {
 	public Date getPro_start() {
 		return pro_start;
 	}
-	public void setPro_start(Date pro_start) {
+	public void setPro_start(java.sql.Date pro_start) {
 		this.pro_start = pro_start;
 	}
 	public Date getPro_end() {
 		return pro_end;
 	}
-	public void setPro_end(Date pro_end) {
+	public void setPro_end(java.sql.Date pro_end) {
 		this.pro_end = pro_end;
 	}
 	public String getPro_link() {
