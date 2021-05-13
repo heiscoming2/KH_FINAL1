@@ -1,6 +1,5 @@
 package com.itpro.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.biz.ReplyBiz;
+import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.LoginDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
+import com.itpro.model.dto.project.ProjectUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
@@ -70,9 +71,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		
 		//프로젝트 글 목록을 받아 model에 담아준다.
 		model.addAttribute("projectList",projectList);
-		
-//		List<ProjectListDto> projectList = projectBiz.selectList(null);
-//		model.addAttribute("projectList", projectList);
 		
 		//시간이 안 찍혀서 확인
 		/*for(int i=0; i<projectList.size(); i++) {
@@ -129,13 +127,43 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		return "project/projectdetail";
 	}	
 	
-	@RequestMapping(value="/projectupdate.do")
-	public String projectUpdate(Model model) {
-		
-		logger.info("PROJECT UPDATE");
-		return "project/projectupdate";
+	@RequestMapping(value="/projectupdateform.do")
+	public String projectUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
+		logger.info("PROJECT UPDATE FORM");
+		ProjectDetailDto projectDetailDto = projectBiz.selectOne(bd_no);
+		model.addAttribute("projectDetailDto", projectDetailDto);
+		return "projectboard/projectupdateform";
 	}
 	
+	
+	@RequestMapping(value="/projectupdate.do")
+	public String projectUpdate(Model model, ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto) {
+		logger.info("Project UPDATE");
+		
+		int projectUpdateRes = projectBiz.update(projectUpdateDto,boardUpdateDto);
+		logger.info(Integer.toString(projectUpdateRes));
+		if(projectUpdateRes>0) {
+			int bd_no = projectUpdateDto.getBd_no();
+			return "redirect:projectdetail.do?bd_no="+bd_no;
+		}
+		
+		ProjectDetailDto projectDetailDto = projectBiz.selectOne(projectUpdateDto.getBd_no()); 
+		projectDetailDto.setBd_title(boardUpdateDto.getBd_title());
+		projectDetailDto.setBd_content(boardUpdateDto.getBd_content());
+		
+		projectDetailDto.setPro_title(projectUpdateDto.getPro_title());
+		projectDetailDto.setPro_start(projectUpdateDto.getPro_start());
+		projectDetailDto.setPro_end(projectUpdateDto.getPro_end());
+		projectDetailDto.setPro_link(projectUpdateDto.getPro_link());
+		projectDetailDto.setPro_develop(projectUpdateDto.getPro_develop());
+		projectDetailDto.setPro_goal(projectUpdateDto.getPro_goal());
+		projectDetailDto.setPro_function(projectUpdateDto.getPro_function());
+		projectDetailDto.setPro_erd(projectUpdateDto.getPro_erd());
+
+		model.addAttribute("projectDetailDto",projectDetailDto);
+		logger.info("업데이트 실패");
+		return "projectboard/projectupdateform";
+	}	
 	
 	@RequestMapping(value="/projectdelete.do")
 	public String projectDelete(Model model, int bd_no) {

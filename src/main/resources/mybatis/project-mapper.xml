@@ -66,14 +66,32 @@
 	</delete>
 	
 	<update id="update" parameterType="projectUpdateDto">
-		UPDATE PROJECT
+	
+		UPDATE BOARD AS B, PROJECT AS P
+		SET 	
+			B.BD_TITLE = #{bd_title},
+			B.BD_CONTENT = #{bd_content},
+
+			P.PRO_TITLE = #{pro_title},
+			P.PRO_START = #{pro_start},
+			P.PRO_END = #{pro_end},
+			P.PRO_LINK = #{pro_link},
+			P.PRO_DEVELOP = #{pro_develop},
+			P.PRO_GOAL = #{pro_goal},
+			P.PRO_FUNCTION = #{pro_function},
+			P.PRO_ERD = #{pro_erd}
+
+		WHERE B.M_NO = #{m_no}
+		AND P.BD_NO = #{bd_no}
+		
+		<!-- UPDATE PROJECT
 		SET PRO_TITLE = #{pro_title},
 		    PRO_LINK = #{pro_link},
 		    PRO_DEVELOP = #{pro_develop},
 		    PRO_GOAL = #{pro_goal},
 		    PRO_FUNCTION = #{pro_function},
 		    PRO_ERD = #{pro_erd}
-		WHERE BD_NO = #{bd_no}
+		WHERE BD_NO = #{bd_no} -->
 	</update>
 	
 	

@@ -7,6 +7,8 @@ import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.project.ProjectUpdateDto;
+import com.itpro.model.dto.study.StudySearchDto;
+import com.itpro.model.dto.study.StudyUpdateDto;
 
 public interface ProjectDao {
 
@@ -23,15 +25,8 @@ public interface ProjectDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public static void like_cnt_up(int bd_no) {
-		// TODO Auto-generated method stub
-		
-	}
-	public static void like_cnt_down(int bd_no) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
+	
 	
 	
 	
