@@ -1,6 +1,6 @@
 package com.itpro.model.dto.project;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ProjectDetailDto {
 
@@ -30,65 +30,7 @@ public class ProjectDetailDto {
 	private String m_img_path; //프로필 이미지 경로
 	private String m_img; //프로필 이미지
 	private String m_nickname; //닉네임
-	
-	
-	public ProjectDetailDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
-	
-	public String getM_img_path() {
-		return m_img_path;
-	}
-
-
-
-
-
-	public void setM_img_path(String m_img_path) {
-		this.m_img_path = m_img_path;
-	}
-
-
-
-
-
-	public String getM_img() {
-		return m_img;
-	}
-
-
-
-
-
-	public void setM_img(String m_img) {
-		this.m_img = m_img;
-	}
-
-
-
-
-
-	public String getM_nickname() {
-		return m_nickname;
-	}
-
-
-
-
-
-	public void setM_nickname(String m_nickname) {
-		this.m_nickname = m_nickname;
-	}
-
-
-
-
-
+	private int m_no; //회원 번호
 	public int getBd_no() {
 		return bd_no;
 	}
@@ -101,34 +43,24 @@ public class ProjectDetailDto {
 	public void setBd_title(String bd_title) {
 		this.bd_title = bd_title;
 	}
-	
 	public String getBd_content() {
 		return bd_content;
 	}
 	public void setBd_content(String bd_content) {
 		this.bd_content = bd_content;
 	}
-
-	
-	
-	
-	
 	public Date getBd_createddate() {
 		return bd_createddate;
 	}
-
-
-
-
-
 	public void setBd_createddate(Date bd_createddate) {
 		this.bd_createddate = bd_createddate;
 	}
-
-
-
-
-
+	public Date getBd_modifydate() {
+		return bd_modifydate;
+	}
+	public void setBd_modifydate(Date bd_modifydate) {
+		this.bd_modifydate = bd_modifydate;
+	}
 	public String getBd_writerip() {
 		return bd_writerip;
 	}
@@ -153,7 +85,6 @@ public class ProjectDetailDto {
 	public void setBd_recommandcount(int bd_recommandcount) {
 		this.bd_recommandcount = bd_recommandcount;
 	}
-
 	public String getPro_title() {
 		return pro_title;
 	}
@@ -202,13 +133,37 @@ public class ProjectDetailDto {
 	public void setPro_erd(String pro_erd) {
 		this.pro_erd = pro_erd;
 	}
-	public Date getBd_modifydate() {
-		return bd_modifydate;
+	public String getM_img_path() {
+		return m_img_path;
 	}
-	public void setBd_modifydate(Date bd_modifydate) {
-		this.bd_modifydate = bd_modifydate;
+	public void setM_img_path(String m_img_path) {
+		this.m_img_path = m_img_path;
+	}
+	public String getM_img() {
+		return m_img;
+	}
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
+	public String getM_nickname() {
+		return m_nickname;
+	}
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
 	}
 	
+
 	
+	
+
+
+
+
 	
 }

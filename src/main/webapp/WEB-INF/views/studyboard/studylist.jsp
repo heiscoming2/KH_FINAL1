@@ -18,7 +18,7 @@
 		<h3>스터디 구인</h3>
 		<div class="study_btnwrap mb-4">
 			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
-			<input type="button" class="btn btn-primary" value="전체 조회"> 
+			<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='studylist.do';"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='studyinsertform.do'">
 		</div>
 		<div class="loc_toggle" style="clear: both; display: none;">

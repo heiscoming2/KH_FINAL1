@@ -23,24 +23,29 @@
         
         <!-- 마이페이지 목록 -->
         <div class="list-group">
-            <a href="modify_user.do" class="list-group-item list-group-item-action" aria-current="true">
+        	
+        	<!-- 정보수정 -->
+            <a href="user_update_form.do" class="list-group-item list-group-item-action" aria-current="true">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">회원정보</h5>
               </div>
               <p class="mb-1">비밀번호, 연락처, 프로필 정보를 확인하고 관리합니다.</p>
             </a>
+            <!-- 이력서 -->
             <a href="resume_list.do" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">이력서</h5>
                 </div>
                 <p class="mb-1">이력서 정보를 등록하고 확인, 관리합니다.</p>
             </a>
+            <!-- 쪽지 -->
             <a href="note_receivelist.do" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">쪽지</h5>
                 </div>
                 <p class="mb-1">쪽지를 보내고 관리합니다.</p>
             </a>
+            <!-- 작성글 확인 -->
             <a href="post_list.do" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">작성글</h5>

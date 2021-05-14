@@ -8,19 +8,25 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.BoardBiz;
+import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.like.LikeDto;
+import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
@@ -45,9 +51,15 @@ public class StudyController {
 	@Autowired
 	private BoardBiz boardBiz;
 	
+	@Autowired
+	private LikeBiz likeBiz;
+	
 	@RequestMapping(value="/studylist.do")
-	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
 		logger.info("STUDY LIST");
+		if(session.getAttribute("login")!=null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+		}
 		
 		//페이징을 위해 총 게시물수 count
 		int studyListCnt = studyBiz.getStudyListCnt();
@@ -85,17 +97,29 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydetail.do")
-	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no) {
+	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
 		logger.info("STUDY DETAIL");
+		
+		//로그인 세션이있으면 회원번호를 꺼내서 해당 게시물 추천여부를 model에 담아준다. 
+		if(session.getAttribute("login")!=null) {
+			MemberDto loginDto = (MemberDto) session.getAttribute("login");
+			int m_no = loginDto.getM_no();
+			LikeDto likeDto = new LikeDto();
+			likeDto.setBd_no(bd_no);
+			likeDto.setM_no(m_no);
+			int res = likeBiz.like_check(likeDto);
+			model.addAttribute("likecheck",res);
+		}
 		
 		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
 		if(new ViewCount().viewCount(request, response, bd_no)) {
 			boardBiz.updateviewcount(bd_no);
 		}
 		
+		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
-		model.addAttribute("studyDetailDto",studyDetailDto);
+		model.addAttribute("dto",studyDetailDto);
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
@@ -103,6 +127,7 @@ public class StudyController {
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
 		model.addAttribute("replyCnt",replyCnt);
+		
 		return "studyboard/studydetail";
 	}
 	
@@ -180,6 +205,20 @@ public class StudyController {
 		
 		return "studyboard/studylist";
 	}	
+	
+	@RequestMapping(value="/studystatchange.do")
+	@ResponseBody
+	public boolean studyStatchange(@RequestBody Map<String,Object> map) {
+		System.out.println("studychange");
+		int bd_no = Integer.parseInt(map.get("bd_no").toString());
+		System.out.println(bd_no);
+		int res = studyBiz.updatestatus(bd_no);
+		System.out.println(res);
+		System.out.println("test");
+		return res>0?true:false;
+	}
+	
+	
 	
 	
 }

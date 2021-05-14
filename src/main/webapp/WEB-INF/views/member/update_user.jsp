@@ -23,8 +23,9 @@
                 </p>
             </div>
             <div class="col-md-4 mt-5">
-                <form class="form-inline" action="mypage_user.do" method="post">
-
+            
+                <form class="form-inline" action="user_update.do" method="post">
+                	<input type="hidden" name="m_no" value="${login.m_no}">
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-8">
@@ -63,9 +64,15 @@
             </div>
         </div>
         
-        <div class="row justify-content-center col-md-3">
-        	<input type="submit" class="btn btn-primary mt-2" value="정보수정하기">
+        
+        <div class="row justify-content-center col-md-2 me-md-4">
+            <input type="submit" class="btn btn-danger mt-2" value="탈퇴하기"/>
         </div>
+
+        <div class="row justify-content-center col-md-2">
+            <input type="submit" class="btn btn-primary mt-2" value="정보수정하기">
+        </div>      
+        
     </div>
 
 

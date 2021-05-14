@@ -19,6 +19,19 @@ public interface ProjectDao {
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
 	public int getProjectListCnt();
+	public static ProjectDetailDto read(int bd_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static void like_cnt_up(int bd_no) {
+		// TODO Auto-generated method stub
+		
+	}
+	public static void like_cnt_down(int bd_no) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

@@ -80,4 +80,9 @@ public class StudyBizImpl implements StudyBiz {
 		return studyDao.selectSearchList(studySearchMap);
 	}
 
+	@Override
+	public int updatestatus(int bd_no) {
+		return studyDao.updatestatus(bd_no);
+	}
+
 }

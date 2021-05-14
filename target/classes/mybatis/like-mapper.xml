@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="liketo">
+
+
+
+	<select id="countbyLike" resultType="int"
+		parameterType="likeDto">
+		SELECT COUNT(*)
+		FROM BOARDRECOMMAND
+		WHERE bd_no=#{bd_no} AND m_no=#{m_no}
+	</select>
+
+	<insert id="create" parameterType="HashMap">
+		INSERT INTO BOARDRECOMMAND(like_no, bd_no, m_no, like_check)
+		VALUES ((SELECT NVL(MAX(like_no), 0) + 1 as like_no FROM BOARDRECOMMAND),
+		#{bd_no}, #{m_no}, 0)
+	</insert>
+
+
+	<insert id= "like_insert" parameterType="LikeDto">
+		INSERT INTO BOARDRECOMMAND
+		VALUES (#{bd_no}, #{m_no}, SYSDATE)	
+	</insert>
+
+
+	<update id="like_check" parameterType="LikeDto">
+		UPDATE BOARDRECOMMAND
+		SET LIKE_CHECK = LIKE_CHECK + 1
+		WHERE M_NO = #{m_no} AND BD_NO = #{bd_no}
+	</update>
+
+
+	<update id="like_check_cancle" parameterType="HashMap">
+		UPDATE BOARDRECOMMAND
+		SET LIKE_CHECK = 0
+		WHERE M_NO = #{m_no} AND BD_NO = #{bd_no}
+	</update>
+
+
+
+
+	<select id="read" resultType="LikeDto" parameterType="HashMap">
+		SELECT like_no, bd_no, m_no, like_check
+		FROM BOARDRECOMMAND
+		WHERE bd_no=#{bd_no} AND m_no=#{m_no}
+	</select>
+
+	<delete id="deletebyBoardno" parameterType="int">
+		DELETE FROM BOARDRECOMMAND
+		WHERE bd_no=#{bd_no}
+	</delete>
+
+	<delete id="like_del" parameterType="LikeDto">
+		DELETE FROM BOARDRECOMMAND
+		WHERE m_no=#{m_no}
+		  AND bd_no=#{bd_no}
+	</delete>
+
+
+
+
+
+
+
+
+	<!-- boardLike -->
+	<!-- <insert id="createBoardLike"> INSERT INTO BOARDRECOMMAND (bd_no, m_no) 
+		VALUES (#{bd_no}, #{m_no}) </insert> <delete id="deleteBoardLike"> DELETE 
+		FROM BOARDRECOMMAND WHERE bd_no = #{bd_no} AND m_no = #{m_no} </delete> <select 
+		id="updateBoardLike"> UPDATE BOARDRECOMMAND SET board_likecnt = (SELECT COUNT(*) 
+		FROM BOARDRECOMMAND WHERE bd_no = #{bd_no}) WHERE bd_no = #{bd_no} </select> 
+		<select id="getBoardLike" resultType="int"> SELECT COUNT(board_like_id) FROM 
+		BOARDRECOMMAND WHERE bd_no = #{bd_no} AND m_no = #{m_no} </select> -->
+
+</mapper>

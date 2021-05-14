@@ -22,8 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
-import com.itpro.model.dto.member.LoginDto;
-import com.itpro.model.dto.member.RegDto;
+import com.itpro.model.dto.member.MemberDto;
 
 @Controller
 public class MemberController {
@@ -46,14 +45,15 @@ public class MemberController {
 	// 로그인
 	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody LoginDto loginDto) {
+	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody MemberDto loginDto) {
 
 		logger.info("[LOGIN]");
-		LoginDto res = biz.login(loginDto);
+		MemberDto res = biz.login(loginDto);
 
 		boolean check = false;
 		if (res != null) {
 			session.setAttribute("login", res);
+		//	session.setAttribute("login", res.getM_no());
 			check = true;
 		}
 
@@ -90,17 +90,9 @@ public class MemberController {
 		return "login_join/join_userForm";
 	}
 
-	// 회원가입_기업 입력 폼
-	@RequestMapping(value = "/join_bizForm.do")
-	public String bizForm() {
-		logger.info("[JOIN BIZ FORM]");
-
-		return "login_join/join_bizForm";
-	}
-
 	// 회원가입_개인
 	@RequestMapping(value = "/join_user.do")
-	public String RegMember(RegDto regDto) {
+	public String RegMember(MemberDto regDto) {
 		logger.info("[JOIN USER]");
 
 		int res = biz.RegMember(regDto);
@@ -112,27 +104,67 @@ public class MemberController {
 		}
 	}
 
+	// 회원가입_기업 입력폼
+	@RequestMapping(value = "/join_bizForm.do")
+	public String joinBiz() {
+		logger.info("[JOIN BIZ FORM]");
+
+		return "login_join/join_bizForm";
+	}
+
 	// 회원가입_기업
 	@RequestMapping(value = "/join_biz.do")
-	public String joinBiz() {
-		logger.info("[JOIN BIZ]");
+	public String RegBizMember(MemberDto regBizDto) {
+		logger.info("[JOIN USER]");
 
-		return "login_join/join_biz";
+		int res = biz.RegBizMember(regBizDto);
+		if (res > 0) {
+			return "redirect:main.do";
+
+		} else {
+			return "redirect:join_biz.do";
+		}
 	}
 
 	// 아이디 중복 검사
 	@RequestMapping(value = "/memberIdChk.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberIdChkPOST(String m_id) {
+		logger.info("[memberIdChk]");
 
-		int result = biz.idCheck(m_id);
-		logger.info("결과값:" + result);
+		int res = biz.idCheck(m_id);
 
-		if (result != 0) {
-			return "fail";// 중복 아이디 존재
+		logger.info("결과값 = " + res);
+
+		if (res != 0) {
+
+			return "fail"; // 중복 아이디가 존재
 
 		} else {
-			return "success";// 중복 아이디X
+
+			return "success"; // 중복 아이디 x
+
+		}
+	}
+
+	// 이메일 중복 검사
+	@RequestMapping(value = "/memberEmailChk.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberEmailChkPOST(String m_email) {
+		logger.info("[memberEmailChk]");
+
+		int res = biz.emailChk(m_email);
+
+		logger.info("결과값 = " + res);
+
+		if (res != 0) {
+
+			return "fail"; // 중복 이메일 존재
+
+		} else {
+
+			return "success"; // 중복 이메일 존재 x
+
 		}
 	}
 
@@ -155,7 +187,7 @@ public class MemberController {
 		String toMail = email; // 입력한 이메일(수신)
 		String title = "회원가입 인증 메일";// 제목
 		String content = // 내용
-				"홈페이지 방문을 감사드립니다. <br><br> 인증번호는 " + checkNum + "입니다.<br> 해당 인증번호를 인증번호 확인란에 입력해주세요";
+				"홈페이지 방문을 감사드립니다. <br><br> 인증번호는 " + checkNum + " 입니다.<br> 해당 인증번호를 인증번호 확인란에 입력해주세요";
 
 		try {
 
@@ -170,10 +202,31 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String num = Integer.toString(checkNum);//int타입의 생성한 인증번호를 String타입으로 변환해 반환
+
+		String num = Integer.toString(checkNum);// int타입의 생성한 인증번호를 String타입으로 변환해 반환
 
 		return num;
+	}
+
+	// 사업자 중복 검사
+	@RequestMapping(value = "/memberRegnoChk.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberRegnoChkPOST(String m_regno) {
+		logger.info("[memberEmailChk]");
+
+		int res = biz.regnoChk(m_regno);
+
+		logger.info("결과값 = " + res);
+
+		if (res != 0) {
+
+			return "fail"; // 중복 이메일 존재
+
+		} else {
+
+			return "success"; // 중복 이메일 존재 x
+
+		}
 	}
 
 	// 개인회원 마이페이지 관련 컨트롤러
@@ -181,15 +234,35 @@ public class MemberController {
 	public String mypage() {
 		logger.info("MYPAGE USER");
 
-		return "login_join/mypage_user";
+		return "member/mypage_user";
 	}
 
-	// 개인 회원 정보수정 컨트롤러
-	@RequestMapping(value = "/modify_user.do")
-	public String modify() {
+	// 개인회원 정보수정폼으로 이동
+	@RequestMapping(value = "/user_update_form.do")
+	public String modify(HttpSession session) {
 		logger.info("MYPAGE USER");
+		
+		/* 세션에 담긴거 컨트롤러로 가져와서 사용해야 할때
+		LoginDto loginDto = (LoginDto) session.getAttribute("login");		
+		logger.info("loginDto: " + loginDto);
+		logger.info("loginDto.getM_nickname(): " + loginDto.getM_nickname());
+		*/
 
-		return "login_join/modify_user";
+		return "member/update_user";
+	}
+
+	// 개인회원 정보수정 처리
+	@RequestMapping("/user_update.do")
+	public String update(MemberDto loginDto) {
+		logger.info("MEMBER UPDATE");
+
+		int res = biz.update(loginDto);
+		if (res > 0) {
+			return "redirect:mypage_user.do";
+
+		} else {
+			return "redirect:user_update_form.do";
+		}
 	}
 
 	// 이력서 관련 컨트롤러
@@ -241,6 +314,6 @@ public class MemberController {
 	public String postList() {
 		logger.info("NOTE LIST");
 
-		return "login_join/post_list";
+		return "member/post_list";
 	}
 }

@@ -11,6 +11,8 @@
 	display:none;
 }
 
+/*****************************/
+
 /*이메일이 존재하지 않는 경우(중복X)*/
 .email_input_re1{
 	color:green;
@@ -31,5 +33,17 @@
     color : red;
 }
 
+/*****************************/
 
+/*사업자번호가 존재하지 않는 경우(중복X)*/
+.regno_input_re1{
+	color:green;
+	display:none;
+}
+
+/*사업자번호가 존재하는 경우(중복O)*/
+.regno_input_re2{
+	color:red;
+	display:none;
+}
  
