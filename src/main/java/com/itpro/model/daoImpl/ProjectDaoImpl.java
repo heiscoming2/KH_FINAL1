@@ -58,14 +58,27 @@ public class ProjectDaoImpl implements ProjectDao {
 		int projectInsertres = 0;
 		
 		try {
-			System.out.println("projectinsertDto : " + projectDto.getBd_content() +" "+projectDto.getBd_title() +" "+projectDto.getBd_writerip() +" "+projectDto.getPro_title() +" "+projectDto.getPro_link() +" "+projectDto.getPro_develop() +" "+projectDto.getPro_goal() +" "+projectDto.getPro_function() +" "+projectDto.getPro_erd() );
-			projectInsertres = sqlSession.insert(NAMESPACE+"insert", projectDto);
+			projectInsertres = sqlSession.insert(NAMESPACE+"insert",projectDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return projectInsertres;
 	}
+		
+		
+		/*
+		 * int projectInsertres = 0;
+		 * 
+		 * try { System.out.println("projectinsertDto : " + projectDto.getBd_content()
+		 * +" "+projectDto.getBd_title() +" "+projectDto.getBd_writerip()
+		 * +" "+projectDto.getPro_title() +" "+projectDto.getPro_link()
+		 * +" "+projectDto.getPro_develop() +" "+projectDto.getPro_goal()
+		 * +" "+projectDto.getPro_function() +" "+projectDto.getPro_erd() );
+		 * projectInsertres = sqlSession.insert(NAMESPACE+"insert", projectDto); } catch
+		 * (Exception e) { e.printStackTrace(); }
+		 * 
+		 * return projectInsertres;
+		 */
 
 	
 	@Override

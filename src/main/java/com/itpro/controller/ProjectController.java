@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.biz.ReplyBiz;
@@ -29,6 +30,7 @@ import com.itpro.model.dto.project.ProjectUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
+import com.itpro.util.ViewCount;
 
 @Controller
 public class ProjectController {
@@ -42,10 +44,18 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	private ReplyBiz replyBiz;
 	
 	@Autowired
+	private BoardBiz boardBiz;
+	
+	@Autowired
 	private LikeBiz likeBiz;
 	
 	@RequestMapping(value="/projectlist.do")
-	public String projectList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+	public String projectList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
+		logger.info("Project LIST");
+		if(session.getAttribute("login")!=null) {
+			LoginDto login = (LoginDto) session.getAttribute("login");
+		}
+		
 		
 		//페이징을 위해 총 게시물수 count
 		int projectListCnt = projectBiz.getProjectListCnt();
@@ -65,10 +75,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		
 		//페이징 처리 model에 담아줌 (_page.jspf에서 받아서 사용됨)
 		model.addAttribute("pageProcessing",pageProcessing);
-		
-		
-		
-		
+			
 		//프로젝트 글 목록을 받아 model에 담아준다.
 		model.addAttribute("projectList",projectList);
 		
@@ -98,7 +105,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	
 	
 	@RequestMapping(value="/projectdetail.do")
-	public String projectDetail(Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
+	public String projectDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
 		logger.info("PROJECT DETAIL");
 		
 		if(session.getAttribute("login")!=null) {
@@ -110,16 +117,21 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 			int res = likeBiz.like_check(likeDto);
 			//res 0이면 추천을 안 한거
 			//res 1이면 추천을 한거
-			System.out.println("res:"+res);
-			model.addAttribute("likecheck",res);
+			System.out.println("res:" +res);
+			model.addAttribute("likecheck", res);
 		}
+		
+		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
+				if(new ViewCount().viewCount(request, response, bd_no)) {
+					boardBiz.updateviewcount(bd_no);
+				}
 		
 		
 		ProjectDetailDto dto = projectBiz.selectOne(bd_no);
 		model.addAttribute("dto", dto);
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
-		model.addAttribute("replyListDto",replyListDto);
+		model.addAttribute("replyListDto", replyListDto);
 		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
@@ -138,7 +150,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	
 	@RequestMapping(value="/projectupdate.do")
 	public String projectUpdate(Model model, ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto) {
-		logger.info("Project UPDATE");
+		logger.info("PROJECT UPDATE");
 		
 		int projectUpdateRes = projectBiz.update(projectUpdateDto,boardUpdateDto);
 		logger.info(Integer.toString(projectUpdateRes));

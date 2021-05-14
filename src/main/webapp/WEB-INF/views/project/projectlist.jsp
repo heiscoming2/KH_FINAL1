@@ -50,7 +50,7 @@
 							<!-- 글 번호 시작 --> 
 							<td>${dto.bd_no} </td>
 							<td><a href= "projectdetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
-							<td>${dto.bd_recommandcount }</td>
+							<td>+${dto.bd_recommandcount }</td>
 							<td>${dto.bd_viewcount }</td>
 							<td>
 							    <div class="project_profile">

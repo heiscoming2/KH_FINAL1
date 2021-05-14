@@ -47,26 +47,19 @@ public class ProjectBizImpl implements ProjectBiz{
 
 	@Override
 	public int delete(int bd_no) {
+		int Deleteres = 0;
 		int projectDeleteRes = projectDao.delete(bd_no);
-		return projectDeleteRes;
+		int boardDeleteRes = boardDao.delete(bd_no);
+		if(projectDeleteRes>0 && boardDeleteRes>0) {
+			Deleteres = 1;
+		}
+		return Deleteres; 
 	}
 
 	@Override
 	public int getProjectListCnt() {
 		// TODO Auto-generated method stub
 		return projectDao.getProjectListCnt();
-	}
-
-	@Override
-	public void like_cnt_up(int bd_no) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void like_cnt_down(int bd_no) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

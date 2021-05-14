@@ -62,7 +62,7 @@
 	</select>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM PROJECT
+		DELETE FROM PROJECT WHERE BD_NO = #{bd_no}
 	</delete>
 	
 	<update id="update" parameterType="projectUpdateDto">

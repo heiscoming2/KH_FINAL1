@@ -129,7 +129,7 @@ public class StudyController {
 		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
-		model.addAttribute("replyCnt",replyCnt);
+		model.addAttribute("replyCnt", replyCnt);
 		
 		return "studyboard/studydetail";
 	}

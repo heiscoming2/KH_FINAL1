@@ -18,8 +18,6 @@ public interface ProjectBiz {
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
 	public int getProjectListCnt();
-	public void like_cnt_up(int bd_no);
-	public void like_cnt_down(int bd_no);
 	public ProjectDetailDto read(int bd_no);
 	public int update(ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto);
 	
