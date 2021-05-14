@@ -52,7 +52,7 @@
 	<!-- HEADER 종료 -->
 	
 	<!-- ADMIN SIDEBAR 시작 -->
-	<div class="container"><%@include file="../inc/_sidebar_admin.jspf"%></div>
+	<div class="container"><%@include file="../inc/_sidebar_admin.jspf"%>
 	<!-- SIDEBAR 종료 -->
 	
 
@@ -60,7 +60,7 @@
 
 
 	<!-- 회원명단 -->
-	<div class="container">
+	
 	<h1>회원관리</h1>
 	<form action="#">
 			<div align="right">
@@ -95,6 +95,7 @@
 									value="1"></td>
 								<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 								<td>${dto.m_type}</td>
+								<td>${dto.m_gender}</td>
 								<td>${dto.m_regdate}</td>
 								<td>${dto.m_act}</td>
 								<td>${dto.m_used}</td>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.itpro.model.biz.ManageMemberBiz;
 import com.itpro.model.biz.ReportBiz;
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.admin.ManageMemberDto_com;
 import com.itpro.model.dto.report.ReportDto;
 
 @Controller
@@ -66,14 +67,13 @@ public class AdminController {
 		}else {
 			return "redirect:updateform.do?m_no="+dto.getM_no();
 		}
-		
+	}
 		
 	//// 기업회원 //////////////////////
 		@RequestMapping("/member_list_com.do")
 		public String member_list_com(Model model ) {
-			logger.info("select list");
-			List<ManageMemberDto> list=biz.selectList_com();
-			model.addAttribute("list",list);
+			logger.info("select list_com");
+			model.addAttribute("list_com",biz.selectList_com());
 			
 			
 			return "admin/member_list_com";
@@ -82,7 +82,7 @@ public class AdminController {
 		@RequestMapping(value="/member_detail_com.do")
 		public String member_detail_com(Model model, int m_no) {
 			
-			logger.info("member_detail");
+			logger.info("member_detail_com");
 			
 			model.addAttribute("dto", biz.selectOne_com(m_no));
 			return "admin/member_detail_com";
@@ -91,25 +91,27 @@ public class AdminController {
 		@RequestMapping(value="/member_updateform_com.do")
 		public String member_updateform_com(Model model, int m_no) {
 			
-			logger.info("member_updateform");
+			logger.info("member_updateform_com");
 			
 			model.addAttribute("dto", biz.selectOne_com(m_no));
 			return "admin/member_update_com";
 		}
 		
 		@RequestMapping(value="/member_update_com.do")
-		public String update_com(ManageMemberDto dto) {
+		public String update_com(ManageMemberDto_com dto) {
 			logger.info("member_update_com");
-			int res = biz.update_com(dto);
+			int res_com = biz.update_com(dto);
 			
-			if(res>0) {
+			if(res_com>0) {
 				return "redirect:member_detail_com.do?m_no="+dto.getM_no();
 			}else {
-				return "redirect:updateform_com.do?m_no="+dto.getM_no();
+				return "redirect:member_updateform_com.do?m_no="+dto.getM_no();
 			}
 		
+		}
+
+		
 		////////////////////////////신고 part//////////////////////////////////////
-	}
 	
 	//insert 입력페이지로 이동
 	@RequestMapping(value="/report_insertform.do")

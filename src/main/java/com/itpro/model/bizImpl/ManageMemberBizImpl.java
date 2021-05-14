@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itpro.model.biz.ManageMemberBiz;
 import com.itpro.model.dao.ManageMemberDao;
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.admin.ManageMemberDto_com;
 
 @Service
 public class ManageMemberBizImpl implements ManageMemberBiz{
@@ -35,17 +36,18 @@ public class ManageMemberBizImpl implements ManageMemberBiz{
 	
 		//기업회원
 	@Override
-	public List<ManageMemberDto> selectList_com() {
+	public List<ManageMemberDto_com> selectList_com() {
+		System.out.println("list_com biz");
 		return dao.selectList_com();
 	}
 
 	@Override
-	public ManageMemberDto selectOne_com(int m_no) {
+	public ManageMemberDto_com selectOne_com(int m_no) {
 		return dao.selectOne_com(m_no);
 	}
 
 	@Override
-	public int update_com(ManageMemberDto dto) {
+	public int update_com(ManageMemberDto_com dto) {
 		return dao.update_com(dto);
 	}
 

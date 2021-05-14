@@ -84,18 +84,19 @@
 			</tr>
 
 				<c:choose>
-					<c:when test="${empty list }">
+					<c:when test="${empty list_com }">
 						<tr>
 							<td colspan="8" align="center">===회원명단이 존재하지 않습니다.===</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="dto" items="${list }">
+						<c:forEach var="dto" items="${list_com }">
 							<tr>
 								<td><input type="checkbox" name="chk"
 									value="1"></td>
-								<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
+								<td><a href="member_detail_com.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 								<td>${dto.m_type}</td>
+								<td>${dto.m_gender }
 								<td>${dto.m_regdate}</td>
 								<td>${dto.m_act}</td>
 								<td>${dto.m_used}</td>

@@ -5,21 +5,7 @@
 
 <mapper namespace="ManageMember">
 	
-	<resultMap type="ManageMemberDto" id="ManageMemberMap">
-		<result property="m_no" column="M_NO"/>
-		<result property="m_nickname" column="M_NICKNAME"/>
-		<result property="m_type" column="M_TYPE"/>
-		<result property="m_gender" column="M_GENDER"/>
-		<result property="m_regdate" column="M_REGDATE"/>
-		<result property="m_act" column="M_ACT"/> <!-- 활동여부 -->
-		<result property="m_used" column="M_USED"/> <!-- 탈퇴여부 -->
-		<result property="m_auth" column="M_AUTH"/>
-		<result property="m_name" column="M_NAME"/>
-		<result property="m_birth" column="M_BIRTH"/>
-		<result property="m_addr" column="M_ADDR"/>
-		<result property="m_regno" column="M_REGNO"/>
-		<result property="m_admin_cert" column="M_ADMIN_CERT"/>
-	</resultMap>
+	
 
 	
 	<!-- 개인회원 + 관리자 -->
@@ -47,26 +33,26 @@
 	
 	<!-- 기업회원 -->
 	
-	<select id="selectList_com" resultType="ManageMemberDto">
-        SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, B.M_REGNO, B.M_ADMIN_CERT
+	<select id="selectList_com" resultType="ManageMemberDto_com">
+        SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, B.M_ADMIN_CERT
         FROM IT_MEMBER A, BIZ_MEMBER B
         WHERE A.M_NO = B.M_NO(+) 
         AND M_TYPE='기업회원'
         ORDER BY M_NO DESC
 	</select>
 	
-	<select id="selectOne_com" resultType="ManageMemberDto" parameterType="int">
-		SELECT *
+	<select id="selectOne_com" resultType="ManageMemberDto_com" parameterType="int">
+		SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, A.M_NAME, A.M_BIRTH, A.M_ADDR, B.M_REGNO, B.M_ADMIN_CERT
 		FROM IT_MEMBER A, BIZ_MEMBER B 
 		WHERE A.M_NO = B.M_NO(+)
-		AND M_NO=#{m_no}
-		ORDER BY M_NO DESC
+		AND A.M_NO=#{m_no}
+		ORDER BY A.M_NO DESC
 	</select>
 	
-	<update id="update_com" parameterType="ManageMemberDto">
+	<update id="update_com" parameterType="ManageMemberDto_com">
 		UPDATE IT_MEMBER A, BIZ_MEMBER B
 		SET A.M_ACT = #{m_act}, A.M_USED = #{m_used}, A.M_AUTH = #{m_auth}, B.M_ADMIN_CERT = #{m_admin_cert}
-		WHERE M_NO=#{m_no}
+		WHERE A.M_NO=#{m_no}
 	</update>
 	
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.ManageMemberDao;
 import com.itpro.model.dto.admin.ManageMemberDto;
+import com.itpro.model.dto.admin.ManageMemberDto_com;
 
 @Repository
 public class ManageMemberDaoImpl implements ManageMemberDao {
@@ -25,7 +26,7 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 		
 		try {
 			list=sqlSession.selectList(NAMESPACE+"selectList");
-			System.out.println("list: "+list );
+			System.out.println("list_com dao: "+list );
 		} catch (Exception e) {
 			System.out.println("[error] : select list");
 			e.printStackTrace();
@@ -68,51 +69,51 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 
 	//기업회원
 	@Override
-	public List<ManageMemberDto> selectList_com() {
-		List<ManageMemberDto> list = new ArrayList<ManageMemberDto>();
+	public List<ManageMemberDto_com> selectList_com() {
+		List<ManageMemberDto_com> list_com = new ArrayList<ManageMemberDto_com>();
 		
 		try {
-			list=sqlSession.selectList(NAMESPACE+"selectList");
-			System.out.println("list: "+list );
+			list_com=sqlSession.selectList(NAMESPACE+"selectList_com");
+			System.out.println("list: "+list_com );
 		} catch (Exception e) {
 			System.out.println("[error] : select list");
 			e.printStackTrace();
 		}
-		return list;
+		return list_com;
 		
 	}
 
 
 
 	@Override
-	public ManageMemberDto selectOne_com(int m_no) {
-		ManageMemberDto dto =null;
+	public ManageMemberDto_com selectOne_com(int m_no) {
+		ManageMemberDto_com dto_com =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",m_no);
-			System.out.println("seletOne: "+ dto);
+			dto_com=sqlSession.selectOne(NAMESPACE+"selectOne_com",m_no);
+			System.out.println("seletOne: "+ dto_com);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();
 		}
 		
-		return dto;
+		return dto_com;
 	}
 
 
 
 	@Override
-	public int update_com(ManageMemberDto dto) {
-		int res=0;
+	public int update_com(ManageMemberDto_com dto) {
+		int res_com=0;
 		
 		try {
-			res=sqlSession.update(NAMESPACE+"update",dto);
-			System.out.println("update: "+res);
+			res_com=sqlSession.update(NAMESPACE+"update_com",dto);
+			System.out.println("update: "+res_com);
 		} catch (Exception e) {
 			System.out.println("[error] : update");
 			e.printStackTrace();
 		}
-		return res;
+		return res_com;
 	}
 
 
