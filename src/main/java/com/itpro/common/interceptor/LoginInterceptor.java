@@ -9,26 +9,33 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
+=======
 import org.springframework.ui.Model;
+>>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
-
+import com.itpro.model.dto.member.LoginDto;
 
 public class LoginInterceptor implements HandlerInterceptor{
 
+	@Autowired
+	private MemberBiz memberBiz;
 	
 	private Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-
+<<<<<<< HEAD
 		logger.info("[Interceptor] : preHandle");
-	
-
+	//	logger.info("MemberBiz:", (memberBiz == null) ? "NULL" : memberBiz);
+		
+		setLoginDto(request);
+=======
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8"); 
  		logger.info("[Interceptor] : preHandle");
