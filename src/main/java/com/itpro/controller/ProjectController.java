@@ -21,7 +21,7 @@ import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.dto.like.LikeDto;
-import com.itpro.model.dto.member.LoginDto;
+import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
@@ -105,7 +105,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		logger.info("PROJECT DETAIL");
 		
 		if(session.getAttribute("login")!=null) {
-			LoginDto loginDto = (LoginDto) session.getAttribute("login");
+			MemberDto loginDto = (MemberDto) session.getAttribute("login");
 			int m_no = loginDto.getM_no();
 			LikeDto likeDto = new LikeDto();
 			likeDto.setBd_no(bd_no);

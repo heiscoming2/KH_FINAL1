@@ -9,33 +9,26 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
-=======
 import org.springframework.ui.Model;
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
-import com.itpro.model.dto.member.LoginDto;
+
 
 public class LoginInterceptor implements HandlerInterceptor{
 
-	@Autowired
-	private MemberBiz memberBiz;
 	
 	private Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-<<<<<<< HEAD
+
 		logger.info("[Interceptor] : preHandle");
-	//	logger.info("MemberBiz:", (memberBiz == null) ? "NULL" : memberBiz);
-		
-		setLoginDto(request);
-=======
+	
+
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8"); 
  		logger.info("[Interceptor] : preHandle");
@@ -53,12 +46,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		}
 		return true;
 		
-		
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
-		
-		System.out.println(request.getServletContext().getRealPath("/"));
-		
-		//비 로그인으로 접근 가능한 페이지(주석 지워서 사용)
+		//접속 가능한 페이지 설정
 		/* 
 		if(request.getRequestURI().contains("/main.do") //메인
 				||request.getRequestURI().contains("/login.do") //로그인폼 
@@ -73,34 +61,14 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return true;
 		} 
 		
-<<<<<<< HEAD
 		if(request.getSession().getAttribute("login") == null) {//로그인 상태가 아니면 로그인 폼으로
 			response.sendRedirect("login.do");
 			return false;
 		}				
 		*/
-		return true;
+		
 	}
- 	
- 	private void setLoginDto(HttpServletRequest request) {
- 		logger.info("setLoginDto()");
- 		
- 		HttpSession session = request.getSession();
- 		Integer m_no = (Integer) session.getAttribute("m_no");
- 		if (m_no == null) {
- 			logger.info("m_no == null");
- 			return; // early return;
- 		}
- 		
-		LoginDto loginDto = memberBiz.select(m_no);
-		logger.info("loginDto: " + loginDto);
-		logger.info("loginDto.getM_no(): " + loginDto.getM_no());
- 		
-		session.setAttribute("login", loginDto);
- 	}
-=======
-	};
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
+
 	
 	//view 단으로 forward 되기 전에 수행
 	@Override
