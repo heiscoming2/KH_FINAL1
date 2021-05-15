@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
-import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.LoginDto;
+import com.itpro.model.dto.member.RegBizDto;
+import com.itpro.model.dto.member.RegDto;
 
 @Controller
 public class MemberController {
@@ -45,15 +47,15 @@ public class MemberController {
 	// 로그인
 	@RequestMapping(value = "/ajaxlogin.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody MemberDto loginDto) {
+	public Map<String, Boolean> ajaxLogin(HttpSession session, @RequestBody LoginDto loginDto) {
 
 		logger.info("[LOGIN]");
-		MemberDto res = biz.login(loginDto);
+		LoginDto res = biz.login(loginDto);
 
 		boolean check = false;
 		if (res != null) {
-			session.setAttribute("login", res);
-		//	session.setAttribute("login", res.getM_no());
+			// session.setAttribute("login", res);
+			session.setAttribute("m_no", res.getM_no());
 			check = true;
 		}
 
@@ -92,7 +94,7 @@ public class MemberController {
 
 	// 회원가입_개인
 	@RequestMapping(value = "/join_user.do")
-	public String RegMember(MemberDto regDto) {
+	public String RegMember(RegDto regDto) {
 		logger.info("[JOIN USER]");
 
 		int res = biz.RegMember(regDto);
@@ -114,7 +116,7 @@ public class MemberController {
 
 	// 회원가입_기업
 	@RequestMapping(value = "/join_biz.do")
-	public String RegBizMember(MemberDto regBizDto) {
+	public String RegBizMember(RegBizDto regBizDto) {
 		logger.info("[JOIN USER]");
 
 		int res = biz.RegBizMember(regBizDto);
@@ -253,7 +255,7 @@ public class MemberController {
 
 	// 개인회원 정보수정 처리
 	@RequestMapping("/user_update.do")
-	public String update(MemberDto loginDto) {
+	public String update(LoginDto loginDto) {
 		logger.info("MEMBER UPDATE");
 
 		int res = biz.update(loginDto);
