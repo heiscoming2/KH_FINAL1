@@ -9,11 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
-=======
-import org.springframework.ui.Model;
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,12 +26,10 @@ public class LoginInterceptor implements HandlerInterceptor{
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-<<<<<<< HEAD
 		logger.info("[Interceptor] : preHandle");
 	//	logger.info("MemberBiz:", (memberBiz == null) ? "NULL" : memberBiz);
 		
 		setLoginDto(request);
-=======
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8"); 
  		logger.info("[Interceptor] : preHandle");
@@ -54,9 +48,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		return true;
 		
 		
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 		
-		System.out.println(request.getServletContext().getRealPath("/"));
 		
 		//비 로그인으로 접근 가능한 페이지(주석 지워서 사용)
 		/* 
@@ -79,7 +71,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return false;
 		}				
 		*/
-		return true;
 	}
  	
  	private void setLoginDto(HttpServletRequest request) {
@@ -98,9 +89,6 @@ public class LoginInterceptor implements HandlerInterceptor{
  		
 		session.setAttribute("login", loginDto);
  	}
-=======
-	};
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 	
 	//view 단으로 forward 되기 전에 수행
 	@Override
