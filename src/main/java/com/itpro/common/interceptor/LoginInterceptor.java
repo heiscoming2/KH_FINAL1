@@ -9,11 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
-=======
-import org.springframework.ui.Model;
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,7 +49,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 		
 		
-		System.out.println(request.getServletContext().getRealPath("/"));
 		
 		//비 로그인으로 접근 가능한 페이지(주석 지워서 사용)
 		/* 
@@ -76,7 +71,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return false;
 		}				
 		*/
-		return true;
 	}
  	
  	private void setLoginDto(HttpServletRequest request) {
@@ -95,9 +89,6 @@ public class LoginInterceptor implements HandlerInterceptor{
  		
 		session.setAttribute("login", loginDto);
  	}
-=======
-	};
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 	
 	//view 단으로 forward 되기 전에 수행
 	@Override
