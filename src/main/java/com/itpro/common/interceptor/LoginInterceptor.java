@@ -30,12 +30,10 @@ public class LoginInterceptor implements HandlerInterceptor{
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-<<<<<<< HEAD
 		logger.info("[Interceptor] : preHandle");
 	//	logger.info("MemberBiz:", (memberBiz == null) ? "NULL" : memberBiz);
 		
 		setLoginDto(request);
-=======
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8"); 
  		logger.info("[Interceptor] : preHandle");
@@ -54,7 +52,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		return true;
 		
 		
->>>>>>> 390d64181905d9188b92b39a20a2a27eec418376
 		
 		System.out.println(request.getServletContext().getRealPath("/"));
 		

@@ -92,7 +92,7 @@
                   style="font-size:15px; color:black; position:relative; top:10px;">
                   ${sessionScope.login.m_nickname }
                 </a>
-            </div> 
+            </div>
             <br>
             <br>
 			 <textarea id="replyArea" name="re_content"></textarea>
