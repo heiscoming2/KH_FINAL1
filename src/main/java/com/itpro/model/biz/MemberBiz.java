@@ -8,9 +8,6 @@ public interface MemberBiz {
 	//로그인
 	public MemberDto login(MemberDto loginDto);
 	
-	//로그아웃
-	public void logout(HttpSession session);
-	
 	//개인회원가입
 	public int RegMember(MemberDto regDto);
 	

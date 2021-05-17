@@ -22,12 +22,6 @@ public class MemberBizImpl implements MemberBiz{
 		return dao.login(loginDto);
 	}
 
-	//로그아웃
-	@Override
-	public void logout(HttpSession session) {
-		dao.logout(session);
-	}
-
 	//개인회원가입
 	@Override
 	public int RegMember(MemberDto regDto) {
