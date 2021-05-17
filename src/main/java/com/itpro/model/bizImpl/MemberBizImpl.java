@@ -57,18 +57,17 @@ public class MemberBizImpl implements MemberBiz{
 		return dao.regnoCheck(m_regno);
 	}
 	
-
-	//회원정보 조회
+	//회원 탈퇴(삭제)
 	@Override
-	public MemberDto select(int m_no) {
-		return dao.select(m_no);
+	public String deleteMember(String m_id) {
+		
+		return dao.deleteMember(m_id);
 	}
 
-
-	//개인회원정보수정(업데이트)
+	//탈퇴아이디 체크
 	@Override
-	public int update(MemberDto loginDto) {
+	public boolean checkPw(String m_id, String m_pw) {
 		
-		return dao.update(loginDto);
+		return dao.checkPw(m_id, m_pw);
 	}
 }
