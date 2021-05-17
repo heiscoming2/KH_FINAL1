@@ -90,3 +90,14 @@
 	border-top:1px solid skyblue;
 	border-bottom:1px solid skyblue !important;
 }
+
+
+
+/*  howAsc(정렬) */
+
+.howAsc {
+    float:right;
+    margin-bottom: 10px;
+}
+
+
