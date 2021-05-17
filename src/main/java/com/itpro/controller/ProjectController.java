@@ -189,5 +189,15 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	
 	
 	
+	@RequestMapping(value="/projectcategory.do")
+	public String projectcategory(@RequestParam(value="bd_no") int bd_no, Model model ) {
+		return null;
+		
+		
+		
+		
+	}
+
+	
 	
 }

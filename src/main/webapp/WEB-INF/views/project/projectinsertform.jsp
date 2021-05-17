@@ -9,6 +9,12 @@
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <title>IT PRO project 글 쓰기</title>
+
+
+
+
+
+
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -38,6 +44,9 @@
               
           <table class="project_inserttable">
             <h5><b>프로젝트</b></h5>
+            
+            <!-- project_appendchild div 박스 시작 -->
+            <div id="project_appendchild">
             <tr>
               <th><span>* </span>제목</th>
               <td><input type=text class="form-control" name="bd_title"></td>
@@ -81,9 +90,17 @@
             <th><span>* </span>구현 기능 </th>
             <td><textarea id="summernote" name="pro_function"></textarea></td>
             </tr>
+            
+            </div>
+            <!-- project_appendchild div 박스 종료 -->
+            
             <tr>
-            <td><input type="button" value="프로젝트 추가"></td>
+            <td><input type="button" value="프로젝트 추가" onclick="add_div('')"></td>
+            <td><input type="button" value="프로젝트 삭제" onclick="remove_div(this)"></td>
             </tr>
+            
+            <div id="project_field"> </div>
+            
         </table>
           
         <br>
@@ -117,8 +134,7 @@
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- PROJECTINSERT 개별 JS -->
 <script type="text/javascript" src="resources/js/projectinsert.js"></script>
-<!-- 주소 정보 JS -->
-<script type="text/javascript" src="resources/js/address.js"></script>
+
 
 </body>
 </html>
