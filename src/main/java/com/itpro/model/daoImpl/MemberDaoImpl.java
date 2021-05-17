@@ -29,12 +29,6 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
-	// 로그아웃
-	@Override
-	public void logout(HttpSession session) {
-		session.invalidate();
-	}
-
 	// 개인회원 회원가입
 	@Override
 	public int RegMember(MemberDto regDto) {
