@@ -29,7 +29,7 @@
 		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.like.LikeDto" alias="LikeDto"/>
-		
+		<typeAlias type="com.itpro.model.dto.member.RegBizDto" alias="RegBizDto"/>
 	</typeAliases>
 	
 	<mappers>

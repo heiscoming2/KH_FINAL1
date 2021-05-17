@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.MemberDao;
 import com.itpro.model.dto.member.LoginDto;
+import com.itpro.model.dto.member.RegBizDto;
 import com.itpro.model.dto.member.RegDto;
 
 @Repository
@@ -36,7 +37,7 @@ public class MemberDaoImpl implements MemberDao {
 		session.invalidate();
 	}
 
-	// 회원가입
+	// 개인회원 회원가입
 	@Override
 	public int RegMember(RegDto regDto) {
 		int res = 0;
@@ -46,6 +47,22 @@ public class MemberDaoImpl implements MemberDao {
 
 		} catch (Exception e) {
 			System.out.println("[error] : RegMember");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+	
+	//기업회원 회원가입
+	@Override
+	public int RegBizMember(RegBizDto regBizDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "RegBizMember", regBizDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : RegBizMember");
 			e.printStackTrace();
 		}
 
@@ -80,4 +97,45 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+	//중복사업자번호 체크
+	@Override
+	public int regnoCheck(String m_regno) {
+		int res = 0;
+
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "regnoCheck", m_regno);
+		} catch (Exception e) {
+
+		}
+
+		return res;
+	}
+	
+	@Override
+	public LoginDto select(int m_no) {
+		LoginDto res = null;
+
+		try {
+			res = sqlSession.selectOne(NAMESPACE + "select", m_no);
+		} catch (Exception e) {
+
+		}
+
+		return res;
+	}
+	
+	//개인회원 정보수정(업데이트)
+	@Override
+	public int update(LoginDto loginDto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"update",loginDto);
+		} catch (Exception e) {
+			System.out.println("[error]:update");
+			e.printStackTrace();
+		}	
+		
+		return res;
+	}
 }

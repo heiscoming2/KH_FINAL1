@@ -6,6 +6,7 @@ public class ReplyInsertDto {
 	private String re_writerip;
 	private int bd_no;
 	private int m_no;
+	private int parentno;
 	
 	public String getRe_content() {
 		return re_content;
@@ -31,7 +32,11 @@ public class ReplyInsertDto {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	
-	
+	public int getParentno() {
+		return parentno;
+	}
+	public void setParentno(int parentno) {
+		this.parentno = parentno;
+	}
 	
 }

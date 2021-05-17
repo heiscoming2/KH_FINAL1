@@ -1,6 +1,5 @@
 function like_func(bd_no, m_no) {
 
-	
 	let likeno = { "bd_no": bd_no, "m_no": m_no};
 
 	$.ajax({
@@ -26,6 +25,4 @@ function like_func(bd_no, m_no) {
 			
 			}
 	}); 
-
-
 }

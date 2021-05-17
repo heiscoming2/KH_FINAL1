@@ -25,7 +25,7 @@
 			 if(bool) {
 				 location.reload();
 			 } else {
-				 alert('댓글 등록 실패');ㅣ
+				 alert('댓글 등록 실패');
 			 }
 		 },
 		 error:function() {
@@ -58,12 +58,15 @@
   /*댓글 수정 시 summernote 호출*/
   /*기존 버튼 삭제 및 새로운 버튼 추가*/
   function replyUpdateForm(re_no) {
+  	  
+  	  rereplyInsertCancel(re_no)
   	  $('#reply'+re_no).summernote({
   	    height:150
   	  });
   	  let $div = $('.replyBtnWrap'+re_no);
   	  $div.children('.updateformbtn').remove();
   	  $div.children('.deleteformbtn').remove();
+  	  $div.children('.rereplyinsertformbtn').remove();
 	  $div.append("<input type='button' class='btn btn-primary replyupdatebtn' style='margin-right:6px;' " +
 	  		      "value='수정완료' onclick='replyUpdate("+re_no+")'></input>");
 	  $div.append("<input type='button' class='btn btn-primary replyupdatecancelbtn' " +
@@ -78,9 +81,10 @@
 	  let $div = $('.replyBtnWrap'+re_no);
 	  $div.children('.replyupdatebtn').remove();
 	  $div.children('.replyupdatecancelbtn').remove();
+	  $div.append("<input type='button' class='btn btn-primary rereplyinsertformbtn' style='margin-right:6px;' value='답글' onclick='rereplyInsertForm("+re_no+");'>");
 	  $div.append("<input type='button' class='btn btn-primary updateformbtn' style='margin-right:6px;' value='수정' " +
-	  		      "onclick='replyUpdateForm("+re_no+");'>")
-	  $div.append("<input type='button' class='btn btn-primary deleteformbtn' value='삭제' onclick='delConFirmReply()'>");
+	  		      "onclick='replyUpdateForm("+re_no+");'>");
+	  $div.append("<input type='button' class='btn btn-primary deleteformbtn' value='삭제' onclick='delConFirmReply("+re_no+")'>");
   }
   
   
@@ -110,3 +114,50 @@
 		 }
 	  });
   }
+  
+  
+  
+  //대댓글 INSERT FORM
+  function rereplyInsertForm(re_no) {
+	   
+	    $('#rereply'+re_no).summernote({
+	        placeholder: '답글을 작성해주세요.',
+	        height:150
+	    });
+	    
+	    let $div = $('.rereplyBtnWrap'+re_no);
+	    
+	    //나중에 답글 등록 버튼 클릭 시 onclick 함수 만들어 주어야함
+		$div.append("<input type='button' class='btn btn-primary rereplyinsert' style='margin-right:6px;' value='답글 등록' " +
+	  		        "onclick='alert("+re_no+");'>");
+	  	
+	  	//위에 답글 버튼을 onclick 속성 변경을 위해 div를 선택 후 속성을 변경한다.
+	  	$div = $('.replyBtnWrap'+re_no);
+	    $div.children('.rereplyinsertformbtn').attr('onclick',"rereplyInsertCancel("+re_no+")");
+	  
+  }
+  
+  
+  //대댓글 INSERT FORM 취소
+  //onclick 속성을 다시 변경해주어야한다.
+  function rereplyInsertCancel(re_no) {
+	  //썸머노트 닫고
+	  //답글등록 버튼 제거하고
+	  //답글 onclick 속성 다시 insertform으로 변경해주고
+	  
+	  let $div = $('#rereply'+re_no);
+	  $div.summernote('destroy');
+	  $div.empty();
+	  
+	  $div = $('.rereplyBtnWrap'+re_no);
+	  $div.children('.rereplyinsert').remove();
+	  
+	  $div = $('.replyBtnWrap'+re_no);
+	  $div.children('.rereplyinsertformbtn').attr('onclick',"rereplyInsertForm("+re_no+")");
+	  
+  }
+  
+  
+  
+  
+  
