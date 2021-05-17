@@ -16,4 +16,6 @@ public interface ReplyDao {
 	public int insert(ReplyInsertDto replyInsertDto);
 	public int update(ReplyUpdateDto replyUpdateDto);
 	public int delete(int re_no);
+	public int orderUpdate(int re_parentno);
+	
 }

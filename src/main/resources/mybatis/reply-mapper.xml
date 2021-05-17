@@ -9,12 +9,13 @@
 	
 	<select id="selectList" parameterType="int" resultType="ReplyListDto">
 		SELECT R.RE_NO, R.RE_CREATEDDATE, R.RE_MODIFYDATE, R.RE_CONTENT, 
-		       R.RE_WRITERIP, R.M_NO, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, 
+		       R.RE_WRITERIP, R.RE_DEPTH, (SELECT M2.M_NICKNAME FROM REPLY R2, IT_MEMBER M2 WHERE R2.M_NO=M2.M_NO AND R2.RE_NO=R.RE_PARENTNO) TARGETID , R.M_NO , M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, 
 		       B.BD_NO 
 		FROM REPLY R, IT_MEMBER M, BOARD B 
 		WHERE R.BD_NO=B.BD_NO 
 		AND R.M_NO=M.M_NO 
 		AND B.BD_NO = #{bd_no}
+		ORDER BY R.RE_GROUPNO ASC, R.RE_GROUPORDERNO ASC
 	</select>
 	
 	<select id="replyCnt" parameterType="int" resultType="int">
@@ -22,7 +23,19 @@
 	</select>
 	
 	<insert id="insert" parameterType="ReplyInsertDto">
-		INSERT INTO REPLY VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},GROUPNOSEQ.NEXTVAL,1,0,NULL)
+		INSERT INTO REPLY 
+		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},
+		<choose>
+			<when test="re_parentno==0">
+				GROUPNOSEQ.NEXTVAL,1,0,NULL)
+			</when>
+			<otherwise>
+				(SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
+				(SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1,
+				(SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,
+				#{re_parentno})
+			</otherwise>
+		</choose>
 	</insert>
 	
 	<update id="update" parameterType="ReplyUpdateDto">
@@ -32,5 +45,13 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM REPLY WHERE RE_NO = #{re_no}
 	</delete>
+	
+	<!-- 대댓글 insert전에 순번 정렬하는 update -->
+	<update id="orderupdate" parameterType="int">
+        UPDATE REPLY        
+		SET RE_GROUPORDERNO = RE_GROUPORDERNO+1
+		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO = #{re_parentno})
+		  AND RE_GROUPORDERNO > (SELECT GROUPORDERNO FROM REPLY WHERE RE_NO = #{re_parentno})
+	</update>
 
 </mapper>

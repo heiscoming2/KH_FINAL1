@@ -9,31 +9,13 @@ public class ReplyListDto {
 	private Date re_modifydate;
 	private String re_content;
 	private String re_writerip;
+	private int re_depth;
+	private String targetid;
 	private int m_no;
 	private String m_img_path;
 	private String m_img;
 	private String m_nickname;
 	private int bd_no;
-	
-	
-	public String getM_img_path() {
-		return m_img_path;
-	}
-	public void setM_img_path(String m_img_path) {
-		this.m_img_path = m_img_path;
-	}
-	public String getM_img() {
-		return m_img;
-	}
-	public void setM_img(String m_img) {
-		this.m_img = m_img;
-	}
-	public String getM_nickname() {
-		return m_nickname;
-	}
-	public void setM_nickname(String m_nickname) {
-		this.m_nickname = m_nickname;
-	}
 	public int getRe_no() {
 		return re_no;
 	}
@@ -64,19 +46,50 @@ public class ReplyListDto {
 	public void setRe_writerip(String re_writerip) {
 		this.re_writerip = re_writerip;
 	}
+	public int getRe_depth() {
+		return re_depth;
+	}
+	public void setRe_depth(int re_depth) {
+		this.re_depth = re_depth;
+	}
+	public String getTargetid() {
+		return targetid;
+	}
+	public void setTargetid(String targetid) {
+		this.targetid = targetid;
+	}
 	public int getM_no() {
 		return m_no;
 	}
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-
+	public String getM_img_path() {
+		return m_img_path;
+	}
+	public void setM_img_path(String m_img_path) {
+		this.m_img_path = m_img_path;
+	}
+	public String getM_img() {
+		return m_img;
+	}
+	public void setM_img(String m_img) {
+		this.m_img = m_img;
+	}
+	public String getM_nickname() {
+		return m_nickname;
+	}
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
 	public int getBd_no() {
 		return bd_no;
 	}
 	public void setBd_no(int bd_no) {
 		this.bd_no = bd_no;
 	}
+	
+	
 	
 	
 	

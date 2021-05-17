@@ -29,15 +29,21 @@ public class ReplyController {
 	@Autowired
 	private ReplyBiz replyBiz;
 	
+	//댓글 INSERT
 	@RequestMapping(value="/replyinsert.do", method=RequestMethod.POST)
 	@ResponseBody
 	public Boolean replyInsert(HttpServletRequest request, Model model, @RequestBody ReplyInsertDto replyInsertDto) {
 		logger.info("REPLY INSERT");
 		//요청한 클라이언트의 ip주소를 얻어와 dto에 담음
 		replyInsertDto.setRe_writerip(new ClientInfo().getClientIp(request));
+		System.out.println(replyInsertDto.getRe_parentno());
+		
 		int replyInsertRes = replyBiz.insert(replyInsertDto);
+		
+		System.out.println("controller reparent_no"+replyInsertDto.getRe_parentno());
 		return replyInsertRes>0? true:false;
 	}
+	
 	
 	@RequestMapping(value="/replyupdate.do" , method=RequestMethod.POST)
 	@ResponseBody

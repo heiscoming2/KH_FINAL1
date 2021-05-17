@@ -7,13 +7,21 @@
   });
   
   /* 댓글 insert */
-  function replyInsert(bd_no,m_no) {
+  function replyInsert(bd_no,m_no,re_parentno) {
 	  
-	  let re_content = $('#replyArea').val(); 
+	  let re_content;
+	  if(re_parentno==null) {
+		  re_content = $('#replyArea').val(); 
+	  } else {
+		  re_content = $('#rereply'+re_parentno).val();
+		  alert(re_parentno);
+	  }
+	  
 	  let replyInsertValue = {
 			  "bd_no":bd_no,
 			  "m_no":m_no,
-			  "re_content":re_content
+			  "re_content":re_content,
+			  "re_parentno":re_parentno
 			  };
 	  $.ajax({
 		 type:'post',
@@ -118,8 +126,13 @@
   
   
   //대댓글 INSERT FORM
-  function rereplyInsertForm(re_no) {
+  function rereplyInsertForm(bd_no,m_no,re_no) {
 	   
+	  	
+	    $('#reply'+re_no).after("<textarea id='rereply"+re_no+"'></textarea>");
+	    $('#rereply'+re_no).after("<div class='rereplyBtnWrap"+re_no+"'style='float:right;'>");
+	    
+	    
 	    $('#rereply'+re_no).summernote({
 	        placeholder: '답글을 작성해주세요.',
 	        height:150
@@ -129,12 +142,11 @@
 	    
 	    //나중에 답글 등록 버튼 클릭 시 onclick 함수 만들어 주어야함
 		$div.append("<input type='button' class='btn btn-primary rereplyinsert' style='margin-right:6px;' value='답글 등록' " +
-	  		        "onclick='alert("+re_no+");'>");
-	  	
+	  		        "onclick='replyInsert("+bd_no+","+m_no+","+re_no+");'>");
+		
 	  	//위에 답글 버튼을 onclick 속성 변경을 위해 div를 선택 후 속성을 변경한다.
 	  	$div = $('.replyBtnWrap'+re_no);
-	    $div.children('.rereplyinsertformbtn').attr('onclick',"rereplyInsertCancel("+re_no+")");
-	  
+	    $div.children('.rereplyinsertformbtn').attr('onclick',"rereplyInsertCancel("+bd_no,m_no,re_no+")");
   }
   
   
@@ -154,7 +166,6 @@
 	  
 	  $div = $('.replyBtnWrap'+re_no);
 	  $div.children('.rereplyinsertformbtn').attr('onclick',"rereplyInsertForm("+re_no+")");
-	  
   }
   
   

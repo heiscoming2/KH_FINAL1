@@ -32,40 +32,56 @@
                 <div class="replyBtnWrap${replyListDto.re_no }" style="float:right;">
                 <!-- 수정/삭제는 현재 세션회원번호와, 댓글작성회원번호replyListDto.m_no 가 일치하는 경우에만 보여주면될듯 -->
                 <c:if test="${sessionScope.login ne null }">
-	              <input type="button" class="btn btn-primary rereplyinsertformbtn" value="답글" onclick="rereplyInsertForm('${replyListDto.re_no}');">
+	              <input type="button" class="btn btn-primary rereplyinsertformbtn" value="답글" onclick="rereplyInsertForm(${dto.bd_no},${sessionScope.login.m_no},${replyListDto.re_no});">
                 </c:if>
                 <c:if test="${sessionScope.login ne null && sessionScope.login.m_no eq replyListDto.m_no }">
 	               <input type="button" class="btn btn-primary updateformbtn" value="수정" onclick="replyUpdateForm('${replyListDto.re_no}');">
 	               <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply('${replyListDto.re_no}')">
                 </c:if>
                 </div>
-                
-              <img src="${replyListDto.m_img_path }${replyListDto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"
-                style="float: left; margin-top: 5px;">
-              <div>
-                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-                  style="font-size:15px;" data-bs-toggle="dropdown" aria-expanded="false">
-                  ${replyListDto.m_nickname }
-                </a>
-                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-                </ul>
-                <!-- 게시글 작성자의 회원번호와 댓글 작성자의 회원 번호가 일치하면 작성자를 표시해준다. -->
-                <c:if test="${dto.m_no eq replyListDto.m_no }">
-	                <a style="border:1px solid red; border-radius:5px; width:35px; height:20px; font-size:12px; padding:3px; color:red; margin-left:5px;">
-	                	작성자 
+             	  <!-- 여기 마진 left를 댓글 뎁스로 구해야됨 -->
+              <div id=reretestdiv style="margin-left:<c:if test="${replyListDto.re_depth>1}">${(replyListDto.re_depth)*30}px;</c:if>">
+	              <!-- 답글 이미지랑, 타겟 댓글 닉네임 -->
+	              <!-- 위엔 닉네임 밑에는 이미지 보여주면될듯 -->
+	              <c:if test="${replyListDto.re_depth ne 0 }">
+	              <div style="float:left;">
+	              	<ul style="list-style:none; padding:0; width:120px; text-align:right; margin-right:30px;">
+	              	    <li style="color:gray; font-size:8px;">To.</li>
+	              		<li style="color:gray; font-size:12px;">${replyListDto.targetid}</li>
+	              		<li><img src="boardimages/replyarrow.png" width="35" height="35"></li>
+	              	</ul>
+	              </div>
+	              </c:if>		
+              
+              <div>  
+	              <img src="${replyListDto.m_img_path }${replyListDto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+	                style="float: left; margin-top: 5px;">
+	              <div>
+	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
+	                  style="font-size:15px;" data-bs-toggle="dropdown" aria-expanded="false">
+	                  ${replyListDto.m_nickname }
 	                </a>
-                </c:if>
-              </div>
-              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">
-              	[ IP : ${replyListDto.re_writerip } ]
-                <fmt:formatDate value="${replyListDto.re_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성됨)
-                <c:if test="${replyListDto.re_modifydate ne null }">
-                <fmt:formatDate value="${replyListDto.re_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정됨)
-                </c:if>
-                </span>
+	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
+	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
+	                </ul>
+	                <!-- 게시글 작성자의 회원번호와 댓글 작성자의 회원 번호가 일치하면 작성자를 표시해준다. -->
+	                <c:if test="${dto.m_no eq replyListDto.m_no }">
+		                <a style="border:1px solid red; border-radius:5px; width:35px; height:20px; font-size:12px; padding:3px; color:red; margin-left:5px;">
+		                	작성자 
+		                </a>
+	                </c:if>
+	              </div>
+	              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">
+	              	[ IP : ${replyListDto.re_writerip } ]
+	                <fmt:formatDate value="${replyListDto.re_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성됨)
+	                <c:if test="${replyListDto.re_modifydate ne null }">
+	                <fmt:formatDate value="${replyListDto.re_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정됨)
+	                </c:if>
+	                </span>
+                 </div>
+               </div> 
             </div> 
             <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
             <!-- 댓글 컨텐츠 영역 시작 -->
@@ -73,10 +89,7 @@
             <!-- 댓글 컨텐츠 영역 종료 -->
             
             <!-- 대댓글 작성 시 여길로 썸머노트 입력폼 쏴준다 -->
-            <div id="rereply${replyListDto.re_no }"></div>
-            <div class="rereplyBtnWrap${replyListDto.re_no }" style="float:right;">
             <!-- 답글 클릭시 여기에다가 버튼을 만들어서 달아준다. -->
-            </div>
                             
           </td>
         </tr>
@@ -86,7 +99,6 @@
 	
 	
 	<!-- 다중뎁스 댓글 css 1단 시작 영역 테스트(나중에 삭제 예정)  -->
-	
 	<c:forEach var="test" begin="0" end="10">
 		<tr>
 	          <td>
@@ -106,7 +118,7 @@
 			              <div style="float:left;">
 			              	<ul style="list-style:none; padding:0; width:120px; text-align:right; margin-right:30px;">
 			              	    <li style="color:gray; font-size:8px;">To.</li>
-			              		<li style="color:gray; font-size:12px;">회원일회원일회원원일회원일회원일회</li>
+			              		<li style="color:gray; font-size:12px;">회원일회원</li>
 			              		<li><img src="boardimages/replyarrow.png" width="35" height="35"></li>
 			              	</ul>
 			              </div>		

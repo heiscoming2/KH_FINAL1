@@ -75,4 +75,15 @@ public class ReplyDaoImpl implements ReplyDao {
 		}
 		return replyDeleteRes;
 	}
+
+	@Override
+	public int orderUpdate(int re_parentno) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"orderupdate",re_parentno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 }
