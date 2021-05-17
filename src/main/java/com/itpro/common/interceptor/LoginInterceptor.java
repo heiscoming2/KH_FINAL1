@@ -10,24 +10,22 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
 
-
 public class LoginInterceptor implements HandlerInterceptor{
 
+	@Autowired
+	private MemberBiz memberBiz;
 	
 	private Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	//Controller 실행 요청 전에 수행되는 메소드  true값은 controller로 넘어가고  false는 다시 디스패처서플릿으로 돌아감. 
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-
 		logger.info("[Interceptor] : preHandle");
-	
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8"); 
@@ -46,7 +44,10 @@ public class LoginInterceptor implements HandlerInterceptor{
 		}
 		return true;
 		
-		//접속 가능한 페이지 설정
+		
+		
+		
+		//비 로그인으로 접근 가능한 페이지(주석 지워서 사용)
 		/* 
 		if(request.getRequestURI().contains("/main.do") //메인
 				||request.getRequestURI().contains("/login.do") //로그인폼 
@@ -61,14 +62,14 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return true;
 		} 
 		
+
 		if(request.getSession().getAttribute("login") == null) {//로그인 상태가 아니면 로그인 폼으로
 			response.sendRedirect("login.do");
 			return false;
 		}				
 		*/
-		
 	}
-
+ 	
 	
 	//view 단으로 forward 되기 전에 수행
 	@Override

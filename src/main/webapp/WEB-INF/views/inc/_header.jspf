@@ -51,19 +51,20 @@
 						</form>
 					</li>
 					
-					<!-- 로그아웃 -->
+					<!-- 로그인 -->
 					<c:if test="${login != null}">
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">로그아웃</a>
+						<a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">${login.m_nickname }</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="mypage_user.do">마이페이지</a></li>
-							
-							<!-- 
-								<li><a class="dropdown-item" href="mypage_user_common.do">마이페이지</a></li>
-								<li><a class="dropdown-item" href="mypage_user_biz.do">마이페이지</a></li>
-								<li><a class="dropdown-item" href="mypage_user_admin.do">마이페이지</a></li>
-							 -->
-							
+							<c:set var = "mypage" value = "${login.m_type}"/>
+							<c:choose>
+								<c:when test="${mypage eq '개인회원'}">
+									<li><a class="dropdown-item" href="mypage_user.do">마이페이지</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a class="dropdown-item" href="mypage_biz.do">마이페이지</a></li>
+								</c:otherwise>
+							</c:choose>							
 							<li><a class="dropdown-item" href="note_receivelist.do">쪽지함</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<c:if test="${sessionScope.login.m_auth eq 'Y' }">
@@ -79,7 +80,7 @@
 					</li>
 					</c:if>
 
-					<!-- 로그인 -->
+					<!-- 로그아웃 -->
 					<c:if test="${login == null }">
 					<li class="nav-item ">
 						<a class="nav-link active  text-light" aria-current="page" href="login.do">로그인</a>

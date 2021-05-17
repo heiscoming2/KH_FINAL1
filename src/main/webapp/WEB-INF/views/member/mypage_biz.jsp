@@ -18,12 +18,14 @@
         <div class="mb-4"><!-- 마이페이지 미니 프로필 -->
             <img src="./resources/images/profileimages/testprofile.jpg" alt="mdo" width="35" height="35" class="rounded-circle me-2"
               style="float: left;">
-            <span class="fw-bold"style="display: block; position: relative; top:5px;">${login.nickname }</span>
+            <span class="fw-bold"style="display: block; position: relative; top:5px;">${login.m_nickname }</span>
         </div>
         
         <!-- 마이페이지 목록 -->
         <div class="list-group">
-            <a href="modify_biz.do" class="list-group-item list-group-item-action" aria-current="true">
+        
+        	<!-- 정보수정 -->
+            <a href="biz_update_form.do" class="list-group-item list-group-item-action" aria-current="true">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">회원정보</h5>
               </div>
@@ -33,7 +35,7 @@
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">광고</h5>
                 </div>
-                <p class="mb-1">등록한 광고결제 내역을 확인합니다.</p>
+                <p class="mb-1">광고 내역을 확인합니다.</p>
             </a>
             <a href="note_receivelist.do" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">

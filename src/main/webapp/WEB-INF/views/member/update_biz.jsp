@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-4 mt-5">
             
-                <form class="form-inline" action="user_update.do" method="post">
+                <form class="form-inline" action="#" method="post">
                 	<input type="hidden" name="m_no" value="${login.m_no}">
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
@@ -46,11 +46,18 @@
                             <input type="text" class="form-control" id="m_nickname">
                         </div>
                     </div>
+                    
+                    <div class="mb-3 row"><!--사업자번호-->
+                        <label class="col-sm-4 col-form-label">사업자번호</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control-plaintext" id="m_regnum" readonly value="${login.m_email }">
+                        </div>
+                    </div>
 
                     <div class="mb-3 row"><!--이메일-->
                         <label class="col-sm-4 col-form-label">이메일</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_email" readonly value="${login.m_email }">
+                            <input type="text" class="form-control" id="m_email">
                         </div>
                     </div>
 

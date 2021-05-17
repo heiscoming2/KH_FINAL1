@@ -7,10 +7,10 @@
  
  	<!-- 회원로그인 -->
  	<select id="login" parameterType="MemberDto" resultType="MemberDto">
- 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_AUTH, M_IMG_PATH, M_IMG
+ 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_TYPE, M_AUTH
  		FROM IT_MEMBER
  		WHERE M_ID = #{m_id}
- 		AND M_PW = #{m_pw}
+ 			AND M_PW = #{m_pw}
  	</select>
  	
  	<!--개인 회원가입 -->
@@ -49,13 +49,17 @@
  		WHERE M_REGNO = #{m_regno}
  	</select>
  	
- 	<!-- 정보수정 이미지수정은 조금 있다가 수정 아니 왜 다 안되지?_? 왜구랭ㅠㅠ-->
- 	<update id="update" parameterType="MemberDto">
- 		UPDATE IT_MEMBER
- 		SET M_PW = #{m_pw}, M_NICKNAME=#{m_nickname}
- 		WHERE M_NO = #{m_no}
- 	</update>
- 	
- 	
  	<!-- 회원탈퇴 -->
+ 	<delete id="memberDelete">
+ 		DELETE FROM IT_MEMBER
+ 		WHERE M_ID = #{m_id} 
+ 	</delete>
+ 	
+ 	<!-- 회원탈퇴 아이디 비번 확인 -->
+ 	<select id="checkPw" resultType="int">
+ 		SELECT COUNT (*)
+ 		FROM IT_MEMBER
+ 		WHERE M_ID = #{m_id}
+ 			AND M_PW = #{m_pw}
+ 	</select>
  </mapper>

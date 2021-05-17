@@ -20,6 +20,13 @@
         <div class="project_btnwrap">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='projectinsertform.do'">
 		</div>
+		
+		<div class="project_how_wrap" style="float:right;">
+    	<select id="howAsc" class="howAsc">
+    		<option value="recently">최신순</option>
+    		<option value="likes">추천순</option>
+    	</select>
+    	</div>   
         
         <table class="project_table">
 			<col width="80px;">
@@ -45,19 +52,19 @@
 					</c:when>
 					<c:otherwise>
 
-                  	<c:forEach var="projectDto" items="${projectList }">
+                  	<c:forEach var="dto" items="${projectList }">
 							<tr>
 							<!-- 글 번호 시작 --> 
-							<td>${projectDto.bd_no} </td>
-							<td><a href= "projectdetail.do?bd_no=${projectDto.bd_no}">${projectDto.bd_title}</a></td>
-							<td>${projectDto.bd_recommandcount }</td>
-							<td>${projectDto.bd_viewcount }</td>
+							<td>${dto.bd_no} </td>
+							<td><a href= "projectdetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
+							<td>+${dto.bd_recommandcount }</td>
+							<td>${dto.bd_viewcount }</td>
 							<td>
 							    <div class="project_profile">
-								<img src="${projectDto.m_img_path }${projectDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+								<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
 									<div class="study_writer"> 
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
-											${projectDto.m_nickname }
+											${dto.m_nickname }
 										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
@@ -65,7 +72,7 @@
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="project_regdate"> <fmt:formatDate value="${projectDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
+									<span class="project_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
 							</tr>

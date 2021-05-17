@@ -140,6 +140,8 @@
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
+<!-- 스터디 디테일 js -->
+<script type="text/javascript" src="resources/js/projectdetail.js?ver=1.1"></script>
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.3"></script>
 <!-- 댓글 js -->

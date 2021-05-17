@@ -3,60 +3,60 @@ package com.itpro.model.dto.member;
 import java.util.Date;
 
 public class MemberDto {
-	private int m_no; //회원번호
-	private String m_id;//아이디
-	private String m_pw;//비밀번호
-	private String m_nickname;//닉네임,기업명
-	private String m_phone;//전화번호
-	private String m_email;//이메일
-	private String m_used;//탈퇴여부
-	private String m_act;//활동여부
-	private String m_mail_cert;//메일인증
-	private String m_type;//회원타입
-	private String m_auth;//권한
-	private String m_img_path; //이미지경로
-	private String m_img;	//이미지
-	private Date m_regdate;//등록일
-	private String m_name; //이름
-	private String m_birth; //생년월일
-	private String m_gender; //성별
-	private String m_addr; //주소
- 	
-	//기업 회원 추가정보
-	private String m_regno;//사업자번호
-	private String m_admin_cert;//기업회원승인여부
-	
+	private int m_no; // 회원번호
+	private String m_id;// 아이디
+	private String m_pw;// 비밀번호
+	private String m_nickname;// 닉네임,기업명
+	private String m_phone;// 전화번호
+	private String m_email;// 이메일
+	private String m_used;// 탈퇴여부
+	private String m_act;// 활동여부
+	private String m_mail_cert;// 메일인증
+	private String m_type;// 회원타입
+	private String m_auth;// 권한
+	private String m_img_path; // 이미지경로
+	private String m_img; // 이미지
+	private Date m_regdate;// 등록일
+	private String m_name; // 이름
+	private String m_birth; // 생년월일
+	private String m_gender; // 성별
+	private String m_addr; // 주소
+
+	// 기업 회원 추가정보
+	private String m_regno;// 사업자번호
+	private String m_admin_cert;// 기업회원승인여부
+
 	public MemberDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+			super();
+			// TODO Auto-generated constructor stub
+		}
 
 	public MemberDto(int m_no, String m_id, String m_pw, String m_nickname, String m_phone, String m_email,
-			String m_used, String m_act, String m_mail_cert, String m_type, String m_auth, String m_img_path,
-			String m_img, Date m_regdate, String m_name, String m_birth, String m_gender, String m_addr, String m_regno,
-			String m_admin_cert) {
-		super();
-		this.m_no = m_no;
-		this.m_id = m_id;
-		this.m_pw = m_pw;
-		this.m_nickname = m_nickname;
-		this.m_phone = m_phone;
-		this.m_email = m_email;
-		this.m_used = m_used;
-		this.m_act = m_act;
-		this.m_mail_cert = m_mail_cert;
-		this.m_type = m_type;
-		this.m_auth = m_auth;
-		this.m_img_path = m_img_path;
-		this.m_img = m_img;
-		this.m_regdate = m_regdate;
-		this.m_name = m_name;
-		this.m_birth = m_birth;
-		this.m_gender = m_gender;
-		this.m_addr = m_addr;
-		this.m_regno = m_regno;
-		this.m_admin_cert = m_admin_cert;
-	}
+				String m_used, String m_act, String m_mail_cert, String m_type, String m_auth, String m_img_path,
+				String m_img, Date m_regdate, String m_name, String m_birth, String m_gender, String m_addr, String m_regno,
+				String m_admin_cert) {
+			super();
+			this.m_no = m_no;
+			this.m_id = m_id;
+			this.m_pw = m_pw;
+			this.m_nickname = m_nickname;
+			this.m_phone = m_phone;
+			this.m_email = m_email;
+			this.m_used = m_used;
+			this.m_act = m_act;
+			this.m_mail_cert = m_mail_cert;
+			this.m_type = m_type;
+			this.m_auth = m_auth;
+			this.m_img_path = m_img_path;
+			this.m_img = m_img;
+			this.m_regdate = m_regdate;
+			this.m_name = m_name;
+			this.m_birth = m_birth;
+			this.m_gender = m_gender;
+			this.m_addr = m_addr;
+			this.m_regno = m_regno;
+			this.m_admin_cert = m_admin_cert;
+		}
 
 	public int getM_no() {
 		return m_no;
@@ -217,12 +217,5 @@ public class MemberDto {
 	public void setM_admin_cert(String m_admin_cert) {
 		this.m_admin_cert = m_admin_cert;
 	}
-	
-	
-	
-	
 
-	
-	
-	
 }

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.ProjectBiz;
+import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dao.ProjectDao;
+import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
@@ -18,6 +20,9 @@ public class ProjectBizImpl implements ProjectBiz{
 
 	@Autowired
 	private ProjectDao projectDao;
+	
+	@Autowired
+	private BoardDao boardDao;
 
 	@Override
 	public List<ProjectListDto> selectList(Map<String, Object> projectPageMap) {
@@ -42,8 +47,13 @@ public class ProjectBizImpl implements ProjectBiz{
 
 	@Override
 	public int delete(int bd_no) {
+		int Deleteres = 0;
 		int projectDeleteRes = projectDao.delete(bd_no);
-		return projectDeleteRes;
+		int boardDeleteRes = boardDao.delete(bd_no);
+		if(projectDeleteRes>0 && boardDeleteRes>0) {
+			Deleteres = 1;
+		}
+		return Deleteres; 
 	}
 
 	@Override
@@ -53,21 +63,20 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	@Override
-	public void like_cnt_up(int bd_no) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void like_cnt_down(int bd_no) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ProjectDetailDto read(int bd_no) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int update(ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto) {
+		int res = 0;
+		int projectUpdateRes = projectDao.update(projectUpdateDto);
+		int boardUpdateRes = boardDao.update(boardUpdateDto);
+		if(projectUpdateRes>0 && boardUpdateRes>0) {
+			res = 1;
+		}
+		return res; 
 	}
 
 
