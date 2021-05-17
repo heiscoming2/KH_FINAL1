@@ -52,7 +52,7 @@ public class Login_joinController {
 
 		boolean check = false;
 		if (res != null) {
-			session.setAttribute("login", loginDto);
+			session.setAttribute("login", res);
 			check = true;
 		}
 
