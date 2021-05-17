@@ -581,7 +581,10 @@ SELECT * FROM DUAL;
 
 --관리자 계정 생성
 INSERT 
-INTO IT_MEMBER VALUES(1003,'admin','1234','admin','01089792300','admin@admin.com','N','활동','Y','관리자','Y',' ',' ',SYSDATE,'','','','');
+INTO IT_MEMBER VALUES(1003,'admin','1234','admin','01089792300','admin@admin.com','N','활동','Y','관리자','Y','profileimages/','testprofile.jpg',SYSDATE,'관리자',to_date('2010-03-05','yyyy-mm-dd'),'남','서울시 강남구 개포동');
+
+DELETE FROM IT_MEMBER WHERE M_NO=1003;
+
 
 update IT_MEMBER set M_IMG_PATH='profileimages/';
 update IT_MEMBER set M_IMG = 'testprofile.jpg';
@@ -604,8 +607,12 @@ INTO BOARD VALUES(1000,'서울 강남구 자바 스터디 모집합니다.','자
 INTO STUDY VALUES(1000,'Y','서울','강남구','근처 스터디룸',1,5)
 SELECT * FROM DUAL;
 
+--공지사항 LIST
+INSERT BOARD
+INTO  VALUES(2000,'광고문의 사항','먼저 관리자의 허락을 받아야 합니다.',SYSDATE,NULL,0,'192.168.3.4',5,1003)
 
 
+SELECT * FROM BOARD;
 
 
 --BOARDRECOMMAND (게시글 추천)

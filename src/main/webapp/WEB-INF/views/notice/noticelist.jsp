@@ -60,7 +60,7 @@
 					<c:forEach var="noticeDto" items="${noticeList }">
 					<tr>
 							<!-- 글 번호 시작 --> 
-							<td class="bd_no"><a>${studyDto.bd_no}</a> </td>
+							<td class="bd_no"><a>${noticeDto.bd_no}</a> </td>
 							<td><a href="noticedetail.do?bd_no=${noticeDto.bd_no }" style="color:black;">${noticeDto.bd_title } <span class="replycount">+${noticeDto.bd_replycount }</span></a></td>
 							<td class="bd_recommandcount"><b>+${noticeDto.bd_recommandcount }</b></td>
 							<td class="bd_viewcount">${noticeDto.bd_viewcount }</td>
@@ -71,7 +71,7 @@
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
 											${noticeDto.m_nickname }
 										</a> 
-										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+									
 										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
 											<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
@@ -107,8 +107,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js?ver=1.2"></script>
-<script type=text/javascript src="resources/js/address.js"></script>
+<script type=text/javascript src="resources/js/noticelist.js?ver=1.2"></script>
 
 </body>
 </html>

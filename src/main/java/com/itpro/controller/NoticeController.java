@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.BoardBiz;
+import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.NoticeBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.like.LikeDto;
+import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.notice.NoticeDto;
 import com.itpro.model.dto.notice.NoticeSearchDto;
 import com.itpro.model.dto.reply.ReplyListDto;
@@ -41,6 +45,10 @@ public class NoticeController {
 	
 	@Autowired
 	private BoardBiz boardBiz;
+	
+	@Autowired
+	private LikeBiz likeBiz;
+	
 	
 	@RequestMapping(value="/noticelist.do")
 	public String noticeList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
@@ -63,13 +71,13 @@ public class NoticeController {
 		model.addAttribute("pageProcessing",pageProcessing);
 		//스터디 글 목록을 받아 model에 담아준다.
 		model.addAttribute("noticeList",noticeList);
-		return "noticeboard/noticelist";
+		return "notice/noticelist";
 	}
 	
 	@RequestMapping(value="/noticeinsertform.do")
 	public String noticeInsertForm() {
 		logger.info("NOTICE INSERT FORM");
-		return "noticeboard/noticeinsertform";
+		return "notice/noticeinsertform";
 	}
 	
 	@RequestMapping(value="/noticeinsert.do")
@@ -82,8 +90,21 @@ public class NoticeController {
 	}	
 	
 	@RequestMapping(value="/noticedetail.do")
-	public String noticeDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no) {
+	public String noticeDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no,HttpSession session) {
 		logger.info("NOTICE DETAIL");
+		
+		//로그인 세션이있으면 회원번호를 꺼내서 해당 게시물 추천여부를 model에 담아준다. 
+				if(session.getAttribute("login")!=null) {
+					MemberDto loginDto = (MemberDto) session.getAttribute("login");
+					int m_no = loginDto.getM_no();
+					LikeDto likeDto = new LikeDto();
+					likeDto.setBd_no(bd_no);
+					likeDto.setM_no(m_no);
+					int res = likeBiz.like_check(likeDto);
+					model.addAttribute("likecheck",res);
+				}
+		
+		
 		
 		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
 		if(new ViewCount().viewCount(request, response, bd_no)) {
@@ -92,7 +113,7 @@ public class NoticeController {
 		
 		//공지 selectone해서 model에 담아준다.
 		NoticeDto noticeDto = noticeBiz.selectOne(bd_no);
-		model.addAttribute("NoticeDto",noticeDto);
+		model.addAttribute("dto",noticeDto);
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
@@ -100,7 +121,8 @@ public class NoticeController {
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
 		model.addAttribute("replyCnt",replyCnt);
-		return "noticeboard/noticedetail";
+		
+		return "notice/noticedetail";
 	}
 	
 	@RequestMapping(value="/noticeupdateform.do")
@@ -108,7 +130,7 @@ public class NoticeController {
 		logger.info("NOTICE UPDATE FORM");
 		NoticeDto noticeDto = noticeBiz.selectOne(bd_no);
 		model.addAttribute("NoticeDto",noticeDto);
-		return "noticeboard/noticeupdateform";
+		return "notice/noticeupdateform";
 	}
 	
 	@RequestMapping(value="/noticeupdate.do")
@@ -130,7 +152,7 @@ public class NoticeController {
 		noticeDto.setBd_content(boardUpdateDto.getBd_content());
 		model.addAttribute("noticeDto",noticeDto);
 		logger.info("업데이트 실패");
-		return "noticeboard/noticeupdateform";
+		return "notice/noticeupdateform";
 	}	
 	
 	@RequestMapping(value="/noticedelete.do")
@@ -170,7 +192,7 @@ public class NoticeController {
 		model.addAttribute("pageProcessing",pageProcessing);
 		model.addAttribute("noticeSearchDto",noticeSearchDto);
 		
-		return "noticeboard/noticelist";
+		return "notice/noticelist";
 	}	
 	
 	

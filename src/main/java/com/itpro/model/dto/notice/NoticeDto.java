@@ -14,8 +14,8 @@ public class NoticeDto {
 	private String bd_writerip;
 	private int bc_code;
 	private int m_no;
-	private int recommandcount;
-	private int replycount;
+	private int bd_recommandcount;
+	private int bd_replycount;
 	private String m_img_path;
 	private String m_img;
 	private String m_nickname;
@@ -80,17 +80,19 @@ public class NoticeDto {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	public int getRecommandcount() {
-		return recommandcount;
+	
+	
+	public int getBd_recommandcount() {
+		return bd_recommandcount;
 	}
-	public void setRecommandcount(int recommandcount) {
-		this.recommandcount = recommandcount;
+	public void setBd_recommandcount(int bd_recommandcount) {
+		this.bd_recommandcount = bd_recommandcount;
 	}
-	public int getReplycount() {
-		return replycount;
+	public int getBd_replycount() {
+		return bd_replycount;
 	}
-	public void setReplycount(int replycount) {
-		this.replycount = replycount;
+	public void setBd_replycount(int bd_replycount) {
+		this.bd_replycount = bd_replycount;
 	}
 	public String getM_img_path() {
 		return m_img_path;

@@ -6,10 +6,8 @@
 <mapper namespace="Notice">
 
 
-	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
-	<insert id="insert" parameterType="NoticeInsertDto">
-		INSERT ALL
-		INTO BOARD 
+	<insert id="insert" parameterType="NoticeDto">
+		INSERT INTO BOARD 
 		VALUES (
 		BOARDSEQ.NEXTVAL,
 		#{bd_title},
@@ -18,18 +16,8 @@
 		NULL,
 		0,
 		#{bd_writerip},
-		3,
-		1004) 
-		INTO STUDY 
-		VALUES (
-		BOARDSEQ.CURRVAL,
-		'Y',
-		#{st_addr1},
-		#{st_addr2},
-		#{st_addrdetail},
-		#{st_nowperson},
-		#{st_closeperson})
-		SELECT * FROM DUAL
+		5,
+		1003) 
 	</insert>
 	
 	
@@ -52,42 +40,37 @@
 	
 	<select id="selectone" resultType="NoticeDto" parameterType="int">
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
-		       B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
-		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND) BD_RECOMMANDCOUNT, 
-		       S.ST_ADDR1,S.ST_ADDR2, S.ST_ADDRDETAIL, 
-	           S.ST_NOWPERSON, S.ST_CLOSEPERSON
-		FROM BOARD B, STUDY S, IT_MEMBER M
-		WHERE B.BD_NO = S.BD_NO
-		  AND B.M_NO = M.M_NO
+		        B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT 
+		FROM BOARD B, IT_MEMBER M
+		WHERE B.M_NO = M.M_NO
 		  AND B.BD_NO = #{bd_no}
 	</select>
 	
 	<select id="selectlistcnt" resultType="int">
 		SELECT COUNT(BD_NO)
 		FROM BOARD
-		WHERE BC_CODE=3 
+		WHERE BC_CODE=5 
 	</select>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM STUDY WHERE BD_NO = #{bd_no}
+		DELETE FROM BOARD WHERE BD_NO = #{bd_no}
 	</delete>
 	
 	<update id="update" parameterType="NoticeDto">
-		UPDATE STUDY
-		SET ST_NOWPERSON = #{st_nowperson} ,
-		    ST_CLOSEPERSON = #{st_closeperson} ,
-		    ST_ADDR1 = #{st_addr1} ,
-		    ST_ADDR2 = #{st_addr2} ,
-		    ST_ADDRDETAIL = #{st_addrdetail}
+		UPDATE BOARD
+		SET BD_TITLE = #{bd_title} ,
+		    BD_CONTENT = #{bd_content} ,
+		    BD_MODIFYDATE = SYSDATE
 		WHERE BD_NO = #{bd_no}
 	</update>
 	
 	
 	<select id="noticesearchlistcnt" parameterType="NoticeSearchDto" resultType="int">
 		SELECT COUNT(*) 
-		FROM BOARD B, STUDY S 
-		WHERE B.BD_NO=S.BD_NO 
-		  AND B.BC_CODE=3 
+		FROM BOARD B
+		WHERE B.BD_NO
+		  AND B.BC_CODE=5
 		  <if test= '!a1.equals("")'>
 		  AND S.ST_ADDR1 LIKE '%${a1}%'
 		  </if>
