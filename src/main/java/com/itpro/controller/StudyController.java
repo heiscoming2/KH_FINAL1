@@ -26,7 +26,7 @@ import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.like.LikeDto;
-import com.itpro.model.dto.member.LoginDto;
+import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
@@ -58,7 +58,7 @@ public class StudyController {
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
 		logger.info("STUDY LIST");
 		if(session.getAttribute("login")!=null) {
-			LoginDto login = (LoginDto) session.getAttribute("login");
+			MemberDto login = (MemberDto) session.getAttribute("login");
 		}
 		
 		//페이징을 위해 총 게시물수 count
@@ -102,7 +102,7 @@ public class StudyController {
 		
 		//로그인 세션이있으면 회원번호를 꺼내서 해당 게시물 추천여부를 model에 담아준다. 
 		if(session.getAttribute("login")!=null) {
-			LoginDto loginDto = (LoginDto) session.getAttribute("login");
+			MemberDto loginDto = (MemberDto) session.getAttribute("login");
 			int m_no = loginDto.getM_no();
 			LikeDto likeDto = new LikeDto();
 			likeDto.setBd_no(bd_no);
@@ -126,7 +126,7 @@ public class StudyController {
 		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
-		model.addAttribute("replyCnt",replyCnt);
+		model.addAttribute("replyCnt", replyCnt);
 		
 		return "studyboard/studydetail";
 	}

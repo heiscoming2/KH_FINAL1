@@ -14,7 +14,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
-import com.itpro.model.dto.member.LoginDto;
 
 public class LoginInterceptor implements HandlerInterceptor{
 
@@ -27,9 +26,7 @@ public class LoginInterceptor implements HandlerInterceptor{
  	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 		logger.info("[Interceptor] : preHandle");
-	//	logger.info("MemberBiz:", (memberBiz == null) ? "NULL" : memberBiz);
-		
-		setLoginDto(request);
+
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8"); 
  		logger.info("[Interceptor] : preHandle");
@@ -65,7 +62,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return true;
 		} 
 		
-<<<<<<< HEAD
+
 		if(request.getSession().getAttribute("login") == null) {//로그인 상태가 아니면 로그인 폼으로
 			response.sendRedirect("login.do");
 			return false;
@@ -73,22 +70,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		*/
 	}
  	
- 	private void setLoginDto(HttpServletRequest request) {
- 		logger.info("setLoginDto()");
- 		
- 		HttpSession session = request.getSession();
- 		Integer m_no = (Integer) session.getAttribute("m_no");
- 		if (m_no == null) {
- 			logger.info("m_no == null");
- 			return; // early return;
- 		}
- 		
-		LoginDto loginDto = memberBiz.select(m_no);
-		logger.info("loginDto: " + loginDto);
-		logger.info("loginDto.getM_no(): " + loginDto.getM_no());
- 		
-		session.setAttribute("login", loginDto);
- 	}
 	
 	//view 단으로 forward 되기 전에 수행
 	@Override

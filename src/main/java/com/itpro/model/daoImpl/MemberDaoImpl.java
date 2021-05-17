@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.MemberDao;
-import com.itpro.model.dto.member.LoginDto;
-import com.itpro.model.dto.member.RegBizDto;
-import com.itpro.model.dto.member.RegDto;
+import com.itpro.model.dto.member.MemberDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -19,8 +17,8 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 로그인
 	@Override
-	public LoginDto login(LoginDto loginDto) {
-		LoginDto res = null;
+	public MemberDto login(MemberDto loginDto) {
+		MemberDto res = null;
 
 		try {
 			res = sqlSession.selectOne(NAMESPACE + "login", loginDto);
@@ -39,7 +37,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 개인회원 회원가입
 	@Override
-	public int RegMember(RegDto regDto) {
+	public int RegMember(MemberDto regDto) {
 		int res = 0;
 
 		try {
@@ -55,7 +53,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	//기업회원 회원가입
 	@Override
-	public int RegBizMember(RegBizDto regBizDto) {
+	public int RegBizMember(MemberDto regBizDto) {
 		int res = 0;
 
 		try {
@@ -112,8 +110,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public LoginDto select(int m_no) {
-		LoginDto res = null;
+	public MemberDto select(int m_no) {
+		MemberDto res = null;
 
 		try {
 			res = sqlSession.selectOne(NAMESPACE + "select", m_no);
@@ -126,7 +124,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	//개인회원 정보수정(업데이트)
 	@Override
-	public int update(LoginDto loginDto) {
+	public int update(MemberDto loginDto) {
 		int res = 0;
 		
 		try {
