@@ -31,7 +31,12 @@
 			</when>
 			<otherwise>
 				(SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
-				(SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1,
+				DECODE (
+                       (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}),
+                        0,
+                       (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1 ,
+                       (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_DEPTH > (SELECT RE_DEPTH FROM REPLY WHERE RE_PARENTNO=#{re_parentno} AND RE_NO = (SELECT MAX(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno})))+1
+                        ), -- NULL이 아니면 형제가 있는거니까 
 				(SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,
 				#{re_parentno})
 			</otherwise>
@@ -48,10 +53,17 @@
 	
 	<!-- 대댓글 insert전에 순번 정렬하는 update -->
 	<update id="orderupdate" parameterType="int">
-        UPDATE REPLY        
-		SET RE_GROUPORDERNO = RE_GROUPORDERNO+1
-		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO = #{re_parentno})
-		  AND RE_GROUPORDERNO > (SELECT GROUPORDERNO FROM REPLY WHERE RE_NO = #{re_parentno})
+		UPDATE REPLY
+		SET RE_GROUPORDERNO = RE_GROUPORDERNO + 1
+		WHERE RE_GROUPNO = (SELECT RE_GROUPNO 
+		                    FROM REPLY 
+		                    WHERE RE_NO = #{re_parentno})
+		AND RE_GROUPORDERNO > DECODE (
+		                              (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}),
+		                               0,
+		                              (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno}) ,
+		                              (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_DEPTH > (SELECT RE_DEPTH FROM REPLY WHERE RE_PARENTNO=#{re_parentno} AND RE_NO = (SELECT MAX(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno})))
+		                              )
 	</update>
 
 </mapper>
