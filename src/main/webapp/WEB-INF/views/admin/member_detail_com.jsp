@@ -69,9 +69,8 @@
 		</tr>
     	<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="목록" onclick="location.href='member_list.do'">
-				<input type="button" value="수정" onclick="location.href='member_updateform.do?m_no=${dto.m_no}'">
-				<input type="button" value="삭제" onclick="location.href='delete.do?myno=${dto.m_no}'">
+				<input type="button" value="목록" onclick="location.href='member_list_com.do'">
+				<input type="button" value="수정" onclick="location.href='member_updateform_com.do?m_no=${dto.m_no}'">
 			</td>
 		</tr>
 	</table>

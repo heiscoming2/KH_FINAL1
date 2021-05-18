@@ -19,7 +19,7 @@
 
 	<!-- 회원정보수정내용 -->
 	<h1>회원정보수정</h1>
-	<form action="member_update.do" method="post">
+	<form action="member_update_com.do" method="post">
 	<input type="hidden" name="m_no" value="${dto.m_no }">
 	<table border="1" >
 	
@@ -86,7 +86,7 @@
     	<tr>
 			<td colspan="2" align="right">
 				<input type="submit" value="완료">
-				<input type="button" value="취소" onclick="location.href='member_detail.do?m_no=${dto.m_no}'">
+				<input type="button" value="취소" onclick="location.href='member_detail_com.do?m_no=${dto.m_no}'">
 			</td>
 		</tr>
 	</table>

@@ -25,7 +25,7 @@
             <div class="col-md-4 mt-5">
             
                 <form class="form-inline" action="user_update.do" method="post">
-                	<input type="hidden" name="m_no" value="${m_no.m_no}">
+                	<input type="hidden" name="m_no" value="${login.m_no}">
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-8">
@@ -66,7 +66,7 @@
         
         
         <div class="row justify-content-center col-md-2 me-md-4">
-            <input type="submit" class="btn btn-danger mt-2" value="탈퇴하기"/>
+            <input type="submit" class="btn btn-danger mt-2" value="탈퇴하기" onclick="location.href='deleteForm.do'"/>
         </div>
 
         <div class="row justify-content-center col-md-2">

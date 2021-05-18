@@ -7,7 +7,7 @@
  
  	<!-- 회원로그인 -->
  	<select id="login" parameterType="MemberDto" resultType="MemberDto">
- 		SELECT *
+ 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_TYPE, M_AUTH
  		FROM IT_MEMBER
  		WHERE M_ID = #{m_id}
  			AND M_PW = #{m_pw}
@@ -50,4 +50,16 @@
  	</select>
  	
  	<!-- 회원탈퇴 -->
+ 	<delete id="memberDelete">
+ 		DELETE FROM IT_MEMBER
+ 		WHERE M_ID = #{m_id} 
+ 	</delete>
+ 	
+ 	<!-- 회원탈퇴 아이디 비번 확인 -->
+ 	<select id="checkPw" resultType="int">
+ 		SELECT COUNT (*)
+ 		FROM IT_MEMBER
+ 		WHERE M_ID = #{m_id}
+ 			AND M_PW = #{m_pw}
+ 	</select>
  </mapper>

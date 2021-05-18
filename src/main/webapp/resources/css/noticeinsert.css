@@ -1,0 +1,30 @@
+/* */
+
+/* insert 영역 전체 */
+.notice_insertwrap {
+    width:1190px;
+    margin:0 auto;
+}
+
+/* 입력항목 (th) 너비 */
+.notice_inserttable th {
+    width:150px;
+}
+
+/* 필수 입력(*) 강조 */
+.notice_inserttable th span {
+    color:red;
+}
+
+/* 인원수 선택 박스 너비 */
+.notice_inserttable input[type=number] {
+    width:80px;
+}
+
+/* select option 영역 */
+.notice_inserttable select {
+    width:150px;
+    margin-right: 10px;
+}
+
+

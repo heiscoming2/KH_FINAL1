@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Notice">
+
+
+	<insert id="insert" parameterType="NoticeDto">
+		INSERT INTO BOARD 
+		VALUES (
+		BOARDSEQ.NEXTVAL,
+		#{bd_title},
+		#{bd_content},
+		SYSDATE,
+		NULL,
+		0,
+		#{bd_writerip},
+		5,
+		1003) 
+	</insert>
+	
+	
+	<select id="selectlist" parameterType="hashMap" resultType="NoticeDto">
+        SELECT * FROM 
+               (SELECT ROWNUM RN, B.BD_NO, B.BD_TITLE, 
+               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+               FROM BOARD B, IT_MEMBER M , 
+                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+		       WHERE B.BC_CODE=5
+		       AND B.M_NO = M.M_NO
+               AND RE.BD_NO(+) = B.BD_NO
+               AND BR.BD_NO(+) = B.BD_NO
+		       ORDER BY B.BD_CREATEDDATE DESC)
+        WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectone" resultType="NoticeDto" parameterType="int">
+		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
+		        B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT 
+		FROM BOARD B, IT_MEMBER M
+		WHERE B.M_NO = M.M_NO
+		  AND B.BD_NO = #{bd_no}
+	</select>
+	
+	<select id="selectlistcnt" resultType="int">
+		SELECT COUNT(BD_NO)
+		FROM BOARD
+		WHERE BC_CODE=5 
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM BOARD WHERE BD_NO = #{bd_no}
+	</delete>
+	
+	<update id="update" parameterType="NoticeDto">
+		UPDATE BOARD
+		SET BD_TITLE = #{bd_title} ,
+		    BD_CONTENT = #{bd_content} ,
+		    BD_MODIFYDATE = SYSDATE
+		WHERE BD_NO = #{bd_no}
+	</update>
+	
+	
+	<select id="noticesearchlistcnt" parameterType="NoticeSearchDto" resultType="int">
+		SELECT COUNT(*) 
+		FROM BOARD B
+		WHERE B.BD_NO
+		  AND B.BC_CODE=5
+		  <if test= '!a1.equals("")'>
+		  AND S.ST_ADDR1 LIKE '%${a1}%'
+		  </if>
+		  <if test= '!a2.equals("")'>
+		  AND S.ST_ADDR2 LIKE '%${a2}%'
+		  </if>
+		  <if test= 'stat.equalsIgnoreCase("y") or stat.equalsIgnoreCase("n")'>
+		  AND S.ST_STATUS <![CDATA[=]]> #{stat}
+		  </if>
+		  <if test= '!key.equals("")'>
+		  AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%')
+		  </if>
+	</select>
+	
+	<select id="selectsearchlist" parameterType="hashMap" resultType="NoticeDto">
+        SELECT * FROM 
+               (SELECT ROWNUM RN, B.BD_NO, S.ST_STATUS, S.ST_ADDR1, 
+		       S.ST_ADDR2, S.ST_NOWPERSON, S.ST_CLOSEPERSON, 
+		       B.BD_TITLE, 
+               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+               FROM BOARD B, STUDY S, IT_MEMBER M , 
+                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+		       WHERE B.BD_NO = S.BD_NO 
+		       AND B.BC_CODE=3 
+		       AND B.M_NO = M.M_NO
+               AND RE.BD_NO(+) = B.BD_NO
+               AND BR.BD_NO(+) = B.BD_NO
+               <if test= '!studySearchDto.a1.equals("")'>
+			   AND S.ST_ADDR1 LIKE '%${studySearchDto.a1}%'
+			   </if>
+			   <if test= '!studySearchDto.a2.equals("")'>
+			   AND S.ST_ADDR2 LIKE '%${studySearchDto.a2}%'
+			   </if>
+			   <if test= 'studySearchDto.stat.equalsIgnoreCase("y") or studySearchDto.stat.equalsIgnoreCase("n")'>
+		       AND S.ST_STATUS <![CDATA[=]]> #{studySearchDto.stat}
+			   </if>
+			   <if test= '!studySearchDto.key.equals("")'>
+			   AND (B.BD_TITLE LIKE '%${studySearchDto.key}%' OR B.BD_CONTENT LIKE '%${studySearchDto.key}%')
+			   </if>
+		       ORDER BY B.BD_CREATEDDATE DESC)
+        WHERE RN BETWEEN #{start} AND #{end}		
+	</select>
+	
+	
+</mapper>
