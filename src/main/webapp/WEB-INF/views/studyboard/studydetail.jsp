@@ -119,7 +119,7 @@
 	 
       <!-- 댓글 영역 시작 -->
 	  <jsp:include page="../reply/reply.jsp">
-	  	<jsp:param name="replyListDtos" value="${replyListDto }"></jsp:param>
+	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
 	  </jsp:include>
 	  
 	  

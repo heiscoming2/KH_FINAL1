@@ -1,5 +1,8 @@
 package com.itpro.model.daoImpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -44,8 +47,8 @@ public class MemberDaoImpl implements MemberDao {
 
 		return res;
 	}
-	
-	//기업회원 회원가입
+
+	// 기업회원 회원가입
 	@Override
 	public int RegBizMember(MemberDto regBizDto) {
 		int res = 0;
@@ -89,7 +92,7 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
-	//중복사업자번호 체크
+	// 중복사업자번호 체크
 	@Override
 	public int regnoCheck(String m_regno) {
 		int res = 0;
@@ -102,32 +105,35 @@ public class MemberDaoImpl implements MemberDao {
 
 		return res;
 	}
-	
+
+	// 회원탈퇴
 	@Override
-	public MemberDto select(int m_no) {
-		MemberDto res = null;
+	public String deleteMember(String m_id) {
+		int res = 0;
 
 		try {
-			res = sqlSession.selectOne(NAMESPACE + "select", m_no);
-		} catch (Exception e) {
+			res = sqlSession.delete(NAMESPACE + "memberDelete", m_id);
 
+		} catch (Exception e) {
+			System.out.println("[error]:memberDelete");
+			e.printStackTrace();
 		}
 
-		return res;
+		return Integer.toString(res);
 	}
-	
-	//개인회원 정보수정(업데이트)
+
+	// 탈퇴 아이디 체크
 	@Override
-	public int update(MemberDto loginDto) {
-		int res = 0;
-		
-		try {
-			res = sqlSession.update(NAMESPACE+"update",loginDto);
-		} catch (Exception e) {
-			System.out.println("[error]:update");
-			e.printStackTrace();
-		}	
-		
+	public boolean checkPw(String m_id, String m_pw) {
+		boolean res = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("m_id", m_id);
+		map.put("m_pw", m_pw);
+		int count = sqlSession.selectOne(NAMESPACE + "checkPw", map);
+		if (count == 1) {
+			res = true;
+		}
 		return res;
 	}
+
 }

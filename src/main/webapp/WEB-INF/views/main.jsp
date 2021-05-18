@@ -126,7 +126,7 @@
       <div class="row">
         <div class="col"><!--왼쪽 상단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold">공지사항</h5>
+            <h5 class="fw-bold" onclick="location.href='noticelist.do'">공지사항</h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>

@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,28 +44,51 @@ public class MemberController {
 	@RequestMapping(value = "/user_update_form.do")
 	public String modify(HttpSession session) {
 		logger.info("MYPAGE USER");
-		
-		/* 세션에 담긴거 컨트롤러로 가져와서 사용해야 할때
-		LoginDto loginDto = (LoginDto) session.getAttribute("login");		
-		logger.info("loginDto: " + loginDto);
-		logger.info("loginDto.getM_nickname(): " + loginDto.getM_nickname());
-		*/
 
 		return "member/update_user";
 	}
 
-	// 개인회원 정보수정 처리
-	@RequestMapping("/user_update.do")
-	public String update(MemberDto loginDto) {
-		logger.info("MEMBER UPDATE");
+	/////////////////////////////기업회원
 
-		int res = biz.update(loginDto);
-		if (res > 0) {
-			return "redirect:mypage_user.do";
+	// 기업회원 마이페이지 관련 컨트롤러
+	@RequestMapping(value = "/mypage_biz.do")
+	public String mypage_biz() {
+		logger.info("MYPAGE BIZ");
 
+		return "member/mypage_biz";
+	}
+
+	// 기업회원 정보수정폼으로 이동
+	@RequestMapping(value = "/biz_update_form.do")
+	public String modifyBiz(HttpSession session) {
+		logger.info("BIZ UPDATE FORM");
+
+		return "member/update_biz";
+	}
+
+	// 회원탈퇴 페이지이동
+	@RequestMapping(value = "/deleteForm.do")
+	public String deleteForm() {
+		logger.info("DELETE Form");
+
+		return "member/delete_member";
+	}
+
+	// 회원탈퇴 처리
+	@RequestMapping(value = "/deleteMember.do")
+	public String deleteMember(@RequestParam(required = false) String m_id, @RequestParam(required = false) String m_pw, HttpSession session) {
+		logger.info("DELETE MEMBER");
+
+		boolean res = biz.checkPw(m_id, m_pw);
+		if (res) {
+			biz.deleteMember(m_id);
+			session.invalidate();
+			
+			return "redirect:main.do";
 		} else {
-			return "redirect:user_update_form.do";
+			return "redirect:deleteForm.do";
 		}
+
 	}
 
 	// 이력서 관련 컨트롤러
@@ -111,11 +135,18 @@ public class MemberController {
 		return "login_join/note_receivelist";
 	}
 
-	//
+	//작성글 목록
 	@RequestMapping(value = "/post_list.do")
 	public String postList() {
-		logger.info("NOTE LIST");
+		logger.info("LIST_POST");
 
-		return "member/post_list";
+		return "member/list_post";
+	}
+	
+	@RequestMapping(value = "/ad_list.do")
+	public String adList() {
+		logger.info("AD LIST");
+
+		return "admin/ad_list";
 	}
 }

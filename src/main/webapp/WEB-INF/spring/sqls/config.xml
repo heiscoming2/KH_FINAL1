@@ -14,7 +14,10 @@
 		<typeAlias type="com.itpro.model.dto.reply.ReplyInsertDto" alias="ReplyInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyListDto" alias="ReplyListDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
+		
 		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto" alias="ManageMemberDto"/>
+		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto_com" alias="ManageMemberDto_com"/>
+		
 		<typeAlias type="com.itpro.model.dto.project.ProjectListDto" alias="ProjectListDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectInsertDto" alias="ProjectInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
@@ -23,11 +26,20 @@
 		<typeAlias type="com.itpro.model.dto.qna.QnaDto" alias="QnaDto"/>
 		<typeAlias type="com.itpro.model.dto.report.ReportDto" alias="ReportDto"/>
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
-		<typeAlias type="com.itpro.model.dto.admin.ManageMemberDto" alias="ManageMemberDto"/>
+
+		
+		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
+		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
+		
+		<typeAlias type="com.itpro.model.dto.notice.NoticeDto" alias="NoticeDto"/>
+		<typeAlias type="com.itpro.model.dto.notice.NoticeSearchDto" alias="NoticeSearchDto"/>
+		
+
 		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
 		<typeAlias type="com.itpro.model.dto.like.LikeDto" alias="LikeDto"/>
 		<typeAlias type="com.itpro.model.dto.member.MemberDto" alias="MemberDto"/>
+
 	</typeAliases>
 	
 	<mappers>
@@ -41,6 +53,9 @@
 		<mapper resource="/mybatis/managemember-mapper.xml"/>
 		<mapper resource="/mybatis/report-mapper.xml"/>
 		<mapper resource="/mybatis/board-mapper.xml"/>
+
+		<mapper resource="/mybatis/notice-mapper.xml"/>
+
 		<mapper resource="/mybatis/like-mapper.xml"/>
 	</mappers>
 

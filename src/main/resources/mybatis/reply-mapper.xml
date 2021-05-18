@@ -32,11 +32,16 @@
 			<otherwise>
 				(SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
 				DECODE (
-                       (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}),
-                        0,
-                       (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1 ,
-                       (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_DEPTH > (SELECT RE_DEPTH FROM REPLY WHERE RE_PARENTNO=#{re_parentno} AND RE_NO = (SELECT MAX(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno})))+1
-                        ), -- NULL이 아니면 형제가 있는거니까 
+	                     (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}),
+	                      0,
+	                     (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1 , 
+	                     (DECODE(
+                                  (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_PARENTNO = #{re_parentno}) AND RE_DEPTH > (SELECT RE_DEPTH FROM REPLY WHERE RE_PARENTNO=#{re_parentno} GROUP BY RE_DEPTH)),
+                                  NULL,
+                                  (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_PARENTNO = #{re_parentno})+1,
+                                  (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_PARENTNO = #{re_parentno}) AND RE_DEPTH > (SELECT RE_DEPTH FROM REPLY WHERE RE_PARENTNO=#{re_parentno} GROUP BY RE_DEPTH))+1)
+                                )
+                        ),
 				(SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,
 				#{re_parentno})
 			</otherwise>
@@ -59,10 +64,36 @@
 		                    FROM REPLY 
 		                    WHERE RE_NO = #{re_parentno})
 		AND RE_GROUPORDERNO > DECODE (
-		                              (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}),
+		                              (SELECT COUNT(RE_NO) 
+		                              FROM REPLY 
+		                              WHERE RE_PARENTNO=#{re_parentno}),
 		                               0,
-		                              (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno}) ,
-		                              (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_DEPTH > (SELECT RE_DEPTH FROM REPLY WHERE RE_PARENTNO=#{re_parentno} AND RE_NO = (SELECT MAX(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno})))
+		                              (SELECT 
+		                              RE_GROUPORDERNO 
+		                              FROM REPLY 
+		                              WHERE RE_NO=#{re_parentno}) , 
+		                              (DECODE(
+                                             (SELECT MAX(RE_GROUPORDERNO) 
+                                             FROM REPLY 
+                                             WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) 
+                                             							FROM REPLY 
+                                             						   WHERE RE_PARENTNO = #{re_parentno}) 
+                                             						     AND RE_DEPTH > (SELECT RE_DEPTH 
+                                             						                       FROM REPLY 
+                                             						                      WHERE RE_PARENTNO=#{re_parentno} 
+                                             						                   GROUP BY RE_DEPTH)),
+                                             NULL,
+                                             (SELECT MAX(RE_GROUPORDERNO) 
+                                                FROM REPLY 
+                                               WHERE RE_PARENTNO = #{re_parentno}),
+                                             (SELECT MAX(RE_GROUPORDERNO) 
+                                                FROM REPLY 
+                                               WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) 
+                                                                          FROM REPLY 
+                                                                         WHERE RE_PARENTNO = #{re_parentno}) 
+                                                                           AND RE_DEPTH > (SELECT RE_DEPTH 
+                                                                                             FROM REPLY 
+                                                                                            WHERE RE_PARENTNO=#{re_parentno} GROUP BY RE_DEPTH))))
 		                              )
 	</update>
 

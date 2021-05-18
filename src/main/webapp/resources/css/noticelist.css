@@ -1,0 +1,135 @@
+.notice_wrap {
+	width:1190px;
+	margin:0 auto;
+}
+
+/* 게시판 버튼 wrap 영역 잡기 */
+.notice_btnwrap {
+    float:left;
+    margin-bottom: 10px;
+}
+
+.notice_table {
+    width:1190px; 
+}
+
+/* 글 번호 span 영역 css */
+.notice_no {
+    vertical-align: middle;
+}
+
+/* 글 번호 a태그 css */
+.notice_no > a {
+    font-size: 15px; 
+    color: rgb(112, 112, 112) !important;
+}
+
+/* 글 제목(+댓글) wrap */
+.notice_title {
+    vertical-align: middle;
+}
+
+/* 글 제목 */
+.notice_title > a {
+    font-size: 15px; 
+    color: #212529;
+}
+
+/* 댓글 */ 
+.notice_title > a > span {
+    color:green; 
+    font-weight: bold;
+}
+
+/* 프로필 영역 wrap */
+.notice_profile {
+    width:180px; 
+    vertical-align: middle; 
+}
+
+/* 프로필 이미지 영역 잡기 */
+.notice_profile > img {
+    float: left; 
+    margin-top: 5px;
+}
+
+/* 프로필 아이디 영역 */
+.notice_profile > .notice_writer {
+    position: relative; 
+    top:5px;
+    font-size:15px;
+}
+
+/* 프로필 작성일 영역 */
+.notice_profile > .notice_regdate {
+	text-align:right;
+    font-size: 13px; 
+    color:rgb(112, 112, 112); 
+    position: relative; 
+    bottom:2px;
+}
+
+.float_left {
+	float:left;
+}
+
+.notice_table td {
+	padding:0 !important;
+	margin:0 !important;
+	vertical-align:middle !important;
+}
+
+.notice_table th {
+	font-size:12px;
+	padding:8px 0px !important;
+	font-weight:100 !important;
+	color:#616161;
+	background-color:#fafafa !important;
+	border-top:1px solid skyblue;
+	border-bottom:1px solid skyblue !important;
+}
+
+<!-- 필터 버튼 상하 마진 -->
+.loc_toggle {
+	padding:20px;
+	border:1px solid black;
+}
+
+<!-- 시도,시구 선택 박스 -->
+.form-control {
+	width:150px !important;
+}
+
+.search-bar {
+	height:38px !important;
+	top:10px;
+}
+
+
+.bd_recommandcount {
+	color:red;
+	font-size:14px;	
+}
+
+.bd_no {
+	font-size:10px;
+	color:lightgray;
+}
+
+.bd_viewcount {
+	font-size:14px;
+	color:lightgray;
+}
+
+.replycount {
+	color:#137f13; 
+	font-size:14px;
+}
+
+.bd_no_th > a{
+	margin-left:10px;
+}
+
+.bd_no > a{
+	margin-left:10px;
+}
