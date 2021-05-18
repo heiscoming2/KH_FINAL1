@@ -95,11 +95,11 @@
             <!-- project_appendchild div 박스 종료 -->
             
             <tr>
-            <td><input type="button" value="프로젝트 추가" onclick="add_div('')"></td>
+            <td><input type="button" value="프로젝트 추가" onclick="add_div()"></td>
             <td><input type="button" value="프로젝트 삭제" onclick="remove_div(this)"></td>
             </tr>
             
-            <div id="project_field"> </div>
+            <div id="project_field"> </div> 
             
         </table>
           
