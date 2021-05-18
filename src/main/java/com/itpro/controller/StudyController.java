@@ -169,7 +169,6 @@ public class StudyController {
 	@RequestMapping(value="/studydelete.do")
 	public String studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		logger.info("STUDY DELETE");
-		//PrintWriter 공통으로 만들기
 		int studyDeleteRes = studyBiz.delete(bd_no);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");

@@ -108,4 +108,15 @@ public class ReplyDaoImpl implements ReplyDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int deleteWithBoard(int bd_no) {
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"deletewithboard",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

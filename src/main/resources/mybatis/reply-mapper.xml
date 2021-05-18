@@ -89,6 +89,10 @@
 		DELETE FROM REPLY WHERE RE_NO = #{re_no}
 	</delete>
 	
+	<delete id="deletewithboard">
+		DELETE FROM REPLY WHERE BD_NO=#{bd_no}
+	</delete>
+	
 	<update id="updatehidden" parameterType="int">
 		UPDATE REPLY 
 		SET RE_ISHIDDEN='Y'

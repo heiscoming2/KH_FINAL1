@@ -138,9 +138,9 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/studydetail.js?ver=1.3"></script>
+<script type="text/javascript" src="resources/js/studydetail.js?ver=1.5"></script>
 <!-- 댓글 js -->
-<script type="text/javascript" src="resources/js/reply.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.2"></script>
 </body>

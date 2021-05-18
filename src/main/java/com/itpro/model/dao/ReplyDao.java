@@ -19,5 +19,6 @@ public interface ReplyDao {
 	public int updateOrder(int re_parentno);
 	public int childrenCheck(int re_no);
 	public int updateHidden(int re_no);
+	public int deleteWithBoard(int bd_no);
 	
 }
