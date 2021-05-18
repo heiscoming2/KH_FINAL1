@@ -11,10 +11,25 @@ public class ReportDto {
 	private Date report_date;
 	private int report_sum;
 	private String bd_title;
+	private String name;
+	private String code;
 	
 	
 	
 	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public String getBd_title() {
 		return bd_title;
 	}

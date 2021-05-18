@@ -5,12 +5,10 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<title>샘플 페이지 입니다.</title>
+<title>신고창</title>
 </head>
 <body>
-<!-- HEADER 시작 -->
-<%@include file="../inc/_header.jspf" %>
-<!-- HEADER 종료 -->
+
 
 <!-- 본문 시작 -->
 
@@ -20,6 +18,9 @@
 	
 	<table border="1">
 	
+			<tr>
+				<th>게시판</th><td>${dto. }
+			</tr>
 			
             <tr>
 				<th>신고게시글</th><td>${dto.bd_title }</td>
@@ -39,8 +40,6 @@
 
 <!-- 본문 종료 -->
 
-<!-- sidebar 시작 -->
-<%@include file="../inc/_sidebar_admin.jspf" %>
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>

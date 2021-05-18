@@ -32,7 +32,10 @@ public class ReportBizImpl implements ReportBiz{
 		return dao.insert(dto);
 	}
 
-	
+	@Override
+	public int getReportCnt() {
+		return dao.getReportCnt();
+	}
 	
 
 

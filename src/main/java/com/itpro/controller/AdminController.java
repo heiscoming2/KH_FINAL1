@@ -138,15 +138,21 @@ public class AdminController {
 	//report list
 	@RequestMapping(value="/report_list.do")
 	public String report_list(Model model) {
+		
+		//게시물 수 반환
+		int reportcnt = rebiz.getReportCnt();
+			
+		
 		logger.info("report_list");
 		List<ReportDto> list = rebiz.selectList();
 		model.addAttribute("list",list);
-		System.out.println("list : " +  list);
+		model.addAttribute("cnt",reportcnt);
+		System.out.println("report:"+reportcnt);
 		
-		System.out.println(""
-				+ "");
 		return "admin/report_list";
 	}
+	
+	
 	
 	/*	
 	//�씠�젰�꽌 愿��젴 而⑦듃濡ㅻ윭

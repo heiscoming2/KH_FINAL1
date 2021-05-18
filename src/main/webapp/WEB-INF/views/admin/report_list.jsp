@@ -73,7 +73,7 @@
 										<tr>
 											<td>${dto.report_no }</td>
 											<td>${dto.m_no }</td>
-											<td>${dto.bd_title }</td>
+											<td><a href="reportdetail.do">${dto.bd_title }</a></td>
 											<td>${dto.report_reason }</td>
 											<td>${dto.report_date}</td>
 										</tr>
@@ -83,6 +83,7 @@
 						</tr>
 					</tbody>
 				</table>
+				<h3>${cnt}</h3>
 				</div>
 			</div>
 		</div>

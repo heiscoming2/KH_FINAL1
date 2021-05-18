@@ -12,5 +12,5 @@ public interface ReportDao {
 	public List<ReportDto> selectList();
 	public ReportDto selectOne(int report_no);
 	public int insert(ReportDto dto);
-	
+	public int getReportCnt();
 }

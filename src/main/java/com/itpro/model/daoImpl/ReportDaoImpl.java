@@ -63,8 +63,17 @@ public class ReportDaoImpl implements ReportDao {
 		return res;
 	}
 
+	@Override
+	public int getReportCnt() {
+		int ReportCnt = 0;
+		try {
+			ReportCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"reportcnt").toString().replace("[","").replace("]", ""));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ReportCnt;
 
-
+	}
 
 
 }

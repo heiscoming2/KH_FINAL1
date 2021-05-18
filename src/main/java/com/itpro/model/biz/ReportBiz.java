@@ -9,5 +9,7 @@ public interface ReportBiz {
 	public List<ReportDto> selectList();
 	public ReportDto selectOne(int m_no);
 	public int insert(ReportDto dto);
+	public int getReportCnt();
+	
 
 }
