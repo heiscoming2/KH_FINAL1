@@ -40,7 +40,7 @@ public class ReplyBizImpl implements ReplyBiz {
 		if(replyInsertDto.getRe_parentno()!=0) {
 			int re_parentno = replyInsertDto.getRe_parentno();
 				System.out.println("reply insert biz reparent no : "+re_parentno);
-				replyDao.orderUpdate(re_parentno);
+				replyDao.updateOrder(re_parentno);
 			}
 		return replyDao.insert(replyInsertDto);
 	}
@@ -52,6 +52,14 @@ public class ReplyBizImpl implements ReplyBiz {
 
 	@Override
 	public int delete(int re_no) {
+		
+		//자식이 있는 경우 hidden 필드를 y로 업데이트
+		//자식이 없으면 삭제
+		int res = replyDao.childrenCheck(re_no);
+		System.out.println("bizimpl delete : "+res);
+		if(res>0) {
+			return replyDao.updateHidden(re_no);
+		}
 		return replyDao.delete(re_no);
 	}
 

@@ -77,10 +77,32 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public int orderUpdate(int re_parentno) {
+	public int updateOrder(int re_parentno) {
 		int res = 0;
 		try {
-			res = sqlSession.update(NAMESPACE+"orderupdate",re_parentno);
+			res = sqlSession.update(NAMESPACE+"updateorder",re_parentno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int childrenCheck(int re_no) {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"childrenchk",re_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int updateHidden(int re_no) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"updatehidden",re_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

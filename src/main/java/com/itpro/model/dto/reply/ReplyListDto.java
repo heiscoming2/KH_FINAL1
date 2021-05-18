@@ -10,12 +10,14 @@ public class ReplyListDto {
 	private String re_content;
 	private String re_writerip;
 	private int re_depth;
+	private String re_ishidden;
 	private String targetid;
 	private int m_no;
 	private String m_img_path;
 	private String m_img;
 	private String m_nickname;
 	private int bd_no;
+	
 	public int getRe_no() {
 		return re_no;
 	}
@@ -51,6 +53,12 @@ public class ReplyListDto {
 	}
 	public void setRe_depth(int re_depth) {
 		this.re_depth = re_depth;
+	}
+	public String getRe_ishidden() {
+		return re_ishidden;
+	}
+	public void setRe_ishidden(String re_ishidden) {
+		this.re_ishidden = re_ishidden;
 	}
 	public String getTargetid() {
 		return targetid;
@@ -88,9 +96,6 @@ public class ReplyListDto {
 	public void setBd_no(int bd_no) {
 		this.bd_no = bd_no;
 	}
-	
-	
-	
 	
 	
 }

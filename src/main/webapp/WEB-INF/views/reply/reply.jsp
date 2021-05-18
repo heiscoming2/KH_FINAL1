@@ -85,7 +85,13 @@
             </div> 
             <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
             <!-- 댓글 컨텐츠 영역 시작 -->
-            <div id="reply${replyListDto.re_no}" class="mt-3">${replyListDto.re_content } </div>
+
+            <div id="reply${replyListDto.re_no}" class="mt-3"> 
+	            <c:choose>
+	            	<c:when test="${replyListDto.re_ishidden eq 'Y'}"><span style="font-size:12px;">사용자가 삭제한 댓글입니다.</span></c:when>
+	            	<c:otherwise>${replyListDto.re_content }</c:otherwise>
+	            </c:choose>
+            </div>
             <!-- 댓글 컨텐츠 영역 종료 -->
             
             <!-- 대댓글 작성 시 여길로 썸머노트 입력폼 쏴준다 -->
@@ -96,68 +102,7 @@
         </c:forEach>
         </c:otherwise>
 	</c:choose>
-	
-	
-	<!-- 다중뎁스 댓글 css 1단 시작 영역 테스트(나중에 삭제 예정)  -->
-	<c:forEach var="test" begin="0" end="10">
-		<tr>
-	          <td>
-	              <!-- 프로필이미지, 아이디, 작성일 div -->
-	                <div>
-	                  <div class="replyBtnWraptest" style="float:right;">
-	                  <!-- 수정/삭제는 현재 세션회원번호와, 댓글작성회원번호replyListDto.m_no 가 일치하는 경우에만 보여주면될듯 -->
-		                <input type="button" class="btn btn-primary rereplyinsertformbtn" value="답글" onclick="rereplyInsertForm(1);">
-		                 <input type="button" class="btn btn-primary updateformbtn" value="수정" onclick="replyUpdateForm(2);">
-		                 <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply(3)">
-	                  </div>
-	              	  
-	              	  <!-- 여기 마진 left를 댓글 뎁스로 구해야됨 -->
-		              <div id=reretestdiv style="margin-left:${test*30}px;">
-			              <!-- 답글 이미지랑, 타겟 댓글 닉네임 -->
-			              <!-- 위엔 닉네임 밑에는 이미지 보여주면될듯 -->
-			              <div style="float:left;">
-			              	<ul style="list-style:none; padding:0; width:120px; text-align:right; margin-right:30px;">
-			              	    <li style="color:gray; font-size:8px;">To.</li>
-			              		<li style="color:gray; font-size:12px;">회원일회원</li>
-			              		<li><img src="boardimages/replyarrow.png" width="35" height="35"></li>
-			              	</ul>
-			              </div>		
-			              <div>
-				              <img src="profileimages/testprofile.jpg" alt="mdo" width="35" height="35" class="rounded-circle me-2"
-				                style="float: left; margin-top: 5px;">
-				              <div>
-				                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-				                  style="font-size:15px;" data-bs-toggle="dropdown" aria-expanded="false">
-				                	  테스트이니다
-				                </a>
-				                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-				                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-				                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-				                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-				                </ul>
-				                <!-- 게시글 작성자의 회원번호와 댓글 작성자의 회원 번호가 일치하면 작성자를 표시해준다. -->
-					                <a style="border:1px solid red; border-radius:5px; width:35px; height:20px; font-size:12px; padding:3px; color:red; margin-left:5px;">
-					                	작성자 
-					                </a>
-				              </div>
-				              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">
-				              	123.456.123.444
-				                2020-01-11 12:33:44 (작성됨)
-				                2020-01-11 12:33:44 (수정됨)
-				                </span>
-					          <!-- 댓글 컨텐츠 영역 시작 -->
-					    	  <div id="replytest" class="mt-3">안녕하세요 테스트 입니다</div>
-					   	      <!-- 댓글 컨텐츠 영역 종료 -->
-			   			  </div>
-		    		</div>
-	    		</div>
-	            <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
-		</tr>
-	</c:forEach>
-	<!-- 다중뎁스 댓글 css 1단 종료 영역 테스트 (나중에 삭제 예정)  -->
-	
-	
-	
+		
 	
 	<!-- 댓글 LIST 종료 -->	
 	
