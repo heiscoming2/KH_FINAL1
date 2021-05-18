@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.dao.ReplyDao;
@@ -29,7 +30,18 @@ public class ReplyBizImpl implements ReplyBiz {
 	}
 
 	@Override
+	@Transactional
 	public int insert(ReplyInsertDto replyInsertDto) {
+		
+		//하나라도 실패시 rollback해야하므로 트랜잭션을 걸어준다.
+		//부모 댓글인 경우 바로 insert만 실행하면됨
+		//댓글에 댓글인 경우에 UPDATE 수행해야됨
+		
+		if(replyInsertDto.getRe_parentno()!=0) {
+			int re_parentno = replyInsertDto.getRe_parentno();
+				System.out.println("reply insert biz reparent no : "+re_parentno);
+				replyDao.updateOrder(re_parentno);
+			}
 		return replyDao.insert(replyInsertDto);
 	}
 
@@ -40,6 +52,14 @@ public class ReplyBizImpl implements ReplyBiz {
 
 	@Override
 	public int delete(int re_no) {
+		
+		//자식이 있는 경우 hidden 필드를 y로 업데이트
+		//자식이 없으면 삭제
+		int res = replyDao.childrenCheck(re_no);
+		System.out.println("bizimpl delete : "+res);
+		if(res>0) {
+			return replyDao.updateHidden(re_no);
+		}
 		return replyDao.delete(re_no);
 	}
 
