@@ -49,6 +49,8 @@ public class ReportDaoImpl implements ReportDao {
 		return dto;
 	}
 
+	
+	
 
 	@Override
 	public int insert(ReportDto dto) {
@@ -73,6 +75,22 @@ public class ReportDaoImpl implements ReportDao {
 		}
 		return ReportCnt;
 
+	}
+
+
+
+	@Override
+	public int insertreportform(ReportDto dto) {
+		
+		int insertreportform =0;
+		
+		try {
+			insertreportform = sqlSession.update(NAMESPACE+"insertreportform", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return insertreportform;
 	}
 
 

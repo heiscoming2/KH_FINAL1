@@ -19,7 +19,7 @@
 	<table border="1">
 	
 			<tr>
-				<th>게시판</th><td>${dto. }
+				<th>게시판</th><td>${dto.name}</td>
 			</tr>
 			
             <tr>
@@ -27,17 +27,18 @@
             </tr>
             
             <tr>
-				<th>신고이유</th><td><textarea rows="60" cols="10"></textarea></td>
+				<th>신고이유</th><td ><textarea name="report_reason" rows="60" cols="10"></textarea></td>
             </tr>
             
 			<tr>
 				<td><input type="submit" value="신고 등록" ></td>
-				<td><input type="button" value="취소" onclick=""></td>
+				<td><input type="button" value="취소" onclick="self.close();"></td>
 			</tr>
 	</table>
 
 	</form>
-
+<input type="submit" value="신고 등록" >
+<input type="button" value="취소" onclick="self.close();">
 <!-- 본문 종료 -->
 
 

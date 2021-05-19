@@ -33,22 +33,19 @@
 		
 		<body>
 			<tr>
-				<td>No</td><td>1</td>
+				<th>No</th><td>${dto.report_no }</td>
             </tr>
             <tr>
-				<td>신고자</td><td>user1</td>
+				<th>신고 당한 게시판</th><td>${dto.name }</td>
             </tr>
             <tr>
-				<td>피신고자</td><td><a href="">user2</a></td>
+				<th>신고 당한 글</th><td><a href="">${dto.bd_title }</a></td>
             </tr>
             <tr>
-				<td>신고글</td><td><a href="">역세권 지하철 2분거리 분양....</a></td>
+				<th>신고이유</th><td>${dto.report_reason}</td>
             </tr>
             <tr>
-				<td>type</td><td>게시글</td>
-            </tr>
-            <tr>
-				<td>신고이유</td><td>광고성 글을 게재했습니다.</td>
+				<td></td><td>${dto.m_nickname }</td>
             </tr>
             
 		</body>

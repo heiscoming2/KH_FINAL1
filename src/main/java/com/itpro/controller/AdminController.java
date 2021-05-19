@@ -112,57 +112,65 @@ public class AdminController {
 		////////////////////////////신고 part//////////////////////////////////////
 	
 	//insert 입력페이지로 이동
-	@RequestMapping(value="/report_insertform.do")
-	public String insertform(Model model, int report_no) {
-		logger.info("report_insertform");
+	@RequestMapping(value="/reportinsertform.do")
+	public String insertreportform(Model model, ReportDto dto) {
+		logger.info("reportinsertform");
 		
-		model.addAttribute("dto", rebiz.selectOne(report_no));
-		return "report_insert";
+		int insertRes = rebiz.insertreportform(dto);
+		
+		logger.info(Integer.toString(insertRes));
+		
+		model.addAttribute("dto",dto);
+		
+		
+		return "report/reportinsertform";
 	}
 
 	
-	//insert에서 값이 넘어옴.
+	//insert에서 값이 넘어옴.성공여부에 따라 alert 메시지를 다르게 나오면 될 것 같음. 
 	@RequestMapping(value="/report_insert.do")
 	public String insertRes(ReportDto dto) {
-		logger.info("report_insert");
+		logger.info("reportinsert");
 		
 		int res= rebiz.insert(dto);
 		
 		if(res>0) {
-			return "redirect:report_list.do";
+			return "redirect:reportlist.do";
 		}else {
-			return "redirect:report_insertform.do";
+			return "redirect:reportinsertform.do";
 		}
 		
 	}
 	//report list
-	@RequestMapping(value="/report_list.do")
+	@RequestMapping(value="/reportlist.do")
 	public String report_list(Model model) {
 		
 		//게시물 수 반환
-		int reportcnt = rebiz.getReportCnt();
+		//int reportcnt = rebiz.getReportCnt();
 			
 		
-		logger.info("report_list");
+		logger.info("reportlist");
 		List<ReportDto> list = rebiz.selectList();
 		model.addAttribute("list",list);
-		model.addAttribute("cnt",reportcnt);
-		System.out.println("report:"+reportcnt);
+		//model.addAttribute("cnt",reportcnt);
+		//System.out.println("report:"+reportcnt);
 		
-		return "admin/report_list";
+		return "report/reportlist";
+	}
+	
+	//report detail
+	@RequestMapping(value="/reportdetail.do")
+	public String reportdetail(Model model, int report_no) {
+		logger.info("REPORT DETAIL");
+		
+		model.addAttribute("dto", rebiz.selectOne(report_no));
+		
+		return "report/reportdetail";
 	}
 	
 	
 	
 	/*	
-	//�씠�젰�꽌 愿��젴 而⑦듃濡ㅻ윭
-	@RequestMapping(value="/resume_list.do")
-	public String resumeList() {
-		logger.info("RESUEM LIST");
-		
-		return "login_join/resume_list";
-	}
-	
 	@RequestMapping(value="/resume_form.do")
 	public String resumeForm() {
 		logger.info("RESUEM FORM");

@@ -7,14 +7,14 @@
 	
 	
 	<select id="selectList" resultType="ReportDto">
-        SELECT A.REPORT_NO, A.M_NO, A.BD_NO, D.NAME, C.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, A.REPORT_SUM 
+        SELECT A.REPORT_NO, A.M_NO, A.BD_NO, D.NAME, C.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE 
         FROM REPORT A
         JOIN IT_MEMBER B
         ON A.M_NO=B.M_NO
         JOIN BOARD C
         ON A.BD_NO=C.BD_NO
         JOIN BOARDCATEGORY D
-        ON C.BC_CODE=D.CODE
+        ON A.CODE=D.CODE
         ORDER BY REPORT_NO DESC
 	</select>
 	
@@ -33,7 +33,7 @@
 	
 	<select id="insert" parameterType="ReportDto">
 		INSERT INTO REPORT
-		VALUES(REPORT_SEQ.NEXTVAL, #{m_no}, #{bd_no}, #{name}, #{report_board}, #{report_reason}, SYSDATE, 1)
+		VALUES(REPORT_SEQ.NEXTVAL, #{m_no}, #{bd_no}, #{name}, #{bd_title}, #{report_reason}, SYSDATE)
 	</select>
 	
 	<select id="count" resultType="ReportDto" parameterType="int">
