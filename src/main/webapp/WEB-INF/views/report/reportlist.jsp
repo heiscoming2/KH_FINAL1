@@ -53,9 +53,10 @@
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>신고자</th>
-							<th>신고게시글</th>
-							<th>신고이유</th>
+							<th>해당게시판</th>
+							<th>해당게시글</th>
+							<th>신고사유</th>
+							<th>신고 당한 회원이름</th>
 							<th>신고일시</th>
 						</tr>
 					</thead>
@@ -71,10 +72,11 @@
 								<c:otherwise>
 									<c:forEach var="dto" items="${list }">
 										<tr>
-											<td>${dto.report_no }</td>
-											<td>${dto.m_no }</td>
-											<td>${dto.bd_title }</td>
-											<td>${dto.report_reason }</td>
+											<td>${dto.report_no}</td>
+											<td>${dto.name}</td>
+											<td><a href="#">${dto.bd_title }</a></td>
+											<td><a href="reportdatail.do?reprot_no=${dto.report_no }">${dto.report_reason }</a></td>
+											<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 											<td>${dto.report_date}</td>
 										</tr>
 									</c:forEach>
@@ -83,6 +85,7 @@
 						</tr>
 					</tbody>
 				</table>
+			
 				</div>
 			</div>
 		</div>

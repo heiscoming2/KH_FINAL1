@@ -21,7 +21,7 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-  <div class="study_detailwrap mt-5">
+  <div class="notice_detailwrap mt-5">
       <h4>공지사항 상세</h4>
       <!-- 공지사항 상세글 영역 -->
       <table class="table table-bordered" style="width:100%;">
@@ -63,7 +63,7 @@
             <!-- 작성자에게만 보여질 버튼 -->
             <!-- 세션이 null이 아닌 경우, 세션값의 m_no와 글 작성자의 m_no가 같은 경우에만 보여준다. -->
 	        <div style="float:right; position:relative; top:-105px;"> 
-	             <input type="button" value="신고" class="btn btn-danger">
+	             <input type="button" value="신고" class="btn btn-danger" onclick="reportInsert('${dto.bd_no}');">
 	            
 	            	<c:if test="${sessionScope.login.m_auth eq 'Y' }">
 		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='noticeupdateform.do?bd_no=${dto.bd_no}'">
@@ -106,9 +106,9 @@
 	
 	 
       <!-- 댓글 영역 시작 -->
-      	<!-- 댓글 작성 시 글번호를 넘겨주기 위해 hidden으로 심어준다. -->
-      <input type="hidden" name="bd_no" value=${noticeDto.bd_no } form="replyinsert">
-      <%@include file="../reply/_reply.jspf" %>
+
+     <%@include file="../reply/reply.jsp" %>
+
       <!-- 댓글 영역 끝 -->
   </div>
 
@@ -126,9 +126,11 @@
 <!-- notice 디테일 js -->
 <script type="text/javascript" src="resources/js/noticedetail.js?ver=1.1"></script>
 <!-- 댓글 js -->
-<script type="text/javascript" src="resources/js/reply.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/reply.js?ver=1.4"></script>
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.2"></script>
+<!-- 신고 js -->
+<script type="text/javascript" src="resources/js/reportInsert.js?ver=1.2"></script>
 
 </body>
 </html>

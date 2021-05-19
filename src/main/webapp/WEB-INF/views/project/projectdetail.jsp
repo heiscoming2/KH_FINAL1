@@ -118,7 +118,9 @@
 		
 		 
 	   <!-- 댓글 영역 시작 -->
-	      <%@include file="../reply/_reply.jspf" %>
+	   <jsp:include page="../reply/reply.jsp">
+	  	<jsp:param name="replyListDtos" value="${replyListDto }"></jsp:param>
+	  </jsp:include>
 	      <!-- 댓글 영역 끝 -->
 	  	</div>
 

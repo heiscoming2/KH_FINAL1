@@ -45,12 +45,13 @@
         </table>
         <textarea id="summernote" name="bd_content"><c:out value="${dto.bd_content }"></c:out></textarea>
         <br>
-      <!-- 스터디 모집 작성 글 영역 종료-->
+      <!-- 공지 작성 글 영역 종료-->
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
 	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
 	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='noticedetail.do?bd_no=${dto.bd_no }'" style="float:right;" >
+	   
 	  </div>
     </form>
     

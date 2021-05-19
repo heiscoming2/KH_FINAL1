@@ -31,8 +31,25 @@ public class ReportBizImpl implements ReportBiz{
 	public int insert(ReportDto dto) {
 		return dao.insert(dto);
 	}
-
 	
+	
+
+	@Override
+	public int getReportCnt() {
+		return dao.getReportCnt();
+	}
+
+	@Override
+	public int insertreportform(ReportDto dto) {
+		int res=0;
+		
+		int insertreportform= dao.insertreportform(dto);
+		
+		if(insertreportform>0) {
+			res=1;
+		}
+		return res;
+	}
 	
 
 

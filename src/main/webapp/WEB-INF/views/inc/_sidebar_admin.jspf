@@ -57,7 +57,7 @@
 
 							</nav>
 						</div>
-						<a class="nav-link collapsed" onclick="location.href='report_list.do'" data-toggle="collapse"
+						<a class="nav-link collapsed" onclick="location.href='reportlist.do'" data-toggle="collapse"
 							data-target="" aria-expanded="false"
 							aria-controls="collapsePages" >
 							<div class="sb-nav-link-icon">

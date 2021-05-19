@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.study.StudyDetailDto;
@@ -26,6 +27,9 @@ public class StudyBizImpl implements StudyBiz {
 	@Autowired
 	private BoardDao boardDao;
 	
+	@Autowired
+	private ReplyDao replyDao;
+	
 	@Override
 	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
 		return studyDao.selectList(studyPageMap);
@@ -42,11 +46,13 @@ public class StudyBizImpl implements StudyBiz {
 	}
 
 	@Override
+	@Transactional
 	public int delete(int bd_no) {
 		int Deleteres = 0;
 		int studyDeleteRes = studyDao.delete(bd_no);
 		int boardDeleteRes = boardDao.delete(bd_no);
-		if(studyDeleteRes>0 && boardDeleteRes>0) {
+		int replyDeleteRes = replyDao.deleteWithBoard(bd_no);
+		if(studyDeleteRes>0 && boardDeleteRes>0 && replyDeleteRes>0) {
 			Deleteres = 1;
 		}
 		return Deleteres; 

@@ -36,7 +36,6 @@ public class MemberController {
 	@RequestMapping(value = "/mypage_user.do")
 	public String mypage() {
 		logger.info("MYPAGE USER");
-
 		return "member/mypage_user";
 	}
 
@@ -44,7 +43,7 @@ public class MemberController {
 	@RequestMapping(value = "/user_update_form.do")
 	public String modify(HttpSession session) {
 		logger.info("MYPAGE USER");
-
+		
 		return "member/update_user";
 	}
 
@@ -70,7 +69,6 @@ public class MemberController {
 	@RequestMapping(value = "/deleteForm.do")
 	public String deleteForm() {
 		logger.info("DELETE Form");
-
 		return "member/delete_member";
 	}
 
@@ -124,14 +122,12 @@ public class MemberController {
 	@RequestMapping(value = "/note_sendlist.do")
 	public String noteSendList() {
 		logger.info("NOTE SEND LIST");
-
 		return "login_join/note_sendlist";
 	}
 
 	@RequestMapping(value = "/note_receivelist.do")
 	public String noteReceiveList() {
 		logger.info("NOTE RECEIVE LIST");
-
 		return "login_join/note_receivelist";
 	}
 
@@ -139,14 +135,12 @@ public class MemberController {
 	@RequestMapping(value = "/post_list.do")
 	public String postList() {
 		logger.info("LIST_POST");
-
 		return "member/list_post";
 	}
 	
 	@RequestMapping(value = "/ad_list.do")
 	public String adList() {
 		logger.info("AD LIST");
-
 		return "admin/ad_list";
 	}
 }

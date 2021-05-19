@@ -20,7 +20,9 @@
 		<div class="notice_btnwrap mb-4">
 			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회"> 
+		<c:if test="${sessionScope.login.m_auth eq 'Y' }">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='noticeinsertform.do'">
+		</c:if>
 		</div>
 		
 			<div style="position:relative; bottom:1px;">

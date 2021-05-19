@@ -128,8 +128,8 @@ public class NoticeController {
 	@RequestMapping(value="/noticeupdateform.do")
 	public String noticeUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
 		logger.info("NOTICE UPDATE FORM");
-		NoticeDto noticeDto = noticeBiz.selectOne(bd_no);
-		model.addAttribute("NoticeDto",noticeDto);
+		NoticeDto dto = noticeBiz.selectOne(bd_no);
+		model.addAttribute("dto",dto);
 		return "notice/noticeupdateform";
 	}
 	
@@ -165,7 +165,7 @@ public class NoticeController {
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
 		out.print("alert('삭제 되었습니다.');");
-		out.print("location.href='studylist.do';");
+		out.print("location.href='noticelist.do';");
 		out.print("</script>");
 		return null;
 	}

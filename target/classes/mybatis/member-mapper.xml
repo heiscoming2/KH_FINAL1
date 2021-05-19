@@ -7,7 +7,7 @@
  
  	<!-- 회원로그인 -->
  	<select id="login" parameterType="MemberDto" resultType="MemberDto">
- 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_TYPE, M_AUTH
+ 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_TYPE, M_AUTH, M_IMG, M_IMG_PATH
  		FROM IT_MEMBER
  		WHERE M_ID = #{m_id}
  			AND M_PW = #{m_pw}

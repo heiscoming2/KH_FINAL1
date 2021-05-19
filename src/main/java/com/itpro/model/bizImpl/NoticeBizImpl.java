@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.NoticeBiz;
-import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dao.NoticeDao;
+import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.notice.NoticeDto;
 import com.itpro.model.dto.notice.NoticeSearchDto;
@@ -23,6 +23,11 @@ public class NoticeBizImpl implements NoticeBiz {
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private ReplyDao replyDao;
+	
+	
 	
 	@Override
 	public List<NoticeDto> selectList(Map<String,Object> noticePageMap) {
@@ -40,11 +45,13 @@ public class NoticeBizImpl implements NoticeBiz {
 	}
 
 	@Override
+	@Transactional
 	public int delete(int bd_no) {
 		int Deleteres = 0;
 		int noticeDeleteRes = noticeDao.delete(bd_no);
 		int boardDeleteRes = boardDao.delete(bd_no);
-		if(noticeDeleteRes>0 && boardDeleteRes>0) {
+		int replyDeleteRes = replyDao.deleteWithBoard(bd_no);
+		if(noticeDeleteRes>0 && boardDeleteRes>0 && replyDeleteRes>0) {
 			Deleteres = 1;
 		}
 		return Deleteres; 
@@ -56,11 +63,14 @@ public class NoticeBizImpl implements NoticeBiz {
 		int res = 0;
 		int noticeUpdateRes = noticeDao.update(noticeDto);
 		int boardUpdateRes = boardDao.update(boardUpdateDto);
-		if(noticeUpdateRes>0 && boardUpdateRes>0) {
+				if(noticeUpdateRes>0 && boardUpdateRes>0) {
 			res = 1;
 		}
 		return res; 
 	}
+	
+	
+	
 
 	@Override
 	public int getNoticeListCnt() {

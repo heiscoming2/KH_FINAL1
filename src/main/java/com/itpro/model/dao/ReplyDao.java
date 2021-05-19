@@ -16,4 +16,15 @@ public interface ReplyDao {
 	public int insert(ReplyInsertDto replyInsertDto);
 	public int update(ReplyUpdateDto replyUpdateDto);
 	public int delete(int re_no);
+	public int updateOrder(int re_parentno);
+	public int childrenCheck(int re_no);
+	public int updateHidden(int re_no);
+	public int deleteWithBoard(int bd_no);
+	public int lastsiblingno(int re_parentno);
+	public int updateOrderBigThanParent(int re_parentno);
+	public int insertUnderParent(ReplyInsertDto replyInsertDto);
+	public int getLastChildrenNo(int myupperno);
+	public int updateOrderBigThanMyUpper(int myupperno);
+	public int insertUnderSiblingChildren(ReplyInsertDto replyInsertDto);
+	
 }

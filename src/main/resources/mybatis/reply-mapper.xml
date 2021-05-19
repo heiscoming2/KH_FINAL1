@@ -9,12 +9,13 @@
 	
 	<select id="selectList" parameterType="int" resultType="ReplyListDto">
 		SELECT R.RE_NO, R.RE_CREATEDDATE, R.RE_MODIFYDATE, R.RE_CONTENT, 
-		       R.RE_WRITERIP, R.M_NO, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, 
+		       R.RE_WRITERIP, R.RE_DEPTH, R.RE_ISHIDDEN , (SELECT M2.M_NICKNAME FROM REPLY R2, IT_MEMBER M2 WHERE R2.M_NO=M2.M_NO AND R2.RE_NO=R.RE_PARENTNO) TARGETID , R.M_NO , M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, 
 		       B.BD_NO 
 		FROM REPLY R, IT_MEMBER M, BOARD B 
 		WHERE R.BD_NO=B.BD_NO 
 		AND R.M_NO=M.M_NO 
 		AND B.BD_NO = #{bd_no}
+		ORDER BY R.RE_GROUPNO ASC, R.RE_GROUPORDERNO ASC
 	</select>
 	
 	<select id="replyCnt" parameterType="int" resultType="int">
@@ -22,15 +23,72 @@
 	</select>
 	
 	<insert id="insert" parameterType="ReplyInsertDto">
-		INSERT INTO REPLY VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},GROUPNOSEQ.NEXTVAL,1,0,NULL)
+		INSERT INTO REPLY 
+		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},GROUPNOSEQ.NEXTVAL,1,0,NULL,'N')
+	</insert>	
+		
+	<select id="lastsibling" parameterType="int" resultType="int">
+		SELECT NVL(MAX(RE_NO),0) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}
+	</select>
+	
+	<update id="updateOrderBigThanParent" parameterType="int">
+		UPDATE REPLY SET RE_GROUPORDERNO = RE_GROUPORDERNO + 1
+		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno})
+		  AND RE_GROUPORDERNO > (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})
+	</update>
+	
+	<insert id="insertUnderParent" parameterType="ReplyInsertDto">
+		INSERT INTO REPLY 
+		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},
+			    (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
+			    (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1,
+			    (SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,#{re_parentno},'N')
+	</insert>
+	
+	<select id="getLastChildrenNo" parameterType="int" resultType="int">
+		SELECT NVL(MAX(RE_NO),0) FROM REPLY WHERE RE_PARENTNO=#{lastchildrenno}
+	</select>
+	
+	
+	<update id="updateOrderBigThanMyUpper" parameterType="int">
+		UPDATE REPLY SET RE_GROUPORDERNO = RE_GROUPORDERNO + 1
+		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{myupperno})
+		  AND RE_GROUPORDERNO > (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{myupperno})
+	</update>
+	
+	<insert id="insertUnderSiblingChildren" parameterType="ReplyInsertDto">
+		INSERT INTO REPLY 
+		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},
+				(SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
+				(SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{myupperno})+1,
+				(SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,#{re_parentno},'N')
 	</insert>
 	
 	<update id="update" parameterType="ReplyUpdateDto">
 		UPDATE REPLY SET RE_CONTENT = #{re_content}, RE_MODIFYDATE = SYSDATE WHERE RE_NO = #{re_no}
 	</update>
 	
+	<select id="childrenchk" parameterType="int" resultType="int">
+		SELECT COUNT(RE_NO)
+		FROM REPLY
+		WHERE RE_PARENTNO = #{re_no}
+	</select>
+	
 	<delete id="delete" parameterType="int">
 		DELETE FROM REPLY WHERE RE_NO = #{re_no}
 	</delete>
+	
+	<delete id="deletewithboard">
+		DELETE FROM REPLY WHERE BD_NO=#{bd_no}
+	</delete>
+	
+	<update id="updatehidden" parameterType="int">
+		UPDATE REPLY 
+		SET RE_ISHIDDEN='Y'
+		WHERE RE_NO = #{re_no}
+	</update>
+	
 
+	
+	
 </mapper>

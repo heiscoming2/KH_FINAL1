@@ -15,4 +15,5 @@ public interface ReplyBiz {
 	public int update(ReplyUpdateDto replyUpdateDto);
 	public int delete(int re_no);
 	
+	
 }

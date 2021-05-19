@@ -9,12 +9,26 @@ public class ReportDto {
 	private int bd_no;
 	private String report_reason;
 	private Date report_date;
-	private int report_sum;
 	private String bd_title;
+	private String name;
+	private String code;
 	
 	
 	
 	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public String getBd_title() {
 		return bd_title;
 	}
@@ -52,18 +66,6 @@ public class ReportDto {
 	public void setReport_date(Date report_date) {
 		this.report_date = report_date;
 	}
-	public int getReport_sum() {
-		return report_sum;
-	}
-	public void setReport_sum(int report_sum) {
-		this.report_sum = report_sum;
-	}
 	
 	
-	@Override
-	public String toString() {
-		return "ReportDto [report_no=" + report_no + ", m_no=" + m_no + ", bd_no=" + bd_no + ", report_reason="
-				+ report_reason + ", report_date=" + report_date + ", report_sum=" + report_sum + ", bd_title="
-				+ bd_title + "]";
-	}
 }
