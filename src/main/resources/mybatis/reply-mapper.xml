@@ -24,55 +24,44 @@
 	
 	<insert id="insert" parameterType="ReplyInsertDto">
 		INSERT INTO REPLY 
+		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},GROUPNOSEQ.NEXTVAL,1,0,NULL,'N')
+	</insert>	
+		
+	<select id="lastsibling" parameterType="int" resultType="int">
+		SELECT NVL(MAX(RE_NO),0) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}
+	</select>
+	
+	<update id="updateOrderBigThanParent" parameterType="int">
+		UPDATE REPLY SET RE_GROUPORDERNO = RE_GROUPORDERNO + 1
+		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno})
+		  AND RE_GROUPORDERNO > (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})
+	</update>
+	
+	<insert id="insertUnderParent" parameterType="ReplyInsertDto">
+		INSERT INTO REPLY 
 		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},
-		<choose>
-			<when test="re_parentno==0">
-				<!-- 부모가 없는 경우 최상위 댓글이므로 그냥 다음 그룹시퀀스,순서1,뎁스0,부모X 주면됨 -->
-				GROUPNOSEQ.NEXTVAL,1,0,NULL,'N')
-			</when>
-			<otherwise> <!-- 부모 댓글이 있는 경우여기를 탄다. -->
-			    <!-- 그룹번호는 부모의 그룹번호와 동일 -->
+			    (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
+			    (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1,
+			    (SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,#{re_parentno},'N')
+	</insert>
+	
+	<select id="getLastChildrenNo" parameterType="int" resultType="int">
+		SELECT NVL(MAX(RE_NO),0) FROM REPLY WHERE RE_PARENTNO=#{lastchildrenno}
+	</select>
+	
+	
+	<update id="updateOrderBigThanMyUpper" parameterType="int">
+		UPDATE REPLY SET RE_GROUPORDERNO = RE_GROUPORDERNO + 1
+		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{myupperno})
+		  AND RE_GROUPORDERNO > (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{myupperno})
+	</update>
+	
+	<insert id="insertUnderSiblingChildren" parameterType="ReplyInsertDto">
+		INSERT INTO REPLY 
+		VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,#{re_content},#{re_writerip},#{m_no},#{bd_no},
 				(SELECT RE_GROUPNO FROM REPLY WHERE RE_NO=#{re_parentno}),
-				<!-- 그룹내 순번을 정한다. 여기부터 67라인까지 -->
-				DECODE ( <!-- 형제 댓글의 갯수를 확인 -->
-	                     (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}),
-	                     <!-- 형제 댓글이 없는 경우 부모 댓글 순서 + 1 해주면됨 (UPDATE로 여기 자리 만들어져있음) -->
-	                      0,
-	                     (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno})+1 , 
-	                      
-	                     (DECODE(
-	                              <!-- 형제 댓글이 있는 경우, 마지막 형제의 자식(최하위 자식 기준) 유무를 체크한다. -->
-                                  (SELECT MAX(RE_GROUPORDERNO) 
-                                  FROM REPLY 
-                                  WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) 
-                                  							 FROM REPLY 
-                                  							 WHERE RE_PARENTNO = #{re_parentno}) 
-                                  							 AND RE_DEPTH > (SELECT RE_DEPTH 
-                                  							 				   FROM REPLY 
-                                  							 				  WHERE RE_PARENTNO=#{re_parentno} 
-                                  							 			   GROUP BY RE_DEPTH)),
-                                  NULL, 
-                                  <!-- 마지막 형제의 자식 댓글이 없는 경우 마지막 형제 다음으로 들어가게해준다 (UPDATE로 여기 자리 만들어져있음) -->
-                                  (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_PARENTNO = #{re_parentno})+1,
-                                  <!-- 마지막 형제의 자식(최하위 자식 기준)이 있는 경우 마지막 형제의 최하위 자식 다음으로 들어가게 해준다. (UPDATE로 여기 자리 만들어져있음) -->
-                                  (SELECT MAX(RE_GROUPORDERNO) 
-                                     FROM REPLY 
-                                    WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) 
-                                    						   FROM REPLY 
-                                    						  WHERE RE_PARENTNO = #{re_parentno}) 
-                                    						    AND RE_DEPTH > (SELECT RE_DEPTH 
-                                    						    				  FROM REPLY 
-                                    						    				 WHERE RE_PARENTNO=#{re_parentno} 
-                                    						    		      GROUP BY RE_DEPTH))+1)
-                                )
-                        ),
-                <!-- 뎁스는 부모의 +1 을 해주면됨 -->       
-				(SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,
-				<!-- 부모 번호는 부모 번호 -->
-				#{re_parentno},
-				'N')
-			</otherwise>
-		</choose>
+				(SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{myupperno})+1,
+				(SELECT RE_DEPTH FROM REPLY WHERE RE_NO=#{re_parentno})+1,#{re_parentno},'N')
 	</insert>
 	
 	<update id="update" parameterType="ReplyUpdateDto">
@@ -99,43 +88,7 @@
 		WHERE RE_NO = #{re_no}
 	</update>
 	
-	<!-- 대댓글 insert전에 순번 정렬하는 update -->
-	<update id="updateorder" parameterType="int">
-		<!-- 중간에 댓글이 끼는 경우에 INSERT전에 UPDATE로 다른 댓글들 순서를 뒤로 밀어놓기 위함-->
-		UPDATE REPLY
-		SET RE_GROUPORDERNO = RE_GROUPORDERNO + 1
-		WHERE RE_GROUPNO = (SELECT RE_GROUPNO FROM REPLY WHERE RE_NO = #{re_parentno})
-		AND RE_GROUPORDERNO > DECODE (<!-- 형제 댓글의 갯수를 확인 -->
-		                              (SELECT COUNT(RE_NO) FROM REPLY WHERE RE_PARENTNO=#{re_parentno}), 
-		                               0,
-		                               <!-- 형제 댓글이 없는 경우 부모 댓글 바로 다음으로 와야하므로 해당 순번 이상인 값을 뒤로 밀어놓고 들어가기 위해 부모보다 큰 ORDER를 뒤로 민다. -->
-		                              (SELECT RE_GROUPORDERNO FROM REPLY WHERE RE_NO=#{re_parentno}) , 
-		                              (DECODE(
-		                              		  <!-- 형제 댓글이 있는 경우, 마지막 형제의 자식(최하위 자식 기준) 유무를 체크한다. -->
-                                             (SELECT MAX(RE_GROUPORDERNO) 
-                                             FROM REPLY 
-                                             WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) 
-                                             							FROM REPLY 
-                                             						   WHERE RE_PARENTNO = #{re_parentno}) 
-                                             						     AND RE_DEPTH > (SELECT RE_DEPTH 
-                                             						                       FROM REPLY 
-                                             						                      WHERE RE_PARENTNO=#{re_parentno} 
-                                             						                   GROUP BY RE_DEPTH)), 
-                                             NULL, 
-                                             <!-- 마지막 형제의 자식 댓글이 없는 경우 마지막 형제 다음으로 들어가야 하므로, 마지막 형제 ORDER 보다 큰 댓글을 한 칸씩 뒤로 밀어준다. -->
-                                             (SELECT MAX(RE_GROUPORDERNO) FROM REPLY WHERE RE_PARENTNO = #{re_parentno}), 
-                                             <!-- 마지막 형제의 자식(최하위 자식 기준)이 있는 경우 마지막 형제의 다음으로 들어가야 하므로 마지막 자식보다 큰 ORDER 를 한 칸씩 뒤로 밀어준다. -->
-                                             (SELECT MAX(RE_GROUPORDERNO) 
-                                                FROM REPLY 
-                                               WHERE RE_GROUPORDERNO > (SELECT MAX(RE_GROUPORDERNO) 
-                                                                          FROM REPLY 
-                                                                         WHERE RE_PARENTNO = #{re_parentno}) 
-                                                                           AND RE_DEPTH > (SELECT RE_DEPTH 
-                                                                                             FROM REPLY 
-                                                                                            WHERE RE_PARENTNO=#{re_parentno} 
-                                                                                            GROUP BY RE_DEPTH)))) 
-                                              
-		                              )
-	</update>
 
+	
+	
 </mapper>

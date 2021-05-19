@@ -30,19 +30,22 @@
               <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
                 <div class="replyBtnWrap${replyListDto.re_no }" style="float:right;">
-                <!-- 수정/삭제는 현재 세션회원번호와, 댓글작성회원번호replyListDto.m_no 가 일치하는 경우에만 보여주면될듯 -->
-                <c:if test="${sessionScope.login ne null }">
-	              <input type="button" class="btn btn-primary rereplyinsertformbtn" value="답글" onclick="rereplyInsertForm(${dto.bd_no},${sessionScope.login.m_no},${replyListDto.re_no});">
-                </c:if>
-                <c:if test="${sessionScope.login ne null && sessionScope.login.m_no eq replyListDto.m_no }">
-	               <input type="button" class="btn btn-primary updateformbtn" value="수정" onclick="replyUpdateForm('${replyListDto.re_no}');">
-	               <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply('${replyListDto.re_no}')">
+                <!-- 삭제된 게시물의 경우 아무 버튼도 보여주지 않는다. -->
+                <c:if test="${replyListDto.re_ishidden ne 'Y' }">
+                    <!-- 로그인 새션이 존재하면 답글 버튼을 보여준다. -->
+	                <c:if test="${sessionScope.login ne null }">
+		              <input type="button" class="btn btn-primary rereplyinsertformbtn" value="답글" onclick="rereplyInsertForm(${dto.bd_no},${sessionScope.login.m_no},${replyListDto.re_no});">
+	 					<!-- 로그인 세션이 존재하면서, 로그인 회원번호와 댓글 작성자 회원번호가 일치하면 수정과 삭제 버튼을 보여준다. -->	               
+		                <c:if test="${sessionScope.login.m_no eq replyListDto.m_no }">
+			              <input type="button" class="btn btn-primary updateformbtn" value="수정" onclick="replyUpdateForm('${replyListDto.re_no}');">
+			              <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply('${replyListDto.re_no}')">
+		                </c:if>
+	                </c:if>
                 </c:if>
                 </div>
-             	  <!-- 여기 마진 left를 댓글 뎁스로 구해야됨 -->
-              <div id=reretestdiv style="margin-left:<c:if test="${replyListDto.re_depth>1}">${(replyListDto.re_depth)*30}px;</c:if>">
-	              <!-- 답글 이미지랑, 타겟 댓글 닉네임 -->
-	              <!-- 위엔 닉네임 밑에는 이미지 보여주면될듯 -->
+              <!-- 댓글 depth를 이용해 margin-left 값을 배수로 주어 들여쓰기 효과를 나타낸다. -->
+              <div id="rerediv${replyListDto.re_no}" style="margin-left:<c:if test="${replyListDto.re_depth>1}">${(replyListDto.re_depth)*30}px;</c:if>">
+	              <!-- depth가 0이 아닌 경우 (자식 댓글인 경우) 화살표 모양과 누구에게 쓴 답글인지 targetid 를 표시해준다. -->
 	              <c:if test="${replyListDto.re_depth ne 0 }">
 	              <div style="float:left;">
 	              	<ul style="list-style:none; padding:0; width:120px; text-align:right; margin-right:30px;">
@@ -61,11 +64,13 @@
 	                  style="font-size:15px;" data-bs-toggle="dropdown" aria-expanded="false">
 	                  ${replyListDto.m_nickname }
 	                </a>
+	                
 	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
 	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
 	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
 	                </ul>
+	                
 	                <!-- 게시글 작성자의 회원번호와 댓글 작성자의 회원 번호가 일치하면 작성자를 표시해준다. -->
 	                <c:if test="${dto.m_no eq replyListDto.m_no }">
 		                <a style="border:1px solid red; border-radius:5px; width:35px; height:20px; font-size:12px; padding:3px; color:red; margin-left:5px;">

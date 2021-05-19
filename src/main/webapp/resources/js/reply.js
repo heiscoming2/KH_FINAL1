@@ -2,7 +2,8 @@
   $(document).ready(function() {
     $('#replyArea').summernote({
       placeholder: '댓글을 작성해주세요.',
-      height:150
+      height:150,
+      lang: 'ko-KR'
     });
   });
   
@@ -14,7 +15,6 @@
 		  re_content = $('#replyArea').val(); 
 	  } else {
 		  re_content = $('#rereply'+re_parentno).val();
-		  alert(re_parentno);
 	  }
 	  
 	  let replyInsertValue = {
@@ -67,10 +67,19 @@
   /*기존 버튼 삭제 및 새로운 버튼 추가*/
   function replyUpdateForm(re_no) {
   	  
-  	  rereplyInsertCancel(re_no)
+  	  rereplyInsertCancel(re_no);
+  	  
+  	  //reretestdiv 의 마진 값을 가져온다.
+  	  //썸머노트 마진값을 주기위해
+  	  let reretestdiv = $('#rerediv'+re_no).css('margin-left').replace(/[^-\d\.]/g, '');
+  	  console.log(reretestdiv);
+  	  
   	  $('#reply'+re_no).summernote({
-  	    height:150
+  	    height:150,
+  	    tabsize:3,
+  	    lang: 'ko-KR'
   	  });
+  	  
   	  let $div = $('.replyBtnWrap'+re_no);
   	  $div.children('.updateformbtn').remove();
   	  $div.children('.deleteformbtn').remove();
@@ -128,8 +137,8 @@
   //대댓글 INSERT FORM
   function rereplyInsertForm(bd_no,m_no,re_no) {
 	   
-	    $('#reply'+re_no).after("<br><textarea id='rereply"+re_no+"'></textarea>");
-	    $('#rereply'+re_no).after("<br><div class='rereplyBtnWrap"+re_no+"'style='float:right;'>");
+	    $('#reply'+re_no).after("<br id='rebr"+re_no+"'><textarea id='rereply"+re_no+"'></textarea>");
+	    $('#rereply'+re_no).after("<br id='rerebr"+re_no+"'><div class='rereplyBtnWrap"+re_no+"'style='float:right;'>");
 	    
 	    
 	    $('#rereply'+re_no).summernote({
@@ -161,6 +170,10 @@
 	  $div.summernote('destroy');
 	  $div.empty();
 	  $div.remove();
+	  
+	  $('#rebr'+re_no).remove();
+	  $('#rerebr'+re_no).remove();
+	  
 	  //댓글 등록 버튼 삭제
 	  $('.rereplyBtnWrap'+re_no).remove();
 	  

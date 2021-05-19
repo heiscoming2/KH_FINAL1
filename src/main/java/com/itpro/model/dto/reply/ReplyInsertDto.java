@@ -7,7 +7,7 @@ public class ReplyInsertDto {
 	private int bd_no;
 	private int m_no;
 	private int re_parentno;
-	
+	private int myupperno;
 	public String getRe_content() {
 		return re_content;
 	}
@@ -38,6 +38,14 @@ public class ReplyInsertDto {
 	public void setRe_parentno(int re_parentno) {
 		this.re_parentno = re_parentno;
 	}
+	public int getMyupperno() {
+		return myupperno;
+	}
+	public void setMyupperno(int myupperno) {
+		this.myupperno = myupperno;
+	}
+	
+	
 	
 	
 	

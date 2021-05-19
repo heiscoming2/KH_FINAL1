@@ -31,49 +31,53 @@ public class ReplyDaoImpl implements ReplyDao {
 
 	@Override
 	public int replyCnt(int bd_no) {
-		int replyCnt = 0;
+		int replycnt = 0;
 		try {
-			replyCnt = sqlSession.selectOne(NAMESPACE+"replyCnt", bd_no);
+			replycnt = sqlSession.selectOne(NAMESPACE+"replyCnt", bd_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(replyCnt);
-		return replyCnt;
+		return replycnt;
 	}
 
 	@Override
 	public int insert(ReplyInsertDto replyInsertDto) {
-		int replyInsertRes = 0;
-		try {
-			replyInsertRes = sqlSession.insert(NAMESPACE+"insert",replyInsertDto);
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		if(replyInsertDto.getRe_parentno()==0) {
+			int res = 0;
+			try {
+				res = sqlSession.insert(NAMESPACE+"insert",replyInsertDto);
+				return res;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}
 		}
-		return replyInsertRes;
+		return 0;
 	}
 
 	@Override
 	public int update(ReplyUpdateDto replyUpdateDto) {
 		
-		int replyUpdateRes = 0;
+		int res = 0;
 		try {
-			replyUpdateRes = sqlSession.update(NAMESPACE+"update",replyUpdateDto);
+			res = sqlSession.update(NAMESPACE+"update",replyUpdateDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return replyUpdateRes;
+		return res;
 	}
 
 	@Override
 	public int delete(int re_no) {
 		
-		int replyDeleteRes = 0;
+		int res = 0;
 		try {
-			replyDeleteRes = sqlSession.delete(NAMESPACE+"delete",re_no);
+			res = sqlSession.delete(NAMESPACE+"delete",re_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return replyDeleteRes;
+		return res;
 	}
 
 	@Override
@@ -119,4 +123,84 @@ public class ReplyDaoImpl implements ReplyDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int lastsiblingno(int re_parentno) {
+		
+		int lastsiblingno = 0;
+		try {
+			lastsiblingno = sqlSession.selectOne(NAMESPACE+"lastsibling",re_parentno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lastsiblingno;
+	}
+	
+	@Override
+	public int updateOrderBigThanParent(int re_parentno) {
+		
+		int res = 0;
+		System.out.println("re_parentno : "+re_parentno);
+		try {
+			res = sqlSession.update(NAMESPACE+"updateOrderBigThanParent",re_parentno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int insertUnderParent(ReplyInsertDto replyInsertDto) {
+		int res = 0;
+		try {
+			res = sqlSession.insert(NAMESPACE+"insertUnderParent",replyInsertDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return res;
+	}
+
+	@Override
+	public int getLastChildrenNo(int lastchildrenno) {
+		int myupperno = 0;
+		try {
+			myupperno = sqlSession.selectOne(NAMESPACE+"getLastChildrenNo",lastchildrenno);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return myupperno;
+	}
+
+	@Override
+	public int updateOrderBigThanMyUpper(int myupperno) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"updateOrderBigThanMyUpper",myupperno);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return res;
+	}
+
+	@Override
+	public int insertUnderSiblingChildren(ReplyInsertDto replyInsertDto) {
+		int res =0;
+		try {
+			res = sqlSession.insert(NAMESPACE+"insertUnderSiblingChildren",replyInsertDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		
+		return res;
+	}
+	
+	
+	
+	
+	
+	
 }
