@@ -245,6 +245,10 @@
 		    <version>1.18.12</version>
 		    <scope>provided</scope>
 		</dependency>
+		
+		
+		
+		<!-- projectinsert 때문에 gson 사용 -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
