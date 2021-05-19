@@ -1,8 +1,10 @@
 package com.itpro.model.biz;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
@@ -14,12 +16,12 @@ public interface ProjectBiz {
 
 	public List<ProjectListDto> selectList(Map<String, Object> projectPageMap);
 	public ProjectDetailDto selectOne(int bd_no);
-	public int projectInsert(ProjectInsertDto projectDto);
+	public int projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
 	public int getProjectListCnt();
-	public ProjectDetailDto read(int bd_no);
 	public int update(ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto);
+//	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap);
 	
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.ProjectDao;
+import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
@@ -54,11 +55,22 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public int projectInsert(ProjectInsertDto projectDto) {
+	public int projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto) {
 		int projectInsertres = 0;
 		
 		try {
-			projectInsertres = sqlSession.insert(NAMESPACE+"insert",projectDto);
+			int bd_no = sqlSession.insert(NAMESPACE + "boardInsert", boardInsertDto);
+			
+			
+			System.out.println("bd_no: " + bd_no);
+			System.out.println("bd_no: " + boardInsertDto.getBd_no());
+			
+			for(ProjectInsertDto dto:projectDto) {
+				dto.bd_no = boardInsertDto.getBd_no();
+				
+				projectInsertres = sqlSession.insert(NAMESPACE+"insert", dto);
+				System.out.println("dto.pro_no : " + dto.pro_no);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,7 +133,19 @@ public class ProjectDaoImpl implements ProjectDao {
 		return ProjectListCnt;
 	}
 
-	
+
+//	@Override
+//	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap) {
+//		List<ProjectListDto> projectList = null;
+//		try {
+//			projectList = sqlSession.selectList(NAMESPACE+"selectcategorylist", projcetCategoryMap);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return projectList;
+//	}
+//
+//	
 
 
 }

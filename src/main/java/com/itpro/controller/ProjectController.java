@@ -1,8 +1,14 @@
 package com.itpro.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +19,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.biz.ReplyBiz;
+import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.MemberDto;
@@ -94,13 +107,26 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		return "project/projectinsertform";
 	}
 	
-	@RequestMapping(value="/projectinsert.do")
-	public String projectInsert(HttpServletRequest request, HttpServletResponse response, ProjectInsertDto projectDto) {
-		projectDto.setBd_writerip(new ClientInfo().getClientIp(request));
-		logger.info("PROJECT INSERT : "+projectDto.getBd_title());
-		logger.info(projectDto.getPro_start().toString());
-		logger.info(projectDto.getPro_end().toString());
-		projectBiz.projectInsert(projectDto);
+	@PostMapping("/projectinsert.do")
+	public String projectInsert(HttpServletRequest request, HttpServletResponse response
+//			, @RequestBody String data
+			) {
+		String data = null;
+		try {
+			data = request.getReader().readLine();
+			logger.info("PROJECT INSERT : "+data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<ProjectInsertDto> projectDtoList = new Gson().fromJson(data, new TypeToken<List<ProjectInsertDto>>(){}.getType());
+		ArrayList<BoardInsertDto> boardDtoList = new Gson().fromJson(data, new TypeToken<List<BoardInsertDto>>(){}.getType());
+
+		boardDtoList.get(0).bd_writerip = (new ClientInfo().getClientIp(request));
+		
+		logger.info("PROJECT INSERT : "+projectDtoList.size());
+		logger.info("PROJECT INSERT : "+boardDtoList.size());
+		projectBiz.projectInsert(projectDtoList, boardDtoList.get(0));
 		return "redirect:projectlist.do";
 	}	
 	
@@ -187,16 +213,50 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		return "redirect:projectlist.do";
 	}
 	
+	@RequestMapping(value="/multipart.do", method=RequestMethod.POST)                                                         
+    public String multipart(@RequestParam("uploader") String uploader, @RequestParam("fileName") MultipartFile fileName) throws IOException {   
+
+       String originalFile = fileName.getOriginalFilename();
+       String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); //확장자
+       SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+       String fileServerName= format.format(new Date());
+
+        File file = new File("."+File.pathSeparator+"project" +File.pathSeparator, fileServerName+"."+originalFileExtension);
+        if(!file.exists()) {
+        	file.mkdirs();
+        }
+
+        fileName.transferTo(file);
+        
+        System.out.println(uploader + "가 업로드한 파일은");
+        System.out.println(originalFile + "은 업로드한 파일이다.");
+        System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
+        System.out.println("파일사이즈는 " + fileName.getSize());
+        return "report/submissionComplete";
+    }
 	
 	
-	@RequestMapping(value="/projectcategory.do")
-	public String projectcategory(@RequestParam(value="bd_no") int bd_no, Model model ) {
-		return null;
-		
-		
-		
-		
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * @RequestMapping(value="/projectcategory.do") public String
+	 * projectcategory(@RequestParam(value="bd_no") int bd_no, Model model ) {
+	 * return null;
+	 * 
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 
 	
 	

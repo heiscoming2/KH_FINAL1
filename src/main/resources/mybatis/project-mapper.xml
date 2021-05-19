@@ -6,16 +6,26 @@
 <mapper namespace="Project">
 	
 	<insert id ="insert" parameterType="projectInsertDto" >
-		INSERT ALL
-		INTO BOARD VALUES(
-		BOARDSEQ.NEXTVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL,
-		0, #{bd_writerip}, 1, #{m_no})
+		INSERT 
 		INTO PROJECT VALUES(
 		PROJECTSEQ.NEXTVAL,
-		#{pro_title}, #{pro_start}, #{pro_end}, #{pro_link}, #{pro_develop},
-		#{pro_goal}, #{pro_function}, #{pro_erd}, BOARDSEQ.CURRVAL)
+		#{pro_title}, #{pro_start}, #{pro_end}, NULL, #{pro_link}, #{pro_develop},
+		#{pro_goal}, #{pro_function}, #{pro_erd}, #{bd_no})
 		
-		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- keyproperty는  BoardInsertDto안에 있는 거 keycloumn은 db 안에 있는 거-->
+	<insert id="boardInsert" parameterType="BoardInsertDto" >
+		<selectKey keyProperty="bd_no" resultType="int" order="BEFORE">
+		SELECT BOARDSEQ.NEXTVAL FROM DUAL
+		
+		</selectKey>
+		
+		INSERT 
+		INTO BOARD VALUES(
+		#{bd_no}, #{bd_title}, #{bd_content}, SYSDATE, NULL,
+		0, #{bd_writerip}, 1, #{m_no})
+		
 	</insert>
 	
 
@@ -24,16 +34,14 @@
 		 SELECT * FROM
           (SELECT ROWNUM RN, A.* 
                FROM (
-                     SELECT B.BD_NO, P.PRO_TITLE, P.PRO_LINK, P.PRO_DEVELOP, 
-	          		 P.PRO_GOAL, P.PRO_FUNCTION, P.PRO_ERD, B.BD_TITLE,
+                     SELECT DISTINCT B.BD_NO, B.BD_TITLE,
                      DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
                      DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
             		 M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
-                     FROM BOARD B, PROJECT P, IT_MEMBER M , 
+                     FROM BOARD B, IT_MEMBER M , 
                        (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
                        (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
-            		 WHERE B.BD_NO = P.BD_NO 
-           		  AND B.BC_CODE=1
+            		 WHERE B.BC_CODE=1
            		  AND B.M_NO = M.M_NO
                       AND RE.BD_NO(+) = B.BD_NO
                       AND BR.BD_NO(+) = B.BD_NO
@@ -43,6 +51,7 @@
        
 	</select>
 	
+	<!-- projectListDto -->
 	<select id="selectone" resultType="ProjectDetailDto" parameterType="int">
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		       B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
@@ -93,6 +102,42 @@
 		    PRO_ERD = #{pro_erd}
 		WHERE BD_NO = #{bd_no} -->
 	</update>
+	
+	
+	
+	
+		<select id="selectcategorylist" parameterType="hashMap" resultType="ProjectListDto">
+        SELECT * FROM 
+        	   (SELECT ROWNUM RN, A.* 
+        	   FROM (
+	               SELECT B.BD_NO, P.PRO_TITLE, P.PRO_LINK, P.PRO_DEVELOP, 
+	          		P.PRO_GOAL, P.PRO_FUNCTION, P.PRO_ERD, B.BD_TITLE,
+	               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+	               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+			       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+	                FROM BOARD B, PROJECT P, IT_MEMBER M , 
+	                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+	                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+			       WHERE B.BD_NO = P.BD_NO 
+			       AND B.BC_CODE=1 
+			       AND B.M_NO = M.M_NO
+	               AND RE.BD_NO(+) = B.BD_NO
+	               AND BR.BD_NO(+) = B.BD_NO
+	               <if test= '!projectCategoryDto.a1.equals("")'>
+				   AND B.BD_CREATEDDATE LIKE '%${projectCategoryDto.a1}%'
+				   </if>
+				   <if test= '!projectCategoryDto.a2.equals("")'>
+				   AND B.BD_RECOMMANDCOUNT LIKE '%${projectCategoryDto.a2}%'
+				   </if>
+			       ORDER BY B.BD_CREATEDDATE DESC) A 
+			   ORDER BY RN ASC)    
+        WHERE RN BETWEEN #{start} AND #{end}		
+	</select>
+	
+	
+	
+	
+	
 	
 	
 	

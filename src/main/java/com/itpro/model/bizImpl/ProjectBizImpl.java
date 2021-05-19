@@ -1,5 +1,6 @@
 package com.itpro.model.bizImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dao.ProjectDao;
+import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
@@ -35,8 +37,9 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	@Override
-	public int projectInsert(ProjectInsertDto projectDto) {
-		return projectDao.projectInsert(projectDto);
+	public int projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto) {
+		
+		return projectDao.projectInsert(projectDto, boardInsertDto);
 	}
 
 	@Override
@@ -62,11 +65,6 @@ public class ProjectBizImpl implements ProjectBiz{
 		return projectDao.getProjectListCnt();
 	}
 
-	@Override
-	public ProjectDetailDto read(int bd_no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int update(ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto) {
@@ -78,6 +76,11 @@ public class ProjectBizImpl implements ProjectBiz{
 		}
 		return res; 
 	}
+
+//	@Override
+//	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap) {
+//		return projectDao.selectCategoryList(projcetCategoryMap);
+//	}
 
 
 	

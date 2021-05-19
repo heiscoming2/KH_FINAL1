@@ -40,6 +40,9 @@
 		<typeAlias type="com.itpro.model.dto.like.LikeDto" alias="LikeDto"/>
 		<typeAlias type="com.itpro.model.dto.member.MemberDto" alias="MemberDto"/>
 
+		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
+
+
 	</typeAliases>
 	
 	<mappers>
