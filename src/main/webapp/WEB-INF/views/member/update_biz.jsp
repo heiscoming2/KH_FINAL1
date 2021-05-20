@@ -18,18 +18,16 @@
         <div class="row justify-content-center align-items-center">
             <div class="float-left col-md-3 col-3">
                 <img src="./resources/images/profileimages/testprofile.jpg" class="img-fluid rounded-circle" alt="프로필 이미지" width="150" height="150">
-                <p>
-                <h5>${login.m_nickname }</h5>
-                </p>
+                <p><h5>${login.m_nickname }</h5></p>
             </div>
             <div class="col-md-4 mt-5">
             
                 <form class="form-inline" action="#" method="post">
-                	<input type="hidden" name="m_no" value="${login.m_no}">
+                	<input type="hidden" name="m_no" value="${updateUser.m_no}">
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_id" readonly value="${login.m_id }">
+                            <input type="text" class="form-control-plaintext" id="m_id" readonly value="${updateUser.m_id }">
                         </div>
                     </div>
 
@@ -50,7 +48,7 @@
                     <div class="mb-3 row"><!--사업자번호-->
                         <label class="col-sm-4 col-form-label">사업자번호</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_regnum" readonly value="${login.m_email }">
+                            <input type="text" class="form-control-plaintext" id="m_regno" readonly value="${updateUser.m_regno }">
                         </div>
                     </div>
 

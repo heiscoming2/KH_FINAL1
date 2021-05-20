@@ -62,4 +62,24 @@
  		WHERE M_ID = #{m_id}
  			AND M_PW = #{m_pw}
  	</select>
+ 	
+ 	<!-- 회원정보 조회 -->
+ 	<resultMap type="MemberDto" id="selectOne">
+  		<result property="m_no" column="M_NO"/>
+  		<result property="m_id" column="M_ID"/>
+  		<result property="m_pw" column="M_PW"/>
+  		<result property="m_nickname" column="M_NICKNAME"/>
+  		<result property="m_email" column="M_EMAIL"/>
+  		<result property="m_img_path" column="M_IMG_PATH"/>
+  		<result property="m_img" column="M_IMG"/>
+  		<result property="m_regno" column="M_REGNO"/>  	
+  	</resultMap> 	
+ 	
+ 	<select id="selectOne" resultType="MemberDto" parameterType="int">
+ 		SELECT A.M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_IMG_PATH, M_IMG, B.M_REGNO, B.M_ADMIN_CERT
+ 		FROM IT_MEMBER A 
+ 		LEFT JOIN BIZ_MEMBER B 
+ 		ON A.M_NO=B.M_NO
+ 		WHERE A.M_NO = #{m_no}
+ 	</select>
  </mapper>

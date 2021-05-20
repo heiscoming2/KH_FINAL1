@@ -85,10 +85,11 @@
 					<li class="nav-item ">
 						<a class="nav-link active  text-light" aria-current="page" href="login.do">로그인</a>
 					</li>
-					</c:if>
 					<li class="nav-item ">
 						<a class="nav-link active text-light" aria-current="page" href="join.do">회원가입</a>
 					</li>
+					</c:if>
+					
 				</ul>
 			</div>
 		</div>

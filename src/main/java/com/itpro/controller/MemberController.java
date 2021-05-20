@@ -36,18 +36,43 @@ public class MemberController {
 	@RequestMapping(value = "/mypage_user.do")
 	public String mypage() {
 		logger.info("MYPAGE USER");
+
 		return "member/mypage_user";
 	}
 
 	// 개인회원 정보수정폼으로 이동
 	@RequestMapping(value = "/user_update_form.do")
-	public String modify(HttpSession session) {
+	public String update(HttpSession session, Model model) {
 		logger.info("MYPAGE USER");
-		
-		return "member/update_user";
+
+		/*
+		MemberDto res = biz.login(loginDto);
+
+		boolean check = false;
+		if (res != null) {
+			session.setAttribute("login", res);
+			check = true;
+		}
+	 */
+	
+//	if(session.getAttribute("m_no") != null) {
+//		int m_no = (int) session.getAttribute("m_no");
+//		MemberDto update = biz.selectOne(m_no);
+//		model.addAttribute("update", update);
+
+		if (session.getAttribute("login") != null) {
+			MemberDto res = (MemberDto) session.getAttribute("login");
+			int m_no = res.getM_no();
+			MemberDto update = biz.selectOne(m_no);
+			model.addAttribute("updateUser", update);
+			
+			return "member/update_user";
+		}
+
+		return "redirect:main.do";
 	}
 
-	/////////////////////////////기업회원
+	///////////////////////////// 기업회원
 
 	// 기업회원 마이페이지 관련 컨트롤러
 	@RequestMapping(value = "/mypage_biz.do")
@@ -65,23 +90,27 @@ public class MemberController {
 		return "member/update_biz";
 	}
 
+	//////////////////////////////////// 회원탈퇴
+
 	// 회원탈퇴 페이지이동
 	@RequestMapping(value = "/deleteForm.do")
 	public String deleteForm() {
 		logger.info("DELETE Form");
+
 		return "member/delete_member";
 	}
 
 	// 회원탈퇴 처리
 	@RequestMapping(value = "/deleteMember.do")
-	public String deleteMember(@RequestParam(required = false) String m_id, @RequestParam(required = false) String m_pw, HttpSession session) {
+	public String deleteMember(@RequestParam(required = false) String m_id, @RequestParam(required = false) String m_pw,
+			HttpSession session) {
 		logger.info("DELETE MEMBER");
 
 		boolean res = biz.checkPw(m_id, m_pw);
 		if (res) {
 			biz.deleteMember(m_id);
 			session.invalidate();
-			
+
 			return "redirect:main.do";
 		} else {
 			return "redirect:deleteForm.do";
@@ -122,25 +151,30 @@ public class MemberController {
 	@RequestMapping(value = "/note_sendlist.do")
 	public String noteSendList() {
 		logger.info("NOTE SEND LIST");
+
 		return "login_join/note_sendlist";
 	}
 
 	@RequestMapping(value = "/note_receivelist.do")
 	public String noteReceiveList() {
 		logger.info("NOTE RECEIVE LIST");
+
 		return "login_join/note_receivelist";
 	}
 
-	//작성글 목록
+	// 작성글 목록
 	@RequestMapping(value = "/post_list.do")
 	public String postList() {
 		logger.info("LIST_POST");
+
 		return "member/list_post";
 	}
-	
+
+	// 기업 광고내역
 	@RequestMapping(value = "/ad_list.do")
 	public String adList() {
 		logger.info("AD LIST");
+
 		return "admin/ad_list";
 	}
 }
