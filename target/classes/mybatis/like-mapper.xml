@@ -41,8 +41,6 @@
 	</update>
 
 
-
-
 	<select id="read" resultType="LikeDto" parameterType="HashMap">
 		SELECT like_no, bd_no, m_no, like_check
 		FROM BOARDRECOMMAND
@@ -59,9 +57,6 @@
 		WHERE m_no=#{m_no}
 		  AND bd_no=#{bd_no}
 	</delete>
-
-
-
 
 
 

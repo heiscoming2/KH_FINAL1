@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.StudyBiz;
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dao.LikeDao;
 import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.board.BoardUpdateDto;
@@ -30,6 +31,9 @@ public class StudyBizImpl implements StudyBiz {
 	@Autowired
 	private ReplyDao replyDao;
 	
+	@Autowired
+	private LikeDao likeDao;
+	
 	@Override
 	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
 		return studyDao.selectList(studyPageMap);
@@ -48,14 +52,15 @@ public class StudyBizImpl implements StudyBiz {
 	@Override
 	@Transactional
 	public int delete(int bd_no) {
-		int Deleteres = 0;
-		int studyDeleteRes = studyDao.delete(bd_no);
-		int boardDeleteRes = boardDao.delete(bd_no);
-		int replyDeleteRes = replyDao.deleteWithBoard(bd_no);
-		if(studyDeleteRes>0 && boardDeleteRes>0 && replyDeleteRes>0) {
-			Deleteres = 1;
+		int deleteres = 0;
+		int replydeleteres = replyDao.deleteWithBoard(bd_no);
+		int likedeleteres = likeDao.deleteWithBoard(bd_no);
+		int studydeleteres = studyDao.delete(bd_no);
+		int boarddeleteres = boardDao.delete(bd_no);
+		if(studydeleteres>0 && boarddeleteres>0 && replydeleteres>0 && likedeleteres>0) {
+			deleteres = 1;
 		}
-		return Deleteres; 
+		return deleteres; 
 	}
 
 	@Override
