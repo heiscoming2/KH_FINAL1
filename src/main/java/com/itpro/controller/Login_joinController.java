@@ -1,5 +1,6 @@
 package com.itpro.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -94,8 +95,8 @@ public class Login_joinController {
 
 		int res = biz.RegMember(regDto);
 		if (res > 0) {
+						
 			return "redirect:main.do";
-
 		} else {
 			return "redirect:join_user.do";
 		}

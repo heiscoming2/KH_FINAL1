@@ -47,7 +47,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 		
-		if (request.getRequestURI().contains("/biz_update_form.do")) {
+		if (request.getRequestURI().contains("/note_receivelist.do")
+				||(request.getRequestURI().contains("/ad_list.do"))) {
 			MemberDto memberDto = (MemberDto) session.getAttribute("login");
 			String m_type = memberDto.getM_type();
 			if (m_type.equals("기업회원")) {
@@ -59,8 +60,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 					// 접근 불가 처리
 					PrintWriter out = response.getWriter();
 					out.print("<script type='text/javascript'>");
-					out.print("alert('관리자 승인 후  이용가능합니다.');");
-					out.print("location.href='login.do';");
+					out.print("alert('관리자 승인 후 이용가능합니다.');");
+					out.print("location.href='main.do';");
 					out.print("</script>");
 					return false;
 				}

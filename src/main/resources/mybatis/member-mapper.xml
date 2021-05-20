@@ -23,10 +23,11 @@
  	<insert id="RegBizMember" parameterType="MemberDto">
  		INSERT ALL
  		INTO IT_MEMBER
- 			VALUES(MEMBERNO_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_nickname}, #{m_phone}, #{m_email}, 'N', '활동','', '기업회원', 'N','', '', SYSDATE,'','','','')
+ 			VALUES(MEMBERNO_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_nickname}, #{m_phone}, #{m_email}, 'N', '활동','N', '기업회원', 'N','', '', SYSDATE,'','','','')
  		INTO BIZ_MEMBER
- 			VALUES(MEMBERNO_SEQ.CURRVAL, #{m_regno}, #{m_admin_cert}) 		
- 	</insert> 	
+ 			VALUES(MEMBERNO_SEQ.CURRVAL, #{m_regno},'N') 		
+ 		SELECT * FROM DUAL
+ 	</insert> 
  	
  	<!-- 아이디 체크 -->
  	<select id="idCheck" resultType="int">

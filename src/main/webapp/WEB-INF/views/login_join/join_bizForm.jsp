@@ -29,7 +29,7 @@
                             <div class="mb-2 row"><!--아이디 입력 폼-->
                                 <label class="col-sm-4 col-form-label">아이디</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control id_input" id="m_id">
+                                  <input type="text" class="form-control id_input" id="m_id" name="m_id">
                                 </div>
                             </div>
                             <!-- 아이디 중복확인 메시지 -->
@@ -41,21 +41,28 @@
                             <div class="mb-3 row"><!--비밀번호 입력 폼-->
                                 <label class="col-sm-4 col-form-label">비밀번호</label>
                                 <div class="col-sm-8">
-                                  <input type="password" class="form-control" id="m_pw">
+                                  <input type="password" class="form-control" id="m_pw" name="m_pw">
                                 </div>
                             </div>
 
                             <div class="mb-3 row"><!--기업명 입력 폼-->
                                 <label class="col-sm-4 col-form-label">기업명</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control" id="m_name">
+                                  <input type="text" class="form-control" id="m_nickname" name="m_nickname">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 row"><!--전화번호 입력 폼-->
+                                <label class="col-sm-4 col-form-label">전화번호</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="m_phone" name="m_phone" maxlength="13" placeholder="-포함 작성">
                                 </div>
                             </div>
 
                             <div class="mb-1 row"><!--사업자번호 입력 폼-->
                                 <label class="col-sm-4 col-form-label">사업자번호</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control regno_input" id="m_regno" placeholder="-포함 작성">
+                                  <input type="text" class="form-control regno_input" name="m_regno" maxlength="12" placeholder="-포함 작성">
                                 </div>
                             </div>
                             
@@ -68,7 +75,7 @@
                             <div class="mb-3 row"><!--이메일 입력 폼-->
                                 <label class="col-sm-4 col-form-label">이메일</label>
                                 <div class="col-sm-8">
-                                  <input type="text" class="form-control joinButton" id="m_email">
+                                  <input type="text" class="form-control" id="m_email" name="m_email">
                                 </div>
                             </div>
                             
