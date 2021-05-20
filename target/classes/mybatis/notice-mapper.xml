@@ -17,7 +17,7 @@
 		0,
 		#{bd_writerip},
 		5,
-		1003) 
+		#{m_no}) 
 	</insert>
 	
 	
