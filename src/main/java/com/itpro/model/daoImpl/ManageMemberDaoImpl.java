@@ -103,21 +103,33 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 
 
 	@Override
-	public int update_com(ManageMemberDto_com dto) {
-		int res_com=0;
-		
+	public int update_comA(ManageMemberDto_com dto) {
+		int res_comA=0;
+		System.out.println("DAO: "+dto.getM_act());
 		try {
-			res_com=sqlSession.update(NAMESPACE+"update_com",dto);
-			System.out.println("update: "+res_com);
+			res_comA=sqlSession.update(NAMESPACE+"update_comA",dto);
+			System.out.println("update: "+res_comA);
 		} catch (Exception e) {
 			System.out.println("[error] : update");
 			e.printStackTrace();
 		}
-		return res_com;
+		return res_comA;
 	}
 
 
-
+	@Override
+	public int update_comB(ManageMemberDto_com dto) {
+		int res_comB=0;
+		
+		try {
+			res_comB=sqlSession.update(NAMESPACE+"update_comB",dto);
+			System.out.println("update: "+res_comB);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		return res_comB;
+	}
 
 
 }

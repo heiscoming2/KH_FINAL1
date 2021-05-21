@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.ManageMemberBiz;
 import com.itpro.model.dao.ManageMemberDao;
@@ -47,12 +48,18 @@ public class ManageMemberBizImpl implements ManageMemberBiz{
 	}
 
 	@Override
+	@Transactional
 	public int update_com(ManageMemberDto_com dto) {
-		return dao.update_com(dto);
+		int res=0;
+		int memberDtoAResA=dao.update_comA(dto);
+		int memberDtoAResB=dao.update_comB(dto);
+		if(memberDtoAResA>0 && memberDtoAResB>0) {
+			res=1;
+		}
+		
+		return res;
 	}
 
 	
-	
-
 
 }

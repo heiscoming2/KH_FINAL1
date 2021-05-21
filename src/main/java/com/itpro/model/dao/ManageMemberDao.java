@@ -19,6 +19,7 @@ public interface ManageMemberDao {
 	//기업회원
 	public List<ManageMemberDto_com> selectList_com();
 	public ManageMemberDto_com selectOne_com(int m_no);
-	public int update_com(ManageMemberDto_com dto);
+	public int update_comA(ManageMemberDto_com dto);
+	public int update_comB(ManageMemberDto_com dto);
 	
 }

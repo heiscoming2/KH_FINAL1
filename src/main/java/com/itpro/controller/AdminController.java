@@ -80,9 +80,15 @@ public class AdminController {
 		@RequestMapping(value="/member_detail_com.do")
 		public String member_detail_com(Model model, int m_no) {
 			
-			logger.info("member_detail_com");
+			logger.info("member_detail_com" );
 			
-			model.addAttribute("dto", biz.selectOne_com(m_no));
+			System.out.println("biz에 오는 값");
+			ManageMemberDto_com manageMemberDto_com = biz.selectOne_com(m_no);
+			model.addAttribute("dto", manageMemberDto_com);
+			
+			logger.info(manageMemberDto_com.getM_nickname());
+			
+
 			return "admin/member_detail_com";
 		}
 		
@@ -107,6 +113,8 @@ public class AdminController {
 			}
 		
 		}
+		
+	
 
 		
 		////////////////////////////신고 part//////////////////////////////////////
