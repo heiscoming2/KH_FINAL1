@@ -110,6 +110,11 @@ public class NoticeDaoImpl implements NoticeDao {
 		return noticeList;
 	}
 
+	@Override
+	public List<NoticeDto> brandnewNotice(NoticeDto dto) {
+		return (List<NoticeDto>) sqlSession.selectList("brandnewNotice", dto);
+	}
+
 	
 
 

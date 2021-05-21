@@ -23,6 +23,7 @@ public interface NoticeDao {
 	public int getNoticeListCnt();
 	public int getNoticeSearchListCnt(NoticeSearchDto noticeSearchDto);
 	public List<NoticeDto> selectSearchList(Map<String, Object> noticeSearchMap);
+	public List<NoticeDto> brandnewNotice(NoticeDto dto);
 
 
 }

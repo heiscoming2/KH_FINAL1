@@ -91,5 +91,11 @@ public class NoticeBizImpl implements NoticeBiz {
 		return noticeDao.selectSearchList(noticeSearchMap);
 	}
 
+	@Override
+	public List<NoticeDto> brandnewNotice(NoticeDto dto) {
+		
+		return noticeDao.brandnewNotice(dto);
+	}
+
 }
 	

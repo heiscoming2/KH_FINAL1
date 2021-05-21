@@ -5,8 +5,28 @@
 
 <mapper namespace="Notice">
 
+	<resultMap id="noticeResult" type="notice">
+        <id property="bd_no" column="BD_NO"></id>
+        <result property="bd_title" column="BD_TITLE"></result>
+        <result property="bd_createddate" column="BD_CREATEDDATE"></result>
+        <result property="bd_nodifydate" column="BD_MODIFYDATE"></result>
+        <result property="bd_viewcount" column="BD_VIEWCOUNT"></result>
+        <result property="m_nickname" column="M_NICKNAME"></result>
+        <result property="m_no" column="M_NO"></result>
+   </resultMap>
+	
+	<select id="brandnewNotice" resultMap="noticeResult" >
+	SELECT *
+	FROM(SELECT BD_NO, BD_TITLE, M_NICKNAME, BD_CREATEDDATE, BD_MODIFYDATE, BD_VIEWCOUNT	
+		 FROM BOARD B, IT_MEMBER M
+		 WHERE B.M_NO=M.M_NO(+) 
+		 ORDER BY BD_CREATEDDATE DESC)
+	WHERE ROWNUM = 1
+	</select>
+	
+	
 
-	<insert id="insert" parameterType="NoticeDto">
+	<insert id="insert" parameterType="NoticeDto" >
 		INSERT INTO BOARD 
 		VALUES (
 		BOARDSEQ.NEXTVAL,
@@ -64,6 +84,8 @@
 		    BD_MODIFYDATE = SYSDATE
 		WHERE BD_NO = #{bd_no}
 	</update>
+	
+	
 	
 	
 	<select id="noticesearchlistcnt" parameterType="NoticeSearchDto" resultType="int">

@@ -372,6 +372,45 @@
 	
 	<%@include file="./inc/_foot.jspf" %>
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
+
+<!-- 공지사항 최신 가져오기  -->	
+<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
+ 
+<script type="text/javascript">
+$(document).ready(function() {
+    brandnewNotice();
+});
+ 
+function brandnewNotice() {
+    $
+            .ajax({
+                dataType : "json",
+                url : "brandnewNotice.do",
+                type : "GET",
+                success : function(data) {
+                    var html = '';
+                    html += '<table class="table" align="center" width="700" border="1" cellspacing="0">';
+                    html += '<tr>';
+                    html += '<td>' + data.bd_title + '</td>';
+                    html += '<td>' + data.bd_createddate + '</td>';
+                    html += '<td>' + data.m_nickname + '</td>';
+                    html += '</tr>';
+                    html += '</table>';
+                    $("#brandnewNotice").html(html);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    /* alert("에러 발생~~ \n" + textStatus + " : " + errorThrown); */
+                    /* 주석처리 안해놓으면 블로그에서 alert창이 뜬다.. 귀찮 (가끔 특정 사이트를 웹 또는 폰으로 서칭도중에 "바이러스가 발견되었습니다~
+어쩌구 하는 팝업창이 뜨는건 이런걸 이용한 눈속임 사기.." */
+                }
+            });
+}
+</script>
+	
+	
+	
+	
 	
 </body>
 </html>

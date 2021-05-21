@@ -17,6 +17,7 @@ public interface NoticeBiz {
 	public int getNoticeListCnt();
 	public int getNoticeListSearchCnt(NoticeSearchDto noticeSearchDto);
 	public List<NoticeDto> selectSearchList(Map<String, Object> noticeSearchMap);
+	public List<NoticeDto> brandnewNotice(NoticeDto dto);
 	
 }
 	

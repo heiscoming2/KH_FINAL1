@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
@@ -194,6 +196,35 @@ public class NoticeController {
 		
 		return "notice/noticelist";
 	}	
+	
+	
+	@RequestMapping(value="/brandnewNotice.do", method = RequestMethod.GET)
+    public @ResponseBody Map<string, object=""> brandnewNotice(NoticeDto dto, Model model) throws Exception{
+         
+        List<NoticeDto> nlist = noticeBiz.brandnewNotice(dto);
+         
+        Map<String, object=""> map = new HashMap<String, object="">(); 
+         
+        System.out.println(nlist);
+         
+        String bd_title = nlist.get(0).getBd_title();
+        String bd_createddate = (nlist.get(0).getBd_createddate()).toString();
+        String m_nickname = nlist.get(0).getM_nickname();
+         
+        System.out.println(bd_title);
+        System.out.println(bd_createddate);
+        System.out.println(m_nickname);
+         
+        map.put("bd_title", bd_title);
+        map.put("bd_createddate", bd_createddate);
+        map.put("m_nickname", m_nickname);
+        System.out.println(map);
+         
+        return map;
+    }
+ 
+
+	
 	
 	
 }
