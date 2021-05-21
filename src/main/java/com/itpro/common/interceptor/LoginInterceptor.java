@@ -59,16 +59,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 		
-		if(request.getRequestURI().contains("like.do")) {
-			if(request.getSession().getAttribute("login")==null) {
-				PrintWriter out = response.getWriter();
-				out.print("<script type='text/javascript'>");
-				out.print("alert('로그인 후 좋아요가 가능합니다.');");
-				out.print("location.href='login.do';");
-				out.print("</script>");
-				return false;
-			}
-		}
+		/*
+		 * if(request.getRequestURI().contains("like.do")) {
+		 * if(request.getSession().getAttribute("login")==null) { PrintWriter out =
+		 * response.getWriter(); out.print("<script type='text/javascript'>");
+		 * out.print("alert('로그인 후 좋아요가 가능합니다.');");
+		 * out.print("location.href='login.do';"); out.print("</script>"); return false;
+		 * } }
+		 */
 		
 		
 		if (request.getRequestURI().contains("/note_receivelist.do")
