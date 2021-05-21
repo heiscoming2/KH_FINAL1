@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.NoticeBiz;
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dao.LikeDao;
 import com.itpro.model.dao.NoticeDao;
 import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dto.board.BoardUpdateDto;
@@ -27,7 +28,8 @@ public class NoticeBizImpl implements NoticeBiz {
 	@Autowired
 	private ReplyDao replyDao;
 	
-	
+	@Autowired
+	private LikeDao likeDao;
 	
 	@Override
 	public List<NoticeDto> selectList(Map<String,Object> noticePageMap) {
@@ -48,10 +50,11 @@ public class NoticeBizImpl implements NoticeBiz {
 	@Transactional
 	public int delete(int bd_no) {
 		int Deleteres = 0;
+		int replyDeleteRes = replyDao.deleteWithBoard(bd_no);
+		int likedeleteres = likeDao.deleteWithBoard(bd_no);
 		int noticeDeleteRes = noticeDao.delete(bd_no);
 		int boardDeleteRes = boardDao.delete(bd_no);
-		int replyDeleteRes = replyDao.deleteWithBoard(bd_no);
-		if(noticeDeleteRes>0 && boardDeleteRes>0 && replyDeleteRes>0) {
+		if(noticeDeleteRes>0 && boardDeleteRes>0 && replyDeleteRes>0 && likedeleteres>0) {
 			Deleteres = 1;
 		}
 		return Deleteres; 

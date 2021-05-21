@@ -1,5 +1,6 @@
 package com.itpro.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itpro.model.biz.Login_joinBiz;
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dto.member.MemberDto;
 
@@ -29,8 +31,8 @@ public class Login_joinController {
 	private Logger logger = LoggerFactory.getLogger(Login_joinController.class);
 
 	@Autowired
-	private MemberBiz biz;
-
+	private Login_joinBiz biz;
+	
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -93,8 +95,8 @@ public class Login_joinController {
 
 		int res = biz.RegMember(regDto);
 		if (res > 0) {
+						
 			return "redirect:main.do";
-
 		} else {
 			return "redirect:join_user.do";
 		}

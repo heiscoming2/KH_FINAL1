@@ -64,7 +64,6 @@
             <!-- 세션이 null이 아닌 경우, 세션값의 m_no와 글 작성자의 m_no가 같은 경우에만 보여준다. -->
 	        <div style="float:right; position:relative; top:-105px;"> 
 	             <input type="button" value="신고" class="btn btn-danger" onclick="reportInsert('${dto.bd_no}');">
-	            
 	            	<c:if test="${sessionScope.login.m_auth eq 'Y' }">
 		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='noticeupdateform.do?bd_no=${dto.bd_no}'">
 		              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">

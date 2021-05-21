@@ -19,6 +19,7 @@
 <!-- 본문 시작 -->
     <div class="notice_insertwrap mt-5">
       <form action="noticeinsert.do" method="post">
+      <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
         <!-- 공지 모집 작성 글 영역-->
         <h3>공지 글 작성</h3>
         <br>

@@ -63,6 +63,17 @@ public class LikeDaoImpl implements LikeDao {
 	return insertres;
 }
 
+	@Override
+	public int deleteWithBoard(int bd_no) {
+		int likedeleteres = 0;
+		try {
+			likedeleteres = mybatis.delete(NAMESPACE+"deletebyBoardno",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return likedeleteres;
+	}
+
 
 
 	

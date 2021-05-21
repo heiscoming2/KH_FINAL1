@@ -71,7 +71,7 @@ public class ReplyBizImpl implements ReplyBiz {
 				//막내 형제의 자손이 없다면 lastsiblingno가 re_no가 될것이다.
 				//이제 이 값에 해당하는 같은 그룹의 order보다 큰 애들을 뒤로 밀어주고
 				//이 값을 기준으로 update와 insert를 처리해주면 끝
-				//insert를 하는데 dto에 myupperno를 함께 넘겨준다.
+				//insert를 하는데 매개변수로 myupperno를 함께 넘겨준다.
 				replyDao.updateOrderBigThanMyUpper(myupperno);
 				replyInsertDto.setMyupperno(myupperno);
 				int insertUnderSiblingChildren = replyDao.insertUnderSiblingChildren(replyInsertDto);
