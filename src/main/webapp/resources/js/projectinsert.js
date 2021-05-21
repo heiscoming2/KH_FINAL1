@@ -7,7 +7,7 @@
   });
   
 var num = 0;
-/*appendChild 적용해보는 중*/
+/*append 적용해보는 중*/
 function add_div(){
 if(num>5){
 	alert("5개 이상 프로젝트는 추가가 불가능합니다");
@@ -65,7 +65,7 @@ var html = `
 
 	}
 	
-	//처음에 한 번 보여주기
+	/* 처음에 한 번 보여주기 */
 	add_div();
 
 function remove_div(){

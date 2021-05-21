@@ -25,13 +25,12 @@
 			<br>
 			<!-- 프로필이미지, 아이디, 작성일 div -->
 			<div>
-				<img src="${projectDetailDto.m_img_path }${projectDetailDto.m_img }"
-					alt="mdo" width="35" height="35" class="rounded-circle me-2"
-					style="float: left;">
-				<div style="position: relative; top: 5px;">
-					<a class="d-flex align-items-center text-decoration-none"
-						id="dropdownaUser" style="font-size: 15px;">
-						${sessionScope.login.m_nickname} </a>
+				<img src="${sessionScope.login.m_img_path}${sessionScope.login.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+                  style="float: left;">
+                <div style="position: relative; top:5px;">
+                  <a class="d-flex align-items-center text-decoration-none" style="font-size:15px;">
+                    ${sessionScope.login.m_nickname}
+                  </a>
 				</div>
 			</div>
 			<!-- 프로필이미지, 아이디, 작성일 div 끝 -->
@@ -57,7 +56,7 @@
 			<br> <br>
 
 			<!-- value 꼭 바꿔주기 로그인 기능 완성되면-->
-			<input type="hidden" value="1004" name="m_no" id="m_no">
+			<input type="hidden" name="m_no" id="m_no" value="${sessionScope.login.m_no }">
 
 			<!-- 프로젝트 작성 글 영역 종료-->
 
