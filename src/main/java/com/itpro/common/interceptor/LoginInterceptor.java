@@ -46,7 +46,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
-<<<<<<< HEAD
+
 		
 		if(request.getRequestURI().contains("/projectinsertform.do")) {
 			if(request.getSession().getAttribute("login")==null) {
@@ -70,10 +70,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 		
-		return true;
-		
-=======
->>>>>>> da3f9865205e30c127dfedee0c508993f7f0869f
 		
 		if (request.getRequestURI().contains("/note_receivelist.do")
 				||(request.getRequestURI().contains("/ad_list.do"))) {
