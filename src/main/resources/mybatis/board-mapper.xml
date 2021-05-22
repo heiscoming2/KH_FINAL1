@@ -23,5 +23,9 @@
 		DELETE FROM BOARD WHERE BD_NO = #{bd_no}
 	</delete>
 	
+	<select id="selectone" parameterType="int" resultType="BoardDto">
+		SELECT * FROM BOARD WHERE BD_NO=#{bd_no}
+	
+	</select>
 
 </mapper>  

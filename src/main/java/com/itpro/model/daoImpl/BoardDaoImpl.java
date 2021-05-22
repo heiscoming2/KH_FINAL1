@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.notice.NoticeDto;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -41,6 +43,17 @@ public class BoardDaoImpl implements BoardDao {
 			e.printStackTrace();
 		}
 		return BoardDeleteRes;
+	}
+	
+	@Override
+	public BoardDto selectOne(int bd_no) {
+		BoardDto dto = null;
+		try {
+			dto = sqlSession.selectOne(NAMESPACE+"selectone",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 	
 

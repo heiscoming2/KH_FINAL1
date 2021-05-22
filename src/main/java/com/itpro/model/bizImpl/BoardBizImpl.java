@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 
 @Service
@@ -20,5 +21,10 @@ public class BoardBizImpl implements BoardBiz {
 	@Override
 	public void updateviewcount(int bd_no) {
 		boardDao.updateviewcount(bd_no);
+	}
+	
+	public BoardDto selectOne(int bd_no) {
+		return boardDao.selectOne(bd_no);
+				
 	}
 }
