@@ -15,10 +15,12 @@ public interface ProjectDao {
 	String NAMESPACE = "Project.";
 
 	public List<ProjectListDto> selectList(Map<String, Object> projectPageMap);
-	public ProjectDetailDto selectOne(int bd_no);
-	public int projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
+	public List<ProjectDetailDto> selectOne(int bd_no);
+	public List<ProjectInsertDto> projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
 	public int getProjectListCnt();
+	public int imageuploadupdate(int pro_no, String pro_file);
+	
 //	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap);
 	}

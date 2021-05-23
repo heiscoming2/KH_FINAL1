@@ -32,12 +32,13 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	@Override
-	public ProjectDetailDto selectOne(int bd_no) {
+	public List<ProjectDetailDto> selectOne(int bd_no) {
+		
 		return projectDao.selectOne(bd_no);
 	}
 
 	@Override
-	public int projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto) {
+	public List<ProjectInsertDto>  projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto) {
 		
 		return projectDao.projectInsert(projectDto, boardInsertDto);
 	}
@@ -75,6 +76,12 @@ public class ProjectBizImpl implements ProjectBiz{
 			res = 1;
 		}
 		return res; 
+	}
+
+	@Override
+	public int imageuploadupdate(int pro_no, String pro_file) {
+		
+		return projectDao.imageuploadupdate(pro_no, pro_file);
 	}
 
 //	@Override

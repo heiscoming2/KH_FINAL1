@@ -1,5 +1,6 @@
 package com.itpro.model.daoImpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.Gson;
 import com.itpro.model.dao.ProjectDao;
 import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
@@ -40,14 +42,14 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	
 	@Override
-	public ProjectDetailDto selectOne(int bd_no) {
-		ProjectDetailDto projectDetailDto = null;
+	public List<ProjectDetailDto> selectOne(int bd_no) {
+		List<ProjectDetailDto> projectDetailDto = null;
 		
 		
 		try {
-			projectDetailDto = sqlSession.selectOne(NAMESPACE + "selectone", bd_no);
+			projectDetailDto = sqlSession.selectList(NAMESPACE + "selectdetaillist", bd_no);
 		} catch (Exception e) {
-			System.out.println("[error]: select one");
+			System.out.println("[error]: select list");
 			e.printStackTrace();
 		}
 		
@@ -55,8 +57,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public int projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto) {
-		int projectInsertres = 0;
+	public List<ProjectInsertDto> projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto) {
 		
 		try {
 			int bd_no = sqlSession.insert(NAMESPACE + "boardInsert", boardInsertDto);
@@ -68,13 +69,13 @@ public class ProjectDaoImpl implements ProjectDao {
 			for(ProjectInsertDto dto:projectDto) {
 				dto.bd_no = boardInsertDto.getBd_no();
 				
-				projectInsertres = sqlSession.insert(NAMESPACE+"insert", dto);
+				System.out.println("insert:" + sqlSession.insert(NAMESPACE+"insert", dto));
 				System.out.println("dto.pro_no : " + dto.pro_no);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return projectInsertres;
+		return projectDto;
 	}
 		
 		
@@ -133,6 +134,26 @@ public class ProjectDaoImpl implements ProjectDao {
 		return ProjectListCnt;
 	}
 
+	
+	
+	public int imageuploadupdate(int pro_no, String pro_file) {
+		int result = 0;
+		System.out.println("pro_no:" + pro_no);
+		System.out.println("pro_file" + pro_file);
+		Map<String, Object> projectMap = new HashMap<String, Object>();
+		projectMap.put("pro_no", pro_no);
+		projectMap.put("pro_file", pro_file);
+		System.out.println("projectMap parameter: " + new Gson().toJson(projectMap));
+		try {
+		result = sqlSession.update(NAMESPACE + "imageupload", projectMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result; 
+	}
+	
+	
 
 //	@Override
 //	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap) {

@@ -62,8 +62,7 @@
 
 			<!-- 취소 / 등록 컨펌 버튼 -->
 			<div style="height: 80px;">
-				<input type="button" value="등록" class="btn btn-primary" style="float: right; margin-left: 10px;"
-					onclick="project_submit()"> 
+				<input type="button" value="등록" class="btn btn-primary" style="float: right; margin-left: 10px;" onclick="project_submit()">
 				<input type="button" value="취소" class="btn btn-primary" onclick="location.href='projectlist.do'" style="float: right;">
 			</div>
 		<!-- </form> -->

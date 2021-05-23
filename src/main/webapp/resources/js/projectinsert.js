@@ -36,7 +36,7 @@ var html = `
             </tr>
             <tr>
               <th><span>* </span>프로젝트 파일</th>
-              <td><input type="file" value="첨부 파일" name="pro_file" id="pro_file_${num}"></td>
+              <td><form id="pro_file_form_${num}"><input type="file" value="첨부 파일" name="pro_file" id="pro_file_${num}"></form></td>
 
           </tr>
             <tr>
@@ -74,7 +74,7 @@ function remove_div(){
 
 	}
 	
-
+var projects;
 function project_submit(){
 	var projectinsertsubmits = [];
 	for (let i=1; i<=num; i++){
@@ -106,8 +106,41 @@ function project_submit(){
 	
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
-	  location.href="projectlist.do";
+	  projects = JSON.parse(response);
+	  
+	  imageupload(1);
+	  
+	  
 	});
+
+}
+
+function imageupload(cnt){
+	
+	var form = $('#pro_file_form_' + cnt)[0];  	    
+    // Create an FormData object          
+    var data = new FormData(form);  	         
+    var pro_no = projects[cnt-1].pro_no;
+    
+    $.ajax({             
+    	type: "POST",          
+        enctype: 'multipart/form-data',  
+        url: "multipart.do?pro_no=" + pro_no,        
+        data: data,          
+        processData: false,    
+        contentType: false,      
+        cache: false,           
+        timeout: 600000,       
+        success: function (data) { 
+        	if(cnt<=num){
+        		imageupload(++cnt);
+        	}           
+        },          
+        error: function (e) {  
+        	console.log("ERROR : ", e);      
+            alert("fail");      
+         }     
+	});  
 
 }
 	

@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -107,8 +106,9 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		return "project/projectinsertform";
 	}
 	
+	//text 받는 거
 	@PostMapping("/projectinsert.do")
-	public String projectInsert(HttpServletRequest request, HttpServletResponse response
+	public @ResponseBody String projectInsert(HttpServletRequest request, HttpServletResponse response
 //			, @RequestBody String data
 			) {
 		String data = null;
@@ -126,9 +126,12 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		
 		logger.info("PROJECT INSERT : "+projectDtoList.size());
 		logger.info("PROJECT INSERT : "+boardDtoList.size());
-		projectBiz.projectInsert(projectDtoList, boardDtoList.get(0));
-		return "redirect:projectlist.do";
-	}	
+		List<ProjectInsertDto> resultDtos = projectBiz.projectInsert(projectDtoList, boardDtoList.get(0));
+		return new Gson().toJson(resultDtos);
+	}
+	
+
+	
 	
 	
 	@RequestMapping(value="/projectdetail.do")
@@ -146,6 +149,8 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 			//res 1이면 추천을 한거
 			System.out.println("res:" +res);
 			model.addAttribute("likecheck", res);
+			model.addAttribute("login", loginDto);
+			System.out.println("login: " + new Gson().toJson(loginDto));
 		}
 		
 		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
@@ -154,8 +159,9 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 				}
 		
 		
-		ProjectDetailDto dto = projectBiz.selectOne(bd_no);
+		List<ProjectDetailDto> dto = projectBiz.selectOne(bd_no);
 		model.addAttribute("dto", dto);
+		System.out.println("dto : "+new Gson().toJson(dto) );
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto", replyListDto);
@@ -169,7 +175,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	@RequestMapping(value="/projectupdateform.do")
 	public String projectUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
 		logger.info("PROJECT UPDATE FORM");
-		ProjectDetailDto projectDetailDto = projectBiz.selectOne(bd_no);
+		List<ProjectDetailDto> projectDetailDto = projectBiz.selectOne(bd_no);
 		model.addAttribute("projectDetailDto", projectDetailDto);
 		return "projectboard/projectupdateform";
 	}
@@ -186,18 +192,20 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 			return "redirect:projectdetail.do?bd_no="+bd_no;
 		}
 		
-		ProjectDetailDto projectDetailDto = projectBiz.selectOne(projectUpdateDto.getBd_no()); 
-		projectDetailDto.setBd_title(boardUpdateDto.getBd_title());
-		projectDetailDto.setBd_content(boardUpdateDto.getBd_content());
-		
-		projectDetailDto.setPro_title(projectUpdateDto.getPro_title());
-		projectDetailDto.setPro_start(projectUpdateDto.getPro_start());
-		projectDetailDto.setPro_end(projectUpdateDto.getPro_end());
-		projectDetailDto.setPro_link(projectUpdateDto.getPro_link());
-		projectDetailDto.setPro_develop(projectUpdateDto.getPro_develop());
-		projectDetailDto.setPro_goal(projectUpdateDto.getPro_goal());
-		projectDetailDto.setPro_function(projectUpdateDto.getPro_function());
-		projectDetailDto.setPro_erd(projectUpdateDto.getPro_erd());
+		List<ProjectDetailDto> projectDetailDto = projectBiz.selectOne(projectUpdateDto.getBd_no()); 
+		/*
+		 * projectDetailDto.setBd_title(boardUpdateDto.getBd_title());
+		 * projectDetailDto.setBd_content(boardUpdateDto.getBd_content());
+		 * 
+		 * projectDetailDto.setPro_title(projectUpdateDto.getPro_title());
+		 * projectDetailDto.setPro_start(projectUpdateDto.getPro_start());
+		 * projectDetailDto.setPro_end(projectUpdateDto.getPro_end());
+		 * projectDetailDto.setPro_link(projectUpdateDto.getPro_link());
+		 * projectDetailDto.setPro_develop(projectUpdateDto.getPro_develop());
+		 * projectDetailDto.setPro_goal(projectUpdateDto.getPro_goal());
+		 * projectDetailDto.setPro_function(projectUpdateDto.getPro_function());
+		 * projectDetailDto.setPro_erd(projectUpdateDto.getPro_erd());
+		 */
 
 		model.addAttribute("projectDetailDto",projectDetailDto);
 		logger.info("업데이트 실패");
@@ -214,30 +222,47 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}
 	
 	@RequestMapping(value="/multipart.do", method=RequestMethod.POST)                                                         
-    public String multipart(@RequestParam("uploader") String uploader, @RequestParam("fileName") MultipartFile fileName) throws IOException {   
-
+    public @ResponseBody String multipart(@RequestParam("pro_no") String pro_no, @RequestParam("pro_file") MultipartFile fileName) throws IOException {   
+		int res = 0;
+		if(fileName.getSize()<=0) {
+			return "{result:"+res+"}";
+		}
        String originalFile = fileName.getOriginalFilename();
        String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); //확장자
        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
        String fileServerName= format.format(new Date());
 
-        File file = new File("."+File.pathSeparator+"project" +File.pathSeparator, fileServerName+"."+originalFileExtension);
+        File file = new File("project" +File.separator, fileServerName+originalFileExtension);
         if(!file.exists()) {
         	file.mkdirs();
         }
 
         fileName.transferTo(file);
         
-        System.out.println(uploader + "가 업로드한 파일은");
         System.out.println(originalFile + "은 업로드한 파일이다.");
         System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
         System.out.println("파일사이즈는 " + fileName.getSize());
-        return "report/submissionComplete";
+        
+        res = projectBiz.imageuploadupdate(Integer.parseInt(pro_no), file.getAbsolutePath());
+        return "{result:"+res+"}";
     }
 	
 	
-	
-	
+	/*
+	 * @RequestMapping(value="/imageupload.do", method= RequestMethod.POST) public
+	 * String upload(MultipartHttpServletRequest request) { MultipartFile file =
+	 * request.getFile("pro_file");
+	 * 
+	 * System.out.println(file.getName()); System.out.println(file.getSize());
+	 * String extention = file.getOriginalFilename().split(".")[1];
+	 * System.out.println(file.getOriginalFilename());
+	 * 
+	 * SimpleDateFormat image_upload = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+	 * image_upload+"."+extention;
+	 * 
+	 * 
+	 * return null; }
+	 */
 	
 	
 	

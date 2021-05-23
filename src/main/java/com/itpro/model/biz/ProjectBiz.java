@@ -15,12 +15,13 @@ import com.itpro.model.dto.study.StudyUpdateDto;
 public interface ProjectBiz {
 
 	public List<ProjectListDto> selectList(Map<String, Object> projectPageMap);
-	public ProjectDetailDto selectOne(int bd_no);
-	public int projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
+	public List<ProjectDetailDto> selectOne(int bd_no);
+	public List<ProjectInsertDto>  projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
 	public int getProjectListCnt();
 	public int update(ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto);
+	public int imageuploadupdate(int pro_no, String pro_file);
 //	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap);
 	
 

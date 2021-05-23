@@ -5,6 +5,8 @@ import java.util.Date;
 public class ProjectInsertDto {
 	// 게시판
 	public int bd_no; // 게시글 번호
+	
+	
 	/*
 	 * public String bd_title; // 제목 public String bd_content; // 글 내용 public Date
 	 * bd_createddate; // 작성일 public Date bd_modifydate; // 수정일 public String
@@ -14,8 +16,10 @@ public class ProjectInsertDto {
 	 * public int bd_viewcount; // 조회수 public int bd_recommandcount; // 추천수 - 없
 	 * public String m_no; // 작성자 id
 	 */
+	
+	
 	// 프로젝트 dto
-	public String pro_no; // 프로젝트 번호
+	public int pro_no; // 프로젝트 번호
 	public String pro_title; // 프로젝트 제목
 	public String pro_start; // 프로젝트 시작일
 	public String pro_end; // 프로젝트 종료일
