@@ -16,5 +16,6 @@ public interface ManageMemberBiz {
 	public List<ManageMemberDto_com> selectList_com();
 	public ManageMemberDto_com selectOne_com(int m_no);
 	public int update_com(ManageMemberDto_com dto);
+	
 
 }

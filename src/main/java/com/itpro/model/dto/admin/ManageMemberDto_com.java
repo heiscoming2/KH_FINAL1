@@ -21,7 +21,7 @@ public class ManageMemberDto_com {
 	private String m_type;//회원타입(개인회원, 기업회원, 관리자)
 	private char m_auth;//권한(N회원Y관리자)
 	//기업회원 필드
-	private int m_regno;//사업자 번호
+	private String m_regno;//사업자 번호
 	private char m_admin_cert;//관리자 인증
 	//이미지
 	private String m_img_path;
@@ -30,52 +30,6 @@ public class ManageMemberDto_com {
 	public ManageMemberDto_com() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public ManageMemberDto_com(int m_no, String m_id, String m_pw, String m_nickname, String m_phone, String m_email,
-			String m_name, Date m_birth, String m_gender, String m_addr, char m_used, String m_act, char m_mail_cert,
-			String m_type, char auth, int m_regno, char m_admin_cert, String m_img_path, Date m_regdate) {
-		super();
-		this.m_no = m_no;
-		this.m_id = m_id;
-		this.m_pw = m_pw;
-		this.m_nickname = m_nickname;
-		this.m_phone = m_phone;
-		this.m_email = m_email;
-		this.m_name = m_name;
-		this.m_birth = m_birth;
-		this.m_gender = m_gender;
-		this.m_addr = m_addr;
-		this.m_used = m_used;
-		this.m_act = m_act;
-		this.m_mail_cert = m_mail_cert;
-		this.m_type = m_type;
-		this.m_auth = auth;
-		this.m_regno = m_regno;
-		this.m_admin_cert = m_admin_cert;
-		this.m_img_path = m_img_path;
-		this.m_regdate = m_regdate;
-	}
-
-	
-	
-	
-	public ManageMemberDto_com(int m_no, String m_nickname, String m_name, Date m_birth, String m_gender, String m_addr,
-			char m_used, String m_act, String m_type, char m_auth, int m_regno, char m_admin_cert, Date m_regdate) {
-		super();
-		this.m_no = m_no;
-		this.m_nickname = m_nickname;
-		this.m_name = m_name;
-		this.m_birth = m_birth;
-		this.m_gender = m_gender;
-		this.m_addr = m_addr;
-		this.m_used = m_used;
-		this.m_act = m_act;
-		this.m_type = m_type;
-		this.m_auth = m_auth;
-		this.m_regno = m_regno;
-		this.m_admin_cert = m_admin_cert;
-		this.m_regdate = m_regdate;
 	}
 
 	public int getM_no() {
@@ -198,11 +152,11 @@ public class ManageMemberDto_com {
 		this.m_auth = m_auth;
 	}
 
-	public int getM_regno() {
+	public String getM_regno() {
 		return m_regno;
 	}
 
-	public void setM_regno(int m_regno) {
+	public void setM_regno(String m_regno) {
 		this.m_regno = m_regno;
 	}
 
@@ -230,8 +184,16 @@ public class ManageMemberDto_com {
 		this.m_regdate = m_regdate;
 	}
 
+	@Override
+	public String toString() {
+		return "ManageMemberDto_com [m_no=" + m_no + ", m_id=" + m_id + ", m_pw=" + m_pw + ", m_nickname=" + m_nickname
+				+ ", m_phone=" + m_phone + ", m_email=" + m_email + ", m_name=" + m_name + ", m_birth=" + m_birth
+				+ ", m_gender=" + m_gender + ", m_addr=" + m_addr + ", m_used=" + m_used + ", m_act=" + m_act
+				+ ", m_mail_cert=" + m_mail_cert + ", m_type=" + m_type + ", m_auth=" + m_auth + ", m_regno=" + m_regno
+				+ ", m_admin_cert=" + m_admin_cert + ", m_img_path=" + m_img_path + ", m_regdate=" + m_regdate + "]";
+	}
 	
 	
-	
-	
+
+
 }

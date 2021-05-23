@@ -30,6 +30,8 @@
 		
 		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
+		<typeAlias type="com.itpro.model.dto.board.BoardDto" alias="BoardDto"/>
+		<typeAlias type="com.itpro.model.dto.board.BoardCategoryDto" alias="BoardCategoryDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.notice.NoticeDto" alias="NoticeDto"/>
 		<typeAlias type="com.itpro.model.dto.notice.NoticeSearchDto" alias="NoticeSearchDto"/>
@@ -56,7 +58,7 @@
 		<mapper resource="/mybatis/managemember-mapper.xml"/>
 		<mapper resource="/mybatis/report-mapper.xml"/>
 		<mapper resource="/mybatis/board-mapper.xml"/>
-
+		<mapper resource="/mybatis/BoardCategory-mapper.xml"/>	
 		<mapper resource="/mybatis/notice-mapper.xml"/>
 
 		<mapper resource="/mybatis/like-mapper.xml"/>

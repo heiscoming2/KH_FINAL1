@@ -8,11 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.itpro.model.biz.BoardBiz;
+import com.itpro.model.biz.BoardCategoryBiz;
 import com.itpro.model.biz.ManageMemberBiz;
 import com.itpro.model.biz.ReportBiz;
 import com.itpro.model.dto.admin.ManageMemberDto;
 import com.itpro.model.dto.admin.ManageMemberDto_com;
+import com.itpro.model.dto.board.BoardCategoryDto;
+import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.report.ReportDto;
 
 @Controller
@@ -24,6 +31,12 @@ public class AdminController {
 	
 	@Autowired
 	ReportBiz rebiz;
+	
+	@Autowired
+	BoardBiz boardbiz;
+	
+	@Autowired
+	BoardCategoryBiz categorybiz;
 	
 	////////////////////////////회원 관리 part/////////////////////////////////////////////////
 	
@@ -80,9 +93,15 @@ public class AdminController {
 		@RequestMapping(value="/member_detail_com.do")
 		public String member_detail_com(Model model, int m_no) {
 			
-			logger.info("member_detail_com");
+			logger.info("member_detail_com" );
 			
-			model.addAttribute("dto", biz.selectOne_com(m_no));
+			System.out.println("biz에 오는 값");
+			ManageMemberDto_com manageMemberDto_com = biz.selectOne_com(m_no);
+			model.addAttribute("dto", manageMemberDto_com);
+			
+			logger.info(manageMemberDto_com.getM_nickname());
+			
+
 			return "admin/member_detail_com";
 		}
 		
@@ -107,20 +126,20 @@ public class AdminController {
 			}
 		
 		}
+		
+	
 
 		
 		////////////////////////////신고 part//////////////////////////////////////
 	
 	//insert 입력페이지로 이동
 	@RequestMapping(value="/reportinsertform.do")
-	public String insertreportform(Model model, ReportDto dto) {
+	public String insertreportform(Model model, @RequestParam("bd_no") int bd_no) {
 		logger.info("reportinsertform");
 		
-		int insertRes = rebiz.insertreportform(dto);
-		
-		logger.info(Integer.toString(insertRes));
-		
-		model.addAttribute("dto",dto);
+		BoardDto boardDto = boardbiz.selectOne(bd_no);
+		System.out.println("insertform: "+new Gson().toJson(boardDto));
+		model.addAttribute("dto",new Gson().toJson(boardDto));
 		
 		
 		return "report/reportinsertform";
@@ -166,6 +185,15 @@ public class AdminController {
 		model.addAttribute("dto", rebiz.selectOne(report_no));
 		
 		return "report/reportdetail";
+	}
+	
+	@RequestMapping(value = "/category")
+	public @ResponseBody String getCategory() {
+		
+		List<BoardCategoryDto> category=categorybiz.selectList(); 
+		
+		return new Gson().toJson(category);
+	
 	}
 	
 	

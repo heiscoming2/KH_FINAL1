@@ -49,10 +49,23 @@
 		ORDER BY A.M_NO DESC
 	</select>
 	
-	<update id="update_com" parameterType="ManageMemberDto_com">
-		UPDATE IT_MEMBER A, BIZ_MEMBER B
-		SET A.M_ACT = #{m_act}, A.M_USED = #{m_used}, A.M_AUTH = #{m_auth}, B.M_ADMIN_CERT = #{m_admin_cert}
-		WHERE A.M_NO=#{m_no}
+	<update id="update_comA" parameterType="ManageMemberDto_com">
+			
+		UPDATE IT_MEMBER 
+			SET 
+				M_ACT = #{m_act}, 
+				M_USED = #{m_used}, 
+				M_AUTH = #{m_auth} 
+			WHERE M_NO=#{m_no}
+			
 	</update>
+	
+	<update id="update_comB" parameterType="ManageMemberDto_com">
+	UPDATE BIZ_MEMBER
+		SET
+			M_ADMIN_CERT = #{m_admin_cert}
+		WHERE M_NO=#{m_no} 
+	</update>
+	
 	
 </mapper>
