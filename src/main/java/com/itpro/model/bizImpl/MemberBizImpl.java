@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dao.MemberDao;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.ProfileDto;
 
 @Service
 public class MemberBizImpl implements MemberBiz {
@@ -35,4 +36,19 @@ public class MemberBizImpl implements MemberBiz {
 
 		return dao.selectOne(m_no);
 	}
+
+	// 회원정보수정
+	@Override
+	public int updateMember(MemberDto updateDto) {
+
+		return dao.updateMember(updateDto);
+	}
+
+	// 프로필 이미지 업로드
+	@Override
+	public ProfileDto profileUpload(ProfileDto profileDto) {
+
+		return dao.profileUpload(profileDto);
+	}
+
 }

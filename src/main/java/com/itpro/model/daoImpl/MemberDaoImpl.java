@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.MemberDao;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.ProfileDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -47,22 +48,44 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return res;
 	}
-	
+
 	// 회원정보 조회
-		@Override
-		public MemberDto selectOne(int m_no) {
-			MemberDto updateDto = null;
+	@Override
+	public MemberDto selectOne(int m_no) {
+		MemberDto updateDto = null;
 
-			try {
-				updateDto = sqlSession.selectOne(NAMESPACE + "selectOne", m_no);
+		try {
+			updateDto = sqlSession.selectOne(NAMESPACE + "selectOne", m_no);
 
-			} catch (Exception e) {
-				System.out.println("[error] : select one");
-				e.printStackTrace();
-			}
-
-			return updateDto;
+		} catch (Exception e) {
+			System.out.println("[error] : select one");
+			e.printStackTrace();
 		}
 
+		return updateDto;
+	}
+
+	// 회원 정보 수정
+	@Override
+	public int updateMember(MemberDto updateDto) {
+
+		int res = 0;
+
+		try {
+			res = sqlSession.update(NAMESPACE + "update", updateDto);
+		} catch (Exception e) {
+			System.out.println("[error]:update");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 회원 이미지 업로드
+	@Override
+	public ProfileDto profileUpload(ProfileDto profileDto) {
+
+		return profileDto;
+	}
 
 }
