@@ -24,8 +24,9 @@
             <div class="col-md-4 mt-5">
             
             <!-- 정보수정 폼 -->
-                <form class="form-inline" action="biz_update.do" method="post">
+                <form class="form-inline" id="updateForm" method="post">
                 	<input type="hidden" name="m_no" value="${selectUser.m_no}">
+                	
                     <div class="mb-3 row"><!--아이디-->
                         <label class="col-sm-4 col-form-label">아이디</label>
                         <div class="col-sm-8">
@@ -83,17 +84,16 @@
                 </div>
                 
             </div>
-        </div>
-        
+        </div>    
+        </form>         
         
         <div class="row justify-content-center col-md-2 me-md-4">
-            <input type="submit" class="btn btn-danger mt-2" value="탈퇴하기" onclick="location.href='deleteForm.do'"/>
+            <input type="submit" class="btn btn-danger mt-2" value="탈퇴" onclick="location.href='deleteForm.do'"/>
         </div>
 
         <div class="row justify-content-center col-md-2">
-            <input type="submit" class="btn btn-primary mt-2" value="정보수정하기">
-        </div>     
-        </form> 
+            <button class="btn btn-primary mt-2" id="updateBiz">수정 저장</button>
+        </div>
         
     </div>
 
@@ -108,7 +108,7 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 	
-<!-- 기업 회원가입 스크립트 -->
+<!-- 프로필 업로드 스크립트 -->
 <script type="text/javascript" src="./resources/js/mProfileUpload.js"></script>	
 </body>
 </html>

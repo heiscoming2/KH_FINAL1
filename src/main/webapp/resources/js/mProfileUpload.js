@@ -26,3 +26,21 @@ function uploadFile(){
     
     })
 }
+
+/*개인 회원 회원정보 수정 전송*/
+$(document).ready(function(){
+	$("#updateUser").click(function(){
+		$("#updateForm").attr("action","user_update.do");
+		$("#updateForm").submit();
+	
+	});
+	
+});
+
+/*기업 회원 회원정보 수정 전송*/
+$(document).ready(function(){
+	$("#updateBiz").click(function(){
+		$("#updateForm").attr("action","biz_update.do");
+		$("#updateForm").submit();	
+	});	
+});
