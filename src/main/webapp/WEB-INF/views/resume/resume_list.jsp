@@ -34,7 +34,7 @@
                 <tr class="d-flex">
                     <td class="col-1"><input type="checkbox"></td>
                     <td class="col-1">1</td>
-                    <td class="col-5 text-decoration-none"><a href="resume_detail.do">이력서포부포부포부</a></td>     
+                    <td class="col-5"><a href="resume_detail.do" style="color:black;">이력서포부포부포부</a></td>     
                     <td class="col-2">21-00-00</td>                
                     <td class="col-3">
                         <button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>
