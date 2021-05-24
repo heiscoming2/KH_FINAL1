@@ -9,7 +9,7 @@ $(function(){
 function uploadFile(){
     
     var form = $('#profileUpload')[0];
-    var formData = new FormData(form);
+    var formData = new FormData(form[0]);
  
     $.ajax({
     	type : 'POST',

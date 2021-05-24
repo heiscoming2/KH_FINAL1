@@ -19,59 +19,64 @@
         	<!-- 프로필 이미지 -->
             <div class="float-left col-md-3 col-3">
                 <img src="./resources/images/profileimages/testprofile.jpg" class="img-fluid rounded-circle" alt="프로필 이미지" width="150" height="150">
-                <p><h5>${updateUser.m_nickname }</h5></p>
+                <p><h5>${selectUser.m_nickname }</h5></p>
             </div>
             
             <div class="col-md-4 mt-5">            	
             	<!-- 정보수정 폼 -->
                 <form class="form-inline" id="updateForm" method="post">
-                	<input type="hidden" name="m_no" value="${updateUser.m_no}">
+                	<input type="hidden" name="m_no" value="${selectUser.m_no}">
                 	
                     <div class="mb-3 row"><!--아이디-->
-                        <label class="col-sm-4 col-form-label">아이디</label>
+                        <label class="col-sm-3 col-form-label">아이디</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_id" readonly value="${updateUser.m_id }">
+                            <input type="text" class="form-control-plaintext" id="m_id" readonly value="${selectUser.m_id }">
                         </div>
                     </div>
 
                     <div class="mb-3 row"><!--비밀번호-->
-                        <label class="col-sm-4 col-form-label">비밀번호</label>
+                        <label class="col-sm-3 col-form-label">비밀번호</label>
                         <div class="col-sm-8">
                             <input type="password" class="form-control" id="m_pw" name="m_pw">
                         </div>
                     </div>
 
                     <div class="mb-3 row"><!--닉네임-->
-                        <label class="col-sm-4 col-form-label">닉네임</label>
+                        <label class="col-sm-3 col-form-label">닉네임</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="m_nickname" name="m_nickname">
+                            <input type="text" class="form-control" id="m_nickname" name="m_nickname" value="${selectUser.m_nickname }">
                         </div>
                     </div>
 
                     <div class="mb-3 row"><!--이메일-->
-                        <label class="col-sm-4 col-form-label">이메일</label>
+                        <label class="col-sm-3 col-form-label">이메일</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" id="m_email" name="m_email" readonly value="${updateUser.m_email }">
+                            <input type="text" class="form-control-plaintext" id="m_email" name="m_email" readonly value="${selectUser.m_email }">
                         </div>
                     </div>
 
-                    <div class="mb-3 row"><!--프로필 변경-->
-                        <label class="col-sm-4 col-form-label">프로필 수정</label>
-                        <div class="col-sm-8">
-                            <input class="form-control form-control-sm" id="m_img" name="m_img" type="file">
+                    <!-- 프로필 이미지 폼 -->
+                <div id="profileUpload">
+                 	<div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">프로필</label>
+                        <div class="col-sm-6">
+                            <input class="form-control form-control-sm" type="file" name="m_img">
                         </div>
-                    </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-sm btn btn-secondary" id="uploadBtn">저장</button>
+                        </div>
+                    </div>                
+                </div>
 				</form>
-				
-				<div class="row justify-content-center col-md-2 me-md-4">
-					<input type="submit" class="btn btn-danger mt-2" value="탈퇴"	onclick="location.href='deleteForm.do'" />
-				</div>
-
-				<div class="row justify-content-center col-md-2">
-					<button class="btn btn-primary mt-2" id="updateUser">수정 저장</button>
-				</div>
-            </div>
+			</div>			
         </div>
+        
+        <div class="row justify-content-center col-md-2 me-md-4">
+        	<input type="submit" class="btn btn-danger mt-2" value="회원탈퇴"	onclick="location.href='deleteForm.do'" />
+		</div>
+		<div class="row justify-content-center col-md-2">
+			<button class="btn btn-primary mt-2" id="updateBiz">수정 저장</button>
+		</div>
         
     </div>
 

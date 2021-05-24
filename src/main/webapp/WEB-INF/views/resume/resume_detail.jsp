@@ -15,19 +15,19 @@
 <!-- 본문 시작 -->
 
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
+        <h3>이력서 조회</h3> 	
+        <div class="float-end">
+        	<button class="btn btn-primary" onclick="location.href='resume_update.do'">이력서 수정</button>
+            <button class="btn btn-primary" onclick="location.href='resume_list.do'">이력서 목록</button>
+            <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
+        </div>
+        <br><br>
         <form>
-        
-            <div class="d-flex justify-content-between">
-                <div class="col-10 text-center">
-                    <span class="fs-2 fw-bold">이력서 제목 어쩌구 저쩌구</span>
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-primary" type="button" onclick="location.href='resume_list.do'">목록</button>
-                    <button class="btn btn-primary" type="button" onclick="location.href='resume_update.do'">수정</button>
-                </div>
+            <div class="col-10 mb-4">
+                <h4 class="fw-bold text-center">이력서 제목 어쩌구 저쩌구</h4>
             </div>
-            <br><br>
-            <h3 class="fw-bold">기본정보</h3>
+            
+            <h4 class="fw-bold">기본정보</h4>
             <br>
             <div class="clearfix">
                 <!--이력서 이미지-->
@@ -82,87 +82,105 @@
             </div>     
             
             <hr><!---학력사항---->
-
             <div class="row justify-content-between">
                 <div class="col-6">
-                    <sapn><h3 class="fw-bold">학력사항</h3></sapn>
-                </div>
-            </div><br>
-            <div class="row g-3 text-center" id="edForm">
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">입학년월</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">학교 및 전공</label>
-                    <p class="fs-6">대학교 컴퓨터공학과</p>
-                    <p class="fs-6">고등학교 졸업</p>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">졸업여부</label>
-                    <p class="fs-6">졸업 예정</p>
-                    <p class="fs-6">졸업</p>
+                    <sapn><h4 class="fw-bold">학력사항</h4></sapn>
                 </div>
             </div>
+            <table class="table table-borderless table-sm" style='text-align: center'>
+                <thead>
+                  <tr>
+                    <th class="col-4">입학졸업</th>
+                    <th class="col-2">학교</th>
+                    <th class="col-2">전공</th>
+                    <th class="col-2">구분</th>
+                    <th class="col-2">졸업여부</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr><!--첫째줄-->
+                        <td>2010년 03월 - 2013년 02월</td>
+                        <td>서울대학교</td>
+                        <td>컴퓨터공학과</td>
+                        <td>대학교</td>
+                        <td>졸업</td>
+                      </tr>  
+                  <tr><!--둘째줄-->
+                    <td>2010년 03월 - 2013년 02월</td>
+                    <td>서울대</td>
+                    <td>컴공</td>
+                    <td>대학교</td>
+                    <td>졸업</td>
+                  </tr>                 
+                </tbody>
+            </table>
 
             <hr><!---자격사항---->
 
             <div class="row justify-content-between">
                 <div class="col-6">
-                    <sapn><h3 class="fw-bold">자격사항</h3></sapn>
+                    <sapn><h4 class="fw-bold">자격사항</h4></sapn>
                 </div>
             </div>
-            <br>
-            <div class="row g-3 text-center">
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">자격면허</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">취득일자</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">발행기관</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-            </div>
+            <table class="table table-borderless table-sm" style='text-align: center'>
+                <thead>
+                  <tr>
+                    <th class="col-4">자격증</th>
+                    <th class="col-4">취득년월</th>
+                    <th class="col-4">발행기관</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr><!--첫째줄-->
+                        <td>2010년 03월 - 2013년 02월</td>
+                        <td>서울대학교</td>
+                        <td>컴퓨터공학과</td>
+                      </tr>  
+                  <tr><!--둘째줄-->
+                    <td>2010년 03월 - 2013년 02월</td>
+                    <td>서울대</td>
+                    <td>컴공</td>
+                  </tr>                 
+                </tbody>
+            </table>
             
             <hr><!---교육 및 사회경험---->
-            
+
             <div class="row justify-content-between">
                 <div class="col-6">
-                    <sapn><h3 class="fw-bold">교육 및 사회경험</h3></sapn>
+                    <sapn><h4 class="fw-bold">교육 및 사회경험</h4></sapn>
                 </div>
             </div>
-            <br>
-            <div class="row g-3 text-center">
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">회사·기관명</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">기간</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label fs-5 fw-bold">업무 및 교육내용</label>
-                    <p class="fs-6">2019년 02월 - 2021년 08월</p>
-                    <p class="fs-6">2016년 02월 - 2018년 03월</p>
-                </div>
-            </div>
+            <table class="table table-borderless table-sm" style='text-align: center'>
+                <thead>
+                  <tr>
+                    <th class="col-3">회사·기관</th>
+                    <th class="col-3">시작일</th>
+                    <th class="col-3">종료일</th>
+                    <th class="col-3">세부내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr><!--첫째줄-->
+                        <td>2010년 03월 - 2013년 02월</td>
+                        <td>서울대학교</td>
+                        <td>컴퓨터공학과</td>
+                        <td>대학교</td>
+                      </tr>  
+                  <tr><!--둘째줄-->
+                    <td>2010년 03월 - 2013년 02월</td>
+                    <td>서울대</td>
+                    <td>컴공</td>
+                    <td>대학교</td>
+                  </tr>                 
+                </tbody>
+            </table>
 
             <hr><!---자소서---->
             
             <div>
                 <div>
-                    <sapn><h3 class="fw-bold">자기소개서</h3></sapn>
+                    <sapn><h4 class="fw-bold">자기소개서</h4></sapn>
                 </div>
                 <div>
                     <div class="lh-base" style="height: 500px; white-space:pre-wrap; "> 미국 제약사 화이자가 올해 안에 알약 형태의 신종 코로나바이러스 감염증(코로나19) 치료제를 출시할 수 있을 것으로 전망했다. 앨버트 불라 화이자 최고경영자(CEO)는 27일(현지시간) CNBC방송에 출연해 코로나19 치료를 위한 

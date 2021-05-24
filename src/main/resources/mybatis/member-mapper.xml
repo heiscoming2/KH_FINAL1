@@ -89,7 +89,7 @@
 		WHERE A.M_NO = #{m_no}
 	</select>
 
-	<!-- 기업회원 정보수정 맵퍼 -->
+	<!-- 회원 정보수정 -->
 	<update id="update" parameterType="MemberDto">
 		UPDATE IT_MEMBER
 		SET M_PW = #{m_pw}, M_NICKNAME = #{m_nickname}, M_EMAIL = #{m_email}

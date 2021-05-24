@@ -57,7 +57,7 @@ public class MemberController {
 			MemberDto res = (MemberDto) session.getAttribute("login");
 			int m_no = res.getM_no();
 			MemberDto update = biz.selectOne(m_no);
-			model.addAttribute("updateUser", update);
+			model.addAttribute("selectUser", update);
 
 			return "member/update_user";
 		}
@@ -130,6 +130,8 @@ public class MemberController {
 		}
 
 	}
+	
+	
 
 	// 회원탈퇴 페이지이동
 	@RequestMapping(value = "/deleteForm.do")
@@ -156,6 +158,8 @@ public class MemberController {
 		}
 
 	}
+	
+	
 
 	// 프로필 이미지 업로드 컨트롤러(다시 수정해야대 ㅠㅠㅠ 힝 ㅠ)
 	@RequestMapping(value = "/profileUpload.do", method = RequestMethod.POST)
@@ -200,49 +204,9 @@ public class MemberController {
 		return map;
 	}
 
-	// 이력서 관련 컨트롤러
-	@RequestMapping(value = "/resume_list.do")
-	public String resumeList() {
-		logger.info("RESUEM LIST");
+	
 
-		return "resume/resume_list";
-	}
-
-	@RequestMapping(value = "/resume_form.do")
-	public String resumeForm() {
-		logger.info("RESUEM FORM");
-
-		return "resume/resume_form";
-	}
-
-	@RequestMapping(value = "/resume_detail.do")
-	public String resumeDetail() {
-		logger.info("RESUEM DETIAL");
-
-		return "resume/resume_detail";
-	}
-
-	@RequestMapping(value = "/resume_update.do")
-	public String resumeUpdate() {
-		logger.info("RESUEM UPDATE");
-
-		return "resume/resume_update";
-	}
-
-	// 쪽지 관련 컨트롤러
-	@RequestMapping(value = "/note_sendlist.do")
-	public String noteSendList() {
-		logger.info("NOTE SEND LIST");
-
-		return "login_join/note_sendlist";
-	}
-
-	@RequestMapping(value = "/note_receivelist.do")
-	public String noteReceiveList() {
-		logger.info("NOTE RECEIVE LIST");
-
-		return "login_join/note_receivelist";
-	}
+	
 
 	// 작성글 목록
 	@RequestMapping(value = "/post_list.do")

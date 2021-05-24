@@ -18,38 +18,38 @@
 <!-- 본문 시작 -->
 
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
-        <form>
-            
+ 
+ 		<h3>이력서 등록</h3> 	
+        <div class="float-end">
+            <button class="btn btn-primary" onclick="location.href='resume_list.do'">이력서 목록</button>
+            <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
+        </div>
+        <br><br>
+ 
+        <form>            
             <!--이력서 제목 작성-->
-            <div class="d-flex justify-content-between">
-                <div class="col-6">
-                <div class="d-flex justify-content-center">
-                    <input type="text" class="form-control form-control-lg" aria-label="r_title" placeholder="이력서 제목을 입력하세요">
-                </div>
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-primary" type="button">목록</button>
-                </div>
+            <div class="col-8">
+                <input type="text" class="form-control form-control-lg" aria-label="r_title" placeholder="이력서 제목">
             </div>
             <br>
-            <h3>기본정보</h3>
+            <h4>기본정보</h4>
             <br>
             <div class="clearfix">
                 <!--이력서 이미지-->
-                <img src="./resources/images/profileimages/testprofile.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 170px; height: 180px;" alt="이력서 이미지">
+                <img src="./resources/images/profileimages/testprofile.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 180px; height: 180px;" alt="이력서 이미지">
                 
                 <!--기본 인적사항 입력폼-->              
                 <div class="row g-2">
-                    <div class="col-2"><h5>이 름</h5></div>
+                    <div class="col-2"><h6>이 름</h6></div>
                     <div class="col-3">            
                         <input type="text" class="form-control col-6 px-2" aria-label="r_name" placeholder="이름을 입력해 주세요">            
                     </div> 
                 </div>
                 <br>
                 <div class="row g-2">
-                    <div class="col-2"><h5>생년월일</h5></div>
+                    <div class="col-2"><h6>생년월일</h6></div>
                     <div class="col-3">            
-                        <input type="text" class="form-control col-6 px-2" aria-label="r_birth" placeholder="ex) 19810101">            
+                        <input type="date" class="form-control col-6 px-2" aria-label="r_birth" placeholder="ex) 19810101">            
                     </div>      
                     <div class="col-2"><!--성별 체크버튼-->
                         <div class="form-check form-check-inline">
@@ -64,21 +64,21 @@
                 </div>
                 <br>
                 <div class="row g-2">
-                    <div class="col-2"><h5>휴대폰</h5></div>
+                    <div class="col-2"><h6>휴대폰</h6></div>
                     <div class="col-5">            
-                        <input type="text" class="form-control col-6 px-2" aria-label="r_phone" placeholder=" - 제외하고 입력">            
+                        <input type="text" class="form-control col-6 px-2" aria-label="r_phone" placeholder=" - 제외 입력">            
                     </div>
                 </div>
                 <br>
                 <div class="row g-2">
-                    <div class="col-2"><h5>이메일</h5></div>
+                    <div class="col-2"><h6>이메일</h6></div>
                     <div class="col-5">            
-                        <input type="text" class="form-control col-6 px-2" aria-label="r_email" placeholder="이메일을 입력해 주세요">            
+                        <input type="text" class="form-control col-6 px-2" aria-label="r_email" readonly>            
                     </div>     
                 </div>
                 <br>
                 <div class="row g-2">
-                    <div class="col-2"><h5>주 소</h5></div>
+                    <div class="col-2"><h6>주 소</h6></div>
                     <div class="col-3">            
                         <input class="form-control form-control-sm" type="text" id="sample4_postcode" placeholder="우편번호">
                     </div>
@@ -107,116 +107,168 @@
                 </div>
                 <br>
                 <div class="row g-2">
-                    <div class="col-2"><h5>포트폴리오</h5></div>
+                    <div class="col-2"><h6>포트폴리오</h6></div>
                     <div class="col-5">            
                         <input type="text" class="form-control col-6 px-2" aria-label="r_addr" placeholder="ex) http://www.itpro.com/user">            
                     </div>
                 </div>
                 <br>
                 <div class="row g-2">
-                    <div class="col-2"><h5>사진등록</h5></div>
+                    <div class="col-2"><h6>사진등록</h6></div>
                     <div class="col-3"> 
                         <input class="form-control form-control-sm" id="r_img" type="file">                     
-                    </div>     
+                    </div>  
+                    <div class="col-sm-1">
+                        <input type="submit" class="btn btn-outline-dark btn-sm" value="업로드">
+                    </div>   
                 </div>
             </div>     
             
-            <hr><!---학력사항 입력 폼---->
+            <hr><!---학력사항---->
 
             <div class="d-flex justify-content-between">
                 <div class="col-6">
-                    <sapn><h3>학력사항</h3></sapn>
+                    <sapn><h4>학력사항</h4></sapn>
                 </div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
-                    <button class="btn btn-outline-dark btn-sm" type="button" id="edForm_p" value="추가">+</button>
+                    <button class="btn btn-outline-dark btn-sm" type="button" id="edrowAdd" value="추가">+</button>
                     <button class="btn btn-outline-dark btn-sm" type="button" id="edForm_m" value="삭제">-</button>
                 </div>
             </div>
-            <br>
-            <div class="row g-3" id="edForm">
-                <div class="col-md-4">
-                    <label class="form-label">입학년월</label>
-                    <input type="text" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"><br>
-                    <input type="text" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">학교 및 전공</label>
-                    <input type="text" class="form-control" id="ed_school" placeholder="ex) OO대학교 OO과"><br>
-                    <input type="text" class="form-control" id="ed_school" placeholder="ex) OO대학교 OO과">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">졸업여부</label>
-                    <input type="text" class="form-control" id="ed_graduation" placeholder="졸업 또는 졸업예정"><br>
-                    <input type="text" class="form-control" id="ed_graduation" placeholder="졸업 또는 졸업예정">
-                </div>
-            </div>
+            <!--학력사항 입력폼-->
+            <table class="table table-borderless table-sm" id="EdFormTable">
+                <thead>
+                  <tr>
+                    <th scope="col">입학졸업</th>
+                    <th scope="col">학교</th>
+                    <th scope="col">전공</th>
+                    <th scope="col">구분</th>
+                    <th scope="col">졸업여부</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><!--첫째줄-->
+                    <td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                    <td><input type="text" class="form-control" id="ed_school" ></td>
+                    <td><input type="text" class="form-control" id="ed_graduation" ></td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example">
+                        <option value="1">대학원</option>
+                        <option value="2">대학교</option>
+                        <option value="3">고등학교</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example">
+                        <option value="1">졸업</option>
+                        <option value="2">휴학</option>
+                        <option value="3">중퇴</option>
+                        <option value="4">재학</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr><!--둘째줄-->
+                    <td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                    <td><input type="text" class="form-control" id="ed_school" ></td>
+                    <td><input type="text" class="form-control" id="ed_graduation" ></td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example">
+                        <option value="1">대학원</option>
+                        <option value="2">대학교</option>
+                        <option value="3">고등학교</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example">
+                        <option value="1">졸업</option>
+                        <option value="2">휴학</option>
+                        <option value="3">중퇴</option>
+                        <option value="4">재학</option>
+                        </select>
+                    </td>
+                  </tr>                 
+                </tbody>
+            </table>
+            
 
             <hr><!---자격사항 입력 폼---->
 
             <div class="d-flex justify-content-between">
                 <div class="col-6">
-                    <sapn><h3>자격사항</h3></sapn>
+                    <sapn><h4>자격사항</h4></sapn>
                 </div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
                     <button class="btn btn-outline-dark btn-sm" type="button" id="liForm_p">+</button>
                     <button class="btn btn-outline-dark btn-sm" type="button" id="liForm_m">-</button>
                 </div>
             </div>
-            <br>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <label class="form-label">자격면허</label>
-                    <input type="text" class="form-control" id="li_title" placeholder="ex) 정보처리기사"><br>
-                    <input type="text" class="form-control" id="li_title" placeholder="ex) 정보처리기사">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">취득일자</label>
-                    <input type="text" class="form-control" id="li_date" placeholder="ex) 2021년 01월 01일"><br>
-                    <input type="text" class="form-control" id="li_date" placeholder="ex) 2021년 01월 01일">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">발행기관</label>
-                    <input type="text" class="form-control" id="li_organ" placeholder="한국산업인력공단"><br>
-                    <input type="text" class="form-control" id="li_organ" placeholder="한국산업인력공단">
-                </div>
-            </div>
+            <!--자격사항 입력폼-->
+            <table class="table table-borderless table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">자격증</th>
+                    <th scope="col">취득년월</th>
+                    <th scope="col">발행기관</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><!--첫째줄-->
+                    <td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                    <td><input type="text" class="form-control" id="ed_school" ></td>
+                    <td><input type="text" class="form-control" id="ed_graduation" ></td>
+                  </tr>
+                  <tr><!--둘째줄-->
+                    <td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                    <td><input type="text" class="form-control" id="ed_school" ></td>
+                    <td><input type="text" class="form-control" id="ed_graduation" ></td>
+                  </tr>                 
+                </tbody>
+            </table>
             
             <hr><!---교육 및 사회경험 입력 폼---->
             
             <div class="d-flex justify-content-between">
                 <div class="col-6">
-                    <sapn><h3>교육 및 사회경험</h3></sapn>
+                    <sapn><h4>교육 및 사회경험</h4></sapn>
                 </div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
                     <button class="btn btn-outline-dark btn-sm" type="button" id="caForm_p">+</button>
                     <button class="btn btn-outline-dark btn-sm" type="button" id="caForm_m">-</button>
                 </div>
             </div>
-            <br>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <label class="form-label">회사·기관명</label>
-                    <input type="text" class="form-control" id="li_title" placeholder="ex) KH정보교육원"><br>
-                    <input type="text" class="form-control" id="li_title" placeholder="ex) KH정보교육원">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">근무·교육기간</label>
-                    <input type="text" class="form-control" id="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"><br>
-                    <input type="text" class="form-control" id="li_date" placeholder="ex) 2010년 03월 - 2013년 02월">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">업무 및 교육내용</label>
-                    <input type="text" class="form-control" id="li_organ" placeholder="ex) 프로그래밍"><br>
-                    <input type="text" class="form-control" id="li_organ" placeholder="ex) 프로그래밍">
-                </div>
-            </div>
+            <!--자격사항 입력폼-->
+            <table class="table table-borderless table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">회사·기관</th>
+                    <th scope="col">시작일</th>
+                    <th scope="col">종료일</th>
+                    <th scope="col">세부내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><!--첫째줄-->
+                    <td><input type="text" class="form-control" id="ed_date" ></td>
+                    <td><input type="date" class="form-control" id="ed_school" ></td>
+                    <td><input type="date" class="form-control" id="ed_graduation" ></td>
+                    <td><input type="text" class="form-control" id="ed_graduation" ></td>
+                  </tr>
+                  <tr><!--둘째줄-->
+                    <td><input type="text" class="form-control" id="ed_date" ></td>
+                    <td><input type="date" class="form-control" id="ed_school" ></td>
+                    <td><input type="date" class="form-control" id="ed_graduation" ></td>
+                    <td><input type="text" class="form-control" id="ed_graduation" ></td>
+                  </tr>                 
+                </tbody>
+            </table>
+            
 
             <hr><!---자소서 입력 폼---->
             
             <div>
-                <div class="col-6">
-                    <sapn><h3>자기소개서</h3></sapn>
-                </div><br>
+                <div class="col-6 mb-3">
+                    <sapn><h4>자기소개서</h4></sapn>
+                </div>
                 <div class="form-floating">
                     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 500px; resize: none;"></textarea>
                   </div>
@@ -239,6 +291,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
+
 	
 </body>
 </html>

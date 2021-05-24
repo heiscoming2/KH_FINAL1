@@ -13,8 +13,9 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-
- <div class="container-sm mt-5 mb-5"style="max-width: 600px;">
+		
+ <div class="container-sm mt-5 mb-5"style="max-width: 700px;">
+		 
         <div class="mb-4"> <!-- 마이페이지 미니 프로필 -->
             <img src="./resources/images/profileimages/testprofile.jpg" alt="mdo" width="35" height="35" class="rounded-circle me-2"
               style="float: left;">

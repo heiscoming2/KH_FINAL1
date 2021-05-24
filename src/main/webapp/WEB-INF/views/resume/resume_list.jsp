@@ -14,7 +14,8 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5">
+ <div class="container mt-5 mb-5"> 		
+ 		<h3>이력서 목록</h3> 	
         <button class="btn btn-primary" onclick="location.href='resume_form.do'">등록</button>
         <button class="btn btn-danger">삭제</button>
         
@@ -33,7 +34,7 @@
                 <tr class="d-flex">
                     <td class="col-1"><input type="checkbox"></td>
                     <td class="col-1">1</td>
-                    <td class="col-5">이력서포부포부포부</td>     
+                    <td class="col-5 text-decoration-none"><a href="resume_detail.do">이력서포부포부포부</a></td>     
                     <td class="col-2">21-00-00</td>                
                     <td class="col-3">
                         <button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>

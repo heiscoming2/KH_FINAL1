@@ -44,7 +44,7 @@
                     <div class="mb-3 row"><!--닉네임-->
                         <label class="col-sm-4 col-form-label">닉네임</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="m_nickname" name="m_nickname">
+                            <input type="text" class="form-control" id="m_nickname" name="m_nickname" value="${selectUser.m_nickname }">
                         </div>
                     </div>
                     
@@ -58,7 +58,7 @@
                     <div class="mb-3 row"><!--이메일-->
                         <label class="col-sm-4 col-form-label">이메일</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="m_email" name="m_email">
+                            <input type="text" class="form-control" id="m_email" name="m_email" value="${updateUser.m_email }">
                         </div>
                     </div>
                     
@@ -73,7 +73,7 @@
                 <!-- 프로필 이미지 폼 -->
                 <div id="profileUpload">
                  	<div class="mb-3 row">
-                        <label class="col-sm-4 col-form-label">프로필 수정</label>
+                        <label class="col-sm-3 col-form-label">프로필</label>
                         <div class="col-sm-6">
                             <input class="form-control form-control-sm" type="file" name="m_img">
                         </div>
@@ -88,7 +88,7 @@
         </form>         
         
         <div class="row justify-content-center col-md-2 me-md-4">
-            <input type="submit" class="btn btn-danger mt-2" value="탈퇴" onclick="location.href='deleteForm.do'"/>
+            <input type="submit" class="btn btn-danger mt-2" value="회원탈퇴" onclick="location.href='deleteForm.do'"/>
         </div>
 
         <div class="row justify-content-center col-md-2">
