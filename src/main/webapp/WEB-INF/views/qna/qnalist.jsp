@@ -44,26 +44,29 @@
 					<c:otherwise>
 
                   	<c:forEach var="qnaDto" items="${qnaList }">
+							<tr>
 							<!-- 글 번호 시작 --> 
-							<td>${qnaDto.bd_no} </td>
-							<td>${qnaDto.bd_title} </td>
-							<td>${qnaDto.bd_viewcount}</td>
+							<td>${dto.bd_no} </td>
+							<td><a href= "qnadetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
+							<td>+${dto.bd_recommandcount }</td>
+							<td>${dto.bd_viewcount }</td>
 							<td>
 							    <div class="qna_profile">
-									<img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+								<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
 									<div class="qna_writer"> 
-										<a id="dropdownUser" data-bs-toggle="dropdown"> 
-											${qnaDto.bd_wirterip } 
-										</a> 
+										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+											${dto.m_nickname }
+										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-										<ul aria-labelledby="dropdownUser">
-											<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+											<li><a class="dropdown-item" href="#">쪽지 보내기</a></li>
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="qna_regdate"> ${qnaDto.bd_createddate } </span>
+									<span class="qna_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
+							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -71,9 +74,6 @@
 		</table>
 		</div>
             <!-- 게시물 한 줄 종료 -->
-         
-
-        </table>
      
  
 <!-- 페이징 시작 -->
@@ -87,6 +87,6 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<script type=text/javascript src="resources/js/address.js"></script>
+<script type=text/javascript src="resources/js/qnalist.js?ver=1.1"></script>
 </body>
 </html>

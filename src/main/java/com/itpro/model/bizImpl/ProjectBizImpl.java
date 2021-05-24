@@ -6,10 +6,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dao.LikeDao;
 import com.itpro.model.dao.ProjectDao;
+import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
@@ -25,6 +28,13 @@ public class ProjectBizImpl implements ProjectBiz{
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private ReplyDao replyDao;
+	
+	@Autowired
+	private LikeDao likeDao;
+	
 
 	@Override
 	public List<ProjectListDto> selectList(Map<String, Object> projectPageMap) {
@@ -50,14 +60,17 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	@Override
+	@Transactional
 	public int delete(int bd_no) {
-		int Deleteres = 0;
-		int projectDeleteRes = projectDao.delete(bd_no);
-		int boardDeleteRes = boardDao.delete(bd_no);
-		if(projectDeleteRes>0 && boardDeleteRes>0) {
-			Deleteres = 1;
+		int deleteres = 0;
+		int replydeleteres = replyDao.deleteWithBoard(bd_no);
+		int likedeleteres = likeDao.deleteWithBoard(bd_no);
+		int projectdeleteres = projectDao.delete(bd_no);
+		int boarddeleteres = boardDao.delete(bd_no);
+		if(projectdeleteres>0 && boarddeleteres>0 && replydeleteres>0 && likedeleteres>0) {
+			deleteres = 1;
 		}
-		return Deleteres; 
+		return deleteres; 
 	}
 
 	@Override

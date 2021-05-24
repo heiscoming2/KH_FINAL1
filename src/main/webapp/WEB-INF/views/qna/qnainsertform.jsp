@@ -18,17 +18,18 @@
 <!-- 본문 시작 -->
     <div class="qna_insertwrap">
       <form action="qnainsert.do" method="post">
-         <!-- 프로젝트 작성 글 영역-->
-        <h3>프로젝트 글 작성</h3>
+       <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+         <!-- qna 작성 글 영역-->
+        <h3>qna 글 작성</h3>
         <br>
-              <!-- 프로필이미지, 아이디, 작성일 div -->
+             <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
                 <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                   style="float: left;">
                 <div style="position: relative; top:5px;">
                   <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
                     style="font-size:15px;">
-                    leehj
+                    ${sessionScope.login.m_nickname}
                   </a>
                 </div>
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
@@ -37,11 +38,11 @@
         <table class="table qna_inserttable">
             <tr>
               <th><span>* </span>QnA 제목</th>
-              <td><input type=text class="form-control"></td>
+              <td><input type=text class="form-control" name="bd_title"></td>
             </tr>
 
         </table>
-        <textarea id="summernote"></textarea>
+        <textarea id="summernote" name="bd_content"></textarea>
         <br>
       </form>
 
@@ -49,7 +50,7 @@
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
-	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
+	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;" onclick="location.href='qnalist.do'">
 	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='qnalist.do'" style="float:right;" >
 	   </div>
     </form>
@@ -68,9 +69,8 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- QNAINSERT 개별 JS -->
-<script type="text/javascript" src="resources/js/qnainsert.js"></script>
-<!-- 주소 정보 JS -->
-<script type="text/javascript" src="resources/js/address.js"></script>
+<script type="text/javascript" src="resources/js/qnainsert.js?ver=1.1"></script>
+
 
 </body>
 </html>

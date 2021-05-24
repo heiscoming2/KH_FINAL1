@@ -73,7 +73,7 @@
             <b>프로젝트</b><br>
               ※ 프로젝트 제목: ${item.pro_title } <br>
               ※ 프로젝트 기간: ${item.pro_start } ~ ${item.pro_end }<br>
-              ※ 프로젝트 제목: ${item.pro_file_path } <br>
+              ※ 프로젝트 파일: ${item.pro_file_path } <br>
               ※ 프로젝트 링크: ${item.pro_link }<br>
               ※ ERD 링크: ${item.pro_erd }<br>
               ※ 개발 환경: ${item.pro_develop }<br>
@@ -119,23 +119,21 @@
 
 	  <!-- 본문 / 댓글 중간 여백 영역 시작 -->
 	    <div style="width:100%; display: block; height:80px;">
-	        <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='studylist.do'">
+	        <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='projectlist.do'">
 	    </div>
 	  <!-- 본문 / 댓글 중간 여백 영역 종료 -->
 		
-		 
-	  <%--  <!-- 댓글 영역 시작 -->
-	   <jsp:include page="../reply/reply.jsp">
-	  	<jsp:param name="replyListDtos" value="${replyListDto }"></jsp:param>
-	  </jsp:include>
-	      <!-- 댓글 영역 끝 --> --%>
-	  	</div>
 
 	  <!-- 댓글 영역 시작 -->
 <%-- 	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
 	  <%@include file="../reply/_reply.jspf" %>	 --%>
       <!-- 댓글 영역 끝 -->
       
+<%--        <!-- 댓글 영역 시작 -->
+	  <jsp:include page="../reply/reply.jsp">
+	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
+	  </jsp:include>
+      <!-- 댓글 영역 끝 --> --%>
   </div>
 
 <!-- 본문 종료 -->
@@ -154,6 +152,6 @@
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.3"></script>
 <!-- 댓글 js -->
-<script type="text/javascript" src="resources/js/reply.js?ver=1.4"></script>
+<script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 </body>
 </html>

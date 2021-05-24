@@ -5,32 +5,63 @@
   
 <mapper namespace="Qna">
 	
-	<update id="insertlist" parameterType="java.util.List">
-		<foreach item="qna" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
+	<insert id="insert" parameterType="QnaInsertDto">
 		INSERT INTO BOARD 
-		VALUES
-		(#{qna.bd_no},
-		 #{qna.bd_title},
-		 #{qna.bd_content},
-		 #{qna.bd_createddate},
-		 #{qna.bd_modifydate},
-		 #{qna.bd_viewcount},
-		 #{qna.bd_recommandcount},
-		 #{qna.bd_writerip},
-		 #{qna.bd_code},
-		 #{qna.bd_no},
-		 #{qna.bd_replycount);
-		 
-
-		</foreach>
-	</update>
+		VALUES (
+		BOARDSEQ.NEXTVAL,
+		#{bd_title},
+		#{bd_content},
+		SYSDATE,
+		NULL,
+		0,
+		#{bd_writerip},
+		5,
+		#{m_no}) 
+	</insert>
 	
-	<delete id="deletelist">
-		DELETE FROM BOARD
+	<select id="selectList" parameterType="hashMap" resultType="QnaListDto">
+        SELECT * FROM 
+               (SELECT ROWNUM RN, B.BD_NO, B.BD_TITLE, 
+               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+               FROM BOARD B, IT_MEMBER M , 
+                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+		       WHERE B.BC_CODE=5
+		       AND B.M_NO = M.M_NO
+               AND RE.BD_NO(+) = B.BD_NO
+               AND BR.BD_NO(+) = B.BD_NO
+		       ORDER BY B.BD_CREATEDDATE DESC)
+        WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectOne" resultType="QnaDetailDto" parameterType="int">
+		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
+		        B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT 
+		FROM BOARD B, IT_MEMBER M
+		WHERE B.M_NO = M.M_NO
+		  AND B.BD_NO = #{bd_no}
+	</select>
+	
+	<select id="selectlistcnt" resultType="int">
+		SELECT COUNT(BD_NO)
+		FROM BOARD
+		WHERE BC_CODE=5 
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM BOARD WHERE BD_NO = #{bd_no}
 	</delete>
 	
-	<select id="selectList" resultType="QnaDto">
-		SELECT * FROM BOARD
-	</select>
+	<update id="update" parameterType="QnaUpdateDto">
+		UPDATE BOARD
+		SET BD_TITLE = #{bd_title} ,
+		    BD_CONTENT = #{bd_content} ,
+		    BD_MODIFYDATE = SYSDATE
+		WHERE BD_NO = #{bd_no}
+	</update>
+	
 	
 </mapper>

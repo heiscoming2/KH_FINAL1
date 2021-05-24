@@ -13,7 +13,6 @@ $(function(){
 		
 		$('.howAsc').val($('#h_a1').val());
 		
-		//지역1의 selected idx 값을 받아온다.
 		let howAscidx = $('.howAsc option').index($('.howAsc option:selected'));
 		
 		//추천순

@@ -5,7 +5,7 @@ import java.util.Date;
 public class ProjectInsertDto {
 	// 게시판
 	public int bd_no; // 게시글 번호
-	
+	public String bd_writerip; // 작성시 ip
 	
 	/*
 	 * public String bd_title; // 제목 public String bd_content; // 글 내용 public Date
@@ -36,6 +36,54 @@ public class ProjectInsertDto {
 	}
 
 	
+
+	public String getBd_writerip() {
+		return bd_writerip;
+	}
+
+
+
+	public void setBd_writerip(String bd_writerip) {
+		this.bd_writerip = bd_writerip;
+	}
+
+
+
+	public int getPro_no() {
+		return pro_no;
+	}
+
+
+
+	public void setPro_no(int pro_no) {
+		this.pro_no = pro_no;
+	}
+
+
+
+	public String getPro_start() {
+		return pro_start;
+	}
+
+
+
+	public void setPro_start(String pro_start) {
+		this.pro_start = pro_start;
+	}
+
+
+
+	public String getPro_end() {
+		return pro_end;
+	}
+
+
+
+	public void setPro_end(String pro_end) {
+		this.pro_end = pro_end;
+	}
+
+
 
 	public int getBd_no() {
 		return bd_no;
