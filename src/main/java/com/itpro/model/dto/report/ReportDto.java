@@ -66,6 +66,12 @@ public class ReportDto {
 	public void setReport_date(Date report_date) {
 		this.report_date = report_date;
 	}
+	@Override
+	public String toString() {
+		return "ReportDto [report_no=" + report_no + ", m_no=" + m_no + ", bd_no=" + bd_no + ", report_reason="
+				+ report_reason + ", report_date=" + report_date + ", bd_title=" + bd_title + ", name=" + name
+				+ ", code=" + code + "]";
+	}
 	
 	
 }

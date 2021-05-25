@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.Login_joinBiz;
 import com.itpro.model.biz.MemberBiz;
+import com.itpro.model.biz.ResumeBiz;
 import com.itpro.model.dto.member.MemberDto;
 
 @Controller
@@ -32,7 +33,7 @@ public class ResumeController {
 	private Logger logger = LoggerFactory.getLogger(ResumeController.class);
 
 	@Autowired
-	private MemberBiz biz;
+	private ResumeBiz resumeBiz;
 
 	// 이력서 목록
 	@RequestMapping(value = "/resume_list.do")
@@ -44,8 +45,17 @@ public class ResumeController {
 
 	//이력서 등록폼으로 이동
 	@RequestMapping(value = "/resume_form.do")
-	public String resumeForm() {
+	public String resumeForm(HttpSession session, Model model) {
 		logger.info("RESUEM FORM");
+		
+		if (session.getAttribute("login") != null) {
+			MemberDto res = (MemberDto) session.getAttribute("login");
+			int m_no = res.getM_no();
+			MemberDto resumeInsert = resumeBiz.selectOne(m_no);
+			model.addAttribute("resumeInsert", resumeInsert);
+
+			return "member/update_user";
+		}
 
 		return "resume/resume_form";
 	}

@@ -94,4 +94,21 @@ public class ReportDaoImpl implements ReportDao {
 	}
 
 
+
+	@Override
+	public ReportDto select2(int bd_no) {
+		ReportDto dto =null;
+		
+		try {
+			dto=sqlSession.selectOne(NAMESPACE+"select2",bd_no);
+		} catch (Exception e) {
+			System.out.println("[error] : select one");
+			e.printStackTrace();
+		}
+		
+		return dto;
+		
+	}
+
+
 }

@@ -14,16 +14,19 @@
 
 <!-- 신고 상세내용 -->
 	<h1>신고하기</h1>
-	<form action="report_insert.do" method="post">
-	
+	<form id="frm" action="report_insert.do">
+	<input type="hidden" name="m_no" value="${dto.m_no }" >
+	<input type="hidden" name="bd_no" value="${dto.bd_no }" >
+	<input type="hidden" name="bd_title" value="${dto.bd_title }" >
+	<input type="hidden" name="name" value="${dto.name}" >
 	<table border="1">
 	
 			<tr>
-				<th>게시판</th><td id="catename"></td>
+				<th>게시판</th><td id="name">${dto.name}</td>
 			</tr>
 			
             <tr>
-				<th>신고게시글</th><td id="title"></td>
+				<th>신고게시글</th><td id="title">${dto.bd_title}</td>
             </tr>
             
             <tr>

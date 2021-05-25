@@ -1,6 +1,10 @@
 package com.itpro.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,10 +141,9 @@ public class AdminController {
 	public String insertreportform(Model model, @RequestParam("bd_no") int bd_no) {
 		logger.info("reportinsertform");
 		
-		BoardDto boardDto = boardbiz.selectOne(bd_no);
-		System.out.println("insertform: "+new Gson().toJson(boardDto));
-		model.addAttribute("dto",new Gson().toJson(boardDto));
+		ReportDto dto = rebiz.select2(bd_no);
 		
+		model.addAttribute("dto", dto);
 		
 		return "report/reportinsertform";
 	}
@@ -148,13 +151,23 @@ public class AdminController {
 	
 	//insert에서 값이 넘어옴.성공여부에 따라 alert 메시지를 다르게 나오면 될 것 같음. 
 	@RequestMapping(value="/report_insert.do")
-	public String insertRes(ReportDto dto) {
+	public String insertRes(ReportDto dto,HttpServletResponse response) throws IOException {
 		logger.info("reportinsert");
-		
+		logger.info(dto.toString());
 		int res= rebiz.insert(dto);
-		
+		System.out.println("res: " + res);
 		if(res>0) {
-			return "redirect:reportlist.do";
+			
+			System.out.println("res: " + res);
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('신고완료');");
+			out.print("self.close();");
+			out.print("</script>");
+			
+			return null;
 		}else {
 			return "redirect:reportinsertform.do";
 		}
