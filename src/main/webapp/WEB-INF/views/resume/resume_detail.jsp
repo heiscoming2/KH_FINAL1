@@ -76,7 +76,7 @@
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">포폴 링크</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5">http://itpro.com/user1/portfolio</span>           
+                        <span class="fs-5"><a style="color:black;" href="www.naver.com">www.naver.com</a></span>           
                     </div>     
                 </div>
             </div>     
