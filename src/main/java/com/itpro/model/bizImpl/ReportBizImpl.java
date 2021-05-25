@@ -50,6 +50,12 @@ public class ReportBizImpl implements ReportBiz{
 		}
 		return res;
 	}
+
+	@Override
+	public ReportDto select2(int bd_no) {
+
+		return dao.select2(bd_no);
+	}
 	
 
 

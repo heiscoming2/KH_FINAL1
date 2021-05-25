@@ -11,6 +11,7 @@ public interface ReportBiz {
 	public int insert(ReportDto dto);
 	public int insertreportform(ReportDto dto);
 	public int getReportCnt();
+	public ReportDto select2(int bd_no);
 	
 
 }
