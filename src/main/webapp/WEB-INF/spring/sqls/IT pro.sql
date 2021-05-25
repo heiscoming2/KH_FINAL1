@@ -611,7 +611,6 @@ INTO IT_MEMBER VALUES(1003,'admin','1234','admin','01089792300','admin@admin.com
 
 DELETE FROM IT_MEMBER WHERE M_NO=1003;
 
-
 update IT_MEMBER set M_IMG_PATH='profileimages/';
 update IT_MEMBER set M_IMG = 'testprofile.jpg';
 
@@ -638,10 +637,19 @@ INSERT INTO BOARD
   VALUES(2650,'광고문의','먼저 관리자의 허락을 받아야 합니다.',SYSDATE,NULL,0,'192.168.3.4',5,1003);
 
 
-
 --신고 - 게시글 LIST
 INSERT INTO REPORT
 VALUES(1000,1001, 13,'공지사항','1213','되라~',SYSDATE);
+
+SELECT A.REPORT_NO, A.M_NO, A.BD_NO, D.NAME, C.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE 
+        FROM REPORT A
+        JOIN IT_MEMBER B
+        ON A.M_NO=B.M_NO
+        JOIN BOARD C
+        ON A.BD_NO=C.BD_NO
+        JOIN BOARDCATEGORY D
+        ON A.NAME=D.NAME
+        ORDER BY REPORT_NO DESC;
 
 
 --BOARDRECOMMAND (게시글 추천)
