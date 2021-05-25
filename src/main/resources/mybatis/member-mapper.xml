@@ -81,8 +81,7 @@
 
 	<select id="selectOne" resultType="MemberDto"
 		parameterType="int">
-		SELECT A.M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_IMG_PATH, M_IMG,
-		B.M_REGNO, B.M_ADMIN_CERT
+		SELECT A.M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_IMG_PATH, M_IMG, B.M_REGNO, B.M_ADMIN_CERT
 		FROM IT_MEMBER A
 		LEFT JOIN BIZ_MEMBER B
 		ON A.M_NO=B.M_NO
