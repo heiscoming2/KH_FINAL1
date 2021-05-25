@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: yuong
+=======
+Built-By: tkdgn
+>>>>>>> ee5d8cecfd34705beb5b06ead570018945146c23
 Build-Jdk: 1.8.0_272
 Created-By: Maven Integration for Eclipse
 
