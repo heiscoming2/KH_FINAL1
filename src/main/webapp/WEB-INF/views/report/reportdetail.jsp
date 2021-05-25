@@ -45,7 +45,10 @@
 				<th>신고이유</th><td>${dto.report_reason}</td>
             </tr>
             <tr>
-				<td></td><td>${dto.m_nickname }</td>
+				<th>신고날짜</th><td>${dto.report_date}</td>
+            </tr>
+            <tr>
+				<td>신고자</td><td>${dto.m_nickname }</td>
             </tr>
             
 		</body>
