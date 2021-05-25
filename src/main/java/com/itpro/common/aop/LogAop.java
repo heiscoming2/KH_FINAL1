@@ -18,6 +18,7 @@ public class LogAop {
 			}
 		}
 		System.out.println("before end");
+		System.out.println("test");
 	}
 	
 	public void after(JoinPoint join) {

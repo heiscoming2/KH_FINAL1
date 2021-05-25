@@ -124,5 +124,6 @@ public class StudyDaoImpl implements StudyDao {
 		System.out.println("dao"+bd_no);
 		return res;
 	}
+	
 
 }
