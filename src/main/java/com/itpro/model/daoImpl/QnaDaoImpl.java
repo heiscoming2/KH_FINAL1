@@ -34,7 +34,7 @@ public class QnaDaoImpl implements QnaDao {
 			e.printStackTrace();
 			System.out.println("[error]: select list");
 		}
-		
+		System.out.println(qnaList.toString());
 		return qnaList;
 		
 	}
@@ -52,12 +52,13 @@ public class QnaDaoImpl implements QnaDao {
 
 	@Override
 	public int qnaInsert(QnaInsertDto qnaDto) {
+		int res = 0;
 		try {
-			sqlSession.insert(NAMESPACE+"insert", qnaDto);
+		 res = sqlSession.insert(NAMESPACE+"insert", qnaDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return res;
 	}
 
 	@Override

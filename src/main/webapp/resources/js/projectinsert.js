@@ -36,7 +36,7 @@ var html = `
             </tr>
             <tr>
               <th><span>* </span>프로젝트 파일</th>
-              <td><form id="pro_file_form_${num}"><input type="file" value="첨부 파일" name="pro_file" id="pro_file_${num}"></form></td>
+              <td><form id="pro_file_form_${num}" enctype="multipart/form-data" method="post"><input type="file" value="첨부 파일" name="pro_file" id="pro_file_${num}"></form></td>
 
           </tr>
             <tr>
@@ -57,11 +57,18 @@ var html = `
             </tr>
             <tr>
             <th><span>* </span>구현 기능 </th>
-            <td><textarea  name="pro_function" id="pro_function_${num}"></textarea></td>
+            <td><textarea name="pro_function" id="pro_function_${num}"></textarea></td>
             </tr>
             </table>
             `;
             $("#project_insert").append(html);
+            
+            
+           $('#pro_function_'+num).summernote({
+           placeholder: '답글을 작성해주세요.',
+           height:150
+       });
+       
 
 	}
 	
@@ -116,30 +123,39 @@ function project_submit(){
 }
 
 function imageupload(cnt){
-	
-	var form = $('#pro_file_form_' + cnt)[0];  	    
-    // Create an FormData object          
-    var data = new FormData(form);  	         
+	console.log(projects);
+	var form = $('#pro_file_form_'+cnt)[0];
+	console.log(form);
+    // Create an FormData object  
+    var data = new FormData(form);  
+    data.append('file',$('#pro_file_'+cnt)[0].files[0]);         
     var pro_no = projects[cnt-1].pro_no;
+    console.log(pro_no);  
+
     
     $.ajax({             
-    	type: "POST",          
+    	type: "POST",
         enctype: 'multipart/form-data',  
-        url: "multipart.do?pro_no=" + pro_no,        
-        data: data,          
+        url: "multipart.do?pro_no=" + pro_no,  
+        data: data,
         processData: false,    
         contentType: false,      
         cache: false,           
         timeout: 600000,       
         success: function (data) { 
-        	if(cnt<=num){
+        		alert(data);
+        	if(cnt<num){
+        	//cnt <= num이면 두 번 돈다 
+        		console.log(num+1+"번째");
         		imageupload(++cnt);
-        	}           
+        	}   else{
+        	location.href = 'projectlist.do';    
+        	}   
         },          
         error: function (e) {  
         	console.log("ERROR : ", e);      
-            alert("fail");      
-         }     
+            alert("fail");  
+        }     
 	});  
 
 }

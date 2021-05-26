@@ -40,6 +40,7 @@ import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.project.ProjectUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
@@ -107,7 +108,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}
 	
 	//text 받는 거
-	@PostMapping("/projectinsert.do")
+	@PostMapping(value="/projectinsert.do")
 	public @ResponseBody String projectInsert(HttpServletRequest request, HttpServletResponse response
 //			, @RequestBody String data
 			) {
@@ -157,9 +158,22 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		}
 		
 		
-		List<ProjectDetailDto> dto = projectBiz.selectOne(bd_no);
-		model.addAttribute("dto", dto);
-		System.out.println("dto : "+new Gson().toJson(dto) );
+		List<ProjectDetailDto> list = projectBiz.selectOne(bd_no);
+		model.addAttribute("list", list);
+		System.out.println("list : "+new Gson().toJson(list) );
+		
+		//selectone reply 때문에 만듦
+		/*
+		 * ProjectDetailDto projectDetailDto = projectBiz.projectSelectOne(bd_no);
+		 * model.addAttribute("dto",projectDetailDto);
+		 */
+
+		ProjectDetailDto projectDetailDto = new ProjectDetailDto();
+		projectDetailDto.setBd_no(bd_no);
+		projectDetailDto.setM_no(list.get(0).getM_no());
+		
+		model.addAttribute("dto",projectDetailDto);
+		
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto", replyListDto);
@@ -167,8 +181,12 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
 		model.addAttribute("replyCnt",replyCnt);
+		
+		
+		
 		return "project/projectdetail";
 	}	
+	
 	
 	@RequestMapping(value="/projectupdateform.do")
 	public String projectUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
@@ -220,7 +238,8 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}
 	
 	@RequestMapping(value="/multipart.do", method=RequestMethod.POST)                                                         
-    public @ResponseBody String multipart(@RequestParam("pro_no") String pro_no, @RequestParam("pro_file") MultipartFile fileName) throws IOException {   
+    public @ResponseBody String multipart(@RequestParam("pro_no") String pro_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
+		logger.info("multipart.do");
 		int res = 0;
 		if(fileName.getSize()<=0) {
 			return "{result:"+res+"}";

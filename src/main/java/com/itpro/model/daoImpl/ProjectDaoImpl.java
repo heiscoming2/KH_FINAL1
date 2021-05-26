@@ -15,6 +15,7 @@ import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.project.ProjectUpdateDto;
+import com.itpro.model.dto.study.StudyDetailDto;
 
 @Repository
 public class ProjectDaoImpl implements ProjectDao {
@@ -151,6 +152,18 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		
 		return result; 
+	}
+
+
+	@Override
+	public ProjectDetailDto projectSelectOne(int bd_no) {
+		ProjectDetailDto projectDetailDto = null;
+		try {
+			projectDetailDto  = sqlSession.selectOne(NAMESPACE+"selectone", bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return projectDetailDto ;
 	}
 	
 	

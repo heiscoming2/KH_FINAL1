@@ -97,6 +97,11 @@ public class ProjectBizImpl implements ProjectBiz{
 		return projectDao.imageuploadupdate(pro_no, pro_file);
 	}
 
+	@Override
+	public ProjectDetailDto projectSelectOne(int bd_no) {
+		return projectDao.projectSelectOne(bd_no);
+	}
+
 //	@Override
 //	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap) {
 //		return projectDao.selectCategoryList(projcetCategoryMap);

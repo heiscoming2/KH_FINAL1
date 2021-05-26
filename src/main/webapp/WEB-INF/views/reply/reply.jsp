@@ -130,7 +130,7 @@
             <br>
 			 <textarea id="replyArea" name="re_content"></textarea>
 	         <br>
-	         <input type="button" onclick="replyInsert(${dto.bd_no},${sessionScope.login.m_no });" class="btn btn-primary" value="댓글 등록" style="float:right;">
+	       		  <input type="button" onclick="replyInsert(${dto.bd_no},${sessionScope.login.m_no });" class="btn btn-primary" value="댓글 등록" style="float:right;">
             <br>
 			</td>
 		</tr>

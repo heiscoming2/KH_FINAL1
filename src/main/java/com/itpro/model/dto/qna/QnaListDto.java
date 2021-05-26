@@ -124,4 +124,15 @@ public class QnaListDto {
 		this.m_nickname = m_nickname;
 	}
 
+	@Override
+	public String toString() {
+		return "QnaListDto [bd_no=" + bd_no + ", bd_title=" + bd_title + ", bd_createddate=" + bd_createddate
+				+ ", writerip=" + writerip + ", bd_replycount=" + bd_replycount + ", bd_viewcount=" + bd_viewcount
+				+ ", bd_recommandcount=" + bd_recommandcount + ", bd_content=" + bd_content + ", bf_originname="
+				+ bf_originname + ", m_img_path=" + m_img_path + ", m_img=" + m_img + ", m_nickname=" + m_nickname
+				+ "]";
+	}
+	
+	
+
 }

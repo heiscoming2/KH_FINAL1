@@ -48,7 +48,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 
 		
-		if(request.getRequestURI().contains("/projectinsertform.do")) {
+		if(request.getRequestURI().contains("/projectinsertform.do")||
+			request.getRequestURI().contains("/qnainsertform.do")) {
 			if(request.getSession().getAttribute("login")==null) {
 				PrintWriter out = response.getWriter();
 				out.print("<script type='text/javascript'>");
