@@ -21,6 +21,6 @@ public interface MemberDao {
 	public int updateMember(MemberDto updateDto);
 
 	// 회원프로필 업로드
-	public ProfileDto profileUpload(ProfileDto profileDto);
+	public int profileUpload(ProfileDto profileDto);
 
 }

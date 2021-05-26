@@ -19,6 +19,6 @@ public interface MemberBiz {
 	public int updateMember(MemberDto updateDto);
 
 	// 프로필 이미지 업로드
-	public ProfileDto profileUpload(ProfileDto profileDto);
+	public int profileUpload(ProfileDto profileDto);
 
 }
