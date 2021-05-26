@@ -30,6 +30,9 @@
 		<typeAlias type="com.itpro.model.dto.qna.QnaUpdateDto" alias="QnaUpdateDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.report.ReportDto" alias="ReportDto"/>
+		<typeAlias type="com.itpro.model.dto.report.ReportReplyDto" alias="ReportReplyDto"/>
+		
+		
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
 
 		
@@ -64,6 +67,7 @@
 		<mapper resource="/mybatis/member-mapper.xml"/>
 		<mapper resource="/mybatis/managemember-mapper.xml"/>
 		<mapper resource="/mybatis/report-mapper.xml"/>
+		<mapper resource="/mybatis/reportreply-mapper.xml"/>
 		<mapper resource="/mybatis/board-mapper.xml"/>
 		<mapper resource="/mybatis/BoardCategory-mapper.xml"/>	
 		<mapper resource="/mybatis/notice-mapper.xml"/>

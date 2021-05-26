@@ -29,7 +29,7 @@
 	</beans:bean>
 	
 	
-	<context:component-scan base-package="com.itpro" />
+	<context:component-scan base-package="com.itpro.*" />
 	
 	<!-- interceptor -->
 	<interceptors>
