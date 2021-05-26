@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.BoardBiz;
@@ -90,12 +91,14 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		return "qna/qnainsertform";
 	}
 	
-	@RequestMapping(value="/qnainsert.do")
+	@RequestMapping(value="/qnainsert.do", method=RequestMethod.POST)
 	public String qnaInsert(HttpServletRequest request, HttpServletResponse response, QnaInsertDto qnaDto) {
 		logger.info("QNA INSERT");
+		logger.info(qnaDto.toString());
 		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 qnaDto에 저장
 		qnaDto.setBd_writerip(new ClientInfo().getClientIp(request));
-		qnaBiz.qnaInsert(qnaDto);
+		int res = qnaBiz.qnaInsert(qnaDto);
+		System.out.println("res:"+res);
 		return "redirect:qnalist.do";
 
 	}	

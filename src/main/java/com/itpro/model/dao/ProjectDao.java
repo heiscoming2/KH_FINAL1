@@ -8,6 +8,7 @@ import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.project.ProjectUpdateDto;
+import com.itpro.model.dto.study.StudyDetailDto;
 
 public interface ProjectDao {
 
@@ -16,6 +17,7 @@ public interface ProjectDao {
 
 	public List<ProjectListDto> selectList(Map<String, Object> projectPageMap);
 	public List<ProjectDetailDto> selectOne(int bd_no);
+	public ProjectDetailDto projectSelectOne(int bd_no); //reply 때문에 하나 생성
 	public List<ProjectInsertDto> projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);

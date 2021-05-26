@@ -6,49 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.MemberBiz;
+import com.itpro.model.biz.ResumeBiz;
 import com.itpro.model.dao.MemberDao;
+import com.itpro.model.dao.ResumeDao;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 
 @Service
-public class ResumeBizImpl implements MemberBiz {
+public class ResumeBizImpl implements ResumeBiz {
 
 	@Autowired
-	private MemberDao dao;
+	private ResumeDao dao;
 
-	// 회원 탈퇴(삭제)
-	@Override
-	public String deleteMember(String m_id) {
-
-		return dao.deleteMember(m_id);
-	}
-
-	// 탈퇴아이디 체크
-	@Override
-	public boolean checkPw(String m_id, String m_pw) {
-
-		return dao.checkPw(m_id, m_pw);
-	}
-
-	// 회원정보조회
+	//이력서 등록
 	@Override
 	public MemberDto selectOne(int m_no) {
-
+		
 		return dao.selectOne(m_no);
 	}
 
-	// 회원정보수정
-	@Override
-	public int updateMember(MemberDto updateDto) {
-
-		return dao.updateMember(updateDto);
-	}
-
-	// 프로필 이미지 업로드
-	@Override
-	public ProfileDto profileUpload(ProfileDto profileDto) {
-
-		return dao.profileUpload(profileDto);
-	}
+	
 
 }

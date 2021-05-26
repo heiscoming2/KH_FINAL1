@@ -56,7 +56,6 @@
 							<th>해당게시판</th>
 							<th>해당게시글</th>
 							<th>신고사유</th>
-							<th>신고 당한 회원이름</th>
 							<th>신고일시</th>
 						</tr>
 					</thead>
@@ -75,8 +74,7 @@
 											<td>${dto.report_no}</td>
 											<td>${dto.name}</td>
 											<td><a href="#">${dto.bd_title }</a></td>
-											<td><a href="reportdatail.do?reprot_no=${dto.report_no }">${dto.report_reason }</a></td>
-											<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
+											<td><a href="reportdetail.do?bd_no=${dto.bd_no }">${dto.report_reason }</a></td>
 											<td>${dto.report_date}</td>
 										</tr>
 									</c:forEach>

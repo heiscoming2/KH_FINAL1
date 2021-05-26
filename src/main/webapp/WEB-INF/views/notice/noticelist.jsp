@@ -15,6 +15,7 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
+	<div class="container">
 	<div class="notice_wrap mt-5">
 		<h3>공지사항</h3>
 		<div class="notice_btnwrap mb-4">
@@ -96,7 +97,7 @@
 	<input type="hidden" id="h_stat" value="${noticeSearchDto.stat }">
 	<input type="hidden" id="h_key" value="${noticeSearchDto.key }">
 </c:if>
-		
+	</div>
 <!-- 본문 종료 -->
 
 <!-- 페이징 시작 -->

@@ -44,13 +44,12 @@
         </table>
         <textarea id="summernote" name="bd_content"></textarea>
         <br>
-      </form>
 
       <!-- QnA 작성 글 영역 종료-->
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
-	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;" onclick="location.href='qnalist.do'">
+	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
 	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='qnalist.do'" style="float:right;" >
 	   </div>
     </form>
@@ -69,7 +68,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- QNAINSERT 개별 JS -->
-<script type="text/javascript" src="resources/js/qnainsert.js?ver=1.1"></script>
+<script type="text/javascript" src="resources/js/qnainsert.js?ver=1.2"></script>
 
 
 </body>

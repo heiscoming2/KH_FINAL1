@@ -42,8 +42,8 @@
         <tr>
 			<th>act</th>
 			<td><select name="m_act">
-				<option value="활동" >활동</option>
-				<option value="정지" >정지</option>			
+				<option value="활동" <c:if test="${m_act eq '활동'}"> selected </c:if>>활동</option>
+				<option value="정지" <c:if test="${m_act eq '정지'}"> selected </c:if>>정지</option>			
 			</select></td>
 		</tr>
          <tr>

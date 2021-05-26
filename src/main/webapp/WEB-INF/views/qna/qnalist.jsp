@@ -36,14 +36,14 @@
             <!-- 게시물 한 줄 시작-->
             <tr>
                 <c:choose>
-					<c:when test="${empty qna }">
+					<c:when test="${empty qnaList }">
 						<td colspan="4" align="center">
 							조회할 게시물이 존재하지 않습니다.
 						</td>
 					</c:when>
 					<c:otherwise>
 
-                  	<c:forEach var="qnaDto" items="${qnaList }">
+                  	<c:forEach var="dto" items="${qnaList }">
 							<tr>
 							<!-- 글 번호 시작 --> 
 							<td>${dto.bd_no} </td>
@@ -87,6 +87,6 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<script type=text/javascript src="resources/js/qnalist.js?ver=1.1"></script>
+<!-- <script type=text/javascript src="resources/js/qnalist.js?ver=1.1"></script> -->
 </body>
 </html>

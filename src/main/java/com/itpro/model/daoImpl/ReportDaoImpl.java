@@ -36,11 +36,11 @@ public class ReportDaoImpl implements ReportDao {
 	
 
 	@Override
-	public ReportDto selectOne(int report_no) {
+	public ReportDto selectOne(int bd_no) {
 		ReportDto dto =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",report_no);
+			dto=sqlSession.selectOne(NAMESPACE+"selectOne",bd_no);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();
