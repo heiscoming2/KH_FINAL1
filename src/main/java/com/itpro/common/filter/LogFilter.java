@@ -54,6 +54,7 @@ public class LogFilter implements Filter{
 		//.append("agent: "+agent+"\n");
  		
 		logger.info("[LOG FILTER]\n"+sb);
+		logger.info("[LOG FILTER]\ntest"+sb);
 		chain.doFilter(req,response);
 	}
 
