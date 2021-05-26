@@ -192,10 +192,10 @@ public class AdminController {
 	
 	//report detail
 	@RequestMapping(value="/reportdetail.do")
-	public String reportdetail(Model model, int report_no) {
+	public String reportdetail(Model model, int bd_no) {
 		logger.info("REPORT DETAIL");
 		
-		model.addAttribute("dto", rebiz.selectOne(report_no));
+		model.addAttribute("dto", rebiz.selectOne(bd_no));
 		
 		return "report/reportdetail";
 	}

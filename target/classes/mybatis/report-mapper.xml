@@ -5,17 +5,20 @@
 
 <mapper namespace="Report">
 	
+	<resultMap type="ReportDto" id="reportMap">
+		<result property="report_no" column="REPORT_NO"/>
+		<result property="m_no" column="M_NO"/>
+		<result property="bd_no" column="BD_NO"/>
+		<result property="name" column="NAME"/>
+		<result property="bd_title" column="BD_TITLE"/>
+		<result property="report_reason" column="REPORT_REASON"/>
+		<result property="report_date" column="REPORT_DATE"/>
+	</resultMap>
 	
-	<select id="selectList" resultType="ReportDto">
-        SELECT A.REPORT_NO, A.M_NO, A.BD_NO, D.NAME, C.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE 
-        FROM REPORT A
-        JOIN IT_MEMBER B
-        ON A.M_NO=B.M_NO
-        JOIN BOARD C
-        ON A.BD_NO=C.BD_NO
-        JOIN BOARDCATEGORY D
-        ON A.NAME=D.NAME
-        ORDER BY REPORT_NO DESC;
+	<select id="selectList" resultMap="reportMap">
+        SELECT REPORT_NO, M_NO, BD_NO, NAME, BD_TITLE, REPORT_REASON, REPORT_DATE 
+        FROM REPORT 
+        ORDER BY REPORT_NO DESC
 	</select>
 	
 	<select id="selectOne" resultType="ReportDto" parameterType="int">

@@ -74,7 +74,7 @@
 											<td>${dto.report_no}</td>
 											<td>${dto.name}</td>
 											<td><a href="#">${dto.bd_title }</a></td>
-											<td><a href="reportdatail.do?reprot_no=${dto.report_no }">${dto.report_reason }</a></td>
+											<td><a href="reportdetail.do?bd_no=${dto.bd_no }">${dto.report_reason }</a></td>
 											<td>${dto.report_date}</td>
 										</tr>
 									</c:forEach>
