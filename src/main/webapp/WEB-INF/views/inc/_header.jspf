@@ -56,7 +56,7 @@
 </style>
 
     <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <style>
       .bd-placeholder-img {
@@ -76,7 +76,7 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="headers.css" rel="stylesheet">
+   
   </head>
   <body>
  
@@ -93,7 +93,7 @@
             <li><a href="main.do" class="nav-link px-2 text-muted" ><img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png"
                 alt="" width="28" height="28" class="d-inline-block align-text-top ">IT PRO</a></li>
             <li><a href="#" class="nav-link px-2 text-white">     </a></li>
-            <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+            <li><a href="noticelist.do" class="nav-link px-2 text-white">공지사항</a></li>
             <li><a href="portfoliolist.do" class="nav-link px-2 text-white">포트폴리오</a></li>
           <li><a href="projectlist.do" class="nav-link px-2 text-white"  >프로젝트</a></li>
           <li><a href="qnalist.do" class="nav-link px-2 text-white">Q & A</a></li>
@@ -163,7 +163,7 @@
   </header>
 
   
- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
 
       
   </body>
