@@ -94,4 +94,11 @@
 		SET M_PW = #{m_pw}, M_NICKNAME = #{m_nickname}, M_EMAIL = #{m_email}
 		WHERE M_NO = #{m_no}
 	</update>
+	
+	<!-- 프로필 사진 업로드 -->
+	<update id="uploadProfile" parameterType="ProfileDto">
+		UPDATE IT_MEMBER
+		SET M_IMG = #{m_img}, M_IMG_PATH = #{m_img_path}
+		WHERE M_NO = #{m_no}
+	</update>
 </mapper>

@@ -176,26 +176,29 @@ public class MemberController {
 		MultipartFile file = mtf.getFile("m_img");
 		// 파일 실제 이름
 		String originName = file.getOriginalFilename();
-		/*
-		 * /파일 사이즈 long fileSize = file.getSize();
-		 */
 		// 파일 확장자타입
-		String fileType = originName.substring(originName.lastIndexOf("."));
+		String fileType = originName.substring(originName.lastIndexOf("."));	
+		
+		
 		// 저장될 파일명
 		String m_img = UUID.randomUUID() + fileType;
 		// 파일 저장경로
-		String m_img_path = request.getSession().getServletContext().getRealPath("/resources/images/profileimages/");
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/images/profileimages/");
+		
 
-		File dir = new File(m_img_path);
+		File dir = new File(realPath);
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		file.transferTo(new File(m_img_path, m_img));
+		file.transferTo(new File(realPath, m_img));		
+		
+		
+		String m_img_path = "profileimages/";
 		logger.info("==============================");
 		logger.info("경로:" + m_img_path + m_img);
 
 		ProfileDto profileDto = new ProfileDto(m_no, m_img_path, m_img);
-		profileDto = biz.profileUpload(profileDto);
+		biz.profileUpload(profileDto);
 
 		map.put("path", "profileimages/" + m_img);
 		logger.info("==============================");

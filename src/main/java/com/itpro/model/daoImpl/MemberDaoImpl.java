@@ -83,9 +83,17 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 회원 이미지 업로드
 	@Override
-	public ProfileDto profileUpload(ProfileDto profileDto) {
+	public int profileUpload(ProfileDto profileDto) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE + "uploadProfile", profileDto);
+		} catch (Exception e) {
+			System.out.println("[error]:uploadProfile");
+			e.printStackTrace();
+		}
 
-		return profileDto;
+		return res;
 	}
 
 }

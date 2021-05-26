@@ -58,7 +58,7 @@
                     <div class="mb-3 row"><!--이메일-->
                         <label class="col-sm-4 col-form-label">이메일</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="m_email" name="m_email" value="${updateUser.m_email }">
+                            <input type="text" class="form-control" id="m_email" name="m_email" value="${selectUser.m_email }">
                         </div>
                     </div>
                     
@@ -68,10 +68,10 @@
                             <input type="text" class="form-control-plaintext" readonly value="${selectUser.m_auth }">
                         </div>
                     </div>
-                
+        		</form> <!-- #updateForm -->
                 
                 <!-- 프로필 이미지 폼 -->
-                <div id="profileUpload">
+                <form id="profileUpload">
                  	<div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">프로필</label>
                         <div class="col-sm-6">
@@ -81,11 +81,10 @@
                             <button type="button" class="btn btn-sm btn btn-secondary" id="uploadBtn">저장</button>
                         </div>
                     </div>                
-                </div>
+                </form>
                 
             </div>
         </div>    
-        </form>         
         
         <div class="row justify-content-center col-md-2 me-md-4">
             <input type="submit" class="btn btn-danger mt-2" value="회원탈퇴" onclick="location.href='deleteForm.do'"/>
