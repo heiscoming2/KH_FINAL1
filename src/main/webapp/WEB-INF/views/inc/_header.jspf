@@ -3,96 +3,168 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Headers · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
+
 <style>
 #navbarNavDropdown {
 	position: relative;
 	left: 100px;
 }
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.text-small {
+  font-size: 85%;
+}
+
+.dropdown-toggle {
+  outline: 0;
+}
+
 </style>
 
-<nav class="navbar navbar-expand-sm navbar-light bg-dark">
-	<div class="container-fluid ">
-		<nav class="navbar navbar-light bg-dark ">
-			<div class="container-fluid col-ml-2">
-				<a class="navbar-brand text-light" href="main.do">
-				<img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png"
-					alt="" width="35" height="35" class="d-inline-block align-text-top ">
-					IT PRO
-				</a>
-			</div>
-		</nav>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-				aria-controls="navbarNavDropdown" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse " id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item "><a class="nav-link" style="color: azure"; href="portfoliolist.do">포트폴리오 </a></li>
-					<li class="nav-item"><a class="nav-link" style="color: azure"; href="projectlist.do">프로젝트</a></li>
-					<li class="nav-item"><a class="nav-link" style="color: azure"; href="qnalist.do">Q & A</a></li>
-					<li class="nav-item"><a class="nav-link" style="color: azure"; href="studylist.do">스터디모집</a></li>
-					<li class="nav-item"><a class="nav-link" style="color: azure"; href="companycrawlinglist.do">채용 정보</a></li>
-					<li class="nav-item"><a class="nav-link" style="color: azure"; href="#">화상 면접</a></li>
-					<li class="nav-item">
-						<form class="d-flex ">
-							<input class="form-control " type="search" placeholder="키워드 검색"
-								aria-label="Search" width="200">
-								<img src="https://static.chief.io/media/products/searchads360_logo.png" alt="" width="35" height="35"
-								class="d-inline-block align-text-top" class="btn btn-outline-success" type="submit">
-						</form>
-					</li>
-					
-					<!-- 로그인 -->
-					<c:if test="${login != null}">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">${login.m_nickname }</a>
-						<ul class="dropdown-menu">
-							<c:set var = "mypage" value = "${login.m_type}"/>
-							<c:choose>
-								<c:when test="${mypage eq '개인회원'}">
-									<li><a class="dropdown-item" href="mypage_user.do">마이페이지</a></li>
-								</c:when>
-								<c:otherwise>
-									<li><a class="dropdown-item" href="mypage_biz.do">마이페이지</a></li>
-								</c:otherwise>
-							</c:choose>							
-							<li><a class="dropdown-item" href="note_receivelist.do">쪽지함</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<c:if test="${sessionScope.login.m_auth eq 'Y' }">
-		              		<li><input type="button" value="관리자페이지" class="dropdown-item"  onclick="location.href='member_list.do'"></li>
-		            		<li><hr class="dropdown-divider"></li>
-		            		</c:if>
-							<li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
-							
-							
-							
-							
-						</ul>
-					</li>
-					</c:if>
+    <!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-					<!-- 로그아웃 -->
-					<c:if test="${login == null }">
-					<li class="nav-item ">
-						<a class="nav-link active  text-light" aria-current="page" href="login.do">로그인</a>
-					</li>
-					<li class="nav-item ">
-						<a class="nav-link active text-light" aria-current="page" href="join.do">회원가입</a>
-					</li>
-					</c:if>
-					
-				</ul>
-			</div>
-		</div>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-	</div>
-</nav>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="headers.css" rel="stylesheet">
+  </head>
+  <body>
+ 
+
+  
+  <div class="b-example-divider"></div>
+
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="main.do" class="nav-link px-2 text-muted" ><img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png"
+                alt="" width="28" height="28" class="d-inline-block align-text-top ">IT PRO</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">     </a></li>
+            <li><a href="#" class="nav-link px-2 text-white">공지사항</a></li>
+            <li><a href="portfoliolist.do" class="nav-link px-2 text-white">포트폴리오</a></li>
+          <li><a href="projectlist.do" class="nav-link px-2 text-white"  >프로젝트</a></li>
+          <li><a href="qnalist.do" class="nav-link px-2 text-white">Q & A</a></li>
+          <li><a href="studylist.do" class="nav-link px-2 text-white">스터디모집</a></li>
+          <li><a href="companycrawlinglist.do" class="nav-link px-2 text-white">채용 정보</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">화상면접</a></li>
+          <c:if test="${sessionScope.login.m_auth eq 'Y' || sessionScope.login.m_admin_cert eq 'Y' }">
+          <li><a href="#" class="nav-link px-2 text-white">광고문의</a></li>
+          </c:if>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <table>
+                <tr>
+          <td><input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search"></td>
+          <td >&nbsp;&nbsp;&nbsp;</td>
+          <td><a style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></a></td>
+        </tr>
+
+            </table>
+        </form>
+
+          <!-- 로그인 -->
+          <form>
+           <c:if test="${login != null}">
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">${login.m_nickname }</a>
+              <ul class="dropdown-menu">
+                <c:set var = "mypage" value = "${login.m_type}"/>
+                <c:choose>
+                  <c:when test="${mypage eq '개인회원'}">
+                    <li><a class="dropdown-item" href="mypage_user.do">마이페이지</a></li>
+                  </c:when>
+                  <c:otherwise>
+                    <li><a class="dropdown-item" href="mypage_biz.do">마이페이지</a></li>
+                  </c:otherwise>
+                </c:choose>							
+                <li><a class="dropdown-item" href="note_receivelist.do">쪽지함</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <c:if test="${sessionScope.login.m_auth eq 'Y' }">
+                        <li><input type="button" value="관리자페이지" class="dropdown-item"  onclick="location.href='member_list.do'"></li>
+                      <li><hr class="dropdown-divider"></li>
+                      </c:if>
+                <li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
+              </ul>
+            </div>
+            </c:if>
+  
+            <!-- 로그아웃 -->
+            <c:if test="${login == null }">
+            <table>
+            <tr>
+            <td class="nav-item ">
+              <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login.do'">Login</button>
+            </td>
+            <td class="nav-item ">
+              <button type="button" class="btn btn-warning" onclick="location.href='join.do'">Sign-up</button>
+            </td>
+            </tr>
+            </table>
+            </c:if>
+          </form>
+      </div>
+    </div>
+  </header>
+
+  
+ <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+
