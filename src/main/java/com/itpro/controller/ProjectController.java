@@ -130,8 +130,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		return new Gson().toJson(resultDtos);
 	}
 	
-
-	
 	
 	
 	@RequestMapping(value="/projectdetail.do")
@@ -154,9 +152,9 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 		}
 		
 		//조회수 증가 실행 (중복 카운트 방지를 위해 쿠키에 값이 없는 경우에만 증가)
-				if(new ViewCount().viewCount(request, response, bd_no)) {
-					boardBiz.updateviewcount(bd_no);
-				}
+		if(new ViewCount().viewCount(request, response, bd_no)) {
+			boardBiz.updateviewcount(bd_no);
+		}
 		
 		
 		List<ProjectDetailDto> dto = projectBiz.selectOne(bd_no);

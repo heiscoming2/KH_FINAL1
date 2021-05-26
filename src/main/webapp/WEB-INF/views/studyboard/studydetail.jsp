@@ -98,7 +98,11 @@
             
              <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
-				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" onclick="like_func(${dto.bd_no},${sessionScope.login.m_no })" style="margin:0 auto;">
+				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" 
+				onclick="
+				<c:if test='${sessionScope.login ne null}'> like_func(${dto.bd_no}, ${login.m_no }) </c:if>
+				<c:if test='${sessionScope.login eq null}'> alert('로그인해주세요.')</c:if>" 
+				style="margin:0 auto;"> 
 					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
 				</div>
             </div>
@@ -121,8 +125,6 @@
 	  <jsp:include page="../reply/reply.jsp">
 	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
 	  </jsp:include>
-	  
-	  
       <!-- 댓글 영역 끝 -->
   </div>
 
