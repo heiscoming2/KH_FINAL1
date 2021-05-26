@@ -14,8 +14,8 @@
         JOIN BOARD C
         ON A.BD_NO=C.BD_NO
         JOIN BOARDCATEGORY D
-        ON A.CODE=D.CODE
-        ORDER BY REPORT_NO DESC
+        ON A.NAME=D.NAME
+        ORDER BY REPORT_NO DESC;
 	</select>
 	
 	<select id="selectOne" resultType="ReportDto" parameterType="int">
