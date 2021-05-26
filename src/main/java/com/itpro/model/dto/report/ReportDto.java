@@ -12,29 +12,11 @@ public class ReportDto {
 	private String bd_title;
 	private String name;
 	private String code;
+	private String m_nickname;
 	
 	
 	
 	
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getBd_title() {
-		return bd_title;
-	}
-	public void setBd_title(String bd_title) {
-		this.bd_title = bd_title;
-	}
 	public int getReport_no() {
 		return report_no;
 	}
@@ -53,7 +35,6 @@ public class ReportDto {
 	public void setBd_no(int bd_no) {
 		this.bd_no = bd_no;
 	}
-	
 	public String getReport_reason() {
 		return report_reason;
 	}
@@ -66,12 +47,39 @@ public class ReportDto {
 	public void setReport_date(Date report_date) {
 		this.report_date = report_date;
 	}
+	public String getBd_title() {
+		return bd_title;
+	}
+	public void setBd_title(String bd_title) {
+		this.bd_title = bd_title;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getM_nickname() {
+		return m_nickname;
+	}
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "ReportDto [report_no=" + report_no + ", m_no=" + m_no + ", bd_no=" + bd_no + ", report_reason="
 				+ report_reason + ", report_date=" + report_date + ", bd_title=" + bd_title + ", name=" + name
-				+ ", code=" + code + "]";
+				+ ", code=" + code + ", m_nickname=" + m_nickname + "]";
 	}
 	
 	
 }
+	

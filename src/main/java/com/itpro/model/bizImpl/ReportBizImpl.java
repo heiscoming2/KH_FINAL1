@@ -23,8 +23,8 @@ public class ReportBizImpl implements ReportBiz{
 	}
 
 	@Override
-	public ReportDto selectOne(int report_no) {
-		return dao.selectOne(report_no);
+	public ReportDto selectOne(int bd_no) {
+		return dao.selectOne(bd_no);
 	}
 
 	@Override
