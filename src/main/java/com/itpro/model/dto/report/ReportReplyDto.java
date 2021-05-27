@@ -3,6 +3,7 @@ package com.itpro.model.dto.report;
 import java.util.Date;
 
 public class ReportReplyDto {
+	
 	private int report_reply_no;
 	private int m_no;
 	private int bd_no;
@@ -17,14 +18,6 @@ public class ReportReplyDto {
 	
 	
 	
-	
-	
-	public String getRe_content() {
-		return re_content;
-	}
-	public void setRe_content(String re_content) {
-		this.re_content = re_content;
-	}
 	public int getReport_reply_no() {
 		return report_reply_no;
 	}
@@ -85,7 +78,21 @@ public class ReportReplyDto {
 	public void setRe_no(int re_no) {
 		this.re_no = re_no;
 	}
+	public String getRe_content() {
+		return re_content;
+	}
+	public void setRe_content(String re_content) {
+		this.re_content = re_content;
+	}
 	
+	
+	@Override
+	public String toString() {
+		return "ReportReplyDto [report_reply_no=" + report_reply_no + ", m_no=" + m_no + ", bd_no=" + bd_no
+				+ ", report_reason=" + report_reason + ", report_date=" + report_date + ", bd_title=" + bd_title
+				+ ", name=" + name + ", code=" + code + ", m_nickname=" + m_nickname + ", re_no=" + re_no
+				+ ", re_content=" + re_content + "]";
+	}
 	
 	
 	
