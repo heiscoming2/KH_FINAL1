@@ -2,6 +2,11 @@ package com.itpro.model.dto.reply;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ReplyListDto {
 	
 	private int re_no;
@@ -18,84 +23,6 @@ public class ReplyListDto {
 	private String m_nickname;
 	private int bd_no;
 	
-	public int getRe_no() {
-		return re_no;
-	}
-	public void setRe_no(int re_no) {
-		this.re_no = re_no;
-	}
-	public Date getRe_createddate() {
-		return re_createddate;
-	}
-	public void setRe_createddate(Date re_createddate) {
-		this.re_createddate = re_createddate;
-	}
-	public Date getRe_modifydate() {
-		return re_modifydate;
-	}
-	public void setRe_modifydate(Date re_modifydate) {
-		this.re_modifydate = re_modifydate;
-	}
-	public String getRe_content() {
-		return re_content;
-	}
-	public void setRe_content(String re_content) {
-		this.re_content = re_content;
-	}
-	public String getRe_writerip() {
-		return re_writerip;
-	}
-	public void setRe_writerip(String re_writerip) {
-		this.re_writerip = re_writerip;
-	}
-	public int getRe_depth() {
-		return re_depth;
-	}
-	public void setRe_depth(int re_depth) {
-		this.re_depth = re_depth;
-	}
-	public String getRe_ishidden() {
-		return re_ishidden;
-	}
-	public void setRe_ishidden(String re_ishidden) {
-		this.re_ishidden = re_ishidden;
-	}
-	public String getTargetid() {
-		return targetid;
-	}
-	public void setTargetid(String targetid) {
-		this.targetid = targetid;
-	}
-	public int getM_no() {
-		return m_no;
-	}
-	public void setM_no(int m_no) {
-		this.m_no = m_no;
-	}
-	public String getM_img_path() {
-		return m_img_path;
-	}
-	public void setM_img_path(String m_img_path) {
-		this.m_img_path = m_img_path;
-	}
-	public String getM_img() {
-		return m_img;
-	}
-	public void setM_img(String m_img) {
-		this.m_img = m_img;
-	}
-	public String getM_nickname() {
-		return m_nickname;
-	}
-	public void setM_nickname(String m_nickname) {
-		this.m_nickname = m_nickname;
-	}
-	public int getBd_no() {
-		return bd_no;
-	}
-	public void setBd_no(int bd_no) {
-		this.bd_no = bd_no;
-	}
 	
 	
 }

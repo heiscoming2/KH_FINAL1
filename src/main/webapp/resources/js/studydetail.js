@@ -59,3 +59,9 @@ $(document).ready(function(){
   }
   
   
+  
+  function studyJoinListToggle() {
+	  $('.studyjoinlist').toggle();
+  }
+  
+  
