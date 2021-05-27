@@ -126,11 +126,11 @@ public class ReportController {
 	
 	////////////////신고 part_댓글//////////////////////
 	
-	@RequestMapping(value="/reportinsertform.do")
+	@RequestMapping(value="/reportreplyinsertform.do")
 	public String insertreportreplyform(Model model, @RequestParam("re_no") int re_no) {
 		logger.info("reportinsertform");
 		
-		ReportDto dto = rebiz.select2(re_no);
+		ReportReplyDto dto = rerebiz.select2(re_no);
 		
 		model.addAttribute("dto", dto);
 		
@@ -158,11 +158,11 @@ public class ReportController {
 			
 			return null;
 		}else {
-			return "redirect:reportinsertform.do";
+			return "redirect:reportreplyinsertform.do";
 		}
 		
 	}
-	//report list
+	//reportreply list
 	@RequestMapping(value="/reportreplylist.do")
 	public String reportreply_list(Model model) {
 		
@@ -179,7 +179,7 @@ public class ReportController {
 		return "report/reportreplylist";
 	}
 	
-	//report detail
+	//reportreply detail
 	@RequestMapping(value="/reportreplydetail.do")
 	public String reportreplydetail(Model model, int re_no) {
 		logger.info("REPORT reply DETAIL");

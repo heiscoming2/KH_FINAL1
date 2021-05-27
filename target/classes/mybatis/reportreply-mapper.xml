@@ -5,7 +5,7 @@
 
 <mapper namespace="ReportReply">
 	
-	<resultMap type="ReportReplytDto" id="reportreplyMap">
+	<resultMap type="ReportReplyDto" id="reportreplyMap">
 		<result property="report_reply_no" column="REPORT_REPLY_NO"/>
 		<result property="m_no" column="M_NO"/>
 		<result property="bd_no" column="BD_NO"/>
@@ -17,7 +17,7 @@
 		<result property="re_content" column="RE_CONTENT"/>
 	</resultMap>
 	
-	<select id="selectList" resultMap="reportreplyMap">
+	<select id="selectList" resultType="ReportReplyDto">
         SELECT A.REPORT_REPLY_NO, A.M_NO, A.BD_NO, A.RE_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.RE_CONTENT 
         FROM REPORT_REPLY A
         JOIN REPLY B 

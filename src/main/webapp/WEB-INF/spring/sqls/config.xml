@@ -32,9 +32,7 @@
 		<typeAlias type="com.itpro.model.dto.report.ReportDto" alias="ReportDto"/>
 		<typeAlias type="com.itpro.model.dto.report.ReportReplyDto" alias="ReportReplyDto"/>
 		
-		
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
-
 		
 		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
@@ -72,7 +70,6 @@
 		<mapper resource="/mybatis/BoardCategory-mapper.xml"/>	
 		<mapper resource="/mybatis/notice-mapper.xml"/>
 		<mapper resource="/mybatis/resume-mapper.xml"/>
-
 		<mapper resource="/mybatis/like-mapper.xml"/>
 	</mappers>
 
