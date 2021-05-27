@@ -36,7 +36,7 @@
         WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
-	<select id="selectOne" resultType="QnaDetailDto" parameterType="int">
+	<select id="selectone" resultType="QnaDetailDto" parameterType="int">
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		        B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
 		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT 

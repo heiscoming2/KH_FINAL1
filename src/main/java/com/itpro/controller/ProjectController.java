@@ -18,12 +18,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -265,6 +267,38 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
         res = projectBiz.imageuploadupdate(Integer.parseInt(pro_no), file.getAbsolutePath());
         return "{result:"+res+"}";
     }
+	
+	
+	
+	@RequestMapping(value="/download.do")
+	@ResponseBody
+	public byte[] fileDown(HttpServletRequest request, HttpServletResponse response, String name) throws IOException {
+		//return type이 byte 배열
+		//원래 String return은 views(.jsp) 이름이었음! 하지만 byte는 views return이 아님 -> 페이지 전환이 아닌 데이터 응답 처리임
+		//String name에 파일 이름이 담겨서 넘어오는 거
+		
+		
+		//파일 업로드하는 절대 경로 가지고 오기
+		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+		
+		//file 객체 만들기
+		File file = new File(path + "/" + name);
+		
+		//FileCopyUtils 
+		byte[] bytes = FileCopyUtils.copyToByteArray(file);
+		String fn = new String(file.getName());
+		
+		//attachment: 다운로드 시 무조건 파일 다운로드 상자가 뜨도록 함
+		response.setHeader("Content-Disposition", "attachment;filename=\"" + fn + "\"");
+		
+		response.setContentLength(bytes.length); //파일 길이
+		response.setContentType("image/jpeg"); //파일 타입
+		
+		return bytes;
+	}
+	
+	
+	
 	
 	
 	/*
