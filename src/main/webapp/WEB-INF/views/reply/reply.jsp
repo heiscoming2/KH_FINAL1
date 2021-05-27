@@ -41,6 +41,10 @@
 			              <input type="button" class="btn btn-primary deleteformbtn" value="삭제" onclick="delConFirmReply('${replyListDto.re_no}')">
 		                </c:if>
 	                </c:if>
+	                <!-- 자기가 쓴 댓글에는 신고 버튼을 생략 -->
+	 				<c:if test="${sessionScope.login.m_no ne replyListDto.m_no }">
+	 					<input type="button" class="btn btn-danger" value="신고">
+	 				</c:if>
                 </c:if>
                 </div>
               <!-- 댓글 depth를 이용해 margin-left 값을 배수로 주어 들여쓰기 효과를 나타낸다. -->

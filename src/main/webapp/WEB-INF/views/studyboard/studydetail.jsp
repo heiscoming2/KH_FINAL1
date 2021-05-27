@@ -83,9 +83,9 @@
 			
             <!-- 필수 입력 정보 노출 시작 -->
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
-              요약<br>
-        • 인원수 : ${dto.st_nowperson } / ${dto.st_closeperson }<br>
-        • 장소 : ${dto.st_addr1}&nbsp;${dto.st_addr2 }&nbsp;${dto.st_addrdetail }<br>
+		              요약<br>
+		        • 인원수 : ${dto.st_nowperson } / ${dto.st_closeperson }<br>
+		        • 장소 : ${dto.st_addr1}&nbsp;${dto.st_addr2 }&nbsp;${dto.st_addrdetail }<br>
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
             <br>
@@ -141,7 +141,7 @@
 	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
 	                </ul>
 	             </div>
-	                         <div class="profile_wrap">
+	             <div class="profile_wrap">
 	              <!-- 프로필 이미지 영역 -->
 	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
 	              <br>
@@ -157,7 +157,7 @@
 	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
 	                </ul>
 	             </div>
-	                         <div class="profile_wrap">
+	            <div class="profile_wrap">
 	              <!-- 프로필 이미지 영역 -->
 	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
 	              <br>
@@ -204,12 +204,14 @@
             
             <!-- 참여 신청 버튼 시작 -->
             	<!-- 작성자의 경우에는 이게 안 보여야한다. -->
-            <form action="studylist.do">
-            	<div>
-            		<!-- 나중에 placeholder에 로그인 후 참여신청이 가능하다고 써주기 -->
-	            	<input type="submit" class="btn btn-primary" value="참여신청">
-	            	<input type="text" class="form-control" name="studymsg" placeholder="한 줄 자기소개" style="width:500px; display:inline-block;">
-            	</div>
+            <form id="studyJoinApplyForm" action="#">
+           		<!-- 나중에 placeholder에 로그인 후 참여신청이 가능하다고 써주기 -->
+            	<input type="button" 
+            	onclick="
+            	<c:if test='${sessionScope.login eq null }'>alert('로그인 후 이용 가능합니다.')</c:if>
+            	<c:if test='${sessionScope.login ne null }'>studyJoinApply(${dto.bd_no },${sessionScope.login.m_no });</c:if>"
+            	 class="btn btn-primary" value="참여신청">
+            	<input type="text" class="form-control" name="sj_message" placeholder="한 줄 자기소개" style="width:500px; display:inline-block;">
             </form>
             <!-- 참여 신청 버튼 종료 -->
             
@@ -232,6 +234,7 @@
         </tr>
       </table>
       <!-- 스터디모집 구인글 영역 종료-->
+
 
       <!-- 본문 / 댓글 중간 여백 영역 시작 -->
       <div style="width:100%; display: block; height:80px;">
@@ -259,7 +262,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/studydetail.js?ver=1.6"></script>
+<script type="text/javascript" src="resources/js/studydetail.js?ver=1.8"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

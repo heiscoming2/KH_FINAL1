@@ -15,6 +15,7 @@ import com.itpro.model.dao.StudyDao;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
+import com.itpro.model.dto.study.StudyJoinInfoDto;
 import com.itpro.model.dto.study.StudyListDto;
 import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
@@ -94,6 +95,12 @@ public class StudyBizImpl implements StudyBiz {
 	@Override
 	public int updatestatus(int bd_no) {
 		return studyDao.updatestatus(bd_no);
+	}
+
+	@Override
+	public int studyJoinApplyInsert(StudyJoinInfoDto studyJoinInfoDto) {
+		int res = studyDao.studyJoinApplyInsert(studyJoinInfoDto);
+		return 0;
 	}
 
 }

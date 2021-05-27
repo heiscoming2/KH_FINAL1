@@ -54,7 +54,7 @@
 
 		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
 
-
+		<typeAlias type="com.itpro.model.dto.study.StudyJoinInfoDto" alias="StudyJoinInfoDto"/>
 	</typeAliases>
 	
 	<mappers>
