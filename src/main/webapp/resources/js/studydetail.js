@@ -58,4 +58,37 @@ $(document).ready(function(){
       
   }
   
+  function studyJoinApply(bd_no,m_no) {
+	  
+	  
+	  var sj_message = $('input[name="sj_message"]').val();
+	  if(sj_message==null||sj_message=='') {
+		  alert('자기소개를 입력해주세요.');
+		  return false;
+	  }
+	  var data = {
+			  "bd_no":bd_no,
+			  "m_no":m_no,
+			  "sj_message":sj_message
+	  }
+	  
+	  $.ajax({
+		 type:"post",
+		 url:"studyjoinapply.do",
+		 dataType:"json",
+		 data:JSON.stringify(data),
+		 contentType:"application/json",
+		 success:function() {
+			 
+		 },
+		 error:function() {
+			 alert('오류발생')
+		 }
+	  });
+  }
+  
+  function studyJoinListToggle() {
+	  $('.studyjoinlist').toggle();
+  }
+  
   
