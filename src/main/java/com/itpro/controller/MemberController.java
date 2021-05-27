@@ -58,7 +58,7 @@ public class MemberController {
 			int m_no = res.getM_no();
 			MemberDto update = biz.selectOne(m_no);
 			model.addAttribute("selectUser", update);
-
+			
 			return "member/update_user";
 		}
 
@@ -72,8 +72,8 @@ public class MemberController {
 
 		int res = biz.updateMember(updateDto);
 
-		if (res > 0) {
-
+		if (res > 0) {		
+			
 			// 세션 종료
 			session.invalidate();
 
@@ -129,8 +129,7 @@ public class MemberController {
 			return "redirect:biz_update_form.do";
 		}
 
-	}
-	
+	}	
 	
 
 	// 회원탈퇴 페이지이동
@@ -161,7 +160,7 @@ public class MemberController {
 	
 	
 
-	// 프로필 이미지 업로드 컨트롤러(다시 수정해야대 ㅠㅠㅠ 힝 ㅠ)
+	// 프로필 이미지 업로드 컨트롤러
 	@RequestMapping(value = "/profileUpload.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)

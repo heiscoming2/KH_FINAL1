@@ -9,13 +9,7 @@ import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.resume.ResumeDto;
 
 
-public interface ResumeBiz {
-	
-	//이력서 목록 조회
-	public List<ResumeDto> selectList(int m_no);
-	
-	//이력서 등록
-	public MemberDto selectOne(int m_no);
+public interface NoteBiz {
 
 	
 	
