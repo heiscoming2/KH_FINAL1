@@ -41,15 +41,9 @@
 	</select>
 	
 	<select id="select2" resultType="ReportDto" parameterType="int">
-		SELECT A.RE_NO, D.NAME, C.BD_TITLE, A.RE_CONTENT 
-		FROM REPLY A 
-        INNER JOIN IT_MEMBER B
-        ON A.M_NO= B.M_NO
-        INNER JOIN BOARD C
-        ON A.BD_NO=C.BD_NO
-        INNER JOIN BOARDCATEGORY D
-		ON C.BC_CODE=D.CODE
-        WHERE A.RE_NO=#{re_no}	
+		SELECT M_NO, BD_NO, (SELECT NAME FROM BOARDCATEGORY WHERE CODE= (SELECT BC_CODE FROM BOARD WHERE BD_NO=#{bd_no})) NAME, BD_TITLE
+		FROM BOARD
+		WHERE BD_NO=#{bd_no}	
 	</select>
 	
 	

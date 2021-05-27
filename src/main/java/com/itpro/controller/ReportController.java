@@ -129,7 +129,7 @@ public class ReportController {
 	@RequestMapping(value="/reportreplyinsertform.do")
 	public String insertreportreplyform(Model model, @RequestParam("re_no") int re_no) {
 		logger.info("reportinsertform");
-		
+		logger.toString();
 		ReportReplyDto dto = rerebiz.select2(re_no);
 		
 		model.addAttribute("dto", dto);
@@ -143,6 +143,8 @@ public class ReportController {
 	public String insertRes(ReportReplyDto dto,HttpServletResponse response) throws IOException {
 		logger.info("reportinsert");
 		logger.info(dto.toString());
+		
+		
 		int res= rerebiz.insert(dto);
 		System.out.println("res: " + res);
 		if(res>0) {
@@ -181,7 +183,7 @@ public class ReportController {
 	
 	//reportreply detail
 	@RequestMapping(value="/reportreplydetail.do")
-	public String reportreplydetail(Model model, int re_no) {
+	public String reportreplydetail(Model model, @RequestParam("re_no") int re_no) {
 		logger.info("REPORT reply DETAIL");
 		
 		model.addAttribute("dto", rerebiz.selectOne(re_no));

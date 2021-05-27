@@ -35,11 +35,11 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 	
 
 	@Override
-	public ReportReplyDto selectOne(int re_no) {
+	public ReportReplyDto selectOne(int report_reply_no) {
 		ReportReplyDto dto =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",re_no);
+			dto=sqlSession.selectOne(NAMESPACE+"selectOne",report_reply_no);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();

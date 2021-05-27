@@ -7,7 +7,7 @@ import com.itpro.model.dto.report.ReportReplyDto;
 public interface ReportReplyBiz {
 
 	public List<ReportReplyDto> selectList();
-	public ReportReplyDto selectOne(int re_no);
+	public ReportReplyDto selectOne(int report_reply_no);
 	public int insert(ReportReplyDto dto);
 	public int insertreportform(ReportReplyDto dto);
 	public int getReportReplyCnt();
