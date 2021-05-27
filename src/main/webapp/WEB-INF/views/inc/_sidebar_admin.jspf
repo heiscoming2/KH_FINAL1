@@ -26,6 +26,8 @@
 
 				<div class="sb-sidenav-menu">
 					<div class="nav" >
+					
+					<!-- 회원관리 부분 -->
 						<a class="nav-link collapsed" href="#" data-toggle="collapse"
 							data-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages" >
@@ -42,14 +44,14 @@
 								id="sidenavAccordionPages">
 								<a class="nav-link collapsed" onclick="location.href='member_list.do'" data-toggle="collapse"
 									data-target="#pagesCollapseAuth" aria-expanded="false"
-									aria-controls="pagesCollapseAuth"> 개인회원
+									aria-controls="pagesCollapseAuth" style="cursor:pointer"> 개인회원
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a> 
 								<a class="nav-link collapsed" onclick="location.href='member_list_com.do'" data-toggle="collapse"
 									data-target="#pagesCollapseError" aria-expanded="false"
-									aria-controls="pagesCollapseError"> 기업회원
+									aria-controls="pagesCollapseError" style="cursor:pointer"> 기업회원
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
@@ -57,20 +59,54 @@
 
 							</nav>
 						</div>
-						<a class="nav-link collapsed" onclick="location.href='reportlist.do'" data-toggle="collapse"
-							data-target="" aria-expanded="false"
+						
+						
+						<!-- 신고관리 부분 -->
+						<a class="nav-link collapsed" href="##" data-toggle="collapse"
+							data-target="#collapseReport" aria-expanded="false"
 							aria-controls="collapsePages" >
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> 신고관리 </a>
+							</div> 신고관리
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapseReport"
+							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav accordion"
+								id="sidenavAccordionPages">
+								<a class="nav-link collapsed" onclick="location.href='reportlist.do'" data-toggle="collapse"
+									data-target="#pagesCollapseAuth" aria-expanded="false"
+									aria-controls="pagesCollapseAuth" style="cursor:pointer"> 게시판 신고
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a> 
+								<a class="nav-link collapsed" onclick="#" data-toggle="collapse"
+									data-target="#pagesCollapseReply" aria-expanded="false"
+									aria-controls="pagesCollapseError" style="cursor:pointer"> 댓글 신고
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+
+							</nav>
+						</div>
 							
+							
+						<!-- 공지사항 부분 -->	
 							<a class="nav-link collapsed" onclick="location.href='noticelist.do'" data-toggle="collapse"
-							data-target="" aria-expanded="false"
-							aria-controls="collapsePages" >
+							data-target="#collapseNotice" aria-expanded="false"
+							aria-controls="collapsePages" style="cursor:pointer">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> 공지사항 </a>
+							</div> 공지사항
+							 </a>
 							
+							
+							
+						<!-- 광고관리 부분 -->
 							<a class="nav-link collapsed" href="ad_list.do"
 							data-toggle="collapse" data-target="#collapseAd"
 							aria-expanded="false" aria-controls="collapsePages">
@@ -92,19 +128,24 @@
 										<div class="sb-sidenav-collapse-arrow">
 											<i class="fas fa-angle-down"></i>
 										</div>
-									</a> <a class="nav-link collapsed" href="#" data-toggle="collapse"
+									</a> 
+									<a class="nav-link collapsed" href="#" data-toggle="collapse"
 										data-target="#pagesCollapseError" aria-expanded="false"
-										aria-controls="pagesCollapseError"> 주문사항
+										aria-controls="pagesCollapseError"> ? 
 										<div class="sb-sidenav-collapse-arrow">
 											<i class="fas fa-angle-down"></i>
 										</div>
 									</a>
 
 								</nav>
+								
+								
+						<!-- 배너 부분 -->	
+								
 							</div> <a class="nav-link" href="#">
 								<div class="sb-nav-link-icon">
 									<i class="fas fa-table"></i>
-								</div> 배너등록
+								</div> 배너
 						</a>
 					</div>
 				</div>

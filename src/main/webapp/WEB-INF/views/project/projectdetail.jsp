@@ -73,11 +73,14 @@
             <b>프로젝트</b><br>
               ※ 프로젝트 제목: ${item.pro_title } <br>
               ※ 프로젝트 기간: ${item.pro_start } ~ ${item.pro_end }<br>
-              ※ 프로젝트 파일: ${item.pro_file_path } <br>
               ※ 프로젝트 링크: ${item.pro_link }<br>
               ※ ERD 링크: ${item.pro_erd }<br>
               ※ 개발 환경: ${item.pro_develop }<br>
-              ※ 개발 목표: ${item.pro_goal }
+              ※ 개발 목표: ${item.pro_goal } <br>
+              ※ 프로젝트 파일: <form action="download" method="post">
+					<input type="hidden" name="name" value="${item.pro_file_path }">
+					<input type="submit" value="download">	
+				</form>         
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
             <br>

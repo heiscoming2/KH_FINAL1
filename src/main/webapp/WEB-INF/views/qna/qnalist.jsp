@@ -25,11 +25,13 @@
 			<col width="80px;">
 			<col width="500px;">
 			<col width="80px;">
+			<col width="80px;">
 			<col width="200px;">
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
-				<th>조회수</th>
+				<th>추천</th>
+				<th>조회</th>
 				<th>작성자/작성일</th>
 			</tr>
         
