@@ -148,5 +148,9 @@
         WHERE BD_NO=#{bd_no}
 	</update>
 	
+	<insert id="studyjoinapplyinsert" parameterType="StudyJoinInfoDto">
+		INSERT INTO STUDYJOININFO VALUES (#{m_no},#{bd_no},SYSDATE,#{sj_message},'N',NULL)
+	</insert>
+	
 	
 </mapper>

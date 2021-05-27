@@ -158,7 +158,6 @@ public class MemberController {
 
 	}
 	
-	
 
 	// 프로필 이미지 업로드 컨트롤러
 	@RequestMapping(value = "/profileUpload.do", method = RequestMethod.POST)
@@ -177,7 +176,6 @@ public class MemberController {
 		String originName = file.getOriginalFilename();
 		// 파일 확장자타입
 		String fileType = originName.substring(originName.lastIndexOf("."));	
-		
 		
 		// 저장될 파일명
 		String m_img = UUID.randomUUID() + fileType;

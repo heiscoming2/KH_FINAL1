@@ -7,7 +7,7 @@
 
 <title>IT PRO</title>
 <%@include file="./inc/_head.jspf" %>
-<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.1">
+<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.2">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -82,19 +82,21 @@
 						<div style="width:80%; margin: 0 auto;">
 							<div style="margin-bottom: 8px;">
 								<p style="font-size: 8px; margin:0; padding:0;">
-									<b>· 주 사용 언어</b><br>
+									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 주 사용 언어</b><br>
 									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT </span>
 								</p>
 							</div>
 							<div style="margin-bottom: 8px;">
-								<div style="font-size: 8px; margin:0; padding:0;"><b>· 최근 대표 이력</b></div>
+								<div style="font-size: 8px; margin:0; padding:0;">
+									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 최근 대표 이력</b>
+								</div>
 								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) ㅇㅇ회사 근무
 								</p>
 								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) KH학원
 								</p>
 							</div>
 							<div>
-								<p style="font-size: 8px; margin:0; padding:0;"><b>· 최근 개발 프로젝트</b></p>
+								<p style="font-size: 8px; margin:0; padding:0;"><b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 최근 개발 프로젝트</b></p>
 								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 요리 소개
 									사이트 개발</p>
 								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 무언가를

@@ -30,8 +30,10 @@
 		<typeAlias type="com.itpro.model.dto.qna.QnaUpdateDto" alias="QnaUpdateDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.report.ReportDto" alias="ReportDto"/>
-		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
+		<typeAlias type="com.itpro.model.dto.report.ReportReplyDto" alias="ReportReplyDto"/>
 
+	
+		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
 		<typeAlias type="com.itpro.model.dto.board.BoardUpdateDto" alias="BoardUpdateDto"/>
@@ -52,7 +54,7 @@
 
 		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
 
-
+		<typeAlias type="com.itpro.model.dto.study.StudyJoinInfoDto" alias="StudyJoinInfoDto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -65,12 +67,17 @@
 		<mapper resource="/mybatis/member-mapper.xml"/>
 		<mapper resource="/mybatis/managemember-mapper.xml"/>
 		<mapper resource="/mybatis/report-mapper.xml"/>
+		<mapper resource="/mybatis/reportreply-mapper.xml"/>
+
 		<mapper resource="/mybatis/board-mapper.xml"/>
 		<mapper resource="/mybatis/BoardCategory-mapper.xml"/>	
 		<mapper resource="/mybatis/notice-mapper.xml"/>
 		<mapper resource="/mybatis/resume-mapper.xml"/>
+<<<<<<< HEAD
 		<mapper resource="/mybatis/note-mapper.xml"/>
 
+=======
+>>>>>>> 95c4efebfa7eeb5f7e06e82a22494a9946ce7588
 		<mapper resource="/mybatis/like-mapper.xml"/>
 	</mappers>
 

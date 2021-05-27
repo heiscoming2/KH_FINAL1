@@ -30,6 +30,7 @@ import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.model.dto.study.StudyInsertDto;
+import com.itpro.model.dto.study.StudyJoinInfoDto;
 import com.itpro.model.dto.study.StudyListDto;
 import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
@@ -208,7 +209,7 @@ public class StudyController {
 	@RequestMapping(value="/studystatchange.do")
 	@ResponseBody
 	public boolean studyStatchange(@RequestBody Map<String,Object> map) {
-		System.out.println("studychange");
+		logger.info("studychange");
 		int bd_no = Integer.parseInt(map.get("bd_no").toString());
 		System.out.println(bd_no);
 		int res = studyBiz.updatestatus(bd_no);
@@ -217,7 +218,14 @@ public class StudyController {
 		return res>0?true:false;
 	}
 	
-	
+	@RequestMapping(value="/studyjoinapply.do")
+	@ResponseBody
+	public Map<String,String> studyJoinApply(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
+		logger.info("studyjoinapply");
+		logger.info(studyJoinInfoDto.toString());
+		int res = studyBiz.studyJoinApplyInsert(studyJoinInfoDto);
+		return null;
+	}	
 	
 	
 }

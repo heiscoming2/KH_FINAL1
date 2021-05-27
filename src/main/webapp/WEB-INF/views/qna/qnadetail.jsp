@@ -8,6 +8,9 @@
 <link href="resources/css/qnadetail.css" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
+<!-- 좋아요 css -->
+<link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
+
 <title>IT PRO 상세보기</title>
 </head>
 <body>
@@ -26,11 +29,11 @@
             <div class="profile_wrap">
               <!-- 프로필 이미지 영역 -->
               <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-              <!-- 프로필 아이디 표시 영역 -->
+                          <!-- 프로필 아이디 표시 영역 -->
               <span class="profile_id">
                 <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  leehj
+                  ${dto.m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
@@ -39,136 +42,81 @@
                 </ul>
               </span>
               <span class="reg_date">
-                2021-04-12 00:00 (작성됨)
-                2021-04-13 10:00 (수정됨)
+                <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
+                <c:if test="${dto.bd_modifydate ne null }">
+                	<fmt:formatDate value="${dto.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정)
+				</c:if>
               </span>
               
             </div> <!-- 프로필이미지, 아이디, 작성일 div 종료 -->
 
             <!-- 글 번호 / 제목 영역 시작 -->
              <div style="margin: 10px 0px;">
-              <span class="detail_no">#1</span> <!-- 글 번호 -->
+              <span class="detail_no">${dto.bd_no }</span> <!-- 글 번호 -->
               <br>
-              <span class="detail_title">[QnA] 질문 드립니다.</span> <!-- 글 제목 -->
+              <span class="detail_title">${dto.bd_title }</span> <!-- 글 제목 -->
              </div>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="studyUpdate.do">
+              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='qnaupdateform.do?bd_no=${dto.bd_no}'">
               <input type="button" value="삭제" class="btn btn-primary">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
-           <!-- 필수 입력 정보 노출 시작 -->
+<!--            필수 입력 정보 노출 시작
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
               첨부 파일: 111.zip
             </div>
-            <!-- 필수 입력 정보 노출 종료 -->
+            필수 입력 정보 노출 종료 -->
             <br>
             <!-- 글 내용 시작 -->
             <div class="detail_content">
-              질문 드립니다.<br>
-              질문 드립니다.<br>
-              질문 드립니다.<br>
-              질문 드립니다.<br>
-              질문 드립니다.
+              ${dto.bd_content }
               <br>
               <br>
+           
             </div>
+            
+
+             <!-- 좋아요 버튼 시작 -->
+            <div class="text-center">
+				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" 
+				onclick="
+				<c:if test='${login ne null}'> like_func(${dto.bd_no}, ${login.m_no }) </c:if>
+				<c:if test='${login eq null}'> alert('로그인해주세요.')</c:if>" 
+				style="margin:0 auto;"> 
+					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
+				</div>
+            </div>
+            <!-- 좋아요 버튼 종료 -->
+            
             <!-- 글 내용 종료 -->
           </td>
         </tr>
       </table>
       <!-- QNA 영역 종료-->
 
-      <!-- 본문 / 댓글 중간 여백 영역 시작 -->
-      <div style="width:960px; display: block; height:80px;">
-            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;">
+         <!-- 본문 / 댓글 중간 여백 영역 시작 -->
+      <div style="width:100%; display: block; height:80px;">
+            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='qnalist.do'">
       </div>
       <!-- 본문 / 댓글 중간 여백 영역 종료 -->
+	
 
+
+	 
       <!-- 댓글 영역 시작 -->
-      <table class="table table-bordered" style="width:960px;">
-        <tr>
-          <td style="margin:0; padding:0;">
-            <div style="background-color: rgb(230, 230, 230); margin:0; padding:15px 0px;">&nbsp;&nbsp;댓글 0</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <!-- 프로필이미지, 아이디, 작성일 div -->
-              <div>
-                <div style="float:right;">
-                  <input type="button" class="btn btn-primary" value="수정">
-                  <input type="button" class="btn btn-primary" value="삭제">
-                </div>
-              <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
-                style="float: left; margin-top: 5px;">
-              <span style="display: block; position: relative; top:5px;">
-                <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-                  style="font-size:15px;">
-                  leehj
-                </a>
-              </span>
-              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">2021-03-28 13:13 (작성됨)
-                2021-04-13 13:13 (수정됨)</span>
-            </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
-            <div>
-              짝짝
-            </div>
-          </td>
-        </tr>
-        
-        
-     
-
-
-        <!-- 댓글 작성 영역 -->
-        <tr>
-          <td>
-              <!-- 프로필이미지, 아이디, 작성일 div -->
-            <div class="comment_wrap">
-              <!-- 프로필 영역-->
-              <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
-                style="float: left; margin-top: 5px;">
-              <span style="display: block; position: relative; top:5px;">
-                <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-                  style="font-size:15px;">
-                  leehj
-                </a>
-              </span>
-              <span style="font-size: 10px; color:rgb(112, 112, 112); position: relative; bottom:5px;">2021-03-28 13:13
-                2021-04-15 13:13 </span>
-            </div> 
-            <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
-            <br>
-
-            <!-- 댓글 작성 영역 시작 -->
-            <form method="post">
-                <textarea id="summernote"></textarea>
-            </form> 
-            <br>
-            <input type="submit" class="btn btn-primary" value="댓글 작성" style="float:right;">
-          </td>
-        </tr>
-
-       <!-- 댓글 작성 영역 종료 -->
-
-
-        <!-- 비로그인 시 보여줄 댓글 작성 영역 시작 -->
-        <tr>
-          <td class="text-center">
-            <div><b>로그인 후 댓글 작성 가능</b></div>
-          </td>
-        </tr>
-        <!-- 비로그인 시 보여줄 댓글 작성 영역 종료 -->       
-
-
-      </table>
+	  <jsp:include page="../reply/reply.jsp">
+	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
+	  </jsp:include>
+	  
+	  
       <!-- 댓글 영역 끝 -->
   </div>
 
 <!-- 본문 종료 -->
+
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
@@ -180,5 +128,11 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <script type="text/javascript" src="resources/js/qnadetail.js"></script>
+<!-- 댓글 js -->
+<script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
+<!-- 좋아요 js -->
+<script type="text/javascript" src="resources/js/likebutton.js?ver=1.2"></script>
+
+
 </body>
 </html>
