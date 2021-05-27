@@ -17,13 +17,15 @@ import com.itpro.model.dto.study.StudyListDto;
 import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class StudyDaoImpl implements StudyDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private Logger logger = LoggerFactory.getLogger(StudyDaoImpl.class);
 	
 	@Override
 	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
@@ -128,6 +130,8 @@ public class StudyDaoImpl implements StudyDao {
 
 	@Override
 	public int studyJoinApplyInsert(StudyJoinInfoDto studyJoinInfoDto) {
+		
+		log.info("studyJoinApplyInsert DaoImpl");
 		int res = 0;
 		try {
 			res = sqlSession.insert(NAMESPACE+"studyjoinapplyinsert",studyJoinInfoDto);
@@ -135,6 +139,30 @@ public class StudyDaoImpl implements StudyDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public int studyJoinApplySelectOne(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinApplySelectOne");
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"studyjoinapplyselectone",studyJoinInfoDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(int bd_no) {
+		log.info("studyJoinInfoSelectList");
+		List<StudyJoinInfoDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"studyjoininfoselectlist",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 

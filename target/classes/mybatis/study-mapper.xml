@@ -152,5 +152,12 @@
 		INSERT INTO STUDYJOININFO VALUES (#{m_no},#{bd_no},SYSDATE,#{sj_message},'N',NULL)
 	</insert>
 	
+	<select id="studyjoinapplyselectone" parameterType="StudyJoinInfoDto" resultType="int">
+		SELECT COUNT(M_NO) FROM STUDYJOININFO WHERE M_NO=#{m_no} AND BD_NO=#{bd_no}
+	</select>
+	
+	<select id="studyjoininfoselectlist" parameterType="int" resultType="StudyJoinInfoDto">
+		SELECT * FROM STUDYJOININFO WHERE BD_NO=#{bd_no}
+	</select>
 	
 </mapper>

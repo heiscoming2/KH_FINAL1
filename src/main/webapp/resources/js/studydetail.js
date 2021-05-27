@@ -78,11 +78,15 @@ $(document).ready(function(){
 		 dataType:"json",
 		 data:JSON.stringify(data),
 		 contentType:"application/json",
-		 success:function() {
-			 
+		 success:function(data) {
+			 alert(data.msg)
+			 if(data.dto!=null) {
+				 location.reload();
+			 }
 		 },
-		 error:function() {
-			 alert('오류발생')
+		 error:function(e) {
+			 console.log("오류정보 : "+e);
+			 alert('오류발생');
 		 }
 	  });
   }
@@ -91,4 +95,6 @@ $(document).ready(function(){
 	  $('.studyjoinlist').toggle();
   }
   
-  
+  function studyJoinApplyListToggle() {
+	  $('.studyjoinapplylist').toggle();
+  }  

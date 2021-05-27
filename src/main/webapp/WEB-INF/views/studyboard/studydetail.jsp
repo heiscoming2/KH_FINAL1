@@ -82,7 +82,7 @@
 	            <!-- 작성자에게만 보여질 버튼 종료 -->
 			
             <!-- 필수 입력 정보 노출 시작 -->
-            <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
+            <div style="font-weight:bold; font-size: 20px; padding:10px 0px;"> 
 		              요약<br>
 		        • 인원수 : ${dto.st_nowperson } / ${dto.st_closeperson }<br>
 		        • 장소 : ${dto.st_addr1}&nbsp;${dto.st_addr2 }&nbsp;${dto.st_addrdetail }<br>
@@ -90,9 +90,42 @@
             <!-- 필수 입력 정보 노출 종료 -->
             <br>
             
-           <!-- 참여대기인원정보시작 -->
+            
+            
+ 
+           <!-- 참여 승인 대기 인원 시작 (나중에 글 작성자에게만 보여지게 해야된다.) -->
+			 <!-- 프로필이미지, 아이디 시작 -->
+			 	<!-- 참여 승인 대기 숫자 나중에 변경해주어야 한다. (detail 넘어올때 따로 받아오게처리) -->
+			<input type="button" value="참여 승인 대기(${applynum}) ▼" class="btn btn-primary" onclick="studyJoinApplyListToggle();"/>
+			<div class="studyjoinapplylist" style="display:none;">
+			<br>
+	            <div class="profile_wrap">
+	              <!-- 프로필 이미지 영역 -->
+	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
+	              <br>
+	              <br>
+	              <!-- 프로필 아이디 표시 영역 -->
+	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
+	                  data-bs-toggle="dropdown" aria-expanded="false">
+	                  ${dto.m_nickname }
+	                </a>
+	                <br>
+	                <span>열심히 하겠습니다!!</span>
+	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
+	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
+	                </ul>
+	             </div>
+             </div>
+			<!-- 참여대기 인원 정보 종료 -->
+            
+            <br>
+            <br>
+            
+            <!-- 참여인원정보시작 -->
 			 <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
-			<input type="button" value="참여 승인 대기 (3) ▼" class="btn btn-primary" onclick="studyJoinListToggle();"/>
+			<input type="button" value="참여 인원 (${joinnednum }) ▼" class="btn btn-primary" onclick="studyJoinListToggle();"/>
 			<div class="studyjoinlist" style="display:none;">
 			<br>
 	            <div class="profile_wrap">
@@ -113,84 +146,14 @@
 	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
 	                </ul>
 	             </div>
-	             <br>
-             </div>
-			<!-- 참여대기인원정보종료 -->
-            
-            <br>
-            <br>
-            
-            <!-- 참여인원정보시작 -->
-			 <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
-			<input type="button" value="참여 인원 (3) ▼" class="btn btn-primary" onclick="studyJoinListToggle();"/>
-			<div class="studyjoinlist" style="display:none;">
-			<br>
-	            <div class="profile_wrap">
-	              <!-- 프로필 이미지 영역 -->
-	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-	              <br>
-	              <br>
-	              <!-- 프로필 아이디 표시 영역 -->
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  data-bs-toggle="dropdown" aria-expanded="false">
-	                  ${dto.m_nickname }
-	                </a>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	             </div>
-	             <div class="profile_wrap">
-	              <!-- 프로필 이미지 영역 -->
-	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-	              <br>
-	              <br>
-	              <!-- 프로필 아이디 표시 영역 -->
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  data-bs-toggle="dropdown" aria-expanded="false">
-	                  ${dto.m_nickname }
-	                </a>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	             </div>
-	            <div class="profile_wrap">
-	              <!-- 프로필 이미지 영역 -->
-	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-	              <br>
-	              <br>
-	              <!-- 프로필 아이디 표시 영역 -->
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  data-bs-toggle="dropdown" aria-expanded="false">
-	                  닉네임을뭘로하지
-	                </a>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	             </div>
-	                         <div class="profile_wrap">
-	              <!-- 프로필 이미지 영역 -->
-	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-	              <br>
-	              <br>
-	              <!-- 프로필 아이디 표시 영역 -->
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  data-bs-toggle="dropdown" aria-expanded="false">
-	                  123123123
-	                </a>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	             </div>
              </div>
 			<!-- 참여인원정보종료 -->
+			
+			
+			
+			
+			
+			
 			
 			<br>
 			<br>

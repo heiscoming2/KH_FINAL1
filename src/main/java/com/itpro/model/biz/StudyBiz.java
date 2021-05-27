@@ -23,5 +23,7 @@ public interface StudyBiz {
 	public List<StudyListDto> selectSearchList(Map<String, Object> studySearchMap);
 	public int updatestatus(int bd_no);
 	public int studyJoinApplyInsert(StudyJoinInfoDto studyJoinInfoDto);
+	public int studyJoinApplySelectOne(StudyJoinInfoDto studyJoinInfoDto);
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(int bd_no);
 	
 }
