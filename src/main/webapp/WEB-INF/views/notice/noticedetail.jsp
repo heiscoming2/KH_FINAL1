@@ -125,7 +125,7 @@
 <!-- notice 디테일 js -->
 <script type="text/javascript" src="resources/js/noticedetail.js?ver=1.1"></script>
 <!-- 댓글 js -->
-<script type="text/javascript" src="resources/js/reply.js?ver=1.4"></script>
+<script type="text/javascript" src="resources/js/reply.js?ver=1.6"></script>
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.2"></script>
 <!-- 신고 js -->

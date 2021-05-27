@@ -134,7 +134,7 @@ public class ReportController {
 		
 		model.addAttribute("dto", dto);
 		
-		return "report/reportinsertform";
+		return "report/reportreplyinsertform";
 	}
 
 	

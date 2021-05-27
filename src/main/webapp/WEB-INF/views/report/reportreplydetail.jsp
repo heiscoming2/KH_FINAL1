@@ -39,7 +39,10 @@
 				<th>게시판</th><td>${dto.name }</td>
             </tr>
             <tr>
-				<th>신고 당한 글</th><td><a href="">${dto.bd_title }</a></td>
+				<th>게시글</th><td><a href="">${dto.bd_title }</a></td>
+            </tr>
+            <tr>
+				<th>신고당한 댓글</th><td><a href="">${dto.re_content }</a></td>
             </tr>
             <tr>
 				<th>신고이유</th><td>${dto.report_reason}</td>
