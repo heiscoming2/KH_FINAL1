@@ -32,7 +32,7 @@
 		<typeAlias type="com.itpro.model.dto.report.ReportDto" alias="ReportDto"/>
 		<typeAlias type="com.itpro.model.dto.report.ReportReplyDto" alias="ReportReplyDto"/>
 
-		
+	
 		<typeAlias type="com.itpro.model.dto.reply.ReplyUpdateDto" alias="ReplyUpdateDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.study.StudySearchDto" alias="StudySearchDto"/>
