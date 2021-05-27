@@ -98,7 +98,7 @@
 								<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 								<td>${dto.m_type}</td>
 								<td>${dto.m_gender}</td>
-								<td>${dto.m_regdate}</td>
+								<td><span class="m_regdate"> <fmt:formatDate value="${dto.m_regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></span></td>
 								<td>${dto.m_act}</td>
 								<td>${dto.m_used}</td>
 								<td>${dto.m_auth}</td>
