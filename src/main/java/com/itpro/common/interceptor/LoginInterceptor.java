@@ -48,7 +48,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 
 		if (request.getRequestURI().contains("/projectinsertform.do")
-				|| request.getRequestURI().contains("/qnainsertform.do")) {
+				|| request.getRequestURI().contains("/qnainsertform.do")
+				|| request.getRequestURI().contains("/portfolioinsertform.do")) {
 			if (request.getSession().getAttribute("login") == null) {
 				PrintWriter out = response.getWriter();
 				out.print("<script type='text/javascript'>");
@@ -67,6 +68,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 		 * out.print("location.href='login.do';"); out.print("</script>"); return false;
 		 * } }
 		 */
+		
+		// 기업회원 글작성X 시작
+		if (request.getRequestURI().contains("/portfolioinsertform.do")) { // 포트폴리오 이력서 미작성자 작성X
+			MemberDto memberDto = (MemberDto) session.getAttribute("login");
+			String m_resumechk = memberDto.getM_resumechk();
+			if (m_resumechk.equals("N")) {
+				// 접근 불가 처리 알림창
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('이력서 작성 후 포트폴리오 작성이 가능합니다.');");
+				out.print("location.href='main.do';");
+				out.print("</script>");
+				return false;
+			}
+		} // 기업회원 글작성X 끝
 
 		//기업회원 글작성X 시작
 		if (request.getRequestURI().contains("/studyinsertform.do")// 스터디 글쓰기

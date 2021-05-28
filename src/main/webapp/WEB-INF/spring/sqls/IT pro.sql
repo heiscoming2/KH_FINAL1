@@ -1,5 +1,4 @@
 
-
 --현지 드랍
 DROP TABLE  PORTFOLIO;
 DROP SEQUENCE PORTFOLIOSEQ;
@@ -16,7 +15,6 @@ DROP SEQUENCE REPORT_SEQ;
 DROP TABLE REPORT;
 
 --효준 드랍
-DROP TABLE STUDYJOININFO;
 DROP TABLE REPLYRECOMMAND;
 DROP TABLE STUDY;
 DROP SEQUENCE STUDYSEQ;
@@ -84,7 +82,7 @@ CREATE TABLE IT_MEMBER (
     M_NAME VARCHAR2(20),
     M_BIRTH DATE,
     M_GENDER VARCHAR2(50),
-    M_ADDR VARCHAR2(50),
+    M_RESUMECHK VARCHAR2(10), --이력서 작성 여부 작성Y 미작성N
    
     
     CONSTRAINT MEMBER_PK PRIMARY KEY (M_NO),
@@ -96,7 +94,8 @@ CREATE TABLE IT_MEMBER (
     CONSTRAINT M_ACT_VAL CHECK(M_ACT IN('활동','정지')),
     CONSTRAINT M_TYPE_VAL CHECK(M_TYPE IN('개인회원','기업회원','관리자')),
     CONSTRAINT M_AUTH_VAL CHECK(M_AUTH IN('Y','N')),
-    CONSTRAINT M_GENDER_VAL CHECK(M_GENDER IN('남','여'))
+    CONSTRAINT M_GENDER_VAL CHECK(M_GENDER IN('남','여')),
+    CONSTRAINT M_RESUMECHK_VAL CHECK(M_RESUMECHK IN('Y','N'))
 );
 
 SELECT * FROM IT_MEMBER;
@@ -138,19 +137,27 @@ CREATE TABLE NOTE (
     SELECT * FROM NOTE;
 
 --이력서 생성
+DROP SEQUENCE RESUMENO_SEQ;
+DROP TABLE M_RESUME;
+--이력서 생성
 CREATE SEQUENCE RESUMENO_SEQ NOCACHE;
 CREATE TABLE M_RESUME (
     M_NO NUMBER,
     R_NO   NUMBER,
     R_TITLE   VARCHAR2(100) NOT NULL,
+    R_POSTCODE VARCHAR2(50), --우편번호
+    R_ROADADDRESS VARCHAR2(50), --도로명주소
+    R_JIBUNADDRESS VARCHAR2(50), --지번주소
+    R_DETAILADDRESS VARCHAR2(50), --상세주소
+    R_EXTRAADDRESS VARCHAR2(50), --참고항목
     R_SELFLETTER VARCHAR2(1000) NOT NULL,
     R_PORTFOLIO   VARCHAR2(500) NOT NULL,
     R_IMG   VARCHAR2(100) NOT NULL,
-    R_IMG_PATH VARCHAR2(1000) NOT NULL,   
+    R_IMG_PATH VARCHAR2(1000) NOT NULL,  
+    R_REGDATE DATE NOT NULL,
     
-    CONSTRAINT RESUME_MNO_PK PRIMARY KEY(M_NO),
-    CONSTRAINT RESUME_MNO_FK FOREIGN KEY(M_NO) REFERENCES IT_MEMBER(M_NO) ON DELETE CASCADE,
-    CONSTRAINT RESUME_RNO_UQ UNIQUE(R_NO)
+    CONSTRAINT RESUME_MNO_PK PRIMARY KEY(R_NO),
+    CONSTRAINT RESUME_MNO_FK FOREIGN KEY(M_NO) REFERENCES IT_MEMBER(M_NO) ON DELETE CASCADE
     );
     
     SELECT * FROM M_RESUME;
@@ -169,6 +176,7 @@ CREATE TABLE CAREER (
     CONSTRAINT CAREER_PK PRIMARY KEY(CA_NO),
     CONSTRAINT CAREER_FK FOREIGN KEY(M_NO) REFERENCES IT_MEMBER(M_NO) ON DELETE CASCADE
     );
+    
     SELECT * FROM CAREER;    
     
 --자격증 생성
@@ -189,7 +197,6 @@ CREATE TABLE LICENCE (
     
  
 --학력사항 생성
-
 CREATE SEQUENCE EDUCATION_SEQ NOCACHE;
 CREATE TABLE EDUCATION (
     M_NO NUMBER,
@@ -364,18 +371,6 @@ CREATE TABLE STUDY (
 );
 
 
-/* 스터디 참여 인원 정보 테이블 */
-CREATE TABLE STUDYJOININFO(
-    M_NO NUMBER,
-    BD_NO NUMBER,
-    SJ_JOINDATE DATE,
-    SJ_MESSAGE VARCHAR2(500),
-    SJ_ISJOIN CHAR(1),
-    SJ_ACCEPTDATE DATE,
-    CONSTRAINT STUDYJOININFO_MNOwithBDNO_PK PRIMARY KEY(M_NO,BD_NO)   
-);
-
-
 /* REPLY 테이블,시퀀스 드랍 및 생성 */
 CREATE SEQUENCE GROUPNOSEQ NOCACHE;
 CREATE SEQUENCE REPLYSEQ NOCACHE;
@@ -481,11 +476,7 @@ CREATE TABLE REPORT (
 SELECT * FROM REPORT;
 
  
-SELECT A.REPORT_REPLY_NO, A.M_NO, A.BD_NO, A.RE_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.RE_CONTENT 
-        FROM REPORT_REPLY A
-        JOIN REPLY B 
-        ON A.RE_NO=B.RE_NO
-        ORDER BY REPORT_REPLY_NO DESC;
+
 
 --신고관리_댓글-----------------------------------------
 CREATE SEQUENCE REPORT_REPLY_SEQ NOCACHE;
@@ -573,10 +564,10 @@ select * from BIZ_MEMBER;
 
 
 --개인회원 활동3 정지1                      
-INSERT INTO IT_MEMBER VALUES( 1004, 'user1', '1234', '회원일','010-22222-1111','user1@itpro.com','N','활동','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE, '김회원',to_date('2010-03-05','yyyy-mm-dd'),'남','서울시 강남구 개포동');--개인회원 활동
-INSERT INTO IT_MEMBER VALUES( 1005,'user2','1234','회원이','010-22222-2222','user2@itpro.com','N','활동','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'이회원',to_date('2010-05-05','yyyy-mm-dd'),'남','서울시 서초구 양재동');--개인회원 활동
-INSERT INTO IT_MEMBER VALUES( 1006,'user3','1234','회원삼','010-22222-3333','user3@itpro.com','N','활동','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'박회원',to_date('2008-06-05','yyyy-mm-dd'),'남','서울시 마포구 상암동');--개인회원 활동
-INSERT INTO IT_MEMBER VALUES( 1007,'user4','1234','회원사','010-22222-4444','user4@itpro.com','N','정지','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'유회원',to_date('2009-07-05','yyyy-mm-dd'),'남','서울시 동대문구 전농동 ');--개인회원 정지
+INSERT INTO IT_MEMBER VALUES( 1004, 'user1', '1234', '회원일','010-22222-1111','user1@itpro.com','N','활동','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE, '김회원',to_date('2010-03-05','yyyy-mm-dd'),'남','Y');--개인회원 활동
+INSERT INTO IT_MEMBER VALUES( 1005,'user2','1234','회원이','010-22222-2222','user2@itpro.com','N','활동','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'이회원',to_date('2010-05-05','yyyy-mm-dd'),'남','N');--개인회원 활동
+INSERT INTO IT_MEMBER VALUES( 1006,'user3','1234','회원삼','010-22222-3333','user3@itpro.com','N','활동','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'박회원',to_date('2008-06-05','yyyy-mm-dd'),'남','Y');--개인회원 활동
+INSERT INTO IT_MEMBER VALUES( 1007,'user4','1234','회원사','010-22222-4444','user4@itpro.com','N','정지','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'유회원',to_date('2009-07-05','yyyy-mm-dd'),'남','N');--개인회원 정지
 
 
 --기업회원 인증 2, 미인증 1 INSERT문
@@ -597,7 +588,7 @@ SELECT * FROM DUAL;
 
 --관리자 계정 생성
 INSERT 
-INTO IT_MEMBER VALUES(1003,'admin','1234','admin','01089792300','admin@admin.com','N','활동','Y','관리자','Y','profileimages/','testprofile.jpg',SYSDATE,'관리자',to_date('2010-03-05','yyyy-mm-dd'),'남','서울시 강남구 개포동');
+INTO IT_MEMBER VALUES(1003,'admin','1234','admin','01089792300','admin@admin.com','N','활동','Y','관리자','Y','profileimages/','testprofile.jpg',SYSDATE,'관리자',to_date('2010-03-05','yyyy-mm-dd'),'남','');
 
 
 update IT_MEMBER set M_IMG_PATH='profileimages/';

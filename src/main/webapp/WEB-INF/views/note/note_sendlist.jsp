@@ -14,7 +14,9 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5">
+ 	<div class="container mt-5 mb-5" >
+ 
+		 <h3>보낸 쪽지</h3>
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
         <button class="btn btn-default" onclick="location.href='note_receivelist.do'">받은쪽지</button>
         <button class="btn btn-default" data-bs-toggle="modal" data-bs-target="#sendmessage">쓰기</button>
@@ -53,35 +55,6 @@
         </table>
     </div>
     
-    <!--쪽지 작성창-->
-    <div class="modal fade" id="sendmessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">쪽지 쓰기</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">받는사람:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">내용:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                  <span>보낸시간 : 2021-00-00</span>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="button" class="btn btn-primary">보내기</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
 
 <!-- 본문 종료 -->
