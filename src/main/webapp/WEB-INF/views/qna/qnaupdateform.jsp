@@ -20,7 +20,7 @@
       <form action="qnainsert.do" method="post">
        <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
          <!-- qna 작성 글 영역-->
-        <h3>qna 글 작성</h3>
+        <h3>qna 글 수정</h3>
         <br>
              <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
@@ -42,14 +42,14 @@
             </tr>
 
         </table>
-        <textarea id="summernote" name="bd_content" value="${qnaDetailDto.bd_content }"></textarea>
+        <textarea id="summernote" name="bd_content" ><c:out value="${qnaDetailDto.bd_content }"></c:out></textarea>
         <br>
 
       <!-- QnA 작성 글 영역 종료-->
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
-	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;" onclick="location.href='qnalist.do'">
+	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
 	    <input type="button" value="취소" class="btn btn-primary"  onclick="location.href='qnadetail.do?bd_no=${qnaDetailDto.bd_no }'" style="float:right;" >
 	   </div>
     </form>

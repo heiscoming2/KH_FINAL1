@@ -67,6 +67,7 @@
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
+
 <!-- QNAINSERT 개별 JS -->
 <script type="text/javascript" src="resources/js/qnainsert.js?ver=1.2"></script>
 

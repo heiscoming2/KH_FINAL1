@@ -22,7 +22,11 @@
 		<typeAlias type="com.itpro.model.dto.project.ProjectInsertDto" alias="ProjectInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectDetailDto" alias="ProjectDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.project.ProjectUpdateDto" alias="ProjectUpdateDto"/>
-		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDto" alias="PortfolioDto"/>
+		
+		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioListDto" alias="PortfolioListDto"/>
+		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioInsertDto" alias="PortfolioInsertDto"/>
+		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioDetailDto" alias="PortfolioDetailDto"/>
+		<typeAlias type="com.itpro.model.dto.portfolio.PortfolioUpdateDto" alias="PortfolioUpdateDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.qna.QnaListDto" alias="QnaListDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaInsertDto" alias="QnaInsertDto"/>

@@ -5,31 +5,91 @@
   
 <mapper namespace="Portfolio">
 	
-	<update id="insertlist" parameterType="java.util.List">
-		<foreach item="portfolio" index="index" collection="list" open="INSERT ALL " close="SELECT * FROM DUAL" separator=" ">
-		INSERT INTO PORTFOLIO 
-		VALUES
-		(#{project.port_prize},
-		 #{project.port_develop},
-		 #{project.port_name},
-		 #{project.port_edu},
-		 #{project.port_email},
-		 #{project.port_phone},
-		 #{project.port_link},
-		 #{project.port_title},
-		 #{project.port_edu_start},
-		 #{project.port_edu_end})
-		 
-
-		</foreach>
-	</update>
+	<insert id="insert" parameterType="PortfolioInsertDto">
+		INSERT ALL
+		INTO BOARD 
+		VALUES (
+		BOARDSEQ.NEXTVAL,
+		#{bd_title},
+		#{bd_content},
+		SYSDATE,
+		NULL,
+		0,
+		#{bd_writerip},
+		7,
+		${m_no}) 
+		INTO PORTFOLIO 
+		VALUES (
+		BOARDSEQ.CURRVAL,
+		#{port_prize},
+		#{port_develop},
+		#{port_link})
+		SELECT * FROM DUAL
+	</insert>
 	
-	<delete id="deletelist">
-		DELETE FROM PORTFOLIO
+	
+	
+	<select id="selectList" resultType="PortfolioListDto" parameterType="hashMap">		 
+		 SELECT * 
+		FROM
+       		  (SELECT ROWNUM RN, A.* 
+       		   FROM (
+                       SELECT B.BD_NO, P.PORT_DEVELOP, P.PORT_LINK, P.PORT_PRIZE,
+           			   DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+              		   DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
+		               M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+                       FROM BOARD B, PORTFOLIO P, IT_MEMBER M , 
+                           (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                           (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+		               WHERE B.BD_NO = P.BD_NO 
+		               AND B.BC_CODE=7
+		               AND B.M_NO = M.M_NO
+                       AND RE.BD_NO(+) = B.BD_NO
+                       AND BR.BD_NO(+) = B.BD_NO
+		               ORDER BY B.BD_CREATEDDATE DESC, B.BD_NO DESC) A  
+		       		   ORDER BY RN ASC) 
+		WHERE RN BETWEEN #{start} AND #{end}
+       
+	</select>
+	
+	<select id="selectone" resultType="ProjectDetailDto" parameterType="int">
+		SELECT M.M_NO, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
+		       B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
+		       P.PORT_DEVELOP, P.PORT_LINK, P.PORT_PRIZE
+		FROM BOARD B, PORTFOLIO P, IT_MEMBER M
+		WHERE B.BD_NO = P.BD_NO
+		  AND B.M_NO = M.M_NO
+		  AND B.BD_NO = #{bd_no}
+	</select>
+	
+	
+	<select id="selectlistcnt" resultType="int">
+		SELECT COUNT(BD_NO)
+		FROM BOARD
+		WHERE BC_CODE=7
+	</select>
+	
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM PORTFOLIO WHERE BD_NO = #{bd_no}
 	</delete>
 	
-	<select id="selectList" resultType="PortfolioDto">
-		SELECT * FROM PORTFOLIO
-	</select>
+	<update id="update" parameterType="PortfolioUpdateDto">	
+		UPDATE BOARD AS B, PORTFOLIO AS P
+		SET 	
+			B.BD_TITLE = #{bd_title},
+
+			P.PORT_DEVELOP = #{port_develop},
+			P.PORT_LINK = #{port_link},
+			P.PORT_PRIZE = #{port_prize}
+
+		WHERE B.M_NO = #{m_no}
+		AND P.BD_NO = #{bd_no}
+	
+	</update>
+	
+	
+	
 	
 </mapper>

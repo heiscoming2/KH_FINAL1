@@ -7,6 +7,10 @@
   });
   
   
-  /**/
-  
-  /*댓글 수정 시 썸머노트 해당 div에 썸머노트 적용*/
+  /* 게시글 삭제 버튼 클릭 confirm*/
+  function delConfirm(bd_no) {
+	  let delconfirm = confirm('정말 삭제하시겠습니까?');
+	  if(delconfirm) {
+		  location.href='qnadelete.do?bd_no='+bd_no;
+	  }
+  }

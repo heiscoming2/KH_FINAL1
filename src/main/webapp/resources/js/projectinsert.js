@@ -18,11 +18,11 @@ var html = `
 			<table id="project_table_${num}" class="project_inserttable">
             <tr>
               <th><span>* </span>제목</th>
-              <td><input type=text class="form-control" name="bd_title" id="bd_title_${num}"></td>
+              <td><input type="text" class="form-control" name="bd_title" id="bd_title_${num}"></td>
             </tr>
             <tr>
             <th><span>* </span>설명 </th>
-            <td><input type=text name="bd_content" id="bd_content_${num}"></td>
+            <td><input type="text" class="form-control" name="bd_content" id="bd_content_${num}"></td>
             </tr>
             
             <tr>
@@ -59,6 +59,7 @@ var html = `
             <th><span>* </span>구현 기능 </th>
             <td><textarea name="pro_function" id="pro_function_${num}"></textarea></td>
             </tr>
+            <hr>
             </table>
             `;
             $("#project_insert").append(html);

@@ -81,7 +81,7 @@
 	<script src="resources/js/summernote/summernote-lite.js"></script>
 	<script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 	<!-- PROJECTINSERT 개별 JS -->
-	<script type="text/javascript" src="resources/js/projectinsert.js?ver=1.5"></script>
+	<script type="text/javascript" src="resources/js/projectinsert.js?ver=1.4"></script>
 
 
 </body>

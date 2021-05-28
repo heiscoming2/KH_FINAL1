@@ -61,14 +61,9 @@
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
               <input type="button" value="수정" class="btn btn-primary" onclick="location.href='qnaupdateform.do?bd_no=${dto.bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary">
+              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
-<!--            필수 입력 정보 노출 시작
-            <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
-              첨부 파일: 111.zip
-            </div>
-            필수 입력 정보 노출 종료 -->
             <br>
             <!-- 글 내용 시작 -->
             <div class="detail_content">
@@ -127,7 +122,8 @@
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
-<script type="text/javascript" src="resources/js/qnadetail.js"></script>
+<!-- qna 디테일 js -->
+<script type="text/javascript" src="resources/js/qnadetail.js?ver=1.1"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

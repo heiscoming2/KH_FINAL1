@@ -6,7 +6,7 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <link rel="stylesheet" href="resources/css/portfoliolist.css">
-<title>포트폴리오/프로젝트</title>
+<title>Portfolio</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -25,11 +25,13 @@
 			<col width="80px;">
 			<col width="500px;">
 			<col width="80px;">
+			<col width="80px;">
 			<col width="200px;">
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
-				<th>조회수</th>
+				<th>추천</th>
+				<th>조회</th>
 				<th>작성자/작성일</th>
 			</tr>
         
@@ -43,25 +45,27 @@
 					</c:when>
 					<c:otherwise>
 
-                  	<c:forEach var="portfolioDto" items="${portfolioList }">
+                  	<c:forEach var="dto" items="${portfolioList }">
 							<!-- 글 번호 시작 --> 
-							<td>${portfolioDto.bd_no} </td>
-							<td>${portfolioDto.port_name } </td>
-							<td>${portfolioDto.port_prize }</td>
+							<td>${dto.bd_no} </td>
+							<td>${dto.port_develop} </td>
+							<td>${dto.port_link} </td>
+							<td>${dto.port_prize} </td>
+							
 							<td>
 							    <div class="portfolio_profile">
-									<img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-									<div class="portfolio_writer"> 
-										<a id="dropdownUser" data-bs-toggle="dropdown"> 
-											${portfolioDto.port_name} 
-										</a> 
+									<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+									<div class="qna_writer"> 
+										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+											${dto.m_nickname }
+										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-										<ul aria-labelledby="dropdownUser">
-											<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+											<li><a class="dropdown-item" href="#">쪽지 보내기</a></li>
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="portfolio_regdate"> ${portfolioDto.port_edu_start } </span>
+									<span class="qna_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
 						</c:forEach>
@@ -86,7 +90,6 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js"></script>
-<script type=text/javascript src="resources/js/address.js"></script>
+
 </body>
 </html>

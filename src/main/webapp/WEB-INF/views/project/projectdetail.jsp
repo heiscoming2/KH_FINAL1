@@ -64,7 +64,7 @@
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
               <input type="button" value="수정" class="btn btn-primary" onclick="location.href='projectupdateform.do?bd_no=${list.get(0).bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary"> <!-- 수정 필요!!!!! -->
+              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
             <!-- 필수 입력 정보 노출 시작 -->

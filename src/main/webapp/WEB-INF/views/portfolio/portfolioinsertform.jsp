@@ -18,17 +18,18 @@
 <!-- 본문 시작 -->
     <div class="portfolio_insertwrap">
       <form action="portfolioinsert.do" method="post">
+      <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
          <!-- 포트폴리오 작성 글 영역-->
         <h3>포트폴리오 글 작성</h3>
         <br>
               <!-- 프로필이미지, 아이디, 작성일 div -->
-              <div>
+             <div>
                 <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                   style="float: left;">
                 <div style="position: relative; top:5px;">
                   <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
                     style="font-size:15px;">
-                    leehj
+                    ${sessionScope.login.m_nickname}
                   </a>
                 </div>
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
@@ -39,7 +40,7 @@
           <h5><b>포트폴리오</b></h5>
             <tr>
               <th><span>* </span>제목</th>
-              <td><input type="text" class="form-control" placeholder="제목을 입력해 주세요."></td>
+              <td><input type="text" class="form-control" name="bd_title" placeholder="제목을 입력해 주세요."></td>
             </tr>
             <tr>
               <th><span>* </span>이름 </th>
@@ -73,15 +74,15 @@
             </tr>
             <tr>
               <th><span>* </span>사용 개발 기술 </th>
-              <td><input type="text" class="form-control" placeholder="ex) Java, Oracle 등"></td>
+              <td><input type="text" class="form-control" name="port_develop" placeholder="ex) Java, Oracle 등"></td>
             </tr>
             <tr>
               <th><span>* </span>포트폴리오 링크 </th>
-              <td><input type="text" class="form-control" placeholder="ex) https://www.ITPro.com"></td>
+              <td><input type="text" class="form-control" name="port_link" placeholder="ex) https://www.ITPro.com"></td>
             </tr>
             <tr>
               <th><span>* </span>수상 내역 </th>
-              <td><input type="text" class="form-control" placeholder="수상 내역을 입력해 주세요."></td>
+              <td><input type="text" class="form-control" name="port_prize" placeholder="수상 내역을 입력해 주세요."></td>
             </tr>
           </table>
 
@@ -113,6 +114,9 @@
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
+
+<!-- 포트폴리오 insert 개별 JS -->
+<script type="text/javascript" src="resources/js/portfolioinsert.js?ver=1.2"></script>
 
 
 </body>

@@ -8,6 +8,6 @@ $(document).ready(function(){
   function delConfirm(bd_no) {
 	  let delconfirm = confirm('정말 삭제하시겠습니까?');
 	  if(delconfirm) {
-		  location.href='studydelete.do?bd_no='+bd_no;
+		  location.href='projectdelete.do?bd_no='+bd_no;
 	  }
   }
