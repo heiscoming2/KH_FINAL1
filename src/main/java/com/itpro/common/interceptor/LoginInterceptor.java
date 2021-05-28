@@ -146,8 +146,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}//기업회원 승인 전 접근X
 		
-		
-		
 		return true;
 
 	}
