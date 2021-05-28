@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,10 +36,12 @@ import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class StudyController {
 	
-	private Logger logger = LoggerFactory.getLogger(StudyController.class);
 	
 	@Autowired
 	private StudyBiz studyBiz;
@@ -57,7 +57,7 @@ public class StudyController {
 	
 	@RequestMapping(value="/studylist.do")
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
-		logger.info("STUDY LIST");
+		log.info("STUDY LIST");
 		if(session.getAttribute("login")!=null) {
 			MemberDto login = (MemberDto) session.getAttribute("login");
 		}
@@ -84,13 +84,13 @@ public class StudyController {
 	
 	@RequestMapping(value="/studyinsertform.do")
 	public String studyInsertForm() {
-		logger.info("STUDY INSERT FORM");
+		log.info("STUDY INSERT FORM");
 		return "studyboard/studyinsertform";
 	}
 	
 	@RequestMapping(value="/studyinsert.do")
 	public String studyInsert(HttpServletRequest request, HttpServletResponse response, StudyInsertDto studyDto) {
-		logger.info("STUDY INSERT");
+		log.info("STUDY INSERT");
 		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 StudyDto에 저장
 		studyDto.setBd_writerip(new ClientInfo().getClientIp(request));
 		studyBiz.studyInsert(studyDto);
@@ -99,7 +99,7 @@ public class StudyController {
 	
 	@RequestMapping(value="/studydetail.do")
 	public String studyDetail(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
-		logger.info("STUDY DETAIL");
+		log.info("STUDY DETAIL");
 		
 		//로그인 세션이있으면 회원번호를 꺼내서 해당 게시물 추천여부를 model에 담아준다. 
 		if(session.getAttribute("login")!=null) {
@@ -117,24 +117,51 @@ public class StudyController {
 			boardBiz.updateviewcount(bd_no);
 		}
 		
-		
 		//스터디 selectone해서 model에 담아준다.
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("dto",studyDetailDto);
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
-		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
 		model.addAttribute("replyCnt", replyCnt);
 		
+		//이 부분 나중에 num 받아올때 깔끔하게 변경좀 해주어야한다. 
+		//스터디 참여 정보를 모두 받아와 model에 담아준다.
+		List<StudyJoinInfoDto> studyJoinInfoList = studyBiz.studyJoinInfoSelectList(bd_no);
+		//스터디 참여 정보 list를 돌면서
+		//참여 중인 인원수와 참여 대기 중인 인원수를 뽑은 후에
+		//model에 담아준다.
+		int joinnednum = 0; //스터디 참여 중인 인원수
+		int applynum = 0; //스터디 참여 대기 중인 인원수
+		for(StudyJoinInfoDto dto : studyJoinInfoList) {
+			if(dto.getSj_isjoin().equals("y")) {
+				joinnednum++;
+			} else {
+				applynum++;
+			}
+		}
+		log.info("joinnednum : "+Integer.toString(joinnednum));
+		log.info("applynum : "+Integer.toString(applynum));
+		model.addAttribute("joinnednum",joinnednum);
+		model.addAttribute("applynum",applynum);
 		return "studyboard/studydetail";
+	}
+	
+	@RequestMapping(value="/studyjoininfolist.do")
+	@ResponseBody
+	public List<StudyJoinInfoDto> studyJoinInfoList(@RequestBody StudyJoinInfoDto studyJoinInfodto) {
+		List<StudyJoinInfoDto> studyJoinInfoList = studyBiz.studyJoinInfoSelectList(studyJoinInfodto);
+		for(StudyJoinInfoDto dto : studyJoinInfoList) {
+			log.info(dto.toString());
+		}
+		return studyJoinInfoList;
 	}
 	
 	@RequestMapping(value="/studyupdateform.do")
 	public String studyUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
-		logger.info("STUDY UPDATE FORM");
+		log.info("STUDY UPDATE FORM");
 		StudyDetailDto studyDetailDto = studyBiz.selectOne(bd_no);
 		model.addAttribute("studyDetailDto",studyDetailDto);
 		return "studyboard/studyupdateform";
@@ -142,10 +169,10 @@ public class StudyController {
 	
 	@RequestMapping(value="/studyupdate.do")
 	public String studyUpdate(Model model, StudyUpdateDto studyUpdateDto, BoardUpdateDto boardUpdateDto) {
-		logger.info("STUDY UPDATE");
+		log.info("STUDY UPDATE");
 		
 		int studyUpdateRes = studyBiz.update(studyUpdateDto,boardUpdateDto);
-		logger.info(Integer.toString(studyUpdateRes));
+		log.info(Integer.toString(studyUpdateRes));
 		if(studyUpdateRes>0) {
 			int bd_no = studyUpdateDto.getBd_no();
 			return "redirect:studydetail.do?bd_no="+bd_no;
@@ -163,13 +190,13 @@ public class StudyController {
 		studyDetailDto.setSt_addrdetail(studyUpdateDto.getSt_addrdetail());
 		studyDetailDto.setBd_content(boardUpdateDto.getBd_content());
 		model.addAttribute("studyDetailDto",studyDetailDto);
-		logger.info("업데이트 실패");
+		log.info("업데이트 실패");
 		return "studyboard/studyupdateform";
 	}	
 	
 	@RequestMapping(value="/studydelete.do")
 	public String studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
-		logger.info("STUDY DELETE");
+		log.info("STUDY DELETE");
 		int studyDeleteRes = studyBiz.delete(bd_no);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -184,7 +211,7 @@ public class StudyController {
 
 	@RequestMapping(value="/studysearch.do")
 	public String studySearch(Model model, StudySearchDto studySearchDto) {
-		logger.info("STUDY SEARCH");
+		log.info("STUDY SEARCH");
 		
 		//페이징 처리를 위해 갯수를 얻어온다.
 		int studySearchListCnt = studyBiz.getStudyListSearchCnt(studySearchDto);
@@ -209,7 +236,7 @@ public class StudyController {
 	@RequestMapping(value="/studystatchange.do")
 	@ResponseBody
 	public boolean studyStatchange(@RequestBody Map<String,Object> map) {
-		logger.info("studychange");
+		log.info("studychange");
 		int bd_no = Integer.parseInt(map.get("bd_no").toString());
 		System.out.println(bd_no);
 		int res = studyBiz.updatestatus(bd_no);
@@ -220,12 +247,50 @@ public class StudyController {
 	
 	@RequestMapping(value="/studyjoinapply.do")
 	@ResponseBody
-	public Map<String,String> studyJoinApply(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
-		logger.info("studyjoinapply");
-		logger.info(studyJoinInfoDto.toString());
-		int res = studyBiz.studyJoinApplyInsert(studyJoinInfoDto);
-		return null;
+	public Map<String,Object> studyJoinApply(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
+		
+		//참여신청 이력이 있는지 먼저 조회한다.
+		//없는경우 참여신청 insert
+		//이미 있는 경우 쿼리 수행 없이 return
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		int res1 = studyBiz.studyJoinApplySelectOne(studyJoinInfoDto);
+		log.info("res1 : "+Integer.toString(res1));
+		if(res1==1) {
+			map.put("msg", "이미 참여 중 or 참여 신청한 스터디 입니다.");
+		} else {
+			int res = studyBiz.studyJoinApplyInsert(studyJoinInfoDto);
+			map.put("msg","참여 신청하였습니다.");
+			map.put("stat", ".");
+		}
+		return map;
+		
+		
 	}	
 	
+	@RequestMapping(value="/studyjoindrop.do")
+	@ResponseBody
+	public Map<String,Object> studyJoinDrop(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		int res = studyBiz.studyJoinDelete(studyJoinInfoDto);
+		if(res>0) {
+			map.put("stat", ".");
+		} 
+		return map;
+	}	
 	
+	@RequestMapping(value="/studyjoinaccept.do")
+	@ResponseBody
+	public Map<String,Object> studyJoinAccept(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		int res = studyBiz.studyJoinAccept(studyJoinInfoDto);
+		if(res>0) {
+			map.put("stat", ".");
+		} 
+		return map;
+	}		
 }

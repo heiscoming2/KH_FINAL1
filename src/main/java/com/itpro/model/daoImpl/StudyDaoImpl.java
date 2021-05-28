@@ -17,13 +17,15 @@ import com.itpro.model.dto.study.StudyListDto;
 import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class StudyDaoImpl implements StudyDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private Logger logger = LoggerFactory.getLogger(StudyDaoImpl.class);
 	
 	@Override
 	public List<StudyListDto> selectList(Map<String,Object> studyPageMap) {
@@ -128,6 +130,7 @@ public class StudyDaoImpl implements StudyDao {
 
 	@Override
 	public int studyJoinApplyInsert(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinApplyInsert DaoImpl");
 		int res = 0;
 		try {
 			res = sqlSession.insert(NAMESPACE+"studyjoinapplyinsert",studyJoinInfoDto);
@@ -136,6 +139,66 @@ public class StudyDaoImpl implements StudyDao {
 		}
 		return res;
 	}
-	
 
+	@Override
+	public int studyJoinApplySelectOne(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinApplySelectOne DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"studyjoinapplyselectone",studyJoinInfoDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(int bd_no) {
+		log.info("studyJoinInfoSelectListCnt DaoImpl");
+		List<StudyJoinInfoDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"studyjoininfoselectlistcnt",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(StudyJoinInfoDto studyJoinInfodto) {
+		log.info("studyJoinInfoSelectList DaoImpl");
+		List<StudyJoinInfoDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"studyjoininfoselectlist",studyJoinInfodto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int studyJoinDelete(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinDelete DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"studyjoindelete",studyJoinInfoDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinAccept DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"studyjoinaccept",studyJoinInfoDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	
 }

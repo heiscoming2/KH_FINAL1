@@ -72,23 +72,264 @@ $(document).ready(function(){
 			  "sj_message":sj_message
 	  }
 	  
+	  $("input[name='sj_message']").val('');
+
 	  $.ajax({
 		 type:"post",
 		 url:"studyjoinapply.do",
 		 dataType:"json",
 		 data:JSON.stringify(data),
 		 contentType:"application/json",
-		 success:function() {
-			 
+		 success:function(data) {
+			 alert(data.msg);
+			 if(data.stat!=null) {
+				 $('.applynum').text( Number($('.applynum').text())+1 );
+			 }
 		 },
-		 error:function() {
-			 alert('오류발생')
+		 error:function(e) {
+			 console.log("오류정보 : "+e);
+			 alert('오류발생');
+		 }
+	  });
+  }
+
+  
+  function studyJoinList(bd_no,sj_isjoin) {
+	  
+	  let data = {
+			  "bd_no":bd_no,
+			  "sj_isjoin":sj_isjoin
+	  }
+	  
+	  $.ajax({
+		 type:"post",
+		 url:"studyjoininfolist.do",
+		 data:JSON.stringify(data),
+	  	 dataType:"json",
+		 contentType:"application/json",
+		 success:function(data) {
+			 let list = data
+			 let bd_mno = $('#bd_mno').val();
+			 let session_mno = $('#session_mno').val();
+			 
+			 if(sj_isjoin=='n') {
+				 
+				 //참여 승인 대기를 보여주는 영역
+				 //m_no와 현재 세션으로 넘어온 m_no가 일치한다면
+				 //수락 거절 버튼이 있는 html을 추가한다.
+				 
+				 if(bd_mno==session_mno) {
+					 $.each(list,function(index,value){
+						 $('.studyjoinapplylist').append
+						 ("<div class='profile_wrap"+value.m_no+"'><br>" +
+								 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+								 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+								 "<br><br>"+
+								 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+								 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+								 value.m_nickname+
+								 "</a><br><span>"+value.sj_message+"</span>"+
+								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+								 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul><br>"+
+								 "<input type='button' class='btn-sm btn-primary btn-studyjoin' value='수락' " +
+								 "onclick='studyJoinAccept("+value.m_no+","+bd_no+");'>"+
+								 "&nbsp;<input type='button' class='btn-sm btn-danger btn-studyjoin' value='거절' " +
+								 "onclick='studyJoinReject("+value.m_no+","+bd_no+");'><br></div>"
+						 );
+					 });
+					 $('.btn-applynum').attr('onclick','studyJoinApplyListToggle();');
+				 } else {
+					 $.each(list,function(index,value){
+						 $('.studyjoinapplylist').append
+						 ("<div class='profile_wrap'><br>" +
+								 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+								 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+								 "<br><br>"+
+								 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+								 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+								 value.m_nickname+
+								 "</a><br><span>"+value.sj_message+"</span>"+
+								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+								 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul></div>"
+						 );
+					 });
+					 $('.btn-applynum').attr('onclick','studyJoinApplyListToggle();');
+				 }
+				 
+				 
+			 } else {
+				 //참여중인 인원을 보여주는 영역
+				 //글작성자라면
+				 //버튼에 추방을 추가한다.
+				 if(bd_mno==session_mno) {
+					 $.each(list,function(index,value){
+						 $('.studyjoinnedlist').append
+						 ("<div class='profile_wrap"+value.m_no+"'><br>" +
+								 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+								 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+								 "<br><br>"+
+								 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+								 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+								 value.m_nickname+
+								 "</a><br><span>"+value.sj_message+"</span>"+
+								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+								 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul><br>"+
+								 "<input type='button' class='btn-sm btn-danger btn-studyjoin' value='추방' " +
+								 "onclick='studyJoinDrop("+value.m_no+","+bd_no+");'><br></div>"
+						 );
+					 });
+					 $('.btn-joinnednum').attr('onclick','studyJoinListToggle();');
+				 } else {
+					 $.each(list,function(index,value){
+						//value.m_no와 세션에 있는 m_no가 같다면 (본인이라면)
+						 //탈퇴 버튼이 있는 html을 추가한다.
+						 if(value.m_no==session_mno) {
+							 $('.studyjoinnedlist').append
+							 ("<div class='profile_wrap"+value.m_no+"'><br>" +
+									 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+									 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+									 "<br><br>"+
+									 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+									 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+									 value.m_nickname+
+									 "</a><br><span>"+value.sj_message+"</span>"+
+									 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+									 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+									 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul><br>"+
+									 "<input type='button' class='btn-sm btn-danger btn-studyjoin' value='탈퇴' " +
+									 "onclick='studyJoinWithdraw("+value.m_no+","+bd_no+");'><br></div>"
+							 );
+						 } else {
+							 $('.studyjoinnedlist').append
+							 ("<div class='profile_wrap'><br>" +
+									 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+									 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+									 "<br><br>"+
+									 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+									 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+									 value.m_nickname+
+									 "</a><br><span>"+value.sj_message+"</span>"+
+									 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+									 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+									 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul></div>"
+							);		 
+						 }
+					 });
+					 $('.btn-joinnednum').attr('onclick','studyJoinListToggle();');
+				 }
+			 }
 		 }
 	  });
   }
   
+  //참여인원 조회 토글
   function studyJoinListToggle() {
-	  $('.studyjoinlist').toggle();
+	  $('.studyjoinnedlist').toggle();
   }
   
+  //참여승인대기 조회 토글
+  function studyJoinApplyListToggle() {
+	  $('.studyjoinapplylist').toggle();
+  }  
   
+  
+
+		 
+		 
+  //스터디 추방
+  function studyJoinDrop(m_no,bd_no) {
+	  $.ajax({
+		  type:"post",
+		  url:"studyjoindrop.do",
+		  data:JSON.stringify({"m_no":m_no,"bd_no":bd_no}),
+		  dataType:"json",
+		  contentType:"application/json",
+		  success:function(data) {
+			  if(data.stat!=null) {
+				  alert('추방 하였습니다');
+				  $('.studyjoinnedlist > .profile_wrap'+m_no).remove();
+				  $('.joinnednum').text( Number($('.joinnednum').text())-1 );
+			  } else {
+				  alert('알 수 없는 오류로 추방에 실패하였습니다. 관리자에게 문의하세요.');
+			  }
+		  },
+		  error:function(e) {
+			 console.log("오류정보 : "+e);
+			 alert('오류발생');	  
+		  }
+	  });
+  }
+
+  //스터디 탈퇴
+  function studyJoinWithdraw(m_no,bd_no) {
+	  $.ajax({
+		  type:"post",
+		  url:"studyjoindrop.do",
+		  data:JSON.stringify({"m_no":m_no,"bd_no":bd_no}),
+		  dataType:"json",
+		  contentType:"application/json",
+		  success:function(data) {
+			  if(data.stat!=null) {
+				  alert('탈퇴 하였습니다');
+				  $('.studyjoinnedlist > .profile_wrap'+m_no).remove();
+				  $('.joinnednum').text( Number($('.joinnednum').text())-1 );
+			  } else {
+				  alert('알 수 없는 오류로 탈퇴에 실패하였습니다. 관리자에게 문의하세요.');
+			  }
+		  },
+		  error:function(e) {
+			 console.log("오류정보 : "+e);
+			 alert('오류발생');			  
+		  }
+	  });
+  }
+  
+  //스터디 참여 거절
+  function studyJoinReject(m_no,bd_no) {
+	  $.ajax({
+		  type:"post",
+		  url:"studyjoindrop.do",
+		  data:JSON.stringify({"m_no":m_no,"bd_no":bd_no}),
+		  dataType:"json",
+		  contentType:"application/json",
+		  success:function(data) {
+			  if(data.stat!=null) {
+				  alert('참여거절 하였습니다');
+				  $('.studyjoinapplylist > .profile_wrap'+m_no).remove();
+				  $('.applynum').text( Number($('.applynum').text())-1 );
+			  } else {
+				  alert('알 수 없는 오류로 거절에 실패하였습니다. 관리자에게 문의하세요.');
+			  }			  
+		  },
+		  error:function(e) {
+			 console.log("오류정보 : "+e);
+			 alert('오류발생');			  
+		  }
+	  });
+  }  
+  
+  //스터디 참여 승인
+  function studyJoinAccept(m_no,bd_no) {
+	  $.ajax({
+		  type:"post",
+		  url:"studyjoinaccept.do",
+		  data:JSON.stringify({"m_no":m_no,"bd_no":bd_no}),
+		  dataType:"json",
+		  contentType:"application/json",
+		  success:function(data) {
+			  if(data.stat!=null) {
+				  alert('참여승인 하였습니다');
+				  $('.studyjoinapplylist > .profile_wrap'+m_no).remove();
+				  $('.applynum').text( Number($('.applynum').text())-1 );
+				  $('.joinnednum').text( Number($('.joinnednum').text())+1 );
+			  }
+		  },
+		  error:function(e) {
+			 console.log("오류정보 : "+e);
+			 alert('오류발생');			  
+		  }
+	  });
+  }

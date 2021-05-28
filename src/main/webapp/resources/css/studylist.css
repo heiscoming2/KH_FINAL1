@@ -141,3 +141,9 @@
 .bd_no > a{
 	margin-left:10px;
 }
+
+
+.study_wrap tr:hover{
+	background-color: rgb(220, 245, 255);
+}
+

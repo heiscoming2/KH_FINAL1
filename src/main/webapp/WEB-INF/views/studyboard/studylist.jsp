@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/studylist.css?ver=1.1">
+<link rel="stylesheet" href="resources/css/studylist.css?ver=1.3">
 <title>IT PRO 스터디 글 목록</title>
 </head>
 <body>
