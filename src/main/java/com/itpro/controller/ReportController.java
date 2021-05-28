@@ -104,24 +104,38 @@ public class ReportController {
 		return "report/reportlist";
 	}
 	
-	//report detail
+	//report detail = selectOne
 	@RequestMapping(value="/reportdetail.do")
-	public String reportdetail(Model model, int bd_no) {
+	public String reportdetail(Model model,@RequestParam("report_no") int report_no) {
 		logger.info("REPORT DETAIL");
 		
-		model.addAttribute("dto", rebiz.selectOne(bd_no));
+		model.addAttribute("dto", rebiz.selectOne(report_no));
 		
 		return "report/reportdetail";
 	}
 	
-	@RequestMapping(value = "/category")
-	public @ResponseBody String getCategory() {
+	//report delete
+	@RequestMapping(value="/reportdelete.do")
+	public String reportDelete(Model model, int report_no,HttpServletResponse response) throws IOException {
+		logger.info("REPORT DELETE");
+		int reportDeleteRes = rebiz.delete(report_no);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('삭제 되었습니다.');");
+		out.print("location.href='reportlist.do';");
+		out.print("</script>");
+		return null;
 		
-		List<BoardCategoryDto> category=categorybiz.selectList(); 
-		
-		return new Gson().toJson(category);
+		}
 	
-	}
+		
+	
+	
+	
+	
+	
 	
 	
 	////////////////신고 part_댓글//////////////////////
@@ -183,13 +197,35 @@ public class ReportController {
 	
 	//reportreply detail
 	@RequestMapping(value="/reportreplydetail.do")
-	public String reportreplydetail(Model model, @RequestParam("re_no") int re_no) {
+	public String reportreplydetail(Model model, @RequestParam("report_reply_no") int report_reply_no) {
 		logger.info("REPORT reply DETAIL");
 		
-		model.addAttribute("dto", rerebiz.selectOne(re_no));
+		model.addAttribute("dto", rerebiz.selectOne(report_reply_no));
 		
 		return "report/reportreplydetail";
 	}
+	
+	//reportreply delete
+	@RequestMapping(value="/reportreplydelete.do")
+	public String reportreplyDelete(Model model, int report_reply_no,HttpServletResponse response) throws IOException {
+		logger.info("REPORT REPLY DELETE");
+		int reportreplyDeleteRes = rerebiz.delete(report_reply_no);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('삭제 되었습니다.');");
+		out.print("location.href='reportreplylist.do';");
+		out.print("</script>");
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

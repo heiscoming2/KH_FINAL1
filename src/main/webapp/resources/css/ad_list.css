@@ -1,0 +1,92 @@
+.ad_wrap {
+	width:1190px;
+	margin:0 auto;
+}
+
+/* 게시판 버튼 wrap 영역 잡기 */
+.ad_btnwrap {
+    float:left;
+    margin-bottom: 10px;
+}
+
+.ad_table {
+    width:1190px; 
+}
+
+/* 글 번호 span 영역 css */
+.ad_no {
+	
+    vertical-align: middle;
+
+}
+
+/* 글 번호 a태그 css */
+.ad_no > a {
+    font-size: 15px; 
+    color: rgb(112, 112, 112) !important;
+}
+
+/* 글 제목(+댓글) wrap */
+.ad_title {
+    vertical-align: middle;
+}
+
+/* 글 제목 */
+.ad_title > a {
+    font-size: 15px; 
+    color: #212529;
+}
+
+/* 댓글 */ 
+.ad_title > a > span {
+    color:green; 
+    font-weight: bold;
+}
+
+/* 프로필 영역 wrap */
+.ad_profile {
+    width:250px; 
+    vertical-align: middle; 
+}
+
+/* 프로필 이미지 영역 잡기 */
+.ad_profile > img {
+    float: left; 
+    margin-top: 5px;
+}
+
+/* 프로필 아이디 영역 */
+.ad_profile > .qna_writer {
+    position: relative; 
+    top:5px;
+    font-size:15px;
+}
+
+/* 프로필 작성일 영역 */
+.ad_profile > .qna_regdate {
+	text-align:right;
+    font-size: 13px; 
+    color:rgb(112, 112, 112); 
+    position: relative; 
+    bottom:2px;
+}
+
+.float_left {
+	float:left;
+}
+
+.ad_table td {
+	padding:0 !important;
+	margin:0 !important;
+	vertical-align:middle !important;
+}
+
+.ad_table th {
+	font-size:12px;
+	padding:8px 0px !important;
+	font-weight:100 !important;
+	color:#616161;
+	background-color:#fafafa !important;
+	border-top:1px solid skyblue;
+	border-bottom:1px solid skyblue !important;
+}

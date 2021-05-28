@@ -12,6 +12,6 @@ public interface ReportReplyBiz {
 	public int insertreportform(ReportReplyDto dto);
 	public int getReportReplyCnt();
 	public ReportReplyDto select2(int re_no);
-	
+	public int delete(int report_reply_no);
 
 }

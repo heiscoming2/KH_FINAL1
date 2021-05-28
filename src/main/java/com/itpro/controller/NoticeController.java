@@ -74,6 +74,8 @@ public class NoticeController {
 		return "notice/noticelist";
 	}
 	
+	
+	
 	@RequestMapping(value="/noticeinsertform.do")
 	public String noticeInsertForm() {
 		logger.info("NOTICE INSERT FORM");
