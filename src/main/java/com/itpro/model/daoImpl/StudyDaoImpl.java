@@ -130,7 +130,6 @@ public class StudyDaoImpl implements StudyDao {
 
 	@Override
 	public int studyJoinApplyInsert(StudyJoinInfoDto studyJoinInfoDto) {
-		
 		log.info("studyJoinApplyInsert DaoImpl");
 		int res = 0;
 		try {
@@ -143,7 +142,7 @@ public class StudyDaoImpl implements StudyDao {
 
 	@Override
 	public int studyJoinApplySelectOne(StudyJoinInfoDto studyJoinInfoDto) {
-		log.info("studyJoinApplySelectOne");
+		log.info("studyJoinApplySelectOne DaoImpl");
 		int res = 0;
 		try {
 			res = sqlSession.selectOne(NAMESPACE+"studyjoinapplyselectone",studyJoinInfoDto);
@@ -155,15 +154,27 @@ public class StudyDaoImpl implements StudyDao {
 
 	@Override
 	public List<StudyJoinInfoDto> studyJoinInfoSelectList(int bd_no) {
-		log.info("studyJoinInfoSelectList");
+		log.info("studyJoinInfoSelectListCnt DaoImpl");
 		List<StudyJoinInfoDto> list = null;
 		try {
-			list = sqlSession.selectList(NAMESPACE+"studyjoininfoselectlist",bd_no);
+			list = sqlSession.selectList(NAMESPACE+"studyjoininfoselectlistcnt",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(StudyJoinInfoDto studyJoinInfodto) {
+		log.info("studyJoinInfoSelectList DaoImpl");
+		List<StudyJoinInfoDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"studyjoininfoselectlist",studyJoinInfodto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
 	
-
+	
 }

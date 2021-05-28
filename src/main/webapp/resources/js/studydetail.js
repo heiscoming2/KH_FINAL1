@@ -79,9 +79,9 @@ $(document).ready(function(){
 		 data:JSON.stringify(data),
 		 contentType:"application/json",
 		 success:function(data) {
-			 alert(data.msg)
-			 if(data.dto!=null) {
-				 location.reload();
+			 alert(data.msg);
+			 if(data.stat!=null) {
+				 $('.applynum').text( Number($('.applynum').text())+1 );
 			 }
 		 },
 		 error:function(e) {
@@ -90,11 +90,70 @@ $(document).ready(function(){
 		 }
 	  });
   }
+
+  
+  function studyJoinList(bd_no,sj_isjoin) {
+	  
+	  let data = {
+			  "bd_no":bd_no,
+			  "sj_isjoin":sj_isjoin
+	  }
+	  
+	  $.ajax({
+		 type:"post",
+		 url:"studyjoininfolist.do",
+		 data:JSON.stringify(data),
+	  	 dataType:"json",
+		 contentType:"application/json",
+		 success:function(data) {
+			 let list = data
+			 if(sj_isjoin=='n') {
+				 $.each(list,function(index,value){
+					 $('.studyjoinapplylist').append
+					 ("<br><div class='profile_wrap'>" +
+							 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+							 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+							 "<br><br>"+
+							 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+							 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+							 value.m_nickname+
+							 "</a><br><span>"+value.sj_message+"</span>"+
+							 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+							 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+							 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li>"+"</ul></div>"
+					 );
+				 });
+				 $('.btn-applynum').attr('onclick','studyJoinApplyListToggle();');
+			 } else {
+				 console.log('test');
+				 $.each(list,function(index,value){
+					 $('.studyjoinnedlist').append
+					 ("<br><div class='profile_wrap'>" +
+							 "<img src='"+value.m_img_path+value.m_img+"'alt='mdo' " +
+							 "width='35' height='35' class='rounded-circle me-2 profile_img'>"+
+							 "<br><br>"+
+							 "<a class='align-items-center text-decoration-none dropdown-toggle' " +
+							 "id='dropdownaUser' data-bs-toggle='dropdown' aria-expanded='false'>"+
+							 value.m_nickname+
+							 "</a><br><span>"+value.sj_message+"</span>"+
+							 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
+							 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
+							 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li>"+"</ul></div>"
+					 );
+				 });
+				 $('.btn-joinnednum').attr('onclick','studyJoinListToggle();');
+			 }
+
+		 }
+	  });
+  }
+  
   
   function studyJoinListToggle() {
-	  $('.studyjoinlist').toggle();
+	  $('.studyjoinnedlist').toggle();
   }
   
   function studyJoinApplyListToggle() {
 	  $('.studyjoinapplylist').toggle();
+	  
   }  

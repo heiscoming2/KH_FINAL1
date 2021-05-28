@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/studydetail.css" rel="stylesheet">
+<link href="resources/css/studydetail.css?vser=1.3" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
@@ -90,73 +90,6 @@
             <!-- 필수 입력 정보 노출 종료 -->
             <br>
             
-            
-            
- 
-           <!-- 참여 승인 대기 인원 시작 (나중에 글 작성자에게만 보여지게 해야된다.) -->
-			 <!-- 프로필이미지, 아이디 시작 -->
-			 	<!-- 참여 승인 대기 숫자 나중에 변경해주어야 한다. (detail 넘어올때 따로 받아오게처리) -->
-			<input type="button" value="참여 승인 대기(${applynum}) ▼" class="btn btn-primary" onclick="studyJoinApplyListToggle();"/>
-			<div class="studyjoinapplylist" style="display:none;">
-			<br>
-	            <div class="profile_wrap">
-	              <!-- 프로필 이미지 영역 -->
-	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-	              <br>
-	              <br>
-	              <!-- 프로필 아이디 표시 영역 -->
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  data-bs-toggle="dropdown" aria-expanded="false">
-	                  ${dto.m_nickname }
-	                </a>
-	                <br>
-	                <span>열심히 하겠습니다!!</span>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	             </div>
-             </div>
-			<!-- 참여대기 인원 정보 종료 -->
-            
-            <br>
-            <br>
-            
-            <!-- 참여인원정보시작 -->
-			 <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
-			<input type="button" value="참여 인원 (${joinnednum }) ▼" class="btn btn-primary" onclick="studyJoinListToggle();"/>
-			<div class="studyjoinlist" style="display:none;">
-			<br>
-	            <div class="profile_wrap">
-	              <!-- 프로필 이미지 영역 -->
-	              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-	              <br>
-	              <br>
-	              <!-- 프로필 아이디 표시 영역 -->
-	                <a class="align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
-	                  data-bs-toggle="dropdown" aria-expanded="false">
-	                  ${dto.m_nickname }
-	                </a>
-	                <br>
-	                <span>열심히 하겠습니다!!</span>
-	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-	                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-	                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-	                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-	                </ul>
-	             </div>
-             </div>
-			<!-- 참여인원정보종료 -->
-			
-			
-			
-			
-			
-			
-			
-			<br>
-			<br>
             <!-- 글 내용 시작 -->
             <div class="detail_content">
 			${dto.bd_content }
@@ -165,8 +98,33 @@
             </div>
             <!-- 글 내용 종료 -->
             
+            
+ 
+           <!-- 참여 승인 대기 인원 시작 (나중에 글 작성자에게만 보여지게 해야된다.) -->
+			 <!-- 프로필이미지, 아이디 시작 -->
+			 	<!-- 참여 승인 대기 숫자 나중에 변경해주어야 한다. (detail 넘어올때 따로 받아오게처리) -->
+			<input type="button" value="참여 승인 대기 ▼" class="btn btn-primary btn-applynum" onclick="studyJoinList(${dto.bd_no},'n');"/>
+			<span class="applynum">${applynum }</span>
+			<div class="studyjoinapplylist"></div>
+			<!-- 참여대기 인원 정보 종료 -->
+			
+			<!-- 빈 div가 없으면 위에 div가 display:none이 될때 br이 안 먹혀서 css가 이상해진다. -->
+			<div></div>
+            <br>
+            
+            <!-- 참여인원정보시작 -->
+			 <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
+			<input type="button" value="참여 인원 ▼" class="btn btn-primary btn-joinnednum" onclick="studyJoinList(${dto.bd_no},'y');"/>
+			<span style="color:#fff; font-weight:400; font-size:1rem; background-color:orange; padding:5px 8px; border-radius:1rem;">${joinnednum }</span>
+			<div class="studyjoinnedlist"></div>
+			<!-- 참여인원정보종료 -->
+			
+			<!-- 빈 div가 없으면 위에 div가 display:none이 될때 br이 안 먹혀서 css가 이상해진다. -->
+			<div></div>
+            <br>
+			
             <!-- 참여 신청 버튼 시작 -->
-            	<!-- 작성자의 경우에는 이게 안 보여야한다. -->
+            <!-- 작성자의 경우에는 이게 안 보여야한다. -->
             <form id="studyJoinApplyForm" action="#">
            		<!-- 나중에 placeholder에 로그인 후 참여신청이 가능하다고 써주기 -->
             	<input type="button" 
@@ -177,7 +135,6 @@
             	<input type="text" class="form-control" name="sj_message" placeholder="한 줄 자기소개" style="width:500px; display:inline-block;">
             </form>
             <!-- 참여 신청 버튼 종료 -->
-            
             <br>
             
              <!-- 좋아요 버튼 시작 -->
@@ -225,7 +182,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/studydetail.js?ver=1.8"></script>
+<script type="text/javascript" src="resources/js/studydetail.js?ver=1.3"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

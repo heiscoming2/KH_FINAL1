@@ -17,5 +17,8 @@ public class StudyJoinInfoDto {
 	private String sj_message;
 	private String sj_isjoin;
 	private Date sj_acceptdate;
-
+	private String m_img_path;
+	private String m_img;
+	private String m_nickname;
+	
 }

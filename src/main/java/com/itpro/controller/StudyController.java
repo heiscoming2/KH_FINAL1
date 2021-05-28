@@ -126,24 +126,37 @@ public class StudyController {
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
 		model.addAttribute("replyCnt", replyCnt);
+		
+		//이 부분 나중에 num 받아올때 깔끔하게 변경좀 해주어야한다. 
 		//스터디 참여 정보를 모두 받아와 model에 담아준다.
 		List<StudyJoinInfoDto> studyJoinInfoList = studyBiz.studyJoinInfoSelectList(bd_no);
-		model.addAttribute("studyJoinInfoList",studyJoinInfoList);
 		//스터디 참여 정보 list를 돌면서
 		//참여 중인 인원수와 참여 대기 중인 인원수를 뽑은 후에
 		//model에 담아준다.
 		int joinnednum = 0; //스터디 참여 중인 인원수
 		int applynum = 0; //스터디 참여 대기 중인 인원수
 		for(StudyJoinInfoDto dto : studyJoinInfoList) {
-			if(dto.getSj_isjoin().equals("Y")) {
+			if(dto.getSj_isjoin().equals("y")) {
 				joinnednum++;
 			} else {
 				applynum++;
 			}
 		}
+		log.info("joinnednum : "+Integer.toString(joinnednum));
+		log.info("applynum : "+Integer.toString(applynum));
 		model.addAttribute("joinnednum",joinnednum);
 		model.addAttribute("applynum",applynum);
 		return "studyboard/studydetail";
+	}
+	
+	@RequestMapping(value="/studyjoininfolist.do")
+	@ResponseBody
+	public List<StudyJoinInfoDto> studyJoinInfoList(@RequestBody StudyJoinInfoDto studyJoinInfodto) {
+		List<StudyJoinInfoDto> studyJoinInfoList = studyBiz.studyJoinInfoSelectList(studyJoinInfodto);
+		for(StudyJoinInfoDto dto : studyJoinInfoList) {
+			log.info(dto.toString());
+		}
+		return studyJoinInfoList;
 	}
 	
 	@RequestMapping(value="/studyupdateform.do")
@@ -249,7 +262,7 @@ public class StudyController {
 		} else {
 			int res = studyBiz.studyJoinApplyInsert(studyJoinInfoDto);
 			map.put("msg","참여 신청하였습니다.");
-			map.put("dto", studyJoinInfoDto);
+			map.put("stat", "stat");
 			return map;
 		}
 		

@@ -156,8 +156,26 @@
 		SELECT COUNT(M_NO) FROM STUDYJOININFO WHERE M_NO=#{m_no} AND BD_NO=#{bd_no}
 	</select>
 	
-	<select id="studyjoininfoselectlist" parameterType="int" resultType="StudyJoinInfoDto">
+	<select id="studyjoininfoselectlistcnt" parameterType="int" resultType="StudyJoinInfoDto">
 		SELECT * FROM STUDYJOININFO WHERE BD_NO=#{bd_no}
 	</select>
+
+	<select id="studyjoininfoselectlist" parameterType="StudyJoinInfoDto" resultType="StudyJoinInfoDto">
+		SELECT S.M_NO,S.BD_NO,S.SJ_JOINDATE,S.SJ_MESSAGE,
+			   S.SJ_ISJOIN, S.SJ_ACCEPTDATE, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME 
+	    FROM STUDYJOININFO S, IT_MEMBER M
+	    WHERE S.M_NO = M.M_NO
+	      AND BD_NO=#{bd_no}
+		  AND SJ_ISJOIN = #{sj_isjoin}
+	</select>
 	
+	
+	
+	
+	
+	
+	
+	
+	
+		
 </mapper>

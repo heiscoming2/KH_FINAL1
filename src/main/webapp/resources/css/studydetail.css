@@ -53,4 +53,12 @@
         font-size: 20px; 
         color: #212529; 
     }
-
+	
+	.applynum {
+		color:#fff; 
+		font-weight:400; 
+		font-size:1rem; 
+		background-color:orange; 
+		padding:5px 8px; 
+		border-radius:1rem
+	}
