@@ -251,24 +251,47 @@ public class StudyController {
 		
 		//참여신청 이력이 있는지 먼저 조회한다.
 		//없는경우 참여신청 insert
-		//이미 있는 경우 return
+		//이미 있는 경우 쿼리 수행 없이 return
 		Map<String,Object> map = new HashMap<String, Object>();
 		
 		int res1 = studyBiz.studyJoinApplySelectOne(studyJoinInfoDto);
 		log.info("res1 : "+Integer.toString(res1));
 		if(res1==1) {
 			map.put("msg", "이미 참여 중 or 참여 신청한 스터디 입니다.");
-			return map;
 		} else {
 			int res = studyBiz.studyJoinApplyInsert(studyJoinInfoDto);
 			map.put("msg","참여 신청하였습니다.");
-			map.put("stat", "stat");
-			return map;
+			map.put("stat", ".");
 		}
+		return map;
 		
 		
 	}	
 	
+	@RequestMapping(value="/studyjoindrop.do")
+	@ResponseBody
+	public Map<String,Object> studyJoinDrop(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
+		
 	
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		int res = studyBiz.studyJoinDelete(studyJoinInfoDto);
+		if(res>0) {
+			map.put("stat", ".");
+		} 
+		return map;
+	}	
 	
+	@RequestMapping(value="/studyjoinaccept.do")
+	@ResponseBody
+	public Map<String,Object> studyJoinAccept(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		int res = studyBiz.studyJoinAccept(studyJoinInfoDto);
+		if(res>0) {
+			map.put("stat", ".");
+		} 
+		return map;
+	}		
 }

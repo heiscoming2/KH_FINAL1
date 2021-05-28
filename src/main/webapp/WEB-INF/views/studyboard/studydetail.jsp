@@ -115,7 +115,7 @@
             <!-- 참여인원정보시작 -->
 			 <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
 			<input type="button" value="참여 인원 ▼" class="btn btn-primary btn-joinnednum" onclick="studyJoinList(${dto.bd_no},'y');"/>
-			<span style="color:#fff; font-weight:400; font-size:1rem; background-color:orange; padding:5px 8px; border-radius:1rem;">${joinnednum }</span>
+			<span class="joinnednum">${joinnednum }</span>
 			<div class="studyjoinnedlist"></div>
 			<!-- 참여인원정보종료 -->
 			
@@ -125,9 +125,10 @@
 			
             <!-- 참여 신청 버튼 시작 -->
             <!-- 작성자의 경우에는 이게 안 보여야한다. -->
+            <c:if test="${sessionScope.login.m_no ne dto.m_no }">
             <form id="studyJoinApplyForm" action="#">
            		<!-- 나중에 placeholder에 로그인 후 참여신청이 가능하다고 써주기 -->
-            	<input type="button" 
+            	<input type="button"
             	onclick="
             	<c:if test='${sessionScope.login eq null }'>alert('로그인 후 이용 가능합니다.')</c:if>
             	<c:if test='${sessionScope.login ne null }'>studyJoinApply(${dto.bd_no },${sessionScope.login.m_no });</c:if>"
@@ -135,6 +136,7 @@
             	<input type="text" class="form-control" name="sj_message" placeholder="한 줄 자기소개" style="width:500px; display:inline-block;">
             </form>
             <!-- 참여 신청 버튼 종료 -->
+            </c:if>
             <br>
             
              <!-- 좋아요 버튼 시작 -->
@@ -169,7 +171,11 @@
 	  </jsp:include>
       <!-- 댓글 영역 끝 -->
   </div>
-
+  
+  	<!-- 게시글 작성자 M_NO와 세션 M_NO를 히든에 넣어둔다. JS에서 종종 사용될 경우가 있음 -->
+	<input id="bd_mno" type="hidden" value="${dto.m_no }">
+	<input id="session_mno" type="hidden" value="${sessionScope.login.m_no }">
+	
 <!-- 본문 종료 -->
 
 <!-- FOOTER 시작 -->
@@ -182,7 +188,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/studydetail.js?ver=1.3"></script>
+<script type="text/javascript" src="resources/js/studydetail.js?ver=1.5"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

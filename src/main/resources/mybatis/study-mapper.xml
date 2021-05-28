@@ -149,7 +149,7 @@
 	</update>
 	
 	<insert id="studyjoinapplyinsert" parameterType="StudyJoinInfoDto">
-		INSERT INTO STUDYJOININFO VALUES (#{m_no},#{bd_no},SYSDATE,#{sj_message},'N',NULL)
+		INSERT INTO STUDYJOININFO VALUES (#{m_no},#{bd_no},SYSDATE,#{sj_message},'n',NULL)
 	</insert>
 	
 	<select id="studyjoinapplyselectone" parameterType="StudyJoinInfoDto" resultType="int">
@@ -170,10 +170,13 @@
 	</select>
 	
 	
+	<delete id="studyjoindelete" parameterType="StudyJoinInfoDto">
+		DELETE STUDYJOININFO WHERE M_NO=#{m_no} AND BD_NO=#{bd_no}
+	</delete>
 	
-	
-	
-	
+	<update id="studyjoinaccept" parameterType="StudyJoinInfoDto">
+		UPDATE STUDYJOININFO SET SJ_ISJOIN='y' WHERE M_NO=#{m_no} AND BD_NO=#{bd_no} 
+	</update>
 	
 	
 	

@@ -117,4 +117,14 @@ public class StudyBizImpl implements StudyBiz {
 		return studyDao.studyJoinInfoSelectList(studyJoinInfodto);
 	}
 
+	@Override
+	public int studyJoinDelete(StudyJoinInfoDto studyJoinInfoDto) {
+		return studyDao.studyJoinDelete(studyJoinInfoDto);
+	}
+
+	@Override
+	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto) {
+		return studyDao.studyJoinAccept(studyJoinInfoDto);
+	}
+
 }

@@ -175,6 +175,30 @@ public class StudyDaoImpl implements StudyDao {
 		}
 		return list;
 	}
+
+	@Override
+	public int studyJoinDelete(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinDelete DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"studyjoindelete",studyJoinInfoDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto) {
+		log.info("studyJoinAccept DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"studyjoinaccept",studyJoinInfoDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
 	
 }
