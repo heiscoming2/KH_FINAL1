@@ -36,11 +36,11 @@ public class ReportDaoImpl implements ReportDao {
 	
 
 	@Override
-	public ReportDto selectOne(int bd_no) {
+	public ReportDto selectOne(int report_no) {
 		ReportDto dto =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",bd_no);
+			dto=sqlSession.selectOne(NAMESPACE+"selectOne",report_no);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();
@@ -108,6 +108,19 @@ public class ReportDaoImpl implements ReportDao {
 		
 		return dto;
 		
+	}
+	
+	@Override
+	public int delete(int report_no) {
+		int reportDeleteRes = 0;
+		
+			try {
+				reportDeleteRes = sqlSession.delete(NAMESPACE+"delete", report_no);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return reportDeleteRes; 
 	}
 
 

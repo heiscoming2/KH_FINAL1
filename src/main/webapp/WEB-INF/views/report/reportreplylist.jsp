@@ -76,7 +76,7 @@
 											<td>${dto.name}</td>
 											<td><a href="#">${dto.bd_title }</a></td>
 											<td><a href="#">${dto.re_content }</a></td>
-											<td><a href="reportreplydetail.do?re_no=${dto.re_no }">${dto.report_reason }</a></td>
+											<td><a href="reportreplydetail.do?report_reply_no=${dto.report_reply_no }">${dto.report_reason }</a></td>
 											<td><span class="report_date"> <fmt:formatDate value="${dto.report_date}" pattern="yyyy-MM-dd HH:mm:ss"/></span></td>
 										</tr>
 									</c:forEach>

@@ -16,12 +16,12 @@
 <!-- 본문 시작 -->
 
   <div class="qna_wrap">
-        <h3>QNA 게시판</h3>
-        <div class="qna_btnwrap">
-			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='qnainsertform.do'">
+        <h3>광고문의 게시판</h3>
+        <div class="ad_btnwrap">
+			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='adinsertform.do'">
 		</div>
         
-        <table class="qna_table">
+        <table class="ad_table">
 			<col width="80px;">
 			<col width="500px;">
 			<col width="80px;">
@@ -38,24 +38,24 @@
             <!-- 게시물 한 줄 시작-->
             <tr>
                 <c:choose>
-					<c:when test="${empty qnaList }">
+					<c:when test="${empty adList }">
 						<td colspan="4" align="center">
-							조회할 게시물이 존재하지 않습니다.
+							광고문의가 없습니다...
 						</td>
 					</c:when>
 					<c:otherwise>
 
-                  	<c:forEach var="dto" items="${qnaList }">
+                  	<c:forEach var="dto" items="${adList }">
 							<tr>
 							<!-- 글 번호 시작 --> 
 							<td>${dto.bd_no} </td>
-							<td><a href= "qnadetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
+							<td><a href= "addetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
 							<td>+${dto.bd_recommandcount }</td>
 							<td>${dto.bd_viewcount }</td>
 							<td>
-							    <div class="qna_profile">
+							    <div class="ad_profile">
 								<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-									<div class="qna_writer"> 
+									<div class="ad_writer"> 
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
 											${dto.m_nickname }
 										</a>
@@ -65,7 +65,7 @@
 											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
 										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="qna_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
+									<span class="ad_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
 							</tr>

@@ -1,69 +1,69 @@
-.qna_wrap {
+.ad_wrap {
 	width:1190px;
 	margin:0 auto;
 }
 
 /* 게시판 버튼 wrap 영역 잡기 */
-.qna_btnwrap {
+.ad_btnwrap {
     float:left;
     margin-bottom: 10px;
 }
 
-.qna_table {
+.ad_table {
     width:1190px; 
 }
 
 /* 글 번호 span 영역 css */
-.qna_no {
+.ad_no {
 	
     vertical-align: middle;
 
 }
 
 /* 글 번호 a태그 css */
-.qna_no > a {
+.ad_no > a {
     font-size: 15px; 
     color: rgb(112, 112, 112) !important;
 }
 
 /* 글 제목(+댓글) wrap */
-.qna_title {
+.ad_title {
     vertical-align: middle;
 }
 
 /* 글 제목 */
-.qna_title > a {
+.ad_title > a {
     font-size: 15px; 
     color: #212529;
 }
 
 /* 댓글 */ 
-.qna_title > a > span {
+.ad_title > a > span {
     color:green; 
     font-weight: bold;
 }
 
 /* 프로필 영역 wrap */
-.qna_profile {
+.ad_profile {
     width:250px; 
     vertical-align: middle; 
 }
 
 /* 프로필 이미지 영역 잡기 */
-.qna_profile > img {
+.ad_profile > img {
     float: left; 
     margin-top: 5px;
 }
 
 /* 프로필 아이디 영역 */
-.qna_profile > .qna_writer {
+.ad_profile > .qna_writer {
     position: relative; 
     top:5px;
     font-size:15px;
 }
 
 /* 프로필 작성일 영역 */
-.qna_profile > .qna_regdate {
+.ad_profile > .qna_regdate {
 	text-align:right;
     font-size: 13px; 
     color:rgb(112, 112, 112); 
@@ -75,13 +75,13 @@
 	float:left;
 }
 
-.qna_table td {
+.ad_table td {
 	padding:0 !important;
 	margin:0 !important;
 	vertical-align:middle !important;
 }
 
-.qna_table th {
+.ad_table th {
 	font-size:12px;
 	padding:8px 0px !important;
 	font-weight:100 !important;

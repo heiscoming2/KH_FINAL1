@@ -8,7 +8,7 @@
 <link href="resources/css/qnainsert.css?ver=1.2" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
-<title>IT PRO QNA 글 쓰기</title>
+<title>IT PRO 광고문의하기</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -16,11 +16,11 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-    <div class="qna_insertwrap">
-      <form action="qnainsert.do" method="post">
+    <div class="ad_insertwrap">
+      <form action="adinsert.do" method="post">
        <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
-         <!-- qna 작성 글 영역-->
-        <h3>qna 글 작성</h3>
+         <!--ad 작성 글 영역-->
+        <h3>광고문의 작성</h3>
         <br>
              <!-- 프로필이미지, 아이디, 작성일 div -->
               <div>
@@ -35,9 +35,9 @@
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
               <br>
               <br>
-        <table class="table qna_inserttable">
+        <table class="table ad_inserttable">
             <tr>
-              <th><span>* </span>QnA 제목</th>
+              <th><span>* </span>광고 제목</th>
               <td><input type=text class="form-control" name="bd_title"></td>
             </tr>
 
@@ -45,12 +45,12 @@
         <textarea id="summernote" name="bd_content"></textarea>
         <br>
 
-      <!-- QnA 작성 글 영역 종료-->
+      <!-- ad 작성 글 영역 종료-->
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
 	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
-	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='qnalist.do'" style="float:right;" >
+	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='adlist.do'" style="float:right;" >
 	   </div>
     </form>
     
