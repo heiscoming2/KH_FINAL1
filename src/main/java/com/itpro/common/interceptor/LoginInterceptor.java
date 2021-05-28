@@ -47,18 +47,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 
-<<<<<<< HEAD
-		
-		if(request.getRequestURI().contains("/projectinsertform.do")||
-			request.getRequestURI().contains("/qnainsertform.do") ||
-			request.getRequestURI().contains("/portfolioinsertform.do")) {
-			if(request.getSession().getAttribute("login")==null) {
-=======
+
 		if (request.getRequestURI().contains("/projectinsertform.do")
 				|| request.getRequestURI().contains("/qnainsertform.do")
 				|| request.getRequestURI().contains("/portfolioinsertform.do")) {
 			if (request.getSession().getAttribute("login") == null) {
->>>>>>> 7a0d0661638e8f6267a9c4acf3e2791e93dbc101
 				PrintWriter out = response.getWriter();
 				out.print("<script type='text/javascript'>");
 				out.print("alert('로그인 후 작성 가능합니다.');");
@@ -67,12 +60,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
-<<<<<<< HEAD
+
 		
 		
 		if (request.getRequestURI().contains("/note_receivelist.do")
 				||(request.getRequestURI().contains("/ad_list.do"))) {
-=======
 
 		/*
 		 * if(request.getRequestURI().contains("like.do")) {
@@ -103,7 +95,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				|| (request.getRequestURI().contains("/projectinsertform.do"))// 프로젝트 글쓰기
 				|| (request.getRequestURI().contains("/portfolioinsertform.do"))) { //포트폴리오 글쓰기
 			
->>>>>>> 7a0d0661638e8f6267a9c4acf3e2791e93dbc101
+
 			MemberDto memberDto = (MemberDto) session.getAttribute("login");
 			String m_type = memberDto.getM_type();
 			if (m_type.equals("기업회원")) {
