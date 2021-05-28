@@ -15,7 +15,10 @@ public class StudyJoinInfoDto {
 	private int bd_no;
 	private Date sj_joindate;
 	private String sj_message;
-	private char sj_isjoin;
+	private String sj_isjoin;
 	private Date sj_acceptdate;
-
+	private String m_img_path;
+	private String m_img;
+	private String m_nickname;
+	
 }

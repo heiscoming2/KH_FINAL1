@@ -54,6 +54,13 @@
                             <input type="text" class="form-control-plaintext" id="m_regno" readonly value="${selectUser.m_regno }">
                         </div>
                     </div>
+                    
+                    <div class="mb-3 row"><!--전화번호-->
+                        <label class="col-sm-4 col-form-label">전화번호</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="m_phone" maxlength="13" value="${selectUser.m_phone }">
+                        </div>
+                    </div>
 
                     <div class="mb-3 row"><!--이메일-->
                         <label class="col-sm-4 col-form-label">이메일</label>
@@ -65,7 +72,7 @@
                      <div class="mb-3 row"><!--관리자 승인 여부-->
                         <label class="col-sm-4 col-form-label">승인 여부</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control-plaintext" readonly value="${selectUser.m_auth }">
+                            <input type="text" class="form-control-plaintext" readonly value="${selectUser.m_admin_cert }">
                         </div>
                     </div>
         		</form> <!-- #updateForm -->
@@ -81,7 +88,7 @@
                             <button type="button" class="btn btn-sm btn btn-secondary" id="uploadBtn">저장</button>
                         </div>
                     </div>                
-                </form>
+                </form><!-- 프로필 이미지 폼 끝 -->
                 
             </div>
         </div>    

@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.Login_joinBiz;
 import com.itpro.model.biz.MemberBiz;
+import com.itpro.model.biz.NoteBiz;
 import com.itpro.model.dto.member.MemberDto;
 
 @Controller
@@ -32,14 +33,14 @@ public class NoteController {
 	private Logger logger = LoggerFactory.getLogger(NoteController.class);	
 
 	@Autowired
-	private MemberBiz biz;
+	private NoteBiz biz;
 
 	// 보낸 쪽지 목록
 	@RequestMapping(value = "/note_sendlist.do")
 	public String noteSendList() {
 		logger.info("NOTE SEND LIST");
 
-		return "login_join/note_sendlist";
+		return "note/note_sendlist";
 	}
 	
 	
@@ -49,7 +50,7 @@ public class NoteController {
 		logger.info("NOTE SEND");
 		
 		
-		return "login_join/note_sendlist";	}
+		return "note/note_sendlist";	}
 	
 	
 
@@ -58,7 +59,7 @@ public class NoteController {
 	public String noteReceiveList() {
 		logger.info("NOTE RECEIVE LIST");
 
-		return "login_join/note_receivelist";
+		return "note/note_receivelist";
 	}
 
 }

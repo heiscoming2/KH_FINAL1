@@ -47,11 +47,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 
+<<<<<<< HEAD
 		
 		if(request.getRequestURI().contains("/projectinsertform.do")||
 			request.getRequestURI().contains("/qnainsertform.do") ||
 			request.getRequestURI().contains("/portfolioinsertform.do")) {
 			if(request.getSession().getAttribute("login")==null) {
+=======
+		if (request.getRequestURI().contains("/projectinsertform.do")
+				|| request.getRequestURI().contains("/qnainsertform.do")
+				|| request.getRequestURI().contains("/portfolioinsertform.do")) {
+			if (request.getSession().getAttribute("login") == null) {
+>>>>>>> 7a0d0661638e8f6267a9c4acf3e2791e93dbc101
 				PrintWriter out = response.getWriter();
 				out.print("<script type='text/javascript'>");
 				out.print("alert('로그인 후 작성 가능합니다.');");
@@ -60,10 +67,66 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
+<<<<<<< HEAD
 		
 		
 		if (request.getRequestURI().contains("/note_receivelist.do")
 				||(request.getRequestURI().contains("/ad_list.do"))) {
+=======
+
+		/*
+		 * if(request.getRequestURI().contains("like.do")) {
+		 * if(request.getSession().getAttribute("login")==null) { PrintWriter out =
+		 * response.getWriter(); out.print("<script type='text/javascript'>");
+		 * out.print("alert('로그인 후 좋아요가 가능합니다.');");
+		 * out.print("location.href='login.do';"); out.print("</script>"); return false;
+		 * } }
+		 */
+		
+		// 기업회원 글작성X 시작
+		if (request.getRequestURI().contains("/portfolioinsertform.do")) { // 포트폴리오 이력서 미작성자 작성X
+			MemberDto memberDto = (MemberDto) session.getAttribute("login");
+			String m_resumechk = memberDto.getM_resumechk();
+			if (m_resumechk.equals("N")) {
+				// 접근 불가 처리 알림창
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('이력서 작성 후 포트폴리오 작성이 가능합니다.');");
+				out.print("location.href='main.do';");
+				out.print("</script>");
+				return false;
+			}
+		} // 기업회원 글작성X 끝
+
+		//기업회원 글작성X 시작
+		if (request.getRequestURI().contains("/studyinsertform.do")// 스터디 글쓰기
+				|| (request.getRequestURI().contains("/projectinsertform.do"))// 프로젝트 글쓰기
+				|| (request.getRequestURI().contains("/portfolioinsertform.do"))) { //포트폴리오 글쓰기
+			
+>>>>>>> 7a0d0661638e8f6267a9c4acf3e2791e93dbc101
+			MemberDto memberDto = (MemberDto) session.getAttribute("login");
+			String m_type = memberDto.getM_type();
+			if (m_type.equals("기업회원")) {
+				int m_no = memberDto.getM_no();
+				MemberDto bizMemberDto = memberBiz.selectOne(m_no);
+				String m_admin_cert = bizMemberDto.getM_admin_cert();
+
+				// 접근 불가 처리 알림창
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('개인회원만 작성 가능합니다.');");
+				out.print("location.href='main.do';");
+				out.print("</script>");
+				return false;
+			}
+		}//기업회원 글작성X 끝
+		
+		
+		//기업회원 승인 전 접근X	
+		if (request.getRequestURI().contains("/like.do")//좋아요는 안눌리는데 알람 안뜨넹ㅠㅠ
+				||(request.getRequestURI().contains("/replyinsert.do"))//댓글
+				||(request.getRequestURI().contains("/note_receivelist.do"))//쪽지
+				||(request.getRequestURI().contains("/ad_list.do"))) { //광고
 			MemberDto memberDto = (MemberDto) session.getAttribute("login");
 			String m_type = memberDto.getM_type();
 			if (m_type.equals("기업회원")) {
@@ -75,65 +138,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 					// 접근 불가 처리
 					PrintWriter out = response.getWriter();
 					out.print("<script type='text/javascript'>");
-					out.print("alert('관리자 승인 후 이용가능합니다.');");
+					out.print("alert('관리자 승인 후 사용합니다');");
 					out.print("location.href='main.do';");
 					out.print("</script>");
 					return false;
 				}
 			}
-		}
-		return true;
+		}//기업회원 승인 전 접근X
 		
-		/* 기업회원 관리자 승인 전까지 특정 페이지 접근 불가 처리
-		MemberDto memberDto = (MemberDto) session.getAttribute("login");
-		String m_type = memberDto.getM_type();
-		if (m_type.equals("기업회원")) {
-			// 접근 불가 특정 페이지들
-			if (request.getRequestURI().contains("/ad_list.do")) {
-				int m_no = memberDto.getM_no();
-				MemberDto bizMemberDto = memberBiz.selectOne(m_no);
-				String m_admin_cert = bizMemberDto.getM_admin_cert();
-
-				if (m_admin_cert.equals("N")) {
-					// 접근 불가 처리
-					PrintWriter out = response.getWriter();
-					out.print("<script type='text/javascript'>");
-					out.print("alert('관리자 승인 후  이용가능합니다.');");
-					out.print("location.href='login.do';");
-					out.print("</script>");
-					return false;
-				} else {
-					// return true;
-					// do nothing
-				} // if(m_admin_cert.equals("N"))
-
-			} else {
-				// return true;
-				// do nothing
-			} // 접근 불가 특정 페이지들
-		} // if(m_type.equals("기업회원"))
-
-		return true;
 		
-		*/
+		
+		return true;
 
-		// 비 로그인으로 접근 가능한 페이지(주석 지워서 사용)
-		/*
-		 * if(request.getRequestURI().contains("/main.do") //메인
-		 * ||request.getRequestURI().contains("/login.do") //로그인폼 ||
-		 * request.getRequestURI().contains("/ajaxlogin.do") //로그인 ||
-		 * request.getSession().getAttribute("login")!=null ||
-		 * request.getRequestURI().contains("/join.do") //회원가입 선택 ||
-		 * request.getRequestURI().contains("/join_userForm.do") //회원가입폼 ||
-		 * request.getRequestURI().contains("/join_bizForm.do") //회원가입폼 ||
-		 * request.getRequestURI().contains("/join_user.do") //회원가입 ){
-		 * 
-		 * return true; }
-		 * 
-		 * 
-		 * if(request.getSession().getAttribute("login") == null) {//로그인 상태가 아니면 로그인 폼으로
-		 * response.sendRedirect("login.do"); return false; }
-		 */
 	}
 
 	// view 단으로 forward 되기 전에 수행

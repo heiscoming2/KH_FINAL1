@@ -83,7 +83,7 @@
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a> 
-								<a class="nav-link collapsed" onclick="#" data-toggle="collapse"
+								<a class="nav-link collapsed" onclick="location.href='reportreplylist.do'" data-toggle="collapse"
 									data-target="#pagesCollapseReply" aria-expanded="false"
 									aria-controls="pagesCollapseError" style="cursor:pointer"> 댓글 신고
 									<div class="sb-sidenav-collapse-arrow">

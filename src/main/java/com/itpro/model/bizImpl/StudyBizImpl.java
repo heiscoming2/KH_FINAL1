@@ -99,8 +99,32 @@ public class StudyBizImpl implements StudyBiz {
 
 	@Override
 	public int studyJoinApplyInsert(StudyJoinInfoDto studyJoinInfoDto) {
-		int res = studyDao.studyJoinApplyInsert(studyJoinInfoDto);
-		return 0;
+		return studyDao.studyJoinApplyInsert(studyJoinInfoDto);
+	}
+
+	@Override
+	public int studyJoinApplySelectOne(StudyJoinInfoDto studyJoinInfoDto) {
+		return studyDao.studyJoinApplySelectOne(studyJoinInfoDto);
+	}
+
+	@Override
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(int bd_no) {
+		return studyDao.studyJoinInfoSelectList(bd_no);
+	}
+
+	@Override
+	public List<StudyJoinInfoDto> studyJoinInfoSelectList(StudyJoinInfoDto studyJoinInfodto) {
+		return studyDao.studyJoinInfoSelectList(studyJoinInfodto);
+	}
+
+	@Override
+	public int studyJoinDelete(StudyJoinInfoDto studyJoinInfoDto) {
+		return studyDao.studyJoinDelete(studyJoinInfoDto);
+	}
+
+	@Override
+	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto) {
+		return studyDao.studyJoinAccept(studyJoinInfoDto);
 	}
 
 }

@@ -26,15 +26,17 @@
 	</select>
 	
 	<select id="selectOne" resultType="ReportReplyDto" parameterType="int">
-		SELECT A.REPORT_REPLY_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME, C.RE_CONTENT
-        FROM REPORT_REPLY A, IT_MEMBER B, REPLY C
-		WHERE  A.M_NO=B.M_NO
-		AND	A.RE_NO=C.RE_NO
-		AND A.RE_NO=#{re_no}
+		SELECT A.REPORT_REPLY_NO, A.NAME, A.BD_TITLE, C.RE_CONTENT, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME
+		FROM REPORT_REPLY A
+        LEFT JOIN IT_MEMBER B
+        ON  A.M_NO=B.M_NO
+        LEFT JOIN REPLY C
+		ON A.RE_NO=C.RE_NO
+        WHERE  A.REPORT_REPLY_NO=#{report_reply_no}
 	</select>
 	
 	<insert id="insert" parameterType="ReportReplyDto">
-		INSERT INTO REPORT
+		INSERT INTO REPORT_REPLY
 		VALUES(REPORT_SEQ.NEXTVAL, #{m_no}, #{bd_no}, #{re_no}, #{name}, #{bd_title}, #{report_reason}, SYSDATE)
 	</insert>
 	
@@ -45,9 +47,15 @@
 	</select>
 	
 	<select id="select2" resultType="ReportReplyDto" parameterType="int">
-		SELECT M_NO, BD_NO, (SELECT NAME FROM BOARDCATEGORY WHERE CODE= (SELECT BC_CODE FROM BOARD WHERE BD_NO=#{bd_no})) NAME, BD_TITLE
-		FROM BOARD
-		WHERE BD_NO=#{bd_no}	
+		SELECT A.RE_NO, A.BD_NO, D.NAME, C.BD_TITLE, A.RE_CONTENT, A.M_NO  
+		FROM REPLY A 
+        INNER JOIN IT_MEMBER B
+        ON A.M_NO= B.M_NO
+        INNER JOIN BOARD C
+        ON A.BD_NO=C.BD_NO
+        INNER JOIN BOARDCATEGORY D
+		ON C.BC_CODE=D.CODE
+        WHERE A.RE_NO=#{re_no}	
 	
 	</select>
 	

@@ -185,7 +185,7 @@ public class Login_joinController {
 		String toMail = email; // 입력한 이메일(수신)
 		String title = "회원가입 인증 메일";// 제목
 		String content = // 내용
-				"홈페이지 방문을 감사드립니다. <br><br> 인증번호는 " + checkNum + " 입니다.<br> 해당 인증번호를 인증번호 확인란에 입력해주세요";
+				"홈페이지 방문을 감사드립니다. <br><br> 인증번호는 <b>" + checkNum + "</b> 입니다.<br> 해당 인증번호를 인증번호 확인란에 입력해주세요";
 
 		try {
 

@@ -14,7 +14,9 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5">
+ <div class="container mt-5 mb-5" >
+ 		<h3>받은 쪽지</h3> 
+ 
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
         <button class="btn btn-default" onclick="location.href='note_sendlist.do'">보낸쪽지</button>
         <button class="btn btn-default" data-bs-toggle="modal" data-bs-target="#sendmessage">쓰기</button>
@@ -23,25 +25,41 @@
         <table class="table table-bordered table-hover text-center">
             <thead>
                 <tr class="d-flex">
-                    <th class="col-1">선택</th>
+                	<th class="col-1">선택</th>
+                    <th class="col-1">NO.</th>
                     <th class="col-2">등록일</th>
                     <th class="col-4">보낸사람</th>
-                    <th class="col-5">내용</th>
+                    <th class="col-4">내용</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="d-flex">
-                    <td class="col-1"><input type="checkbox"></td>
-                    <td class="col-2">21-00-00</td>
-                    <td class="col-4">아이디</td>     
-                    <td class="col-5">프로젝트어쩌구 포트폴리오 어쩌구랄라라</td>                
-                </tr>     
-                <tr class="d-flex">
-                    <td class="col-1"><input type="checkbox"></td>
-                    <td class="col-2">21-00-00</td>
-                    <td class="col-4">닉네임or아이디</td>     
-                    <td class="col-5">프로젝트어쩌구 포트폴리오 어쩌구랄라라</td>                
-                </tr>                    
+				<tr class="d-flex">
+					<td class="col-1"><input type="checkbox"></td>
+					<td class="col-1">1</td>
+					<td class="col-2">21-06-01</td>
+					<td class="col-4" data-bs-toggle="modal"
+						data-bs-target="#sendmessage">보낸사람이여</td>
+					<td class="col-4">쪽지에여</td>
+				</tr>
+				<%-- 
+				<c:choose>
+					<c:when test="${empty noteList }">
+						<tr class="d-flex">
+							<td class="col-12">=====받은 쪽지가 없습니다.=====</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${noteList }" var="noteList">
+								<tr class="d-flex">
+								<td class="col-1"><input type="checkbox"></td>
+								<td class="col-1">${noteList.n_no }</td>
+								<td class="col-2"><fmt:formatDate value="${noteList.n_date }" pattern="yy-MM-dd" /></td>
+								<td class="col-4">${noteList.n_send }</td>
+								<td class="col-4">${noteList.n_content }</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>  --%>                                  
             </tbody>
         </table>
     </div>
@@ -62,14 +80,14 @@
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">내용:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <textarea class="form-control" id="message-text" maxlength="300" style="height: 150px"></textarea>
                   <span>보낸시간 : 2021-00-00</span>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="button" class="btn btn-primary">보내기</button>
+              <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="닫기">
+              <input type="button" class="btn btn-primary" value="보내기">
             </div>
           </div>
         </div>

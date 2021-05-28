@@ -125,7 +125,6 @@ public class CompanyCrawlingController {
 	
 	@RequestMapping(value="/companycrawlingdelete.do")
 	public String companyCrawlingDelete(HttpServletResponse response) {
-		//나중에 결과값(성공 실패 여부)에 따라 return 및 alert 출력할수 있게 수정하기
 		companyCrawlingBiz.deletelist();
 		return "companycrawling/companycrawlinglist";
 		
