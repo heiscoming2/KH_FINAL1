@@ -272,7 +272,6 @@ public class StudyController {
 	@ResponseBody
 	public Map<String,Object> studyJoinDrop(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
 		
-	
 		Map<String,Object> map = new HashMap<String, Object>();
 		
 		int res = studyBiz.studyJoinDelete(studyJoinInfoDto);

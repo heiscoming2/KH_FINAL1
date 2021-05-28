@@ -579,6 +579,16 @@ INSERT INTO IT_MEMBER VALUES( 1006,'user3','1234','회원삼','010-22222-3333','
 INSERT INTO IT_MEMBER VALUES( 1007,'user4','1234','회원사','010-22222-4444','user4@itpro.com','N','정지','Y','개인회원','N','profileimages/','testprofile.jpg',SYSDATE,'유회원',to_date('2009-07-05','yyyy-mm-dd'),'남','서울시 동대문구 전농동 ');--개인회원 정지
 
 
+SELECT * FROM STUDYJOININFO;
+		SELECT S.M_NO,S.BD_NO,S.SJ_JOINDATE,S.SJ_MESSAGE,
+			   S.SJ_ISJOIN, S.SJ_ACCEPTDATE, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME 
+	    FROM STUDYJOININFO S, IT_MEMBER M
+	    WHERE S.M_NO = M.M_NO
+	      AND BD_NO=1000
+		  AND SJ_ISJOIN = 'y';
+          
+          
+update studyjoininfo set sj_isjoin='y';
 --기업회원 인증 2, 미인증 1 INSERT문
 INSERT ALL
 INTO IT_MEMBER VALUES(1000,'biz1','1234','samsung','01099998888','samsung@samsung.com','N','활동','Y','기업회원','N',' ',' ',SYSDATE,'','','','')
@@ -632,7 +642,8 @@ INSERT INTO BOARD
 INSERT INTO REPORT
 VALUES(1000,1001, 1000,'공지사항','1213','되라~',SYSDATE);
 
-
+select * from studyjoininfo;
+DELETE FROM STUDYJOININFO;
 
 --BOARDRECOMMAND (게시글 추천)
 INSERT INTO BOARDRECOMMAND VALUES (1000,1001,SYSDATE);
@@ -640,5 +651,7 @@ INSERT INTO BOARDRECOMMAND VALUES (1000,1001,SYSDATE);
 --REPLY (댓글)
 INSERT INTO REPLY VALUES (REPLYSEQ.NEXTVAL,SYSDATE,NULL,'테스트댓글입니다','192.168.0.1',1004,1000,GROUPNOSEQ.NEXTVAL,0,0,NULL,'N');
 
+--스터디 참여 인원
+INSERT INTO STUDYJOININFO VALUES (1007,1000,SYSDATE,'프론트엔드 개발자 입니다','y',SYSDATE);
 
 COMMIT;
