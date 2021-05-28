@@ -22,8 +22,8 @@ public class ReportReplyBizImpl implements ReportReplyBiz{
 	}
 
 	@Override
-	public ReportReplyDto selectOne(int re_no) {
-		return dao.selectOne(re_no);
+	public ReportReplyDto selectOne(int report_reply_no) {
+		return dao.selectOne(report_reply_no);
 	}
 
 	@Override

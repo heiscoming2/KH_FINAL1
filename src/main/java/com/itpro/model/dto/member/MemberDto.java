@@ -20,7 +20,7 @@ public class MemberDto {
 	private String m_name; // 이름
 	private String m_birth; // 생년월일
 	private String m_gender; // 성별
-	private String m_addr; // 주소
+	private String m_addr; // 주소 --> 이걸
 
 	// 기업 회원 추가정보
 	private String m_regno;// 사업자번호

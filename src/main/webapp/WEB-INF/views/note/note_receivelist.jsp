@@ -23,25 +23,32 @@
         <table class="table table-bordered table-hover text-center">
             <thead>
                 <tr class="d-flex">
-                    <th class="col-1">선택</th>
+                	<th class="col-1">선택</th>
+                    <th class="col-1">NO.</th>
                     <th class="col-2">등록일</th>
                     <th class="col-4">보낸사람</th>
-                    <th class="col-5">내용</th>
+                    <th class="col-4">내용</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="d-flex">
-                    <td class="col-1"><input type="checkbox"></td>
-                    <td class="col-2">21-00-00</td>
-                    <td class="col-4">아이디</td>     
-                    <td class="col-5">프로젝트어쩌구 포트폴리오 어쩌구랄라라</td>                
-                </tr>     
-                <tr class="d-flex">
-                    <td class="col-1"><input type="checkbox"></td>
-                    <td class="col-2">21-00-00</td>
-                    <td class="col-4">닉네임or아이디</td>     
-                    <td class="col-5">프로젝트어쩌구 포트폴리오 어쩌구랄라라</td>                
-                </tr>                    
+				<c:choose>
+					<c:when test="${empty noteList }">
+						<tr class="d-flex">
+							<td class="col-12">=====받은 쪽지가 없습니다.=====</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${noteList }" var="noteList">
+							<tr class="d-flex">
+								<td class="col-1"><input type="checkbox"></td>
+								<td class="col-1">${noteList.n_no }</td>
+								<td class="col-2"><fmt:formatDate value="${noteList.n_date }" pattern="yy-MM-dd" /></td>
+								<td class="col-4">${noteList.n_send }</td>
+								<td class="col-4">${noteList.n_content }</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>                                   
             </tbody>
         </table>
     </div>

@@ -77,11 +77,12 @@
 		<result property="m_img_path" column="M_IMG_PATH" />
 		<result property="m_img" column="M_IMG" />
 		<result property="m_regno" column="M_REGNO" />
+		<result property="m_admin_cert" column="M_ADMIN_CERT" />
+		<result property="m_phone" column="M_PHONE" />
 	</resultMap>
 
-	<select id="selectOne" resultType="MemberDto"
-		parameterType="int">
-		SELECT A.M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_IMG_PATH, M_IMG, B.M_REGNO, B.M_ADMIN_CERT
+	<select id="selectOne" resultType="MemberDto" parameterType="int">
+		SELECT A.M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_IMG_PATH, M_IMG, B.M_REGNO, B.M_ADMIN_CERT, A.M_PHONE
 		FROM IT_MEMBER A
 		LEFT JOIN BIZ_MEMBER B
 		ON A.M_NO=B.M_NO
@@ -91,7 +92,7 @@
 	<!-- 회원 정보수정 -->
 	<update id="update" parameterType="MemberDto">
 		UPDATE IT_MEMBER
-		SET M_PW = #{m_pw}, M_NICKNAME = #{m_nickname}, M_EMAIL = #{m_email}
+		SET M_PW = #{m_pw}, M_NICKNAME = #{m_nickname}, M_EMAIL = #{m_email}, M_PHONE = #{m_phone}
 		WHERE M_NO = #{m_no}
 	</update>
 	

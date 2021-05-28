@@ -55,6 +55,7 @@
 							<th>No</th>
 							<th>해당게시판</th>
 							<th>해당게시글</th>
+							<th>신고댓글</th>
 							<th>신고사유</th>
 							<th>신고일시</th>
 						</tr>
@@ -71,10 +72,11 @@
 								<c:otherwise>
 									<c:forEach var="dto" items="${list }">
 										<tr>
-											<td>${dto.report_no}</td>
+											<td>${dto.report_reply_no}</td>
 											<td>${dto.name}</td>
 											<td><a href="#">${dto.bd_title }</a></td>
-											<td><a href="reportdetail.do?bd_no=${dto.bd_no }">${dto.report_reason }</a></td>
+											<td><a href="#">${dto.re_content }</a></td>
+											<td><a href="reportreplydetail.do?re_no=${dto.re_no }">${dto.report_reason }</a></td>
 											<td>${dto.report_date}</td>
 										</tr>
 									</c:forEach>

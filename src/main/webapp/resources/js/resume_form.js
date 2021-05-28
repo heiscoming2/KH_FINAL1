@@ -1,56 +1,191 @@
-function sample4_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var roadAddr = data.roadAddress; // 도로명 주소 변수
-            var extraRoadAddr = ''; // 참고 항목 변수
-
-            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                extraRoadAddr += data.bname;
-            }
-            // 건물명이 있고, 공동주택일 경우 추가한다.
-            if(data.buildingName !== '' && data.apartment === 'Y'){
-               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-            }
-            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-            if(extraRoadAddr !== ''){
-                extraRoadAddr = ' (' + extraRoadAddr + ')';
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample4_postcode').value = data.zonecode;
-            document.getElementById("sample4_roadAddress").value = roadAddr;
-            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-            
-            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-            if(roadAddr !== ''){
-                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-            } else {
-                document.getElementById("sample4_extraAddress").value = '';
-            }
-
-            var guideTextBox = document.getElementById("guide");
-            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-            if(data.autoRoadAddress) {
-                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                guideTextBox.style.display = 'block';
-
-            } else if(data.autoJibunAddress) {
-                var expJibunAddr = data.autoJibunAddress;
-                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                guideTextBox.style.display = 'block';
-            } else {
-                guideTextBox.innerHTML = '';
-                guideTextBox.style.display = 'none';
-            }
-        }
-    }).open();
+/*이미지 업로드*/
+$(function(){
+ 
+    $('#uploadBtn').on('click', function(){
+        uploadFile();
+    });
+ 
+});
+ 
+function uploadFile(){
+    
+	    var form = $('#profileUpload')[0];
+	    var formData = new FormData(form);
+    
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'profileUpload.do',
+        data : formData,
+        contentType : false,
+        processData : false,
+        success:function(data){
+        	alert("이미지 업로드 성공");
+        },
+        error:function(msg){
+        	alert("통신실패");
+		}        
+    
+    })
 }
 
+/*개인 회원 회원정보 수정 전송*/
+$(document).ready(function(){
+	$("#updateUser").click(function(){
+		$("#updateForm").attr("action","user_update.do");
+		$("#updateForm").submit();	
+	});
+	
+});
+
+/*============================================================*/
+/*학력사항 추가*/
+
+$(function () {
+	//행개수
+ 	var count = 0;
+	//최대 행개수
+	var full_count = 3;
+	//추가 버튼 클릭시
+	$('#addBtn').click(function () {
+	//행추가할때마다 행개수 +1
+    ++count;
+
+    //최대 행개수보다 크면 리턴
+    if (count > full_count) {
+    	alert("최대 5개까지만 가능합니다.");
+        return;
+    }
+
+    //행추가
+    $("#EdFormTable").append(
+    '<tr id=addtr'+ count + '>'+
+    	'<td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>'+
+    	'<td><input type="text" class="form-control" id="ed_school" ></td>'+
+    	'<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
+    	'<td>'+
+    		'<select class="form-select">'+
+    			'<option value="1">대학원</option>'+
+    			'<option value="2">대학교</option>'+
+    			'<option value="3">고등학교</option>'+
+    		'</select>'+
+    	'</td>'+
+    	'<td>'+
+    		'<select class="form-select">'+
+    			'<option value="1">졸업</option>'+
+    			'<option value="2">휴학</option>'+
+    			'<option value="3">중퇴</option>'+
+    			'<option value="4">재학</option>'+
+    		'</select>'+
+    	'</td>'+
+    '</tr>');
+          
+});
+
+//삭제 버튼 클릭시
+$('#delBtn').click(function () {
+//행이 하나밖에 없으면 삭제하지 않기
+if (count < 1) {
+	alert("더이상 삭제할수 없습니다");
+	return;
+}
+//마지막 라인 삭제
+$('#addtr' + count).remove();
+
+	//삭제할때마다 행개수 -1
+	count--;
+	});
+
+});
+
+/*============================================================*/
+/*자격 사항 추가*/
+
+$(function () {
+	//행개수
+ 	var count = 0;
+	//최대 행개수
+	var full_count = 3;
+	//추가 버튼 클릭시
+	$('#liaddBtn').click(function () {
+	//행추가할때마다 행개수 +1
+    ++count;
+
+    //최대 행개수보다 크면 리턴
+    if (count > full_count) {
+    	alert("최대 5개까지만 가능합니다.");
+        return;
+    }
+
+    //행추가
+    $("#LiFormTable").append(
+    '<tr id=liaddtr'+ count + '>'+
+    	'<td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>'+
+        '<td><input type="text" class="form-control" id="ed_school" ></td>'+
+        '<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
+    '</tr>');
+          
+});
+
+//삭제 버튼 클릭시
+$('#lidelBtn').click(function () {
+//행이 하나밖에 없으면 삭제하지 않기
+if (count < 1) {
+	alert("더이상 삭제할수 없습니다");
+	return;
+}
+//마지막 라인 삭제
+$('#liaddtr' + count).remove();
+
+	//삭제할때마다 행개수 -1
+	count--;
+	});
+
+});
+
+/*============================================================*/
+/*교육/경험 사항 추가*/
+
+$(function () {
+	//행개수
+ 	var count = 0;
+	//최대 행개수
+	var full_count = 3;
+	//추가 버튼 클릭시
+	$('#caAddBtn').click(function () {
+	//행추가할때마다 행개수 +1
+    ++count;
+
+    //최대 행개수보다 크면 리턴
+    if (count > full_count) {
+    	alert("최대 5개까지만 가능합니다.");
+        return;
+    }
+
+    //행추가
+    $("#CaFormTable").append(
+    	'<tr id=caAddtr'+ count + '>'+
+    		'<td><input type="text" class="form-control" id="ed_date" ></td>'+
+    		'<td><input type="date" class="form-control" id="ed_school" ></td>'+
+    		'<td><input type="date" class="form-control" id="ed_graduation" ></td>'+
+    		'<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
+    	'</tr>');
+          
+});
+
+//삭제 버튼 클릭시
+$('#caDelBtn').click(function () {
+//행이 하나밖에 없으면 삭제하지 않기
+if (count < 1) {
+	alert("더이상 삭제할수 없습니다");
+	return;
+}
+//마지막 라인 삭제
+$('#caAddtr' + count).remove();
+
+	//삭제할때마다 행개수 -1
+	count--;
+	});
+
+});
 

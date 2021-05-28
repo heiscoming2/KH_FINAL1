@@ -4,15 +4,13 @@ import java.util.Date;
 
 public class LicenceDto {
 	
-	private int m_no;//회원번호
-	
+	private int m_no;//회원번호	
 	
 	//자격사항
 	private int li_no;
 	private String li_title;
 	private String li_date;
-	private String li_organ;
-	
+	private String li_organ;	
 	
 	
 	public LicenceDto() {

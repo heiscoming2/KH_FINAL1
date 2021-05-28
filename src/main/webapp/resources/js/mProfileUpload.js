@@ -10,10 +10,6 @@ function uploadFile(){
     
 	    var form = $('#profileUpload')[0];
 	    var formData = new FormData(form);
-    // 이미지만  formData 안에 넣어주고 싶다!
-    // 가져온 formData에서 m_img만 때서, 새로운 formData를 만들어보자!
-    
-    
     
  
     $.ajax({
@@ -38,8 +34,7 @@ function uploadFile(){
 $(document).ready(function(){
 	$("#updateUser").click(function(){
 		$("#updateForm").attr("action","user_update.do");
-		$("#updateForm").submit();
-	
+		$("#updateForm").submit();	
 	});
 	
 });

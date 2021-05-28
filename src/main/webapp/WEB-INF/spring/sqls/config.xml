@@ -50,6 +50,7 @@
 		<typeAlias type="com.itpro.model.dto.member.MemberDto" alias="MemberDto"/>
 		<typeAlias type="com.itpro.model.dto.member.ProfileDto" alias="ProfileDto"/>
 		<typeAlias type="com.itpro.model.dto.resume.ResumeDto" alias="ResumeDto"/>
+		<typeAlias type="com.itpro.model.dto.note.NoteDto" alias="NoteDto"/>
 
 		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
 
@@ -72,6 +73,8 @@
 		<mapper resource="/mybatis/BoardCategory-mapper.xml"/>	
 		<mapper resource="/mybatis/notice-mapper.xml"/>
 		<mapper resource="/mybatis/resume-mapper.xml"/>
+		<mapper resource="/mybatis/note-mapper.xml"/>
+
 		<mapper resource="/mybatis/like-mapper.xml"/>
 	</mappers>
 

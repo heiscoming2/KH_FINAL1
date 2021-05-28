@@ -31,19 +31,32 @@
                 </tr>
             </thead>
             <tbody><!--작성된 이력서 목록-->
-                <tr class="d-flex">
-                    <td class="col-1"><input type="checkbox"></td>
-                    <td class="col-1">1</td>
-                    <td class="col-5"><a href="resume_detail.do" style="color:black;">이력서포부포부포부</a></td>     
-                    <td class="col-2">21-00-00</td>                
-                    <td class="col-3">
-                        <button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>
-                        <button class="btn btn-danger btn-sm">삭제</button>
-                    </td>
-                </tr>                         
-            </tbody>
+				<c:choose>
+					<c:when test="${empty resumeList }">
+						<tr class="d-flex">
+							<td class="col-12">=====작성된 이력서가 없습니다.=====</td>							
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${resumeList }" var="resumeList">
+							<tr class="d-flex">
+								<td class="col-1"><input type="checkbox"></td>
+								<td class="col-1">${resumeList.r_no }</td>
+								<td class="col-5"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
+								<td class="col-2"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yy-MM-dd"/></td>
+								<td class="col-3">
+									<button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>
+									<button class="btn btn-danger btn-sm">삭제</button>
+								</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
         </table>
     </div>
+    
+       
 
 
 
