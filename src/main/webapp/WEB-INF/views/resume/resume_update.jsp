@@ -5,10 +5,10 @@
 <head>
 <!-- 주소 api스크립트 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script type="text/javascript" src="./resources/js/resume_form.js"></script> 
+    <script type="text/javascript" src="./resources/js/resume_address.js"></script> 
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<title>이력서 등록</title>
+<title>이력서 수정</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -47,7 +47,7 @@
                 <div class="row g-2"><!--생년월일-->
                     <div class="col-2"><h5>생년월일</h5></div>
                     <div class="col-3">            
-                        <input type="text" class="form-control col-6 px-2" aria-label="r_birth" placeholder="ex) 19810101">            
+                        <input type="date" class="form-control col-6 px-2" aria-label="r_birth" placeholder="ex) 19810101">            
                     </div>      
                     <div class="col-2"><!--성별 체크버튼-->
                         <div class="form-check form-check-inline">
@@ -131,8 +131,8 @@
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>학력사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
-                    <input class="btn btn-outline-dark btn-sm" type="button" onclick="addRow();" value="+"/>
-                    <input class="btn btn-outline-dark btn-sm" type="button" onclick="edrowDel();" value="-"/>
+                    <input class="btn btn-outline-dark btn-sm" type="button" id="addBtn" value="+"/>
+                    <input class="btn btn-outline-dark btn-sm" type="button" id="delBtn" value="-"/>
                 </div>
             </div>
             <!--학력사항 입력폼-->
@@ -152,14 +152,14 @@
                     <td><input type="text" class="form-control" id="ed_school" ></td>
                     <td><input type="text" class="form-control" id="ed_graduation" ></td>
                     <td>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select">
                         <option value="1">대학원</option>
                         <option value="2">대학교</option>
                         <option value="3">고등학교</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select">
                         <option value="1">졸업</option>
                         <option value="2">휴학</option>
                         <option value="3">중퇴</option>
@@ -196,12 +196,12 @@
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>자격사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
-                    <button class="btn btn-outline-dark btn-sm" type="button" id="liForm_p">+</button>
-                    <button class="btn btn-outline-dark btn-sm" type="button" id="liForm_m">-</button>
+                    <input class="btn btn-outline-dark btn-sm" type="button" id="liaddBtn" value="+"/>
+                    <input class="btn btn-outline-dark btn-sm" type="button" id="lidelBtn" value="-"/>
                 </div>
             </div>
             <!--자격사항 입력폼-->
-            <table class="table table-borderless table-sm">
+            <table class="table table-borderless table-sm" id="LiFormTable">
                 <thead>
                   <tr>
                     <th scope="col">자격증</th>
@@ -228,12 +228,12 @@
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>교육 및 사회경험</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
-                    <button class="btn btn-outline-dark btn-sm" type="button" id="caForm_p">+</button>
-                    <button class="btn btn-outline-dark btn-sm" type="button" id="caForm_m">-</button>
+                    <input class="btn btn-outline-dark btn-sm" type="button" id="caAddBtn" value="+">
+                    <input class="btn btn-outline-dark btn-sm" type="button" id="caDelBtn" value="-">
                 </div>
             </div>
             <!--교육 및 사회경험 입력폼-->
-            <table class="table table-borderless table-sm">
+            <table class="table table-borderless table-sm" id="CaFormTable">
                 <thead>
                   <tr>
                     <th scope="col">회사·기관</th>
@@ -285,6 +285,8 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
+<!-- 이력서 폼 스크립트 -->
+<script type="text/javascript" src="./resources/js/resume_form.js"></script> 
 	
 </body>
 </html>

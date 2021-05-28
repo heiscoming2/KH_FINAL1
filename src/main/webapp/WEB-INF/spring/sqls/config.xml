@@ -73,11 +73,8 @@
 		<mapper resource="/mybatis/BoardCategory-mapper.xml"/>	
 		<mapper resource="/mybatis/notice-mapper.xml"/>
 		<mapper resource="/mybatis/resume-mapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="/mybatis/note-mapper.xml"/>
 
-=======
->>>>>>> 95c4efebfa7eeb5f7e06e82a22494a9946ce7588
 		<mapper resource="/mybatis/like-mapper.xml"/>
 	</mappers>
 

@@ -20,6 +20,12 @@
 		ON A.M_NO=B.M_NO
 		WHERE A.M_NO = #{m_no}";
 	</select>
+	
+	<select id="selectlistcnt" resultType="int">
+		SELECT COUNT(R_NO)
+		FROM M_RESUME
+		WHERE R_NO=1
+	</select>
 
 	<!--이력서 등록 -->
 	<update id="resumeInsert">
