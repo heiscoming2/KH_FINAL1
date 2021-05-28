@@ -13,14 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 	@RequestMapping(value="/main.do")
 	public String getMain(Model model,HttpServletRequest request) {
-		logger.info(request.getSession().getServletContext().getRealPath("/"));
-		logger.info(request.getSession().getServletContext().toString());
-		logger.info("main.do");
 		return "main";
 	}
 	
