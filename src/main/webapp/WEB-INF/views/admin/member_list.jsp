@@ -7,14 +7,13 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
-<title>샘플 페이지 입니다.</title>
+<title>관리자-개인회원관리 페이지</title>
 
-
+<link href="resources/css/admin.css" rel="stylesheet">
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-
 	//체크박스 모두 선택, 취소하기
 	function allChk(bool) {
 		var chks = document.getElementsByName("chk");
@@ -35,15 +34,7 @@
 </script>
 
 
-<style type="text/css">
-.container{
-	display: inline-flex;
 
-}
-
-
-
-</style>
 
 
 
@@ -52,37 +43,37 @@
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
-	
+
 	<!-- ADMIN SIDEBAR 시작 -->
-	<div class="container"><%@include file="../inc/_sidebar_admin.jspf"%>
+	<div class="item"><%@include file="../inc/_sidebar_admin.jspf"%></div>
 	<!-- SIDEBAR 종료 -->
-	
+
 
 	<!-- 본문 시작 -->
 
 
 	<!-- 회원명단 -->
-	
-	<h1>회원관리</h1>
-	<form action="#">
+	<div class="content">
+		<h1>회원관리 : 개인회원</h1>
+		<form action="#">
 			<div align="right">
-				<input type="text" class="control">
-				<input type="submit"value="검색" class="btn btn-default"></input> 
+				<input type="text" class="control"> <input type="submit"
+					value="검색" class="btn btn-default"></input>
 			</div>
 			<br>
-	<table border="1">
-		
-			<tr>
-				<th><input type="checkbox" name="all"
-					onclick="allChk(this.checked);"></th>
-				<th>Nickname</th>
-				<th>회원구분</th>
-				<th>성별</th>
-				<th>회원등록일</th>
-				<th>활동여부</th>
-				<th>탈퇴여부</th>
-				<th>관리자권한</th>
-			</tr>
+			<table class="main_table">
+
+				<tr>
+					<th><input type="checkbox" name="all"
+						onclick="allChk(this.checked);"></th>
+					<th>Nickname</th>
+					<th>회원구분</th>
+					<th>성별</th>
+					<th>회원등록일</th>
+					<th>활동여부</th>
+					<th>탈퇴여부</th>
+					<th>관리자권한</th>
+				</tr>
 
 				<c:choose>
 					<c:when test="${empty list }">
@@ -93,12 +84,12 @@
 					<c:otherwise>
 						<c:forEach var="dto" items="${list }">
 							<tr>
-								<td><input type="checkbox" name="chk"
-									value="1"></td>
+								<td><input type="checkbox" name="chk" value="1"></td>
 								<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 								<td>${dto.m_type}</td>
 								<td>${dto.m_gender}</td>
-								<td><span class="m_regdate"> <fmt:formatDate value="${dto.m_regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></span></td>
+								<td><span class="m_regdate"> <fmt:formatDate
+											value="${dto.m_regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></span></td>
 								<td>${dto.m_act}</td>
 								<td>${dto.m_used}</td>
 								<td>${dto.m_auth}</td>
@@ -106,26 +97,28 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-		
-		
-	</table>
-	<!-- 쪽지보내기 -->
-
-	<input type="button" value="쪽지보내기" onclick="">
 
 
+			</table>
+			<!-- 쪽지보내기 -->
 
-	<!-- 본문 종료 -->
-	</form>
+			<input type="button" value="쪽지보내기" onclick="">
+
+
+
+			<!-- 본문 종료 -->
+		</form>
 	</div>
 
-	<!-- FOOTER 시작 -->
-	<%@include file="../inc/_footer.jspf" %>
-	
-	<!-- FOOTER 종료 -->
-	
-	<%@include file="../inc/_foot.jspf" %>
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 
+	<div class="footer">
+	<%@include file="../inc/_footer.jspf"%>
+
+	<!-- FOOTER 종료 -->
+
+	<%@include file="../inc/_foot.jspf"%>
+	</div>
 </body>
+	<!-- FOOTER 시작 -->
 </html>
