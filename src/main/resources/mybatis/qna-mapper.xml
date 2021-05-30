@@ -57,11 +57,11 @@
 	
 	<update id="update" parameterType="QnaUpdateDto">
 		UPDATE BOARD
-		SET BD_TITLE = #{bd_title} ,
-		    BD_CONTENT = #{bd_content} ,
-		    BD_MODIFYDATE = SYSDATE
+		SET BD_TITLE = #{bd_title},
+		    BD_CONTENT = #{bd_content}
+		    
 		WHERE BD_NO = #{bd_no}
 	</update>
-	
+	<!-- BD_MODIFYDATE = SYSDATE -->
 	
 </mapper>

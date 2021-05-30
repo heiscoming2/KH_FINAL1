@@ -18,6 +18,8 @@ public class ProjectDetailDto {
 	
 	//프로젝트 dto
 	private String pro_title; //프로젝트 제목
+	public String pro_start_str; //프로젝트 시작일
+	public String pro_end_str; //프로젝트 종료일
 	private Date pro_start; //프로젝트 시작일
 	private Date pro_end; //프로젝트 종료일
 	private String pro_link; //프로젝트 링크(깃)

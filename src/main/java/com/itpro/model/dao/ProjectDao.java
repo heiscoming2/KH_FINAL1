@@ -8,7 +8,6 @@ import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.project.ProjectUpdateDto;
-import com.itpro.model.dto.study.StudyDetailDto;
 
 public interface ProjectDao {
 
@@ -23,6 +22,8 @@ public interface ProjectDao {
 	public int delete(int bd_no);
 	public int getProjectListCnt();
 	public int imageuploadupdate(int pro_no, String pro_file);
-	
+	public int insert(ProjectInsertDto projectInsertDto);
+
+
 //	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap);
 	}

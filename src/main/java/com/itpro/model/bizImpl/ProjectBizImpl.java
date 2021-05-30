@@ -1,13 +1,19 @@
 package com.itpro.model.bizImpl;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.itpro.model.biz.ProjectBiz;
 import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dao.LikeDao;
@@ -92,9 +98,37 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	@Override
-	public int imageuploadupdate(int pro_no, String pro_file) {
+	public int imageuploadupdate(MultipartFile fileName, int pro_no) {
 		
-		return projectDao.imageuploadupdate(pro_no, pro_file);
+		int res = 0;
+		if(fileName.getSize()<=0) {
+			return 0;
+		}
+       String originalFile = fileName.getOriginalFilename();
+       String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); //확장자
+       SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+       String fileServerName= format.format(new Date());
+
+        File file = new File("C:\\workspace\\STS_Spring01\\KH_FINAL\\src\\main\\webapp\\resources\\images\\project" +File.separator, fileServerName+originalFileExtension);
+        if(!file.exists()) {
+        	file.mkdirs();
+        }
+
+        try {
+			fileName.transferTo(file);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        System.out.println(originalFile + "은 업로드한 파일이다.");
+        System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
+        System.out.println("파일사이즈는 " + fileName.getSize());
+        
+		return projectDao.imageuploadupdate(pro_no, "\\\\resources\\\\images\\\\project\\\\"+ fileServerName+originalFileExtension);
 	}
 
 	@Override
@@ -102,10 +136,42 @@ public class ProjectBizImpl implements ProjectBiz{
 		return projectDao.projectSelectOne(bd_no);
 	}
 
-//	@Override
-//	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap) {
-//		return projectDao.selectCategoryList(projcetCategoryMap);
-//	}
+	@Override
+	public String selectDetail(int bd_no) {
+		List<ProjectDetailDto> detailDtos = projectDao.selectOne(bd_no);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		for(int i=0;i<detailDtos.size();i++) {
+			ProjectDetailDto dto = detailDtos.get(i);
+			System.out.println("dto.getPro_start() : "+dto.getPro_start());
+			String start_str = format.format(dto.getPro_start());
+			System.out.println("start_str : "+start_str);
+			dto.pro_start_str = start_str;
+			dto.pro_end_str = format.format(dto.getPro_end());
+		}
+		return new Gson().toJson(detailDtos);
+	}
+
+	@Override
+	public List<ProjectInsertDto> projectUpdate(ArrayList<ProjectInsertDto> projectDtoList,
+			BoardUpdateDto boardupdateDto) {
+		
+		projectDao.delete(projectDtoList.get(0).bd_no); 
+		
+		boardDao.update(boardupdateDto);
+		
+		for (ProjectInsertDto projectInsertDto : projectDtoList) {
+			projectDao.insert(projectInsertDto);
+		}	
+		
+		return projectDtoList;
+	}
+
+	@Override
+	public int imagePathUpdate(int pro_no, String img_path) {
+		
+		return projectDao.imageuploadupdate(pro_no, img_path);
+	}
+
 
 
 	

@@ -77,10 +77,8 @@
               ※ ERD 링크: ${item.pro_erd }<br>
               ※ 개발 환경: ${item.pro_develop }<br>
               ※ 개발 목표: ${item.pro_goal } <br>
-              ※ 프로젝트 파일: <form action="download" method="post">
-					<input type="hidden" name="name" value="${item.pro_file_path }">
-					<input type="submit" value="download">	
-				</form>         
+              ※ 프로젝트 파일: 
+					<input type="button" value="download" onclick='location.href="/upgrade/${item.pro_file_path }"'>	
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
             <br>
