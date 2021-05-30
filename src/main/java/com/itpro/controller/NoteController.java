@@ -2,6 +2,7 @@ package com.itpro.controller;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -27,6 +28,7 @@ import com.itpro.model.biz.Login_joinBiz;
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.biz.NoteBiz;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.note.NoteDto;
 
 @Controller
 public class NoteController {
@@ -35,10 +37,13 @@ public class NoteController {
 	@Autowired
 	private NoteBiz biz;
 
-	// 보낸 쪽지 목록
+	// 보낸 쪽지 목록 이동
 	@RequestMapping(value = "/note_sendlist.do")
 	public String noteSendList() {
 		logger.info("NOTE SEND LIST");
+		
+		
+		
 
 		return "note/note_sendlist";
 	}
@@ -48,9 +53,8 @@ public class NoteController {
 	@RequestMapping(value="", method = RequestMethod.POST)
 	public String noteSend(Message message, Model model) {
 		logger.info("NOTE SEND");
-		
-		
-		return "note/note_sendlist";	}
+		return "note/note_sendlist";	
+	}
 	
 	
 
@@ -59,6 +63,10 @@ public class NoteController {
 	public String noteReceiveList() {
 		logger.info("NOTE RECEIVE LIST");
 
+		List<NoteDto> list = biz.receiveList();
+		Integer count = biz.countNewNote();
+		logger.info("count: " + count);
+		
 		return "note/note_receivelist";
 	}
 
