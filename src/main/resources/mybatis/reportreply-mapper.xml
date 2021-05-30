@@ -59,6 +59,10 @@
 	
 	</select>
 	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM REPORT_REPLY WHERE REPORT_REPLY_NO=#{report_reply_no}
+	</delete>
 	
 	
 </mapper>

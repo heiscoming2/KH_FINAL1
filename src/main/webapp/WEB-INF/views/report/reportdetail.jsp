@@ -48,9 +48,12 @@
 				<th>신고날짜</th><td>${dto.report_date}</td>
             </tr>
             <tr>
-				<td>글게시회원</td><td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname }</a></td>
+				<td>글게시회원</td><td><a href="member_detail.do?m_no='${dto.m_no }'">${dto.m_nickname }</a></td>
             </tr>
-            
+            <tr>
+				<td><input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.report_no}');"></td>
+				<td><input type="button" value="뒤로가기" class="btn btn-primary" onclick="location.href='reportlist.do';"></td>
+            </tr>
 		</body>
 
 	
@@ -70,6 +73,8 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
+<!-- report 디테일 js -->
+<script type="text/javascript" src="resources/js/reportdetail.js?ver=1.1"></script>
 	
 </body>
 </html>

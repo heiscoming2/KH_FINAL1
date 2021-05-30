@@ -33,6 +33,7 @@ import com.itpro.model.dto.study.StudyListDto;
 import com.itpro.model.dto.study.StudySearchDto;
 import com.itpro.model.dto.study.StudyUpdateDto;
 import com.itpro.util.ClientInfo;
+import com.itpro.util.JavaScriptResponse;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
 
@@ -54,6 +55,9 @@ public class StudyController {
 	
 	@Autowired
 	private LikeBiz likeBiz;
+	
+	@Autowired
+	private JavaScriptResponse javaScriptResponse;
 	
 	@RequestMapping(value="/studylist.do")
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
@@ -198,13 +202,7 @@ public class StudyController {
 	public String studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		log.info("STUDY DELETE");
 		int studyDeleteRes = studyBiz.delete(bd_no);
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.print("<script>");
-		out.print("alert('삭제 되었습니다.');");
-		out.print("location.href='studylist.do';");
-		out.print("</script>");
+		javaScriptResponse.jsResponse(response, "삭제 되었습니다.", "studylist.do");
 		return null;
 	}
 	
@@ -238,10 +236,7 @@ public class StudyController {
 	public boolean studyStatchange(@RequestBody Map<String,Object> map) {
 		log.info("studychange");
 		int bd_no = Integer.parseInt(map.get("bd_no").toString());
-		System.out.println(bd_no);
 		int res = studyBiz.updatestatus(bd_no);
-		System.out.println(res);
-		System.out.println("test");
 		return res>0?true:false;
 	}
 	
@@ -253,9 +248,7 @@ public class StudyController {
 		//없는경우 참여신청 insert
 		//이미 있는 경우 쿼리 수행 없이 return
 		Map<String,Object> map = new HashMap<String, Object>();
-		
 		int res1 = studyBiz.studyJoinApplySelectOne(studyJoinInfoDto);
-		log.info("res1 : "+Integer.toString(res1));
 		if(res1==1) {
 			map.put("msg", "이미 참여 중 or 참여 신청한 스터디 입니다.");
 		} else {
@@ -264,7 +257,6 @@ public class StudyController {
 			map.put("stat", ".");
 		}
 		return map;
-		
 		
 	}	
 	

@@ -26,7 +26,7 @@
         FROM REPORT A
         JOIN IT_MEMBER B
         ON A.M_NO=B.M_NO
-		WHERE A.BD_NO=#{bd_no}
+		WHERE A.REPORT_NO=#{report_no}
 	</select>
 	
 	<insert id="insert" parameterType="ReportDto">
@@ -46,6 +46,9 @@
 		WHERE BD_NO=#{bd_no}	
 	</select>
 	
-	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM REPORT WHERE REPORT_NO=#{report_no}
+	</delete>
 	
 </mapper>
