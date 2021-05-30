@@ -122,7 +122,7 @@
 		FROM
        		  (SELECT ROWNUM RN, A.* 
        		   FROM (
-                       SELECT C.NAME, B.BC_CODE, B.BD_NO, B.BD_TITLE, 
+                       SELECT C.NAME, B.BC_CODE, B.BD_NO, B.BD_TITLE, B.BD_CONTENT,
            			   DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
               		   DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT,B.BD_CREATEDDATE
                        FROM BOARD B, BOARDCATEGORY C,
@@ -131,6 +131,9 @@
                        WHERE B.BC_CODE = C.CODE(+)
                        <if test="category!=0">
                        AND B.BC_CODE = #{category}
+                       </if>
+                       <if test="keyword!=null or keyword!=''">
+                       AND (B.BD_TITLE LIKE '%${keyword}%' OR B.BD_CONTENT LIKE '%${keyword}%')
                        </if>
                        AND B.M_NO = #{m_no}
                        AND B.BD_NO = RE.BD_NO(+)
@@ -143,11 +146,14 @@
 	<!-- 작성 글 갯수 조회 -->
 	<select id="selectPostLookupCnt" parameterType="int" resultType="int">
 		SELECT COUNT(BD_NO) 
-		FROM BOARD 
-		WHERE M_NO=#{m_no} 
+		FROM BOARD
+		WHERE M_NO=#{m_no}
         <if test="category!=0">
         AND BC_CODE = #{category}
         </if>
+        <if test="keyword!=null or keyword!=''">
+        AND (BD_TITLE LIKE '%${keyword}%' OR BD_CONTENT LIKE '%${keyword}%')
+        </if>        
 	</select>
 	
 </mapper>

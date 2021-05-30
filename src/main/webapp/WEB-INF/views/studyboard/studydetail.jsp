@@ -19,7 +19,7 @@
 
 <!-- 본문 시작 -->
   <div class="study_detailwrap mt-5">
-      <h4>스터디 구인</h4>
+      <h4>스터디 모집</h4>
       <!-- 스터디모집 구인글 영역 -->
       <table class="table table-bordered" style="width:100%;">
         <tr>

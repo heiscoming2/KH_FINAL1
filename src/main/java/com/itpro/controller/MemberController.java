@@ -21,6 +21,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -217,7 +218,8 @@ public class MemberController {
 	@RequestMapping(value = "/postlookup.do")
 	public String postLookup(Model model, int m_no,
 			@RequestParam(value="page", required=false, defaultValue="1") int page,
-			@RequestParam(value="category", required=false, defaultValue="0") int category) {
+			@RequestParam(value="category", required=false, defaultValue="0") int category,
+			@RequestParam(value="keyword", required=false) String keyword) {
 		logger.info("postlookup");
 		
 		
@@ -232,6 +234,9 @@ public class MemberController {
 		PageProcessing pageProcessing = new PageProcessing(postlookupcnt,page);
 		postLookupPageMap.put("start", pageProcessing.getStartIndex());
 		postLookupPageMap.put("end", pageProcessing.getEndIndex());
+		postLookupPageMap.put("keyword", keyword);
+		System.out.println("keyword==null"+keyword==null);
+		System.out.println("keyword!=null"+keyword!=null);
 		List<PostLookupDto> postLookupList = biz.selectPostLookup(postLookupPageMap);
 		logger.info("postLookupList size : "+Integer.toString(postLookupList.size()));
 		for(PostLookupDto dto : postLookupList) {
@@ -247,6 +252,8 @@ public class MemberController {
 		model.addAttribute("category",category);
 		//작성자 정보
 		model.addAttribute("writer",biz.selectOne(m_no));
+		//검색어
+		model.addAttribute("keyword",keyword);
 		return "member/postlookup";
 	}
 	

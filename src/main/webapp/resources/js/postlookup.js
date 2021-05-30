@@ -1,7 +1,12 @@
 function selectPage(i) {
-	const m_no = $('#session_mno').val();
+	const m_no = $('#writer_mno').val();
 	const category = $('#category').val();
-	location.href='postlookup.do?page='+i+'&m_no='+m_no+'&category='+category;
+	const keyword = $('#keyword').val();
+	if(keyword==null||keyword==''||keyword=="") {
+		location.href='postlookup.do?page='+i+'&m_no='+m_no+'&category='+category;
+	} else {
+		location.href='postlookup.do?page='+i+'&m_no='+m_no+'&category='+category+'&keyword='+keyword;
+	}
 }
 
 
@@ -12,6 +17,6 @@ $(function(){
 
 
 function selectCate(category) {
-	const m_no = $('#session_mno').val();
+	const m_no = $('#writer_mno').val();
 	location.href='postlookup.do?m_no='+m_no+'&category='+category;
 }

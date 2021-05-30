@@ -32,13 +32,20 @@
 	 		</div>
 	 		<br>
 	 		<div class="buttonwrap">
+	 			<c:if test="${sessionScope.login.m_no eq writer.m_no}">
 				<input type="button" value="선택삭제" class="btn btn-danger">
-				<input style="float:right; clear:both;" type="button" value="검색" class="btn btn-primary">
-				<input style="margin-right:10px; float:right; display:inline-block; width:200px;" type="search" placeholder="제목/내용" class="form-control" >
+				</c:if>
+				<input style="float:right; clear:both;" type="button" value="검색" class="btn btn-primary" onclick="selectPage(1)">
+				
+				<input style="margin-right:10px; 
+				<c:if test='${sessionScope.login.m_no ne writer.m_no}'>margin-bottom:30px;</c:if>
+				float:right; display:inline-block; width:200px;" type="search" placeholder="제목/내용" class="form-control" id="keyword" value="${keyword }">
 	 		</div>
 			<br>
 			<table class="table postlookup_table">
+				<c:if test="${sessionScope.login.m_no eq writer.m_no}">
 				<col width="50px;">
+				</c:if>
 				<col width="80px;">
 				<col width="200px;">
 				<col width="520px;">
@@ -46,7 +53,9 @@
 				<col width="80px;">
 				<col width="200px;">
 				<tr>
+					<c:if test="${sessionScope.login.m_no eq writer.m_no}">
 					<th class="text-center"><input type="checkbox" class="custom-control custom-checkbox"></th>
+					</c:if>
 					<th class="bd_no_th"><a>번호</a></th>
 					<th>카테고리</th>
 					<th>제목</th>
@@ -65,7 +74,9 @@
 						<c:forEach var="postLookupDto" items="${postLookupList }">
 						<tr>
 								<!-- 글 번호 시작 --> 
+								<c:if test="${sessionScope.login.m_no eq writer.m_no}">
 								<td align="center"><input type="checkbox"></td>
+								</c:if>
 								<td class="bd_no">${postLookupDto.bd_no}</td>
 								<td>${postLookupDto.name } </td>
 								<td><a href="boarddetail.do?bc_code=${postLookupDto.bc_code }&bd_no=${postLookupDto.bd_no}" style="color:black;">${postLookupDto.bd_title }<span class="replycount"> +${postLookupDto.bd_replycount }</span></a></td>
@@ -102,7 +113,7 @@
 <!-- 페이징 종료 -->
 
   	<!-- 사용자 세션/현재 카테고리 -->
-	<input id="session_mno" type="hidden" value="${writer.m_no}">
+	<input id="writer_mno" type="hidden" value="${writer.m_no}">
 	<input id="category" type="hidden" value="${category }">
 	
 	
@@ -115,7 +126,7 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<script type="text/javascript" src="resources/js/postlookup.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/postlookup.js?ver=1.4"></script>
 	
 </body>
 </html>
