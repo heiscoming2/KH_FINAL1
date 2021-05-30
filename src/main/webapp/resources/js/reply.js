@@ -10,7 +10,7 @@
   /* 신고 insert popup*/
 
 	function reportreplyInsert(re_no){
-		window.open("reportreplyinsertform.do?re_no="+re_no, "신고등록", "width=400, height=300, left=100, top50")
+		window.open("reportreplyinsertform.do?re_no="+re_no, "신고등록", "width=550, height=300, left=100, top50")
 	}
   
   

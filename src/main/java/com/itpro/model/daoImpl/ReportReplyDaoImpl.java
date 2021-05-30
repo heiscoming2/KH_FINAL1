@@ -102,6 +102,18 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 	
 		return 0;
 	}
+	
+	@Override
+	public int delete(int report_reply_no) {
+			int report_replyDeleteRes = 0;
+			
+				try {
+					report_replyDeleteRes = sqlSession.delete(NAMESPACE+"delete", report_reply_no);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return report_replyDeleteRes;
+	}
 
 
 
