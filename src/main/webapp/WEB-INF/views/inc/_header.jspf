@@ -108,9 +108,11 @@
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <table>
                 <tr>
-          <td><input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search"></td>
+          <td><input type="search" class="form-control form-control-dark form-search" placeholder="Search..." aria-label="Search" onKeyDown="searchKeyEvent()"></td>
           <td >&nbsp;&nbsp;&nbsp;</td>
-          <td><a style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <td><a style="cursor:pointer;">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+          	fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" onclick="searchList()">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg></a></td>
         </tr>
@@ -122,7 +124,10 @@
           <form>
            <c:if test="${login != null}">
             <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">${login.m_nickname }</a>
+              <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              	<img src="${sessionScope.login.m_img_path }${sessionScope.login.m_img}" style="width:35px; height:35px; border-radius:50%;"/>
+              	${login.m_nickname }
+              </a>
               <ul class="dropdown-menu">
                 <c:set var = "mypage" value = "${login.m_type}"/>
                 <c:choose>

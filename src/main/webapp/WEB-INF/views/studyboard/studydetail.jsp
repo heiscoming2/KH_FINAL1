@@ -127,7 +127,6 @@
             <!-- 작성자의 경우에는 이게 안 보여야한다. -->
             <c:if test="${sessionScope.login.m_no ne dto.m_no }">
             <form id="studyJoinApplyForm" action="#">
-           		<!-- 나중에 placeholder에 로그인 후 참여신청이 가능하다고 써주기 -->
             	<input type="button"
             	onclick="
             	<c:if test='${sessionScope.login eq null }'>alert('로그인 후 이용 가능합니다.')</c:if>

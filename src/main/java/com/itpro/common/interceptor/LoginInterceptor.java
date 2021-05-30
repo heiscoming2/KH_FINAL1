@@ -41,11 +41,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (request.getRequestURI().contains("/studyinsertform.do") ||
 		    request.getRequestURI().contains("/qnainsertform.do") ||
 		    request.getRequestURI().contains("/portfolioinsertform.do") ||
-		    request.getRequestURI().contains("/projectinsertform.do")
+		    request.getRequestURI().contains("/projectinsertform.do") ||
+		    request.getRequestURI().contains("/postlookup.do")
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
-				javaScriptResponse.jsResponse(response, "로그인 후 작성 가능합니다.", "login.do");
+				javaScriptResponse.jsResponse(response, "로그인 후 이용 가능합니다.", "login.do");
 				return false;
 			}
 		}

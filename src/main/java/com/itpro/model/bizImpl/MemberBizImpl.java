@@ -1,5 +1,8 @@
 package com.itpro.model.bizImpl;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dao.MemberDao;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.model.dto.member.ProfileDto;
 
 @Service
@@ -49,6 +53,16 @@ public class MemberBizImpl implements MemberBiz {
 	public int profileUpload(ProfileDto profileDto) {
 
 		return dao.profileUpload(profileDto);
+	}
+
+	@Override
+	public List<PostLookupDto> selectPostLookup(Map<String,Object> map) {
+		return dao.selectPostLookup(map);
+	}
+
+	@Override
+	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap) {
+		return dao.selectPostLookupCnt(postLookupPageMap);
 	}
 
 }

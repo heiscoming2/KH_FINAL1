@@ -24,7 +24,7 @@
 		<div class="loc_toggle" style="clear: both; display: none;">
 			 <div>
 			 <span>지역선택</span>
-			 <span style="display:flex; width:300px;" class="mb-2">
+			 <span class="gugunselect_wrap mb-2">
                 <select class="sidoselect form-control" style="margin-right:10px;" name="st_addr1" onchange="change(this.selectedIndex);">
                        <option value=''>전체</option>
                        <option value='서울'>서울</option>
@@ -51,7 +51,7 @@
 			</div>
 			<div>
 			<span>모집여부</span>
-			<span style="display:flex; width:300px;">
+			<span class="status_wrap">
 				<select class="form-control mb-2 status">
 					<option value=''>전체</option>
 					<option value='Y'>모집중</option>
