@@ -165,7 +165,15 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		return projectDetailDto ;
 	}
-	
+
+
+	@Override
+	public int insert(ProjectInsertDto projectInsertDto) {
+		return sqlSession.insert(NAMESPACE + "insert", projectInsertDto);
+	}
+
+
+
 	
 
 //	@Override

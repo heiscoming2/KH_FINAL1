@@ -2,6 +2,8 @@ package com.itpro.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -190,45 +192,20 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}	
 	
 	
-	@RequestMapping(value="/projectupdateform.do")
-	public String projectUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
-		logger.info("PROJECT UPDATE FORM");
-		List<ProjectDetailDto> projectDetailDto = projectBiz.selectOne(bd_no);
-		model.addAttribute("projectDetailDto", projectDetailDto);
-		return "projectboard/projectupdateform";
+	@RequestMapping(value="/getprojectdetail.do")
+	public @ResponseBody String getProjectDetail(@RequestParam(value="bd_no") int bd_no) { 
+		return projectBiz.selectDetail(bd_no);
 	}
 	
 	
-	@RequestMapping(value="/projectupdate.do")
-	public String projectUpdate(Model model, ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto) {
-		logger.info("PROJECT UPDATE");
-		
-		int projectUpdateRes = projectBiz.update(projectUpdateDto,boardUpdateDto);
-		logger.info(Integer.toString(projectUpdateRes));
-		if(projectUpdateRes>0) {
-			int bd_no = projectUpdateDto.getBd_no();
-			return "redirect:projectdetail.do?bd_no="+bd_no;
-		}
-		
-		List<ProjectDetailDto> projectDetailDto = projectBiz.selectOne(projectUpdateDto.getBd_no()); 
-		/*
-		 * projectDetailDto.setBd_title(boardUpdateDto.getBd_title());
-		 * projectDetailDto.setBd_content(boardUpdateDto.getBd_content());
-		 * 
-		 * projectDetailDto.setPro_title(projectUpdateDto.getPro_title());
-		 * projectDetailDto.setPro_start(projectUpdateDto.getPro_start());
-		 * projectDetailDto.setPro_end(projectUpdateDto.getPro_end());
-		 * projectDetailDto.setPro_link(projectUpdateDto.getPro_link());
-		 * projectDetailDto.setPro_develop(projectUpdateDto.getPro_develop());
-		 * projectDetailDto.setPro_goal(projectUpdateDto.getPro_goal());
-		 * projectDetailDto.setPro_function(projectUpdateDto.getPro_function());
-		 * projectDetailDto.setPro_erd(projectUpdateDto.getPro_erd());
-		 */
-
-		model.addAttribute("projectDetailDto",projectDetailDto);
-		logger.info("업데이트 실패");
-		return "projectboard/projectupdateform";
-	}	
+	
+	@RequestMapping(value="/projectupdateform.do")
+	public String projectUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
+		logger.info("PROJECT UPDATE FORM");
+		model.addAttribute("bd_no", bd_no);
+		return "project/projectupdateform";
+	}
+	
 	
 	@RequestMapping(value="/projectdelete.do")
 	public String projectDelete(Model model, int bd_no) {
@@ -242,29 +219,24 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	@RequestMapping(value="/multipart.do", method=RequestMethod.POST)                                                         
     public @ResponseBody String multipart(@RequestParam("pro_no") String pro_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
 		logger.info("multipart.do");
-		int res = 0;
-		if(fileName.getSize()<=0) {
-			return "{result:"+res+"}";
-		}
-       String originalFile = fileName.getOriginalFilename();
-       String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); //확장자
-       SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
-       String fileServerName= format.format(new Date());
-
-        File file = new File("project" +File.separator, fileServerName+originalFileExtension);
-        if(!file.exists()) {
-        	file.mkdirs();
-        }
-
-        fileName.transferTo(file);
-        
-        System.out.println(originalFile + "은 업로드한 파일이다.");
-        System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
-        System.out.println("파일사이즈는 " + fileName.getSize());
-        
-        res = projectBiz.imageuploadupdate(Integer.parseInt(pro_no), file.getAbsolutePath());
+		
+        int res = projectBiz.imageuploadupdate(fileName, Integer.parseInt(pro_no));
         return "{result:"+res+"}";
     }
+	
+	
+	//이미지 경로 업데이틑 위해
+	@RequestMapping(value="/imagepathupdate.do")
+	public @ResponseBody String imagePathUpdate(@RequestParam("pro_no") int pro_no, @RequestParam("img_path") String img_path) {
+		
+		
+		HashMap<String, Integer> res = new HashMap<String, Integer>();
+		
+		int rs = projectBiz.imagePathUpdate(pro_no, img_path);
+		res.put("result", rs);
+		
+		return new Gson().toJson(res);
+	}
 	
 	
 	
@@ -296,44 +268,29 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}
 	
 	
-	
-	
-	
-	/*
-	 * @RequestMapping(value="/imageupload.do", method= RequestMethod.POST) public
-	 * String upload(MultipartHttpServletRequest request) { MultipartFile file =
-	 * request.getFile("pro_file");
-	 * 
-	 * System.out.println(file.getName()); System.out.println(file.getSize());
-	 * String extention = file.getOriginalFilename().split(".")[1];
-	 * System.out.println(file.getOriginalFilename());
-	 * 
-	 * SimpleDateFormat image_upload = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
-	 * image_upload+"."+extention;
-	 * 
-	 * 
-	 * return null; }
-	 */
-	
-	
-	
-	
+	@PostMapping(value="/projectupdate.do")
+	public @ResponseBody String projectUpdate(HttpServletRequest request, HttpServletResponse response) {
+		String data = null;
+		try {
+			data = request.getReader().readLine();
+			logger.info("PROJECT INSERT : "+data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<ProjectInsertDto> projectDtoList = new Gson().fromJson(data, new TypeToken<List<ProjectInsertDto>>(){}.getType());
+		ArrayList<BoardUpdateDto> boardDtoList = new Gson().fromJson(data, new TypeToken<List<BoardUpdateDto>>(){}.getType());
+		
+		logger.info("PROJECT INSERT : "+projectDtoList.size());
+		logger.info("PROJECT INSERT : "+boardDtoList.size());
+		List<ProjectInsertDto> resultDtos = projectBiz.projectUpdate(projectDtoList, boardDtoList.get(0));
+		return new Gson().toJson(resultDtos);
+	}
 	
 	
 	
 	
 	
-	/*
-	 * @RequestMapping(value="/projectcategory.do") public String
-	 * projectcategory(@RequestParam(value="bd_no") int bd_no, Model model ) {
-	 * return null;
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
-
 	
 	
 }

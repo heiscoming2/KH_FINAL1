@@ -22,6 +22,7 @@ public class ProjectUpdateDto {
 	private Date pro_start; //프로젝트 시작일
 	private Date pro_end; //프로젝트 종료일
 	private String pro_link; //프로젝트 링크(깃)
+	private String pro_file_path; //프로젝트 파일
 	private String pro_develop; //개발환경
 	private String pro_goal; //개발 목표
 	private String pro_function; //구현 기능
@@ -37,6 +38,20 @@ public class ProjectUpdateDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	public String getPro_file_path() {
+		return pro_file_path;
+	}
+
+
+
+	public void setPro_file_path(String pro_file_path) {
+		this.pro_file_path = pro_file_path;
+	}
+
+
 
 	public int getBd_no() {
 		return bd_no;
