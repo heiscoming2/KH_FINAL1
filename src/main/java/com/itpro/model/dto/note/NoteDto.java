@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class NoteDto {
 	private int n_no;//쪽지 번호
-	private String n_sender;//보낸사람회원번호
+	private String n_sender;//보낸사람회원번호(닉네임이어야 하는데...)
 	private String n_receiver;//받는사람 회원번호
 	private String n_title;//쪽지 제목
 	private String n_content;//내용

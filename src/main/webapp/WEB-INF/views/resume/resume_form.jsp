@@ -112,18 +112,21 @@
                     </div>
                 </div>
             </form><!--기본정보 입력 form 끝-->
+            
             <br>
-            <form><!--이미지 업로드 form-->
+            
+            <form id="resumeProfile"><!--이미지 업로드 form-->
                 <div class="row g-2">
                     <div class="col-2"><h5>사진등록</h5></div>
                     <div class="col-3"> 
-                        <input class="form-control form-control-sm" id="r_img" type="file">                     
+                        <input class="form-control form-control-sm" name="r_img" type="file">                     
                     </div>  
                     <div class="col-sm-1">
-                        <input type="submit" class="btn btn-outline-dark btn-sm" value="업로드">
+                        <input type="button" class="btn btn-outline-dark btn-sm" id="uploadBtn" value="업로드">
                     </div>   
                 </div>
             </form><!--이미지 업로드 form 끝-->
+            
         </div><!--이력서 기본정보 div 끝-->     
         <hr>
 

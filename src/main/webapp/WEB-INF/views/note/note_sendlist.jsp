@@ -14,7 +14,7 @@
 
 <!-- 본문 시작 -->
 
- 	<div class="container mt-5 mb-5" >
+ 	<div class="container mt-5 mb-5" style="max-width: 1000px;">
  
 		 <h3>보낸 쪽지</h3>
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
@@ -26,27 +26,25 @@
             <thead>
                 <tr class="d-flex">
                     <th class="col-1">선택</th>
-                    <th class="col-1">NO.</th>
-                    <th class="col-2">등록일</th>
-                    <th class="col-4">받는사람</th>
-                    <th class="col-4">내용</th>
+                    <th class="col-3">등록일</th>
+                    <th class="col-3">받은 사람</th>
+                    <th class="col-5">제목</th>
                 </tr>
             </thead>
             <tbody>
                 <c:choose>
-					<c:when test="${empty noteList }">
+					<c:when test="${empty sendList }">
 						<tr class="d-flex">
 							<td class="col-12">=====보낸 쪽지가 없습니다.=====</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${noteList }" var="noteList">
+						<c:forEach items="${sendList }" var="sendList">
 							<tr class="d-flex">
 								<td class="col-1"><input type="checkbox"></td>
-								<td class="col-1">${noteList.n_no }</td>
-								<td class="col-2"><fmt:formatDate value="${noteList.n_date }" pattern="yy-MM-dd" /></td>
-								<td class="col-4">${noteList.n_receiver }</td>
-								<td class="col-4">${noteList.n_content }</td>
+								<td class="col-3"><fmt:formatDate value="${sendList.n_sendDate }" /></td>
+								<td class="col-3">${sendList.n_receiver }</td>
+								<td class="col-5">${sendList.n_title }</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
@@ -72,7 +70,6 @@
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">내용:</label>
                   <textarea class="form-control" id="message-text" maxlength="300" style="height: 150px"></textarea>
-                  <span>보낸시간 : 2021-00-00</span>
                 </div>
               </form>
             </div>

@@ -26,13 +26,42 @@ public class NoteBizImpl implements NoteBiz {
 
 	// 내가 받은 쪽지 목록 조회
 	@Override
-	public List<NoteDto> receiveList() {
-		return dao.receiveList();
+	public List<NoteDto> receiveList(int n_receiver) {
+		
+		return dao.receiveList(n_receiver);
 	}
+	
+	// 보낸쪽지 목록
+		@Override
+		public List<NoteDto> sendList(int n_sender) {
+			
+			return dao.sendList(n_sender);
+		}
 
-	@Override
 	// 새로 받은 쪽지가 있는지 확인(매번)
+	@Override	
 	public Integer countNewNote() {
 		return dao.countNewNote();
+	}
+	
+	// 내가 받은쪽지 하나 읽기
+	@Override
+	public NoteDto receiveDetail() {
+		
+		return dao.receiveDetail();
+	}
+
+	// 읽은 쪽지 읽은 시간 표시 UPDATE 
+	@Override
+	public int updateReadDate() {
+		
+		return dao.updateReadDate();
+	}
+
+	// 보낸 쪽지 하나 읽기 
+	@Override
+	public NoteDto sendDetail() {
+		
+		return dao.sendDetail();
 	}
 }

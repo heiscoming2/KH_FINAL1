@@ -13,21 +13,22 @@ public interface NoteDao {
 	String NAMESPACE = "Note.";
 
 	// 내가 받은 쪽지 목록 조회
-	public List<NoteDto> receiveList();
-		
+	public List<NoteDto> receiveList(int n_receiver);
+	
+	// 보낸쪽지 목록
+    public List<NoteDto> sendList(int n_sender);
+			
 	// 새로 받은 쪽지가 있는지 확인(매번)
 	public Integer countNewNote();
 	
-	//  내가 받은쪽지 하나 읽기
+	// 내가 받은쪽지 하나 읽기
     public NoteDto receiveDetail();	  
     
-   //  읽은 쪽지 읽은 시간 표시 UPDATE 
+    // 읽은 쪽지 읽은 시간 표시 UPDATE 
     public int updateReadDate();
     
-    // 보낸쪽지 목록
-    public List<NoteDto> sendList();
-	   
-   //  보낸 쪽지 하나 읽기 
+    
+    // 보낸 쪽지 하나 읽기 
     public NoteDto sendDetail();
 	
 	

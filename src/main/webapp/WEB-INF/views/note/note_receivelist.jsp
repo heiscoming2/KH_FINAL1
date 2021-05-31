@@ -14,7 +14,7 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5" >
+ <div class="container mt-5 mb-5" style="max-width: 1000px;">
  		<h3>받은 쪽지</h3> 
  
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
@@ -26,40 +26,29 @@
             <thead>
                 <tr class="d-flex">
                 	<th class="col-1">선택</th>
-                    <th class="col-1">NO.</th>
-                    <th class="col-2">등록일</th>
-                    <th class="col-4">보낸사람</th>
-                    <th class="col-4">내용</th>
+                    <th class="col-3">등록일</th>
+                    <th class="col-3">보낸 사람</th>
+                    <th class="col-5">제목</th>
                 </tr>
             </thead>
-            <tbody>
-				<tr class="d-flex">
-					<td class="col-1"><input type="checkbox"></td>
-					<td class="col-1">1</td>
-					<td class="col-2">21-06-01</td>
-					<td class="col-4" data-bs-toggle="modal"
-						data-bs-target="#sendmessage">보낸사람이여</td>
-					<td class="col-4">쪽지에여</td>
-				</tr>
-				<%-- 
+            <tbody> 
 				<c:choose>
-					<c:when test="${empty noteList }">
+					<c:when test="${empty receiveList }">
 						<tr class="d-flex">
 							<td class="col-12">=====받은 쪽지가 없습니다.=====</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${noteList }" var="noteList">
+						<c:forEach items="${receiveList }" var="receiveList">
 								<tr class="d-flex">
 								<td class="col-1"><input type="checkbox"></td>
-								<td class="col-1">${noteList.n_no }</td>
-								<td class="col-2"><fmt:formatDate value="${noteList.n_date }" pattern="yy-MM-dd" /></td>
-								<td class="col-4">${noteList.n_send }</td>
-								<td class="col-4">${noteList.n_content }</td>
+								<td class="col-3"><fmt:formatDate value="${receiveList.n_sendDate }" /></td>
+								<td class="col-3">${receiveList.n_sender }</td>
+								<td class="col-5">${receiveList.n_title }</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
-				</c:choose>  --%>                                  
+				</c:choose>                           
             </tbody>
         </table>
     </div>
@@ -76,12 +65,15 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">받는사람:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                  <input type="text" class="form-control" id="recipient-name" placeholder="아이디 입력">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-title" class="col-form-label">제목:</label>
+                  <input type="text" class="form-control" id="recipient-name" maxlength="10" placeholder="10자내 입력 가능">
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">내용:</label>
-                  <textarea class="form-control" id="message-text" maxlength="300" style="height: 150px"></textarea>
-                  <span>보낸시간 : 2021-00-00</span>
+                  <textarea class="form-control" id="message-text" maxlength="200" style="height: 150px" placeholder="200자내 입력 가능"></textarea>
                 </div>
               </form>
             </div>

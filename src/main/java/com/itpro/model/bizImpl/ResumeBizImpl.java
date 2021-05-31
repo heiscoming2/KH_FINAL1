@@ -16,6 +16,7 @@ import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeProfileDto;
 
 @Service
 public class ResumeBizImpl implements ResumeBiz {
@@ -23,25 +24,30 @@ public class ResumeBizImpl implements ResumeBiz {
 	@Autowired
 	private ResumeDao dao;
 
+
 	//이력서 등록
 	@Override
-	public MemberDto selectOne(int m_no) {
+	public MemberDto selectOne() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//이력서 조회
+	@Override
+	public List<ResumeDto> resumeList(int m_no) {
 		
-		return dao.selectOne(m_no);
+		return dao.resumeList(m_no);
 	}
 
-	//이력서 목록 조회
+	//이미지 저장
 	@Override
-	public int getResumeListCnt() {
-		// TODO Auto-generated method stub
-		return dao.getResumeListCnt();
+	public int profileUpload(ResumeProfileDto resumeProfileDto) {
+		
+		return dao.profileUpload(resumeProfileDto);
 	}
 
-	@Override
-	public List<ResumeDto> selectList(Map<String, Object> resumePageMap) {
-		// TODO Auto-generated method stub
-		return dao.selectList(resumePageMap);
-	}
+	
+	
 
 	
 	

@@ -17,6 +17,7 @@ import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeProfileDto;
 
 @Repository
 public class ResumeDaoImpl implements ResumeDao {
@@ -31,33 +32,35 @@ public class ResumeDaoImpl implements ResumeDao {
 		return null;
 	}
 
-	// 이력서 목록 조회
+	// 이력서 조회
 	@Override
-	public int getResumeListCnt() {
-		int ResumeListCnt = 0;
+	public List<ResumeDto> resumeList(int m_no) {
+		List<ResumeDto> list = new ArrayList<ResumeDto>(m_no);
+
 		try {
-			ResumeListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+			list = sqlSession.selectList(NAMESPACE + "resumeList", m_no);
+
 		} catch (Exception e) {
+			System.out.println("[error] : select list");
 			e.printStackTrace();
 		}
-		return ResumeListCnt;
+
+		return list;
 	}
 
+	// 이력서 이미지 등록
 	@Override
-	public List<ResumeDto> selectList(Map<String, Object> resumePageMap) {
-		List<ResumeDto> resumeList = null;
+	public int profileUpload(ResumeProfileDto resumeProfileDto) {
+		int res = 0;
 
 		try {
-			resumeList = sqlSession.selectList(NAMESPACE + "selectList", resumePageMap);
-
-			System.out.println("projectlist size: " + resumeList.size());
-
+			res = sqlSession.update(NAMESPACE + "uploadProfile", resumeProfileDto);
 		} catch (Exception e) {
+			System.out.println("[error]:uploadProfile");
 			e.printStackTrace();
-			System.out.println("[error]: select list");
 		}
 
-		return resumeList;
+		return res;
 	}
 
 }

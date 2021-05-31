@@ -8,16 +8,19 @@ import javax.servlet.http.HttpSession;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeProfileDto;
 
 public interface ResumeDao {
 	String NAMESPACE = "Resume.";
 
 	// 이력서 조회
-	public int getResumeListCnt();
-	public List<ResumeDto> selectList(Map<String, Object> resumePageMap);
+	public List<ResumeDto> resumeList(int m_no);
 
 	// 이력서 등록
 	public MemberDto selectOne(int m_no);
+	
+	//이력서 이미지 업로드
+	public int profileUpload(ResumeProfileDto resumeProfileDto);
 
 	
 

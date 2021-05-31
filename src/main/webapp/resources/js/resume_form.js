@@ -9,13 +9,13 @@ $(function(){
  
 function uploadFile(){
     
-	    var form = $('#profileUpload')[0];
+	    var form = $('#resumeProfile')[0];
 	    var formData = new FormData(form);
     
  
     $.ajax({
     	type : 'POST',
-        url : 'profileUpload.do',
+        url : 'resumeProfile.do',
         data : formData,
         contentType : false,
         processData : false,
@@ -29,7 +29,7 @@ function uploadFile(){
     })
 }
 
-/*개인 회원 회원정보 수정 전송*/
+/*이력서 데이터 전송*/
 $(document).ready(function(){
 	$("#updateUser").click(function(){
 		$("#updateForm").attr("action","user_update.do");
