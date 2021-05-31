@@ -27,7 +27,7 @@
         FROM REPORT A
         JOIN IT_MEMBER B
         ON A.M_NO=B.M_NO
-		WHERE A.REPORT_NO=#{report_no}
+		WHERE A.BD_NO=#{bd_no}
 	</select>
 	
 	<insert id="insert" parameterType="ReportDto">

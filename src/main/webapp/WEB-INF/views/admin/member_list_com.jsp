@@ -33,17 +33,6 @@
 		});
 	});
 </script>
-<style type="text/css">
-.container{
-	display: inline-flex;
-
-}
-
-
-
-</style>
-
-
 
 </head>
 <body>
@@ -61,7 +50,7 @@
 
 	<!-- 회원명단 -->
 	<div class="content">
-	<h1>회원관리 : 기업회원</h1>
+	<h3>회원관리 : 기업회원</h3>
 	<form action="#">
 			<div align="right">
 				<input type="text" class="control">

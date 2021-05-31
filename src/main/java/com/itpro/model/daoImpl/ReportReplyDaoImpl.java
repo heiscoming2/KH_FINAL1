@@ -32,7 +32,20 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 		return list;
 	}
 	
-	
+	@Override
+	public int getReportReplyCnt() {
+		int count=0;
+		
+		try {
+			count=sqlSession.selectOne(NAMESPACE+"count");
+		
+			System.out.println("dao_cnt: "+count);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
 
 	@Override
 	public ReportReplyDto selectOne(int report_reply_no) {
@@ -97,11 +110,7 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 	}
 
 
-	@Override
-	public int getReportReplyCnt() {
 	
-		return 0;
-	}
 	
 	@Override
 	public int delete(int report_reply_no) {

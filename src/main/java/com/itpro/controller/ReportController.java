@@ -95,8 +95,9 @@ public class ReportController {
 		
 		logger.info("reportlist");
 		List<ReportDto> list = rebiz.selectList();
+		
 		model.addAttribute("list",list);
-		//model.addAttribute("cnt",reportcnt);
+		
 		//System.out.println("report:"+reportcnt);
 		
 		return "report/reportlist";
@@ -104,10 +105,10 @@ public class ReportController {
 	
 	//report detail = selectOne
 	@RequestMapping(value="/reportdetail.do")
-	public String reportdetail(Model model,@RequestParam("report_no") int report_no) {
+	public String reportdetail(Model model,@RequestParam("bd_no") int bd_no) {
 		logger.info("REPORT DETAIL");
 		
-		model.addAttribute("dto", rebiz.selectOne(report_no));
+		model.addAttribute("dto", rebiz.selectOne(bd_no));
 		
 		return "report/reportdetail";
 	}
@@ -128,17 +129,32 @@ public class ReportController {
 		
 		}
 	
-	//report delete	
+	//report multi delete	
 	@RequestMapping(value="/reportmultidelete.do")
 	public String reportMultiDelete(Model model, int report_no,HttpServletResponse response, HttpServletRequest request) throws IOException {
 		logger.info("REPORT MULTI DELETE");
 		
 		String[] delChks = request.getParameterValues("chk");
-		for(String chk : delChks )
-			System.out.printf("chk : %s\n", chk);
+		String cmd = request.getParameter("cmd");
 		
+		if(cmd.equals("일괄삭제")) {
+			for(String chk : delChks )
+				System.out.printf("chk : %s\n", chk);
+			
+			int[] chks = new int[delChks.length];
+			for(int i=0; i<delChks.length; i++)
+				chks[i] = Integer.parseInt(delChks[i]);
+				
+				
+		     /*int result = biz.deleteReportAll(chks);*/
 		
-		int reportDeleteRes = rebiz.delete(report_no);
+		}
+		
+		 response.sendRedirect("reportlist");
+				
+		
+		 
+		 int reportDeleteRes = rebiz.delete(report_no);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -205,8 +221,9 @@ public class ReportController {
 		
 		logger.info("reportreplylist");
 		List<ReportReplyDto> list = rerebiz.selectList();
+		int count =rerebiz.getReportReplyCnt();
 		model.addAttribute("list",list);
-		//model.addAttribute("cnt",reportcnt);
+		model.addAttribute("count",count);
 		//System.out.println("report:"+reportcnt);
 		
 		return "report/reportreplylist";

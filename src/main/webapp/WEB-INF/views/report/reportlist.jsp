@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
-<title>샘플 페이지 입니다.</title>
+<title>게시판 신고관리 페이지</title>
 <link href="resources/css/admin.css" rel="stylesheet">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -49,7 +49,7 @@
 			
 	<div class="content">
 				<div class="item2">
-					<h1>신고관리</h1>
+					<h3>신고관리 : 게시글</h3>
 				</div>
 				<div class="item2">
 
@@ -61,7 +61,7 @@
 								<tr>
 									<th><input type="checkbox" name="all"
 										onclick="allChk(this.checked);"></th>
-									<th>No</th>
+									<th>게시글 No.</th>
 									<th>해당게시판</th>
 									<th>해당게시글</th>
 									<th>신고갯수</th>
@@ -80,9 +80,9 @@
 											<c:forEach var="dto" items="${list }">
 												<tr>
 													<td><input type="checkbox" name="chk" value="${dto.bd_no}"></td>
-													<td>${dto.bd_no}</td>
+													<td><a href="reportdetail.do?bd_no=${dto.bd_no }">${dto.bd_no}</a></td>
 													<td>${dto.name}</td>
-													<td><a href="#">${dto.bd_title }</a></td>
+													<td>${dto.bd_title }</td>
 													<td>${dto.cnt }</td>
 												</tr>
 											</c:forEach>

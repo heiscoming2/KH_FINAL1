@@ -9,18 +9,21 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
 <link rel="stylesheet" href="resources/css/admin.css?ver=1.3">
- <div class="item">
-	<%@include file="../inc/_sidebar_admin.jspf"%>
-</div>
-<title>관리자-회원관리 상세</title>
+ 
+ <title>관리자-회원관리 상세</title>
 </head>
 <body>
 	<!-- HEADER 시작 -->
+	
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
+	<div class="item">
+	<%@include file="../inc/_sidebar_admin.jspf"%>
+	</div>
 
 	<!-- 본문 시작 -->
-
+	<div class="content">
+	<h3>개인회원 상세</h3>
 	<table class="main_table">
 
 		<tr>
@@ -37,7 +40,8 @@
 		</tr>
 		<tr>
 			<th>가입일</th>
-			<td>${dto.m_regdate }</td>
+			<td><span class="m_regdate"> <fmt:formatDate
+			value="${dto.m_regdate}" pattern="yyyy-MM-dd HH:mm:ss" /></span></td>
 		</tr>
 		<tr>
 			<th>활동여부</th>
@@ -78,19 +82,23 @@
 				onclick="location.href='member_updateform.do?m_no=${dto.m_no}'">
 			</td>
 		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="쪽지보내기" onclick=""></td>
+		</tr>
 	</table>
 	<!-- 쪽지보내기 -->
-	<input type="button" value="쪽지보내기" onclick="">
-
+	</div>
 
 	<!-- 본문 종료 -->
 
 	<!-- FOOTER 시작 -->
+	<div class="footer">
 	<%@include file="../inc/_footer.jspf"%>
 	<!-- FOOTER 종료 -->
 
 	<!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 	<%@include file="../inc/_foot.jspf"%>
+	</div>
 
 </body>
 </html>
