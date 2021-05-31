@@ -1,7 +1,11 @@
 package com.itpro.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.board.SearchListDto;
 
 public interface BoardDao {
 	
@@ -10,5 +14,7 @@ public interface BoardDao {
 	public void updateviewcount(int bd_no);
 	public int delete(int bd_no);
 	public BoardDto selectOne(int bd_no);
+	public int selectListCnt(Map<String, Object> searchlistMap);
+	public List<SearchListDto> selectSearchList(Map<String, Object> searchlistMap);
 	
 }

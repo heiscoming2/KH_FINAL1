@@ -14,13 +14,12 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-
 	<div class="postlookup_wrap" style="width:1190px; margin:0 auto;">	
 	<!-- 작성 글 조회  영역 시작 -->
 			<br>
 			<br>
-			<h1>"<c:out value="${writer.m_nickname }">"</c:out>의 검색 결과입니다.</h1>
-			<span>총 게시물 수 : <c:out value="${postlookupcnt }"></c:out></span>
+			<h1>"<c:out value="${keyword }"></c:out>"의 검색 결과입니다.</h1>
+			<span>총 게시물 수 : <c:out value="${searchlistcnt }"></c:out></span>
 			<hr>
 			<br>
 			<div class="categorywrap">
@@ -31,20 +30,48 @@
 	 			<span class="cate3 cate" onclick="selectCate(3)">스터디모집  </span>
 	 		</div>
 	 		<br>
-	 		<div class="buttonwrap">
-				<input type="button" value="선택삭제" class="btn btn-danger">
+	 		<!-- 
+	 		<div>
+	 			<span>선택조건 : </span>
+	 			<span style="background-color:#E91E63; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			제목 <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>
+	 			<span style="background-color:#009688; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			내용 <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>
+	 			<span style="background-color:#6f42c1; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			작성자 <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>
+	 			<span style="background-color:#17a2b8; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			포트폴리오 <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>	 			
+	 			<span style="background-color:#dc3545; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			프로젝트 <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>
+	 			<span style="background-color:#ffc107; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			Q & A <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>
+	 			<span style="background-color:#6c757d; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+	 			스터디모집 <b style="font-size:7px; vertical-align:middle;">X</b>
+	 			</span>		 				 				 			
 	 		</div>
+	 		<br>
+	 		
+	 		<div style="float:left">
+	 			<input style="margin-right:10px; display:inline-block; width:200px;" type="search" placeholder="제목/내용" class="form-control" id="keyword" value="${keyword }">
+	 			<input style="clear:both;" type="button" value="선택 재조회" class="btn btn-primary" onclick="selectPage(1)">
+	 		</div>
+	 		<br>
 			<br>
+			 -->
 			<table class="table postlookup_table">
-				<col width="50px;">
 				<col width="80px;">
 				<col width="200px;">
-				<col width="520px;">
+				<col width="570px;">
 				<col width="80px;">
 				<col width="80px;">
 				<col width="200px;">
 				<tr>
-					<th class="text-center"><input type="checkbox" class="custom-control custom-checkbox"></th>
 					<th class="bd_no_th"><a>번호</a></th>
 					<th>카테고리</th>
 					<th>제목</th>
@@ -54,27 +81,26 @@
 				</tr>
 				<!-- 게시물 한 줄 시작-->
 				<c:choose>
-					<c:when test="${empty postLookupList}">
+					<c:when test="${empty searchList}">
 						<tr>
-							<td colspan="7" align="center">작성한 게시물이 존재하지 않습니다.</td>
+							<td colspan="6" align="center">조회할 게시물이 존재하지 않습니다.</td>
 						</tr>			
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="postLookupDto" items="${postLookupList }">
+						<c:forEach var="searchDto" items="${searchList }">
 						<tr>
 								<!-- 글 번호 시작 --> 
-								<td align="center"><input type="checkbox"></td>
-								<td class="bd_no">${postLookupDto.bd_no}</td>
-								<td>${postLookupDto.name } </td>
-								<td><a href="boarddetail.do?bc_code=${postLookupDto.bc_code }&bd_no=${postLookupDto.bd_no}" style="color:black;">${postLookupDto.bd_title }<span class="replycount"> +${postLookupDto.bd_replycount }</span></a></td>
-								<td class="bd_recommandcount"><b>${postLookupDto.bd_recommandcount }</b></td>
-								<td class="bd_viewcount">${postLookupDto.bd_viewcount }</td>
+								<td class="bd_no">${searchDto.bd_no}</td>
+								<td>${searchDto.name } </td>
+								<td><a href="boarddetail.do?bc_code=${searchDto.bc_code }&bd_no=${searchDto.bd_no}" style="color:black;">${searchDto.bd_title }<span class="replycount"> +${searchDto.bd_replycount }</span></a></td>
+								<td class="bd_recommandcount"><b>${searchDto.bd_recommandcount }</b></td>
+								<td class="bd_viewcount">${searchDto.bd_viewcount }</td>
 								<td>
 								    <div class="postlookup_profile">
-										<img src="${writer.m_img_path }${writer.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+										<img src="${searchDto.m_img_path }${searchDto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
 										<div class="postlookup_writer"> 
 											<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
-												${writer.m_nickname }
+												${searchDto.m_nickname }
 											</a> 
 											<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 											<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
@@ -83,7 +109,7 @@
 											</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
 										</div>
 										<span class="postlookup_regdate">
-											<fmt:formatDate value="${postLookupDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+											<fmt:formatDate value="${searchDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/>
 										</span>
 									</div>
 								</td>
@@ -99,8 +125,8 @@
 <%@include file="./inc/_page.jspf" %>
 <!-- 페이징 종료 -->
 
-  	<!-- 사용자 세션/현재 카테고리 -->
-	<input id="session_mno" type="hidden" value="${sessionScope.login.m_no }">
+  	<!-- 검색 키워드/카테고리 -->
+	<input id="keyword" type="hidden" value="${keyword }">
 	<input id="category" type="hidden" value="${category }">
 	
 <!-- 본문 종료 -->

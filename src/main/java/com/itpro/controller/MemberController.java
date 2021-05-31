@@ -235,8 +235,6 @@ public class MemberController {
 		postLookupPageMap.put("start", pageProcessing.getStartIndex());
 		postLookupPageMap.put("end", pageProcessing.getEndIndex());
 		postLookupPageMap.put("keyword", keyword);
-		System.out.println("keyword==null"+keyword==null);
-		System.out.println("keyword!=null"+keyword!=null);
 		List<PostLookupDto> postLookupList = biz.selectPostLookup(postLookupPageMap);
 		logger.info("postLookupList size : "+Integer.toString(postLookupList.size()));
 		for(PostLookupDto dto : postLookupList) {
