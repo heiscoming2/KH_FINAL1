@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/studydetail.css" rel="stylesheet">
+<link href="resources/css/portfoliodetail.css" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
@@ -69,9 +69,9 @@
 
             <!-- 글 내용 시작 -->
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
-                  ※ 이름: 홍길동 <br>
-                  ※ 이메일: hgd@kh.kr<br>
-                  ※ 전화 번호: 010-1234-5678<br>
+                  ※ 이름: ${dto.m_name} <br>
+                  ※ 이메일: ${dto.m_email }<br>
+                  ※ 전화 번호: ${dto.m_phone }<br>
                   ※ 최종 학력: kh정보교육원<br>
                   ※ 경력 사항: ITPro(2021.01~2021.03) 재직 중<br>
                   ※ 사용 개발 기술: ${dto.port_develop }<br>

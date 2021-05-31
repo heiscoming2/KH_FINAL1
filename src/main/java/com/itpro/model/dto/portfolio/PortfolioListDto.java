@@ -13,8 +13,11 @@ public class PortfolioListDto {
 	private int bd_replycount; // 댓글수
 	private int bd_viewcount; // 조회수
 	private int bd_recommandcount; // 추천수
-	public Clob bd_content; // 게시글 내용
+	public String bd_content; // 게시글 내용
+	private int m_no;
 
+	
+	
 	// 첨부 파일
 	private String bf_originname; // 파일 저장명
 
@@ -28,13 +31,31 @@ public class PortfolioListDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Clob getBd_content() {
+	
+
+	public String getBd_content() {
 		return bd_content;
 	}
 
-	public void setBd_content(Clob bd_content) {
+
+
+	public void setBd_content(String bd_content) {
 		this.bd_content = bd_content;
 	}
+
+
+
+	public int getM_no() {
+		return m_no;
+	}
+
+
+
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+
+
 
 	public String getBf_originname() {
 		return bf_originname;

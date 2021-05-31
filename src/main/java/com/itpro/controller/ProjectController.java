@@ -43,6 +43,7 @@ import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.project.ProjectUpdateDto;
+import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.util.ClientInfo;

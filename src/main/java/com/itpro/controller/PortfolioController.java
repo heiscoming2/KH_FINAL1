@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
+import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.biz.PortfolioBiz;
 import com.itpro.model.biz.ReplyBiz;
+import com.itpro.model.biz.ResumeBiz;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.MemberDto;
@@ -30,6 +32,8 @@ import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.resume.CareerDto;
+import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
@@ -50,6 +54,12 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	
 	@Autowired
 	private LikeBiz likeBiz;
+	
+	@Autowired
+	private MemberBiz memberbiz;
+	
+	@Autowired
+	private ResumeBiz resumebiz;
 	
 	@RequestMapping(value="/portfoliolist.do")
 	public String portfolioList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
@@ -126,6 +136,19 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 		//selectOne 해서 model에 담아준다.
 		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no);
 		model.addAttribute("dto", portfolioDetailDto);
+		
+		MemberDto memberDto = memberbiz.selectOne(bd_no);
+		model.addAttribute("mdto", memberDto);
+		
+		/*
+		 * CareerDto careerDto = resumebiz.selectOne(bd_no); model.addAttribute("rdto",
+		 * careerDto);
+		 * 
+		 * EducationDto educationDto = resumebiz.selectOne(bd_no);
+		 * model.addAttribute("edto", educationDto);
+		 */
+		
+		
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
