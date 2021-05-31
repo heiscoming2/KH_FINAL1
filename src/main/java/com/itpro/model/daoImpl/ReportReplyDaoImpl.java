@@ -32,33 +32,21 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 		return list;
 	}
 	
-	@Override
-	public int getReportReplyCnt() {
-		int count=0;
-		
-		try {
-			count=sqlSession.selectOne(NAMESPACE+"count");
-		
-			System.out.println("dao_cnt: "+count);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return count;
-	}
+	
+	
 
 	@Override
-	public ReportReplyDto selectOne(int report_reply_no) {
-		ReportReplyDto dto =null;
+	public List<ReportReplyDto> selectList2(int re_no) {
+		List<ReportReplyDto> list2 =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",report_reply_no);
+			list2=sqlSession.selectList(NAMESPACE+"selectList2",re_no);
 		} catch (Exception e) {
-			System.out.println("[error] : select one");
+			System.out.println("[error] : select list2");
 			e.printStackTrace();
 		}
 		
-		return dto;
+		return list2;
 	}
 
 	
@@ -122,6 +110,15 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 					e.printStackTrace();
 				}
 				return report_replyDeleteRes;
+	}
+
+
+
+
+	@Override
+	public int getReportReplyCnt() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

@@ -107,8 +107,9 @@ public class ReportController {
 	@RequestMapping(value="/reportdetail.do")
 	public String reportdetail(Model model,@RequestParam("bd_no") int bd_no) {
 		logger.info("REPORT DETAIL");
+		model.addAttribute("list2", rebiz.selectList2(bd_no));
 		
-		model.addAttribute("dto", rebiz.selectOne(bd_no));
+		System.out.println("reportlist2 : "+model);
 		
 		return "report/reportdetail";
 	}
@@ -231,10 +232,10 @@ public class ReportController {
 	
 	//reportreply detail
 	@RequestMapping(value="/reportreplydetail.do")
-	public String reportreplydetail(Model model, @RequestParam("report_reply_no") int report_reply_no) {
+	public String reportreplydetail(Model model, @RequestParam("re_no") int re_no) {
 		logger.info("REPORT reply DETAIL");
 		
-		model.addAttribute("dto", rerebiz.selectOne(report_reply_no));
+		model.addAttribute("list2", rerebiz.selectList2(re_no));
 		
 		return "report/reportreplydetail";
 	}

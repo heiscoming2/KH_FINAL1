@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
-<title>샘플 페이지 입니다.</title>
+<title>신고 관리 게시글 상세 페이지</title>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -48,7 +48,7 @@
 		<!-- 신고관리 -->
 	<div class="content">
 				<div class="item2">
-				<h3>신고관리</h3>
+				<h3>신고관리 : 게시글 상세</h3>
 				</div>
 				<div class="item2">
 				
@@ -61,28 +61,28 @@
 							<th>해당게시판</th>
 							<th>해당게시글</th>
 							<th>신고사유</th>
-							<th>신고일시</th>
 							<th>글쓴이</th>
+							<th>신고일시</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<tr>
 							<c:choose>
-								<c:when test="${empty list }">
+								<c:when test="${empty list2 }">
 									<tr>
 										<td colspan="7">===신고목록이 존재하지 않습니다.===</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
-									<c:forEach var="dto" items="${list }">
+									<c:forEach var="dto" items="${list2}">
 										<tr>
 										 	<td><input type="checkbox" name="chk" value="1"></td>
 											<td>${dto.report_no}</td>
 											<td>${dto.name}</td>
 											<td><a href="#">${dto.bd_title }</a></td>
 											<td>${dto.report_reason }</td>
-											<td><a href="memberpage.do?m_no=${dto.m_no }">${dto.m_nickname }</a></td>
+											<td><a href="member_detail.do?m_no=${dto.m_no }">${dto.m_nickname }</a></td>
 											<td><span class="report_date"> <fmt:formatDate value="${dto.report_date}" pattern="yyyy-MM-dd HH:mm:ss"/></span></td>
 										</tr>
 									</c:forEach>

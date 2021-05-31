@@ -36,17 +36,18 @@ public class ReportDaoImpl implements ReportDao {
 	
 
 	@Override
-	public ReportDto selectOne(int bd_no) {
-		ReportDto dto =null;
+	public List<ReportDto> selectList2(int bd_no) {
+		
+		List<ReportDto> list2 =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",bd_no);
+			list2=sqlSession.selectList(NAMESPACE+"selectList2",bd_no);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();
 		}
 		
-		return dto;
+		return list2;
 	}
 
 	

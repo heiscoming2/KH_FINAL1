@@ -26,20 +26,15 @@
         GROUP BY B.BD_NO, B.BD_TITLE,B.M_NO,C.NAME, D.RE_NO
 	</select>
 
-	<select id="count" resultType="int" >
-		SELECT COUNT(RE_NO) CNT
-		FROM REPORT_REPLY
-        WHERE RE_NO=#{re_no} 
-	</select>
 	
-	<select id="selectOne" resultType="ReportReplyDto" parameterType="int">
-		SELECT A.REPORT_REPLY_NO, A.NAME, A.BD_TITLE, C.RE_CONTENT, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME
+	<select id="selectList2" resultType="ReportReplyDto" parameterType="int">
+		SELECT A.REPORT_REPLY_NO, A.NAME, A.BD_TITLE, C.RE_CONTENT, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME, A.M_NO
 		FROM REPORT_REPLY A
         LEFT JOIN IT_MEMBER B
         ON  A.M_NO=B.M_NO
         LEFT JOIN REPLY C
 		ON A.RE_NO=C.RE_NO
-        WHERE  A.REPORT_REPLY_NO=#{report_reply_no}
+        WHERE  A.RE_NO=#{re_no}
 	</select>
 	
 	<insert id="insert" parameterType="ReportReplyDto">

@@ -22,8 +22,8 @@
         GROUP BY B.BD_NO, B.BD_TITLE,B.M_NO,C.NAME
 	</select>
 	
-	<select id="selectOne" resultType="ReportDto" parameterType="int">
-		SELECT A.REPORT_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME
+	<select id="selectList2" resultType="ReportDto" parameterType="int">
+		SELECT A.REPORT_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME, A.M_NO
         FROM REPORT A
         JOIN IT_MEMBER B
         ON A.M_NO=B.M_NO

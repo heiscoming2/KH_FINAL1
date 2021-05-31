@@ -76,7 +76,7 @@
 									<c:forEach var="dto" items="${list}" >
 										<tr>
 										 	<td><input type="checkbox" name="chk" value="1"></td>
-											<td><a href="#">${dto.re_no}</a></td>
+											<td><a href="reportreplydetail.do?re_no=${dto.re_no}">${dto.re_no}</a></td>
 											<td>${dto.name}</td>
 											<td>${dto.bd_title}</td>
 											<td>${dto.cnt}</td>
