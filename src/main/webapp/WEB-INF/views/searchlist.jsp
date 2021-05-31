@@ -18,7 +18,7 @@
 	<!-- 작성 글 조회  영역 시작 -->
 			<br>
 			<br>
-			<h1>"<c:out value="${keyword }"></c:out>"의 검색 결과입니다.</h1>
+			<h1>"<c:out value="${keyword }"></c:out>"검색 결과</h1>
 			<span>총 게시물 수 : <c:out value="${searchlistcnt }"></c:out></span>
 			<hr>
 			<br>
@@ -138,7 +138,7 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="./inc/_foot.jspf" %>
 
-<script type="text/javascript" src="resources/js/postlookup.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/searchlist.js?ver=1.4"></script>
 	
 </body>
 </html>
