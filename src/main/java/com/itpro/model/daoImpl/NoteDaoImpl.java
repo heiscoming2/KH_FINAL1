@@ -26,17 +26,29 @@ public class NoteDaoImpl implements NoteDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-//	<!-- 내가 받은 쪽지 목록 조회-->
-	public List<NoteDto> receiveList() {
+	// 내가 받은 쪽지 목록 조회
+	public List<NoteDto> receiveList(int n_receiver) {
 
 		List<NoteDto> list = null;
 		try {
-			list = sqlSession.selectList(NAMESPACE + "receiveList");
+			list = sqlSession.selectList(NAMESPACE + "receiveList",n_receiver);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
+	
+	// 보낸쪽지 목록
+    public List<NoteDto> sendList(int n_sender){
+    	List<NoteDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE + "sendList", n_sender);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;    	
+    	
+    }
 
 	@Override
 	// 새로 받은 쪽지가 있는지 확인(매번)
@@ -76,17 +88,7 @@ public class NoteDaoImpl implements NoteDao {
     	
     }
     
-    // 보낸쪽지 목록
-    public List<NoteDto> sendList(){
-    	List<NoteDto> list = null;
-		try {
-			list = sqlSession.selectList(NAMESPACE + "sendList");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;    	
-    	
-    }
+    
 	   
    //  보낸 쪽지 하나 읽기 
     public NoteDto sendDetail() {
