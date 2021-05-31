@@ -1,8 +1,12 @@
 package com.itpro.model.biz;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.model.dto.member.ProfileDto;
 
 public interface MemberBiz {
@@ -20,5 +24,14 @@ public interface MemberBiz {
 
 	// 프로필 이미지 업로드
 	public int profileUpload(ProfileDto profileDto);
+	
+	
+	
+	
+	//작성글 목록
+	public List<PostLookupDto> selectPostLookup(Map<String,Object> map);
+	
+	//작성글 갯수
+	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap);
 
 }

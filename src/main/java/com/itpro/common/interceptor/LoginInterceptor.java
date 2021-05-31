@@ -45,7 +45,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
-				javaScriptResponse.jsResponse(response, "로그인 후 작성 가능합니다.", "login.do");
+				javaScriptResponse.jsResponse(response, "로그인 후 이용 가능합니다.", "login.do");
 				return false;
 			}
 		}
@@ -88,8 +88,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}//기업회원 글작성X 끝
 		
-		// 기업회원 글작성X 시작
-		if (request.getRequestURI().contains("/portfolioinsertform.do")) { // 포트폴리오 이력서 미작성자 작성X
+		// 포트폴리오 이력서 미작성자 작성X
+		if (request.getRequestURI().contains("/portfolioinsertform.do")) { 
 			MemberDto memberDto = (MemberDto) session.getAttribute("login");
 			String m_resumechk = memberDto.getM_resumechk();
 			if (m_resumechk.equals("N")) {
@@ -101,7 +101,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				out.print("</script>");
 				return false;
 			}
-		} // 기업회원 글작성X 끝
+		} // 포트폴리오 이력서 미작성자 작성X 끝
 		
 		//기업회원 승인 전 접근X	
 		if (request.getRequestURI().contains("/like.do")//좋아요는 안눌리는데 알람 안뜨넹ㅠㅠ

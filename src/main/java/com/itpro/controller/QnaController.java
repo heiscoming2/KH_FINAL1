@@ -59,7 +59,6 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 				MemberDto login = (MemberDto) session.getAttribute("login");
 			}
 			
-			
 			//페이징을 위해 총 게시물수 count
 			int qnaListCnt = qnaBiz.getQnaListCnt();
 			System.out.println("qnaListCnt : "+ qnaListCnt);

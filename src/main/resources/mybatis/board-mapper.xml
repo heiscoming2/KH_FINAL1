@@ -25,7 +25,47 @@
 	
 	<select id="selectone" parameterType="int" resultType="BoardDto">
 		SELECT * FROM BOARD WHERE BD_NO=#{bd_no}
+	</select>
 	
+	<!-- 검색 갯수 -->	
+	<select id="selectlistcnt" parameterType="hashMap" resultType="int">
+		SELECT COUNT(BD_NO) 
+		FROM BOARD B, IT_MEMBER M
+		WHERE B.M_NO = M.M_NO
+        AND (B.BD_TITLE LIKE '%${keyword}%' OR 
+        	 B.BD_CONTENT LIKE '%${keyword}%' OR 
+        	 M.M_NICKNAME LIKE '%${keyword}%')
+        <if test="category!=0">
+        AND BC_CODE = #{category}
+        </if>
+	</select>
+	
+	<!-- 검색 결과 -->
+	<select id="selectsearchlist" parameterType="hashMap" resultType="SearchListDto">
+		SELECT * 
+		FROM
+       		  (SELECT ROWNUM RN, A.* 
+       		   FROM (
+                       SELECT C.NAME, B.BC_CODE, B.BD_NO, B.BD_TITLE,
+           			   DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+              		   DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT,B.BD_CREATEDDATE,
+              		   M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, M.M_NO
+                       FROM BOARD B, BOARDCATEGORY C, IT_MEMBER M,
+                           (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                           (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+                       WHERE B.BC_CODE = C.CODE(+)
+                       <if test="category!=0">
+                       AND B.BC_CODE = #{category}
+                       </if>
+                       AND (B.BD_TITLE LIKE '%${keyword}%' OR 
+                       		B.BD_CONTENT LIKE '%${keyword}%' OR 
+        	 				M.M_NICKNAME LIKE '%${keyword}%')
+        	 		   AND B.M_NO = M.M_NO
+                       AND B.BD_NO = RE.BD_NO(+)
+                       AND B.BD_NO = BR.BD_NO(+)
+		               ORDER BY B.BD_CREATEDDATE DESC, B.BD_NO DESC) A  
+		       ORDER BY RN ASC) 
+		WHERE RN BETWEEN #{start} AND #{end} 
 	</select>
 
 </mapper>  

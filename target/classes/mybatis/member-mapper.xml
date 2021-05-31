@@ -6,8 +6,7 @@
 <mapper namespace="ItMember">
 
 	<!-- 회원로그인 -->
-	<select id="login" parameterType="MemberDto"
-		resultType="MemberDto">
+	<select id="login" parameterType="MemberDto" resultType="MemberDto">
 		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_TYPE, M_AUTH, M_IMG, M_IMG_PATH, M_RESUMECHK
 		FROM IT_MEMBER
 		WHERE M_ID = #{m_id}
@@ -102,4 +101,46 @@
 		SET M_IMG = #{m_img}, M_IMG_PATH = #{m_img_path}
 		WHERE M_NO = #{m_no}
 	</update>
+
+	
+	<!-- 작성 글 조회 -->
+	<select id="selectPostLookup" parameterType="HashMap" resultType="PostLookupDto">
+		SELECT * 
+		FROM
+       		  (SELECT ROWNUM RN, A.* 
+       		   FROM (
+                       SELECT C.NAME, B.BC_CODE, B.BD_NO, B.BD_TITLE,
+           			   DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+              		   DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT,B.BD_CREATEDDATE
+                       FROM BOARD B, BOARDCATEGORY C,
+                           (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+                           (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+                       WHERE B.BC_CODE = C.CODE(+)
+                       <if test="category!=0">
+                       AND B.BC_CODE = #{category}
+                       </if>
+                       <if test="keyword!=null or keyword!=''">
+                       AND (B.BD_TITLE LIKE '%${keyword}%' OR B.BD_CONTENT LIKE '%${keyword}%')
+                       </if>
+                       AND B.M_NO = #{m_no}
+                       AND B.BD_NO = RE.BD_NO(+)
+                       AND B.BD_NO = BR.BD_NO(+)
+		               ORDER BY B.BD_CREATEDDATE DESC, B.BD_NO DESC) A  
+		       ORDER BY RN ASC) 
+		     WHERE RN BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<!-- 작성 글 갯수 조회 -->
+	<select id="selectPostLookupCnt" parameterType="int" resultType="int">
+		SELECT COUNT(BD_NO) 
+		FROM BOARD
+		WHERE M_NO=#{m_no}
+        <if test="category!=0">
+        AND BC_CODE = #{category}
+        </if>
+        <if test="keyword!=null or keyword!=''">
+        AND (BD_TITLE LIKE '%${keyword}%' OR BD_CONTENT LIKE '%${keyword}%')
+        </if>        
+	</select>
+	
 </mapper>

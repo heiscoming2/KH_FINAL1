@@ -61,6 +61,18 @@
 		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
 
 		<typeAlias type="com.itpro.model.dto.study.StudyJoinInfoDto" alias="StudyJoinInfoDto"/>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<typeAlias type="com.itpro.model.dto.member.PostLookupDto" alias="PostLookupDto"/>
+		<typeAlias type="com.itpro.model.dto.board.SearchListDto" alias="SearchListDto"/>
 	</typeAliases>
 	
 	<mappers>
