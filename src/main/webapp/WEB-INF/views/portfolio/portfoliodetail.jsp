@@ -38,6 +38,7 @@
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
                     <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
+                    <li><a class="dropdown-item" href="postlookup.do?m_no=${dto.m_no }">작성 글 조회</a></li>
                     <li><a class="dropdown-item" href="#">이력서 열람</a></li>
                 </ul>
               </span>
