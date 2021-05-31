@@ -19,19 +19,19 @@
     <div class="portfolio_insertwrap">
       <form action="portfolioinsert.do" method="post">
        <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+       <input type="hidden" name="bd_no" value=${portfolioDetailDto.bd_no }>
          <!-- 포트폴리오 작성 글 영역-->
         <h3>포트폴리오 글 수정</h3>
         <br>
               <!-- 프로필이미지, 아이디, 작성일 div -->
-              <div>
-                <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+			<div>
+				<img src="${sessionScope.login.m_img_path}${sessionScope.login.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                   style="float: left;">
                 <div style="position: relative; top:5px;">
-                  <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
-                    style="font-size:15px;">
+                  <a class="d-flex align-items-center text-decoration-none" style="font-size:15px;">
                     ${sessionScope.login.m_nickname}
                   </a>
-                </div>
+				</div>
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
               <br>
               <br>
@@ -53,7 +53,7 @@
             </tr>
             <tr>
               <th><span>* </span>전화번호 </th>
-              <td><input type="tel" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="13" class="form-control" readonly>
+              <td><input type="tel" class="form-control" readonly>
                   <input type="checkbox">비공개</td>
             </tr>
             <tr>

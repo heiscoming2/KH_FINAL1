@@ -25,12 +25,12 @@
       <table class="table table-bordered" style="width:100%;">
         <tr>
           <td>
-            <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
+             <!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
             <div class="profile_wrap">
               <!-- 프로필 이미지 영역 -->
-              <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
-                          <!-- 프로필 아이디 표시 영역 -->
-              <span class="profile_id">
+              <img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2 profile_img">
+              <!-- 프로필 아이디 표시 영역 -->
+              <div class="profile_id">
                 <a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownaUser"
                   data-bs-toggle="dropdown" aria-expanded="false">
                   ${dto.m_nickname }
@@ -40,7 +40,7 @@
                     <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
                     <li><a class="dropdown-item" href="#">이력서 열람</a></li>
                 </ul>
-              </span>
+              </div>
               <span class="reg_date">
                 <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
                 <c:if test="${dto.bd_modifydate ne null }">
