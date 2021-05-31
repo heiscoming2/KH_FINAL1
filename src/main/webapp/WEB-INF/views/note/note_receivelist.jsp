@@ -44,7 +44,7 @@
 								<td class="col-1"><input type="checkbox"></td>
 								<td class="col-3"><fmt:formatDate value="${receiveList.n_sendDate }" /></td>
 								<td class="col-3">${receiveList.n_sender }</td>
-								<td class="col-5">${receiveList.n_title }</td>
+								<td class="col-5"><a href="#?n_no=${receiveList.n_no }" style="color:black;">${receiveList.n_title }</a></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
