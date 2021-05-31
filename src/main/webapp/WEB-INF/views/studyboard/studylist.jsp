@@ -15,7 +15,7 @@
 
 <!-- 본문 시작 -->
 	<div class="study_wrap mt-5">
-		<h3>스터디 구인</h3>
+		<h3>스터디 모집</h3>
 		<div class="study_btnwrap mb-4">
 			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='studylist.do';"> 
@@ -24,7 +24,7 @@
 		<div class="loc_toggle" style="clear: both; display: none;">
 			 <div>
 			 <span>지역선택</span>
-			 <span style="display:flex; width:300px;" class="mb-2">
+			 <span class="gugunselect_wrap mb-2">
                 <select class="sidoselect form-control" style="margin-right:10px;" name="st_addr1" onchange="change(this.selectedIndex);">
                        <option value=''>전체</option>
                        <option value='서울'>서울</option>
@@ -51,7 +51,7 @@
 			</div>
 			<div>
 			<span>모집여부</span>
-			<span style="display:flex; width:300px;">
+			<span class="status_wrap">
 				<select class="form-control mb-2 status">
 					<option value=''>전체</option>
 					<option value='Y'>모집중</option>
@@ -100,28 +100,57 @@
 					<tr>
 							<!-- 글 번호 시작 --> 
 							<td class="bd_no"><a>${studyDto.bd_no}</a> </td>
-							<td>${studyDto.st_status} </td>
-							<td class="st_addr1_2">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
-							<td class="st_person">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-							<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;">${studyDto.bd_title } <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
-							<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
-							<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
-							<td>
-							    <div class="study_profile">
-									<img src="${studyDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-									<div class="study_writer"> 
-										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
-											${studyDto.m_nickname }
-										</a> 
-										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-										<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-											<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-											<li><a class="dropdown-item" href="#">이력서 열람</a></li>
-										</ul> <!-- 프로필 드롭다운 메뉴 종료 -->
-									</div> 
-									<span class="study_regdate"> <fmt:formatDate value="${studyDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
-								</div>
-							</td>
+							<c:choose>
+								<c:when test="${studyDto.st_status eq 'Y'}">
+									<td style="color:#0d6efd;"><b>모집중</b></td>
+									<td class="st_addr1_2">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
+									<td class="st_person">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
+									<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;">${studyDto.bd_title } <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+									<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
+									<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
+									<td>
+									    <div class="study_profile">
+											<img src="${studyDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+											<div class="study_writer"> 
+												<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+													${studyDto.m_nickname }
+												</a> 
+												<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+												<jsp:include page="../inc/userDropDownMenu.jsp">
+													<jsp:param name="m_no" value="${studyDto.m_no }"></jsp:param>
+												</jsp:include>
+												<!-- 프로필 드롭다운 메뉴 종료 -->
+											</div> 
+											<span class="study_regdate"> <fmt:formatDate value="${studyDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+										</div>
+									</td>									
+								</c:when>
+								<c:otherwise>
+									<td style="color:lightgray;">모집완료</td>	
+									<td class="st_addr1_2" style="color:lightgray;">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
+									<td class="st_person" style="color:lightgray;">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
+									<td style="color:lightgray;"><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;"><span style="color:lightgray;">${studyDto.bd_title }</span> <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+									<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
+									<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
+									<td>
+									    <div class="study_profile">
+											<img src="${studyDto.m_img_path }${studyDto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+											<div class="study_writer"> 
+												<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+													${studyDto.m_nickname }
+												</a> 
+												<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+												<jsp:include page="../inc/userDropDownMenu.jsp">
+													<jsp:param name="m_no" value="${studyDto.m_no }"></jsp:param>
+												</jsp:include>
+												<!-- 프로필 드롭다운 메뉴 종료 -->
+											</div> 
+											<span class="study_regdate"> <fmt:formatDate value="${studyDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+										</div>
+									</td>														
+								</c:otherwise>
+							</c:choose>
+
 						<tr>	
 					</c:forEach>
 				</c:otherwise>

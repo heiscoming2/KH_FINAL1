@@ -56,9 +56,6 @@ public class StudyController {
 	@Autowired
 	private LikeBiz likeBiz;
 	
-	@Autowired
-	private JavaScriptResponse javaScriptResponse;
-	
 	@RequestMapping(value="/studylist.do")
 	public String studyList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,HttpSession session) {
 		log.info("STUDY LIST");
@@ -199,11 +196,14 @@ public class StudyController {
 	}	
 	
 	@RequestMapping(value="/studydelete.do")
-	public String studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
+	public void studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		log.info("STUDY DELETE");
 		int studyDeleteRes = studyBiz.delete(bd_no);
-		javaScriptResponse.jsResponse(response, "삭제 되었습니다.", "studylist.do");
-		return null;
+		if(studyDeleteRes>0) {
+			new JavaScriptResponse().jsResponse(response, "삭제 되었습니다.", "studylist.do");
+		} else {
+			new JavaScriptResponse().jsResponse(response, "삭제 실패하였습니다", "studydetail.do?bd_no="+bd_no);
+		}
 	}
 	
 
@@ -243,7 +243,6 @@ public class StudyController {
 	@RequestMapping(value="/studyjoinapply.do")
 	@ResponseBody
 	public Map<String,Object> studyJoinApply(@RequestBody StudyJoinInfoDto studyJoinInfoDto) {
-		
 		//참여신청 이력이 있는지 먼저 조회한다.
 		//없는경우 참여신청 insert
 		//이미 있는 경우 쿼리 수행 없이 return

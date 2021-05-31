@@ -35,7 +35,6 @@ public class UploadController {
 	public Map<String,String> uploadsummernoteimage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
 		
 		logger.info("SUMMERNOTE IMAGE UPLOAD");
-		
 		Map<String,String> map = new HashMap<String,String>();
 		
 		//경로설정
@@ -46,7 +45,7 @@ public class UploadController {
 		String origin_name = multipartFile.getOriginalFilename();
 		//파일 확장자
 		String type = origin_name.substring(origin_name.lastIndexOf("."));
-		//저장될 파일명 = UUID 랜덤으로 ID만드는거 + 확장자
+		//저장될 파일명 = UUID(랜덤으로 ID만드는거) + 확장자
 		String real_name = UUID.randomUUID()+type;
 		//파일사이즈
 		long size = multipartFile.getSize();

@@ -45,7 +45,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
-				javaScriptResponse.jsResponse(response, "로그인 후 작성 가능합니다.", "login.do");
+				javaScriptResponse.jsResponse(response, "로그인 후 이용 가능합니다.", "login.do");
 				return false;
 			}
 		}

@@ -1,6 +1,7 @@
 package com.itpro.model.daoImpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,12 @@ import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.MemberDao;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.model.dto.member.ProfileDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
@@ -93,6 +98,44 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 
+		return res;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//작성 글 조회
+	@Override
+	public List<PostLookupDto> selectPostLookup(Map<String,Object> map) {
+		List<PostLookupDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectPostLookup",map);
+		} catch (Exception e) {
+			log.info("오류 발생 : "+e);
+			e.printStackTrace();
+		}
+				
+		return list;
+	}
+	
+	//작성 글 갯수 조회
+	@Override
+	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap) {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectPostLookupCnt",postLookupPageMap);
+		} catch (Exception e) {
+			log.info("오류 발생 : "+e);
+			e.printStackTrace();
+		}
 		return res;
 	}
 

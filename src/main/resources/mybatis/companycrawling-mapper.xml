@@ -47,7 +47,7 @@
 		SELECT COUNT(CC_CODE) 
 		FROM COMPANYCRAWLING
 		WHERE CC_ADDR1 LIKE '%${src_a1}%'
-	      AND CC_ADDR2 LIKE '%${src_a2}%'
+	      AND CC_ADDR2 '%${src_a2}%'
 		<choose>
 		    <when test="src_cer==2">
 		  AND CC_CARLEVEL <![CDATA[<=]]> #{src_cer}

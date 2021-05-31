@@ -1,4 +1,4 @@
-package com.itpro.model.dto.study;
+package com.itpro.model.dto.board;
 
 import java.util.Date;
 
@@ -7,23 +7,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StudyListDto {
+public class SearchListDto {
 	
+	private String name;
+	private int bc_code;
 	private int bd_no;
-	private String st_status;
-	private String st_addr1;
-	private String st_addr2;
-	private int st_nowperson;
-	private int st_closeperson;
 	private String bd_title;
 	private int bd_replycount;
 	private int bd_viewcount;
 	private int bd_recommandcount;
-	private int m_no;
+	private Date bd_createddate;
 	private String m_img_path;
 	private String m_img;
 	private String m_nickname;
-	private Date bd_createddate;
+	private int m_no;
 	
 	
-}
+}	

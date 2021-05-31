@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -20,6 +21,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +33,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.model.dto.member.ProfileDto;
+import com.itpro.util.PageProcessing;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 public class MemberController {
@@ -208,14 +214,48 @@ public class MemberController {
 
 	
 
-	// 작성글 목록
-	@RequestMapping(value = "/post_list.do")
-	public String postList() {
-		logger.info("LIST_POST");
-
-		return "member/list_post";
+	// 작성글 목록 전체
+	@RequestMapping(value = "/postlookup.do")
+	public String postLookup(Model model, int m_no,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
+			@RequestParam(value="category", required=false, defaultValue="0") int category,
+			@RequestParam(value="keyword", required=false) String keyword) {
+		logger.info("postlookup");
+		
+		
+		Map<String,Object> postLookupPageMap = new HashMap<String,Object>();
+		postLookupPageMap.put("m_no", m_no);
+		postLookupPageMap.put("category",category);
+		
+		//게시물 총 갯수를 받아온다.
+		int postlookupcnt = biz.selectPostLookupCnt(postLookupPageMap);
+		
+		//list를 얻어오는데 작성자 m_no, 받아올 페이지 정보를 map에 담아서 해당 내용을 가져온다.
+		PageProcessing pageProcessing = new PageProcessing(postlookupcnt,page);
+		postLookupPageMap.put("start", pageProcessing.getStartIndex());
+		postLookupPageMap.put("end", pageProcessing.getEndIndex());
+		postLookupPageMap.put("keyword", keyword);
+		List<PostLookupDto> postLookupList = biz.selectPostLookup(postLookupPageMap);
+		logger.info("postLookupList size : "+Integer.toString(postLookupList.size()));
+		for(PostLookupDto dto : postLookupList) {
+			logger.info(dto.toString());
+		}
+		//총 게시물 수
+		model.addAttribute("postlookupcnt",postlookupcnt);
+		//게시물 list
+		model.addAttribute("postLookupList",postLookupList);
+		//페이징 정보
+		model.addAttribute("pageProcessing",pageProcessing);
+		//카테고리 정보 (하이라이트 효과 위해서)
+		model.addAttribute("category",category);
+		//작성자 정보
+		model.addAttribute("writer",biz.selectOne(m_no));
+		//검색어
+		model.addAttribute("keyword",keyword);
+		return "member/postlookup";
 	}
-
+	
+	
 	// 기업 광고내역
 	@RequestMapping(value = "/ad_list.do")
 	public String adList() {

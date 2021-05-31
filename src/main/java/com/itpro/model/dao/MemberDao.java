@@ -1,8 +1,12 @@
 package com.itpro.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.model.dto.member.ProfileDto;
 
 public interface MemberDao {
@@ -22,5 +26,14 @@ public interface MemberDao {
 
 	// 회원프로필 업로드
 	public int profileUpload(ProfileDto profileDto);
+
+	
+	
+	
+	//작성 글 조회
+	public List<PostLookupDto> selectPostLookup(Map<String,Object> map);
+	
+	//작성 글 갯수 조회
+	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap);
 
 }

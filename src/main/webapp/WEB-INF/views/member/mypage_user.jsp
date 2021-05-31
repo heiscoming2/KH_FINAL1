@@ -47,7 +47,7 @@
                 <p class="mb-1">쪽지를 보내고 관리합니다.</p>
             </a>
             <!-- 작성글 확인 -->
-            <a href="post_list.do" class="list-group-item list-group-item-action" aria-current="true">
+            <a href="postlookup.do?m_no=${sessionScope.login.m_no }" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">작성글</h5>
                 </div>

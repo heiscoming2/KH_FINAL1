@@ -1,5 +1,8 @@
 package com.itpro.model.daoImpl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.board.SearchListDto;
 import com.itpro.model.dto.notice.NoticeDto;
 
 @Repository
@@ -54,6 +58,28 @@ public class BoardDaoImpl implements BoardDao {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+
+	@Override
+	public int selectListCnt(Map<String, Object> searchlistMap) {
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"selectlistcnt",searchlistMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<SearchListDto> selectSearchList(Map<String, Object> searchlistMap) {
+		List<SearchListDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectsearchlist",searchlistMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 

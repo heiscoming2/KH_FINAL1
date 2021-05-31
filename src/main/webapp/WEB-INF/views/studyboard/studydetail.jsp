@@ -19,7 +19,7 @@
 
 <!-- 본문 시작 -->
   <div class="study_detailwrap mt-5">
-      <h4>스터디 구인</h4>
+      <h4>스터디 모집</h4>
       <!-- 스터디모집 구인글 영역 -->
       <table class="table table-bordered" style="width:100%;">
         <tr>
@@ -34,11 +34,11 @@
                   data-bs-toggle="dropdown" aria-expanded="false">
                   ${dto.m_nickname }
                 </a>
-                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-                </ul>
+				<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
+				<jsp:include page="../inc/userDropDownMenu.jsp">
+					<jsp:param name="m_no" value="${dto.m_no }"></jsp:param>
+				</jsp:include>
+				<!-- 프로필 드롭다운 메뉴 종료 -->
               </div>
               <span class="reg_date">
                 [ IP : ${dto.bd_writerip} ]
@@ -127,7 +127,6 @@
             <!-- 작성자의 경우에는 이게 안 보여야한다. -->
             <c:if test="${sessionScope.login.m_no ne dto.m_no }">
             <form id="studyJoinApplyForm" action="#">
-           		<!-- 나중에 placeholder에 로그인 후 참여신청이 가능하다고 써주기 -->
             	<input type="button"
             	onclick="
             	<c:if test='${sessionScope.login eq null }'>alert('로그인 후 이용 가능합니다.')</c:if>
