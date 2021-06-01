@@ -73,7 +73,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 			MemberDto login = (MemberDto) session.getAttribute("login");
 		}
 		
-		
 		//페이징을 위해 총 게시물수 count
 		int projectListCnt = projectBiz.getProjectListCnt();
 		System.out.println("projectListCnt : "+projectListCnt);
@@ -192,8 +191,9 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}	
 	
 	
-	@RequestMapping(value="/getprojectdetail.do")
+	@RequestMapping(value="/getprojectdetail.do",produces = "application/json;")
 	public @ResponseBody String getProjectDetail(@RequestParam(value="bd_no") int bd_no) { 
+		logger.info(projectBiz.selectDetail(bd_no).toString());
 		return projectBiz.selectDetail(bd_no);
 	}
 	

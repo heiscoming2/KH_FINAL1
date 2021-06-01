@@ -178,12 +178,12 @@ function getDetailData(no){
   bd_no = no;
 	var settings = {
 	  "url": "/upgrade/getprojectdetail.do?bd_no="+bd_no,
-	  "method": "GET"
+	  "method": "GET",
+
 	};
 
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
-    var response = JSON.parse(response);
     response.forEach((item, i) => {
       console.log(item);
         add_div();
