@@ -22,6 +22,7 @@ public class ReportReplyDto {
 	private String m_nickname;
 	private int re_no;
 	private String re_content;
+	private int cnt;
 	
 	
 	

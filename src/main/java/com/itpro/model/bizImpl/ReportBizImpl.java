@@ -38,8 +38,8 @@ public class ReportBizImpl implements ReportBiz{
 	}
 
 	@Override
-	public ReportDto selectOne(int report_no) {
-		return dao.selectOne(report_no);
+	public List<ReportDto> selectList2(int bd_no) {
+		return dao.selectList2(bd_no);
 	}
 
 	@Override
@@ -86,5 +86,13 @@ public class ReportBizImpl implements ReportBiz{
 		}
 		return deleteres; 
 	}
+
+	@Override
+	public int multiDelete(String[] report_no) {
+		return dao.multiDelete(report_no);
+	}
+	
+	
+	
 
 }

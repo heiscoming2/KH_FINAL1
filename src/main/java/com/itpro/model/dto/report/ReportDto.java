@@ -21,7 +21,7 @@ public class ReportDto {
 	private String name;
 	private String code;
 	private String m_nickname;
-	
+	private int cnt;
 	
 	
 
