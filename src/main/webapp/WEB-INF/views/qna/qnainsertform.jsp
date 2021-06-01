@@ -22,16 +22,15 @@
          <!-- qna 작성 글 영역-->
         <h3>qna 글 작성</h3>
         <br>
-             <!-- 프로필이미지, 아이디, 작성일 div -->
-              <div>
-                <img src="https://github.com/mdo.png" alt="mdo" width="35" height="35" class="rounded-circle me-2"
+                 <!-- 프로필이미지, 아이디, 작성일 div -->
+			<div>
+				<img src="${sessionScope.login.m_img_path}${sessionScope.login.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"
                   style="float: left;">
                 <div style="position: relative; top:5px;">
-                  <a class="d-flex align-items-center text-decoration-none" id="dropdownaUser"
-                    style="font-size:15px;">
+                  <a class="d-flex align-items-center text-decoration-none" style="font-size:15px;">
                     ${sessionScope.login.m_nickname}
                   </a>
-                </div>
+				</div>
               </div> <!-- 프로필이미지, 아이디, 작성일 div 끝 -->
               <br>
               <br>

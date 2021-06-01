@@ -47,34 +47,46 @@
             </tr>
             <tr>
               <th><span>* </span>이름 </th>
-              <td><input type="text" class="form-control" readonly></td>
-              <td> <input type="checkbox">비공개</td>
+              <td><input type="text" class="form-control" value="${dto.member.m_nickname }" readonly></td>
+              <td><input type="checkbox">비공개</td>
             </tr>
             <tr>
               <th><span>* </span>이메일 </th>
-              <td><input type="email" class="form-control" readonly></td>
-              <td> <input type="checkbox">비공개</td>
+              <td><input type="email" class="form-control" value="${dto.member.m_email }"  readonly></td>
+              <td><input type="checkbox">비공개</td>
             </tr>
             <tr>
               <th><span>* </span>전화번호 </th>
-              <td><input type="tel" class="form-control" readonly></td>
-              <td> <input type="checkbox">비공개</td>
+              <td><input type="tel" class="form-control" value="${dto.member.m_phone }" readonly></td>
+              <td><input type="checkbox">비공개</td>
             </tr>
             <tr>
               <th><span>* </span>최종 학력</th>
-              <td><input type=text class="form-control" readonly></td>
-              <td> <input type="checkbox">비공개</td>
+              <td>
+              <c:if test="${dto.edu ne null }">
+              <input type=text class="form-control" value="${dto.edu.ed_school }" readonly>
+              </c:if>
+              <c:if test="${dto.edu eq null }">
+              <input type=text class="form-control" readonly>
+              </c:if>
+              </td>
+              <td><input type="checkbox">비공개</td>
               <!-- <td><input type='month'/> ~ <input type='month'/></td> -->
             </tr>
+            
+            
+            <c:forEach var="career" items="${dto.career }" varStatus="status">
             <tr>
-              <th><span>* </span>경력사항</th>
-                
-              <td><input type="text" value="재직 중" readonly>   
-                <input type=text class="form-control" readonly> </td>
+              <th><span>* </span>경력사항</th>             
+              <td>
+              <input type="text" value="재직 중" readonly>   
+                <input type=text class="form-control" value="${career.ca_title }" readonly> </td>
                 <br>
-              <td><input type='month'/> ~ <input type='month'/></td> 
+              <td><input type='text' value="${career.ca_start_date }" readonly /></td>         
               <td><input type="checkbox">비공개</td>
             </tr>
+             </c:forEach>
+            
             <tr>
               <th><span>* </span>사용 개발 기술 </th>
               <td><input type="text" class="form-control" name="port_develop" placeholder="ex) Java, Oracle 등"></td>
@@ -87,22 +99,28 @@
               <th><span>* </span>수상 내역 </th>
               <td><input type="text" class="form-control" name="port_prize" placeholder="수상 내역을 입력해 주세요."></td>
             </tr>
+            <tr>
+              <th><span>* </span>포트폴리오 소개</th>
+              <td><input type="text" class="form-control" name="bd_content" placeholder="내용을 입력해 주세요."></td>
+            </tr>
+            
           </table>
 
           <br>
         <br>
         
         <br>
-      </form>
-
-      <!-- 포트폴리오 작성 글 영역 종료-->
+        
+         <!-- 포트폴리오 작성 글 영역 종료-->
 
       <!-- 취소 / 등록 컨펌 버튼 -->
 	  <div style="height:80px;">
 	    <input type="submit" value="등록" class="btn btn-primary" style="float:right; margin-left:10px;">
 	    <input type="button" value="취소" class="btn btn-primary" onclick="location.href='portfliolist.do'" style="float:right;" >
 	   </div>
-    </form>
+        
+      </form>
+
     
     </div> 
 <!-- 본문 종료 -->

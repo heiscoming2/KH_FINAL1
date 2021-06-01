@@ -17,7 +17,7 @@
 
 <!-- 본문 시작 -->
     <div class="qna_insertwrap">
-      <form action="qnainsert.do" method="post">
+      <form action="qnaupdate.do" method="post">
        <input type="hidden" name="bd_no" value=${qnaDetailDto.bd_no }>
        <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
          <!-- qna 작성 글 영역-->

@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.itpro.model.biz.PortfolioBiz;
 import com.itpro.model.dao.BoardDao;
+import com.itpro.model.dao.CareerDao;
+import com.itpro.model.dao.EducationDao;
 import com.itpro.model.dao.LikeDao;
+import com.itpro.model.dao.MemberDao;
 import com.itpro.model.dao.PortfolioDao;
 import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dto.board.BoardUpdateDto;
@@ -16,6 +19,7 @@ import com.itpro.model.dto.portfolio.PortfolioDetailDto;
 import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
+import com.itpro.model.dto.resume.CareerDto;
 
 @Service
 public class PortfolioBizImpl implements PortfolioBiz{
@@ -34,6 +38,15 @@ public class PortfolioBizImpl implements PortfolioBiz{
 	private LikeDao likeDao;
 
 	
+	@Autowired
+	private CareerDao careerDao;
+	
+	@Autowired
+	private EducationDao educationDao;
+	
+	@Autowired
+	private MemberDao memberDao;
+	
 	
 	@Override
 	public List<PortfolioListDto> selectList(Map<String, Object> portfolioPageMap) {
@@ -41,8 +54,12 @@ public class PortfolioBizImpl implements PortfolioBiz{
 	}
 
 	@Override
-	public PortfolioDetailDto selectOne(int bd_no) {
-		return portfolioDao.selectOne(bd_no);
+	public PortfolioDetailDto selectOne(int bd_no, int m_no) {
+		PortfolioDetailDto dto = portfolioDao.selectOne(bd_no);
+		dto.setCareer(careerDao.selectOne(m_no));
+		dto.setEdu(educationDao.selectOne(m_no));
+		dto.setMember(memberDao.selectOne(m_no));
+		return dto;
 	}
 
 	@Override
@@ -77,6 +94,15 @@ public class PortfolioBizImpl implements PortfolioBiz{
 	@Override
 	public int getPortfolioListCnt() {
 		return portfolioDao.getPortfolioListCnt();
+	}
+
+	@Override
+	public PortfolioDetailDto insertForm(int m_no) {
+		PortfolioDetailDto dto = new PortfolioDetailDto();
+		dto.setEdu(educationDao.selectOne(m_no));
+		dto.setCareer(careerDao.selectOne(m_no));
+		dto.setMember(memberDao.selectOne(m_no));
+		return dto;
 	}
 
 	

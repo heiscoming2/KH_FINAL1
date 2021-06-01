@@ -63,7 +63,9 @@
 
 		<typeAlias type="com.itpro.model.dto.study.StudyJoinInfoDto" alias="StudyJoinInfoDto"/>
 		
-		
+		<typeAlias type="com.itpro.model.dto.resume.CareerDto" alias="CareerDto"/>
+			
+		<typeAlias type="com.itpro.model.dto.resume.EducationDto" alias="EducationDto"/>
 		
 		
 		
@@ -97,6 +99,9 @@
 		<mapper resource="/mybatis/note-mapper.xml"/>
 
 		<mapper resource="/mybatis/like-mapper.xml"/>
+		
+		<mapper resource="/mybatis/career-mapper.xml"/>
+		<mapper resource="/mybatis/education-mapper.xml"/>
 	</mappers>
 
 </configuration>
