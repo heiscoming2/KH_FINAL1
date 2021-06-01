@@ -27,7 +27,6 @@
 		</div>
 		
 			<div style="position:relative; bottom:1px;">
-			<span>검색</span>
 			<div class="mb-4">
 				<input name="searchbox" type="text" placeholder="검색" value=""
 					class="form-control search-bar" onkeyup="enterKey();"

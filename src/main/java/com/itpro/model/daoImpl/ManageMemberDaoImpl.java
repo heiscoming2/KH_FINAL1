@@ -21,7 +21,7 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 	//개인회원 + 관리자
 	
 	@Override
-	public List<ManageMemberDto> selectList() {
+	public List<ManageMemberDto> selectList(String search_option, String keyword) {
 		List<ManageMemberDto> list = new ArrayList<ManageMemberDto>();
 		
 		try {
@@ -66,8 +66,30 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 		return res;
 	}
 
+	
+	@Override
+	public List<ManageMemberDto> search(String userName) {
+		List<ManageMemberDto> userList= new ArrayList<ManageMemberDto>();
+		
 
-	//기업회원
+		try {
+			userList=sqlSession.selectList(NAMESPACE+"search");
+			System.out.println("userName list dao: "+userList );
+		} catch (Exception e) {
+			System.out.println("[error] : select userlist");
+			e.printStackTrace();
+		}
+		return userList;
+		
+	}
+
+
+	
+	
+	
+
+	//////////////////////////////기업회원///////////////////////////////////////
+	
 	@Override
 	public List<ManageMemberDto_com> selectList_com() {
 		List<ManageMemberDto_com> list_com = new ArrayList<ManageMemberDto_com>();
@@ -132,4 +154,6 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 	}
 
 
+
+	
 }

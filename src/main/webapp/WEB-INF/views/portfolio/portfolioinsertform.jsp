@@ -47,23 +47,23 @@
             </tr>
             <tr>
               <th><span>* </span>이름 </th>
-              <td><input type="text" class="form-control" readonly>
-                  <input type="checkbox">비공개</td>
+              <td><input type="text" class="form-control" readonly></td>
+              <td> <input type="checkbox">비공개</td>
             </tr>
             <tr>
               <th><span>* </span>이메일 </th>
-              <td><input type="email" class="form-control" readonly>
-                  <input type="checkbox">비공개</td>
+              <td><input type="email" class="form-control" readonly></td>
+              <td> <input type="checkbox">비공개</td>
             </tr>
             <tr>
               <th><span>* </span>전화번호 </th>
-              <td><input type="tel" class="form-control" readonly>
-                  <input type="checkbox">비공개</td>
+              <td><input type="tel" class="form-control" readonly></td>
+              <td> <input type="checkbox">비공개</td>
             </tr>
             <tr>
               <th><span>* </span>최종 학력</th>
-              <td><input type=text class="form-control" readonly>
-                  <input type="checkbox">비공개</td>
+              <td><input type=text class="form-control" readonly></td>
+              <td> <input type="checkbox">비공개</td>
               <!-- <td><input type='month'/> ~ <input type='month'/></td> -->
             </tr>
             <tr>

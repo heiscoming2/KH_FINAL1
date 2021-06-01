@@ -1,10 +1,8 @@
 package com.itpro.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,18 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.BoardCategoryBiz;
 import com.itpro.model.biz.ManageMemberBiz;
-import com.itpro.model.biz.ReportBiz;
 import com.itpro.model.dto.admin.ManageMemberDto;
 import com.itpro.model.dto.admin.ManageMemberDto_com;
-import com.itpro.model.dto.board.BoardCategoryDto;
-import com.itpro.model.dto.board.BoardDto;
-import com.itpro.model.dto.report.ReportDto;
 
 @Controller
 public class AdminController {
@@ -45,12 +38,29 @@ public class AdminController {
 	
 	////개인회원 + 관리자//////////////////////
 	@RequestMapping("/member_list.do")
-	public String member_list(Model model ) {
+	public ModelAndView member_list(Model model, @RequestParam(defaultValue="m_nickname") String search_option,@RequestParam(defaultValue="") String keyword ) {
+		
+		
+		//map에 저장하기 위해 list를 만들어서 검색옵션과 키워드를 저장한다.
+        List<ManageMemberDto> list = biz.selectList(search_option, keyword);
+        
+        ModelAndView mav = new ModelAndView();
+        Map<String,Object> map = new HashMap<>();    //넘길 데이터가 많기 때문에 해쉬맵에 저장한 후에 modelandview로 값을 넣고 페이지를 지정
+		
+        map.put("search_option", search_option);
+        map.put("keyword", keyword);
+        mav.addObject("map", map);                    //modelandview에 map를 저장
+		
+        System.out.println("map : "+map);
+        mav.setViewName("admin/member_list");                //자료를 넘길 뷰의 이름
+        
 		logger.info("select list");
-		model.addAttribute("list",biz.selectList());
-		return "admin/member_list";
+		//model.addAttribute("list",biz.selectList());
+		return mav;
 	}
 	
+	
+
 	@RequestMapping(value="/member_detail.do")
 	public String member_detail(Model model, int m_no) {
 		

@@ -33,19 +33,20 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 	}
 	
 	
+	
 
 	@Override
-	public ReportReplyDto selectOne(int report_reply_no) {
-		ReportReplyDto dto =null;
+	public List<ReportReplyDto> selectList2(int re_no) {
+		List<ReportReplyDto> list2 =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",report_reply_no);
+			list2=sqlSession.selectList(NAMESPACE+"selectList2",re_no);
 		} catch (Exception e) {
-			System.out.println("[error] : select one");
+			System.out.println("[error] : select list2");
 			e.printStackTrace();
 		}
 		
-		return dto;
+		return list2;
 	}
 
 	
@@ -97,11 +98,7 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 	}
 
 
-	@Override
-	public int getReportReplyCnt() {
 	
-		return 0;
-	}
 	
 	@Override
 	public int delete(int report_reply_no) {
@@ -113,6 +110,15 @@ public class ReportReplyDaoImpl implements ReportReplyDao {
 					e.printStackTrace();
 				}
 				return report_replyDeleteRes;
+	}
+
+
+
+
+	@Override
+	public int getReportReplyCnt() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
