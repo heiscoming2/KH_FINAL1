@@ -21,43 +21,6 @@
 		WHERE
 		A.M_NO = #{m_no}
 	</select>
-
-	<!-- 이력서 조회 
-	SELECT A.M_NO, M_ID, M_PW, M_NICKNAME, M_EMAIL, M_IMG_PATH, M_IMG, B.M_REGNO, B.M_ADMIN_CERT, A.M_PHONE
-		FROM IT_MEMBER A
-		LEFT JOIN BIZ_MEMBER B
-		ON A.M_NO=B.M_NO
-		WHERE A.M_NO = #{m_no}		
-	
-	<resultMap type="ResumeDto" id="resumeDetail">
-		<result property="m_no" column="M_NO" />
-		<result property="r_no" column="R_NO" />
-		<result property="r_title" column="R_TITLE" />
-		<result property="r_postcode" column="R_POSTCODE" />
-		<result property="r_roadAddress" column="R_ROADADDRESS" />
-		<result property="r_jibunAddress" column="R_JIBUNADDRESS" />
-		<result property="r_detailAddress" column="R_DETAILADDRESS" />
-		<result property="r_extraAddress" column="R_EXTRAADDRESS" />
-		<result property="r_selfletter" column="R_SELFLETTER" />
-		<result property="r_portfolio" column="R_PORTFOLIO" />
-		<result property="r_img" column="R_IMG" />
-		<result property="r_img_path" column="R_IMG_PATH" />
-		<result property="r_regdate" column="R_REGDATE" />
-		<result property="m_email" column="M_EMAIL" />
-		<result property="m_phone" column="M_PHONE" />
-		<result property="m_name" column="M_NAME" />
-		<result property="m_birth" column="M_BIRTH" />
-		<result property="m_gender" column="M_GENDER" />
-	</resultMap>
-	
-	<select id="resumeDetail" resultType="ResumeDto" parameterType="int">
-		SELECT *
-		FROM M_RESUME A
-		LEFT JOIN IT_MEMBER B
-		ON A.M_NO = B.M_NO
-		WHERE A.R_NO = #{r_no}
-	</select>
-	-->
 	
 	<!-- 이력서 기본정보 조회(detail) -->
 	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
@@ -68,10 +31,26 @@
 	
 	<!-- 이력서 학력사항 조회(list) -->
 	<select id="educationList" resultType="EducationDto" parameterType="int">
-		select * 
-		from EDUCATION 
-		where m_no = #{m_no}
-		order by ed_no
+		SELECT * 
+		FROM EDUCATION 
+		WHERE M_NO = #{m_no} 
+		ORDER BY ED_NO
+	</select>
+	
+	<!-- 이력서 자격사항 조회(list) -->
+	<select id="licenceList" resultType="LicenceDto" parameterType="int">
+		SELECT * 
+		FROM LICENCE 
+		WHERE M_NO = #{m_no}
+		ORDER BY LI_NO
+	</select>
+	
+	<!-- 이력서 교육 및 사회경험 조회(list) -->
+	<select id="careerList" resultType="CareerDto" parameterType="int">
+		SELECT * 
+		FROM CAREER 
+		WHERE M_NO = #{m_no}
+		ORDER BY CA_NO
 	</select>
 
 	<!--이력서 등록 -->

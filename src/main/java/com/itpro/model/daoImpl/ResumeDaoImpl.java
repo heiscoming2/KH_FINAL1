@@ -16,7 +16,9 @@ import com.itpro.model.dao.ResumeDao;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.project.ProjectListDto;
+import com.itpro.model.dto.resume.CareerDto;
 import com.itpro.model.dto.resume.EducationDto;
+import com.itpro.model.dto.resume.LicenceDto;
 import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
@@ -50,23 +52,6 @@ public class ResumeDaoImpl implements ResumeDao {
 		return list;
 	}
 
-//	// 이력서 조회
-//	@Override
-//	public ResumeDto resumeDetail(int r_no) {
-//		ResumeDto resumeDto = null;
-//
-//		try {
-//			resumeDto = sqlSession.selectOne(NAMESPACE + "resumeDetail", r_no);
-//
-//		} catch (Exception e) {
-//			System.out.println("[error] : resumeDetail");
-//			e.printStackTrace();
-//		}
-//
-//		return resumeDto;
-//
-//	}
-
 	// 이력서 기본정보 조회(detail)
 	@Override
 	public ResumeDetailDto resumeDetail(int r_no) {
@@ -98,6 +83,39 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return list;
 	}
+	
+	// 이력서 자격사항(list)
+	@Override
+	public List<LicenceDto> licenceList(int m_no) {
+		List<LicenceDto> list = new ArrayList<>();
+
+		try {
+			list = sqlSession.selectList(NAMESPACE + "licenceList", m_no);
+
+		} catch (Exception e) {
+			System.out.println("[error] : licenceList");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	// 이력서 경력사항(list)
+	@Override
+	public List<CareerDto> careerList(int m_no) {
+		List<CareerDto> list = new ArrayList<>();
+
+		try {
+			list = sqlSession.selectList(NAMESPACE + "careerList", m_no);
+
+		} catch (Exception e) {
+			System.out.println("[error] : careerList");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
 
 	// 이력서 이미지 등록
 	@Override
@@ -128,5 +146,6 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return res;
 	}
+
 
 }

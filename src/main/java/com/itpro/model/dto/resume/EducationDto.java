@@ -16,7 +16,8 @@ public class EducationDto {
 
 	// 학력사항
 	private int ed_no;
-	private String ed_date;
+	private String ed_startdate;
+	private String ed_gradudate;
 	private String ed_schoolName;// 학교명
 	private String ed_graduation;// 졸업, 휴학, 중퇴, 재학
 	private String ed_major; // 전공

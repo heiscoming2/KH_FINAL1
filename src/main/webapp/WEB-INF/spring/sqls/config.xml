@@ -58,6 +58,8 @@
 		<typeAlias type="com.itpro.model.dto.resume.ResumeDto" alias="ResumeDto"/>
 		<typeAlias type="com.itpro.model.dto.resume.ResumeDetailDto" alias="ResumeDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.resume.EducationDto" alias="EducationDto"/>
+		<typeAlias type="com.itpro.model.dto.resume.LicenceDto" alias="LicenceDto"/>
+		<typeAlias type="com.itpro.model.dto.resume.CareerDto" alias="CareerDto"/>
 		<typeAlias type="com.itpro.model.dto.note.NoteDto" alias="NoteDto"/>
 		<typeAlias type="com.itpro.model.dto.resume.ResumeProfileDto" alias="ResumeProfileDto"/>
 
