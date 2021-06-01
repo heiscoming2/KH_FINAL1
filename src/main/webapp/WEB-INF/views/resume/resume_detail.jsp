@@ -17,8 +17,9 @@
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
         <h3>이력서 조회</h3> 	
         <div class="float-end">
-        	<button class="btn btn-primary" onclick="location.href='resume_update.do'">이력서 수정</button>
-            <button class="btn btn-primary" onclick="location.href='resume_list.do'">이력서 목록</button>
+        	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetail.r_no}'">삭제</button>
+        	<button class="btn btn-primary" onclick="location.href='resume_update.do?r_no=${resumeDetail.r_no}'">수정</button>
+            <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
             <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
         </div>
         <br><br>

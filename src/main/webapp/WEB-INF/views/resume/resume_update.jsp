@@ -21,7 +21,8 @@
 
         <h3>이력서 수정</h3> 	
         <div class="float-end">
-            <button class="btn btn-primary" onclick="location.href='resume_list.do'">이력서 목록</button>
+            <button class="btn btn-danger" onclick="location.href='resume_update.do'">삭제</button>
+            <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
             <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
         </div>
         <br><br>
