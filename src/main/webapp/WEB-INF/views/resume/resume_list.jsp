@@ -14,20 +14,20 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5"> 		
+ <div class="container mt-5 mb-5" style="max-width: 1000px;"> 		
  		<h3>이력서 목록</h3> 	
         <button class="btn btn-primary" onclick="location.href='resume_form.do'">등록</button>
-        <button class="btn btn-danger">삭제</button>
+        <input class="btn btn-danger" type="button" value="삭제" onclick="resumeListDel();">
         
         <br><br>
-        <table class="table table-bordered table-hover text-center">
+        
+        <table class="table table-bordered table-hover text-center" >
             <thead>
                 <tr class="d-flex">
-                    <th class="col-1">선택</th>
-                    <th class="col-1">번호</th>
-                    <th class="col-5">이력서</th>
-                    <th class="col-2">등록일</th>
-                    <th class="col-3">수정여부</th>
+                    <th class="col-1"><input type="checkbox"></th>
+                    <th class="col-6">이력서</th>
+                    <th class="col-3">등록일</th>
+                    <th class="col-2">수정</th>
                 </tr>
             </thead>
             <tbody><!--작성된 이력서 목록-->
@@ -40,13 +40,11 @@
 					<c:otherwise>
 						<c:forEach items="${resumeList }" var="resumeList">
 							<tr class="d-flex">
-								<td class="col-1"><input type="checkbox"></td>
-								<td class="col-1">${resumeList.r_no }</td>
-								<td class="col-5"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
-								<td class="col-2"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yy-MM-dd"/></td>
-								<td class="col-3">
+								<td class="col-1"><input type="checkbox" name="resumeListDel" value="${resumeList.r_no }"></td>
+								<td class="col-6"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
+								<td class="col-3"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yyyy-MM-dd"/></td>
+								<td class="col-2">
 									<button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>
-									<button class="btn btn-danger btn-sm">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -54,6 +52,7 @@
 				</c:choose>
 			</tbody>
         </table>
+        
     </div>
     
        
@@ -68,6 +67,9 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
+
+<!-- 이력서 목록 스크립트 -->
+<script type="text/javascript" src="./resources/js/resume_list.js"></script> 
 	
 </body>
 </html>

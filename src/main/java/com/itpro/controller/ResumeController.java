@@ -66,6 +66,14 @@ public class ResumeController {
 		return "resume/resume_list";
 	}
 
+	// 이력서 상세페이지 이동
+	@RequestMapping(value = "/resume_detail.do")
+	public String resumeDetail() {
+		logger.info("RESUEM DETIAL");		
+
+		return "resume/resume_detail";
+	}
+
 	// 이력서 등록폼으로 이동
 	@RequestMapping(value = "/resume_form.do")
 	public String resumeForm(HttpSession session, Model model) {
@@ -74,20 +82,40 @@ public class ResumeController {
 		return "resume/resume_form";
 	}
 
-	// 이력서 상세페이지 이동
-	@RequestMapping(value = "/resume_detail.do")
-	public String resumeDetail() {
-		logger.info("RESUEM DETIAL");
-
-		return "resume/resume_detail";
-	}
-
 	// 이력서 수정폼으로 이동
 	@RequestMapping(value = "/resume_update.do")
 	public String resumeUpdate() {
 		logger.info("RESUEM UPDATE");
 
 		return "resume/resume_update";
+	}
+
+	// 이력서 개별삭제
+	@RequestMapping(value = "/resume_delete.do")
+	public String resumeDelete(int r_no) {
+		logger.info("RESUEM DELETE");
+
+		int res = biz.resumeDelete(r_no);
+		if (res > 0) {
+
+			return "redirect:resume_list.do";
+		} else {
+			return "redirect:resume_detail.do?r_no=" + r_no;
+		}
+	}
+
+	// 이력서 멀티삭제
+	@RequestMapping
+	public String resumeListDel(int r_no) {
+		logger.info("RESUEM DELETE");
+
+		int res = biz.resumeDelete(r_no);
+		if (res > 0) {
+
+			return "redirect:resume_list.do";
+		} else {
+			return "redirect:resume_detail.do?r_no=" + r_no;
+		}
 	}
 
 	// 프로필 이미지 업로드 컨트롤러

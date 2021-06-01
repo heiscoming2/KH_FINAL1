@@ -17,8 +17,9 @@
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
         <h3>이력서 조회</h3> 	
         <div class="float-end">
-        	<button class="btn btn-primary" onclick="location.href='resume_update.do'">이력서 수정</button>
-            <button class="btn btn-primary" onclick="location.href='resume_list.do'">이력서 목록</button>
+        	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetail.r_no}'">삭제</button>
+        	<button class="btn btn-primary" onclick="location.href='resume_update.do?r_no=${resumeDetail.r_no}'">수정</button>
+            <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
             <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
         </div>
         <br><br>
@@ -31,52 +32,52 @@
             <br>
             <div class="clearfix">
                 <!--이력서 이미지-->
-                <img src="./resources/images/profileimages/testprofile.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 200px; height: 200px;" alt="이력서 이미지">
+                <img src="${resumeDetail.r_img_path }${resumeDetail.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 200px; height: 200px;" alt="이력서 이미지">
                 
                 <!--기본 인적사항-->              
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">이 름</h5></div>
                     <div class="col-3">            
-                        <span class="fs-5">아무개</span>            
+                        <span class="fs-5">${resumeDetail.m_name }</span>            
                     </div> 
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">생년월일</h5></div>
                     <div class="col-2">            
-                        <span class="fs-5">1999.02.01</span>           
+                        <span class="fs-5">${resumeDetail.m_birth }</span>           
                     </div>      
                     <div class="col-1"><h5 class="fw-bold">성별</h5></div>
                     <div class="col-1">
-                        <span class="fs-5">여</span>
+                        <span class="fs-5">${resumeDetail.m_gender }</span>
                     </div>
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">휴대폰</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5">000-0000-0000</span>         
+                        <span class="fs-5"></span>         
                     </div>
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">이메일</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5">amu@itpro.com</span>           
+                        <span class="fs-5"></span>           
                     </div>     
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">주 소</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5">서울시 강남구 역삼동 어쩌구</span>            
+                        <span class="fs-5">${resumeDetail.r_roadAddress }${resumeDetail.r_detailAddress }</span>            
                     </div>     
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">포폴 링크</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5"><a style="color:black;" href="www.naver.com">www.naver.com</a></span>           
+                        <span class="fs-5"><a style="color:black;" href="${resumeDetail.r_portfolio }">${resumeDetail.r_portfolio }</a></span>           
                     </div>     
                 </div>
             </div>     

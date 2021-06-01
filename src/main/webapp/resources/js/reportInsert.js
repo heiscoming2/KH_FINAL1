@@ -1,4 +1,4 @@
-
+reportreplyinsertform.jsp
 /* 신고 insert popup*/
 
 	function reportInsert(bd_no){

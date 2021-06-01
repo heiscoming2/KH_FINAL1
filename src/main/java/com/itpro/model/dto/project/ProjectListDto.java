@@ -21,11 +21,26 @@ public class ProjectListDto {
 	private String m_img_path; // 프로필 이미지 경로
 	private String m_img; // 프로필 이미지
 	private String m_nickname; // 닉네임
+	private int m_no;
 
 	public ProjectListDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public int getM_no() {
+		return m_no;
+	}
+
+
+
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+
+
 
 	public Date getBd_createddate() {
 		return bd_createddate;

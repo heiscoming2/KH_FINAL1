@@ -86,9 +86,7 @@ public class NoteDaoImpl implements NoteDao {
 		
 		return res;
     	
-    }
-    
-    
+    }    
 	   
    //  보낸 쪽지 하나 읽기 
     public NoteDto sendDetail() {
@@ -103,4 +101,21 @@ public class NoteDaoImpl implements NoteDao {
 		return detail;
     	
     }
+    
+    //쪽지 보내기(insert)
+    @Override
+	public int noteSend(NoteDto noteDto) {
+		int res=0;
+		
+		try {
+			res = sqlSession.insert(NAMESPACE+"noteSend",noteDto);
+			
+		} catch (Exception e) {
+			System.out.println("[error] : noteSend");
+			e.printStackTrace();
+		}		
+		
+		return res;
+	}
+    
 }

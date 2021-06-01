@@ -31,11 +31,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itpro.model.biz.BoardBiz;
+import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.MemberBiz;
+import com.itpro.model.biz.ReplyBiz;
+import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.model.dto.member.ProfileDto;
+import com.itpro.model.dto.portfolio.PortfolioDetailDto;
+import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.util.PageProcessing;
+import com.itpro.util.ViewCount;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -263,4 +270,13 @@ public class MemberController {
 
 		return "admin/ad_list";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

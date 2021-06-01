@@ -32,7 +32,7 @@ public class ResumeDaoImpl implements ResumeDao {
 		return null;
 	}
 
-	// 이력서 조회
+	// 이력서 목록 조회
 	@Override
 	public List<ResumeDto> resumeList(int m_no) {
 		List<ResumeDto> list = new ArrayList<ResumeDto>(m_no);
@@ -41,11 +41,28 @@ public class ResumeDaoImpl implements ResumeDao {
 			list = sqlSession.selectList(NAMESPACE + "resumeList", m_no);
 
 		} catch (Exception e) {
-			System.out.println("[error] : select list");
+			System.out.println("[error] : resumeList");
 			e.printStackTrace();
 		}
 
 		return list;
+	}
+
+	// 이력서 조회
+	@Override
+	public ResumeDto resumeDetail(int r_no) {
+		ResumeDto resumeDto = null;
+
+		try {
+			resumeDto = sqlSession.selectOne(NAMESPACE + "resumeDetail", r_no);
+
+		} catch (Exception e) {
+			System.out.println("[error] : resumeDetail");
+			e.printStackTrace();
+		}
+
+		return resumeDto;
+
 	}
 
 	// 이력서 이미지 등록
@@ -57,6 +74,21 @@ public class ResumeDaoImpl implements ResumeDao {
 			res = sqlSession.update(NAMESPACE + "uploadProfile", resumeProfileDto);
 		} catch (Exception e) {
 			System.out.println("[error]:uploadProfile");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	//이력서 삭제
+	@Override
+	public int resumeDelete(int r_no) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "resumeDelete", r_no);
+		} catch (Exception e) {
+			System.out.println("[error]:resume delete");
 			e.printStackTrace();
 		}
 

@@ -184,7 +184,7 @@ function getDetailData(no){
 
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
-    response.forEach((item, i) => {
+	  response.forEach((item, i) => {
       console.log(item);
         add_div();
 
