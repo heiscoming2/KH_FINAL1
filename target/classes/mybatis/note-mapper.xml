@@ -7,8 +7,9 @@
 
 	<!-- 내가 받은 쪽지 목록 조회 -->
 	<select id="receiveList" resultType="NoteDto">
-		SELECT *
+		SELECT NOTE.*, IT_MEMBER.m_nickname
 		FROM NOTE
+		INNER JOIN IT_MEMBER ON IT_MEMBER.m_no = NOTE.N_SENDER
 		WHERE N_RECEIVER = #{n_receiver}
 	</select>
 	
@@ -18,6 +19,14 @@
 		FROM NOTE
 		WHERE N_SENDER = #{n_sender}
 	</select>
+	
+	<!-- 내가 받은쪽지 하나 읽기 -->
+	<select id="receiveDetail" resultType="NoteDto">
+		SELECT *
+		FROM NOTE
+		WHERE N_RECEIVER = #{n_receiver}
+		AND N_NO=#{n_no}
+	</select>
 
 	<!-- 새로 받은 쪽지가 있는지 확인(매번) -->
 	<select id="countNewNote" resultType="int">
@@ -25,15 +34,6 @@
 		FROM NOTE
 		WHERE N_RECEIVER = #{n_receiver}
 		AND N_READDATE IS NULL
-	</select>
-
-
-	<!-- 내가 받은쪽지 하나 읽기 -->
-	<select id="receiveDetail" resultType="NoteDto">
-		SELECT *
-		FROM NOTE
-		WHERE N_RECEIVER = #{n_receiver}
-		AND N_NO=#{n_no}
 	</select>
 
 	<!-- 읽은 쪽지 읽은 시간 표시 UPDATE -->
@@ -57,7 +57,7 @@
 		INSERT INTO NOTE
 			(N_NO, N_SENDER, N_RECEIVER, N_TITLE, N_CONTENT, N_SENDDATE)
 		VALUES
-			(NOTE_SEQ.NEXTVAL, #{n_sender}, #{n_receiver}, #{n_title}, #{n_content}, SYSDATE)
+			(NOTE_SEQ.NEXTVAL, (select m_no from IT_MEMBER where m_nickname = #{n_receiver_nickname}), #{n_receiver}, #{n_title}, #{n_content}, SYSDATE)
 	</insert>
 
 </mapper>

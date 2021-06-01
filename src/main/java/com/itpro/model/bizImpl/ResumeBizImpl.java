@@ -15,6 +15,8 @@ import com.itpro.model.dao.ResumeDao;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.project.ProjectListDto;
+import com.itpro.model.dto.resume.EducationDto;
+import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
 
@@ -38,18 +40,25 @@ public class ResumeBizImpl implements ResumeBiz {
 		
 		return dao.resumeList(m_no);
 	}
+	
+
+	//이력서 기본정보 조회(detail)
+	@Override
+	public ResumeDetailDto resumeDetail(int r_no) {
+		return dao.resumeDetail(r_no);
+	}
+	
+	//이력서 학력사항 조회(list)
+	@Override
+	public List<EducationDto> educationList(int m_no) {
+		return dao.educationList(m_no);
+	}
 
 	//이미지 저장
 	@Override
 	public int profileUpload(ResumeProfileDto resumeProfileDto) {
 		
 		return dao.profileUpload(resumeProfileDto);
-	}
-
-	//이력서 조회
-	@Override
-	public ResumeDto resumeDetail(int r_no) {
-		return dao.resumeDetail(r_no);
 	}
 
 	//이력서 삭제

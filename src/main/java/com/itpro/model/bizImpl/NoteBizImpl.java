@@ -1,6 +1,7 @@
 package com.itpro.model.bizImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,9 +47,9 @@ public class NoteBizImpl implements NoteBiz {
 
 	// 내가 받은쪽지 하나 읽기
 	@Override
-	public NoteDto receiveDetail() {
+	public NoteDto receiveDetail(Map map) {
 
-		return dao.receiveDetail();
+		return dao.receiveDetail(map);
 	}
 
 	// 읽은 쪽지 읽은 시간 표시 UPDATE

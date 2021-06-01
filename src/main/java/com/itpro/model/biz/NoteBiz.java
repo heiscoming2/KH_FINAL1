@@ -1,6 +1,7 @@
 package com.itpro.model.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +22,7 @@ public interface NoteBiz {
 	public Integer countNewNote();
 
 	// 내가 받은쪽지 하나 읽기
-	public NoteDto receiveDetail();
+	public NoteDto receiveDetail(Map map);
 
 	// 읽은 쪽지 읽은 시간 표시 UPDATE
 	public int updateReadDate();
