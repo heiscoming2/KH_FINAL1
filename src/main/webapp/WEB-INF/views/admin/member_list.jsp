@@ -62,27 +62,32 @@
 
 	<!-- 회원명단 -->
 	<div class="content">
-		<h1>회원관리 : 개인회원</h1>
+		<h3>회원관리 : 개인회원</h3>
 
 		<form name="form1" method="post" action="member_list.do">
 
 			<select name="search_option">
-				<option value="m_nickname"
-					<c:if test="${map.search_option == 'm_nickname'}">selected</c:if>>작성자</option>
-
-				<%-- <option value=""
-					<c:if test="${map.search_option == 'm_gender'}">selected</c:if>>제목</option>
-
-				<option value="content"
-					<c:if test="${map.search_option == 'm_'}">selected</c:if>>내용</option>
 
 				<option value="all"
-					<c:if test="${map.search_option == 'all'}">selected</c:if>>작성자+내용+제목</option>--%>
+					<c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
+				
+				<option value="m_nickname"
+					<c:if test="${map.search_option == 'm_nickname'}">selected</c:if>>Nickname</option>
+
+				 <option value="m_act"
+					<c:if test="${map.search_option == 'm_act'}">selected</c:if>>활동여부</option>
+
+				<option value="m_gender"
+					<c:if test="${map.search_option == 'm_gender'}">selected</c:if>>성별</option>
+
+				<option value="m_type"
+					<c:if test="${map.search_option == 'm_type'}">selected</c:if>>회원구분</option>
+				
 
 			</select> <input name="keyword" value="${map.keyword}"> <input
 				type="submit" value="검색">
 		</form>
-F
+
 		<br>
 		<table class="main_table">
 			<thead>

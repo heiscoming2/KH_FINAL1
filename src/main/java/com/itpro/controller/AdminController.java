@@ -11,13 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.BoardCategoryBiz;
 import com.itpro.model.biz.ManageMemberBiz;
 import com.itpro.model.dto.admin.ManageMemberDto;
 import com.itpro.model.dto.admin.ManageMemberDto_com;
+import com.itpro.model.dto.member.PostLookupDto;
+import com.itpro.util.PageProcessing;
 
 @Controller
 public class AdminController {
@@ -37,26 +38,30 @@ public class AdminController {
 	
 	
 	////개인회원 + 관리자//////////////////////
-	@RequestMapping("/member_list.do")
-	public ModelAndView member_list(Model model, @RequestParam(defaultValue="m_nickname") String search_option,@RequestParam(defaultValue="") String keyword ) {
+	@RequestMapping(value="/member_list.do")
+	public String member_list(Model model, @RequestParam(defaultValue="all") String search_option,
+							@RequestParam(value="keyword", required=false) String keyword ) {
 		
-		
-		//map에 저장하기 위해 list를 만들어서 검색옵션과 키워드를 저장한다.
-        List<ManageMemberDto> list = biz.selectList(search_option, keyword);
-        
-        ModelAndView mav = new ModelAndView();
-        Map<String,Object> map = new HashMap<>();    //넘길 데이터가 많기 때문에 해쉬맵에 저장한 후에 modelandview로 값을 넣고 페이지를 지정
-		
-        map.put("search_option", search_option);
-        map.put("keyword", keyword);
-        mav.addObject("map", map);                    //modelandview에 map를 저장
-		
-        System.out.println("map : "+map);
-        mav.setViewName("admin/member_list");                //자료를 넘길 뷰의 이름
-        
 		logger.info("select list");
-		//model.addAttribute("list",biz.selectList());
-		return mav;
+		
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		
+		
+		//list를 얻어오는데 작성자 m_no, 받아올 페이지 정보를 map에 담아서 해당 내용을 가져온다.
+		map.put("search_option", search_option);
+		map.put("keyword", keyword);
+		List<ManageMemberDto> list = biz.selectList(map);
+		logger.info("list size : "+Integer.toString(list.size()));
+		for(ManageMemberDto dto : list) {
+			logger.info(dto.toString());
+		}
+		
+		//검색어
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("list",list);
+		return "admin/member_list";
 	}
 	
 	
@@ -94,12 +99,28 @@ public class AdminController {
 		
 	//// 기업회원 //////////////////////
 		@RequestMapping("/member_list_com.do")
-		public String member_list_com(Model model ) {
+		public String member_list_com(Model model, @RequestParam(defaultValue="all") String search_option,
+				@RequestParam(value="keyword", required=false) String keyword ) {
 			logger.info("select list_com");
-			model.addAttribute("list_com",biz.selectList_com());
 			
+			Map<String,Object> map = new HashMap<String,Object>();
+			
+			
+			//list를 얻어오는데 작성자 m_no, 받아올 페이지 정보를 map에 담아서 해당 내용을 가져온다.
+			map.put("search_option", search_option);
+			map.put("keyword", keyword);
+			List<ManageMemberDto_com> list_com = biz.selectList_com(map);
+			logger.info("list_com size : "+Integer.toString(list_com.size()));
+			for(ManageMemberDto_com dto : list_com) {
+				logger.info(dto.toString());
+			
+			}
+			//검색어
+			model.addAttribute("keyword",keyword);
+			model.addAttribute("list_com",list_com);
 			
 			return "admin/member_list_com";
+		
 		}
 		
 		@RequestMapping(value="/member_detail_com.do")
