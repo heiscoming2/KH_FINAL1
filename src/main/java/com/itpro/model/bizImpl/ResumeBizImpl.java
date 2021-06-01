@@ -32,7 +32,7 @@ public class ResumeBizImpl implements ResumeBiz {
 		return null;
 	}
 
-	//이력서 조회
+	//이력서 목록조회
 	@Override
 	public List<ResumeDto> resumeList(int m_no) {
 		
@@ -44,6 +44,12 @@ public class ResumeBizImpl implements ResumeBiz {
 	public int profileUpload(ResumeProfileDto resumeProfileDto) {
 		
 		return dao.profileUpload(resumeProfileDto);
+	}
+
+	//이력서 조회
+	@Override
+	public ResumeDto resumeDetail(int r_no) {
+		return dao.resumeDetail(r_no);
 	}
 
 	

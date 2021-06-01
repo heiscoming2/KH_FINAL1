@@ -16,6 +16,9 @@ public interface ResumeDao {
 	// 이력서 조회
 	public List<ResumeDto> resumeList(int m_no);
 
+	//이력서 조회
+	public ResumeDto resumeDetail(int r_no);
+	
 	// 이력서 등록
 	public MemberDto selectOne(int m_no);
 	

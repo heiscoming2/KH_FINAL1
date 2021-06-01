@@ -32,8 +32,6 @@ import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
-import com.itpro.model.dto.resume.CareerDto;
-import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;

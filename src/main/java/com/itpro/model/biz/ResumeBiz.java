@@ -16,6 +16,9 @@ public interface ResumeBiz {
 	
 	//이력서 등록
 	public MemberDto selectOne();
+	
+	//이력서 조회
+	public ResumeDto resumeDetail(int r_no);
 
 	//이력서 목록 조회
 	public List<ResumeDto> resumeList(int m_no);
