@@ -12,10 +12,11 @@ import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
 public interface PortfolioBiz {
 
 	public List<PortfolioListDto> selectList(Map<String,Object> portfolioPageMap);
-	public PortfolioDetailDto selectOne(int bd_no);
+	public PortfolioDetailDto selectOne(int bd_no, int m_no);
 	public int portfolioInsert(PortfolioInsertDto portfolioDto);
 	public int delete(int bd_no);
 	public int update(PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto);
 	public int getPortfolioListCnt();
+	public PortfolioDetailDto insertForm(int m_no);
 
 }

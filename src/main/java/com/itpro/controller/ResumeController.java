@@ -30,11 +30,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.itpro.model.biz.Login_joinBiz;
 import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.biz.ResumeBiz;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
+import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.resume.CareerDto;
 import com.itpro.model.dto.resume.EducationDto;

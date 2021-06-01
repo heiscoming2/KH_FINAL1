@@ -36,21 +36,23 @@
 			</tr>
         
             <!-- 게시물 한 줄 시작-->
-            <tr>
                 <c:choose>
-					<c:when test="${empty portfolio }">
+					<c:when test="${empty portfolioList }">
+            <tr>
 						<td colspan="4" align="center">
 							조회할 게시물이 존재하지 않습니다.
 						</td>
+						</tr>
 					</c:when>
 					<c:otherwise>
 
                   	<c:forEach var="dto" items="${portfolioList }">
+            			<tr onclick="location.href='portfoliodetail.do?bd_no=${dto.bd_no}&m_no=${dto.m_no}'">
 							<!-- 글 번호 시작 --> 
 							<td>${dto.bd_no} </td>
-							<td>${dto.port_develop} </td>
-							<td>${dto.port_link} </td>
-							<td>${dto.port_prize} </td>
+							<td>${dto.bd_title} </td>
+							<td>${dto.bd_recommandcount} </td>
+							<td>${dto.bd_viewcount} </td>
 							
 							<td>
 							    <div class="portfolio_profile">
@@ -68,10 +70,10 @@
 									<span class="qna_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
+						</tr>	
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-			</tr>	
 		</table>
 		</div>
             <!-- 게시물 한 줄 종료 -->

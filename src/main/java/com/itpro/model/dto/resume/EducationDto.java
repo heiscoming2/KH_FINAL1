@@ -1,7 +1,5 @@
 package com.itpro.model.dto.resume;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,8 +9,8 @@ import lombok.ToString;
 @ToString
 public class EducationDto {
 
-	// 멤버 기본 정보
-	private int m_no;// 회원번호
+	// 학력사항
+	private int m_no;
 
 	// 학력사항
 	private int ed_no;
