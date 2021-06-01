@@ -11,6 +11,8 @@ public class EducationDto {
 
 	// 학력사항
 	private int m_no;
+
+	// 학력사항
 	private int ed_no;
 	private String ed_date;
 	private String ed_schoolName;// 학교명

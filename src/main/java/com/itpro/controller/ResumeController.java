@@ -38,6 +38,8 @@ import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.member.ProfileDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectListDto;
+import com.itpro.model.dto.resume.EducationDto;
+import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
 import com.itpro.util.PageProcessing;
@@ -49,6 +51,9 @@ public class ResumeController {
 
 	@Autowired
 	private ResumeBiz biz;
+	
+	@Autowired
+	private MemberBiz memberBiz;
 
 	// 이력서 목록 조회
 	@RequestMapping(value = "/resume_list.do")
@@ -70,9 +75,27 @@ public class ResumeController {
 
 	// 이력서 상세페이지 이동
 	@RequestMapping(value = "/resume_detail.do")
-	public String resumeDetail() {
-		logger.info("RESUEM DETIAL");		
+	public String resumeDetail(Model model, int r_no) {
+		logger.info("RESUEM DETIAL");
+		
+		//이력서 기본정보 조회(detail)
+		ResumeDetailDto resumeDetailDto = biz.resumeDetail(r_no);
 
+		int m_no = resumeDetailDto.getM_no();
+		MemberDto memberDto = memberBiz.selectOne(m_no);
+		
+		//이력서 학력사항 조회(list)
+		List<EducationDto> educationList = biz.educationList(m_no);
+		
+		// --자격사항 list
+		// -- 교육 및 사회경험 list
+		// -- 자기소개서.. 는 기본정보 detail에 있음
+		
+		// model
+		model.addAttribute("resumeDetailDto", resumeDetailDto);
+		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("educationList", educationList);
+		
 		return "resume/resume_detail";
 	}
 

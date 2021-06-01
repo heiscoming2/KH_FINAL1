@@ -63,10 +63,10 @@ public class NoteDaoImpl implements NoteDao {
 	}
 	
 	//  내가 받은쪽지 하나 읽기
-    public NoteDto receiveDetail() {
+    public NoteDto receiveDetail(Map map) {
     	NoteDto detail = null;
 		try {
-			detail = sqlSession.selectOne(NAMESPACE + "receiveDetail");
+			detail = sqlSession.selectOne(NAMESPACE + "receiveDetail",map);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
