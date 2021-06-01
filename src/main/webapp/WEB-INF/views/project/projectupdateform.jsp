@@ -74,7 +74,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- PROJECTINSERT 개별 JS -->
-<script type="text/javascript" src="resources/js/projectupdate.js?ver=1.3"></script>
+<script type="text/javascript" src="resources/js/projectupdate.js?ver=1.2"></script>
 <!-- 주소 정보 JS -->
 <script type="text/javascript" src="resources/js/address.js"></script>
 <script>

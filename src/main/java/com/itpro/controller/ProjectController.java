@@ -2,11 +2,7 @@ package com.itpro.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,10 +38,7 @@ import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.project.ProjectDetailDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.project.ProjectListDto;
-import com.itpro.model.dto.project.ProjectUpdateDto;
-import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.reply.ReplyListDto;
-import com.itpro.model.dto.study.StudyDetailDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
@@ -193,7 +186,7 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	}	
 	
 	
-	@RequestMapping(value="/getprojectdetail.do")
+	@RequestMapping(value="/getprojectdetail.do", produces="application/json; charset=UTF-8")
 	public @ResponseBody String getProjectDetail(@RequestParam(value="bd_no") int bd_no) { 
 		return projectBiz.selectDetail(bd_no);
 	}
@@ -202,6 +195,8 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	
 	@RequestMapping(value="/projectupdateform.do")
 	public String projectUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
+		
+		
 		logger.info("PROJECT UPDATE FORM");
 		model.addAttribute("bd_no", bd_no);
 		return "project/projectupdateform";

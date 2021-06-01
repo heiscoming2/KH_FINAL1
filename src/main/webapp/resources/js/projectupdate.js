@@ -183,7 +183,8 @@ function getDetailData(no){
 
 	$.ajax(settings).done(function (response) {
 	  console.log(response);
-    var response = JSON.parse(response);
+    
+    
     response.forEach((item, i) => {
       console.log(item);
         add_div();
