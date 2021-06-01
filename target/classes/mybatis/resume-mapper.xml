@@ -14,8 +14,7 @@
 
 	<!-- 이력서 목록 조회 -->
 	<select id="resumeList" resultMap="resumeList">
-		SELECT A.M_NO, R_NO, R_TITLE,
-		R_REGDATE
+		SELECT A.M_NO, R_NO, R_TITLE, R_REGDATE
 		FROM IT_MEMBER A
 		LEFT JOIN M_RESUME B
 		ON A.M_NO=B.M_NO
@@ -30,7 +29,7 @@
 		ON A.M_NO=B.M_NO
 		WHERE A.M_NO = #{m_no}
 	
-	-->	
+		
 	
 	<resultMap type="ResumeDto" id="resumeDetail">
 		<result property="m_no" column="M_NO" />
@@ -60,6 +59,7 @@
 		ON A.M_NO = B.M_NO
 		WHERE A.R_NO = #{r_no}
 	</select>
+	-->
 
 	<!--이력서 등록 -->
 	<update id="resumeInsert">
@@ -73,5 +73,12 @@
 			R_IMG_PATH=#{r_img_path}
 		WHERE M_NO=#{m_no}
 	</update>
+	
+	<!-- 이력서 삭제 -->
+	<delete id="resumeDelete" parameterType="int">
+		DELETE
+		FROM M_RESUME
+		WHERE R_NO = #{r_no}
+	</delete>
 
 </mapper>

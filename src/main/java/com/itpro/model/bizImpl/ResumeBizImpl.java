@@ -52,6 +52,12 @@ public class ResumeBizImpl implements ResumeBiz {
 		return dao.resumeDetail(r_no);
 	}
 
+	//이력서 삭제
+	@Override
+	public int resumeDelete(int r_no) {
+		return dao.resumeDelete(r_no);
+	}
+
 	
 	
 

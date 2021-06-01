@@ -25,11 +25,13 @@ public interface NoteDao {
     public NoteDto receiveDetail();	  
     
     // 읽은 쪽지 읽은 시간 표시 UPDATE 
-    public int updateReadDate();
-    
+    public int updateReadDate();    
     
     // 보낸 쪽지 하나 읽기 
     public NoteDto sendDetail();
+    
+    //쪽지 보내기
+    public int noteSend(NoteDto noteDto);
 	
 	
 }

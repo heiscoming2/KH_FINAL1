@@ -48,21 +48,21 @@ public class ResumeDaoImpl implements ResumeDao {
 		return list;
 	}
 
-	//이력서 조회
+	// 이력서 조회
 	@Override
 	public ResumeDto resumeDetail(int r_no) {
 		ResumeDto resumeDto = null;
-		
+
 		try {
-			resumeDto = sqlSession.selectOne(NAMESPACE+"resumeDetail",r_no);
-			
+			resumeDto = sqlSession.selectOne(NAMESPACE + "resumeDetail", r_no);
+
 		} catch (Exception e) {
 			System.out.println("[error] : resumeDetail");
 			e.printStackTrace();
 		}
-		
+
 		return resumeDto;
-		
+
 	}
 
 	// 이력서 이미지 등록
@@ -74,6 +74,21 @@ public class ResumeDaoImpl implements ResumeDao {
 			res = sqlSession.update(NAMESPACE + "uploadProfile", resumeProfileDto);
 		} catch (Exception e) {
 			System.out.println("[error]:uploadProfile");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	//이력서 삭제
+	@Override
+	public int resumeDelete(int r_no) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "resumeDelete", r_no);
+		} catch (Exception e) {
+			System.out.println("[error]:resume delete");
 			e.printStackTrace();
 		}
 

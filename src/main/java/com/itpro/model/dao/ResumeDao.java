@@ -25,6 +25,9 @@ public interface ResumeDao {
 	//이력서 이미지 업로드
 	public int profileUpload(ResumeProfileDto resumeProfileDto);
 
+	//이력서 삭제
+	public int resumeDelete(int r_no);
+
 	
 
 	

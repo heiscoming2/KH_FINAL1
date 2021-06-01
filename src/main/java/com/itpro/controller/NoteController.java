@@ -1,5 +1,6 @@
 package com.itpro.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Random;
 import javax.mail.Message;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -65,7 +67,7 @@ public class NoteController {
 	@RequestMapping(value = "/note_sendlist.do")
 	public String noteSendList(Model model, HttpSession session) {
 		logger.info("NOTE SEND LIST");
-		
+
 		int n_sender = 0;
 
 		if (session.getAttribute("login") != null) {
@@ -76,17 +78,54 @@ public class NoteController {
 		List<NoteDto> sendList = biz.sendList(n_sender);
 		model.addAttribute("sendList", sendList);
 
-
 		return "note/note_sendlist";
 	}
 
-	// 쪽지 보내기
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String noteSend(Message message, Model model) {
+	// 쪽지팝업(쪽지 작성창)
+	@RequestMapping(value = "/noteForm.do")
+	public String noteSend() {
+		logger.info("NOTE FORM");
+
+		return "note/note_form";
+	}
+
+	// 쪽지 보내기 (수정해야대.....)ㅠㅠㅠ
+	@RequestMapping(value = "noteSend.do", method = RequestMethod.POST)
+	public String noteSend(NoteDto noteDto, HttpServletResponse response, HttpSession session) throws IOException {
 		logger.info("NOTE SEND");
-		
-		
-		return "note/note_sendlist";
+
+		int n_sender = 0;
+
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			n_sender = login.getM_no();
+		}
+
+		int res = biz.noteSend(noteDto);
+		if (res > 0) {
+
+			return "redirect:note_sendlist.do";
+		} else {
+
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('쪽지 전송 실패');");
+			out.print("self.close();");
+			out.print("</script>");
+
+			return "redirect:noteSend.do";
+		}
+
+	}
+
+	// 쪽지 읽기
+	@RequestMapping(value = "/noteRead.do")
+	public String noteRead() {
+		logger.info("NOTE READ");
+
+		return "note/note_read";
 	}
 
 }
