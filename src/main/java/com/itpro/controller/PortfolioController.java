@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.MemberBiz;
@@ -32,6 +33,7 @@ import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.resume.ResumeDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
@@ -52,9 +54,6 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	
 	@Autowired
 	private LikeBiz likeBiz;
-	
-	@Autowired
-	private MemberBiz memberbiz;
 	
 	@Autowired
 	private ResumeBiz resumebiz;
@@ -92,10 +91,19 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	}
 	
 	@RequestMapping(value="/portfolioinsertform.do")
-	public String portfolioInsertForm() {
+	public String portfolioInsertForm(Model model, HttpSession session) {
 		logger.info("PORTFOLIO INSERT FORM");
+		
+		MemberDto member = (MemberDto) session.getAttribute("login");
+		PortfolioDetailDto portfolioDetailDto = portfolioBiz.insertForm(member.getM_no());
+		
+		model.addAttribute("dto", portfolioDetailDto);
+		System.out.println("insertForm : " +  new Gson().toJson(portfolioDetailDto));
+		
 		return "portfolio/portfolioinsertform";
 	}
+	
+	
 	
 	@RequestMapping(value="/portfolioinsert.do")
 	public String portfolioInsert(HttpServletRequest request, HttpServletResponse response, PortfolioInsertDto portfolioDto) {
@@ -111,16 +119,17 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	
 	
 	@RequestMapping(value="/portfoliodetail.do")
-	public String portfolioDetail(HttpServletRequest request,  HttpServletResponse response, Model model, @RequestParam(value="bd_no") int bd_no, HttpSession session) {
+	public String portfolioDetail(HttpServletRequest request,  HttpServletResponse response, Model model, 
+			@RequestParam(value="bd_no") int bd_no, @RequestParam(value="m_no") int m_no, HttpSession session) {
 		logger.info("Portfolio DETAIL");
 		
 		//로그인 세션이있으면 회원번호를 꺼내서 해당 게시물 추천여부를 model에 담아준다. 
 		if(session.getAttribute("login")!=null) {
 			MemberDto loginDto = (MemberDto) session.getAttribute("login");
-			int m_no = loginDto.getM_no();
+			int my_no = loginDto.getM_no();
 			LikeDto likeDto = new LikeDto();
 			likeDto.setBd_no(bd_no);
-			likeDto.setM_no(m_no);
+			likeDto.setM_no(my_no);
 			int res = likeBiz.like_check(likeDto);
 			model.addAttribute("likecheck",res);
 		}
@@ -131,20 +140,14 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 		}
 		
 		
+		
 		//selectOne 해서 model에 담아준다.
-		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no);
+		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no, m_no);
 		model.addAttribute("dto", portfolioDetailDto);
 		
-		MemberDto memberDto = memberbiz.selectOne(bd_no);
-		model.addAttribute("mdto", memberDto);
 		
-		/*
-		 * CareerDto careerDto = resumebiz.selectOne(bd_no); model.addAttribute("rdto",
-		 * careerDto);
-		 * 
-		 * EducationDto educationDto = resumebiz.selectOne(bd_no);
-		 * model.addAttribute("edto", educationDto);
-		 */
+		
+		
 		
 		
 		//댓글 list받아와 model에 담아준다.
@@ -159,15 +162,17 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	}	
 	
 	@RequestMapping(value="/portfolioupdateform.do")
-	public String portfolioUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no) {
+	public String portfolioUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no,HttpSession session) {
 		logger.info("Portfolio UPDATE FORM");
-		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no);
+		MemberDto loginDto = (MemberDto) session.getAttribute("login");
+		int m_no = loginDto.getM_no();
+		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no, m_no);
 		model.addAttribute("portfolioDetailDto", portfolioDetailDto);
 		return "portfolio/portfolioupdateform";
 	}
 	
 	@RequestMapping(value="/portfolioupdate.do")
-	public String portfolioUpdate(Model model, PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto) {
+	public String portfolioUpdate(Model model, PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto, HttpSession session) {
 		logger.info("Portfolio UPDATE");
 		
 		int portfolioUpdateRes = portfolioBiz.update(portfolioUpdateDto, boardUpdateDto);
@@ -176,10 +181,11 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 			int bd_no = portfolioUpdateDto.getBd_no();
 			return "redirect:portfoliodetail.do?bd_no="+bd_no;
 		}
-		
-		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(portfolioUpdateDto.getBd_no()); 
-		portfolioDetailDto.setBd_title(boardUpdateDto.getBd_title());
-		portfolioDetailDto.setBd_content(boardUpdateDto.getBd_content());
+		MemberDto loginDto = (MemberDto) session.getAttribute("login");
+		int m_no = loginDto.getM_no();
+		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(portfolioUpdateDto.getBd_no(), m_no); 
+		portfolioDetailDto.getBoard().bd_title = (boardUpdateDto.getBd_title());
+		portfolioDetailDto.getBoard().bd_content = (boardUpdateDto.getBd_content());
 		/* portfolioDetailDto.setBf_originname(boardUpdateDto.getBf_originname()); */
 		
 		model.addAttribute("portfolioDetailDto", portfolioDetailDto);

@@ -1,6 +1,7 @@
 package com.itpro.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,24 +15,23 @@ public interface NoteDao {
 
 	// 내가 받은 쪽지 목록 조회
 	public List<NoteDto> receiveList(int n_receiver);
-	
+
 	// 보낸쪽지 목록
-    public List<NoteDto> sendList(int n_sender);
-			
+	public List<NoteDto> sendList(int n_sender);
+
 	// 새로 받은 쪽지가 있는지 확인(매번)
 	public Integer countNewNote();
-	
+
 	// 내가 받은쪽지 하나 읽기
-    public NoteDto receiveDetail();	  
-    
-    // 읽은 쪽지 읽은 시간 표시 UPDATE 
-    public int updateReadDate();    
-    
-    // 보낸 쪽지 하나 읽기 
-    public NoteDto sendDetail();
-    
-    //쪽지 보내기
-    public int noteSend(NoteDto noteDto);
-	
-	
+	public NoteDto receiveDetail(Map map);
+
+	// 내가 보낸 쪽지 하나 읽기
+	public NoteDto sendDetail();
+
+	// 읽은 쪽지 읽은 시간 표시 UPDATE
+	public int updateReadDate();
+
+	// 쪽지 보내기
+	public int noteSend(NoteDto noteDto);
+
 }

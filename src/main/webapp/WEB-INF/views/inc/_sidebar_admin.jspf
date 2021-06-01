@@ -96,7 +96,7 @@
 							
 							
 						<!-- 공지사항 부분 -->	
-							<a class="nav-link collapsed" onclick="location.href='noticelist.do'" data-toggle="collapse"
+							<a class="nav-link collapsed" onclick="location.href='managenoticelist.do'" data-toggle="collapse"
 							data-target="#collapseNotice" aria-expanded="false"
 							aria-controls="collapsePages" style="cursor:pointer">
 							<div class="sb-nav-link-icon">

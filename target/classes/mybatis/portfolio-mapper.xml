@@ -34,10 +34,10 @@
 		FROM
        		  (SELECT ROWNUM RN, A.* 
        		   FROM (
-                       SELECT B.BD_NO, P.PORT_DEVELOP, P.PORT_LINK, P.PORT_PRIZE,
+                       SELECT B.BD_NO, B.BD_TITLE, P.PORT_DEVELOP, P.PORT_LINK, P.PORT_PRIZE,
            			   DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
               		   DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
-		               M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+		               M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE, M.M_NO
                        FROM BOARD B, PORTFOLIO P, IT_MEMBER M , 
                            (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
                            (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
@@ -52,14 +52,13 @@
        
 	</select>
 	
-	<select id="selectone" resultType="ProjectDetailDto" parameterType="int">
-		SELECT M.M_NO, M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
+	<select id="selectone" resultType="PortfolioDetailDto" parameterType="int">
+		SELECT B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		       B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
 		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
 		       P.PORT_DEVELOP, P.PORT_LINK, P.PORT_PRIZE
-		FROM BOARD B, PORTFOLIO P, IT_MEMBER M
+		FROM BOARD B, PORTFOLIO P
 		WHERE B.BD_NO = P.BD_NO
-		  AND B.M_NO = M.M_NO
 		  AND B.BD_NO = #{bd_no}
 	</select>
 	

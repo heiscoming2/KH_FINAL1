@@ -17,8 +17,8 @@
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
         <h3>이력서 조회</h3> 	
         <div class="float-end">
-        	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetail.r_no}'">삭제</button>
-        	<button class="btn btn-primary" onclick="location.href='resume_update.do?r_no=${resumeDetail.r_no}'">수정</button>
+        	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
+        	<button class="btn btn-primary" onclick="location.href='resume_update.do?r_no=${resumeDetailDto.r_no}'">수정</button>
             <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
             <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
         </div>
@@ -32,24 +32,24 @@
             <br>
             <div class="clearfix">
                 <!--이력서 이미지-->
-                <img src="${resumeDetail.r_img_path }${resumeDetail.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 200px; height: 200px;" alt="이력서 이미지">
+                <img src="${resumeDetailDto.r_img_path }${resumeDetailDto.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 200px; height: 200px;" alt="이력서 이미지">
                 
                 <!--기본 인적사항-->              
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">이 름</h5></div>
                     <div class="col-3">            
-                        <span class="fs-5">${resumeDetail.m_name }</span>            
+                        <span class="fs-5">${memberDto.m_name }</span>            
                     </div> 
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">생년월일</h5></div>
                     <div class="col-2">            
-                        <span class="fs-5">${resumeDetail.m_birth }</span>           
+                        <span class="fs-5">${memberDto.m_birth }</span>           
                     </div>      
                     <div class="col-1"><h5 class="fw-bold">성별</h5></div>
                     <div class="col-1">
-                        <span class="fs-5">${resumeDetail.m_gender }</span>
+                        <span class="fs-5">${memberDto.m_gender }</span>
                     </div>
                 </div>
                 <br>
@@ -70,14 +70,14 @@
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">주 소</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5">${resumeDetail.r_roadAddress }${resumeDetail.r_detailAddress }</span>            
+                        <span class="fs-5">${resumeDetailDto.r_roadAddress }${resumeDetailDto.r_detailAddress }</span>            
                     </div>     
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">포폴 링크</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5"><a style="color:black;" href="${resumeDetail.r_portfolio }">${resumeDetail.r_portfolio }</a></span>           
+                        <span class="fs-5"><a style="color:black;" href="${resumeDetailDto.r_portfolio }">${resumeDetailDto.r_portfolio }</a></span>           
                     </div>     
                 </div>
             </div>     
@@ -99,20 +99,24 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr><!--첫째줄-->
-                        <td>2010년 03월 - 2013년 02월</td>
-                        <td>서울대학교</td>
-                        <td>컴퓨터공학과</td>
-                        <td>대학교</td>
-                        <td>졸업</td>
-                      </tr>  
-                  <tr><!--둘째줄-->
+                    <!-- 
+                  <tr>
                     <td>2010년 03월 - 2013년 02월</td>
                     <td>서울대</td>
                     <td>컴공</td>
                     <td>대학교</td>
                     <td>졸업</td>
-                  </tr>                 
+                  </tr>
+                  -->      
+                  <c:forEach items="${educationList}" var="education">
+					<tr>
+	                    <td>2010년 03월 - 2013년 02월</td>
+	                    <td>${education.ed_schoolName}</td>
+	                    <td>${education.ed_major}</td>
+	                    <td>${education.ed_school}</td>
+	                    <td>${education.ed_graduation}</td>
+                  	</tr>
+				</c:forEach>           
                 </tbody>
             </table>
 

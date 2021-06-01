@@ -8,9 +8,10 @@ import com.itpro.model.dto.admin.ManageMemberDto_com;
 public interface ManageMemberBiz {
 	
 	//개인회원+관리자
-	public List<ManageMemberDto> selectList();
+	public List<ManageMemberDto> selectList(String search_option, String keyword);
 	public ManageMemberDto selectOne(int m_no);
 	public int update(ManageMemberDto dto);
+	public List<ManageMemberDto> search(String userName);
 	
 	//기업회원
 	public List<ManageMemberDto_com> selectList_com();

@@ -27,9 +27,7 @@
 		FROM IT_MEMBER A
 		LEFT JOIN BIZ_MEMBER B
 		ON A.M_NO=B.M_NO
-		WHERE A.M_NO = #{m_no}
-	
-		
+		WHERE A.M_NO = #{m_no}		
 	
 	<resultMap type="ResumeDto" id="resumeDetail">
 		<result property="m_no" column="M_NO" />
@@ -60,6 +58,21 @@
 		WHERE A.R_NO = #{r_no}
 	</select>
 	-->
+	
+	<!-- 이력서 기본정보 조회(detail) -->
+	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
+		SELECT *
+		FROM M_RESUME
+		WHERE R_NO = #{r_no}
+	</select>
+	
+	<!-- 이력서 학력사항 조회(list) -->
+	<select id="educationList" resultType="EducationDto" parameterType="int">
+		select * 
+		from EDUCATION 
+		where m_no = #{m_no}
+		order by ed_no
+	</select>
 
 	<!--이력서 등록 -->
 	<update id="resumeInsert">

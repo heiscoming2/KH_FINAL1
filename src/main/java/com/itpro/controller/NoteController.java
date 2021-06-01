@@ -91,41 +91,45 @@ public class NoteController {
 
 	// 쪽지 보내기 (수정해야대.....)ㅠㅠㅠ
 	@RequestMapping(value = "noteSend.do", method = RequestMethod.POST)
-	public String noteSend(NoteDto noteDto, HttpServletResponse response, HttpSession session) throws IOException {
+	public String noteSend(Model model, NoteDto noteDto, HttpServletResponse response, HttpSession session) throws IOException {
 		logger.info("NOTE SEND");
-
-		int n_sender = 0;
 
 		if (session.getAttribute("login") != null) {
 			MemberDto login = (MemberDto) session.getAttribute("login");
-			n_sender = login.getM_no();
+			int n_sender = login.getM_no();
+			noteDto.setN_sender(n_sender);
 		}
 
 		int res = biz.noteSend(noteDto);
 		if (res > 0) {
-
-			return "redirect:note_sendlist.do";
+			model.addAttribute("message", "");
+			return "note/noteSend";
+			
 		} else {
-
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("alert('쪽지 전송 실패');");
-			out.print("self.close();");
-			out.print("</script>");
-
-			return "redirect:noteSend.do";
+			model.addAttribute("message", "전송에 실패했습니다.");
+			return "note/noteSend";
 		}
-
 	}
 
-	// 쪽지 읽기
-	@RequestMapping(value = "/noteRead.do")
-	public String noteRead() {
+	// 받은 쪽지 읽기
+	@RequestMapping(value = "/receiveDetail.do")
+	public String receiveDetail(Model model, HttpSession session, int n_no) {
 		logger.info("NOTE READ");
+		
+		int n_receiver = 0;
 
-		return "note/note_read";
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			n_receiver = login.getM_no();
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("n_receiver", n_receiver);
+		map.put("n_no", n_no);
+		NoteDto noteDto = biz.receiveDetail(map);
+		
+		model.addAttribute("noteDto", noteDto);
+
+		return "note/note_receiveDetail";
 	}
 
 }

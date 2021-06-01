@@ -43,8 +43,8 @@
 								<tr class="d-flex">
 								<td class="col-1"><input type="checkbox"></td>
 								<td class="col-2"><fmt:formatDate value="${receiveList.n_sendDate }" /></td>
-								<td class="col-2">${receiveList.n_sender }</td>
-								<td class="col-7"><a href="noteRead.do?n_no=${receiveList.n_no }" style="color:black;">${receiveList.n_title }</a></td>
+								<td class="col-2">${receiveList.m_nickname }</td>
+								<td class="col-7"><a href="receiveDetail.do?n_no=${receiveList.n_no }" style="color:black;">${receiveList.n_title }</a></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

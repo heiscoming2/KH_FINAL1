@@ -1,8 +1,11 @@
 package com.itpro.model.daoImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,17 +39,18 @@ public class ReportDaoImpl implements ReportDao {
 	
 
 	@Override
-	public ReportDto selectOne(int report_no) {
-		ReportDto dto =null;
+	public List<ReportDto> selectList2(int bd_no) {
+		
+		List<ReportDto> list2 =null;
 		
 		try {
-			dto=sqlSession.selectOne(NAMESPACE+"selectOne",report_no);
+			list2=sqlSession.selectList(NAMESPACE+"selectList2",bd_no);
 		} catch (Exception e) {
 			System.out.println("[error] : select one");
 			e.printStackTrace();
 		}
 		
-		return dto;
+		return list2;
 	}
 
 	
@@ -122,6 +126,32 @@ public class ReportDaoImpl implements ReportDao {
 			}
 		return reportDeleteRes; 
 	}
+	
+	public int multiDelete(String[] report_no) {
+		
+		int count=0;
+		
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("report_no", report_no);
+		
+		
+		try {
+			count = sqlSession.delete(NAMESPACE + "muldel", map);
+			
+			if(count==report_no.length) {
+				sqlSession.commit();
+			}
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return count;
+	}
+	
 
 
 }

@@ -13,10 +13,10 @@
 <!-- 본문 시작 -->
 <div class="container mt-3 mb-3">
 	<h3>쪽지 작성</h3> 
-	<form action="noteSend.do" method="get">
+	<form action="noteSend.do" method="post" onsubmit="onsubmitForm">
 		<div class="mb-3">
 			<label for="recipient-name" class="col-form-label">받는사람</label>
-			<input type="text" class="form-control" name="n_receiver" placeholder="아이디 입력">
+			<input type="text" class="form-control" name="n_receiver_nickname" placeholder="닉네임 입력">
 		</div>
 		<div class="mb-3">
 			<label for="recipient-title" class="col-form-label">제목</label>
@@ -40,8 +40,5 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
   <%@include file="../inc/_foot.jspf" %>
 	<script src="resources/js/reportInsert.js" type="text/javascript"></script>
-	<script>
-	setData('${dto}');
-</script>
 </body>
 </html>
