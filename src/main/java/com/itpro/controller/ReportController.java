@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -13,15 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.BoardCategoryBiz;
 import com.itpro.model.biz.ManageMemberBiz;
 import com.itpro.model.biz.ReportBiz;
 import com.itpro.model.biz.ReportReplyBiz;
-import com.itpro.model.dto.board.BoardCategoryDto;
 import com.itpro.model.dto.report.ReportDto;
 import com.itpro.model.dto.report.ReportReplyDto;
 
@@ -97,8 +95,9 @@ public class ReportController {
 		
 		logger.info("reportlist");
 		List<ReportDto> list = rebiz.selectList();
+		
 		model.addAttribute("list",list);
-		//model.addAttribute("cnt",reportcnt);
+		
 		//System.out.println("report:"+reportcnt);
 		
 		return "report/reportlist";
@@ -106,10 +105,11 @@ public class ReportController {
 	
 	//report detail = selectOne
 	@RequestMapping(value="/reportdetail.do")
-	public String reportdetail(Model model,@RequestParam("report_no") int report_no) {
+	public String reportdetail(Model model,@RequestParam("bd_no") int bd_no) {
 		logger.info("REPORT DETAIL");
+		model.addAttribute("list2", rebiz.selectList2(bd_no));
 		
-		model.addAttribute("dto", rebiz.selectOne(report_no));
+		System.out.println("reportlist2 : "+model);
 		
 		return "report/reportdetail";
 	}
@@ -130,8 +130,35 @@ public class ReportController {
 		
 		}
 	
+	//report multi delete	
+	@RequestMapping(value="/reportmultidelete.do")
+	public String reportMultiDelete(Model model, int report_no,HttpServletResponse response, HttpServletRequest request) throws IOException {
+		logger.info("REPORT MULTI DELETE");
 		
+		String[] chks = request.getParameterValues("chk");
+		int res= rebiz.multiDelete(chks);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		if(res==chks.length){
 	
+			out.print("<script>");
+			out.print("alert('삭제 되었습니다.');");
+			out.print("location.href='reportlist.do';");
+			out.print("</script>");
+			return null;
+	
+		}else{
+			out.print("<script>");
+			out.print("alert('삭제실패 하였습니다.');");
+			out.print("location.href='reportlist.do';");
+			out.print("</script>");
+			return null;
+	
+		}		
+	}
 	
 	
 	
@@ -188,8 +215,9 @@ public class ReportController {
 		
 		logger.info("reportreplylist");
 		List<ReportReplyDto> list = rerebiz.selectList();
+		int count =rerebiz.getReportReplyCnt();
 		model.addAttribute("list",list);
-		//model.addAttribute("cnt",reportcnt);
+		model.addAttribute("count",count);
 		//System.out.println("report:"+reportcnt);
 		
 		return "report/reportreplylist";
@@ -197,10 +225,10 @@ public class ReportController {
 	
 	//reportreply detail
 	@RequestMapping(value="/reportreplydetail.do")
-	public String reportreplydetail(Model model, @RequestParam("report_reply_no") int report_reply_no) {
+	public String reportreplydetail(Model model, @RequestParam("re_no") int re_no) {
 		logger.info("REPORT reply DETAIL");
 		
-		model.addAttribute("dto", rerebiz.selectOne(report_reply_no));
+		model.addAttribute("list2", rerebiz.selectList2(re_no));
 		
 		return "report/reportreplydetail";
 	}

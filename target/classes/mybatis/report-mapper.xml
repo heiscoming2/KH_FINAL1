@@ -11,22 +11,23 @@
 		<result property="bd_no" column="BD_NO"/>
 		<result property="name" column="NAME"/>
 		<result property="bd_title" column="BD_TITLE"/>
-		<result property="report_reason" column="REPORT_REASON"/>
-		<result property="report_date" column="REPORT_DATE"/>
+		<result property="cnt" column="CNT"/>
 	</resultMap>
 	
 	<select id="selectList" resultMap="reportMap">
-        SELECT REPORT_NO, M_NO, BD_NO, NAME, BD_TITLE, REPORT_REASON, REPORT_DATE 
-        FROM REPORT 
-        ORDER BY REPORT_NO DESC
+        SELECT B.BD_NO, COUNT(R.REPORT_NO) CNT, B.BD_TITLE, B.M_NO, C.NAME 
+        FROM REPORT R, BOARD B, BOARDCATEGORY C
+        WHERE R.BD_NO = B.BD_NO
+        AND B.BC_CODE=C.CODE
+        GROUP BY B.BD_NO, B.BD_TITLE,B.M_NO,C.NAME
 	</select>
 	
-	<select id="selectOne" resultType="ReportDto" parameterType="int">
-		SELECT A.REPORT_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME
+	<select id="selectList2" resultType="ReportDto" parameterType="int">
+		SELECT A.REPORT_NO, A.NAME, A.BD_TITLE, A.REPORT_REASON, A.REPORT_DATE, B.M_NICKNAME, A.M_NO
         FROM REPORT A
         JOIN IT_MEMBER B
         ON A.M_NO=B.M_NO
-		WHERE A.REPORT_NO=#{report_no}
+		WHERE A.BD_NO=#{bd_no}
 	</select>
 	
 	<insert id="insert" parameterType="ReportDto">
@@ -49,6 +50,17 @@
 	<!-- 삭제 -->
 	<delete id="delete" parameterType="int">
 		DELETE FROM REPORT WHERE REPORT_NO=#{report_no}
+	</delete>
+	
+	<!-- 다중 삭제 -->
+	<delete id="muldel" parameterType="map">
+		DELETE
+		FROM REPORT
+		WHERE REPORT_NO IN
+		<foreach collection="report_no" item="report_no" open="(" separator="," close=")">
+			#{report_no}
+		</foreach>
+	
 	</delete>
 	
 </mapper>

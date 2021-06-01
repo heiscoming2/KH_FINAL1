@@ -40,8 +40,8 @@ public class ReportReplyBizImpl implements ReportReplyBiz{
 	}
 
 	@Override
-	public ReportReplyDto selectOne(int report_reply_no) {
-		return dao.selectOne(report_reply_no);
+	public List<ReportReplyDto> selectList2(int re_no) {
+		return dao.selectList2(re_no);
 	}
 
 	@Override

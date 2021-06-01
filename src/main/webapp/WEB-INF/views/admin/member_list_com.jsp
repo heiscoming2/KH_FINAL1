@@ -7,9 +7,9 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
-<title>샘플 페이지 입니다.</title>
+<title>관리자-기업회원관리 페이지</title>
 
-
+<link href="resources/css/admin.css" rel="stylesheet">
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -33,17 +33,6 @@
 		});
 	});
 </script>
-<style type="text/css">
-.container{
-	display: inline-flex;
-
-}
-
-
-
-</style>
-
-
 
 </head>
 <body>
@@ -52,7 +41,7 @@
 	<!-- HEADER 종료 -->
 	
 	<!-- ADMIN SIDEBAR 시작 -->
-	<div class="container"><%@include file="../inc/_sidebar_admin.jspf"%></div>
+	<div class="item"><%@include file="../inc/_sidebar_admin.jspf"%></div>
 	<!-- SIDEBAR 종료 -->
 	
 
@@ -60,22 +49,21 @@
 
 
 	<!-- 회원명단 -->
-	<div class="container">
-	<h1>회원관리</h1>
+	<div class="content">
+	<h3>회원관리 : 기업회원</h3>
 	<form action="#">
 			<div align="right">
 				<input type="text" class="control">
 				<input type="submit"value="검색" class="btn btn-default"></input> 
 			</div>
 			<br>
-	<table border="1">
+	<table class="main_table">
 		
 			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);"></th>
 				<th>Nickname</th>
 				<th>회원구분</th>
-				<th>성별</th>
 				<th>회원등록일</th>
 				<th>활동여부</th>
 				<th>탈퇴여부</th>
@@ -96,7 +84,6 @@
 									value="1"></td>
 								<td><a href="member_detail_com.do?m_no=${dto.m_no }">${dto.m_nickname}</a></td>
 								<td>${dto.m_type}</td>
-								<td>${dto.m_gender }
 								<td><span class="m_regdate"> <fmt:formatDate value="${dto.m_regdate}" pattern="yyyy-MM-dd HH:mm:ss"/></span></td>
 								<td>${dto.m_act}</td>
 								<td>${dto.m_used}</td>
@@ -120,11 +107,13 @@
 	</div>
 
 	<!-- FOOTER 시작 -->
+	<div class="footer">
 	<%@include file="../inc/_footer.jspf" %>
 	
 	<!-- FOOTER 종료 -->
 	
 	<%@include file="../inc/_foot.jspf" %>
+	</div>
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 
 </body>

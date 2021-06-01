@@ -11,7 +11,7 @@ public interface ReportReplyDao {
 	String NAMESPACE = "ReportReply.";
 
 	public List<ReportReplyDto> selectList();
-	public ReportReplyDto selectOne(int report_reply_no);
+	public List<ReportReplyDto> selectList2(int re_no);
 	public int insert(ReportReplyDto dto);
 	public int insertreportform(ReportReplyDto dto);
 	public int getReportReplyCnt();
