@@ -179,7 +179,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js?ver=1.2"></script>
+<script type=text/javascript src="resources/js/study/studylist.js?ver=1.2"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
 </body>
 </html>

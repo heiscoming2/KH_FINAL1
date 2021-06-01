@@ -109,7 +109,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- STUDYUPDATE 개별 JS -->
-<script type="text/javascript" src="resources/js/studyupdate.js"></script>
+<script type="text/javascript" src="resources/js/study/studyupdate.js"></script>
 <!-- 주소 정보 JS -->
 <script type="text/javascript" src="resources/js/address.js"></script>
 
