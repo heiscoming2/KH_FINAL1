@@ -20,8 +20,8 @@ public class ManageMemberBizImpl implements ManageMemberBiz{
 	
 		//개인회원 + 관리자
 	@Override
-	public List<ManageMemberDto> selectList() {
-		return dao.selectList();
+	public List<ManageMemberDto> selectList(String search_option, String keyword) {
+		return dao.selectList(search_option, keyword);
 	}
 
 	@Override
@@ -34,8 +34,14 @@ public class ManageMemberBizImpl implements ManageMemberBiz{
 		return dao.update(dto);
 	}
 
+	@Override
+	public List<ManageMemberDto> search(String userName) {
+		return dao.search(userName);
+	}
 	
-		//기업회원
+	
+	
+	//////////////////////기업회원/////////////////////////////
 	@Override
 	public List<ManageMemberDto_com> selectList_com() {
 		System.out.println("list_com biz");

@@ -13,10 +13,19 @@
 	<select id="selectList" resultType="ManageMemberDto">
         SELECT M_NO, M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH
         FROM IT_MEMBER
-        WHERE M_TYPE='개인회원'
-        OR M_TYPE='관리자'
+        WHERE (M_TYPE='개인회원'
+        OR M_TYPE='관리자')
+        <include refid="search"/>
         ORDER BY M_NO DESC
 	</select>
+	
+	 <sql id="search">
+         
+           //작성자+제목+내용의 검색조건으로 게시물을 검색하는 쿼리
+                and  
+                      (m_nickname like '%'||#{keyword}||'%')
+    </sql>
+	
 	
 	<select id="selectOne" resultType="ManageMemberDto" parameterType="int">
 		SELECT *
@@ -66,6 +75,8 @@
 			M_ADMIN_CERT = #{m_admin_cert}
 		WHERE M_NO=#{m_no} 
 	</update>
+	
+	
 	
 	
 </mapper>

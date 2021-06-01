@@ -13,5 +13,6 @@ public interface ReportBiz {
 	public int getReportCnt();
 	public ReportDto select2(int bd_no);
 	public int delete(int report_no);
+	public int multiDelete(String[] report_no);
 
 }

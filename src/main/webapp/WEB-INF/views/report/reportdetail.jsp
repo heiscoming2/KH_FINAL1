@@ -7,27 +7,7 @@
 <%@include file="../inc/_head.jspf"%>
 <title>신고 관리 게시글 상세 페이지</title>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
 
-	//체크박스 모두 선택, 취소하기
-	function allChk(bool) {
-		var chks = document.getElementsByName("chk");
-		for (var i = 0; i < chks.length; i++) {
-			chks[i].checked = bool;
-		}
-	}
-
-	//체크를 하나도 하지 않았다면 submit 이벤트 취소
-	$(function() {
-		$("#muldelform").submit(function() {
-			if ($("#muldelform input:checked").length == 0) {
-				alert("하나 이상 체크해 주세요!!!");
-				return false;
-			}
-		});
-	});
-</script>
 
 <link href="resources/css/admin.css" rel="stylesheet">
 
@@ -56,7 +36,7 @@
 				<table class="main_table">
 					<thead>
 						<tr>
-							<th><input type="checkbox" name="all" onclick="allChk(this.checked);"></th>
+							
 							<th>신고글 No.</th>
 							<th>해당게시판</th>
 							<th>해당게시글</th>
@@ -77,7 +57,7 @@
 								<c:otherwise>
 									<c:forEach var="dto" items="${list2}">
 										<tr>
-										 	<td><input type="checkbox" name="chk" value="1"></td>
+										 	
 											<td>${dto.report_no}</td>
 											<td>${dto.name}</td>
 											<td><a href="#">${dto.bd_title }</a></td>
@@ -89,9 +69,7 @@
 								</c:otherwise>
 							</c:choose>
 						</tr>
-						<tr>
-							<td colspan="7"><input type="submit"  name="cmd" value="일괄삭제"></td>
-						</tr>
+						
 					</tbody>
 				</table>
 			

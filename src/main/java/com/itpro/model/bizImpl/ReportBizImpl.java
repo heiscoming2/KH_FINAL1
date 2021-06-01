@@ -87,4 +87,12 @@ public class ReportBizImpl implements ReportBiz{
 		return deleteres; 
 	}
 
+	@Override
+	public int multiDelete(String[] report_no) {
+		return dao.multiDelete(report_no);
+	}
+	
+	
+	
+
 }

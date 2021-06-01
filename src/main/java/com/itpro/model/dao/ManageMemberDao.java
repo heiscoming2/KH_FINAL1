@@ -1,5 +1,6 @@
 package com.itpro.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.itpro.model.dto.admin.ManageMemberDto;
@@ -12,9 +13,10 @@ public interface ManageMemberDao {
 	String NAMESPACE = "ManageMember.";
 
 	//개인회원 + 관리자
-	public List<ManageMemberDto> selectList();
+	public List<ManageMemberDto> selectList(String search_option, String keyword);
 	public ManageMemberDto selectOne(int m_no);
 	public int update(ManageMemberDto dto);
+	public List<ManageMemberDto> search(String userName);
 	
 	//기업회원
 	public List<ManageMemberDto_com> selectList_com();

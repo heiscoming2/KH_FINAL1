@@ -135,37 +135,30 @@ public class ReportController {
 	public String reportMultiDelete(Model model, int report_no,HttpServletResponse response, HttpServletRequest request) throws IOException {
 		logger.info("REPORT MULTI DELETE");
 		
-		String[] delChks = request.getParameterValues("chk");
-		String cmd = request.getParameter("cmd");
+		String[] chks = request.getParameterValues("chk");
+		int res= rebiz.multiDelete(chks);
 		
-		if(cmd.equals("일괄삭제")) {
-			for(String chk : delChks )
-				System.out.printf("chk : %s\n", chk);
-			
-			int[] chks = new int[delChks.length];
-			for(int i=0; i<delChks.length; i++)
-				chks[i] = Integer.parseInt(delChks[i]);
-				
-				
-		     /*int result = biz.deleteReportAll(chks);*/
-		
-		}
-		
-		 response.sendRedirect("reportlist");
-				
-		
-		 
-		 int reportDeleteRes = rebiz.delete(report_no);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.print("<script>");
-		out.print("alert('삭제 되었습니다.');");
-		out.print("location.href='reportlist.do';");
-		out.print("</script>");
-		return null;
 		
-		}
+		if(res==chks.length){
+	
+			out.print("<script>");
+			out.print("alert('삭제 되었습니다.');");
+			out.print("location.href='reportlist.do';");
+			out.print("</script>");
+			return null;
+	
+		}else{
+			out.print("<script>");
+			out.print("alert('삭제실패 하였습니다.');");
+			out.print("location.href='reportlist.do';");
+			out.print("</script>");
+			return null;
+	
+		}		
+	}
 	
 	
 	

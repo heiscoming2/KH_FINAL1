@@ -54,7 +54,7 @@
 				<div class="item2">
 
 
-					<form action="reportmultideletelist.do" method="post">
+					<form action="reportmultidelete.do" method="post">
 						<table class="main_table">
 
 							<thead>
@@ -79,7 +79,7 @@
 										<c:otherwise>
 											<c:forEach var="dto" items="${list }">
 												<tr>
-													<td><input type="checkbox" name="chk" value="${dto.bd_no}"></td>
+													<td><input type="checkbox" name="chk" value="${dto.report_no}"></td>
 													<td><a href="reportdetail.do?bd_no=${dto.bd_no }">${dto.bd_no}</a></td>
 													<td>${dto.name}</td>
 													<td>${dto.bd_title }</td>

@@ -11,6 +11,9 @@
 
 <link href="resources/css/admin.css" rel="stylesheet">
 
+
+
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -33,6 +36,11 @@
 	});
 </script>
 
+<style>
+.pull-right {
+	float: left;
+}
+</style>
 
 
 
@@ -55,14 +63,29 @@
 	<!-- 회원명단 -->
 	<div class="content">
 		<h1>회원관리 : 개인회원</h1>
-		<form action="#">
-			<div align="right">
-				<input type="text" class="control"> <input type="submit"
-					value="검색" class="btn btn-default"></input>
-			</div>
-			<br>
-			<table class="main_table">
 
+		<form name="form1" method="post" action="member_list.do">
+
+			<select name="search_option">
+				<option value="m_nickname"
+					<c:if test="${map.search_option == 'm_nickname'}">selected</c:if>>작성자</option>
+
+				<%-- <option value=""
+					<c:if test="${map.search_option == 'm_gender'}">selected</c:if>>제목</option>
+
+				<option value="content"
+					<c:if test="${map.search_option == 'm_'}">selected</c:if>>내용</option>
+
+				<option value="all"
+					<c:if test="${map.search_option == 'all'}">selected</c:if>>작성자+내용+제목</option>--%>
+
+			</select> <input name="keyword" value="${map.keyword}"> <input
+				type="submit" value="검색">
+		</form>
+F
+		<br>
+		<table class="main_table">
+			<thead>
 				<tr>
 					<th><input type="checkbox" name="all"
 						onclick="allChk(this.checked);"></th>
@@ -74,7 +97,8 @@
 					<th>탈퇴여부</th>
 					<th>관리자권한</th>
 				</tr>
-
+			</thead>
+			<tbody id="ajaxTable">
 				<c:choose>
 					<c:when test="${empty list }">
 						<tr>
@@ -99,26 +123,27 @@
 				</c:choose>
 
 
-			</table>
-			<!-- 쪽지보내기 -->
+			</tbody>
+		</table>
+		<!-- 쪽지보내기 -->
 
-			<input type="button" value="쪽지보내기" onclick="">
+		<input type="button" value="쪽지보내기" onclick="">
 
 
 
-			<!-- 본문 종료 -->
-		</form>
+		<!-- 본문 종료 -->
+
 	</div>
 
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 
 	<div class="footer">
-	<%@include file="../inc/_footer.jspf"%>
+		<%@include file="../inc/_footer.jspf"%>
 
-	<!-- FOOTER 종료 -->
+		<!-- FOOTER 종료 -->
 
-	<%@include file="../inc/_foot.jspf"%>
+		<%@include file="../inc/_foot.jspf"%>
 	</div>
 </body>
-	<!-- FOOTER 시작 -->
+<!-- FOOTER 시작 -->
 </html>

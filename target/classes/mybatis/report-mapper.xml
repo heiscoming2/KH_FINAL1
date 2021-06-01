@@ -53,8 +53,14 @@
 	</delete>
 	
 	<!-- 다중 삭제 -->
-	<delete id="muldelete" parameterType="int">
-		DELETE FROM REPORT WHERE REPORT_NO=#{report_no}
+	<delete id="muldel" parameterType="map">
+		DELETE
+		FROM REPORT
+		WHERE REPORT_NO IN
+		<foreach collection="report_no" item="report_no" open="(" separator="," close=")">
+			#{report_no}
+		</foreach>
+	
 	</delete>
 	
 </mapper>

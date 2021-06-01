@@ -128,7 +128,7 @@
 	               AND BR.BD_NO(+) = B.BD_NO
 	               <if test= '!studySearchDto.a1.equals("")'>
 				   AND S.ST_ADDR1 LIKE '%${studySearchDto.a1}%'
-				   </if>
+				   </if> 	
 				   <if test= '!studySearchDto.a2.equals("")'>
 				   AND S.ST_ADDR2 LIKE '%${studySearchDto.a2}%'
 				   </if>
