@@ -88,7 +88,7 @@
                     <sapn><h4 class="fw-bold">학력사항</h4></sapn>
                 </div>
             </div>
-            <table class="table table-borderless table-sm" style='text-align: center'>
+            <table class="table table-borderless table-sm text-center">
                 <thead>
                   <tr>
                     <th class="col-2">입학</th>
@@ -102,7 +102,7 @@
                 <tbody>  
                   <c:choose>
 					<c:when test="${empty educationList }">
-						<tr class="d-flex"><td class="col-12">작성된 사항이 없습니다.</td></tr>
+						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${educationList}" var="educationList">
