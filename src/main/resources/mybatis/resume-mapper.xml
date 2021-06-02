@@ -72,5 +72,12 @@
 		FROM M_RESUME
 		WHERE R_NO = #{r_no}
 	</delete>
+	
+	<!-- 이력서 선택 삭제 -->
+	<delete id="resumeChkDel" parameterType="int">
+		DELETE
+		FROM M_RESUME
+		WHERE R_NO = #{r_no}
+	</delete>
 
 </mapper>

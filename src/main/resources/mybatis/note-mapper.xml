@@ -13,21 +13,53 @@
 		WHERE N_RECEIVER = #{n_receiver}
 	</select>
 	
-	<!-- 보낸쪽지 목록 -->
+	<!--내가 보낸쪽지 목록 -->
 	<select id="sendList" resultType="NoteDto">
-		SELECT *
+		SELECT NOTE.*, IT_MEMBER.M_NICKNAME
 		FROM NOTE
+		INNER JOIN IT_MEMBER ON IT_MEMBER.M_NO = NOTE.N_RECEIVER
 		WHERE N_SENDER = #{n_sender}
 	</select>
 	
 	<!-- 내가 받은쪽지 하나 읽기 -->
 	<select id="receiveDetail" resultType="NoteDto">
-		SELECT *
+		SELECT NOTE.*, IT_MEMBER.M_NICKNAME
 		FROM NOTE
+		INNER JOIN IT_MEMBER ON IT_MEMBER.M_NO = NOTE.N_SENDER
 		WHERE N_RECEIVER = #{n_receiver}
 		AND N_NO=#{n_no}
 	</select>
+	
+	<!-- 내가 보낸 쪽지 하나 읽기 -->
+	<select id="sendDetail" resultType="NoteDto">
+		SELECT NOTE.*, IT_MEMBER.M_NICKNAME
+		FROM NOTE
+		INNER JOIN IT_MEMBER ON IT_MEMBER.M_NO = NOTE.N_RECEIVER
+		WHERE N_SENDER = #{n_sender}
+		AND N_NO=#{n_no}
+	</select>
 
+	<!-- 쪽지 보내기(작성) -->
+	<insert id="noteSend" parameterType="NoteDto">
+		INSERT 
+		INTO NOTE 
+			(N_NO, N_SENDER, N_RECEIVER, N_TITLE, N_CONTENT, N_SENDDATE, N_READDATE)
+		VALUES 
+			(NOTE_SEQ.NEXTVAL,#{n_sender},(SELECT M_NO FROM IT_MEMBER WHERE M_NICKNAME=#{n_receiver_nickname}), #{n_title},#{n_content}, SYSDATE, NULL)
+	</insert>
+	
+	<!-- 쪽지 삭제 -->
+	<delete id="noteDelete">
+		DELETE
+		FROM NOTE
+		WHERE N_NO = #{n_no}
+	</delete>
+	
+	<!-- 쪽지 선택 삭제 -->
+	<delete id="noteChkDel">
+	
+	</delete>
+	
 	<!-- 새로 받은 쪽지가 있는지 확인(매번) -->
 	<select id="countNewNote" resultType="int">
 		SELECT COUNT(*)
@@ -42,23 +74,6 @@
 		SET N_READDATE = SYSDATE
 		WHERE N_RECEIVER = #{n_receiver}
 		AND N_NO=#{n_no}
-	</update>
-
-	<!-- 보낸 쪽지 하나 읽기 -->
-	<select id="sendDetail" resultType="NoteDto">
-		SELECT *
-		FROM NOTE
-		WHERE N_SENDER = #{n_sender}
-		AND N_NO=#{n_no}
-	</select>
-
-	<!-- 쪽지 보내기(작성) -->
-	<insert id="noteSend" parameterType="NoteDto">
-		INSERT 
-		INTO NOTE 
-			(N_NO, N_SENDER, N_RECEIVER, N_TITLE, N_CONTENT, N_SENDDATE, N_READDATE)
-		VALUES 
-			(NOTE_SEQ.NEXTVAL, (SELECT M_NO FROM IT_MEMBER WHERE M_NICKNAME=#{n_receiver_nickname}),#{n_receiver}, #{n_title},#{n_content}, SYSDATE, NULL);
-	</insert>
+	</update>	
 
 </mapper>

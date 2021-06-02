@@ -25,33 +25,91 @@ public class NoteDaoImpl implements NoteDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	// 내가 받은 쪽지 목록 조회
 	public List<NoteDto> receiveList(int n_receiver) {
 
 		List<NoteDto> list = null;
 		try {
-			list = sqlSession.selectList(NAMESPACE + "receiveList",n_receiver);
+			list = sqlSession.selectList(NAMESPACE + "receiveList", n_receiver);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
+
 	// 보낸쪽지 목록
-    public List<NoteDto> sendList(int n_sender){
-    	List<NoteDto> list = null;
+	public List<NoteDto> sendList(int n_sender) {
+		List<NoteDto> list = null;
 		try {
 			list = sqlSession.selectList(NAMESPACE + "sendList", n_sender);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return list;    	
-    	
-    }
+		return list;
 
+	}
+
+	// 내가 받은쪽지 하나 읽기
+	public NoteDto receiveDetail(Map map) {
+		NoteDto detail = null;
+		try {
+			detail = sqlSession.selectOne(NAMESPACE + "receiveDetail", map);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return detail;
+	}
+
+	// 내가 보낸 쪽지 하나 읽기
+	public NoteDto sendDetail(Map map) {
+		NoteDto detail = null;
+		try {
+			detail = sqlSession.selectOne(NAMESPACE + "sendDetail", map);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return detail;
+
+	}
+
+	// 쪽지 보내기(insert)
 	@Override
+	public int noteSend(NoteDto noteDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "noteSend", noteDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : noteSend");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 쪽지 삭제
+	@Override
+	public int noteDelete(int n_no) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "noteDelete", n_no);
+		} catch (Exception e) {
+			System.out.println("[error]:note Delete");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
 	// 새로 받은 쪽지가 있는지 확인(매번)
+	@Override
 	public Integer countNewNote() {
 		Integer count = 0;
 		try {
@@ -61,61 +119,18 @@ public class NoteDaoImpl implements NoteDao {
 		}
 		return count;
 	}
-	
-	//  내가 받은쪽지 하나 읽기
-    public NoteDto receiveDetail(Map map) {
-    	NoteDto detail = null;
+
+	// 읽은 쪽지 읽은 시간 표시 UPDATE
+	public int updateReadDate() {
+		int res = 0;
 		try {
-			detail = sqlSession.selectOne(NAMESPACE + "receiveDetail",map);
-			
+			res = sqlSession.update(NAMESPACE + "updateReadDate");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return detail;
-    }
-    
-   //  읽은 쪽지 읽은 시간 표시 UPDATE 
-    public int updateReadDate() {
-    	int res = 0;
-		try {
-			res = sqlSession.update(NAMESPACE+"updateReadDate");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+
 		return res;
-    	
-    }    
-	   
-   //  보낸 쪽지 하나 읽기 
-    public NoteDto sendDetail() {
-    	NoteDto detail = null;
-		try {
-			detail = sqlSession.selectOne(NAMESPACE + "sendDetail");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return detail;
-    	
-    }
-    
-    //쪽지 보내기(insert)
-    @Override
-	public int noteSend(NoteDto noteDto) {
-		int res=0;
-		
-		try {
-			res = sqlSession.insert(NAMESPACE+"noteSend",noteDto);
-			
-		} catch (Exception e) {
-			System.out.println("[error] : noteSend");
-			e.printStackTrace();
-		}		
-		
-		return res;
+
 	}
-    
+
 }

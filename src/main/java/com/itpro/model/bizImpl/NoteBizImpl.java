@@ -39,17 +39,32 @@ public class NoteBizImpl implements NoteBiz {
 		return dao.sendList(n_sender);
 	}
 
-	// 새로 받은 쪽지가 있는지 확인(매번)
-	@Override
-	public Integer countNewNote() {
-		return dao.countNewNote();
-	}
-
 	// 내가 받은쪽지 하나 읽기
 	@Override
 	public NoteDto receiveDetail(Map map) {
 
 		return dao.receiveDetail(map);
+	}
+
+	// 보낸 쪽지 하나 읽기
+	@Override
+	public NoteDto sendDetail(Map map) {
+
+		return dao.sendDetail(map);
+	}
+
+	// 쪽지 보내기
+	@Override
+	public int noteSend(NoteDto noteDto) {
+
+		return dao.noteSend(noteDto);
+	}
+
+	// 쪽지 삭제
+	@Override
+	public int noteDelete(int n_no) {
+		
+		return dao.noteDelete(n_no);
 	}
 
 	// 읽은 쪽지 읽은 시간 표시 UPDATE
@@ -59,17 +74,10 @@ public class NoteBizImpl implements NoteBiz {
 		return dao.updateReadDate();
 	}
 
-	// 보낸 쪽지 하나 읽기
+	// 새로 받은 쪽지가 있는지 확인(매번)
 	@Override
-	public NoteDto sendDetail() {
-
-		return dao.sendDetail();
+	public Integer countNewNote() {
+		return dao.countNewNote();
 	}
 
-	// 쪽지 보내기
-	@Override
-	public int noteSend(NoteDto noteDto) {
-
-		return dao.noteSend(noteDto);
-	}
 }
