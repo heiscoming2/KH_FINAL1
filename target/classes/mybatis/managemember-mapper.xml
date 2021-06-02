@@ -10,21 +10,23 @@
 	
 	<!-- 개인회원 + 관리자 -->
 	
-	<select id="selectList" resultType="ManageMemberDto">
+	<select id="selectList" resultType="ManageMemberDto" parameterType="HashMap">
         SELECT M_NO, M_NICKNAME, M_TYPE, M_GENDER, M_REGDATE, M_ACT, M_USED, M_AUTH
         FROM IT_MEMBER
-        WHERE (M_TYPE='개인회원'
-        OR M_TYPE='관리자')
-        <include refid="search"/>
+        WHERE (M_TYPE='개인회원' OR M_TYPE='관리자')
+        <choose>
+        	<when test="search_option =='all'">
+        	AND ((m_nickname like '%${keyword}%') OR (M_ACT LIKE '%${keyword}%') 
+        		OR (M_GENDER LIKE '%${keyword}%') OR (M_TYPE LIKE '%${keyword}%'))
+        	</when>
+        	<otherwise>
+        	AND ${search_option} like '%${keyword}%'
+        	</otherwise>
+        </choose>
         ORDER BY M_NO DESC
 	</select>
 	
-	 <sql id="search">
-         
-           //작성자+제목+내용의 검색조건으로 게시물을 검색하는 쿼리
-                and  
-                      (m_nickname like '%'||#{keyword}||'%')
-    </sql>
+	 
 	
 	
 	<select id="selectOne" resultType="ManageMemberDto" parameterType="int">
@@ -42,11 +44,20 @@
 	
 	<!-- 기업회원 -->
 	
-	<select id="selectList_com" resultType="ManageMemberDto_com">
+	<select id="selectList_com" resultType="ManageMemberDto_com" parameterType="HashMap">
         SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, B.M_ADMIN_CERT
         FROM IT_MEMBER A, BIZ_MEMBER B
-        WHERE A.M_NO = B.M_NO(+) 
-        AND M_TYPE='기업회원'
+        WHERE (A.M_NO = B.M_NO(+)) 
+        AND (M_TYPE='기업회원')
+        <choose>
+        	<when test="search_option =='all'">
+        	AND ((A.M_NICKNAME like '%${keyword}%') OR (A.M_ACT LIKE '%${keyword}%') 
+        		OR (B.M_ADMIN_CERT LIKE '%${keyword}%') OR (A.M_TYPE LIKE '%${keyword}%'))
+        	</when>
+        	<otherwise>
+        	AND ${search_option} like '%${keyword}%'
+        	</otherwise>
+        </choose>
         ORDER BY M_NO DESC
 	</select>
 	

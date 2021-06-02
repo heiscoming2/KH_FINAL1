@@ -8,7 +8,6 @@ DROP TABLE  PROIMG;
 DROP SEQUENCE PROIMGSEQ;
 
 
-
 --성민 드랍 (신고 게시글/댓글)
 DROP TABLE REPORT_REPLY;
 DROP SEQUENCE REPORT_SEQ;
@@ -152,7 +151,7 @@ CREATE TABLE M_RESUME (
     R_JIBUNADDRESS VARCHAR2(50), --지번주소
     R_DETAILADDRESS VARCHAR2(50), --상세주소
     R_EXTRAADDRESS VARCHAR2(50), --참고항목
-    R_SELFLETTER VARCHAR2(1000) NOT NULL,
+    R_SELFLETTER LONG NOT NULL,
     R_PORTFOLIO   VARCHAR2(500) NOT NULL,
     R_IMG   VARCHAR2(100) NOT NULL,
     R_IMG_PATH VARCHAR2(1000) NOT NULL,  
@@ -164,11 +163,7 @@ CREATE TABLE M_RESUME (
     
     SELECT * FROM M_RESUME;
     
-    INSERT INTO M_RESUME
-    VALUES(1005,RESUMENO_SEQ.NEXTVAL,'테스트자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
-    INSERT INTO M_RESUME
-    VALUES(1004,RESUMENO_SEQ.NEXTVAL,'테스트자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
-    
+   
 --경력사항 및 생성
 
 CREATE SEQUENCE CAREERNO_SEQ NOCACHE;
@@ -185,6 +180,7 @@ CREATE TABLE CAREER (
     );
     
     SELECT * FROM CAREER;    
+ 
     
 --자격증 생성
 
@@ -202,13 +198,16 @@ CREATE TABLE LICENCE (
     
     SELECT * FROM LICENCE;
     
- 
+
+ DROP SEQUENCE EDUCATION_SEQ;
+DROP TABLE EDUCATION;
 --학력사항 생성
 CREATE SEQUENCE EDUCATION_SEQ NOCACHE;
 CREATE TABLE EDUCATION (
     M_NO NUMBER,
     ED_NO NUMBER,
-    ED_DATE  VARCHAR2(50) NOT NULL,
+    ED_STARTDATE  VARCHAR2(50) NOT NULL,
+    ED_GRADUDATE  VARCHAR2(50),
     ED_SCHOOLNAME VARCHAR2(100) NOT NULL,
     ED_GRADUATION VARCHAR2(50) NOT NULL, --1-졸업 / 2-휴학 / 3-중퇴 / 4-재학
     ED_MAJOR VARCHAR2(50) NOT NULL,
@@ -220,7 +219,9 @@ CREATE TABLE EDUCATION (
      CONSTRAINT ED_SCHOOL_VAL CHECK(ED_SCHOOL IN('대학원','대학교','고등학교'))
     );
     
-    SELECT * FROM EDUCATION;
+
+    
+  SELECT * FROM EDUCATION;
         
         
 
@@ -663,6 +664,33 @@ INSERT INTO STUDYJOININFO VALUES (1007,1000,SYSDATE,'프론트엔드 개발자 �
 --광고문의
 INSERT INTO AD_REQUEST 
 VALUES (AD_SEQ.NEXTVAL,1003,'광고게시','무역','종합상사','2021/5/21','2021/6/20','IMG1','IMGS/IMG',500000,'대기중');
+
+--이력서
+ INSERT INTO M_RESUME
+    VALUES(1005,RESUMENO_SEQ.NEXTVAL,'테스트자소서자소서자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
+    INSERT INTO M_RESUME
+    VALUES(1004,RESUMENO_SEQ.NEXTVAL,'테스트자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
+    
+--학력사항
+     INSERT INTO EDUCATION
+    VALUES(1004,EDUCATION_SEQ.NEXTVAL,to_date('20210305'),NULL,'서울대학교 대학원','재학','컴퓨터공학과','대학원');
+      INSERT INTO EDUCATION
+    VALUES(1004,EDUCATION_SEQ.NEXTVAL,to_date('2020-03-05'),to_date('2021-03-05'),'서울대학교','졸업','컴퓨터공학과','대학교');
+    
+--경력사항   
+ INSERT INTO CAREER
+ VALUES(1004,CAREERNO_SEQ.NEXTVAL,'KH정보교육원','웹개발어쩌구 저쩌구',SYSDATE,NULL);
+  INSERT INTO CAREER
+ VALUES(1004,CAREERNO_SEQ.NEXTVAL,'KH정보교육원','웹개발어쩌구 저쩌구',to_date('2021-03-05'), to_date('2021-10-06'));
+   INSERT INTO CAREER
+ VALUES(1004,CAREERNO_SEQ.NEXTVAL,'카카오','웹개발어쩌구 저쩌구',to_date('2021-03-05'),to_date('2021-10-06'));
+   INSERT INTO CAREER
+ VALUES(1004,CAREERNO_SEQ.NEXTVAL,'네이버','웹개발어쩌구 저쩌구',to_date('2021-03-05'),to_date('2021-10-06'));
+    
+--자격사항
+    INSERT INTO LICENCE
+    VALUES(1004,LICENCENO_SEQ.NEXTVAL,'사무자동화기사','2020년 02월 11일','한국산업인력공단');
+ 
 
 
 SELECT COUNT(BD_NO) CNT

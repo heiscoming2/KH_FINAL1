@@ -25,7 +25,7 @@
         <br><br>
         <form>
             <div class="col-10 mb-4">
-                <h4 class="fw-bold text-center">이력서 제목 어쩌구 저쩌구</h4>
+                <h4 class="fw-bold text-center">${resumeDetailDto.r_title }</h4>
             </div>
             
             <h4 class="fw-bold">기본정보</h4>
@@ -56,14 +56,14 @@
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">휴대폰</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5"></span>         
+                        <span class="fs-5">${memberDto.m_phone }</span>         
                     </div>
                 </div>
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">이메일</h5></div>
                     <div class="col-5">            
-                        <span class="fs-5"></span>           
+                        <span class="fs-5">${memberDto.m_email }</span>           
                     </div>     
                 </div>
                 <br>
@@ -91,32 +91,32 @@
             <table class="table table-borderless table-sm" style='text-align: center'>
                 <thead>
                   <tr>
-                    <th class="col-4">입학졸업</th>
+                    <th class="col-2">입학</th>
+                    <th class="col-2">졸업</th>
                     <th class="col-2">학교</th>
                     <th class="col-2">전공</th>
                     <th class="col-2">구분</th>
                     <th class="col-2">졸업여부</th>
                   </tr>
                 </thead>
-                <tbody>
-                    <!-- 
-                  <tr>
-                    <td>2010년 03월 - 2013년 02월</td>
-                    <td>서울대</td>
-                    <td>컴공</td>
-                    <td>대학교</td>
-                    <td>졸업</td>
-                  </tr>
-                  -->      
-                  <c:forEach items="${educationList}" var="education">
-					<tr>
-	                    <td>2010년 03월 - 2013년 02월</td>
-	                    <td>${education.ed_schoolName}</td>
-	                    <td>${education.ed_major}</td>
-	                    <td>${education.ed_school}</td>
-	                    <td>${education.ed_graduation}</td>
-                  	</tr>
-				</c:forEach>           
+                <tbody>  
+                  <c:choose>
+					<c:when test="${empty educationList }">
+						<tr class="d-flex"><td class="col-12">작성된 사항이 없습니다.</td></tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${educationList}" var="educationList">
+							<tr>
+								<td>${educationList.ed_startdate}</td>
+			                    <td>${educationList.ed_gradudate}</td>
+			                    <td>${educationList.ed_schoolName}</td>
+			                    <td>${educationList.ed_major}</td>
+			                    <td>${educationList.ed_school}</td>
+			                    <td>${educationList.ed_graduation}</td>
+		                  	</tr>
+						</c:forEach> 
+					</c:otherwise>
+				</c:choose>                            
                 </tbody>
             </table>
 
@@ -135,17 +135,21 @@
                     <th class="col-4">발행기관</th>
                   </tr>
                 </thead>
-                <tbody>
-                    <tr><!--첫째줄-->
-                        <td>2010년 03월 - 2013년 02월</td>
-                        <td>서울대학교</td>
-                        <td>컴퓨터공학과</td>
-                      </tr>  
-                  <tr><!--둘째줄-->
-                    <td>2010년 03월 - 2013년 02월</td>
-                    <td>서울대</td>
-                    <td>컴공</td>
-                  </tr>                 
+                <tbody>                  
+                  <c:choose>
+					<c:when test="${empty licenceList }">
+						<tr class="d-flex"><td class="col-12">작성된 사항이 없습니다.</td></tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${licenceList}" var="licenceList">
+							<tr>
+			                    <td>${licenceList.li_date}</td>
+			                    <td>${licenceList.li_title}</td>
+			                    <td>${licenceList.li_organ}</td>
+		                  	</tr>
+						</c:forEach> 
+					</c:otherwise>
+				</c:choose>               
                 </tbody>
             </table>
             
@@ -166,19 +170,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr><!--첫째줄-->
-                        <td>2010년 03월 - 2013년 02월</td>
-                        <td>서울대학교</td>
-                        <td>컴퓨터공학과</td>
-                        <td>대학교</td>
-                      </tr>  
-                  <tr><!--둘째줄-->
-                    <td>2010년 03월 - 2013년 02월</td>
-                    <td>서울대</td>
-                    <td>컴공</td>
-                    <td>대학교</td>
                   </tr>                 
                 </tbody>
+                <c:choose>
+					<c:when test="${empty careerList }">
+						<tr class="d-flex"><td class="col-12">작성된 사항이 없습니다.</td></tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${careerList}" var="careerList">
+							<tr>
+			                    <td>${careerList.ca_title}</td>
+			                    <td>${careerList.ca_start_date}</td>
+			                    <td>${careerList.ca_end_date}</td>
+			                    <td>${careerList.ca_content}</td>
+		                  	</tr>
+						</c:forEach> 
+					</c:otherwise>
+				</c:choose> 
             </table>
 
             <hr><!---자소서---->
@@ -188,18 +196,7 @@
                     <sapn><h4 class="fw-bold">자기소개서</h4></sapn>
                 </div>
                 <div>
-                    <div class="lh-base" style="height: 500px; white-space:pre-wrap; "> 미국 제약사 화이자가 올해 안에 알약 형태의 신종 코로나바이러스 감염증(코로나19) 치료제를 출시할 수 있을 것으로 전망했다. 앨버트 불라 화이자 최고경영자(CEO)는 27일(현지시간) CNBC방송에 출연해 코로나19 치료를 위한 
-                        경구용 항바이러스제의 임상시험이 잘 진행돼 미국 식품의약국(FDA)의 사용 승인을 받는다면 연말까지 미국 전역에 보급할 수 있다고 밝혔다.
-                        현재 초기 임상시험 단계인 화이자의 경구용 항바이러스제는 코로나19 초기 증상을 보이는 환자들이 병원에 가지 않고 
-                        집에서도 간편하게 복용할 수 있어 코로나19 대유행에서 '게임 체인저'가 될 것으로 보건 전문가들은 기대하고 있다.
-
-                    
-                    I can feel a phoenix inside of me. 
-                    Maybe a reason why all the doors are closed. 
-                    We go higher and higher. Passport stamps, she's cosmopolitan. 
-                    Someone said you had your tattoo removed. 
-                    All my girls vintage Chanel baby. 
-                    Someone said you had your tattoo removed.</div>
+                    <div class="lh-base" style="height: 500px; white-space:pre-wrap; ">${resumeDetailDto.r_selfletter }</div>
                 </div>
             </div>
         </form>

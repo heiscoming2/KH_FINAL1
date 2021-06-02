@@ -14,23 +14,22 @@
 
 <!-- 본문 시작 -->
 
- <div class="container-sm mt-5 mb-5" style="max-width: 1000px;">
- 		<h1>이력서 제출</h1>
- 		<img src="resources/images/companyimages/companylistsampleone.png" style="position:relative; left:-50px;"/>
+ <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
+ 		<h1>지원 기업</h1>
+ 		<img src="resources/images/companyimages/companylistsampleone.png" style="position:relative; left:-40px;"/>
  		<br><br>
- 		<h3>이력서 목록</h3> 	
-        <button class="btn btn-primary" onclick="location.href='resume_form.do'">등록</button>
-        <input class="btn btn-danger" type="button" value="삭제" onclick="resumeListDel();">
-        
+ 		<h5>제출할 이력서를 선택해 주세요.</h5>
+ 		<span><span style="color:red;">* </span>이력서는 기업당 1부만 제출이 가능합니다.</span>  
+ 		
         <br><br>
+        	
         
-        <table class="table table-bordered table-hover text-center" >
+        <table class="table table-bordered table-hover text-center" style="width:1150px;">
             <thead>
-                <tr class="d-flex">
-                    <th class="col-1"><input type="checkbox"></th>
-                    <th class="col-6">이력서</th>
+                <tr>
+                    <th class="col-1">선택</th>
+                    <th class="col-8">이력서</th>
                     <th class="col-3">등록일</th>
-                    <th class="col-2">수정</th>
                 </tr>
             </thead>
             <tbody><!--작성된 이력서 목록-->
@@ -42,19 +41,22 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${resumeList }" var="resumeList">
-							<tr class="d-flex">
+							<tr>
 								<td class="col-1"><input type="checkbox" name="resumeListDel" value="${resumeList.r_no }"></td>
-								<td class="col-6"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
+								<td class="col-8"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
 								<td class="col-3"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yyyy-MM-dd"/></td>
-								<td class="col-2">
-									<button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>
-								</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+				<tr>
+				</tr>
 			</tbody>
         </table>
+        <div style="text-align:center;">
+        	<br><br><br>
+			<input type="button" value="제출하기" class="btn btn-primary">
+        </div>
 </div>
 
 <!-- 본문 종료 -->

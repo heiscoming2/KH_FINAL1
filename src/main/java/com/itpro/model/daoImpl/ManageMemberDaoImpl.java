@@ -2,6 +2,7 @@ package com.itpro.model.daoImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,16 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 
 	//개인회원 + 관리자
 	
+	//전체 리스트 및 검색
 	@Override
-	public List<ManageMemberDto> selectList(String search_option, String keyword) {
-		List<ManageMemberDto> list = new ArrayList<ManageMemberDto>();
+	public List<ManageMemberDto> selectList(Map<String,Object> map) {
+		List<ManageMemberDto> list = null;
 		
 		try {
-			list=sqlSession.selectList(NAMESPACE+"selectList");
-			System.out.println("list_com dao: "+list );
+			list=sqlSession.selectList(NAMESPACE+"selectList",map);
+			System.out.println("list dao: "+list );
 		} catch (Exception e) {
-			System.out.println("[error] : select list");
+			System.out.println("[error] : select list "+e);
 			e.printStackTrace();
 		}
 		return list;
@@ -67,35 +69,15 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 	}
 
 	
-	@Override
-	public List<ManageMemberDto> search(String userName) {
-		List<ManageMemberDto> userList= new ArrayList<ManageMemberDto>();
-		
-
-		try {
-			userList=sqlSession.selectList(NAMESPACE+"search");
-			System.out.println("userName list dao: "+userList );
-		} catch (Exception e) {
-			System.out.println("[error] : select userlist");
-			e.printStackTrace();
-		}
-		return userList;
-		
-	}
-
-
-	
-	
-	
 
 	//////////////////////////////기업회원///////////////////////////////////////
 	
 	@Override
-	public List<ManageMemberDto_com> selectList_com() {
+	public List<ManageMemberDto_com> selectList_com(Map<String, Object> map) {
 		List<ManageMemberDto_com> list_com = new ArrayList<ManageMemberDto_com>();
 		
 		try {
-			list_com=sqlSession.selectList(NAMESPACE+"selectList_com");
+			list_com=sqlSession.selectList(NAMESPACE+"selectList_com",map);
 			System.out.println("list: "+list_com );
 		} catch (Exception e) {
 			System.out.println("[error] : select list");
