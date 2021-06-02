@@ -55,8 +55,6 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	@Autowired
 	private LikeBiz likeBiz;
 	
-	@Autowired
-	private ResumeBiz resumebiz;
 	
 	@RequestMapping(value="/portfoliolist.do")
 	public String portfolioList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
