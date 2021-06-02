@@ -34,8 +34,11 @@
 		       AND B.M_NO = M.M_NO
                AND RE.BD_NO(+) = B.BD_NO
                AND BR.BD_NO(+) = B.BD_NO
+                <if test="keyword!=null or keyword!=''">
+                  AND (B.BD_TITLE LIKE '%${keyword}%' OR M_NICKNAME LIKE '%${keyword}%')
+               </if> 
 		       ORDER BY B.BD_CREATEDDATE DESC)
-        WHERE RN BETWEEN #{start} AND #{end}
+        WHERE (RN BETWEEN #{start} AND #{end})
 	</select>
 	
 	<select id="selectone" resultType="NoticeDto" parameterType="int">

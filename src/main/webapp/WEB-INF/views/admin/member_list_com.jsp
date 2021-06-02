@@ -51,11 +51,26 @@
 	<!-- 회원명단 -->
 	<div class="content">
 	<h3>회원관리 : 기업회원</h3>
-	<form action="#">
-			<div align="right">
-				<input type="text" class="control">
-				<input type="submit"value="검색" class="btn btn-default"></input> 
-			</div>
+	
+	<form name="form2" method="post" action="member_list_com.do">
+
+			<select name="search_option">
+
+				<option value="all"
+					<c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
+				
+				<option value="m_nickname"
+					<c:if test="${map.search_option == 'm_nickname'}">selected</c:if>>Nickname</option>
+
+				 <option value="m_act"
+					<c:if test="${map.search_option == 'm_act'}">selected</c:if>>활동여부</option>
+
+				<option value="m_admin_cert"
+					<c:if test="${map.search_option == 'm_admin_cert'}">selected</c:if>>사업자 인증</option>
+
+			</select> <input name="keyword" value="${map.keyword}"> <input
+				type="submit" value="검색">
+		</form>
 			<br>
 	<table class="main_table">
 		
@@ -103,7 +118,7 @@
 
 
 	<!-- 본문 종료 -->
-	</form>
+	
 	</div>
 
 	<!-- FOOTER 시작 -->
