@@ -54,10 +54,11 @@
 
 	<!-- 쪽지 보내기(작성) -->
 	<insert id="noteSend" parameterType="NoteDto">
-		INSERT INTO NOTE
-			(N_NO, N_SENDER, N_RECEIVER, N_TITLE, N_CONTENT, N_SENDDATE)
-		VALUES
-			(NOTE_SEQ.NEXTVAL, (select m_no from IT_MEMBER where m_nickname = #{n_receiver_nickname}), #{n_receiver}, #{n_title}, #{n_content}, SYSDATE)
+		INSERT 
+		INTO NOTE 
+			(N_NO, N_SENDER, N_RECEIVER, N_TITLE, N_CONTENT, N_SENDDATE, N_READDATE)
+		VALUES 
+			(NOTE_SEQ.NEXTVAL, (SELECT M_NO FROM IT_MEMBER WHERE M_NICKNAME=#{n_receiver_nickname}),#{n_receiver}, #{n_title},#{n_content}, SYSDATE, NULL);
 	</insert>
 
 </mapper>
