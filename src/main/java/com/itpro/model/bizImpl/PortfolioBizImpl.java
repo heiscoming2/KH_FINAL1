@@ -19,8 +19,8 @@ import com.itpro.model.dto.portfolio.PortfolioDetailDto;
 import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
-import com.itpro.model.dto.resume.CareerDto;
 
+@SuppressWarnings("unused")
 @Service
 public class PortfolioBizImpl implements PortfolioBiz{
 
