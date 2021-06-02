@@ -71,7 +71,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//기업회원 글작성X 시작
 		if (request.getRequestURI().contains("/studyinsertform.do")// 스터디 글쓰기
 				|| (request.getRequestURI().contains("/projectinsertform.do"))// 프로젝트 글쓰기
-				|| (request.getRequestURI().contains("/portfolioinsertform.do"))) { //포트폴리오 글쓰기
+				|| (request.getRequestURI().contains("/portfolioinsertform.do"))
+				|| (request.getRequestURI().contains("/resumesubmitform.do"))
+		   ) { //포트폴리오 글쓰기
 			MemberDto memberDto = (MemberDto) session.getAttribute("login");
 			String m_type = memberDto.getM_type();
 			if (m_type.equals("기업회원")) {

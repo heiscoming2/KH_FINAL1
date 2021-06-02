@@ -49,16 +49,14 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-							<tr class="d-flex">
-								<td class="col-1"><input type="checkbox" name="resumechkbox" value="3" onclick="NoMultiChk(this)"></td>
-								<td class="col-8"><a style="color: black;">123123123123</a></td>
-								<td class="col-3">2021-06-02</td>
-							</tr>
 			</tbody>
         </table>
         <div style="text-align:center;">
         	<br>
-			<input type="button" value="제출하기" class="btn btn-primary">
+			<input type="button" value="제출하기" class="btn btn-primary" onclick="resume_submit()">
+			<!-- 게시글 번호 -->
+			<input type="hidden" id="bd_no" value="30000">
+			
         </div>
 </div>
 

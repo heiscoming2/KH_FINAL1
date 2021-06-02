@@ -135,12 +135,13 @@
                 <c:choose>
                   <c:when test="${mypage eq '개인회원'}">
                     <li><a class="dropdown-item" href="mypage_user.do">마이페이지</a></li>
+                <li><a class="dropdown-item" href="postlookup.do?m_no=${sessionScope.login.m_no }">작성 글 조회</a></li>		
                   </c:when>
                   <c:otherwise>
                     <li><a class="dropdown-item" href="mypage_biz.do">마이페이지</a></li>
+                    <li><a class="dropdown-item" href="companyresumelist.do?m_no=${sessionScope.login.m_no }">채용 공고 관리</a></li>
                   </c:otherwise>
                 </c:choose>
-                <li><a class="dropdown-item" href="postlookup.do?m_no=${sessionScope.login.m_no }">작성 글 조회</a></li>		
                 <li><a class="dropdown-item" href="note_receivelist.do">쪽지함</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <c:if test="${sessionScope.login.m_auth eq 'Y' }">
