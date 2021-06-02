@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfolioinsert.css?ver=1.2" rel="stylesheet">
+<link href="resources/css/portfolioinsert.css?ver=1.3" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <title>IT PRO portfolio 글 쓰기</title>
@@ -48,17 +48,17 @@
             <tr>
               <th><span>* </span>이름 </th>
               <td><input type="text" class="form-control" value="${dto.member.m_nickname }" readonly></td>
-              <td><input type="checkbox">비공개</td>
+              <!-- <td><input type="checkbox">비공개</td>-->
             </tr>
             <tr>
               <th><span>* </span>이메일 </th>
               <td><input type="email" class="form-control" value="${dto.member.m_email }"  readonly></td>
-              <td><input type="checkbox">비공개</td>
+              <!-- <td><input type="checkbox">비공개</td>-->
             </tr>
             <tr>
               <th><span>* </span>전화번호 </th>
               <td><input type="tel" class="form-control" value="${dto.member.m_phone }" readonly></td>
-              <td><input type="checkbox">비공개</td>
+              <!-- <td><input type="checkbox">비공개</td>-->
             </tr>
             <tr>
               <th><span>* </span>최종 학력</th>
@@ -70,7 +70,7 @@
               <input type=text class="form-control" readonly>
               </c:if>
               </td>
-              <td><input type="checkbox">비공개</td>
+              <!-- <td><input type="checkbox">비공개</td> -->
               <!-- <td><input type='month'/> ~ <input type='month'/></td> -->
             </tr>
             
@@ -80,9 +80,9 @@
               <th><span>* </span>경력사항</th>             
               <td> 
                 <input type=text class="form-control" value="${career.ca_title }" readonly> </td>
-              <br>
-              <td><input type='text' value="${career.ca_start_date }" readonly /></td>         
-              <td><input type="checkbox">비공개</td>
+              <td><input type='text' id="career-date" value="${career.ca_start_date }" readonly /></td>  
+              <td><input type='text' id="career-date" value="${career.ca_end_date }" readonly /></td>       
+              <!-- <td><input type="checkbox">비공개</td>  -->
             </tr>
              </c:forEach>
             
@@ -98,7 +98,10 @@
               <th><span>* </span>수상 내역 </th>
               <td><input type="text" class="form-control" name="port_prize" placeholder="수상 내역을 입력해 주세요."></td>
             </tr>
-            <tr><td><input type="hidden" class="form-control" name="bd_content"></td></tr>
+             <tr>
+              <th><span>* </span>포트폴리오 소개 </th>
+              <td><input type="text" class="form-control" name="bd_content"></td>
+              </tr>
 
             
           </table>
