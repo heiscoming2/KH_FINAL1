@@ -1,6 +1,5 @@
 package com.itpro.model.dto.qna;
 
-import java.sql.Clob;
 import java.util.Date;
 
 public class QnaListDto {

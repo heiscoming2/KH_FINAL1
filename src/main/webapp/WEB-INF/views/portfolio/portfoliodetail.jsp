@@ -73,8 +73,9 @@
                   ※ 이메일: ${dto.member.m_email }<br>
                   ※ 전화 번호: ${dto.member.m_phone }<br>
                   ※ 최종 학력: ${dto.edu.ed_school }<br>
-                  ※ 경력 사항: <c:forEach var="career" items="${dto.career }" > 
-               ${career.ca_title } ${career.ca_start_date } <br> </c:forEach> <br>
+                  ※ 경력 사항: <br>
+                  <c:forEach var="career" items="${dto.career }" > 
+               ${career.ca_title } [${career.ca_start_date } ~ ${career.ca_end_date }]<br> </c:forEach> <br>
                   ※ 사용 개발 기술: ${dto.port_develop }<br>
                   ※ 프로젝트 링크: ${dto.port_link }<br>
                   ※ 수상 내역: ${dto.port_prize } <br>
@@ -82,7 +83,6 @@
               <br>
               <br>
             </div>
-            
             
             
               <!-- 좋아요 버튼 시작 -->
@@ -101,21 +101,24 @@
           </td>
         </tr>
       </table>
-      <!-- 포트폴리오 영역 종료-->
+      <!-- QNA 영역 종료-->
 
-      <!-- 본문 / 댓글 중간 여백 영역 시작 -->
+         <!-- 본문 / 댓글 중간 여백 영역 시작 -->
       <div style="width:100%; display: block; height:80px;">
-            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;">
+            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='portfoliolist.do'">
       </div>
       <!-- 본문 / 댓글 중간 여백 영역 종료 -->
+	
 
-       <!-- 댓글 영역 시작 -->
+
+	 
+    <%--   <!-- 댓글 영역 시작 -->
 	  <jsp:include page="../reply/reply.jsp">
 	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
 	  </jsp:include>
 	  
 	  
-      <!-- 댓글 영역 끝 -->
+      <!-- 댓글 영역 끝 --> --%>
   </div>
 
 <!-- 본문 종료 -->

@@ -12,7 +12,7 @@ public class PortfolioDetailDto {
 
 	// 게시판
 	private BoardDto board;
-	public int bd_no;
+	private int bd_no;
 	// 첨부 파일
 	private String bf_originname; // 파일 저장명
 
@@ -34,6 +34,24 @@ public class PortfolioDetailDto {
 
 	
 	
+	
+	
+	public int getBd_no() {
+		return bd_no;
+	}
+
+
+
+
+
+	public void setBd_no(int bd_no) {
+		this.bd_no = bd_no;
+	}
+
+
+
+
+
 	public BoardDto getBoard() {
 		return board;
 	}
