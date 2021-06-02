@@ -24,6 +24,8 @@ public class QnaDetailDto {
 	private String m_nickname; // 닉네임
 	private int m_no; // 회원 번호
 
+
+	
 	public QnaDetailDto() {
 		super();
 		// TODO Auto-generated constructor stub

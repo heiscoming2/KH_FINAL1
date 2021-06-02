@@ -26,11 +26,3 @@ public class NoteDto {
 	
 }
 
-//
-//<!-- 쪽지 보내기(작성) -->
-//<insert id="noteSend" parameterType="NoteDto">
-//	INSERT INTO NOTE
-//		(N_NO, N_SENDER, N_RECEIVER, N_TITLE, N_CONTENT, N_SENDDATE)
-//	VALUES
-//		(NOTE_SEQ.NEXTVAL, #{n_sender}, #{n_receiver}, #{n_title}, #{n_content}, SYSDATE)
-//</insert>

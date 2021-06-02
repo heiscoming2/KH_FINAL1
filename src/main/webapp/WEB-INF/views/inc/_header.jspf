@@ -101,11 +101,12 @@
           <li><a href="companylist.do" class="nav-link px-2 text-white">채용정보</a></li>
           <li><a href="companycrawlinglist.do" class="nav-link px-2 text-white">외부채용정보</a></li>
           <li><a href="#" class="nav-link px-2 text-white">화상면접</a></li>
-          <c:if test="${sessionScope.login.m_auth eq 'Y' || sessionScope.login.m_admin_cert eq 'Y' }">
+          <c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
           <li><a href="adlist.do" class="nav-link px-2 text-white">광고문의</a></li>
           </c:if>
         </ul>
-
+      
+		
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <table>
                 <tr>

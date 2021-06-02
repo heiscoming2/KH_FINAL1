@@ -78,6 +78,7 @@
 		UPDATE BOARD AS B, PORTFOLIO AS P
 		SET 	
 			B.BD_TITLE = #{bd_title},
+			B.BD_CONTENT = #{bd_content},
 
 			P.PORT_DEVELOP = #{port_develop},
 			P.PORT_LINK = #{port_link},

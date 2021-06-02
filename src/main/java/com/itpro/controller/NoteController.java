@@ -54,11 +54,6 @@ public class NoteController {
 		List<NoteDto> receiveList = biz.receiveList(n_receiver);
 		model.addAttribute("receiveList", receiveList);
 
-		/*
-		 * List<NoteDto> list = biz.receiveList(); Integer count = biz.countNewNote();
-		 * logger.info("count: " + count);
-		 */
-
 		return "note/note_receivelist";
 	}
 
@@ -90,7 +85,8 @@ public class NoteController {
 
 	// 쪽지 보내기
 	@RequestMapping(value = "noteSend.do", method = RequestMethod.POST)
-	public String noteSend(Model model, NoteDto noteDto, HttpServletResponse response, HttpSession session) throws IOException {
+	public String noteSend(Model model, NoteDto noteDto, HttpServletResponse response, HttpSession session)
+			throws IOException {
 		logger.info("NOTE SEND");
 
 		if (session.getAttribute("login") != null) {
@@ -103,18 +99,18 @@ public class NoteController {
 		if (res > 0) {
 			model.addAttribute("message", "");
 			return "note/noteSend";
-			
+
 		} else {
 			model.addAttribute("message", "전송에 실패했습니다.");
 			return "note/noteSend";
 		}
 	}
 
-	// 받은 쪽지 읽기
+	// 내가 받은 쪽지 읽기
 	@RequestMapping(value = "/receiveDetail.do")
 	public String receiveDetail(Model model, HttpSession session, int n_no) {
-		logger.info("NOTE READ");
-		
+		logger.info("NOTE RECEIVE READ");
+
 		int n_receiver = 0;
 
 		if (session.getAttribute("login") != null) {
@@ -125,10 +121,59 @@ public class NoteController {
 		map.put("n_receiver", n_receiver);
 		map.put("n_no", n_no);
 		NoteDto noteDto = biz.receiveDetail(map);
-		
+
 		model.addAttribute("noteDto", noteDto);
 
 		return "note/note_receiveDetail";
+	}
+
+	// 내가 보낸 쪽지 읽기
+	@RequestMapping(value = "/sendDetail.do")
+	public String sendDetail(Model model, HttpSession session, int n_no) {
+		logger.info("NOTE SEND READ");
+
+		int n_sender = 0;
+
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			n_sender = login.getM_no();
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("n_sender", n_sender);
+		map.put("n_no", n_no);
+		NoteDto noteDto = biz.sendDetail(map);
+
+		model.addAttribute("noteDto", noteDto);
+
+		return "note/note_sendDetail";
+	}
+
+	// 쪽지 개별삭제(받은쪽지)
+	@RequestMapping(value = "/note_delete.do")
+	public String noteDelete(int n_no) {
+		logger.info("NOTE RECEIVE DELETE");
+
+		int res = biz.noteDelete(n_no);
+		if (res > 0) {
+			return "redirect:note_receivelist.do";
+		} else {
+			return "redirect:note_receiveDetail.do?n_no=" + n_no;
+		}
+
+	}
+
+	// 쪽지 개별삭제(받은쪽지)
+	@RequestMapping(value = "/note_sendDelete.do")
+	public String noteSendDelete(int n_no) {
+		logger.info("NOTE RECEIVE DELETE");
+
+		int res = biz.noteDelete(n_no);
+		if (res > 0) {
+			return "redirect:note_sendlist.do";
+		} else {
+			return "redirect:note_sendDetail.do?n_no=" + n_no;
+		}
+
 	}
 
 }
