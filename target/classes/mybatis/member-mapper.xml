@@ -92,19 +92,6 @@
 		WHERE A.M_NO = #{m_no}
 	</select>
 	
-	                       <!--  <span class="fs-5">${memberDto.m_name }</span>            
-                    </div> 
-                </div>
-                <br>
-                <div class="row g-2">
-                    <div class="col-2"><h5 class="fw-bold">생년월일</h5></div>
-                    <div class="col-2">            
-                        <span class="fs-5">${memberDto.m_birth }</span>           
-                    </div>      
-                    <div class="col-1"><h5 class="fw-bold">성별</h5></div>
-                    <div class="col-1">
-                        <span class="fs-5">${memberDto.m_gender }</span> -->
-
 	<!-- 회원 정보수정 -->
 	<update id="update" parameterType="MemberDto">
 		UPDATE IT_MEMBER

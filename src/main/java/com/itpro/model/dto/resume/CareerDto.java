@@ -1,6 +1,8 @@
 package com.itpro.model.dto.resume;
 
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +20,7 @@ public class CareerDto {
 	private int ca_no;
 	private String ca_title;
 	private String ca_content;
-	private String ca_start_date;
-	private String ca_end_date;
+	private Date ca_start_date;
+	private Date ca_end_date;
 
 }

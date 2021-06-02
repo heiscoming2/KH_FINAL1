@@ -29,11 +29,13 @@ function uploadFile(){
     })
 }
 
+/*============================================================*/
+
 /*이력서 데이터 전송*/
 $(document).ready(function(){
-	$("#updateUser").click(function(){
-		$("#updateForm").attr("action","user_update.do");
-		$("#updateForm").submit();	
+	$("#resumeInsertBtn").click(function(){
+		$(".resumeInsertForm").attr("action","resume_insert.do");
+		$(".resumeInsertForm").submit();	
 	});
 	
 });
@@ -60,9 +62,10 @@ $(function () {
     //행추가
     $("#EdFormTable").append(
     '<tr id=addtr'+ count + '>'+
-    	'<td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>'+
-    	'<td><input type="text" class="form-control" id="ed_school" ></td>'+
-    	'<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
+    	'<td><input type="month" class="form-control" name="ed_startdate"></td>'+
+    	'<td><input type="month" class="form-control" name="ed_gradudate"></td>'+
+    	'<td><input type="text" class="form-control" name="ed_school" ></td>'+
+    	'<td><input type="text" class="form-control" name="ed_graduation" ></td>'+
     	'<td>'+
     		'<select class="form-select">'+
     			'<option value="1">대학원</option>'+
@@ -120,9 +123,9 @@ $(function () {
     //행추가
     $("#LiFormTable").append(
     '<tr id=liaddtr'+ count + '>'+
-    	'<td><input type="month" class="form-control" id="ed_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>'+
-        '<td><input type="text" class="form-control" id="ed_school" ></td>'+
-        '<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
+    	'<td><input type="date" class="form-control" name="li_date" ></td>'+
+        '<td><input type="text" class="form-control" name="li_title" ></td>'+
+        '<td><input type="text" class="form-control" name="li_organ" ></td>'+
     '</tr>');
           
 });

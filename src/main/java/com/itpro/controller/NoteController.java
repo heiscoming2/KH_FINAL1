@@ -162,7 +162,7 @@ public class NoteController {
 
 	}
 
-	// 쪽지 개별삭제(받은쪽지)
+	// 쪽지 개별삭제(보낸쪽지)
 	@RequestMapping(value = "/note_sendDelete.do")
 	public String noteSendDelete(int n_no) {
 		logger.info("NOTE RECEIVE DELETE");

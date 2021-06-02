@@ -104,20 +104,85 @@ public class ResumeController {
 		return "resume/resume_detail";
 	}
 
-	// 이력서 등록폼으로 이동
-	@RequestMapping(value = "/resume_form.do")
-	public String resumeForm(HttpSession session, Model model) {
-		logger.info("RESUEM FORM");
+	// 이력서 수정폼으로 이동
+	@RequestMapping(value = "/resume_updateForm.do")
+	public String resumeForm(Model model, int r_no) {
+		logger.info("RESUEM UPDATE FORM");
 
-		return "resume/resume_form";
+		// 이력서 기본정보 조회(detail)
+		ResumeDetailDto resumeDetailDto = biz.resumeDetail(r_no);
+
+		// 회원번호로 멤버테이블 정보 가져옴
+		int m_no = resumeDetailDto.getM_no();
+		MemberDto memberDto = memberBiz.selectOne(m_no);
+
+		// 이력서 학력사항 조회(list)
+		List<EducationDto> educationList = biz.educationList(m_no);
+		// 이력서 자격사항 조회(list)
+		List<LicenceDto> licenceList = biz.licenceList(m_no);
+		// 이력서 경력사항 조회(list)
+		List<CareerDto> careerist = biz.careerList(m_no);
+
+		// model
+		model.addAttribute("resumeDetailDto", resumeDetailDto);
+		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("educationList", educationList);
+		model.addAttribute("licenceList", licenceList);
+		model.addAttribute("careerList", careerist);
+
+		return "resume/resume_update";
 	}
 
-	// 이력서 수정폼으로 이동
+	// 이력서 수정
 	@RequestMapping(value = "/resume_update.do")
 	public String resumeUpdate() {
 		logger.info("RESUEM UPDATE");
 
 		return "resume/resume_update";
+	}
+
+	// 이력서 등록페이지로 이동
+	@RequestMapping(value = "/resume_form.do")
+	public String resumeInsertForm(Model model, HttpSession session) {
+		logger.info("RESUEM INSERT FORM");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		// 회원번호로 멤버기본 정보 가져옴
+		MemberDto memberDto = memberBiz.selectOne(m_no);
+
+		// model
+		model.addAttribute("memberDto", memberDto);
+
+		return "resume/resume_form";
+	}
+
+	// 이력서 등록
+	@RequestMapping(value = "/resume_insert.do")
+	public String resumeInsert(MemberDto memberDto, ResumeDetailDto resumeDto, CareerDto careerDto,
+			EducationDto educationDto, LicenceDto licenceDto) {
+		logger.info("RESUEM INSERT");
+
+		// 회원기본정보 등록 - mapper에서 update
+		int memResumeUpdate = biz.memResumeUpdate(memberDto);
+
+		// 이력서기본정보 등록 - mapper에서 insert
+		int resumeInsert = biz.resumeInsert(resumeDto);
+
+		// 경력 정보 등록 - mapper에서 insert
+		int careerInsert = biz.careerInsert(careerDto);
+		
+		// 학력 정보 등록 - mapper에서 insert
+		int educationInsert = biz.educationInsert(educationDto);
+
+		// 자격증 정보 등록 - mapper에서 insert
+		int licenseInsert = biz.licenseInsert(licenceDto);
+
+		return "resume/resume_list";
 	}
 
 	// 이력서 개별삭제
@@ -139,16 +204,10 @@ public class ResumeController {
 	public String resumeListDel(int r_no) {
 		logger.info("RESUEM DELETE");
 
-		int res = biz.resumeDelete(r_no);
-		if (res > 0) {
-
-			return "redirect:resume_list.do";
-		} else {
-			return "redirect:resume_detail.do?r_no=" + r_no;
-		}
+		return null;
 	}
 
-	// 프로필 이미지 업로드 컨트롤러
+	// 프로필 이미지 업로드 컨트롤러(왜 안될까....??)
 	@RequestMapping(value = "/resumeProfile.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
