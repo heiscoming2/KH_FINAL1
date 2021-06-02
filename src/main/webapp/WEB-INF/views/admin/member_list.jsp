@@ -84,8 +84,9 @@
 					<c:if test="${map.search_option == 'm_type'}">selected</c:if>>회원구분</option>
 				
 
-			</select> <input name="keyword" value="${map.keyword}"> <input
-				type="submit" value="검색">
+			</select> 
+			<input name="keyword" value="${map.keyword}"> 
+			<input type="submit" value="검색">
 		</form>
 
 		<br>

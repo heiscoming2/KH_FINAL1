@@ -51,7 +51,8 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value="/noticelist.do")
-	public String noticeList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+	public String noticeList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,
+			@RequestParam(value="keyword", required=false) String keyword ) {
 		logger.info("NOTICE LIST");
 		
 		//페이징을 위해 총 게시물수 count
