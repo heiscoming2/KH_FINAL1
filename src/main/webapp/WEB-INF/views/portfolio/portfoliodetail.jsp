@@ -64,7 +64,7 @@
 
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.board.bd_no}'">
+              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.board.bd_no}&m_no=${dto.member.m_no}'">
               <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.board.bd_no}');">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 

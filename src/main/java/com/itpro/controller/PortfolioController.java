@@ -166,6 +166,7 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 //		int m_no = loginDto.getM_no();
 		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no, m_no);
 		model.addAttribute("portfolioDetailDto", portfolioDetailDto);
+		
 		return "portfolio/portfolioupdateform";
 	}
 	
