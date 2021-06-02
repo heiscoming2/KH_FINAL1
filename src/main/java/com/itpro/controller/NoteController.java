@@ -31,7 +31,6 @@ import com.itpro.model.biz.MemberBiz;
 import com.itpro.model.biz.NoteBiz;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.note.NoteDto;
-import com.itpro.model.dto.resume.ResumeDto;
 
 @Controller
 public class NoteController {
@@ -89,7 +88,7 @@ public class NoteController {
 		return "note/note_form";
 	}
 
-	// 쪽지 보내기 (수정해야대.....)ㅠㅠㅠ
+	// 쪽지 보내기
 	@RequestMapping(value = "noteSend.do", method = RequestMethod.POST)
 	public String noteSend(Model model, NoteDto noteDto, HttpServletResponse response, HttpSession session) throws IOException {
 		logger.info("NOTE SEND");
