@@ -26,7 +26,7 @@
         
         <table class="table table-bordered table-hover text-center" style="width:1150px;">
             <thead>
-                <tr>
+                <tr class="d-flex">
                     <th class="col-1">선택</th>
                     <th class="col-8">이력서</th>
                     <th class="col-3">등록일</th>
@@ -41,20 +41,23 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${resumeList }" var="resumeList">
-							<tr>
-								<td class="col-1"><input type="checkbox" name="resumeListDel" value="${resumeList.r_no }"></td>
+							<tr class="d-flex">
+								<td class="col-1"><input type="checkbox" name="resumechkbox" value="${resumeList.r_no }" onclick="NoMultiChk(this)"></td>
 								<td class="col-8"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
 								<td class="col-3"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yyyy-MM-dd"/></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-				<tr>
-				</tr>
+							<tr class="d-flex">
+								<td class="col-1"><input type="checkbox" name="resumechkbox" value="3" onclick="NoMultiChk(this)"></td>
+								<td class="col-8"><a style="color: black;">123123123123</a></td>
+								<td class="col-3">2021-06-02</td>
+							</tr>
 			</tbody>
         </table>
         <div style="text-align:center;">
-        	<br><br><br>
+        	<br>
 			<input type="button" value="제출하기" class="btn btn-primary">
         </div>
 </div>
@@ -67,6 +70,8 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-	
+
+<script type="text/javascript" src="resources/js/resume/resume_submit.js"></script>
+
 </body>
 </html>

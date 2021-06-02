@@ -188,7 +188,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/company/companydetail.js?ver=1.7"></script>
+<script type="text/javascript" src="resources/js/company/companydetail.js?ver=1.8"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

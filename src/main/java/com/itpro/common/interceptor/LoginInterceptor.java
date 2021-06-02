@@ -41,7 +41,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (request.getRequestURI().contains("/studyinsertform.do") ||
 		    request.getRequestURI().contains("/qnainsertform.do") ||
 		    request.getRequestURI().contains("/portfolioinsertform.do") ||
-		    request.getRequestURI().contains("/projectinsertform.do")
+		    request.getRequestURI().contains("/projectinsertform.do") ||
+		    request.getRequestURI().contains("/resumesubmitform.do")
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
