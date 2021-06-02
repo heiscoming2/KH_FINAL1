@@ -14,6 +14,7 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
+	<div class="content">
 	<div class="study_wrap mt-5">
 		<h3>스터디 모집</h3>
 		<div class="study_btnwrap mb-4">
@@ -158,6 +159,7 @@
 				
 		</table>
 		</div>
+		</div>
 <!-- 검색 결과를 히든 태그에 담아둔다. (없으면 null값이 담길것임) 이거를 js에서 받아서 -->
 <!-- null이 아닌 경우(검색 결과가 있는 경우) 해당하는 내용들을 보여지게끔 처리 -->
 <c:if test="${studySearchDto ne null }">
@@ -179,7 +181,8 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/study/studylist.js?ver=1.2"></script>
+<script type=text/javascript src="resources/js/studylist.js?ver=1.3"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
+<script type=text/javascript src="resources/js/company/companylist.js?ver=1.5"></script>
 </body>
 </html>

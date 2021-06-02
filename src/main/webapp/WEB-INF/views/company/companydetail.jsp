@@ -18,6 +18,7 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
+<div class="content">
   <div class="study_detailwrap mt-5">
       <h4>스터디 모집</h4>
       <!-- 스터디모집 구인글 영역 -->
@@ -156,7 +157,6 @@
       </table>
       <!-- 스터디모집 구인글 영역 종료-->
 
-
       <!-- 본문 / 댓글 중간 여백 영역 시작 -->
       <div style="width:100%; display: block; height:80px;">
             <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='studylist.do'">
@@ -170,6 +170,7 @@
 	  </jsp:include>
       <!-- 댓글 영역 끝 -->
   </div>
+</div>
   
   	<!-- 게시글 작성자 M_NO와 세션 M_NO를 히든에 넣어둔다. JS에서 종종 사용될 경우가 있음 -->
 	<input id="bd_mno" type="hidden" value="${dto.m_no }">
@@ -187,7 +188,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.5"></script>
+<script type="text/javascript" src="resources/js/company/companydetail.js?ver=1.8"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

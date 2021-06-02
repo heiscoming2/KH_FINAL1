@@ -1,13 +1,9 @@
 package com.itpro.model.biz;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import com.itpro.model.dto.member.MemberDto;
-import com.itpro.model.dto.member.ProfileDto;
-import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.resume.CareerDto;
 import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.model.dto.resume.LicenceDto;
