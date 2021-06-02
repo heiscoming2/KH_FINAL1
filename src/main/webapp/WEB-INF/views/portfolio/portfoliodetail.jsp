@@ -22,6 +22,8 @@
   <div class="study_detailwrap mt-5">
         <h4>프로젝트</h4>
       <!-- 프로젝트 디테일 영역 -->
+      <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+       <input type="hidden" name="bd_no" value=${dto.board.bd_no }>
       <table class="table table-bordered" style="width:100%;">
         <tr>
           <td>
@@ -85,6 +87,7 @@
             </div>
             
             
+			
               <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
 				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" 

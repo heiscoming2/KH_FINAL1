@@ -78,8 +78,7 @@
             <c:forEach var="career" items="${dto.career }" varStatus="status">
             <tr>
               <th><span>* </span>경력사항</th>             
-              <td>
-              <input type="text" value="재직 중" readonly>   
+              <td> 
                 <input type=text class="form-control" value="${career.ca_title }" readonly> </td>
               <br>
               <td><input type='text' value="${career.ca_start_date }" readonly /></td>         
