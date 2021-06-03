@@ -100,7 +100,7 @@
             </tr>
              <tr>
               <th><span>* </span>포트폴리오 소개 </th>
-              <td><input type="text" class="form-control" name="bd_content"></td>
+              <td><input type="text" class="form-control" name="bd_content" placeholder="간단한 포트폴리오 내용을 입력해 주세요."></td>
               </tr>
 
             

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itpro.model.biz.PortfolioBiz;
 import com.itpro.model.dao.BoardDao;
@@ -20,8 +21,11 @@ import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SuppressWarnings("unused")
 @Service
+@Slf4j
 public class PortfolioBizImpl implements PortfolioBiz{
 
 	
@@ -59,6 +63,9 @@ public class PortfolioBizImpl implements PortfolioBiz{
 		dto.setCareer(careerDao.selectOne(m_no));
 		dto.setEdu(educationDao.selectOne(m_no));
 		dto.setMember(memberDao.selectOne(m_no));
+		
+		//log.info("portfolioDetailDto BizImpl: " + dto.toString());
+		
 		return dto;
 	}
 
@@ -81,6 +88,7 @@ public class PortfolioBizImpl implements PortfolioBiz{
 	}
 
 	@Override
+	@Transactional
 	public int update(PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto) {
 		int res = 0;
 		int portfolioUpdateRes = portfolioDao.update(portfolioUpdateDto);

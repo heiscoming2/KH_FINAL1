@@ -55,7 +55,7 @@
 	<select id="selectone" resultType="PortfolioDetailDto" parameterType="int">
 		SELECT B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		       B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
-		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=#{bd_no}) BD_RECOMMANDCOUNT, 
 		       P.PORT_DEVELOP, P.PORT_LINK, P.PORT_PRIZE
 		FROM BOARD B, PORTFOLIO P
 		WHERE B.BD_NO = P.BD_NO
@@ -74,22 +74,26 @@
 		DELETE FROM PORTFOLIO WHERE BD_NO = #{bd_no}
 	</delete>
 	
-	<update id="update" parameterType="PortfolioUpdateDto">	
-		UPDATE BOARD AS B, PORTFOLIO AS P
+	<update id="updateBoard" parameterType="BoardUpdateDto">	
+		UPDATE BOARD 
 		SET 	
-			B.BD_TITLE = #{bd_title},
-			B.BD_CONTENT = #{bd_content},
+			BD_TITLE = #{bd_title},
+			BD_CONTENT = #{bd_content}
 
-			P.PORT_DEVELOP = #{port_develop},
-			P.PORT_LINK = #{port_link},
-			P.PORT_PRIZE = #{port_prize}
+		WHERE BD_NO = #{bd_no}
 
-		WHERE B.M_NO = #{m_no}
-		AND P.BD_NO = #{bd_no}
-	
 	</update>
 	
 	
-	
+	<update id="update" parameterType="PortfolioUpdateDto">	
+		UPDATE PORTFOLIO 
+		SET 	
+			PORT_DEVELOP = #{port_develop},
+			PORT_LINK = #{port_link},
+			PORT_PRIZE = #{port_prize}
+
+		WHERE BD_NO = #{bd_no}
+
+	</update>
 	
 </mapper>

@@ -19,6 +19,6 @@ public interface PortfolioDao {
 	public PortfolioDetailDto selectOne(int bd_no);
 	public int portfolioInsert(PortfolioInsertDto portfolioDto);
 	public int delete(int bd_no);
-	public int update(PortfolioUpdateDto portfolioUpdateDto);
 	public int getPortfolioListCnt();
+	public int update(PortfolioUpdateDto portfolioUpdateDto);
 }

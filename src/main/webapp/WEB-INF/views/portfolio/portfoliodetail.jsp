@@ -47,9 +47,9 @@
                 </ul>
               </div>
               <span class="reg_date">
-                <fmt:formatDate value="${dto.board.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
-                <c:if test="${dto.board.bd_modifydate ne null }">
-                	<fmt:formatDate value="${dto.board.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정)
+                <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
+                <c:if test="${dto.bd_modifydate ne null }">
+                	<fmt:formatDate value="${dto.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정)
 				</c:if>
               </span>
               
@@ -60,7 +60,7 @@
               <div style="margin: 10px 0px;">
               <span class="detail_no">${dto.bd_no }</span> <!-- 글 번호 --> <!-- *******dto.board.bd_no -->
               <br>
-              <span class="detail_title">${dto.board.bd_title }</span> <!-- 글 제목 -->
+              <span class="detail_title">${dto.bd_title }</span> <!-- 글 제목 -->
              </div>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
@@ -84,7 +84,7 @@
                   ※ 사용 개발 기술: ${dto.port_develop }<br>
                   ※ 프로젝트 링크: ${dto.port_link }<br>
                   ※ 수상 내역: ${dto.port_prize } <br>
-                  ※ 포트폴리오 소개: ${dto.board.bd_content } <br>      
+                  ※ 포트폴리오 소개: ${dto.bd_content } <br>      
               <br>
               <br>
             </div>
@@ -98,7 +98,7 @@
 				<c:if test='${login ne null}'> like_func(${dto.bd_no}, ${login.m_no }) </c:if>
 				<c:if test='${login eq null}'> alert('로그인해주세요.')</c:if>" 
 				style="margin:0 auto;"> 
-					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.board.bd_recommandcount}</span></span>
+					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
 				</div>
             </div>
             <!-- 좋아요 버튼 종료 -->
