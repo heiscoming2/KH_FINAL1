@@ -41,9 +41,7 @@ public class HomeController {
 		
 		//하단 슬라이드바 포트폴리오 top10
 		List<MainPagePortfolioDto> mainPagePortfolioList = boardBiz.selectMainPortfolioList();
-		log.info(mainPagePortfolioList.toString());
 		model.addAttribute("mainPagePortfolioList",mainPagePortfolioList);
-		log.info("mainPagePortfolioList 갯수 : "+Integer.toString(mainPagePortfolioList.size()));
 		return "main";
 	}
 	
