@@ -26,7 +26,7 @@
 		<h6>내 포트폴리오를 등록하고</h6>
 		<h6>채용 기업/개발자들의</h6>
 		<h6>실제 평가를 받아 볼 수 있습니다.</h6>
-		<input type="button" class="btn btn-primary" value="회원가입하고 포트폴리오 등록하기">
+		<input type="button" class="btn btn-primary" value="회원가입하고 포트폴리오 등록하기" onclick="location.href='join.do'">
 	</div>
 	<div style="float:right;">
 		<img src="resources/images/mainimages/introduction-img.png">
@@ -50,7 +50,7 @@
 			<div class="testimonial-view">
 				<h5 class="text-center">
 					<img src="resources/images/mainimages/pngwing.png" style="width:50px; height:50px;">
-					<b>TOP 10 포트폴리오</b> <input type="button" class="btn btn-primary ml-3" value="더 보기">
+					<b>TOP 10 포트폴리오</b> <input type="button" class="btn btn-primary ml-3" value="더 보기" onclick="location.href='portfoliolist.do'">
 				</h5>
 				
 				<div class="owl-carousel">

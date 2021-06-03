@@ -11,7 +11,7 @@ import com.itpro.model.dto.note.NoteDto;
 import com.itpro.model.dto.resume.ResumeDto;
 
 public interface NoteBiz {
-
+	
 	// 내가 받은 쪽지 목록 조회
 	public List<NoteDto> receiveList(int n_receiver);
 
@@ -35,4 +35,6 @@ public interface NoteBiz {
 	
 	// 새로 받은 쪽지가 있는지 확인(매번)
 	public Integer countNewNote();
+
+	public int companyApplicationSendNote(Map<String, Object> map);
 }

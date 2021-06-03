@@ -62,7 +62,7 @@
 							</c:if>
 							<c:if test="${dto.ca_status eq 'Y' }">
 								<td class="col-2">
-						 			<span style="background-color:#009688; border-radius:8px; color:white; padding:10px; margin-right:5px; margin-top:5px;">
+						 			<span style="background-color:#009688; border-radius:8px; color:white; padding:10px; position:relative; top:5px;">
 						 			합격 지원자 
 						 			</span>								
 								</td>
@@ -98,7 +98,7 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<script type="text/javascript" src="resources/js/company/companyresumelist.js?ver=1.0"></script>
+<script type="text/javascript" src="resources/js/company/companyresumelist.js?ver=1.1"></script>
 
 </body>
 </html>

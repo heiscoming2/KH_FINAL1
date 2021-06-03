@@ -39,7 +39,7 @@
          <table class="portfolio_inserttable">
             <tr>
               <th><span>* </span>제목</th>
-              <td><input type="text" class="form-control" name="bd_title" value="${portfolioDetailDto.board.bd_title }"></td>
+              <td><input type="text" class="form-control" name="bd_title" value="${portfolioDetailDto.bd_title }"></td>
             </tr>
             <tr>
               <th><span>* </span>이름 </th>
@@ -94,7 +94,7 @@
             </tr>
             <tr>
               <th><span>* </span>포트폴리오 소개 </th>
-              <td><input type="text" class="form-control" value="${portfolioDetailDto.board.bd_content}" name="bd_content"></td>
+              <td><input type="text" class="form-control" value="${portfolioDetailDto.bd_content}" name="bd_content"></td>
               </tr>
 			
           </table>

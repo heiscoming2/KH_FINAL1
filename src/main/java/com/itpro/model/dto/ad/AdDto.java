@@ -22,7 +22,7 @@ public class AdDto {
 	private int bd_recommandcount; // 추천수
 
 	// 첨부 파일
-	private String bf_originname; // 파일 저장명
+	private String[] files; // 파일 저장명
 
 	// 회원
 	private String m_img_path; // 프로필 이미지 경로

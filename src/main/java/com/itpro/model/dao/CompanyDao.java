@@ -15,4 +15,5 @@ public interface CompanyDao {
 
 	public int updateStatusChange(Map<String, Object> map);
 
+
 }

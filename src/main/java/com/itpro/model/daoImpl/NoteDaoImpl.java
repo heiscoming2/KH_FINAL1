@@ -133,4 +133,32 @@ public class NoteDaoImpl implements NoteDao {
 		return count;
 	}
 
+<<<<<<< HEAD
+=======
+	// 읽은 쪽지 읽은 시간 표시 UPDATE
+	public int updateReadDate() {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "updateReadDate");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
+
+	}
+
+	@Override
+	public int companyApplicationSendNote(Map<String, Object> map) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "companyapplicationsendnote",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+>>>>>>> 8ff6fe6e6e150eb117c7cbe3a562b47a2f48b243
 }

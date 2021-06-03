@@ -75,5 +75,19 @@
 		WHERE N_RECEIVER = #{n_receiver}
 		AND N_NO=#{n_no}
 	</update>	
-
+	
+	<!-- 기업회원 서류통과/불합격 여뷰 자동 쪽지 발송 -->
+	<insert id="companyapplicationsendnote" parameterType="hashMap">
+		INSERT INTO NOTE
+		VALUES(NOTE_SEQ.NEXTVAL,
+			  (SELECT M.M_NO FROM IT_MEMBER M, COMPANY C, BOARD B WHERE B.BD_NO=C.BD_NO AND B.M_NO=M.M_NO AND B.BD_NO=#{bd_no}),
+		 	  (SELECT M_NO FROM M_RESUME WHERE R_NO=#{r_no}),
+		 	  #{n_title},
+		 	  #{n_content},
+		 	  SYSDATE,
+		 	  NULL)
+	</insert>
+	
+	
+	
 </mapper>
