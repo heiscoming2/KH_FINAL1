@@ -80,6 +80,7 @@
 		
 		<typeAlias type="com.itpro.model.dto.member.PostLookupDto" alias="PostLookupDto"/>
 		<typeAlias type="com.itpro.model.dto.board.SearchListDto" alias="SearchListDto"/>
+		<typeAlias type="com.itpro.model.dto.company.CompanyResumeDto" alias="CompanyResumeDto"/>
 	</typeAliases>
 	
 	<mappers>
@@ -106,6 +107,18 @@
 		
 		<mapper resource="/mybatis/career-mapper.xml"/>
 		<mapper resource="/mybatis/education-mapper.xml"/>
+
+
+
+
+
+
+
+
+
+
+		<mapper resource="/mybatis/company-mapper.xml"/>
+		
 	</mappers>
 
 </configuration>

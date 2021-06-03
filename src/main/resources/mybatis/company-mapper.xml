@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Company">
+	<insert id="insert" parameterType="hashMap">
+		INSERT INTO COMPANYAPPLICATIONINFO VALUES(#{bd_no},#{r_no},SYSDATE,'W')
+	</insert>
+	
+	
+	<select id="selectCompanyResumeList" parameterType="int" resultType="CompanyResumeDto">
+		SELECT M.M_NO, M_IMG_PATH, M.M_IMG, M.M_NICKNAME,
+			   R.R_NO, R.R_TITLE, C.CA_DATE, C.CA_STATUS
+		FROM IT_MEMBER M, COMPANYAPPLICATIONINFO C, M_RESUME R
+		WHERE C.BD_NO=30000  
+		  AND R.R_NO=C.R_NO
+		  AND R.M_NO=M.M_NO
+	</select>
+	
+	<update id="updatestatuschange" parameterType="hashMap">
+		UPDATE COMPANYAPPLICATIONINFO
+		<if test="ca_status=='Y'">
+		SET CA_STATUS='Y'
+		</if>
+		<if test="ca_status=='N'">
+		SET CA_STATUS='N'
+		</if>
+		WHERE BD_NO=#{bd_no}
+		  AND R_NO=#{r_no}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

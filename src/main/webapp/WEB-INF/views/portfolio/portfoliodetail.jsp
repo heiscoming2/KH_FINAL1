@@ -20,8 +20,12 @@
 
 <!-- 본문 시작 -->
   <div class="study_detailwrap mt-5">
-        <h4>프로젝트</h4>
-      <!-- 프로젝트 디테일 영역 -->
+
+  
+        <h4>포트폴리오</h4>
+      <!-- 포트폴리오 디테일 영역 -->
+      <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+       <input type="hidden" name="bd_no" value=${dto.bd_no }>  <!-- *******dto.board.bd_no -->
       <table class="table table-bordered" style="width:100%;">
         <tr>
           <td>
@@ -54,7 +58,7 @@
 
             <!-- 글 번호 / 제목 영역 시작 -->
               <div style="margin: 10px 0px;">
-              <span class="detail_no">${dto.board.bd_no }</span> <!-- 글 번호 -->
+              <span class="detail_no">${dto.bd_no }</span> <!-- 글 번호 --> <!-- *******dto.board.bd_no -->
               <br>
               <span class="detail_title">${dto.board.bd_title }</span> <!-- 글 제목 -->
              </div>
@@ -62,34 +66,36 @@
 
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.board.bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.board.bd_no}');">
+              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.bd_no}&m_no=${dto.member.m_no}'">
+              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">  <!-- *******dto.board.bd_no -->
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
 
             <!-- 글 내용 시작 -->
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
+            
                   ※ 이름: ${dto.member.m_nickname} <br>
                   ※ 이메일: ${dto.member.m_email }<br>
                   ※ 전화 번호: ${dto.member.m_phone }<br>
                   ※ 최종 학력: ${dto.edu.ed_school }<br>
-                  ※ 경력 사항: <c:forEach var="career" items="${dto.career }" > 
-               ${career.ca_title } ${career.ca_start_date } <br> </c:forEach> <br>
+                  ※ 경력 사항: <br>
+                  <c:forEach var="career" items="${dto.career }" > 
+               ${career.ca_title } [${career.ca_start_date } ~ ${career.ca_end_date }]<br> </c:forEach> <br>
                   ※ 사용 개발 기술: ${dto.port_develop }<br>
                   ※ 프로젝트 링크: ${dto.port_link }<br>
                   ※ 수상 내역: ${dto.port_prize } <br>
-            
+                  ※ 포트폴리오 소개: ${dto.board.bd_content } <br>      
               <br>
               <br>
             </div>
             
             
-            
+			
               <!-- 좋아요 버튼 시작 -->
             <div class="text-center">
 				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" 
 				onclick="
-				<c:if test='${login ne null}'> like_func(${dto.board.bd_no}, ${login.m_no }) </c:if>
+				<c:if test='${login ne null}'> like_func(${dto.bd_no}, ${login.m_no }) </c:if>
 				<c:if test='${login eq null}'> alert('로그인해주세요.')</c:if>" 
 				style="margin:0 auto;"> 
 					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.board.bd_recommandcount}</span></span>
@@ -101,21 +107,24 @@
           </td>
         </tr>
       </table>
-      <!-- 포트폴리오 영역 종료-->
+      <!-- QNA 영역 종료-->
 
-      <!-- 본문 / 댓글 중간 여백 영역 시작 -->
+         <!-- 본문 / 댓글 중간 여백 영역 시작 -->
       <div style="width:100%; display: block; height:80px;">
-            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;">
+            <input type="button" class="btn btn-primary" value="뒤로가기" style="float:right;" onclick="location.href='portfoliolist.do'">
       </div>
       <!-- 본문 / 댓글 중간 여백 영역 종료 -->
+	
 
-       <!-- 댓글 영역 시작 -->
+
+	 
+    <%--   <!-- 댓글 영역 시작 -->
 	  <jsp:include page="../reply/reply.jsp">
 	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
 	  </jsp:include>
 	  
 	  
-      <!-- 댓글 영역 끝 -->
+      <!-- 댓글 영역 끝 --> --%>
   </div>
 
 <!-- 본문 종료 -->

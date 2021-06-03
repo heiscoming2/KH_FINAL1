@@ -160,17 +160,18 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	}	
 	
 	@RequestMapping(value="/portfolioupdateform.do")
-	public String portfolioUpdateForm(Model model,@RequestParam(value="bd_no") int bd_no,HttpSession session) {
+	public String portfolioUpdateForm(Model model, @RequestParam(value="bd_no") int bd_no, @RequestParam(value="m_no") int m_no, HttpSession session) {
 		logger.info("Portfolio UPDATE FORM");
-		MemberDto loginDto = (MemberDto) session.getAttribute("login");
-		int m_no = loginDto.getM_no();
+//		MemberDto loginDto = (MemberDto) session.getAttribute("login");
+//		int m_no = loginDto.getM_no();
 		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no, m_no);
 		model.addAttribute("portfolioDetailDto", portfolioDetailDto);
+		
 		return "portfolio/portfolioupdateform";
 	}
 	
 	@RequestMapping(value="/portfolioupdate.do")
-	public String portfolioUpdate(Model model, PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto, HttpSession session) {
+	public String portfolioUpdate(Model model, @RequestParam(value="m_no") int m_no, PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto, HttpSession session) {
 		logger.info("Portfolio UPDATE");
 		
 		int portfolioUpdateRes = portfolioBiz.update(portfolioUpdateDto, boardUpdateDto);
@@ -179,13 +180,16 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 			int bd_no = portfolioUpdateDto.getBd_no();
 			return "redirect:portfoliodetail.do?bd_no="+bd_no;
 		}
-		MemberDto loginDto = (MemberDto) session.getAttribute("login");
-		int m_no = loginDto.getM_no();
+//		MemberDto loginDto = (MemberDto) session.getAttribute("login");
+//		int m_no = loginDto.getM_no();
 		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(portfolioUpdateDto.getBd_no(), m_no); 
 		portfolioDetailDto.getBoard().bd_title = (boardUpdateDto.getBd_title());
 		portfolioDetailDto.getBoard().bd_content = (boardUpdateDto.getBd_content());
-		/* portfolioDetailDto.setBf_originname(boardUpdateDto.getBf_originname()); */
-		
+
+		portfolioDetailDto.setPort_develop(portfolioUpdateDto.getPort_develop());
+		portfolioDetailDto.setPort_link(portfolioUpdateDto.getPort_link());
+		portfolioDetailDto.setPort_prize(portfolioUpdateDto.getPort_prize());
+
 		model.addAttribute("portfolioDetailDto", portfolioDetailDto);
 		logger.info("업데이트 실패");
 		return "portfolio/portfolioupdateform";

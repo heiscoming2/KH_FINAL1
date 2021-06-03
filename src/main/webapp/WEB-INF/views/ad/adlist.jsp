@@ -18,7 +18,7 @@
   <div class="qna_wrap">
         <h3>광고문의 게시판</h3>
         <div class="ad_btnwrap">
-			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='adinsertform.do'">
+			<input type="button" class="btn btn-success" value="광고 문의 및 신청" onclick="location.href='adinsertform.do'">
 		</div>
         
         <table class="ad_table">
@@ -40,7 +40,7 @@
                 <c:choose>
 					<c:when test="${empty adList }">
 						<td colspan="4" align="center">
-							광고문의가 없습니다...
+							성공하는 기업의 첫시작! 광고 ! 지금 시작하세요!
 						</td>
 					</c:when>
 					<c:otherwise>

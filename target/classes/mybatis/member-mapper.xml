@@ -7,10 +7,11 @@
 
 	<!-- 회원로그인 -->
 	<select id="login" parameterType="MemberDto" resultType="MemberDto">
-		SELECT M_NO, M_ID, M_PW, M_NICKNAME, M_TYPE, M_AUTH, M_IMG, M_IMG_PATH, M_RESUMECHK
-		FROM IT_MEMBER
-		WHERE M_ID = #{m_id}
-		AND M_PW = #{m_pw}
+		SELECT A.M_NO, A.M_ID, A.M_PW, A.M_NICKNAME, A.M_TYPE, A.M_AUTH, A.M_IMG, A.M_IMG_PATH, A.M_RESUMECHK, B.M_ADMIN_CERT
+		FROM IT_MEMBER A, BIZ_MEMBER B
+		WHERE A.M_NO = B.M_NO(+)
+		AND A.M_ID = #{m_id}
+		AND A.M_PW = #{m_pw}
 	</select>
 
 	<!--개인 회원가입 -->
