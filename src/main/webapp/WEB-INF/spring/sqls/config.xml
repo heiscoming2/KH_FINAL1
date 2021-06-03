@@ -62,6 +62,8 @@
 		<typeAlias type="com.itpro.model.dto.resume.CareerDto" alias="CareerDto"/>
 		<typeAlias type="com.itpro.model.dto.note.NoteDto" alias="NoteDto"/>
 		<typeAlias type="com.itpro.model.dto.resume.ResumeProfileDto" alias="ResumeProfileDto"/>
+		<typeAlias type="com.itpro.model.dto.resume.ResumeImgDto" alias="ResumeImgDto"/>
+		<typeAlias type="com.itpro.model.dto.resume.ResumeUploadDto" alias="ResumeUploadDto"/>
 
 		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
 

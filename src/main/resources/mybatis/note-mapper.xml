@@ -68,7 +68,7 @@
 		AND N_READDATE IS NULL
 	</select>
 
-	<!-- 읽은 쪽지 읽은 시간 표시 UPDATE -->
+	<!--내가 받은 쪽지 읽은 시간 표시 UPDATE -->
 	<update id="updateReadDate">
 		UPDATE NOTE
 		SET N_READDATE = SYSDATE
