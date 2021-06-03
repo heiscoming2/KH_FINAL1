@@ -21,14 +21,15 @@ import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.model.dto.resume.LicenceDto;
 import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeImgDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
+import com.itpro.model.dto.resume.ResumeUploadDto;
 
 @Repository
 public class ResumeDaoImpl implements ResumeDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
 
 	// 이력서 목록 조회
 	@Override
@@ -110,19 +111,30 @@ public class ResumeDaoImpl implements ResumeDao {
 		return list;
 	}
 
-	// 이력서 이미지 등록
-	@Override
-	public int profileUpload(ResumeProfileDto resumeProfileDto) {
+	/*
+	 * // 이력서 이미지 등록
+	 * 
+	 * @Override public int profileUpload(ResumeProfileDto resumeProfileDto) { int
+	 * res = 0;
+	 * 
+	 * try { res = sqlSession.insert(NAMESPACE + "uploadProfile", resumeProfileDto);
+	 * } catch (Exception e) { System.out.println("[error]:uploadProfile");
+	 * e.printStackTrace(); }
+	 * 
+	 * return res; }
+	 */
+
+	// 이력서 이미지 업로드
+	public int uploadResumeImg(ResumeImgDto resumeImgDto) {
+		
 		int res = 0;
-
-		try {
-			res = sqlSession.update(NAMESPACE + "uploadProfile", resumeProfileDto);
-		} catch (Exception e) {
-			System.out.println("[error]:uploadProfile");
-			e.printStackTrace();
-		}
-
-		return res;
+		
+		try { 
+			  res = sqlSession.insert(NAMESPACE + "uploadResumeImg", resumeImgDto);
+		  } catch (Exception e) { System.out.println("[error]:uploadResumeImg");
+		  e.printStackTrace(); }
+		  
+		 return res;
 	}
 
 	// 이력서 삭제
@@ -160,11 +172,11 @@ public class ResumeDaoImpl implements ResumeDao {
 
 	// 이력서 기본 정보 입력
 	@Override
-	public int resumeInsert(ResumeDetailDto resumeDto) {
+	public int resumeInsert(ResumeUploadDto dto) {
 		int res = 0;
 
 		try {
-			res = sqlSession.update(NAMESPACE + "resumeInsert", resumeDto);
+			res = sqlSession.insert(NAMESPACE + "resumeInsert", dto);
 
 		} catch (Exception e) {
 			System.out.println("[error] : resumeInsert");

@@ -63,6 +63,19 @@ public class NoteDaoImpl implements NoteDao {
 		return detail;
 	}
 
+	// 읽은 쪽지 읽은 시간 표시 UPDATE
+	public int updateReadDate(NoteDto updateNoteDto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "updateReadDate", updateNoteDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
+
+	}
+
 	// 내가 보낸 쪽지 하나 읽기
 	public NoteDto sendDetail(Map map) {
 		NoteDto detail = null;
@@ -118,19 +131,6 @@ public class NoteDaoImpl implements NoteDao {
 			e.printStackTrace();
 		}
 		return count;
-	}
-
-	// 읽은 쪽지 읽은 시간 표시 UPDATE
-	public int updateReadDate() {
-		int res = 0;
-		try {
-			res = sqlSession.update(NAMESPACE + "updateReadDate");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return res;
-
 	}
 
 }

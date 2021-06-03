@@ -20,7 +20,9 @@ import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.model.dto.resume.LicenceDto;
 import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeImgDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
+import com.itpro.model.dto.resume.ResumeUploadDto;
 
 @Service
 public class ResumeBizImpl implements ResumeBiz {
@@ -59,9 +61,9 @@ public class ResumeBizImpl implements ResumeBiz {
 
 	// 이미지 저장
 	@Override
-	public int profileUpload(ResumeProfileDto resumeProfileDto) {
+	public int uploadResumeImg(ResumeImgDto resumeImgDto) {
 
-		return dao.profileUpload(resumeProfileDto);
+		return dao.uploadResumeImg(resumeImgDto);
 	}
 
 	// 이력서 삭제
@@ -79,9 +81,9 @@ public class ResumeBizImpl implements ResumeBiz {
 
 	// 이력서 기본 정보 입력
 	@Override
-	public int resumeInsert(ResumeDetailDto resumeDto) {
+	public int resumeInsert(ResumeUploadDto dto) {
 		
-		return dao.resumeInsert(resumeDto);
+		return dao.resumeInsert(dto);
 	}
 
 	// 이력서 경력사항 정보 입력

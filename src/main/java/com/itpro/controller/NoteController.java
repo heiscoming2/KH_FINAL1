@@ -108,7 +108,7 @@ public class NoteController {
 
 	// 내가 받은 쪽지 읽기
 	@RequestMapping(value = "/receiveDetail.do")
-	public String receiveDetail(Model model, HttpSession session, int n_no) {
+	public String receiveDetail(Model model, HttpSession session, int n_no, NoteDto updateNoteDto) {
 		logger.info("NOTE RECEIVE READ");
 
 		int n_receiver = 0;
@@ -123,6 +123,12 @@ public class NoteController {
 		NoteDto noteDto = biz.receiveDetail(map);
 
 		model.addAttribute("noteDto", noteDto);
+		
+		//쪽지 읽은 시간 업데이트 ->읽을때 같이 처리하는거 아닌가요? ㅠ
+		/*
+		 * int readDate = biz.updateReadDate(updateNoteDto);
+		 * model.addAttribute("readDate", readDate);
+		 */
 
 		return "note/note_receiveDetail";
 	}
