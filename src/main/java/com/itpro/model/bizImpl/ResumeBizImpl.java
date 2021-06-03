@@ -28,13 +28,6 @@ public class ResumeBizImpl implements ResumeBiz {
 	@Autowired
 	private ResumeDao dao;
 
-	// 이력서 등록
-	@Override
-	public MemberDto selectOne() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	// 이력서 목록조회
 	@Override
 	public List<ResumeDto> resumeList(int m_no) {
@@ -55,12 +48,12 @@ public class ResumeBizImpl implements ResumeBiz {
 	}
 
 	// 이력서 자격사항 조회(list)
-	public List<LicenceDto> licenceList(int m_no){
+	public List<LicenceDto> licenceList(int m_no) {
 		return dao.licenceList(m_no);
 	}
 
 	// 이력서 경력사항 조회(list)
-	public List<CareerDto> careerList(int m_no){
+	public List<CareerDto> careerList(int m_no) {
 		return dao.careerList(m_no);
 	}
 
@@ -75,6 +68,41 @@ public class ResumeBizImpl implements ResumeBiz {
 	@Override
 	public int resumeDelete(int r_no) {
 		return dao.resumeDelete(r_no);
+	}
+
+	// 이력서 - 회원 기본 정보 수정
+	@Override
+	public int memResumeUpdate(MemberDto memberDto) {
+		
+		return dao.memResumeUpdate(memberDto);
+	}
+
+	// 이력서 기본 정보 입력
+	@Override
+	public int resumeInsert(ResumeDetailDto resumeDto) {
+		
+		return dao.resumeInsert(resumeDto);
+	}
+
+	// 이력서 경력사항 정보 입력
+	@Override
+	public int careerInsert(CareerDto careerDto) {
+		
+		return dao.careerInsert(careerDto);
+	}
+
+	// 이력서 학력사항 정보 입력
+	@Override
+	public int educationInsert(EducationDto educationDto) {
+		
+		return dao.educationInsert(educationDto);
+	}
+
+	// 이력서 자격사항 정보 입력
+	@Override
+	public int licenseInsert(LicenceDto licenceDto) {
+		
+		return dao.licenseInsert(licenceDto);
 	}
 
 }

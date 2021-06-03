@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
+Built-By: user
+Build-Jdk: 1.8.0_272
+=======
 Built-By: YooHyoJun
 Build-Jdk: 1.8.0_282
+>>>>>>> 99a7ce86ef8c399b45a3613e657b6d7980e84812
 Created-By: Maven Integration for Eclipse
 

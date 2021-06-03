@@ -25,7 +25,7 @@ public class MemberDto {
 	private String m_img; // 이미지
 	private Date m_regdate;// 등록일
 	private String m_name; // 이름
-	private String m_birth; // 생년월일
+	private Date m_birth; // 생년월일
 	private String m_gender; // 성별
 	private String m_resumechk; // 이력서 작성여부(Y,N)
 

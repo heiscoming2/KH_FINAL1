@@ -53,11 +53,6 @@
 		ORDER BY CA_NO
 	</select>
 
-	<!--이력서 등록 -->
-	<update id="resumeInsert">
-
-	</update>
-
 	<!-- 이력서 사진 업로드 -->
 	<update id="uploadProfile" parameterType="ResumeProfileDto">
 		UPDATE M_RESUME
@@ -79,5 +74,40 @@
 		FROM M_RESUME
 		WHERE R_NO = #{r_no}
 	</delete>
+	
+	<!--@@@@@@@@@@@@@@이력서 등록@@@@@@@@@@@@@@@@@@@@@  -->
+	<!-- 이력서 회원 기본 정보 수정 -->
+	<update id="memResumeUpdate" parameterType="MemberDto">
+		UPDATE IT_MEMBER
+		SET M_NAME = #{m_name}, M_BIRTH=#{m_birth}, M_GENDER=#{m_gender}, M_PHONE = #{m_phone}
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<!--이력서 기본정보 수정(이미지가 먼저 들어감)--><!-- 사진이 먼저 들어가서 이력서 번호를 모르는데 되는지........되나? 이력서 사진 등록할때 null안뜨게 컬럼을 같이 넣어야 겠네... -->
+	<update id="resumeInsert" parameterType="resumeDto">
+		UPDATE M_RESUME
+		SET R_TITLE=#{r_title}, R_POSTCODE=#{r_postcode}, 
+			R_ROADADDRESS=#{r_roadAddress}, R_JIBUNADDRESS=#{r_jibunAddress}, R_DETAILADDRESS=#{r_detailAddress}, R_EXTRAADDRESS=#{r_extraAddress}, 
+			R_SELFLETTER=#{r_selfletter}, R_PORTFOLIO=#{r_portfolio}, R_REGDATE=#{r_regdate}
+		WHERE R_NO = #{r_no}
+	</update>
+	
+	<!-- 이력서 학력사항 입력 --> 
+	<insert id="educationInsert" parameterType="educationDto">
+		INSERT INTO EDUCATION
+		VALUES(#{m_no}, EDUCATION_SEQ.NEXTVAL,#{ed_startdate} , #{ed_gradudate}, #{ed_schoolName}, #{ed_graduation}, #{ed_major}, #{ed_school})
+	</insert>
+	
+	<!-- 이력서 자격증 입력 -->
+	<insert id="licenseInsert" parameterType="licenceDto">
+		INSERT INTO LICENCE
+		VALUES(#{m_no}, LICENCENO_SEQ.NEXTVAL,#{li_title} , #{li_date}, #{li_organ})
+	</insert>
+	
+	<!-- 이력서 경력 입력 -->
+	<insert id="careerInsert" parameterType="careerDto">
+		INSERT INTO CAREER
+		VALUES(#{m_no}, CAREERNO_SEQ.NEXTVAL,#{ca_title} , #{ca_content}, #{ca_start_date}, #{ca_end_date})
+	</insert>
 
 </mapper>

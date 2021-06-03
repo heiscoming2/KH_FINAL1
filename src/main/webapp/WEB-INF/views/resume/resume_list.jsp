@@ -44,7 +44,7 @@
 								<td class="col-6"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
 								<td class="col-3"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yyyy-MM-dd"/></td>
 								<td class="col-2">
-									<button class="btn btn-primary btn-sm" onclick="location.href='resume_update.do'">수정</button>
+									<button class="btn btn-primary btn-sm" onclick="location.href='resume_updateForm.do?r_no=${resumeList.r_no}'">수정</button>
 								</td>
 							</tr>
 						</c:forEach>

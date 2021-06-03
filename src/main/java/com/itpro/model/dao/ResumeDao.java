@@ -32,13 +32,25 @@ public interface ResumeDao {
 	// 이력서 경력사항 조회(list)
 	public List<CareerDto> careerList(int m_no);
 
-	// 이력서 등록
-	public MemberDto selectOne(int m_no);
-
 	// 이력서 이미지 업로드
 	public int profileUpload(ResumeProfileDto resumeProfileDto);
 
 	// 이력서 삭제
 	public int resumeDelete(int r_no);
+
+	// 이력서 - 회원 기본 정보 수정
+	public int memResumeUpdate(MemberDto memberDto);
+		
+	// 이력서 기본 정보 입력
+	public int resumeInsert(ResumeDetailDto resumeDto);
+		
+	// 이력서 경력사항 정보 입력
+	public int careerInsert(CareerDto careerDto);
+		
+	// 이력서 학력사항 정보 입력
+	public int educationInsert(EducationDto educationDto);
+		
+	// 이력서 자격사항 정보 입력
+	public int licenseInsert(LicenceDto licenceDto);
 
 }

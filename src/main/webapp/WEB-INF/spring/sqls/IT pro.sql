@@ -192,7 +192,7 @@ CREATE TABLE LICENCE (
     M_NO NUMBER,
     LI_NO NUMBER,
     LI_TITLE   VARCHAR2(50) NOT NULL,
-    LI_DATE   VARCHAR(50) NOT NULL,
+    LI_DATE  DATE NOT NULL,
     LI_ORGAN   VARCHAR(50) NOT NULL,
     
     CONSTRAINT LICENCE_PK PRIMARY KEY(LI_NO),
@@ -209,8 +209,8 @@ CREATE SEQUENCE EDUCATION_SEQ NOCACHE;
 CREATE TABLE EDUCATION (
     M_NO NUMBER,
     ED_NO NUMBER,
-    ED_STARTDATE  VARCHAR2(50) NOT NULL,
-    ED_GRADUDATE  VARCHAR2(50),
+    ED_STARTDATE DATE NOT NULL,
+    ED_GRADUDATE  DATE,
     ED_SCHOOLNAME VARCHAR2(100) NOT NULL,
     ED_GRADUATION VARCHAR2(50) NOT NULL, --1-졸업 / 2-휴학 / 3-중퇴 / 4-재학
     ED_MAJOR VARCHAR2(50) NOT NULL,
@@ -705,7 +705,7 @@ VALUES (AD_SEQ.NEXTVAL,1003,'광고게시','무역','종합상사','2021/5/21','
 
 --이력서
  INSERT INTO M_RESUME
-    VALUES(1005,RESUMENO_SEQ.NEXTVAL,'테스트자소서자소서자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
+    VALUES(1004,RESUMENO_SEQ.NEXTVAL,'테스트자소서자소서자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
     INSERT INTO M_RESUME
     VALUES(1004,RESUMENO_SEQ.NEXTVAL,'테스트자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
     
@@ -726,9 +726,8 @@ VALUES (AD_SEQ.NEXTVAL,1003,'광고게시','무역','종합상사','2021/5/21','
  VALUES(1004,CAREERNO_SEQ.NEXTVAL,'네이버','웹개발어쩌구 저쩌구',to_date('2021-03-05'),to_date('2021-10-06'));
     
 --자격사항
-    INSERT INTO LICENCE
-    VALUES(1004,LICENCENO_SEQ.NEXTVAL,'사무자동화기사','2020년 02월 11일','한국산업인력공단');
- 
+   INSERT INTO LICENCE
+    VALUES(1004,LICENCENO_SEQ.NEXTVAL,'사무자동화기사',to_date('2020-03-05'),'한국산업인력공단');
 
 /* 기업회원 생성 및 기업 정보 INSERT */
 

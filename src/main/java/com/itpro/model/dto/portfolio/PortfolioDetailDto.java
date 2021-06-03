@@ -1,6 +1,5 @@
 package com.itpro.model.dto.portfolio;
 
-import java.util.Date;
 import java.util.List;
 
 import com.itpro.model.dto.board.BoardDto;
