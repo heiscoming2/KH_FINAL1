@@ -1,7 +1,15 @@
 package com.itpro.controller;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.AdBiz;
 import com.itpro.model.biz.BoardBiz;
@@ -27,9 +36,6 @@ import com.itpro.model.dto.ad.AdDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.MemberDto;
-import com.itpro.model.dto.qna.QnaDetailDto;
-import com.itpro.model.dto.qna.QnaInsertDto;
-import com.itpro.model.dto.qna.QnaUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
@@ -183,5 +189,55 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	}
 	
 	
+	@RequestMapping("/kakaopay.do")
+	@ResponseBody
+	public String kakaopay() {
+		try {
+			
+			//데이터 받기 
+			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
+			HttpURLConnection con = (HttpURLConnection) url.openConnection(); 
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Authorization", "KakaoAK c1011b15c30c998efa86e461b4aa0995");
+			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8 ");
+			con.setDoOutput(true);
+			String param ="cid=TC0ONETIME&partner_order_id=partner_order_id & partner_user_id=partner_user_id & item_name=초코파이 & quantity=1 & total_amount=2200 & vat_amount=200 & tax_free_amount=0 & approval_url=https://developers.kakao.com/success & fail_url=https://developers.kakao.com/fail & cancel_url=https://developers.kakao.com/cancel";
+			
+			
+			//데이터 주기 (전송)
+			OutputStream giver = con.getOutputStream();
+			DataOutputStream datagiver = new DataOutputStream(giver);
+			datagiver.writeBytes(param);// 데이터를 쥐고 있는 상태. 아직 전달안함.
+			datagiver.flush();
+			datagiver.close();
+			
+			//실제 통신하는 부분
+			int result= con.getResponseCode();
+			
+			InputStream receiver;
+			if(result==200) {
+				receiver =con.getInputStream();
+			}else {
+				receiver= con.getErrorStream();
+			}
+			
+			InputStreamReader reader = new InputStreamReader(receiver);
+			
+			//문자로 형변환
+			BufferedReader typeCasting = new BufferedReader(reader);
+			return typeCasting.readLine();
+					
+			
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		
+		return "{\"result\":\"NO\"}"; 
+		
+	}
 	
 }

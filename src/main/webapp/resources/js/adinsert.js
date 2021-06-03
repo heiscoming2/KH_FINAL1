@@ -10,7 +10,7 @@ function chk_null() {
 $(document).ready(function() {
 		//여기 아래 부분
 		$('#summernote').summernote({
-			height : 100, // 에디터 높이
+			height : 200, // 에디터 높이
 			minHeight : null, // 최소 높이
 			maxHeight : null, // 최대 높이
 			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
@@ -20,7 +20,24 @@ $(document).ready(function() {
 	});
 	
 	
+/*카카오페이 결제*/
 
-
+$(function(){
+	$('#apibtn').click(function(){
+		$.ajax({
+			url:'/kakaopay.do', 
+			dataType:'json' ,
+			
+			
+			success:function(data){
+				alert(data)
+				
+			} ,
+			error:function(error){
+			alert(error);
+			}
+		});
+	});
+});
  
  

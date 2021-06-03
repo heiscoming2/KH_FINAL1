@@ -10,6 +10,43 @@
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 
+<script type="text/javascript">
+	
+function cal(){
+	
+	var startday = document.getElementById("startDate").value;
+	var endday = document.getElementById("endDate").value;
+	
+	console.log(startday);
+	console.log(endday);
+	
+	//yyyy-mm-dd로 된 날짜를 "-"로 쪼개기
+	var start_Array = startday.split("-");
+	var end_Array = endday.split("-");
+	
+	console.log(start_Array);
+	console.log(end_Array);
+	//월에서 1을 뺀 이유는 자바스크립트에서 Date 객체의 월은 우리가 사용하는 것보다 1이 작기 때문에.
+	var start_date = new Date(start_Array[0],Number(start_Array[1])-1, start_Array[2]);
+	var end_date = new Date(end_Array[0],Number(end_Array[1])-1, end_Array[2]);
+	
+	console.log(start_date);
+	console.log(end_date);
+	
+	var betweenday=(end_date.getTime() - start_date.getTime())/1000/60/60/24;
+	var totalprice=betweenday * 10000;
+	
+	var finalprice= totalprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	console.log(finalprice);
+	
+	$('.price').val(finalprice);
+};
+
+
+</script>
+
+
+
 
 <title>IT PRO 광고문의하기</title>
 </head>
@@ -37,6 +74,7 @@
 			</div>
 			<!-- 프로필이미지, 아이디, 작성일 div 끝 -->
 			<br> <br>
+		
 			<table class="table ad_inserttable">
 				<tr>
 					<th><span>* </span>제목</th>
@@ -51,18 +89,19 @@
 					<td><input type=text class="form-control" name="ad_name"></td>
 				</tr>
 				<tr>
-					<th><span>* </span>희망시작일</th>
-					<td><input type='date' id="startDate" class="form-control datepicker" name="ad_starddate" value="startDate">
-					<fmt:formatDate var="resultRegDt" value="${startDate}" pattern="yyyy-MM-dd"/>${resultRegDt}
+					<th><span>* </span>희망광고기간</th>
+					<td>
+						<input type='date' id="startDate" class="period" name="ad_startdate"> ~ <input type='date' id="endDate" class="period " name="ad_enddate">
 					</td>
 				</tr>
 				<tr>
-					<th><span>* </span>희망종료일</th>
-					<td><input type='date' id="endDate" class="form-control datepicker" name="ad_enddate"></td>
-				</tr>
-				<tr>
 					<th><span>* </span>가격</th>
-					<td><input type=text class="form-control" name="ad_price"></td>
+					<td><input type=text class="price" size=15 name="ad_price" readonly="readonly">
+					<input type="button" value="가격책정" onclick="cal()"></td>
+				</tr>
+				<tr>					
+					<th><span>*</span>결제</th>
+					<td><button id="apibtn"><img src="resources/images/payment_icon_yellow_small.png"></button></td>
 				</tr>
 				<tr>
 					<th><span>* </span>이미지파일 업로드</th>
@@ -100,10 +139,8 @@
 
 					</c:choose>
 				</tr>
-
-
-
 			</table>
+			
 			<textarea id="summernote" name="bd_content"></textarea>
 			<br>
 
@@ -111,9 +148,9 @@
 
 			<!-- 취소 / 등록 컨펌 버튼 -->
 			<div style="height: 80px;">
-				<input type="submit" value="등록" class="btn btn-primary"
-					style="float: right; margin-left: 10px;"> <input
-					type="button" value="취소" class="btn btn-primary"
+				<input type="submit" value="등록" class="btn btn-primary" formaction="adinsert.do"
+					style="float: right; margin-left: 10px;"> 
+				<input type="button" value="취소" class="btn btn-primary"
 					onclick="location.href='adlist.do'" style="float: right;">
 			</div>
 		</form>
