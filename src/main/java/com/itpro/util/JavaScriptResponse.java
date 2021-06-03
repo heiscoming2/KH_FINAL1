@@ -21,7 +21,7 @@ public class JavaScriptResponse {
 		out.print("alert('"+msg+"');");
 		out.print("location.href='"+url+"';");
 		out.print("</script>");
-		
+		out.flush();
 	}
 	
 	

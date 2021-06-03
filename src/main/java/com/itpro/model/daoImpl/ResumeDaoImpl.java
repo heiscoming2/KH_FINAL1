@@ -29,12 +29,6 @@ public class ResumeDaoImpl implements ResumeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	// 이력서 등록
-	@Override
-	public MemberDto selectOne(int m_no) {
-
-		return null;
-	}
 
 	// 이력서 목록 조회
 	@Override
@@ -83,7 +77,7 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return list;
 	}
-	
+
 	// 이력서 자격사항(list)
 	@Override
 	public List<LicenceDto> licenceList(int m_no) {
@@ -99,7 +93,7 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return list;
 	}
-	
+
 	// 이력서 경력사항(list)
 	@Override
 	public List<CareerDto> careerList(int m_no) {
@@ -115,7 +109,6 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return list;
 	}
-
 
 	// 이력서 이미지 등록
 	@Override
@@ -147,5 +140,86 @@ public class ResumeDaoImpl implements ResumeDao {
 		return res;
 	}
 
+	// =============== 이력서 등록 ==========================
+
+	// 이력서 - 회원 기본 정보 수정
+	@Override
+	public int memResumeUpdate(MemberDto memberDto) {
+
+		int res = 0;
+
+		try {
+			res = sqlSession.update(NAMESPACE + "memResumeUpdate", memberDto);
+		} catch (Exception e) {
+			System.out.println("[error]:memResumeUpdate");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 기본 정보 입력
+	@Override
+	public int resumeInsert(ResumeDetailDto resumeDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.update(NAMESPACE + "resumeInsert", resumeDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : resumeInsert");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 경력사항 정보 입력
+	@Override
+	public int careerInsert(CareerDto careerDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "careerInsert", careerDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : careerInsert");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 학력사항 정보 입력
+	@Override
+	public int educationInsert(EducationDto educationDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "educationInsert", educationDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : educationInsert");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 자격사항 정보 입력
+	@Override
+	public int licenseInsert(LicenceDto licenceDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "licenseInsert", licenceDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : licenseInsert");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
 
 }

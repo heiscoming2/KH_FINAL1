@@ -16,7 +16,10 @@ import com.itpro.model.dto.portfolio.PortfolioInsertDto;
 import com.itpro.model.dto.portfolio.PortfolioListDto;
 import com.itpro.model.dto.portfolio.PortfolioUpdateDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class PortfolioDaoImpl implements PortfolioDao {
 
 	@Autowired
@@ -52,6 +55,9 @@ public class PortfolioDaoImpl implements PortfolioDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		//log.info("portfolioDetailDto daoimpl: " + portfolioDetailDto.toString());
+		
 		return portfolioDetailDto;
 	}
 
@@ -81,6 +87,7 @@ public class PortfolioDaoImpl implements PortfolioDao {
 	@Override
 	public int update(PortfolioUpdateDto portfolioUpdateDto) {
 		int portfolioUpdateRes = 0;
+
 		try {
 			portfolioUpdateRes = sqlSession.update(NAMESPACE+"update", portfolioUpdateDto);
 		} catch (Exception e) {
@@ -100,8 +107,6 @@ public class PortfolioDaoImpl implements PortfolioDao {
 		}
 		return portfolioListCnt;
 	}
-	
-
 
 
 }

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+=======
 <%
 	request.setCharacterEncoding("utf-8");
 %>    
     
+>>>>>>> e7f1d713545b22e9020f60329ddd53e3d1765b40
 <!DOCTYPE html>
 <html>
 <head>

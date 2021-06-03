@@ -98,7 +98,8 @@
           <li><a href="projectlist.do" class="nav-link px-2 text-white"  >프로젝트</a></li>
           <li><a href="qnalist.do" class="nav-link px-2 text-white">Q & A</a></li>
           <li><a href="studylist.do" class="nav-link px-2 text-white">스터디모집</a></li>
-          <li><a href="companycrawlinglist.do" class="nav-link px-2 text-white">채용 정보</a></li>
+          <li><a href="companylist.do" class="nav-link px-2 text-white">채용정보</a></li>
+          <li><a href="companycrawlinglist.do" class="nav-link px-2 text-white">외부채용정보</a></li>
           <li><a href="#" class="nav-link px-2 text-white">화상면접</a></li>
           <c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
           <li><a href="adlist.do" class="nav-link px-2 text-white">광고문의</a></li>
@@ -135,12 +136,13 @@
                 <c:choose>
                   <c:when test="${mypage eq '개인회원'}">
                     <li><a class="dropdown-item" href="mypage_user.do">마이페이지</a></li>
+                <li><a class="dropdown-item" href="postlookup.do?m_no=${sessionScope.login.m_no }">작성 글 조회</a></li>		
                   </c:when>
                   <c:otherwise>
                     <li><a class="dropdown-item" href="mypage_biz.do">마이페이지</a></li>
+                    <li><a class="dropdown-item" href="companyresumelist.do?m_no=${sessionScope.login.m_no }">채용 공고 관리</a></li>
                   </c:otherwise>
                 </c:choose>
-                <li><a class="dropdown-item" href="postlookup.do?m_no=${sessionScope.login.m_no }">작성 글 조회</a></li>		
                 <li><a class="dropdown-item" href="note_receivelist.do">쪽지함</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <c:if test="${sessionScope.login.m_auth eq 'Y' }">

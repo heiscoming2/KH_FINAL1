@@ -18,7 +18,7 @@
         <h3>이력서 조회</h3> 	
         <div class="float-end">
         	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
-        	<button class="btn btn-primary" onclick="location.href='resume_update.do?r_no=${resumeDetailDto.r_no}'">수정</button>
+        	<button class="btn btn-primary" onclick="location.href='resume_updateForm.do?r_no=${resumeDetailDto.r_no}'">수정</button>
             <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
             <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
         </div>
@@ -44,8 +44,8 @@
                 <br>
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">생년월일</h5></div>
-                    <div class="col-2">            
-                        <span class="fs-5">${memberDto.m_birth }</span>           
+                    <div class="col-3">            
+                        <span class="fs-5"><fmt:formatDate value="${memberDto.m_birth }" pattern="yyyy년 MM월 DD일"/></span>           
                     </div>      
                     <div class="col-1"><h5 class="fw-bold">성별</h5></div>
                     <div class="col-1">
@@ -107,8 +107,8 @@
 					<c:otherwise>
 						<c:forEach items="${educationList}" var="educationList">
 							<tr>
-								<td>${educationList.ed_startdate}</td>
-			                    <td>${educationList.ed_gradudate}</td>
+								<td><fmt:formatDate value="${educationList.ed_startdate}" pattern="yyyy년 MM월 "/></td>
+			                    <td><fmt:formatDate value="${educationList.ed_gradudate}" pattern="yyyy년 MM월 "/></td>
 			                    <td>${educationList.ed_schoolName}</td>
 			                    <td>${educationList.ed_major}</td>
 			                    <td>${educationList.ed_school}</td>
@@ -143,8 +143,8 @@
 					<c:otherwise>
 						<c:forEach items="${licenceList}" var="licenceList">
 							<tr>
-			                    <td>${licenceList.li_date}</td>
 			                    <td>${licenceList.li_title}</td>
+			                    <td><fmt:formatDate value="${licenceList.li_date}" pattern="yyyy년 MM월 DD일"/></td>
 			                    <td>${licenceList.li_organ}</td>
 		                  	</tr>
 						</c:forEach> 
@@ -180,8 +180,8 @@
 						<c:forEach items="${careerList}" var="careerList">
 							<tr>
 			                    <td>${careerList.ca_title}</td>
-			                    <td>${careerList.ca_start_date}</td>
-			                    <td>${careerList.ca_end_date}</td>
+			                    <td><fmt:formatDate value="${careerList.ca_start_date}" pattern="yyyy년 MM월 DD일"/></td>
+			                    <td><fmt:formatDate value="${careerList.ca_end_date}" pattern="yyyy년 MM월 DD일"/></td>
 			                    <td>${careerList.ca_content}</td>
 		                  	</tr>
 						</c:forEach> 

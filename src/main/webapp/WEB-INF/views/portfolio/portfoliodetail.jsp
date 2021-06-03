@@ -20,10 +20,12 @@
 
 <!-- 본문 시작 -->
   <div class="study_detailwrap mt-5">
-        <h4>프로젝트</h4>
-      <!-- 프로젝트 디테일 영역 -->
+
+  
+        <h4>포트폴리오</h4>
+      <!-- 포트폴리오 디테일 영역 -->
       <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
-       <input type="hidden" name="bd_no" value=${dto.board.bd_no }>
+       <input type="hidden" name="bd_no" value=${dto.bd_no }>  <!-- *******dto.board.bd_no -->
       <table class="table table-bordered" style="width:100%;">
         <tr>
           <td>
@@ -45,9 +47,9 @@
                 </ul>
               </div>
               <span class="reg_date">
-                <fmt:formatDate value="${dto.board.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
-                <c:if test="${dto.board.bd_modifydate ne null }">
-                	<fmt:formatDate value="${dto.board.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정)
+                <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
+                <c:if test="${dto.bd_modifydate ne null }">
+                	<fmt:formatDate value="${dto.bd_modifydate }" pattern="yyyy-MM-dd HH:mm:ss"/> (수정)
 				</c:if>
               </span>
               
@@ -56,21 +58,22 @@
 
             <!-- 글 번호 / 제목 영역 시작 -->
               <div style="margin: 10px 0px;">
-              <span class="detail_no">${dto.board.bd_no }</span> <!-- 글 번호 -->
+              <span class="detail_no">${dto.bd_no }</span> <!-- 글 번호 --> <!-- *******dto.board.bd_no -->
               <br>
-              <span class="detail_title">${dto.board.bd_title }</span> <!-- 글 제목 -->
+              <span class="detail_title">${dto.bd_title }</span> <!-- 글 제목 -->
              </div>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
              <br>
             <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.board.bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.board.bd_no}');">
+              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.bd_no}&m_no=${dto.member.m_no}'">
+              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">  <!-- *******dto.board.bd_no -->
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
 
             <!-- 글 내용 시작 -->
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
+            
                   ※ 이름: ${dto.member.m_nickname} <br>
                   ※ 이메일: ${dto.member.m_email }<br>
                   ※ 전화 번호: ${dto.member.m_phone }<br>
@@ -81,7 +84,7 @@
                   ※ 사용 개발 기술: ${dto.port_develop }<br>
                   ※ 프로젝트 링크: ${dto.port_link }<br>
                   ※ 수상 내역: ${dto.port_prize } <br>
-            
+                  ※ 포트폴리오 소개: ${dto.bd_content } <br>      
               <br>
               <br>
             </div>
@@ -92,10 +95,10 @@
             <div class="text-center">
 				<div class="heart <c:if test='${likecheck eq 1 }'>is-active</c:if>" 
 				onclick="
-				<c:if test='${login ne null}'> like_func(${dto.board.bd_no}, ${login.m_no }) </c:if>
+				<c:if test='${login ne null}'> like_func(${dto.bd_no}, ${login.m_no }) </c:if>
 				<c:if test='${login eq null}'> alert('로그인해주세요.')</c:if>" 
 				style="margin:0 auto;"> 
-					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.board.bd_recommandcount}</span></span>
+					<span style="color:orange; font-size:12px; font-weight:bold;">추천수<span class="likecnt">${dto.bd_recommandcount}</span></span>
 				</div>
             </div>
             <!-- 좋아요 버튼 종료 -->

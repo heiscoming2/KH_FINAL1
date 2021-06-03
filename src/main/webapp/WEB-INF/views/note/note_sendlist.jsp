@@ -26,9 +26,9 @@
             <thead>
                 <tr class="d-flex">
                     <th class="col-1"><input type="checkbox"></th>
-                    <th class="col-2">등록일</th>
+                    <th class="col-3">등록일</th>
                     <th class="col-2">받은 사람</th>
-                    <th class="col-7">제목</th>
+                    <th class="col-6">제목</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,9 +42,9 @@
 						<c:forEach items="${sendList }" var="sendList">
 							<tr class="d-flex">
 								<td class="col-1"><input type="checkbox"></td>
-								<td class="col-2"><fmt:formatDate value="${sendList.n_sendDate }" /></td>
+								<td class="col-3"><fmt:formatDate value="${sendList.n_sendDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td class="col-2">${sendList.m_nickname }</td>
-								<td class="col-7"><a href="sendDetail.do?n_no=${sendList.n_no }" style="color:black;">${sendList.n_title }</a></td>
+								<td class="col-6"><a href="sendDetail.do?n_no=${sendList.n_no }" style="color:black;">${sendList.n_title }</a></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

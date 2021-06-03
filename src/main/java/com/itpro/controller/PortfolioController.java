@@ -144,7 +144,7 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 		model.addAttribute("dto", portfolioDetailDto);
 		
 		
-		
+		logger.info("portfolioDetailDto controller: " + portfolioDetailDto.toString());
 		
 		
 		
@@ -166,24 +166,29 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 //		int m_no = loginDto.getM_no();
 		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(bd_no, m_no);
 		model.addAttribute("portfolioDetailDto", portfolioDetailDto);
+		
 		return "portfolio/portfolioupdateform";
 	}
 	
 	@RequestMapping(value="/portfolioupdate.do")
-	public String portfolioUpdate(Model model, PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto, HttpSession session) {
+	public String portfolioUpdate(Model model, @RequestParam(value="m_no") int m_no, PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto, HttpSession session) {
 		logger.info("Portfolio UPDATE");
 		
 		int portfolioUpdateRes = portfolioBiz.update(portfolioUpdateDto, boardUpdateDto);
 		logger.info(Integer.toString(portfolioUpdateRes));
 		if(portfolioUpdateRes>0) {
 			int bd_no = portfolioUpdateDto.getBd_no();
-			return "redirect:portfoliodetail.do?bd_no="+bd_no;
+			return "redirect:portfoliodetail.do?bd_no="+bd_no+"&m_no="+m_no;
 		}
-		MemberDto loginDto = (MemberDto) session.getAttribute("login");
-		int m_no = loginDto.getM_no();
+//		MemberDto loginDto = (MemberDto) session.getAttribute("login");
+//		int m_no = loginDto.getM_no();
 		PortfolioDetailDto portfolioDetailDto = portfolioBiz.selectOne(portfolioUpdateDto.getBd_no(), m_no); 
-		portfolioDetailDto.getBoard().bd_title = (boardUpdateDto.getBd_title());
-		portfolioDetailDto.getBoard().bd_content = (boardUpdateDto.getBd_content());
+		//portfolioDetailDto.getBoard().bd_title = (boardUpdateDto.getBd_title());
+		//portfolioDetailDto.getBoard().bd_content = (boardUpdateDto.getBd_content());
+		portfolioDetailDto.setBd_title(portfolioUpdateDto.getBd_title());
+		portfolioDetailDto.setBd_content(portfolioUpdateDto.getBd_content());
+		
+		
 		portfolioDetailDto.setPort_develop(portfolioUpdateDto.getPort_develop());
 		portfolioDetailDto.setPort_link(portfolioUpdateDto.getPort_link());
 		portfolioDetailDto.setPort_prize(portfolioUpdateDto.getPort_prize());

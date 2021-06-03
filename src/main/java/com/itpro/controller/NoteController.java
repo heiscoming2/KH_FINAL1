@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -162,7 +163,7 @@ public class NoteController {
 
 	}
 
-	// 쪽지 개별삭제(받은쪽지)
+	// 쪽지 개별삭제(보낸쪽지)
 	@RequestMapping(value = "/note_sendDelete.do")
 	public String noteSendDelete(int n_no) {
 		logger.info("NOTE RECEIVE DELETE");
@@ -175,5 +176,24 @@ public class NoteController {
 		}
 
 	}
+	
+	//채용 여부 쪽지 자동 발송
+	@RequestMapping(value = "/companyapplicationsendnote.do")
+	@ResponseBody
+	public boolean companyApplicationSendNote(@RequestParam("r_no") int r_no, 
+			@RequestParam("bd_no") int bd_no, 
+			@RequestParam("ca_status") char ca_status) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("r_no", r_no);
+		map.put("bd_no", bd_no);
+		map.put("ca_status", ca_status);
+		int res = biz.companyApplicationSendNote(map);
+		
+		return res>0?true:false;
+	
+	}
+	
+	
 
 }

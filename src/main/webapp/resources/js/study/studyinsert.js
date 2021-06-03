@@ -3,7 +3,7 @@ $(document).ready(function() {
    $('#summernote').summernote({
      placeholder: '상세 내용을 입력해주세요.',
      height:500,
-	  callbacks: {
+	 callbacks: {
 		  onImageUpload: function(files, editor, welEditable) {
 			  for(var i = files.length - 1; i >= 0; i--) {
 				  sendFile(files[i],this)

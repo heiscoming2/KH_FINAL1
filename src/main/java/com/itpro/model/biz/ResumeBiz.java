@@ -1,13 +1,9 @@
 package com.itpro.model.biz;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import com.itpro.model.dto.member.MemberDto;
-import com.itpro.model.dto.member.ProfileDto;
-import com.itpro.model.dto.project.ProjectListDto;
 import com.itpro.model.dto.resume.CareerDto;
 import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.model.dto.resume.LicenceDto;
@@ -16,9 +12,6 @@ import com.itpro.model.dto.resume.ResumeDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
 
 public interface ResumeBiz {
-
-	// 이력서 등록
-	public MemberDto selectOne();
 
 	// 이력서 목록 조회
 	public List<ResumeDto> resumeList(int m_no);
@@ -40,5 +33,20 @@ public interface ResumeBiz {
 
 	// 이력서 삭제
 	public int resumeDelete(int r_no);
+
+	// 이력서 - 회원 기본 정보 수정
+	public int memResumeUpdate(MemberDto memberDto);
+
+	// 이력서 기본 정보 입력
+	public int resumeInsert(ResumeDetailDto resumeDto);
+
+	// 이력서 경력사항 정보 입력
+	public int careerInsert(CareerDto careerDto);
+
+	// 이력서 학력사항 정보 입력
+	public int educationInsert(EducationDto educationDto);
+
+	// 이력서 자격사항 정보 입력
+	public int licenseInsert(LicenceDto licenceDto);
 
 }

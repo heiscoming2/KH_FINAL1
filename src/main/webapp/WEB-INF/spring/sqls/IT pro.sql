@@ -17,6 +17,8 @@ DROP TABLE REPORT;
 DROP TABLE REPLYRECOMMAND;
 DROP TABLE STUDY;
 DROP SEQUENCE STUDYSEQ;
+DROP TABLE COMPANYAPPLICATIONINFO;
+DROP TABLE COMPANY;
 DROP TABLE REPLYIMAGE;
 DROP SEQUENCE REPLYIMAGESEQ;
 DROP TABLE REPLY;
@@ -190,7 +192,7 @@ CREATE TABLE LICENCE (
     M_NO NUMBER,
     LI_NO NUMBER,
     LI_TITLE   VARCHAR2(50) NOT NULL,
-    LI_DATE   VARCHAR(50) NOT NULL,
+    LI_DATE  DATE NOT NULL,
     LI_ORGAN   VARCHAR(50) NOT NULL,
     
     CONSTRAINT LICENCE_PK PRIMARY KEY(LI_NO),
@@ -207,8 +209,8 @@ CREATE SEQUENCE EDUCATION_SEQ NOCACHE;
 CREATE TABLE EDUCATION (
     M_NO NUMBER,
     ED_NO NUMBER,
-    ED_STARTDATE  VARCHAR2(50) NOT NULL,
-    ED_GRADUDATE  VARCHAR2(50),
+    ED_STARTDATE DATE NOT NULL,
+    ED_GRADUDATE  DATE,
     ED_SCHOOLNAME VARCHAR2(100) NOT NULL,
     ED_GRADUATION VARCHAR2(50) NOT NULL, --1-졸업 / 2-휴학 / 3-중퇴 / 4-재학
     ED_MAJOR VARCHAR2(50) NOT NULL,
@@ -371,6 +373,41 @@ CREATE TABLE STUDY (
    CONSTRAINT STUDY_BDNO_FK FOREIGN KEY(BD_NO) REFERENCES BOARD(BD_NO),
    CONSTRAINT STUDY_BDNO_PK PRIMARY KEY(BD_NO)   
 );
+
+
+/* COMPANY 생성 */
+CREATE TABLE COMPANY (
+
+    BD_NO NUMBER,
+    CP_NAME VARCHAR2(100),
+    CP_META VARCHAR2(300),
+    CP_CAREER VARCHAR2(50),
+    CP_EDUCATION VARCHAR2(50),
+    CP_ADDR1 VARCHAR2(50),
+    CP_ADDR2 VARCHAR2(50),
+    CP_ADDRDETAIL VARCHAR2(50),
+    CP_DEADLINE VARCHAR2(50),
+    CP_STATUS CHAR(1),
+    CP_IMG VARCHAR2(200),
+    CP_IMG_PATH VARCHAR2(200),
+    
+    CONSTRAINT COMPANY_BDNO_FK FOREIGN KEY(BD_NO) REFERENCES BOARD(BD_NO),
+    CONSTRAINT COMPANY_BDNO_PK PRIMARY KEY(BD_NO)   
+    
+);
+
+
+CREATE TABLE COMPANYAPPLICATIONINFO (
+    BD_NO NUMBER,
+    R_NO NUMBER,
+    CA_DATE DATE,
+    CA_STATUS CHAR(1),
+    CONSTRAINT CAINFO_BDNO_FK FOREIGN KEY(BD_NO) REFERENCES COMPANY(BD_NO),
+    CONSTRAINT CAINFO_RNO_FK FOREIGN KEY(R_NO) REFERENCES M_RESUME(R_NO),
+    CONSTRAINT CAINFO_BDNOwithRNO_PK PRIMARY KEY(BD_NO,R_NO)       
+);
+
+
 
 
 /* REPLY 테이블,시퀀스 드랍 및 생성 */
@@ -669,7 +706,7 @@ VALUES (AD_SEQ.NEXTVAL,1003,'광고게시','무역','종합상사','2021/5/21','
 
 --이력서
  INSERT INTO M_RESUME
-    VALUES(1005,RESUMENO_SEQ.NEXTVAL,'테스트자소서자소서자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
+    VALUES(1004,RESUMENO_SEQ.NEXTVAL,'테스트자소서자소서자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
     INSERT INTO M_RESUME
     VALUES(1004,RESUMENO_SEQ.NEXTVAL,'테스트자소서','123456','서울시 강남구','강남구 590번지','강남빌딩 4층','301호','자소서자소서자소서자소서자소서자소서자소서자소서','www.itpro.com','testprofile.jpg','profileimages/',SYSDATE);
     
@@ -690,19 +727,20 @@ VALUES (AD_SEQ.NEXTVAL,1003,'광고게시','무역','종합상사','2021/5/21','
  VALUES(1004,CAREERNO_SEQ.NEXTVAL,'네이버','웹개발어쩌구 저쩌구',to_date('2021-03-05'),to_date('2021-10-06'));
     
 --자격사항
-    INSERT INTO LICENCE
-    VALUES(1004,LICENCENO_SEQ.NEXTVAL,'사무자동화기사','2020년 02월 11일','한국산업인력공단');
- 
+   INSERT INTO LICENCE
+    VALUES(1004,LICENCENO_SEQ.NEXTVAL,'사무자동화기사',to_date('2020-03-05'),'한국산업인력공단');
 
+/* 기업회원 생성 및 기업 정보 INSERT */
 
-SELECT COUNT(BD_NO) CNT
-		FROM REPORT
-		WHERE BD_NO=2650;
+INSERT ALL
+INTO BOARD VALUES(30000,'자바 백엔드 개발자','업무소개 커머스 결제 금융 관련.. 자격조건 나이 성별 학력 무관 전공우대.. 우대사항 각종 장애 극복, 
+                        대규모 트래픽 처리 경험이 있으신분.. 이런분들과 일하고 싶어요 품질 좋은 소프트웨어.. 개발 팀 환경 기술 스택 JAVA....',
+                        SYSDATE,NULL,15,'192.111.123.444',4,2000)
+INTO COMPANY VALUES(30000,'도우테크','서버/백엔드/,안드로이드 앱,시스템/네트워크','5~7년','학력무관','서울 금천구 디지털로 9길 32, (가산동)',
+                           NULL,'A동 402호','상시채용','Y',NULL,NULL)
+INTO IT_MEMBER VALUES(2000,'doutech','1234','doutech','01099918888','doutech@doutech.com','N','활동','Y','기업회원','N','resources/images/companyimages/','doutech.png',SYSDATE,'도우테크',null,null,null)
+INTO BIZ_MEMBER VALUES(2000,'6216149871','Y')
+SELECT * FROM DUAL;
 
-SELECT B.BD_NO, COUNT(R.REPORT_NO) CNT, B.BD_TITLE, B.M_NO, C.NAME 
-        FROM REPORT R, BOARD B, BOARDCATEGORY C
-        WHERE R.BD_NO = B.BD_NO
-        AND B.BC_CODE=C.CODE
-        GROUP BY B.BD_NO, B.BD_TITLE,B.M_NO, C.NAME;
 
 COMMIT;

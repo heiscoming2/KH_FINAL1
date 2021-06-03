@@ -133,4 +133,16 @@ public class NoteDaoImpl implements NoteDao {
 
 	}
 
+	@Override
+	public int companyApplicationSendNote(Map<String, Object> map) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE + "companyapplicationsendnote",map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
 }
