@@ -49,4 +49,6 @@ public class CompanyDaoImpl implements CompanyDao {
 		return res;
 	}
 
+
+
 }

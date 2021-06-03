@@ -80,4 +80,18 @@ public class NoteBizImpl implements NoteBiz {
 		return dao.countNewNote();
 	}
 
+	@Override
+	public int companyApplicationSendNote(Map<String, Object> map) {
+		String n_title="지원하신 채용 정보에 대한 결과입니다.";
+		String n_content="";
+		if(map.get("ca_status").toString().charAt(0)=='Y') {
+			n_content="서류 합격";
+		} else {
+			n_content="서류 불합격";
+		}
+		map.put("n_title", n_title);
+		map.put("n_content", n_content);
+		return dao.companyApplicationSendNote(map);
+	}
+
 }

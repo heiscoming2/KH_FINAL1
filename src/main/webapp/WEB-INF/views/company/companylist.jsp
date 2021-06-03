@@ -181,8 +181,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-<script type=text/javascript src="resources/js/studylist.js?ver=1.3"></script>
 <script type=text/javascript src="resources/js/address.js"></script>
-<script type=text/javascript src="resources/js/company/companylist.js?ver=1.5"></script>
+<script type=text/javascript src="resources/js/company/companylist.js?ver=1.6"></script>
 </body>
 </html>
