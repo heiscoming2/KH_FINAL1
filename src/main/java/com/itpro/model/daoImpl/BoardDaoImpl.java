@@ -11,6 +11,8 @@ import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.board.SearchListDto;
+import com.itpro.model.dto.mainpage.MainPageBoardDto;
+import com.itpro.model.dto.mainpage.MainPagePortfolioDto;
 import com.itpro.model.dto.notice.NoticeDto;
 
 @Repository
@@ -76,6 +78,30 @@ public class BoardDaoImpl implements BoardDao {
 		List<SearchListDto> list = null;
 		try {
 			list = sqlSession.selectList(NAMESPACE+"selectsearchlist",searchlistMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<MainPageBoardDto> selectMainPageBoardList() {
+		List<MainPageBoardDto> list = null;
+		
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectmainpageboardlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<MainPagePortfolioDto> selectMainPortfolioList() {
+		List<MainPagePortfolioDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"selectmainpageportfoliolist");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -84,7 +84,7 @@
             <!-- 필수 입력 정보 노출 시작 -->
             <div style="font-weight:bold; font-size: 20px; padding:10px 0px;"> 
 		              요약<br>
-		        • 인원수 : ${dto.st_nowperson } / ${dto.st_closeperson }<br>
+		        • 인원수 : <span class="st_nowperson">${dto.st_nowperson }</span> / ${dto.st_closeperson }<br>
 		        • 장소 : ${dto.st_addr1}&nbsp;${dto.st_addr2 }&nbsp;${dto.st_addrdetail }<br>
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
@@ -187,7 +187,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.5"></script>
+<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.6"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

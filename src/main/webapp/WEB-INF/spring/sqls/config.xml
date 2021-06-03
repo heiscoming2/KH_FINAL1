@@ -81,6 +81,8 @@
 		<typeAlias type="com.itpro.model.dto.member.PostLookupDto" alias="PostLookupDto"/>
 		<typeAlias type="com.itpro.model.dto.board.SearchListDto" alias="SearchListDto"/>
 		<typeAlias type="com.itpro.model.dto.company.CompanyResumeDto" alias="CompanyResumeDto"/>
+		<typeAlias type="com.itpro.model.dto.mainpage.MainPageBoardDto" alias="MainPageBoardDto"/>
+		<typeAlias type="com.itpro.model.dto.mainpage.MainPagePortfolioDto" alias="MainPagePortfolioDto"/>
 	</typeAliases>
 	
 	<mappers>

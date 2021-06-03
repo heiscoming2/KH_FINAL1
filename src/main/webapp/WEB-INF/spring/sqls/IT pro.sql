@@ -717,8 +717,6 @@ VALUES (AD_SEQ.NEXTVAL,1003,'광고게시','무역','종합상사','2021/5/21','
     VALUES(1004,EDUCATION_SEQ.NEXTVAL,to_date('2020-03-05'),to_date('2021-03-05'),'서울대학교','졸업','컴퓨터공학과','대학교');
     
 --경력사항   
- INSERT INTO CAREER
- VALUES(1004,CAREERNO_SEQ.NEXTVAL,'KH정보교육원','웹개발어쩌구 저쩌구',SYSDATE,NULL);
   INSERT INTO CAREER
  VALUES(1004,CAREERNO_SEQ.NEXTVAL,'KH정보교육원','웹개발어쩌구 저쩌구',to_date('2021-03-05'), to_date('2021-10-06'));
    INSERT INTO CAREER

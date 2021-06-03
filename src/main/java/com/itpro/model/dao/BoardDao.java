@@ -6,6 +6,8 @@ import java.util.Map;
 import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.board.SearchListDto;
+import com.itpro.model.dto.mainpage.MainPageBoardDto;
+import com.itpro.model.dto.mainpage.MainPagePortfolioDto;
 
 public interface BoardDao {
 	
@@ -16,5 +18,7 @@ public interface BoardDao {
 	public BoardDto selectOne(int bd_no);
 	public int selectListCnt(Map<String, Object> searchlistMap);
 	public List<SearchListDto> selectSearchList(Map<String, Object> searchlistMap);
+	public List<MainPageBoardDto> selectMainPageBoardList();
+	public List<MainPagePortfolioDto> selectMainPortfolioList();
 	
 }

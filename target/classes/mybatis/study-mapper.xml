@@ -178,7 +178,12 @@
 		UPDATE STUDYJOININFO SET SJ_ISJOIN='y' WHERE M_NO=#{m_no} AND BD_NO=#{bd_no} 
 	</update>
 	
+	<update id="studyjoinnednumupdate" parameterType="int">
+		UPDATE STUDY SET ST_NOWPERSON = ST_NOWPERSON+1 WHERE BD_NO=#{bd_no}
+	</update>
 	
-	
+	<update id="studydropnumupdate" parameterType="int">
+		UPDATE STUDY SET ST_NOWPERSON = ST_NOWPERSON-1 WHERE BD_NO=#{bd_no}
+	</update>	
 		
 </mapper>

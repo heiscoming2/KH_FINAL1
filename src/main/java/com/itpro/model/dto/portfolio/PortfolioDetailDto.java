@@ -43,13 +43,6 @@ public class PortfolioDetailDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	
-	
-
-
-
 
 
 	@Override

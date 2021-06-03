@@ -199,6 +199,28 @@ public class StudyDaoImpl implements StudyDao {
 		}
 		return res;
 	}
+
+	@Override
+	public int studyJoinnedNumUpdate(int bd_no) {
+		log.info("studyJoinnedNumUpdate DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"studyjoinnednumupdate",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
-	
+	@Override
+	public int studyDropNumUpdate(int bd_no) {
+		log.info("studyDropNumUpdate DaoImpl");
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"studydropnumupdate",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}	
 }

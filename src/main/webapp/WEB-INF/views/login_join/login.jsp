@@ -37,19 +37,19 @@ input[type]:hover {
         <div>
             <div class="social_login" style="margin-top:20px;">
             	<div style="position:relative;">
-	                <img src="resources/images/loginlogo/facebooklogo.svg" style="width:30px; height:30px; position:absolute; top:3px; left:15px;"></img>
+	                <img src="resources/images/loginlogo/facebooklogo.svg" style="width:30px; height:30px; position:absolute; top:4px; left:15px; pointer-events : none; "></img>
 	                <input style="width:100%; background-color: #3c5a99; color:white;" type="button" value="페이스북으로 로그인" class="btn">
                 </div>
                 <div style="position:relative;">
-	                <img src="resources/images/loginlogo/naverlogo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px;"></img>
+	                <img src="resources/images/loginlogo/naverlogo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px; pointer-events : none"></img>
 	                <input style="width:100%; background-color: #00c73c; color:white; margin-top:8px;" type="button" value="네이버로 로그인" class="btn">
                 </div>
                 <div style="position:relative;">
-                	<img src="resources/images/loginlogo/googlelogo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px;"></img>
+                	<img src="resources/images/loginlogo/googlelogo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px; pointer-events : none; "></img>
                 	<input style="width:100%; background-color: #c62828; color:white; margin-top:8px;" type="button" value="구글로 로그인" class="btn">
                 </div>
                 <div style="position:relative;">
-                	<img src="resources/images/loginlogo/kakaologo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px;"></img>
+                	<img src="resources/images/loginlogo/kakaologo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px; pointer-events : none; "></img>
                 	<input style="width:100%; background-color: #ffd400; color:black; margin-top:8px;" type="button" value="카카오로 로그인" class="btn">
             	</div>
             </div>
