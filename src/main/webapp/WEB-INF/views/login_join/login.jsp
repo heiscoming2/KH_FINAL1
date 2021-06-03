@@ -5,53 +5,81 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<script type="text/javascript" src="./resources/js/login.js"></script> 
+
+<style>
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+    border-color: skyblue;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
+    outline: 0 none;
+}
+
+input[type]:hover {
+    border-color: skyblue;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
+    outline: 0 none;
+}
+
+</style>
 
 <title>로그인</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
+
+
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
- <div class="container">
-        <div class="row d-flex flex-row justify-content-center mt-5 mb-5">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <form>
-                            <div class="mb-3 row"><!--아이디 입력 폼-->
-                                <label class="col-sm-3 col-form-label">아이디</label>
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="m_id">
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row"><!--비밀번호 입력 폼-->
-                                <label class="col-sm-3 col-form-label">비밀번호</label>
-                                <div class="col-sm-9">
-                                  <input type="password" class="form-control" id="m_pw">
-                                </div>
-                            </div>
-                            
-                            <!--오류 알림-->
-                            <div class="mb-3 row mt-1 mb-1 text-center" style="color:red">
-                                <span id="loginChk"></span>
-                            </div>
-                            
-                            <div class="d-grid gap-2 col-5 mx-auto">
-                                <input type="button" class="btn btn-primary" value="로그인" onclick="login();">
-                            </div>
-                        </form>
-                    </div>
+    <div style="max-width:20rem; margin:80px auto; text-align:center;">
+        <h2><b>로그인</b></h2>
+        <div>
+            <div class="social_login" style="margin-top:20px;">
+            	<div style="position:relative;">
+	                <img src="resources/images/loginlogo/facebooklogo.svg" style="width:30px; height:30px; position:absolute; top:3px; left:15px;"></img>
+	                <input style="width:100%; background-color: #3c5a99; color:white;" type="button" value="페이스북으로 로그인" class="btn">
+                </div>
+                <div style="position:relative;">
+	                <img src="resources/images/loginlogo/naverlogo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px;"></img>
+	                <input style="width:100%; background-color: #00c73c; color:white; margin-top:8px;" type="button" value="네이버로 로그인" class="btn">
+                </div>
+                <div style="position:relative;">
+                	<img src="resources/images/loginlogo/googlelogo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px;"></img>
+                	<input style="width:100%; background-color: #c62828; color:white; margin-top:8px;" type="button" value="구글로 로그인" class="btn">
+                </div>
+                <div style="position:relative;">
+                	<img src="resources/images/loginlogo/kakaologo.svg" style="width:30px; height:30px; position:absolute; top:12px; left:15px;"></img>
+                	<input style="width:100%; background-color: #ffd400; color:black; margin-top:8px;" type="button" value="카카오로 로그인" class="btn">
+            	</div>
+            </div>
+             <div>
+                <hr><span style="font-size:12px; color:#B2C0CC;">또는</span>
+            </div>
+            <label style="float:left; font-size: 14px; margin-bottom: 8px;">아이디</label>
+            <input type="text" id="m_id" placeholder="아이디" style="width:100%;" class="form-control">
+            
+            <div style="margin-top:15px;">
+                <div>
+                <label style="float:left; font-size: 14px;">비밀번호</label>
+                <a style="float:right; font-size: 14px; color:#0d6efd; margin-bottom: 8px;">비밀번호 재설정</a>
+                <input type="password" id="m_pw" placeholder="비밀번호" style="width:100%;" class="form-control">
+                <input type="button" value="로그인 하기" style="width:100%; margin-top:20px; font-weight: bold;" class="btn btn-primary" onclick="login()">
+                <div style="text-align: center;">
+                    <br>
+                    <span style="color:#B2C0CC; font-size:14px;">아직 계정이 없으신가요?</span>
+                    <span style="font-size:14px; color:#263747; font-weight:600; cursor:pointer;" onclick="location.href='join.do'">계정 만들기 ></span>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-
+            <div>
+                <br>
+                <span style="font-size:13px;">이용약관</span>&nbsp;&nbsp;&nbsp;
+                <span style="font-size:13px;">개인정보 처리방침</span>&nbsp;&nbsp;&nbsp;
+                <span style="font-size:13px;">FAQ/문의</span>
+            </div>
+            </div>
+   	   </div>
+   </div>
 <!-- 본문 종료 -->
 
 <!-- FOOTER 시작 -->
@@ -60,6 +88,6 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-	
+<script type="text/javascript" src="./resources/js/login.js"></script> 	
 </body>
 </html>
