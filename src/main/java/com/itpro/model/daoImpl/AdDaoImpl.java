@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.itpro.model.dao.AdDao;
@@ -104,13 +105,13 @@ public class AdDaoImpl implements AdDao {
 
 	
 	
-	public int imageuploadupdate(int ad_seq, String pro_file) {
+	public int imageuploadupdate(int ad_seq, String ad_file) {
 		int result = 0;
 		System.out.println("ad_seq:" + ad_seq);
-		System.out.println("pro_file" + pro_file);
+		System.out.println("pro_file" + ad_file);
 		Map<String, Object> projectMap = new HashMap<String, Object>();
 		projectMap.put("ad_seq", ad_seq);
-		projectMap.put("pro_file", pro_file);
+		projectMap.put("pro_file", ad_file);
 		System.out.println("projectMap parameter: " + new Gson().toJson(projectMap));
 		try {
 		result = sqlSession.update(NAMESPACE + "imageupload", projectMap);
@@ -119,6 +120,12 @@ public class AdDaoImpl implements AdDao {
 		}
 		
 		return result; 
+	}
+
+	@Override
+	public int imageuploadupdate(MultipartFile fileName, int ad_seq) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

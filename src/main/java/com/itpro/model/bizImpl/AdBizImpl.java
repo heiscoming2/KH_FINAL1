@@ -116,6 +116,7 @@ public class AdBizImpl implements AdBiz {
         System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
         System.out.println("파일사이즈는 " + fileName.getSize());
         
-		return adDao.imageuploadupdate(ad_seq, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
+        return 0;
+		//return adDao.imageuploadupdate(ad_seq, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
 	}
 }
