@@ -10,6 +10,10 @@
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
+
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <title>IT PRO 상세보기</title>
 
 </head>
@@ -72,7 +76,8 @@
             <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
             <b>프로젝트</b><br>
               ※ 프로젝트 제목: ${item.pro_title } <br>
-              ※ 프로젝트 기간: ${item.pro_start } ~ ${item.pro_end }<br>
+              ※ 프로젝트 기간: <fmt:formatDate value="${item.pro_start }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item.pro_end  }" pattern="yyyy-MM-dd"/> <br>
+              <%-- ${item.pro_start } ~ ${item.pro_end }<br> --%>
               ※ 프로젝트 링크: ${item.pro_link }<br>
               ※ ERD 링크: ${item.pro_erd }<br>
               ※ 개발 환경: ${item.pro_develop }<br>

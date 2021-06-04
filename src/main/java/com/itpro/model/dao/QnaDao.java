@@ -20,7 +20,8 @@ public interface QnaDao {
 	public int delete(int bd_no);
 	public int update(QnaUpdateDto qnaUpdateDto);
 	public int getQnaListCnt();
-	public int getQnaSearchListCnt(QnaSearchDto qnaSearchDto);
-	public List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap);
-
+	/*
+	 * public int getQnaSearchListCnt(QnaSearchDto qnaSearchDto); public
+	 * List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap);
+	 */
 }

@@ -101,31 +101,18 @@ public class QnaDaoImpl implements QnaDao {
 		return qnaListCnt;
 	}
 
-	@Override
-	public int getQnaSearchListCnt(QnaSearchDto qnaSearchDto) {
-		int qnaSearchListCnt = 0;
-		try {
-			qnaSearchListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"qnasearchlistcnt",qnaSearchDto).toString().replace("[","").replace("]", ""));
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		}
-		return qnaSearchListCnt;
-	}
-
-	@Override
-	public List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap) {
-		List<QnaListDto> qnaList = null;
-		try {
-			qnaList = sqlSession.selectList(NAMESPACE+"selectsearchlist",qnaSearchMap);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return qnaList;
-	}
-
-	
-
-
-
+	/*
+	 * @Override public int getQnaSearchListCnt(QnaSearchDto qnaSearchDto) { int
+	 * qnaSearchListCnt = 0; try { qnaSearchListCnt =
+	 * Integer.parseInt(sqlSession.selectList(NAMESPACE+"qnasearchlistcnt",
+	 * qnaSearchDto).toString().replace("[","").replace("]", "")); } catch
+	 * (NumberFormatException e) { e.printStackTrace(); } return qnaSearchListCnt; }
+	 * 
+	 * @Override public List<QnaListDto> selectSearchList(Map<String, Object>
+	 * qnaSearchMap) { List<QnaListDto> qnaList = null; try { qnaList =
+	 * sqlSession.selectList(NAMESPACE+"selectsearchlist",qnaSearchMap); } catch
+	 * (Exception e) { e.printStackTrace(); } return qnaList; }
+	 * 
+	 */
 
 }
