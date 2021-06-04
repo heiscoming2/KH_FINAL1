@@ -25,6 +25,5 @@ public class MainPagePortfolioDto {
 	private List<CareerDto> careerdto;
 	private String port_prize;
 	
-	
 
 }

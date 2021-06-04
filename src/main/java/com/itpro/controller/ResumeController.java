@@ -84,7 +84,6 @@ public class ResumeController {
 
 		// 이력서 기본정보 조회(detail)
 		ResumeDetailDto resumeDetailDto = biz.resumeDetail(r_no);
-
 		// 회원번호로 멤버테이블 정보 가져옴
 		int m_no = resumeDetailDto.getM_no();
 		MemberDto memberDto = memberBiz.selectOne(m_no);
