@@ -5,12 +5,13 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/studydetail.css" rel="stylesheet">
+<link href="resources/css/studydetail.css?ver=1.5" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-
+<!-- 부트스트랩 아이콘 css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -71,31 +72,51 @@
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
 
             <!-- 필수 입력 정보 노출 시작 -->
-            <c:forEach items="${list }" var="item" > 
-            <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
-
-            
-            
-            <b>프로젝트</b><br>
-              ※ 프로젝트 제목: ${item.pro_title } <br>
-              ※ 프로젝트 기간: <fmt:formatDate value="${item.pro_start }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item.pro_end  }" pattern="yyyy-MM-dd"/> <br>
-              <%-- ${item.pro_start } ~ ${item.pro_end }<br> --%>
-              ※ 프로젝트 링크: ${item.pro_link }<br>
-              ※ ERD 링크: ${item.pro_erd }<br>
-              ※ 개발 환경: ${item.pro_develop }<br>
-              ※ 개발 목표: ${item.pro_goal } <br>
-              ※ 프로젝트 파일: 
-					<input type="button" value="download" onclick='location.href="/upgrade/${item.pro_file_path }"'>	
+            <c:forEach items="${list }" var="item" varStatus="status"> 
+            <div style="font-size: 15px; padding:10px 0px;"> 
+              	<table class="table portfolio_table" style="width:700px;">
+            	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>프로젝트 ${status.count }</b><br></caption>
+            	    <col width="200px;">
+            		<col width="500px;">
+            		<tr>
+	            		<th><i class="bi bi-person-lines-fill"></i>프로젝트 제목</th>
+	            		<td>${item.pro_title }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-calendar-date"></i>프로젝트 기간</th>
+	            		<td><fmt:formatDate value="${item.pro_start }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item.pro_end  }" pattern="yyyy-MM-dd"/></td>
+            		</tr>
+           			<tr>
+	            		<th><i class="bi bi-link-45deg"></i>프로젝트 링크</th>
+	            		<td>${item.pro_link }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-bounding-box"></i>ERD 링크</th>
+	            		<td>${item.pro_erd }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-clipboard-data"></i>개발 환경</th>
+	            		<td>${item.pro_develop }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-stack"></i>개발 목표</th>
+	            		<td>${item.pro_goal }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-download"></i>프로젝트 파일</th>
+	            		<td><input type="button" value="다운로드" onclick='location.href="/upgrade/${item.pro_file_path }"' class="btn-sm btn-dark"></td>
+            		</tr>
+            	</table>     	
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
-            <br>
-            
             <!-- 글 내용 시작 -->
-            <b>구현 기능</b>
-            <div class="detail_content">
+            <b style="font-size:15px;">&nbsp;구현 기능 상세 설명</b>
+            <br><br>
+            <div class="detail_content" style="margin-left:4px;">
              ${item.pro_function }
-             
-              <br>
+             <c:if test="${!status.last }">
+            <hr>
+            </c:if>
               <br>
             </div>
              </c:forEach>

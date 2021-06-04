@@ -129,8 +129,8 @@ $(document).ready(function(){
 								 value.m_nickname+
 								 "</a><br><span>"+value.sj_message+"</span>"+
 								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-								 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
-								 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul><br>"+
+								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"+
 								 "<input type='button' class='btn-sm btn-primary btn-studyjoin' value='수락' " +
 								 "onclick='studyJoinAccept("+value.m_no+","+bd_no+");'>"+
 								 "&nbsp;<input type='button' class='btn-sm btn-danger btn-studyjoin' value='거절' " +
@@ -150,8 +150,8 @@ $(document).ready(function(){
 								 value.m_nickname+
 								 "</a><br><span>"+value.sj_message+"</span>"+
 								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-								 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
-								 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul></div>"
+								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"
 						 );
 					 });
 					 $('.btn-applynum').attr('onclick','studyJoinApplyListToggle();');
@@ -174,8 +174,8 @@ $(document).ready(function(){
 								 value.m_nickname+
 								 "</a><br><span>"+value.sj_message+"</span>"+
 								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-								 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
-								 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul><br>"+
+								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"+
 								 "<input type='button' class='btn-sm btn-danger btn-studyjoin' value='추방' " +
 								 "onclick='studyJoinDrop("+value.m_no+","+bd_no+");'><br></div>"
 						 );
@@ -196,8 +196,8 @@ $(document).ready(function(){
 									 value.m_nickname+
 									 "</a><br><span>"+value.sj_message+"</span>"+
 									 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-									 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
-									 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul><br>"+
+									 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
+									 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"+
 									 "<input type='button' class='btn-sm btn-danger btn-studyjoin' value='탈퇴' " +
 									 "onclick='studyJoinWithdraw("+value.m_no+","+bd_no+");'><br></div>"
 							 );
@@ -212,8 +212,8 @@ $(document).ready(function(){
 									 value.m_nickname+
 									 "</a><br><span>"+value.sj_message+"</span>"+
 									 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-									 "<li><a class='dropdown-item' href='#'>쪽지보내기</a></li>"+
-									 "<li><a class='dropdown-item' href='#'>이력서 열람</a></li></ul></div>"
+									 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
+									 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"
 							);		 
 						 }
 					 });
@@ -222,6 +222,11 @@ $(document).ready(function(){
 			 }
 		 }
 	  });
+  }
+  
+  //쪽지폼 열기
+  function noteForm(receiver_no) {
+	  window.open("noteForm.do?receiver_no="+receiver_no, "쪽지 작성 팝업", "width=500, height=500, left=100, top=50");
   }
   
   //참여인원 조회 토글

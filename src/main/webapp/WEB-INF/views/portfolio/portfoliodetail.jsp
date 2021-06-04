@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfoliodetail.css?ver=1.5" rel="stylesheet">
+<link href="resources/css/portfoliodetail.css?ver=1.4" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
@@ -73,14 +73,14 @@
 
 
             <!-- 글 내용 시작 -->
-            <div style="font-size: 20px; padding:10px 0px;"> 
+            <div style="font-size: 15px; padding:10px 0px;"> 
               	<table class="table portfolio_table" style="width:700px;">
-            	<caption align="top" style="color:#212529;">&nbsp;<b>요약</b><br></caption>
+            	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>포트폴리오 정보</b><br></caption>
             	    <col width="200px;">
             		<col width="500px;">
             		<tr>
 	            		<th><i class="bi bi-person-lines-fill"></i>닉네임</th>
-	            		<td>dto.member.m_nickname</td>
+	            		<td>${dto.member.m_nickname }</td>
             		</tr>
             		<tr>
 	            		<th><i class="bi bi-envelope-open-fill"></i>이메일</th>

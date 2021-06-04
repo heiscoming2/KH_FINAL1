@@ -7,7 +7,7 @@
 
 <title>IT PRO</title>
 <%@include file="./inc/_head.jspf" %>
-<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.2">
+<link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.4">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -128,7 +128,7 @@
             style="cursor:pointer; background-color:#EEEBFF; padding:10px; 
             border:1px solid lightgray; color:#0078FF;">공지사항 >></h5>
           </div>
-          <table class="table table-sm table-hover" style='text-align: center' >
+          <table class="table table-sm table-hover table-main" style='text-align: center' >
             <thead>
               <tr>
                 <th class="col-lg-1">No.</th>
@@ -160,7 +160,7 @@
             <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF; cursor:pointer;"
             onclick="location.href='portfoliolist.do'">포트폴리오 >></h5>
           </div>
-          <table class="table table-sm table-hover" style='text-align: center' >
+          <table class="table table-sm table-hover table-main" style='text-align: center' >
             <thead>
               <tr>
             <th class="col-lg-1">No.</th>
@@ -194,7 +194,7 @@
             <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; color:#0078FF; cursor:pointer;" 
             onclick="location.href='projectlist.do'">프로젝트 >></h5>
           </div>
-          <table class="table table-sm table-hover" style='text-align: center' >
+          <table class="table table-sm table-hover table-main" style='text-align: center' >
             <thead>
               <tr>
                 <th class="col-lg-1">No.</th>
@@ -226,7 +226,7 @@
             <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF; cursor:pointer;"
             onclick="location.href='studylist.do'">스터디 모집 >></h5>
           </div>
-          <table class="table table-sm table-hover" style='text-align: center' >
+          <table class="table table-sm table-hover table-main" style='text-align: center' >
             <thead>
               <tr>
             <th class="col-lg-1">No.</th>
