@@ -6,7 +6,7 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <link rel="stylesheet" href="resources/css/qnalist.css">
-<title>포트폴리오/프로젝트</title>
+<title>Q&A</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -16,7 +16,8 @@
 <!-- 본문 시작 -->
 
   <div class="qna_wrap">
-        <h3>QNA 게시판</h3>
+  		<br> <br>
+        <h3>Q&A 게시판</h3>
         <div class="qna_btnwrap">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='qnainsertform.do'">
 		</div>

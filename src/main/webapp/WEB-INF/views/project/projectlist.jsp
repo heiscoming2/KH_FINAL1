@@ -11,7 +11,7 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <link rel="stylesheet" href="resources/css/projectlist.css">
-<title>포트폴리오/프로젝트</title>
+<title>프로젝트</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -21,6 +21,7 @@
 <!-- 본문 시작 -->
 
   <div class="project_wrap">
+  		<br> <br>
         <h3>프로젝트 게시판</h3>
         <div class="project_btnwrap">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='projectinsertform.do'">
