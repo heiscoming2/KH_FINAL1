@@ -21,6 +21,7 @@
 	<div class="project_insertwrap">
 		<!-- <form action="projectinsert.do" method="post"> -->
 			<!-- 프로젝트 작성 글 영역-->
+			<br><br>
 			<h3>프로젝트 글 작성</h3>
 			<br>
 			<!-- 프로필이미지, 아이디, 작성일 div -->

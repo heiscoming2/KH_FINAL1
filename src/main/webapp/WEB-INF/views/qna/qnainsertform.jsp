@@ -19,7 +19,9 @@
     <div class="qna_insertwrap">
       <form action="qnainsert.do" method="post">
        <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
-         <!-- qna 작성 글 영역-->
+         <!-- qna 작성 글 영역-->        
+         <br>
+         <br>
         <h3>qna 글 작성</h3>
         <br>
                  <!-- 프로필이미지, 아이디, 작성일 div -->

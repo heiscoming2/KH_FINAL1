@@ -60,10 +60,21 @@
             <!-- 글 번호 / 제목 영역 종료 --> 
 
              <br>
-            <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
+           <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
               <input type="button" value="수정" class="btn btn-primary" onclick="location.href='qnaupdateform.do?bd_no=${dto.bd_no}'">
               <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
             </div> <!-- 작성자에게만 보여질 버튼 종료 -->
+            
+           <%--  <!-- 작성자에게만 보여질 버튼 -->
+            <!-- 세션이 null이 아닌 경우, 세션값의 m_no와 글 작성자의 m_no가 같은 경우에만 보여준다. -->
+	        <div style="float:right; position:relative; top:-105px;"> 
+	            	<c:if test="${sessionScope.login.m_no eq dto.m_no }">
+		              <!-- 모집 버튼 종료 -->
+		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='qnaupdateform.do?bd_no=${dto.bd_no}'">
+		              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
+		            </c:if>
+	        </div> 
+	            <!-- 작성자에게만 보여질 버튼 종료 --> --%>
 
             <br>
             <!-- 글 내용 시작 -->

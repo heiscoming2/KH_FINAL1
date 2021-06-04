@@ -21,6 +21,8 @@
        <input type="hidden" name="bd_no" value=${qnaDetailDto.bd_no }>
        <input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
          <!-- qna 작성 글 영역-->
+                  <br>
+         <br>
         <h3>qna 글 수정</h3>
         <br>
            <!-- 프로필이미지, 아이디, 작성일 div -->
