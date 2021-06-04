@@ -32,6 +32,7 @@
 		<typeAlias type="com.itpro.model.dto.qna.QnaInsertDto" alias="QnaInsertDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaDetailDto" alias="QnaDetailDto"/>
 		<typeAlias type="com.itpro.model.dto.qna.QnaUpdateDto" alias="QnaUpdateDto"/>
+		<typeAlias type="com.itpro.model.dto.qna.QnaSearchDto" alias="QnaSearchDto"/>
 		
 		<typeAlias type="com.itpro.model.dto.report.ReportDto" alias="ReportDto"/>
 		<typeAlias type="com.itpro.model.dto.report.ReportReplyDto" alias="ReportReplyDto"/>

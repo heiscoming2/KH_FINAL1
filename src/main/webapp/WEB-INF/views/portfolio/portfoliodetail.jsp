@@ -118,13 +118,13 @@
 
 
 	 
-    <%--   <!-- 댓글 영역 시작 -->
+     <!-- 댓글 영역 시작 -->
 	  <jsp:include page="../reply/reply.jsp">
 	  	<jsp:param name="replyListDto" value="${replyListDto }"></jsp:param>
 	  </jsp:include>
 	  
 	  
-      <!-- 댓글 영역 끝 --> --%>
+      <!-- 댓글 영역 끝 -->
   </div>
 
 <!-- 본문 종료 -->
