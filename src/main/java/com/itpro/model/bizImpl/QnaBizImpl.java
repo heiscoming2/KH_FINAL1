@@ -16,6 +16,7 @@ import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.qna.QnaInsertDto;
 import com.itpro.model.dto.qna.QnaListDto;
+import com.itpro.model.dto.qna.QnaSearchDto;
 import com.itpro.model.dto.qna.QnaUpdateDto;
 
 @Service
@@ -77,6 +78,16 @@ public class QnaBizImpl implements QnaBiz {
 	@Override
 	public int getQnaListCnt() {
 		return qnaDao.getQnaListCnt();
+	}
+
+	@Override
+	public int getQnaListSearchCnt(QnaSearchDto qnaSearchDto) {
+		return qnaDao.getQnaSearchListCnt(qnaSearchDto);
+	}
+
+	@Override
+	public List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap) {
+		return qnaDao.selectSearchList(qnaSearchMap);
 	}
 
 }

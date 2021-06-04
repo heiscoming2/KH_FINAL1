@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itpro.model.dao.QnaDao;
-import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.qna.QnaInsertDto;
 import com.itpro.model.dto.qna.QnaListDto;
+import com.itpro.model.dto.qna.QnaSearchDto;
 import com.itpro.model.dto.qna.QnaUpdateDto;
 
 @Repository
@@ -99,6 +99,28 @@ public class QnaDaoImpl implements QnaDao {
 			e.printStackTrace();
 		}
 		return qnaListCnt;
+	}
+
+	@Override
+	public int getQnaSearchListCnt(QnaSearchDto qnaSearchDto) {
+		int qnaSearchListCnt = 0;
+		try {
+			qnaSearchListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"qnasearchlistcnt",qnaSearchDto).toString().replace("[","").replace("]", ""));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		return qnaSearchListCnt;
+	}
+
+	@Override
+	public List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap) {
+		List<QnaListDto> qnaList = null;
+		try {
+			qnaList = sqlSession.selectList(NAMESPACE+"selectsearchlist",qnaSearchMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return qnaList;
 	}
 
 	

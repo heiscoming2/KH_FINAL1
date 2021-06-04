@@ -64,4 +64,44 @@
 	</update>
 	<!-- BD_MODIFYDATE = SYSDATE -->
 	
+	
+	
+	<select id="qnasearchlistcnt" parameterType="QnaSearchDto" resultType="int">
+		SELECT COUNT(*) 
+		FROM BOARD B, QNA Q 
+		WHERE B.BD_NO=Q.BD_NO 
+		  AND B.BC_CODE=2 
+		  <if test= '!key.equals("")'>
+		  AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%')
+		  </if>
+	</select>
+	
+	<select id="selectsearchlist" parameterType="hashMap" resultType="QnaListDto">
+        SELECT * FROM 
+        	   (SELECT ROWNUM RN, A.* 
+        	   FROM (
+	               SELECT B.BD_NO,  B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
+		        	B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT,
+	               DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
+	               DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT,M.M_NO, M.M_IMG_PATH,
+			       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
+	               FROM BOARD B, IT_MEMBER M , 
+	                     (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
+	                     (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
+			       WHERE B.BC_CODE=2 
+			       AND B.M_NO = M.M_NO
+	               AND RE.BD_NO(+) = B.BD_NO
+	               AND BR.BD_NO(+) = B.BD_NO
+	      
+				   <if test= '!qnaSearchDto.key.equals("")'>
+				   AND (B.BD_TITLE LIKE '%${qnaSearchDto.key}%' OR B.BD_CONTENT LIKE '%${qnaSearchDto.key}%')
+				   </if>
+			       ORDER BY B.BD_CREATEDDATE DESC) A 
+			   ORDER BY RN ASC)    
+        WHERE RN BETWEEN #{start} AND #{end}		
+	</select>
+	
+	
+	
+	
 </mapper>
