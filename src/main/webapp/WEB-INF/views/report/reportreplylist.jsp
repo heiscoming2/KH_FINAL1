@@ -46,14 +46,13 @@
 		<!-- 본문 시작 -->
 
 		<!-- 신고관리 -->
+	<br><br><br>
+	<h3 style="text-align:left;">신고관리 - 댓글</h3>
 	<div class="content">
-				<div class="item2">
-				<h3>신고관리 : 댓글</h3>
-				</div>
 				<div class="item2">
 				
 				<form action="" method="post">
-				<table class="main_table">
+				<table class="table table-bordered" style="width:1190px;">
 					<thead>
 						<tr>
 							<th><input type="checkbox" name="all" onclick="allChk(this.checked);"></th>
@@ -69,7 +68,7 @@
 							<c:choose>
 								<c:when test="${empty list }">
 									<tr>
-										<td colspan="5">===신고목록이 존재하지 않습니다.===</td>
+										<td colspan="5" align="center">===신고목록이 존재하지 않습니다.===</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
@@ -86,7 +85,7 @@
 							</c:choose>
 						</tr>
 						<tr>
-							<td colspan="7"><input type="submit"  name="cmd" value="일괄삭제"></td>
+							<td colspan="7"><input type="submit"  name="cmd" value="일괄삭제" class="btn btn-primary"></td>
 						</tr>
 					</tbody>
 				</table>

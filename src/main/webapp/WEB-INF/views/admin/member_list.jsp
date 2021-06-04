@@ -58,15 +58,14 @@
 
 
 	<!-- 본문 시작 -->
-
-
 	<!-- 회원명단 -->
+	<br><br><br>
+	<h3 style="text-align:left;">회원관리 - 개인회원</h3>
 	<div class="content">
-		<h3>회원관리 : 개인회원</h3>
 
 		<form name="form1" method="post" action="member_list.do">
 
-			<select name="search_option">
+			<select name="search_option" class="form-control" style="width:200px; display:inline-block;">
 
 				<option value="all"
 					<c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
@@ -85,12 +84,20 @@
 				
 
 			</select> 
-			<input name="keyword" value="${map.keyword}"> 
-			<input type="submit" value="검색">
+			<input name="keyword" value="${map.keyword}" class="form-control" style="width:200px; display:inline-block;"> 
+			<input type="submit" value="검색" class="btn btn-primary">
 		</form>
 
 		<br>
-		<table class="main_table">
+		<table class="table table-bordered" style="width:1190px;">
+			<col width="30px">
+			<col width="250px">
+			<col width="200px">
+			<col width="80px">
+			<col width="200px">
+			<col width="100px">
+			<col width="100px">
+			<col width="100px">
 			<thead>
 				<tr>
 					<th><input type="checkbox" name="all"
@@ -133,7 +140,7 @@
 		</table>
 		<!-- 쪽지보내기 -->
 
-		<input type="button" value="쪽지보내기" onclick="">
+		<input type="button" value="쪽지보내기" onclick="" class="btn btn-primary">
 
 
 
