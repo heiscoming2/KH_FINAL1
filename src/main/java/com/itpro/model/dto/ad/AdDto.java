@@ -6,11 +6,25 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
+
 @Getter
 @Setter
 @ToString
 public class AdDto {
 	
+	//ad 게신판
+	private int ad_seq;
+	private String ad_title;
+	private String ad_name;
+	private String ad_startdate;
+	private String ad_enddate;
+	private String ad_image;
+	private String Stringad_url;
+	private int ad_price;
+	private String ad_status;
+	
+	//게시판
 	private int bd_no; // 게시글 번호
 	private String bd_title; // 제목
 	private String bd_content; // 글 내용
@@ -22,7 +36,7 @@ public class AdDto {
 	private int bd_recommandcount; // 추천수
 
 	// 첨부 파일
-	private String[] files; // 파일 저장명
+	private String file_path;  // 파일 저장명
 
 	// 회원
 	private String m_img_path; // 프로필 이미지 경로
