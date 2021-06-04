@@ -20,6 +20,16 @@
         <div class="qna_btnwrap">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='qnainsertform.do'">
 		</div>
+		
+		<!-- <div style="float:right;">
+			<div class="mb-4">
+				<input name="searchbox" type="text" placeholder="검색" value=""
+					class="form-control search-bar" onkeyup="enterKey();"
+					style="width: 200px; display: inline-block;">
+				<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
+			</div>		
+			</div> -->
+		
         
         <table class="qna_table">
 			<col width="80px;">

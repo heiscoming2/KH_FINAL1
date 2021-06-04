@@ -90,3 +90,49 @@
 	border-top:1px solid skyblue;
 	border-bottom:1px solid skyblue !important;
 }
+
+
+<!-- 필터 버튼 상하 마진 -->
+.loc_toggle {
+	padding:20px;
+	border:1px solid black;
+}
+
+<!-- 시도,시구 선택 박스 -->
+.form-control {
+	width:150px !important;
+}
+
+.search-bar {
+	height:38px !important;
+	top:10px;
+}
+
+
+.bd_recommandcount {
+	color:red;
+	font-size:14px;	
+}
+
+.bd_no {
+	font-size:10px;
+	color:lightgray;
+}
+
+.bd_viewcount {
+	font-size:14px;
+	color:lightgray;
+}
+
+.replycount {
+	color:#137f13; 
+	font-size:14px;
+}
+
+.bd_no_th > a{
+	margin-left:10px;
+}
+
+.bd_no > a{
+	margin-left:10px;
+}

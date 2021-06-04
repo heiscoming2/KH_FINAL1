@@ -29,6 +29,7 @@ import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.qna.QnaInsertDto;
 import com.itpro.model.dto.qna.QnaListDto;
+import com.itpro.model.dto.qna.QnaSearchDto;
 import com.itpro.model.dto.qna.QnaUpdateDto;
 import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.util.ClientInfo;
@@ -181,6 +182,29 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		return null;
 	}
 	
+	@RequestMapping(value="/qnasearch.do")
+	public String qnaSearch(Model model, QnaSearchDto qnaSearchDto) {
+		logger.info("QNA SEARCH");
+		
+		//페이징 처리를 위해 갯수를 얻어온다.
+		int qnaSearchListCnt = qnaBiz.getQnaListSearchCnt(qnaSearchDto);
+		
+		//갯수와 페이지 번호로 페이지 정보를 가져온다.
+		PageProcessing pageProcessing = new PageProcessing(qnaSearchListCnt, qnaSearchDto.getPage());
+		
+		//start와 end값, 검색 값으로 list를 가져오는데 map에 담아서 처리해준다.
+		Map<String,Object> qnaSearchMap = new HashMap<String,Object>();
+		qnaSearchMap.put("start", pageProcessing.getStartIndex());
+		qnaSearchMap.put("end", pageProcessing.getEndIndex());
+		qnaSearchMap.put("qnaSearchDto", qnaSearchDto);
+		List<QnaListDto> qnaList = qnaBiz.selectSearchList(qnaSearchMap);
+		
+		model.addAttribute("qnaList",qnaList);
+		model.addAttribute("pageProcessing",pageProcessing);
+		model.addAttribute("qnaSearchDto",qnaSearchDto);
+		
+		return "qna/qnalist";
+	}	
 	
 	
 }
