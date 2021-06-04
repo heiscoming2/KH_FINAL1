@@ -40,10 +40,9 @@
                   ${list.get(0).m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-                </ul>
+				<jsp:include page="../inc/userDropDownMenu.jsp">
+					<jsp:param name="m_no" value="${list.get(0).m_no }"></jsp:param>
+				</jsp:include>
               </span>
               <span class="reg_date">
                 <fmt:formatDate value="${list.get(0).bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
@@ -133,10 +132,6 @@
 	  <!-- 본문 / 댓글 중간 여백 영역 종료 -->
 		
 
-	  <!-- 댓글 영역 시작 -->
-<%-- 	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
-	  <%@include file="../reply/_reply.jspf" %>	 --%>
-      <!-- 댓글 영역 끝 -->
       
       <!-- 댓글 영역 시작 -->
 	  <jsp:include page="../reply/reply.jsp">

@@ -72,10 +72,9 @@
 											id="dropdownUser" data-bs-toggle="dropdown">
 											${noticeDto.m_nickname } </a>
 
-										<ul class="dropdown-menu text-small shadow"
-											aria-labelledby="dropdownUser">
-											<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-										</ul>
+										<jsp:include page="../inc/userDropDownMenu.jsp">
+											<jsp:param name="m_no" value="${noticeDto.m_no }"></jsp:param>
+										</jsp:include>
 										<!-- 프로필 드롭다운 메뉴 종료 -->
 									</div>
 									<span class="notice_regdate"> <fmt:formatDate
