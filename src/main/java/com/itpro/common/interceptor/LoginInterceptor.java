@@ -42,7 +42,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 		    request.getRequestURI().contains("/qnainsertform.do") ||
 		    request.getRequestURI().contains("/portfolioinsertform.do") ||
 		    request.getRequestURI().contains("/projectinsertform.do") ||
-		    request.getRequestURI().contains("/resumesubmitform.do")
+		    request.getRequestURI().contains("/resumesubmitform.do") ||
+		    request.getRequestURI().contains("/noteForm.do") ||
+		    request.getRequestURI().contains("/noteSend.do")
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
@@ -66,7 +68,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		 */
 		}
 		
-
 
 		//기업회원 글작성X 시작
 		if (request.getRequestURI().contains("/studyinsertform.do")// 스터디 글쓰기
