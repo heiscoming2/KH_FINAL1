@@ -13,7 +13,7 @@ import com.itpro.util.JavaScriptResponse;
 public class BoardController {
 	
 	@RequestMapping(value="/boarddetail.do")
-	public String boardDetail(int bc_code, int bd_no, HttpServletResponse response) throws IOException {
+	public String boardDetail(int bc_code, int bd_no,int m_no, HttpServletResponse response) throws IOException {
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");		
@@ -26,7 +26,7 @@ public class BoardController {
 		case 4 : new JavaScriptResponse().jsResponse(response, "잘못된 접근입니다.", "main.do"); return null;
 		case 5 : return "redirect:noticedetail.do?bd_no="+bd_no;
 		case 6 : new JavaScriptResponse().jsResponse(response, "잘못된 접근입니다.", "main.do"); return null;
-		case 7 : return "redirect:portfoliodetail.do?bd_no="+bd_no;
+		case 7 : return "redirect:portfoliodetail.do?bd_no="+bd_no+"&m_no="+m_no;
 		default : new JavaScriptResponse().jsResponse(response, "잘못된 접근입니다.", "main.do"); return null;
 		
 		}

@@ -122,13 +122,7 @@ public class AdDaoImpl implements AdDao {
 		return result; 
 	}
 
-	@Override
-	public int imageuploadupdate(MultipartFile fileName, int ad_seq) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
+	
 
 
 

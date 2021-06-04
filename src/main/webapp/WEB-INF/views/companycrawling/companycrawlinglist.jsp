@@ -164,7 +164,7 @@
 	<input type="hidden" id="h_searchbox" value="${companyCrawlingSearchDto.src_key }">
 </c:if>
 	
-<script type="text/javascript" src="resources/js/companycrawlinglist.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/companycrawling/companycrawlinglist.js?ver=1.2"></script>
 <script type="text/javascript" src="resources/js/address.js"></script>
 </body>
 </html>

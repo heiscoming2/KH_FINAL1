@@ -17,5 +17,5 @@ public interface AdBiz {
 	public int update(AdDto dto, BoardUpdateDto boardUpdateDto);
 	public int getAdListCnt();
 	public int imageuploadupdate(MultipartFile fileName, int parseInt);
-
+	public int imagePathUpdate(int ad_seq, String img_path);
 }

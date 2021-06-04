@@ -24,11 +24,7 @@
 	
 	<!-- 이력서 기본정보 조회(detail) -->
 	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
-		SELECT A.*, B.*
-		FROM M_RESUME A
-		INNER JOIN M_RESUME_IMG B
-		ON A.R_NO = B.R_NO
-		WHERE A.R_NO = #{r_no}
+		SELECT * FROM M_RESUME M, M_RESUME_IMG B WHERE M.R_NO=B.R_NO(+) and M.R_NO=#{r_no}
 	</select>
 	
 	<!-- 이력서 학력사항 조회(list) -->
@@ -76,7 +72,7 @@
 		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
 
 		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
-            select M_RESUME_IMG_SEQ.CURRVAL from M_RESUME_IMG WHERE ROWNUM = 1
+            select M_RESUME_IMG_SEQ.CURRVAL FROM DUAL
        </selectKey>
 	</insert>	
 	

@@ -6,7 +6,7 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <link rel="stylesheet" href="resources/css/portfoliolist.css">
-<title>Portfolio</title>
+<title>포트폴리오</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -16,6 +16,7 @@
 <!-- 본문 시작 -->
 
   <div class="portfolio_wrap">
+    	<br> <br>
         <h3>포트폴리오 게시판</h3>
         <div class="portfolio_btnwrap">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='portfolioinsertform.do'">
