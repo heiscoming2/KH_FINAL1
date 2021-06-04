@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="KakaoPay">
+	
+	<insert id="insert" parameterType="KakaoPayDto">
+		INSERT INTO KAKAO_PAY
+		VALUES (
+		PAY_SEQ.NEXTVAL,
+		#{m_no},
+		SYSDATE,
+		#{price}) 
+	</insert>
+	
+	<select id="selectList" resultType="KakaoPayDto">
+        SELECT K.PAY_SEQ, K.M_NO, K.REGDATE, K.PRICE, M.M_NICKNAME
+        FROM KAKAO_PAY K, IT_MEMBER M
+        WHERE K.M_NO=M.M_NO(+) 
+        ORDER BY K.PAY_SEQ DESC
+              
+	</select>
+	
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM KAKAO_PAY WHERE PAY_SEQ = #{pay_seq}
+	</delete>
+	
+	
+</mapper>

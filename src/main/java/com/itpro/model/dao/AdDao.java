@@ -17,5 +17,5 @@ public interface AdDao {
 	public int delete(int bd_no);
 	public int update(AdDto dto);
 	public int getAdListCnt();
-
+	public int imageuploadupdate(int pro_no, String pro_file);
 }
