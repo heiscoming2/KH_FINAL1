@@ -21,7 +21,8 @@ public class PortfolioDetailDto {
 	private int bd_viewcount; // 조회수
 	private int bd_recommandcount; // 추천수
 	
-
+	private int m_no; 
+	
 	private int bd_no; //게시글 번호
 	
 	// 첨부 파일
@@ -61,6 +62,18 @@ public class PortfolioDetailDto {
 
 
 
+
+
+
+	public int getM_no() {
+		return m_no;
+	}
+
+
+
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
 
 
 
