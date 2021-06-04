@@ -22,6 +22,8 @@
       
       
          <!-- 포트폴리오 작성 글 영역-->
+         <br>
+         <br>
         <h3>포트폴리오 글 작성</h3>
         <br>
         
@@ -80,8 +82,8 @@
               <th><span>* </span>경력사항</th>             
               <td> 
                 <input type=text class="form-control" value="${career.ca_title }" readonly> </td>
-              <td><input type='text' id="career-date" value="${career.ca_start_date }" readonly /></td>  
-              <td><input type='text' id="career-date" value="${career.ca_end_date }" readonly /></td>       
+              <td>　　입사일: <input type='text' id="career-date" value="${career.ca_start_date }" readonly/></td>  
+              <td>　　퇴사일: <input type='text' id="career-date" value="${career.ca_end_date }" readonly/></td>       
               <!-- <td><input type="checkbox">비공개</td>  -->
             </tr>
              </c:forEach>

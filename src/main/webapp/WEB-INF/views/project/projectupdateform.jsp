@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-=======
-<%
-	request.setCharacterEncoding("utf-8");
-%>    
+
+<% request.setCharacterEncoding("utf-8"); %>    
     
->>>>>>> e7f1d713545b22e9020f60329ddd53e3d1765b40
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +24,7 @@
 <!-- 본문 시작 -->
     <div class="project_insertwrap">
          <!-- 프로젝트 작성 글 영역-->
+         <br><br>
         <h3>프로젝트 글 수정</h3>
         <br>
               <!-- 프로필이미지, 아이디, 작성일 div -->
