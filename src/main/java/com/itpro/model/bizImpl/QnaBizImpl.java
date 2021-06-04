@@ -79,7 +79,7 @@ public class QnaBizImpl implements QnaBiz {
 	public int getQnaListCnt() {
 		return qnaDao.getQnaListCnt();
 	}
-
+	
 	@Override
 	public int getQnaListSearchCnt(QnaSearchDto qnaSearchDto) {
 		return qnaDao.getQnaSearchListCnt(qnaSearchDto);
