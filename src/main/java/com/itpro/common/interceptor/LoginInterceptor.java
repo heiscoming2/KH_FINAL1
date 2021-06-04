@@ -42,9 +42,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		    request.getRequestURI().contains("/qnainsertform.do") ||
 		    request.getRequestURI().contains("/portfolioinsertform.do") ||
 		    request.getRequestURI().contains("/projectinsertform.do") ||
-		    request.getRequestURI().contains("/resumesubmitform.do") ||
-		    request.getRequestURI().contains("/noteForm.do") ||
-		    request.getRequestURI().contains("/noteSend.do")
+		    request.getRequestURI().contains("/resumesubmitform.do")
+
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
@@ -52,7 +51,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
-
+		
+		if(request.getRequestURI().contains("/noteForm.do") ||
+		   request.getRequestURI().contains("/noteSend.do")
+		  ) 
+		  {
+			if(session.getAttribute("login") == null) {
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('로그인 후 이용 가능합니다.');");
+				out.print("self.close();");
+				out.print("</script>");
+				return false;			
+			}
+		  }
+		
 		
 		
 		if (request.getRequestURI().contains("/note_receivelist.do")
