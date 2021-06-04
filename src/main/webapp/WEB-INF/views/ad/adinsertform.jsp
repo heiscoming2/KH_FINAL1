@@ -17,6 +17,13 @@ function cal(){
 	var startday = document.getElementById("startDate").value;
 	var endday = document.getElementById("endDate").value;
 	
+	if(startday==null || endday==null || startday=='' ||startday==''){
+		
+		alert("희망광고기간을 먼저 입력해주세요")
+	}	
+	
+	
+	
 	console.log(startday);
 	console.log(endday);
 	
@@ -96,12 +103,12 @@ function cal(){
 				</tr>
 				<tr>
 					<th><span>* </span>가격</th>
-					<td><input type=text class="price" size=15 name="ad_price" readonly="readonly">
+					<td><input type=text class="price" size=15 name="ad_price" placeholder="1일당 1만원" readonly="readonly">
 					<input type="button" value="가격책정" onclick="cal()"></td>
 				</tr>
 				<tr>					
 					<th><span>*</span>결제</th>
-					<td><button id="apibtn"><img src="resources/images/payment_icon_yellow_small.png"></button></td>
+					<td><button id="apibtn" type="submit"><img src="resources/images/payment_icon_yellow_small.png"></button></td>
 				</tr>
 				<tr>
 					<th><span>* </span>이미지파일 업로드</th>
@@ -143,18 +150,16 @@ function cal(){
 			
 			<textarea id="summernote" name="bd_content"></textarea>
 			<br>
+		</form>
 
 			<!-- ad 작성 글 영역 종료-->
 
 			<!-- 취소 / 등록 컨펌 버튼 -->
 			<div style="height: 80px;">
-				<input type="submit" value="등록" class="btn btn-primary" formaction="adinsert.do"
-					style="float: right; margin-left: 10px;"> 
-				<input type="button" value="취소" class="btn btn-primary"
-					onclick="location.href='adlist.do'" style="float: right;">
+				<input type="submit" value="등록" class="btn btn-primary" style="float: right; margin-left: 10px;"> 
+				<input type="button" value="취소" class="btn btn-primary" onclick="location.href='adlist.do'" style="float: right;">
 			</div>
-		</form>
-<input type="text" id="Date">
+
 	</div>
 	<!-- 본문 종료 -->
 
