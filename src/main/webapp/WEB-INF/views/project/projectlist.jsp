@@ -27,12 +27,12 @@
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='projectinsertform.do'">
 		</div>
 		
-		<div class="project_how_wrap" style="float:right;">
+<!-- 		<div class="project_how_wrap" style="float:right;">
     	<select id="howAsc" class="howAsc">
     		<option value="recently">최신순</option>
     		<option value="likes">추천순</option>
     	</select>
-    	</div>   
+    	</div>    -->
         
         <table class="project_table">
 			<col width="80px;">
