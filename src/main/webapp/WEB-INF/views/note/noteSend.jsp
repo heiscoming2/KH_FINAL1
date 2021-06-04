@@ -8,8 +8,10 @@
 		<script type="text/javascript">
 			const message = '${message}';
 			if (message > '') {
-				alert(message);
+				alert(message);				
 			}
+			
+			opener.location.href="note_sendlist.do";//쪽지 보내고 보낸 쪽지로 이동
 			window.close();
 		</script>
 	</body>

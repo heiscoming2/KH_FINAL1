@@ -226,7 +226,6 @@ public class ResumeController {
 	// 프로필 이미지 업로드 컨트롤러(이거 이력서별로 올라가니까 이력서 번호로 해야되는거 아냐?)
 	@RequestMapping(value = "/resumeProfile.do", method = RequestMethod.POST)
 	@ResponseBody
-	// public Map<String, String> profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
 	public Integer profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
 			throws IllegalStateException, IOException {
 
