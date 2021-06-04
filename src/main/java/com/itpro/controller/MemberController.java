@@ -217,9 +217,6 @@ public class MemberController {
 		return map;
 	}
 
-	
-
-	
 
 	// 작성글 목록 전체
 	@RequestMapping(value = "/postlookup.do")
@@ -243,10 +240,6 @@ public class MemberController {
 		postLookupPageMap.put("end", pageProcessing.getEndIndex());
 		postLookupPageMap.put("keyword", keyword);
 		List<PostLookupDto> postLookupList = biz.selectPostLookup(postLookupPageMap);
-		logger.info("postLookupList size : "+Integer.toString(postLookupList.size()));
-		for(PostLookupDto dto : postLookupList) {
-			logger.info(dto.toString());
-		}
 		//총 게시물 수
 		model.addAttribute("postlookupcnt",postlookupcnt);
 		//게시물 list
