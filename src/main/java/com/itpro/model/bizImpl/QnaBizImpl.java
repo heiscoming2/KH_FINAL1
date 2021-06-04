@@ -80,14 +80,12 @@ public class QnaBizImpl implements QnaBiz {
 		return qnaDao.getQnaListCnt();
 	}
 
-	@Override
-	public int getQnaListSearchCnt(QnaSearchDto qnaSearchDto) {
-		return qnaDao.getQnaSearchListCnt(qnaSearchDto);
-	}
-
-	@Override
-	public List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap) {
-		return qnaDao.selectSearchList(qnaSearchMap);
-	}
+	/*
+	 * @Override public int getQnaListSearchCnt(QnaSearchDto qnaSearchDto) { return
+	 * qnaDao.getQnaSearchListCnt(qnaSearchDto); }
+	 * 
+	 * @Override public List<QnaListDto> selectSearchList(Map<String, Object>
+	 * qnaSearchMap) { return qnaDao.selectSearchList(qnaSearchMap); }
+	 */
 
 }
