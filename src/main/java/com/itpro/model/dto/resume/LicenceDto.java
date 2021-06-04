@@ -19,7 +19,7 @@ public class LicenceDto {
 	// 자격사항
 	private int li_no; 
 	private String li_title; //자격증명
-	 @DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date li_date; //취득일
 	private String li_organ; //기관
 }

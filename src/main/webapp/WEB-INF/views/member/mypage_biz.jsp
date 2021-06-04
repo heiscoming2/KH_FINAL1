@@ -31,7 +31,7 @@
               </div>
               <p class="mb-1">비밀번호, 연락처, 프로필 정보를 확인하고 관리합니다.</p>
             </a>
-            <a href="ad_list.do" class="list-group-item list-group-item-action" aria-current="true">
+            <a href="adlist.do" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">광고</h5>
                 </div>

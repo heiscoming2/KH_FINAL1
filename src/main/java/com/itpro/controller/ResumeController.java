@@ -199,6 +199,98 @@ public class ResumeController {
 
 		// return "resume/resume_list";
 	}
+		
+	// 이력서 학력사항 정보 입력
+	@RequestMapping(value = "/educationInsert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int educationInsert(HttpSession session, EducationDto educationDto) {
+		logger.info("educationInsert");
+		
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		educationDto.setM_no(m_no);
+
+		int result = biz.educationInsert(educationDto);
+		return result;
+	}
+
+	// 이력서 학력사항 정보 수정
+	@RequestMapping(value = "/educationUpdate.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int educationUpdate(HttpSession session, EducationDto educationDto) {
+		logger.info("educationUpdate");
+		
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		educationDto.setM_no(m_no);
+
+		int result = biz.educationUpdate(educationDto);
+		return result;
+	}
+
+	// 이력서 학력사항 정보 삭제
+	@RequestMapping(value = "/educationDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int educationDelete(HttpSession session, EducationDto educationDto) {
+		logger.info("educationDelete");
+		
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		educationDto.setM_no(m_no);
+
+		int result = biz.educationDelete(educationDto);
+		return result;
+	}
+
+
+
+	// 이력서 학력사항 정보 입력
+	@RequestMapping(value = "/licenseInsert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int licenseInsert(HttpSession session, LicenceDto dto) {
+		logger.info("licenseInsert");
+		
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		dto.setM_no(m_no);
+
+		int result = biz.licenseInsert(dto);
+		return result;
+	}
+
+	// 이력서 경력사항 정보 입력
+	@RequestMapping(value = "/careerInsert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int careerInsert(HttpSession session, CareerDto dto) {
+		logger.info("careerInsert");
+		
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		dto.setM_no(m_no);
+
+		int result = biz.careerInsert(dto);
+		return result;
+	}
 
 	// 이력서 개별삭제
 	@RequestMapping(value = "/resume_delete.do")

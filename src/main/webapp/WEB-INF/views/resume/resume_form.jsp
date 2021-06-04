@@ -157,27 +157,27 @@
                 </thead>
                 <tbody>
                   <tr><!--첫째줄-->
-                    <td><input type="month" class="form-control" name="educationList[0].ed_startdate"></td>
-                    <td><input type="month" class="form-control" name="educationList[0].ed_gradudate"></td>
-                    <td><input type="text" class="form-control" name="educationList[0].ed_schoolName" ></td>
-                    <td><input type="text" class="form-control" name="educationList[0].ed_major" ></td>
+                    <td><input type="month" class="form-control" name="ed_startdate"></td>
+                    <td><input type="month" class="form-control" name="ed_gradudate"></td>
+                    <td><input type="text" class="form-control" name="ed_schoolName" ></td>
+                    <td><input type="text" class="form-control" name="ed_major" ></td>
                     <td>
-                        <select class="form-select">
-                        <option value="대학원" name="educationList[0].ed_school">대학원</option>
-                        <option value="대학교" name="educationList[0].ed_school">대학교</option>
-                        <option value="고등학교" name="educationList[0].ed_school">고등학교</option>
+                        <select name="ed_school" class="form-select">
+                            <option value="대학원" >대학원</option>
+                            <option value="대학교">대학교</option>
+                            <option value="고등학교">고등학교</option>
                         </select>
                     </td>
                     <td>
-                        <select class="form-select">
-                        <option value="졸업" name="educationList[0].ed_graduation">졸업</option>
-                        <option value="휴학" name="educationList[0].ed_graduation">휴학</option>
-                        <option value="중퇴" name="educationList[0].ed_graduation">중퇴</option>
-                        <option value="재학" name="educationList[0].ed_graduation">재학</option>
+                        <select name="ed_graduation" class="form-select">
+                            <option value="졸업">졸업</option>
+                            <option value="휴학">휴학</option>
+                            <option value="중퇴">중퇴</option>
+                            <option value="재학">재학</option>
                         </select>
                     </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td><input type="month" class="form-control" name="ed_startdate"></td>
                     <td><input type="month" class="form-control" name="ed_gradudate"></td>
                     <td><input type="text" class="form-control" name="ed_schoolName" ></td>
@@ -197,7 +197,7 @@
                         <option value="재학" name="ed_graduation">재학</option>
                         </select>
                     </td>
-                  </tr>                
+                  </tr> -->
                 </tbody>
             </table>
             
@@ -226,11 +226,11 @@
                     <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
                     <td><input type="text" class="form-control" name="li_organ" ></td>
                   </tr>
-                  <tr>                   
+                  <!-- <tr>                   
                     <td><input type="text" class="form-control" name="li_title" ></td>
                     <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
                     <td><input type="text" class="form-control" name="li_organ" ></td>
-                  </tr>                                  
+                  </tr>                                   -->
                 </tbody>
             </table>
             
@@ -260,12 +260,12 @@
                     <td><input type="date" class="form-control" name="ca_end_date" ></td>
                     <td><input type="text" class="form-control" name="ca_content" ></td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td><input type="text" class="form-control" name="ca_title" ></td>
                     <td><input type="date" class="form-control" name="ca_start_date" ></td>
                     <td><input type="date" class="form-control" name="ca_end_date" ></td>
                     <td><input type="text" class="form-control" name="ca_content" ></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
             </table>
             
