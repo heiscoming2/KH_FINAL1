@@ -15,32 +15,26 @@
 	<!-- HEADER 종료 -->
 
 	<!-- 본문 시작 -->
-	<div class="container">
 		<div class="notice_wrap mt-5">
 			<h3>공지사항</h3>
-			<div class="notice_btnwrap mb-4">
 
-				<c:if test="${sessionScope.login.m_auth eq 'Y' }">
-					<input type="button" class="btn btn-success" value="글쓰기"
-						onclick="location.href='noticeinsertform.do'">
-				</c:if>
-			</div>
 
 			<div style="position: relative; bottom: 1px;">
 				<div class="mb-4">
 					<form name="form3" method="post" action="noticelist.do">
-						<input name="keyword" value="${map.keyword}" > 
-						<input type="submit" value="검색" >
+						<input name="keyword" value="${map.keyword}" class="form-control" style="width:300px; display:inline-block;"> 
+						<input type="submit" value="검색" class="btn btn-primary">
+						<c:if test="${sessionScope.login.m_auth eq 'Y' }">
+							<input type="button" class="btn btn-success" value="글쓰기"
+								onclick="location.href='noticeinsertform.do'" style="float:right;">
+						</c:if>
 					</form>
 				</div>
 			</div>
-		</div>
+
 		<table class="table notice_table">
-			<col width="80px;">
-			<col width="80px;">
-			<col width="150px;">
-			<col width="100px;">
-			<col width="420px;">
+			<col width="180px;">
+			<col width="650px;">
 			<col width="80px;">
 			<col width="80px;">
 			<col width="200px;">
@@ -95,7 +89,7 @@
 			</c:choose>
 
 		</table>
-	</div>
+	</div>	
 	<!-- 검색 결과를 히든 태그에 담아둔다. (없으면 null값이 담길것임) 이거를 js에서 받아서 -->
 	<!-- null이 아닌 경우(검색 결과가 있는 경우) 해당하는 내용들을 보여지게끔 처리 -->
 	<c:if test="${noticeSearchDto ne null }">
@@ -104,7 +98,6 @@
 		<input type="hidden" id="h_stat" value="${noticeSearchDto.stat }">
 		<input type="hidden" id="h_key" value="${noticeSearchDto.key }">
 	</c:if>
-	</div>
 	<!-- 본문 종료 -->
 
 	<!-- 페이징 시작 -->

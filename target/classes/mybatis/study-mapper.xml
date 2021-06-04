@@ -27,7 +27,7 @@
 		#{st_addr1},
 		#{st_addr2},
 		#{st_addrdetail},
-		#{st_nowperson},
+		1,
 		#{st_closeperson})
 		SELECT * FROM DUAL
 	</insert>
@@ -80,8 +80,7 @@
 	
 	<update id="update" parameterType="StudyUpdateDto">
 		UPDATE STUDY
-		SET ST_NOWPERSON = #{st_nowperson} ,
-		    ST_CLOSEPERSON = #{st_closeperson} ,
+		SET ST_CLOSEPERSON = #{st_closeperson} ,
 		    ST_ADDR1 = #{st_addr1} ,
 		    ST_ADDR2 = #{st_addr2} ,
 		    ST_ADDRDETAIL = #{st_addrdetail}

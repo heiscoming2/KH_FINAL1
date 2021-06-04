@@ -74,8 +74,7 @@
 
 
             <!-- 글 내용 시작 -->
-            <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
-            
+            <div style="font-weight:bold; font-size: 20px; padding:10px 0px;"> 
                   ※ 이름: ${dto.member.m_nickname} <br>
                   ※ 이메일: ${dto.member.m_email }<br>
                   ※ 전화 번호: ${dto.member.m_phone }<br>

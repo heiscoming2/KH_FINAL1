@@ -8,7 +8,7 @@
 <link href="resources/css/studyinsert.css?ver=1.2" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
-<title>IT PRO 스터디 글 쓰기</title>
+<title>IT PRO 스터디 모집 글 쓰기</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
@@ -39,11 +39,6 @@
             <tr>
               <th><span>* </span>제목</th>
               <td><input type=text class="form-control" name="bd_title"></td>
-            </tr>
-            <tr>
-              <th><span>* </span>현재 인원수</th>
-              <td><input type="number" min=1 class="form-control" value="1" name="st_nowperson"></td>
-
             </tr>
             <tr>
               <th><span>* </span>모집 인원수</th>
