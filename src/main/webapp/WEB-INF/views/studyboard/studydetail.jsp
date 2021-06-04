@@ -10,6 +10,7 @@
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
+<!-- 부트스트랩 아이콘 css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <title>IT PRO - ${dto.bd_title}</title>
 </head>
@@ -84,9 +85,9 @@
 			
             <!-- 필수 입력 정보 노출 시작 -->
             <div style="font-weight:bold; font-size: 20px; padding:10px 0px;"> 
-            	<table class="table" style="width:300px;">
+            	<table class="table" style="width:700px;">
             	<caption align="top" style="color:#212529;">&nbsp;요약</caption>
-            		<col width="300px;">
+            		<col width="200px;">
             		<col width="500px;">
             		<tr>
 	            		<th><i class="bi bi-person-lines-fill"></i>

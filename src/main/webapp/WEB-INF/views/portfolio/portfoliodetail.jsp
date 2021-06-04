@@ -5,12 +5,13 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfoliodetail.css" rel="stylesheet">
+<link href="resources/css/portfoliodetail.css?ver=1.5" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-
+<!-- 부트스트랩 아이콘 css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>IT PRO 상세보기</title>
@@ -74,24 +75,54 @@
 
 
             <!-- 글 내용 시작 -->
-            <div style="font-weight:bold; font-size: 20px; padding:10px 0px;"> 
-                  ※ 이름: ${dto.member.m_nickname} <br>
-                  ※ 이메일: ${dto.member.m_email }<br>
-                  ※ 전화 번호: ${dto.member.m_phone }<br>
-                  ※ 최종 학력: ${dto.edu.ed_school }<br>
-                  ※ 경력 사항: <br>
-               <c:forEach var="career" items="${dto.career }" > 
-               ${career.ca_title } 
-              [<fmt:formatDate value="${career.ca_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${career.ca_end_date }" pattern="yyyy-MM-dd"/>] <br>
-               </c:forEach> <br> 
-                  ※ 사용 개발 기술: ${dto.port_develop }<br>
-                  ※ 프로젝트 링크: ${dto.port_link }<br>
-                  ※ 수상 내역: ${dto.port_prize } <br>
-                  ※ 포트폴리오 소개: ${dto.bd_content } <br>      
-              <br>
-              <br>
+            <div style="font-size: 20px; padding:10px 0px;"> 
+              	<table class="table portfolio_table" style="width:700px;">
+            	<caption align="top" style="color:#212529;">&nbsp;<b>요약</b><br></caption>
+            	    <col width="200px;">
+            		<col width="500px;">
+            		<tr>
+	            		<th><i class="bi bi-person-lines-fill"></i>닉네임</th>
+	            		<td>dto.member.m_nickname</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-envelope-open-fill"></i>이메일</th>
+	            		<td>${dto.member.m_email }</td>
+            		</tr>
+           			<tr>
+	            		<th><i class="bi bi-telephone-fill"></i>전화번호</th>
+	            		<td>${dto.member.m_phone }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-book-fill"></i>최종학력</th>
+	            		<td>${dto.edu.ed_school }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-bank2"></i>경력사항</th>
+	            		<td>
+							<c:forEach var="career" items="${dto.career }" > 
+				             	${career.ca_title } 
+				            	 [<fmt:formatDate value="${career.ca_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${career.ca_end_date }" pattern="yyyy-MM-dd"/>] <br>
+				            </c:forEach>
+						</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-stack"></i>사용개발기술</th>
+	            		<td>${dto.port_develop }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-link"></i>프로젝트 링크</th>
+	            		<td>${dto.port_link }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-award-fill"></i>수상내역</th>
+	            		<td>${dto.port_prize }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-chat-dots-fill"></i>포트폴리오 소개</th>
+	            		<td>${dto.bd_content }</td>
+            		</tr>
+            	</table>           
             </div>
-            
             
 			
               <!-- 좋아요 버튼 시작 -->
@@ -142,7 +173,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 포트폴리오 디테일 js -->
-<script type="text/javascript" src="resources/js/portfoliodetail.js?ver=1.1"></script>
+<script type="text/javascript" src="resources/js/portfoliodetail.js?ver=1.3"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.1"></script>
 <!-- 좋아요 js -->
