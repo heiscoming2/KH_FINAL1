@@ -14,6 +14,7 @@ public class MainPageBoardDto {
 	private String name;
 	private int bd_no;
 	private String bd_title;
+	private int m_no;
 	private String m_nickname;
 	private Date bd_createddate;
 	private int bd_viewcount;

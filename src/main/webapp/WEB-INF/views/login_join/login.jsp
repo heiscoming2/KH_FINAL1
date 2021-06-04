@@ -35,6 +35,7 @@ input[type]:hover {
     <div style="max-width:20rem; margin:80px auto; text-align:center;">
         <h2><b>로그인</b></h2>
         <div>
+        <!-- 
             <div class="social_login" style="margin-top:20px;">
             	<div style="position:relative;">
 	                <img src="resources/images/loginlogo/facebooklogo.svg" style="width:30px; height:30px; position:absolute; top:4px; left:15px; pointer-events : none; "></img>
@@ -53,8 +54,11 @@ input[type]:hover {
                 	<input style="width:100%; background-color: #ffd400; color:black; margin-top:8px;" type="button" value="카카오로 로그인" class="btn">
             	</div>
             </div>
+            --> 
              <div>
+             <!-- 
                 <hr><span style="font-size:12px; color:#B2C0CC;">또는</span>
+                 -->
             </div>
             <label style="float:left; font-size: 14px; margin-bottom: 8px;">아이디</label>
             <input type="text" id="m_id" placeholder="아이디" style="width:100%;" class="form-control">
@@ -62,7 +66,9 @@ input[type]:hover {
             <div style="margin-top:15px;">
                 <div>
                 <label style="float:left; font-size: 14px;">비밀번호</label>
+                <!-- 
                 <a style="float:right; font-size: 14px; color:#0d6efd; margin-bottom: 8px;">비밀번호 재설정</a>
+                 -->
                 <input type="password" id="m_pw" placeholder="비밀번호" style="width:100%;" class="form-control">
                 <input type="button" value="로그인 하기" style="width:100%; margin-top:20px; font-weight: bold;" class="btn btn-primary" onclick="login()">
                 <div style="text-align: center;">

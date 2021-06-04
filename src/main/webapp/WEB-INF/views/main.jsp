@@ -56,52 +56,54 @@
 				<div class="owl-carousel">
 					<!-- 프로필 시작 -->
 					<c:forEach var="mainPagePortfolioList" items="${mainPagePortfolioList }">
-					<div class="testimonial-box">
-						<div class="d-flex justify-content-center align-items-center mb-2">
-							<img src="testimages/testprofile.jpg" alt="" class="user-img mr-2">
-							<div>
-								<h6 class="mb-0"><b>&nbsp;&nbsp;${mainPagePortfolioList.m_nickname }</b>
-								</h6>
-
-								<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
-									&nbsp;&nbsp;&nbsp;
-									<span style="text-decoration: underline;">
-										<fmt:formatDate value="${mainPagePortfolioList.m_birth}" pattern="yyyy-MM"/>
-									</span>
-								</p>
+					<div onclick="location.href='portfoliodetail.do?bd_no=${mainPagePortfolioList.bd_no}&m_no=${mainPagePortfolioList.m_no}'">
+						<div class="testimonial-box" >
+							<div class="d-flex justify-content-center align-items-center mb-2" >
+								<img src="testimages/testprofile.jpg" alt="" class="user-img mr-2">
+								<div>
+									<h6 class="mb-0"><b>&nbsp;&nbsp;&nbsp;${mainPagePortfolioList.m_nickname }</b>
+									</h6>
+									
+									<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
+										&nbsp;&nbsp;&nbsp;
+										<span style="text-decoration: underline;">
+											<fmt:formatDate value="${mainPagePortfolioList.m_birth}" pattern="yyyy-MM-dd"/>
+										</span>
+									</p>
+								</div>
 							</div>
-						</div>
-						<hr class="mb-2" style="width:80%; margin: 0 auto; color:#212529;">
-						<div style="width:80%; margin: 0 auto;">
-							<div style="margin-bottom: 8px;">
-								<p style="font-size: 8px; margin:0; padding:0;">
-									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 포트폴리오 소개</b><br>
-									<span style="color:#6c757d;">${mainPagePortfolioList.bd_content } </span>
-								</p>
-							</div>
-							<div>
-								<div style="font-size: 8px; margin:0; padding:0; margin-bottom:8px;">
-									<div>
-									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 사용 개발 기술</b>
+							<hr class="mb-2" style="width:80%; margin: 0 auto; color:#212529;">
+							<div style="width:80%; margin: 0 auto;">
+								<div style="margin-bottom: 8px;">
+									<p style="font-size: 8px; margin:0; padding:0;">
+										<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 포트폴리오 소개</b><br>
+										<span style="color:#6c757d;">${mainPagePortfolioList.bd_content } </span>
+									</p>
+								</div>
+								<div>
+									<div style="font-size: 8px; margin:0; padding:0; margin-bottom:8px;">
+										<div>
+										<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 사용 개발 기술</b>
+										</div>
+										<span style="color:#6c757d; margin-bottom:8px;">${mainPagePortfolioList.port_develop } </span>
 									</div>
-									<span style="color:#6c757d; margin-bottom:8px;">${mainPagePortfolioList.port_develop } </span>
+									<div style="font-size: 8px; margin:0; padding:0;">
+										<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 경력사항</b>
+									</div>
+										<c:forEach var="careerdto" items="${mainPagePortfolioList.careerdto }">
+											<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">
+											(
+											<fmt:formatDate value="${careerdto.ca_start_date}" pattern="yyyy-MM"/>
+											~
+											<fmt:formatDate value="${careerdto.ca_end_date}" pattern="yyyy-MM"/>
+											) 
+											${careerdto.ca_title }
+											</p>
+										</c:forEach>
 								</div>
-								<div style="font-size: 8px; margin:0; padding:0;">
-									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 경력사항</b>
-								</div>
-									<c:forEach var="careerdto" items="${mainPagePortfolioList.careerdto }">
-										<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">
-										(
-										<fmt:formatDate value="${careerdto.ca_start_date}" pattern="yyyy-MM"/>
-										~
-										<fmt:formatDate value="${careerdto.ca_end_date}" pattern="yyyy-MM"/>
-										) 
-										${careerdto.ca_title }
-										</p>
-									</c:forEach>
 							</div>
 						</div>
-					</div>
+					  </div>
 					</c:forEach>
 					<!-- 프로필 종료 -->
 				</div>
@@ -125,7 +127,7 @@
           <div class="row" style="text-align: center">
             <h5 class="fw-bold" onclick="location.href='noticelist.do'" 
             style="cursor:pointer; background-color:#EEEBFF; padding:10px; 
-            border:1px solid lightgray; color:#0078FF;">공지사항</h5>
+            border:1px solid lightgray; color:#0078FF;">공지사항 >></h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -143,7 +145,7 @@
 	          	<c:if test="${dto.name eq '공지사항' }">
 	              <tr>
 	                <td>${dto.bd_no }</td>
-	                <td>${dto.bd_title }</td>
+	                <td><a href="noticedetail.do?bd_no=${dto.bd_no }">${dto.bd_title }</a></td>
 	                <td>${dto.m_nickname }</td>
 	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
 	                <td>${dto.bd_viewcount }</td>
@@ -156,7 +158,8 @@
         </div>
         <div class="col"><!--오른쪽 상단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF;">포트폴리오</h5>
+            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF; cursor:pointer;"
+            onclick="location.href='portfoliolist.do'">포트폴리오 >></h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -174,7 +177,7 @@
 	          	<c:if test="${dto.name eq '포트폴리오' }">
 	              <tr>
 	                <td>${dto.bd_no }</td>
-	                <td>${dto.bd_title }</td>
+	                <td><a href="portfoliodetail.do?bd_no=${dto.bd_no }&m_no=${dto.m_no}">${dto.bd_title }</a></td>
 	                <td>${dto.m_nickname }</td>
 	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
 	                <td>${dto.bd_viewcount }</td>
@@ -189,7 +192,8 @@
       <div class="row">
         <div class="col"><!--왼쪽 하단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; color:#0078FF;">프로젝트</h5>
+            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; color:#0078FF; cursor:pointer;" 
+            onclick="location.href='projectlist.do'">프로젝트 >></h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -207,7 +211,7 @@
 	          	<c:if test="${dto.name eq '프로젝트' }">
 	              <tr>
 	                <td>${dto.bd_no }</td>
-	                <td>${dto.bd_title }</td>
+	                <td><a href="projectdetail.do?bd_no=${dto.bd_no }" style="cursor:pointer;">${dto.bd_title }</a></td>
 	                <td>${dto.m_nickname }</td>
 	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
 	                <td>${dto.bd_viewcount }</td>
@@ -220,7 +224,8 @@
         </div>
         <div class="col"><!--오른쪽 하단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF;">스터디 모집</h5>
+            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF; cursor:pointer;"
+            onclick="location.href='studylist.do'">스터디 모집 >></h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -238,7 +243,7 @@
 	          	<c:if test="${dto.name eq '스터디구인' }">
 	              <tr>
 	                <td>${dto.bd_no }</td>
-	                <td>${dto.bd_title }</td>
+	                <td><a href="studydetail.do?bd_no=${dto.bd_no}" style="cursor:pointer;">${dto.bd_title }</a></td>
 	                <td>${dto.m_nickname }</td>
 	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
 	                <td>${dto.bd_viewcount }</td>
