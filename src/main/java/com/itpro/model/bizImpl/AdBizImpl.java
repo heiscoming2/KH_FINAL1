@@ -1,11 +1,16 @@
 package com.itpro.model.bizImpl;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itpro.model.biz.AdBiz;
 import com.itpro.model.dao.AdDao;
@@ -79,4 +84,38 @@ public class AdBizImpl implements AdBiz {
 		return adDao.getAdListCnt();
 	}
 
+	
+	@Override
+	public int imageuploadupdate(MultipartFile fileName, int ad_seq) {
+		
+		int res = 0;
+		if(fileName.getSize()<=0) {
+			return 0;
+		}
+       String originalFile = fileName.getOriginalFilename();
+       String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); //확장자
+       SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+       String fileServerName= format.format(new Date());
+
+        File file = new File("C:\\workspace\\STS_Spring01\\KH_FINAL\\src\\main\\webapp\\resources\\images\\project" +File.separator, fileServerName+originalFileExtension);
+        if(!file.exists()) {
+        	file.mkdirs();
+        }
+
+        try {
+			fileName.transferTo(file);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        System.out.println(originalFile + "은 업로드한 파일이다.");
+        System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
+        System.out.println("파일사이즈는 " + fileName.getSize());
+        
+		return adDao.imageuploadupdate(ad_seq, "\\\\resources\\\\images\\\\project\\\\"+ fileServerName+originalFileExtension);
+	}
 }
