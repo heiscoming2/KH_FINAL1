@@ -1,5 +1,6 @@
 package com.itpro.model.daoImpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.Gson;
 import com.itpro.model.dao.AdDao;
 import com.itpro.model.dto.ad.AdDto;
 import com.itpro.model.dto.qna.QnaDetailDto;
@@ -101,6 +103,24 @@ public class AdDaoImpl implements AdDao {
 	}
 
 	
+	
+	public int imageuploadupdate(int ad_seq, String pro_file) {
+		int result = 0;
+		System.out.println("ad_seq:" + ad_seq);
+		System.out.println("pro_file" + pro_file);
+		Map<String, Object> projectMap = new HashMap<String, Object>();
+		projectMap.put("ad_seq", ad_seq);
+		projectMap.put("pro_file", pro_file);
+		System.out.println("projectMap parameter: " + new Gson().toJson(projectMap));
+		try {
+		result = sqlSession.update(NAMESPACE + "imageupload", projectMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result; 
+	}
+
 
 
 
