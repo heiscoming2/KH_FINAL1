@@ -24,9 +24,11 @@ public class ResumeDetailDto {
 	private String r_extraAddress;// 참고항목
 	private String r_selfletter; // 자소서
 	private String r_portfolio; // 포트폴리오 주소
-//	private String r_img; // 이력서 사진
-//	private String r_img_path; // 이력서 사진 경로
-	private Integer r_img_no; // 참고: table R_RESUME_IMG
 	private Date r_regdate; // 이력서 등록일
+	
+	private String r_img; // 이력서 사진
+	private String r_img_path; // 이력서 사진 경로
+	private Integer r_img_no; // 참고: table R_RESUME_IMG
+	
 
 }

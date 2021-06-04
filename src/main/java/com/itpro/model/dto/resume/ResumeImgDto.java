@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ResumeImgDto {
-	
+	//이력서 이미지 tableDto
 	private Integer r_no; //이력서 번호
 	private String r_img; // 이미지
 	private String r_img_path; // 이미지경로

@@ -2,6 +2,8 @@ package com.itpro.model.dto.resume;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,6 +19,7 @@ public class LicenceDto {
 	// 자격사항
 	private int li_no; 
 	private String li_title; //자격증명
+	 @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date li_date; //취득일
 	private String li_organ; //기관
 }
