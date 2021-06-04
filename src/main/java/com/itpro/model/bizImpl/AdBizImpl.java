@@ -97,7 +97,7 @@ public class AdBizImpl implements AdBiz {
        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
        String fileServerName= format.format(new Date());
 
-        File file = new File("C:\\workspace\\STS_Spring01\\KH_FINAL\\src\\main\\webapp\\resources\\images\\project" +File.separator, fileServerName+originalFileExtension);
+        File file = new File("C:\\workspace\\STS_Spring01\\KH_FINAL\\src\\main\\webapp\\resources\\images\\ad" +File.separator, fileServerName+originalFileExtension);
         if(!file.exists()) {
         	file.mkdirs();
         }
@@ -116,6 +116,6 @@ public class AdBizImpl implements AdBiz {
         System.out.println(file.getAbsolutePath() + "라는 이름으로 업로드 됐다.");
         System.out.println("파일사이즈는 " + fileName.getSize());
         
-		return adDao.imageuploadupdate(ad_seq, "\\\\resources\\\\images\\\\project\\\\"+ fileServerName+originalFileExtension);
+		return adDao.imageuploadupdate(ad_seq, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
 	}
 }
