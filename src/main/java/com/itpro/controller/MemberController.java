@@ -254,22 +254,6 @@ public class MemberController {
 		model.addAttribute("keyword",keyword);
 		return "member/postlookup";
 	}
-	
-	
-	// 기업 광고내역
-	@RequestMapping(value = "/ad_list.do")
-	public String adList() {
-		logger.info("AD LIST");
 
-		return "admin/ad_list";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

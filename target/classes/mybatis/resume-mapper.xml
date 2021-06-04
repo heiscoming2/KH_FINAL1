@@ -105,21 +105,46 @@
             select RESUMENO_SEQ.CURRVAL from M_RESUME WHERE ROWNUM = 1
        </selectKey>
 	</insert>
-	
+
+
 	<!-- 이력서 학력사항 입력 --> 
-	<insert id="educationInsert" parameterType="educationDto">
+	<insert id="educationInsert" parameterType="EducationDto">
 		INSERT INTO EDUCATION
-		VALUES(#{m_no}, EDUCATION_SEQ.NEXTVAL,#{ed_startdate} , #{ed_gradudate}, #{ed_schoolName}, #{ed_graduation}, #{ed_major}, #{ed_school})
+		VALUES
+		(#{m_no}, EDUCATION_SEQ.NEXTVAL, #{ed_startdate} , #{ed_gradudate}, #{ed_schoolName},
+		#{ed_graduation}, #{ed_major}, #{ed_school})
 	</insert>
+
+	<!-- 이력서 학력사항 수정 --> 
+	<update id="educationUpdate" parameterType="EducationDto">
+		UPDATE EDUCATION
+		SET
+			ed_startdate = #{ed_startdate},
+			ed_gradudate = #{ed_gradudate},
+			ed_schoolName = #{ed_schoolName},
+			ed_graduation = #{ed_graduation},
+			ed_major = #{ed_major},
+			ed_school = #{ed_school}
+		WHERE
+			ed_no = #{ed_no} and m_no = #{m_no}
+	</update>
+
+	<!-- 이력서 학력사항 삭제 --> 
+	<delete id="educationDelete" parameterType="EducationDto">
+		DELETE
+		FROM EDUCATION
+		WHERE ed_no = #{ed_no} and m_no = #{m_no}
+	</delete>
+	
 	
 	<!-- 이력서 자격증 입력 -->
-	<insert id="licenseInsert" parameterType="licenceDto">
+	<insert id="licenseInsert" parameterType="LicenceDto">
 		INSERT INTO LICENCE
 		VALUES(#{m_no}, LICENCENO_SEQ.NEXTVAL,#{li_title} , #{li_date}, #{li_organ})
 	</insert>
 	
 	<!-- 이력서 경력 입력 -->
-	<insert id="careerInsert" parameterType="careerDto">
+	<insert id="careerInsert" parameterType="CareerDto">
 		INSERT INTO CAREER
 		VALUES(#{m_no}, CAREERNO_SEQ.NEXTVAL,#{ca_title} , #{ca_content}, #{ca_start_date}, #{ca_end_date})
 	</insert>

@@ -189,6 +189,7 @@ public class ResumeDaoImpl implements ResumeDao {
 		return res;
 	}
 
+
 	// 이력서 학력사항 정보 입력
 	@Override
 	public int educationInsert(EducationDto educationDto) {
@@ -204,6 +205,36 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return res;
 	}
+		
+	// 이력서 학력사항 정보 수정
+	public int educationUpdate(EducationDto educationDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.update(NAMESPACE + "educationUpdate", educationDto);
+		} catch (Exception e) {
+			System.out.println("[error]:educationUpdate");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+		
+	// 이력서 학력사항 정보 삭제
+	public int educationDelete(EducationDto educationDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "educationDelete", educationDto);
+		} catch (Exception e) {
+			System.out.println("[error]:educationDelete");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+
 
 	// 이력서 자격사항 정보 입력
 	@Override

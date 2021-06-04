@@ -86,19 +86,34 @@ public class ResumeBizImpl implements ResumeBiz {
 		return dao.resumeInsert(dto);
 	}
 
+
 	// 이력서 경력사항 정보 입력
 	@Override
 	public int careerInsert(CareerDto careerDto) {
-		
 		return dao.careerInsert(careerDto);
 	}
+
+
 
 	// 이력서 학력사항 정보 입력
 	@Override
 	public int educationInsert(EducationDto educationDto) {
-		
 		return dao.educationInsert(educationDto);
 	}
+		
+	// 이력서 학력사항 정보 수정
+	@Override
+	public int educationUpdate(EducationDto educationDto) {
+		return dao.educationUpdate(educationDto);
+	}
+		
+	// 이력서 학력사항 정보 삭제
+	@Override
+	public int educationDelete(EducationDto educationDto) {
+		return dao.educationDelete(educationDto);
+	}
+
+
 
 	// 이력서 자격사항 정보 입력
 	@Override
