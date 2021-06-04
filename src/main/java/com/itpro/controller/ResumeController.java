@@ -163,14 +163,10 @@ public class ResumeController {
 		return "resume/resume_form";
 	}
 
-	// 이력서 등록
-//	@RequestMapping(value = "/resume_insert.do", method = RequestMethod.POST)
-//	public String resumeInsert(MemberDto memberDto, ResumeDetailDto resumeDto, CareerDto careerDto,
-//			EducationDto educationDto, LicenceDto licenceDto) {
-	
+	// 이력서 등록	
 	@RequestMapping(value = "/resume_insert.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Integer resumeInsert(ResumeUploadDto resumeUploadDto, HttpSession session) {
+	public Integer resumeInsert(ResumeUploadDto resumeUploadDto, HttpSession session, EducationDto educationDto) {
 		logger.info("RESUEM INSERT");
 		
 		int m_no = 0;
@@ -182,34 +178,22 @@ public class ResumeController {
 		// 0. m_no 설정
 		resumeUploadDto.setM_no(m_no);
 		
-		// 1. 이력서 기본 정보 등록
+		// 1. 이력서 기본 정보 등록 - mapper에서 update
 		biz.resumeInsert(resumeUploadDto);
 		
-		// 2. 회원정보 업데이트
+		// 2. 회원정보 업데이트- mapper에서 insert
 		MemberDto memberDto = resumeUploadDto.getMemberDto();
 		biz.memResumeUpdate(memberDto);
 		
 		// return: 이력서 번호를 클라이언트에게 리턴한다.
 		int r_no = resumeUploadDto.getR_no();
-		return r_no;
-		
-		
-//		// a) 이력서 정보 등록
-//		biz.resumeInsert(resumeUploadDto);
-		
-		
+		return r_no;		
 
-//		// 회원기본정보 등록 - mapper에서 update
-//		int memResumeUpdate = biz.memResumeUpdate(memberDto);
-//
-//		// 이력서기본정보 등록 - mapper에서 insert
-//		int resumeInsert = biz.resumeInsert(resumeDto);
-//
-//		// 경력 정보 등록 - mapper에서 insert
-//		int careerInsert = biz.careerInsert(careerDto);
-//		
 //		// 학력 정보 등록 - mapper에서 insert
 //		int educationInsert = biz.educationInsert(educationDto);
+		
+//		// 경력 정보 등록 - mapper에서 insert
+//		int careerInsert = biz.careerInsert(careerDto);
 //
 //		// 자격증 정보 등록 - mapper에서 insert
 //		int licenseInsert = biz.licenseInsert(licenceDto);

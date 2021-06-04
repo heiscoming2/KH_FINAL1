@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ResumeUploadDto {	
+	// 이력서 등록용 dto
 	// ResumeDetailDto
 	private int r_no; // 이력서 번호 // 참고: Insert시 생성되어 update됨
 

@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ResumeProfileDto {
-	
+	//이력서 이미지 등록용 dto
 	private int m_no; // 회원번호
 	private int r_no; //이력서 번호
 	private String r_img; // 이미지
