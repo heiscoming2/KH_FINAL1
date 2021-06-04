@@ -72,7 +72,7 @@
 		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
 		
 		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
-            select M_RESUME_IMG_SEQ.CURRVAL from M_RESUME_IMG WHERE ROWNUM = 1
+            select M_RESUME_IMG_SEQ.CURRVAL FROM DUAL
        </selectKey>
 	</insert>	
 	

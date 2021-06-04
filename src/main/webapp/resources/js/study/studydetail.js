@@ -92,7 +92,6 @@ $(document).ready(function(){
 		 }
 	  });
   }
-
   
   function studyJoinList(bd_no,sj_isjoin) {
 	  
