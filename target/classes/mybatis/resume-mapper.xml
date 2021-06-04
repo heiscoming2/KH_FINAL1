@@ -24,9 +24,11 @@
 	
 	<!-- 이력서 기본정보 조회(detail) -->
 	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
-		SELECT *
-		FROM M_RESUME
-		WHERE R_NO = #{r_no}
+		SELECT A.*, B.*
+		FROM M_RESUME A
+		INNER JOIN M_RESUME_IMG B
+		ON A.R_NO = B.R_NO
+		WHERE A.R_NO = #{r_no}
 	</select>
 	
 	<!-- 이력서 학력사항 조회(list) -->
@@ -52,24 +54,6 @@
 		WHERE M_NO = #{m_no}
 		ORDER BY CA_NO
 	</select>
-
-	<!-- 이력서 사진 업로드 @@@@@@@@ 수정해야대!!UPDATE M_RESUME
-		    
-CREATE SEQUENCE M_RESUME_IMG_SEQ NOCACHE;
-CREATE TABLE M_RESUME_IMG (   
-    R_NO   NUMBER,    
-    R_IMG   VARCHAR2(100) NOT NULL,
-    R_IMG_PATH VARCHAR2(1000) NOT NULL,  
-    
-    CONSTRAINT M_RESUME_IMG_PK PRIMARY KEY(R_NO)); -->
-	<insert id="uploadResumeImg" parameterType="ResumeImgDto" useGeneratedKeys="false" keyProperty="r_no">
-		INSERT INTO M_RESUME_IMG(R_NO,R_IMG, R_IMG_PATH)
-		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
-		
-		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
-            select M_RESUME_IMG_SEQ.CURRVAL from M_RESUME_IMG WHERE ROWNUM = 1
-       </selectKey>
-	</insert>
 	
 	<!-- 이력서 삭제 -->
 	<delete id="resumeDelete" parameterType="int">
@@ -86,6 +70,16 @@ CREATE TABLE M_RESUME_IMG (
 	</delete>
 	
 	<!--@@@@@@@@@@@@@@이력서 등록@@@@@@@@@@@@@@@@@@@@@  -->
+	<!-- 이력서 사진 업로드  -->
+	<insert id="uploadResumeImg" parameterType="ResumeImgDto" useGeneratedKeys="false" keyProperty="r_no">
+		INSERT INTO M_RESUME_IMG(R_NO,R_IMG, R_IMG_PATH)
+		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
+		
+		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
+            select M_RESUME_IMG_SEQ.CURRVAL from M_RESUME_IMG WHERE ROWNUM = 1
+       </selectKey>
+	</insert>	
+	
 	<!-- 이력서 회원 기본 정보 수정 -->
 	<update id="memResumeUpdate" parameterType="MemberDto">
 		UPDATE IT_MEMBER
@@ -99,7 +93,7 @@ CREATE TABLE M_RESUME_IMG (
 		WHERE M_NO = #{m_no}
 	</update>
 	
-	<!--이력서 기본정보 수정(이미지가 먼저 들어감)--><!-- 사진이 먼저 들어가서 이력서 번호를 모르는데 되는지........되나? -->
+	<!--이력서 기본정보 수정(이미지가 먼저 들어감)-->
 	<insert id="resumeInsert" parameterType="ResumeUploadDto" useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME
 		(M_NO, R_NO, R_TITLE, R_POSTCODE, R_ROADADDRESS, 

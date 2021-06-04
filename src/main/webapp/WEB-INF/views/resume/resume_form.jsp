@@ -157,23 +157,23 @@
                 </thead>
                 <tbody>
                   <tr><!--첫째줄-->
-                    <td><input type="month" class="form-control" name="ed_startdate"></td>
-                    <td><input type="month" class="form-control" name="ed_gradudate"></td>
-                    <td><input type="text" class="form-control" name="ed_schoolName" ></td>
-                    <td><input type="text" class="form-control" name="ed_major" ></td>
+                    <td><input type="month" class="form-control" name="educationList[0].ed_startdate"></td>
+                    <td><input type="month" class="form-control" name="educationList[0].ed_gradudate"></td>
+                    <td><input type="text" class="form-control" name="educationList[0].ed_schoolName" ></td>
+                    <td><input type="text" class="form-control" name="educationList[0].ed_major" ></td>
                     <td>
                         <select class="form-select">
-                        <option value="대학원" name="ed_school">대학원</option>
-                        <option value="대학교" name="ed_school">대학교</option>
-                        <option value="고등학교" name="ed_school">고등학교</option>
+                        <option value="대학원" name="educationList[0].ed_school">대학원</option>
+                        <option value="대학교" name="educationList[0].ed_school">대학교</option>
+                        <option value="고등학교" name="educationList[0].ed_school">고등학교</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-select">
-                        <option value="졸업" name="ed_graduation">졸업</option>
-                        <option value="휴학" name="ed_graduation">휴학</option>
-                        <option value="중퇴" name="ed_graduation">중퇴</option>
-                        <option value="재학" name="ed_graduation">재학</option>
+                        <option value="졸업" name="educationList[0].ed_graduation">졸업</option>
+                        <option value="휴학" name="educationList[0].ed_graduation">휴학</option>
+                        <option value="중퇴" name="educationList[0].ed_graduation">중퇴</option>
+                        <option value="재학" name="educationList[0].ed_graduation">재학</option>
                         </select>
                     </td>
                   </tr>
