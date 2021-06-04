@@ -39,6 +39,9 @@ public class NoteController {
 
 	@Autowired
 	private NoteBiz biz;
+	
+	@Autowired
+	private MemberBiz memberBiz;
 
 	// 내가 받은 쪽지 목록 조회
 	@RequestMapping(value = "/note_receivelist.do")
@@ -78,24 +81,47 @@ public class NoteController {
 
 	// 쪽지팝업(쪽지 작성창)
 	@RequestMapping(value = "/noteForm.do")
-	public String noteSend() {
+	public String noteSend(@RequestParam(value="receiver_no", required=false, defaultValue="0") int receiver_no,
+						   Model model) {
 		logger.info("NOTE FORM");
-
-		return "note/note_form";
+		//if 받는 사람이 없는 경우(receiver_no==0)
+		//쪽지창에서 직접 쪽지보내기를 누른 경우이며
+		//바로 쪽지 창으로 보내주고
+		
+		//else 받는 사람이 있는 경우 (게시판 등 프로필을 누르고 쪽지보내기 누른 경우)
+		//receiver_no를 받아와서 받는 사람 닉네임을 불러와 receiver_no와 닉네임을 함께 model에 담아 전송한다.
+		if(receiver_no==0) {
+			return "note/note_form";
+		} else {
+			String m_nickname=memberBiz.selectMemberNickname(receiver_no);
+			model.addAttribute("m_nickname",m_nickname);
+			return "note/note_form";
+		}
+		
+		
+		
+		
 	}
 
 	// 쪽지 보내기
-	@RequestMapping(value = "noteSend.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/noteSend.do", method = RequestMethod.POST)
 	public String noteSend(Model model, NoteDto noteDto, HttpServletResponse response, HttpSession session)
 			throws IOException {
 		logger.info("NOTE SEND");
-
+		
+		//세션에서 이미 null값이면 튕겨서 여기로 못옴
+		/*
 		if (session.getAttribute("login") != null) {
 			MemberDto login = (MemberDto) session.getAttribute("login");
 			int n_sender = login.getM_no();
 			noteDto.setN_sender(n_sender);
 		}
-
+		*/
+		
+		MemberDto login = (MemberDto) session.getAttribute("login");
+		int n_sender = login.getM_no();
+		noteDto.setN_sender(n_sender);
+		
 		int res = biz.noteSend(noteDto);
 		if (res > 0) {
 			model.addAttribute("message", "");

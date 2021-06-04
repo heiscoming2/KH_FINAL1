@@ -16,7 +16,7 @@
 	<form action="noteSend.do" method="post" onsubmit="onsubmitForm">
 		<div class="mb-3">
 			<label for="recipient-name" class="col-form-label">받는사람</label>
-			<input type="text" class="form-control" name="n_receiver_nickname" placeholder="닉네임 입력">
+			<input type="text" class="form-control" name="n_receiver_nickname" placeholder="닉네임 입력" value="${m_nickname }">
 		</div>
 		<div class="mb-3">
 			<label for="recipient-title" class="col-form-label">제목</label>
@@ -32,7 +32,6 @@
 		</div>
 	</form>
 </div> 
-
 <!-- 본문 종료 -->
 
 

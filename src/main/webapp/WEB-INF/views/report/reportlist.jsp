@@ -46,17 +46,20 @@
 
 		<!-- 신고관리 -->
 		
-			
+	<br><br><br>		
+	<h3 style="text-align:left;">신고관리 - 게시글</h3>
 	<div class="content">
-				<div class="item2">
-					<h3>신고관리 : 게시글</h3>
-				</div>
 				<div class="item2">
 
 
 					<form action="reportmultidelete.do" method="post">
-						<table class="main_table">
-
+						<table class="table table-bordered" style="width:1190px;">
+							<col width="80px">
+							<col width="100px">
+							<col width="210px">
+							<col width="700px">
+							<col width="100px">
+							
 							<thead>
 								<tr>
 									<th><input type="checkbox" name="all"
@@ -90,7 +93,7 @@
 									</c:choose>
 								</tr>
 								<tr>
-									<td colspan="5"><input type="submit"  name="cmd" value="일괄삭제"></td>
+									<td colspan="5"><input type="submit"  name="cmd" value="일괄삭제" class="btn btn-primary"></td>
 								</tr>
 							</tbody>
 						</table>

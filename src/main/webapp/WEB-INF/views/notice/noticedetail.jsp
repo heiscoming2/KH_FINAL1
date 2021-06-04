@@ -22,6 +22,7 @@
 
 <!-- 본문 시작 -->
   <div class="notice_detailwrap mt-5">
+      <div style="width:1190px; margin:0 auto;">
       <h4>공지사항 상세</h4>
       <!-- 공지사항 상세글 영역 -->
       <table class="table table-bordered" style="width:100%;">
@@ -105,10 +106,9 @@
 	
 	 
       <!-- 댓글 영역 시작 -->
-
-     <%@include file="../reply/reply.jsp" %>
-
+    	 <%@include file="../reply/reply.jsp" %>
       <!-- 댓글 영역 끝 -->
+      </div>
   </div>
 
 <!-- 본문 종료 -->

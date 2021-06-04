@@ -9,7 +9,6 @@
 <%@include file="./inc/_head.jspf" %>
 <link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.2">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=1.2">
 </head>
 <body>
 

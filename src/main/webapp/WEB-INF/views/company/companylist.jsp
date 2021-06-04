@@ -16,7 +16,6 @@
 <!-- 본문 시작 -->
 	<div class="content">
 	<div class="study_wrap mt-5">
-		<h3>스터디 모집</h3>
 		<div class="study_btnwrap mb-4">
 			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='studylist.do';"> 
@@ -44,7 +43,7 @@
                        <option value='경북'>경북</option>
                        <option value='경남'>경남</option>
                        <option value='제주'>제주</option>
-                    </select>                                                  
+                    </select>
 	  	          <select class="form-control gugunselect" id="gugunselect" name="st_addr2">
 	  	          	   <option value=''>전체</option>
 	  	          </select>

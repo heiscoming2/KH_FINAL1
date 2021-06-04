@@ -49,12 +49,13 @@
 
 
 	<!-- 회원명단 -->
+	<br><br><br>
+	<h3 style="text-align:left;">회원관리 - 기업회원</h3>
 	<div class="content">
-	<h3>회원관리 : 기업회원</h3>
 	
 	<form name="form2" method="post" action="member_list_com.do">
 
-			<select name="search_option">
+			<select name="search_option" class="form-control" style="width:200px; display:inline-block;">
 
 				<option value="all"
 					<c:if test="${map.search_option == 'all'}">selected</c:if>>전체</option>
@@ -68,12 +69,19 @@
 				<option value="m_admin_cert"
 					<c:if test="${map.search_option == 'm_admin_cert'}">selected</c:if>>사업자 인증</option>
 
-			</select> <input name="keyword" value="${map.keyword}"> <input
-				type="submit" value="검색">
+			</select> <input name="keyword" value="${map.keyword}"  class="form-control" style="width:200px; display:inline-block;"> 
+			<input type="submit" value="검색" class="btn btn-primary">
 		</form>
 			<br>
-	<table class="main_table">
-		
+	<table class="table table-bordered" style="width:1190px;">
+			<col width="30px">
+			<col width="250px">
+			<col width="100px">
+			<col width="200px">
+			<col width="200px">
+			<col width="80px">
+			<col width="100px">
+			<col width="100px">
 			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);"></th>
@@ -113,7 +121,7 @@
 	</table>
 	<!-- 쪽지보내기 -->
 
-	<input type="button" value="쪽지보내기" onclick="">
+	<input type="button" value="쪽지보내기" onclick="" class="btn btn-primary">
 
 
 

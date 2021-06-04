@@ -9,6 +9,8 @@
 		SELECT *
 		FROM EDUCATION
 		WHERE M_NO = #{m_no}
+        AND ROWNUM = 1
+        ORDER BY ED_NO DESC 
 	</select>
 
 	
