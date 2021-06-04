@@ -164,7 +164,7 @@ CREATE TABLE M_RESUME (
     
     SELECT * FROM M_RESUME;
    
-    --이력서 이미지 저장 테이블
+--이력서 이미지 저장 테이블
     CREATE SEQUENCE M_RESUME_IMG_SEQ NOCACHE;
     CREATE TABLE M_RESUME_IMG (   
     R_NO   NUMBER,    
