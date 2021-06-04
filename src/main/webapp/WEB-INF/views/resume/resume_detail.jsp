@@ -17,10 +17,12 @@
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
         <h3>이력서 조회</h3> 	
         <div class="float-end">
-        	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
-        	<button class="btn btn-primary" onclick="location.href='resume_updateForm.do?r_no=${resumeDetailDto.r_no}'">수정</button>
-            <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
-            <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
+        	<c:if test="${sessionScope.login.m_type eq '개인회원' }">
+	        	<button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
+	        	<button class="btn btn-primary" onclick="location.href='resume_updateForm.do?r_no=${resumeDetailDto.r_no}'">수정</button>
+	            <button class="btn btn-success" onclick="location.href='resume_list.do'">목록</button>
+	            <button class="btn btn-success" onclick="location.href='mypage_user.do'">마이페이지</button>
+        	</c:if>
         </div>
         <br><br>
         <form>

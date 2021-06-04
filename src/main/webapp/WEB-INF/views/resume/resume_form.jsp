@@ -27,7 +27,7 @@
         <br><br>
 
         <div class="clearfix"><!--이력서 기본정보 div-->
-            <form class="resumeInsertForm" method="post"><!--이력서 기본정보 form-->
+            <form id="resumeInsertForm" class="resumeInsertForm" method="post"><!--이력서 기본정보 form-->
                 <div class="col-8"><!--이력서 제목 작성-->
                     <input type="text" class="form-control form-control-lg" name="r_title" placeholder="이력서 제목">
                 </div>
@@ -111,26 +111,31 @@
                         <input type="text" class="form-control col-6 px-2" name="r_portfolio" placeholder="ex) http://www.itpro.com/user">            
                     </div>
                 </div>
-            </form><!--기본정보 입력 form 끝-->
+<!--             </form> -->
+            <!--기본정보 입력 form 끝-->
             
             <br>
             
-            <form id="resumeProfile"><!--이미지 업로드 form-->
+            <!--이미지 업로드 form-->
+<!--             <form id="resumeProfile"> -->
                 <div class="row g-2">
                     <div class="col-2"><h5>사진등록</h5></div>
                     <div class="col-3"> 
-                        <input class="form-control form-control-sm" name="r_img" type="file">                     
+                        <input class="form-control form-control-sm" name="r_img" id="input_r_img" type="file">
+                        <input type="hidden" name="r_img_no" type="text" />
                     </div>  
                     <div class="col-sm-1">
                         <input type="button" class="btn btn-outline-dark btn-sm" id="uploadBtn" value="업로드">
                     </div>   
                 </div>
-            </form><!--이미지 업로드 form 끝-->
+<!--             </form> -->
+            <!--이미지 업로드 form 끝-->
             
         </div><!--이력서 기본정보 div 끝-->     
         <hr>
 
-        <form class="resumeInsertForm" method="post"><!--학력/교육/자격증/자소서 form-->
+		<!--학력/교육/자격증/자소서 form-->
+<!--         <form class="resumeInsertForm" method="post"> -->
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>학력사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
@@ -156,40 +161,40 @@
                     <td><input type="month" class="form-control" name="ed_gradudate"></td>
                     <td><input type="text" class="form-control" name="ed_schoolName" ></td>
                     <td><input type="text" class="form-control" name="ed_major" ></td>
-                    <td><!-- 이거 수정~~~~ 넘기는거 해야됨 ㅠ -->
+                    <td>
                         <select class="form-select">
-                        <option value="1">대학원</option>
-                        <option value="2">대학교</option>
-                        <option value="3">고등학교</option>
+                        <option value="대학원" name="ed_school">대학원</option>
+                        <option value="대학교" name="ed_school">대학교</option>
+                        <option value="고등학교" name="ed_school">고등학교</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-select">
-                        <option value="1">졸업</option>
-                        <option value="2">휴학</option>
-                        <option value="3">중퇴</option>
-                        <option value="4">재학</option>
+                        <option value="졸업" name="ed_graduation">졸업</option>
+                        <option value="휴학" name="ed_graduation">휴학</option>
+                        <option value="중퇴" name="ed_graduation">중퇴</option>
+                        <option value="재학" name="ed_graduation">재학</option>
                         </select>
                     </td>
                   </tr>
-                  <tr><!--첫째줄-->
+                  <tr>
                     <td><input type="month" class="form-control" name="ed_startdate"></td>
                     <td><input type="month" class="form-control" name="ed_gradudate"></td>
                     <td><input type="text" class="form-control" name="ed_schoolName" ></td>
                     <td><input type="text" class="form-control" name="ed_major" ></td>
-                    <td><!-- 이거 수정~~~~ 넘기는거 해야됨 ㅠ -->
+                    <td>
                         <select class="form-select">
-                        <option value="1">대학원</option>
-                        <option value="2">대학교</option>
-                        <option value="3">고등학교</option>
+                        <option value="대학원" name="ed_school">대학원</option>
+                        <option value="대학교" name="ed_school">대학교</option>
+                        <option value="고등학교" name="ed_school">고등학교</option>
                         </select>
                     </td>
                     <td>
                         <select class="form-select">
-                        <option value="1">졸업</option>
-                        <option value="2">휴학</option>
-                        <option value="3">중퇴</option>
-                        <option value="4">재학</option>
+                        <option value="졸업" name="ed_graduation">졸업</option>
+                        <option value="휴학" name="ed_graduation">휴학</option>
+                        <option value="중퇴" name="ed_graduation">중퇴</option>
+                        <option value="재학" name="ed_graduation">재학</option>
                         </select>
                     </td>
                   </tr>                
@@ -251,7 +256,7 @@
                 <tbody>
                   <tr><!--첫째줄-->
                     <td><input type="text" class="form-control" name="ca_title" ></td>
-                    <td><input type="month" class="form-control" name="ca_start_date" ></td>
+                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
                     <td><input type="date" class="form-control" name="ca_end_date" ></td>
                     <td><input type="text" class="form-control" name="ca_content" ></td>
                   </tr>

@@ -43,7 +43,9 @@ import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.model.dto.resume.LicenceDto;
 import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeImgDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
+import com.itpro.model.dto.resume.ResumeUploadDto;
 import com.itpro.util.PageProcessing;
 
 @Controller
@@ -162,27 +164,57 @@ public class ResumeController {
 	}
 
 	// 이력서 등록
-	@RequestMapping(value = "/resume_insert.do")
-	public String resumeInsert(MemberDto memberDto, ResumeDetailDto resumeDto, CareerDto careerDto,
-			EducationDto educationDto, LicenceDto licenceDto) {
+//	@RequestMapping(value = "/resume_insert.do", method = RequestMethod.POST)
+//	public String resumeInsert(MemberDto memberDto, ResumeDetailDto resumeDto, CareerDto careerDto,
+//			EducationDto educationDto, LicenceDto licenceDto) {
+	
+	@RequestMapping(value = "/resume_insert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer resumeInsert(ResumeUploadDto resumeUploadDto, HttpSession session) {
 		logger.info("RESUEM INSERT");
-
-		// 회원기본정보 등록 - mapper에서 update
-		int memResumeUpdate = biz.memResumeUpdate(memberDto);
-
-		// 이력서기본정보 등록 - mapper에서 insert
-		int resumeInsert = biz.resumeInsert(resumeDto);
-
-		// 경력 정보 등록 - mapper에서 insert
-		int careerInsert = biz.careerInsert(careerDto);
 		
-		// 학력 정보 등록 - mapper에서 insert
-		int educationInsert = biz.educationInsert(educationDto);
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+		
+		// 0. m_no 설정
+		resumeUploadDto.setM_no(m_no);
+		
+		// 1. 이력서 기본 정보 등록
+		biz.resumeInsert(resumeUploadDto);
+		
+		// 2. 회원정보 업데이트
+		MemberDto memberDto = resumeUploadDto.getMemberDto();
+		biz.memResumeUpdate(memberDto);
+		
+		// return: 이력서 번호를 클라이언트에게 리턴한다.
+		int r_no = resumeUploadDto.getR_no();
+		return r_no;
+		
+		
+//		// a) 이력서 정보 등록
+//		biz.resumeInsert(resumeUploadDto);
+		
+		
 
-		// 자격증 정보 등록 - mapper에서 insert
-		int licenseInsert = biz.licenseInsert(licenceDto);
+//		// 회원기본정보 등록 - mapper에서 update
+//		int memResumeUpdate = biz.memResumeUpdate(memberDto);
+//
+//		// 이력서기본정보 등록 - mapper에서 insert
+//		int resumeInsert = biz.resumeInsert(resumeDto);
+//
+//		// 경력 정보 등록 - mapper에서 insert
+//		int careerInsert = biz.careerInsert(careerDto);
+//		
+//		// 학력 정보 등록 - mapper에서 insert
+//		int educationInsert = biz.educationInsert(educationDto);
+//
+//		// 자격증 정보 등록 - mapper에서 insert
+//		int licenseInsert = biz.licenseInsert(licenceDto);
 
-		return "resume/resume_list";
+		// return "resume/resume_list";
 	}
 
 	// 이력서 개별삭제
@@ -207,13 +239,14 @@ public class ResumeController {
 		return null;
 	}
 
-	// 프로필 이미지 업로드 컨트롤러(왜 안될까....??)
+	// 프로필 이미지 업로드 컨트롤러(이거 이력서별로 올라가니까 이력서 번호로 해야되는거 아냐?)
 	@RequestMapping(value = "/resumeProfile.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
+	// public Map<String, String> profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
+	public Integer profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
 			throws IllegalStateException, IOException {
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>();		
 
 		MemberDto res = (MemberDto) request.getSession().getAttribute("login");
 		int m_no = res.getM_no();
@@ -240,14 +273,17 @@ public class ResumeController {
 		logger.info("==============================");
 		logger.info("경로:" + r_img_path + r_img);
 
-		ResumeProfileDto resumeProfileDto = new ResumeProfileDto(m_no, r_img, r_img_path);
-		biz.profileUpload(resumeProfileDto);
+		ResumeImgDto resumeImgDto = new ResumeImgDto(r_img, r_img_path);
+		biz.uploadResumeImg(resumeImgDto);
+		Integer r_no = resumeImgDto.getR_no();
 
-		map.put("path", "profileimages/" + r_img);
-		logger.info("==============================");
-		logger.info("map path:" + map);
-
-		return map;
+//		map.put("path", "profileimages/" + r_img);
+//		logger.info("==============================");
+//		logger.info("map path:" + map);
+//
+//		return map;
+		
+		return r_no;
 	}
 
 }

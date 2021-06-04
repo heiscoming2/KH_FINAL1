@@ -9,6 +9,7 @@
 <%@include file="./inc/_head.jspf" %>
 <link rel="stylesheet" type="text/css" href="resources/css/slidebar.css?ver=1.2">
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/main.css?ver=1.2">
 </head>
 <body>
 
@@ -52,28 +53,20 @@
 					<img src="resources/images/mainimages/pngwing.png" style="width:50px; height:50px;">
 					<b>TOP 10 포트폴리오</b> <input type="button" class="btn btn-primary ml-3" value="더 보기" onclick="location.href='portfoliolist.do'">
 				</h5>
-				
 				<div class="owl-carousel">
 					<!-- 프로필 시작 -->
-					<c:forEach begin="0" end="20" step="1" varStatus="loop">
+					<c:forEach var="mainPagePortfolioList" items="${mainPagePortfolioList }">
 					<div class="testimonial-box">
 						<div class="d-flex justify-content-center align-items-center mb-2">
 							<img src="testimages/testprofile.jpg" alt="" class="user-img mr-2">
 							<div>
-								<h6 class="mb-0"><b>&nbsp;&nbsp;hyojun9292</b>
+								<h6 class="mb-0"><b>&nbsp;&nbsp;${mainPagePortfolioList.m_nickname }</b>
 								</h6>
 
 								<p class="text-muted mb-0" style="font-size: 8px; margin:0; padding:0;">
 									&nbsp;&nbsp;&nbsp;
 									<span style="text-decoration: underline;">
-										92.10.24
-									</span>
-									<span>
-										&nbsp;(N년차)
-									</span>
-									<br>
-									&nbsp;&nbsp;&nbsp;<span style="color:black">
-										<b>프론트 개발</b>
+										<fmt:formatDate value="${mainPagePortfolioList.m_birth}" pattern="yyyy-MM"/>
 									</span>
 								</p>
 							</div>
@@ -82,25 +75,30 @@
 						<div style="width:80%; margin: 0 auto;">
 							<div style="margin-bottom: 8px;">
 								<p style="font-size: 8px; margin:0; padding:0;">
-									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 주 사용 언어</b><br>
-									<span style="color:#6c757d;">REACT ANGULAR JAVASCRIPT </span>
-								</p>
-							</div>
-							<div style="margin-bottom: 8px;">
-								<div style="font-size: 8px; margin:0; padding:0;">
-									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 최근 대표 이력</b>
-								</div>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) ㅇㅇ회사 근무
-								</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) KH학원
+									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 포트폴리오 소개</b><br>
+									<span style="color:#6c757d;">${mainPagePortfolioList.bd_content } </span>
 								</p>
 							</div>
 							<div>
-								<p style="font-size: 8px; margin:0; padding:0;"><b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 최근 개발 프로젝트</b></p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 요리 소개
-									사이트 개발</p>
-								<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">(2018.06~2020.03) 무언가를
-									개발개발</p>
+								<div style="font-size: 8px; margin:0; padding:0; margin-bottom:8px;">
+									<div>
+									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 사용 개발 기술</b>
+									</div>
+									<span style="color:#6c757d; margin-bottom:8px;">${mainPagePortfolioList.port_develop } </span>
+								</div>
+								<div style="font-size: 8px; margin:0; padding:0;">
+									<b style="background-color:#EEEBFF; padding:2px; color:#0078FF;">· 경력사항</b>
+								</div>
+									<c:forEach var="careerdto" items="${mainPagePortfolioList.careerdto }">
+										<p style="font-size: 8px; margin:0; padding:0; color:#6c757d;">
+										(
+										<fmt:formatDate value="${careerdto.ca_start_date}" pattern="yyyy-MM"/>
+										~
+										<fmt:formatDate value="${careerdto.ca_end_date}" pattern="yyyy-MM"/>
+										) 
+										${careerdto.ca_title }
+										</p>
+									</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -111,9 +109,6 @@
 		</div>
 	</section>
 	<!-- 인기 포트폴리오 슬라이드 종료 -->
-	
-	
-	
 	
 	<!-- 광고배너2시작 -->
 	<br>
@@ -128,7 +123,9 @@
       <div class="row">
         <div class="col"><!--왼쪽 상단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold" onclick="location.href='noticelist.do'" style="cursor:pointer;">공지사항</h5>
+            <h5 class="fw-bold" onclick="location.href='noticelist.do'" 
+            style="cursor:pointer; background-color:#EEEBFF; padding:10px; 
+            border:1px solid lightgray; color:#0078FF;">공지사항</h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -142,52 +139,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>광고 결제 방법</td>
-                <td>관리자</td>
-                <td>20-00-00</td>
-                <td>10</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+	          <c:forEach var="dto" items="${mainPageBoardList }">
+	          	<c:if test="${dto.name eq '공지사항' }">
+	              <tr>
+	                <td>${dto.bd_no }</td>
+	                <td>${dto.bd_title }</td>
+	                <td>${dto.m_nickname }</td>
+	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
+	                <td>${dto.bd_viewcount }</td>
+	                <td>${dto.re_recommandcount }</td>
+	              </tr>
+	             </c:if> 
+	          </c:forEach>
             </tbody>
           </table>
         </div>
         <div class="col"><!--오른쪽 상단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold">베스트 게시글</h5>
+            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF;">포트폴리오</h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -201,46 +170,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>팀플 성공법</td>
-                <td>황시목</td>
-                <td>20-00-00</td>
-                <td>10</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+	          <c:forEach var="dto" items="${mainPageBoardList }">
+	          	<c:if test="${dto.name eq '포트폴리오' }">
+	              <tr>
+	                <td>${dto.bd_no }</td>
+	                <td>${dto.bd_title }</td>
+	                <td>${dto.m_nickname }</td>
+	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
+	                <td>${dto.bd_viewcount }</td>
+	                <td>${dto.re_recommandcount }</td>
+	              </tr>
+	             </c:if> 
+	          </c:forEach>            
             </tbody>
           </table>
         </div>
@@ -248,7 +189,7 @@
       <div class="row">
         <div class="col"><!--왼쪽 하단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold">베스트 프로젝트</h5>
+            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; color:#0078FF;">프로젝트</h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -262,52 +203,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>프로젝트입니다</td>
-                <td>김자바</td>
-                <td>20-00-00</td>
-                <td>10</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+	          <c:forEach var="dto" items="${mainPageBoardList }">
+	          	<c:if test="${dto.name eq '프로젝트' }">
+	              <tr>
+	                <td>${dto.bd_no }</td>
+	                <td>${dto.bd_title }</td>
+	                <td>${dto.m_nickname }</td>
+	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
+	                <td>${dto.bd_viewcount }</td>
+	                <td>${dto.re_recommandcount }</td>
+	              </tr>
+	             </c:if> 
+	          </c:forEach>
             </tbody>
           </table>
         </div>
         <div class="col"><!--오른쪽 하단 게시판 목록-->
           <div class="row" style="text-align: center">
-            <h5 class="fw-bold">스터디</h5>
+            <h5 class="fw-bold" style="background-color:#EEEBFF; padding:10px; border:1px solid lightgray; margin-left:10px; color:#0078FF;">스터디 모집</h5>
           </div>
           <table class="table table-sm table-hover" style='text-align: center' >
             <thead>
@@ -321,46 +234,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>스터디원 구인</td>
-                <td>홍길동</td>
-                <td>20-00-00</td>
-                <td>10</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+	          <c:forEach var="dto" items="${mainPageBoardList }">
+	          	<c:if test="${dto.name eq '스터디구인' }">
+	              <tr>
+	                <td>${dto.bd_no }</td>
+	                <td>${dto.bd_title }</td>
+	                <td>${dto.m_nickname }</td>
+	                <td><fmt:formatDate value="${dto.bd_createddate }" pattern="yy-MM-dd"/></td>
+	                <td>${dto.bd_viewcount }</td>
+	                <td>${dto.re_recommandcount }</td>
+	              </tr>
+	             </c:if> 
+	          </c:forEach>
             </tbody>
           </table>
         </div>

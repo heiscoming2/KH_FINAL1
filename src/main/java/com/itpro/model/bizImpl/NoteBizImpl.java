@@ -69,9 +69,9 @@ public class NoteBizImpl implements NoteBiz {
 
 	// 읽은 쪽지 읽은 시간 표시 UPDATE
 	@Override
-	public int updateReadDate() {
+	public int updateReadDate(NoteDto updateNoteDto) {
 
-		return dao.updateReadDate();
+		return dao.updateReadDate(updateNoteDto);
 	}
 
 	// 새로 받은 쪽지가 있는지 확인(매번)

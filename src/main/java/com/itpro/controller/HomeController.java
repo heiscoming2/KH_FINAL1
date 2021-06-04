@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.dto.board.SearchListDto;
+import com.itpro.model.dto.mainpage.MainPageBoardDto;
+import com.itpro.model.dto.mainpage.MainPagePortfolioDto;
 import com.itpro.model.dto.member.PostLookupDto;
 import com.itpro.util.PageProcessing;
 
@@ -32,6 +34,14 @@ public class HomeController {
 	@RequestMapping(value="/main.do")
 	public String getMain(Model model,HttpServletRequest request) {
 		log.info("main.do");
+		
+		//하단 게시판에 보여줄 내용
+		List<MainPageBoardDto> mainPageBoardList = boardBiz.selectMainPageBoardList();
+		model.addAttribute("mainPageBoardList",mainPageBoardList);
+		
+		//하단 슬라이드바 포트폴리오 top10
+		List<MainPagePortfolioDto> mainPagePortfolioList = boardBiz.selectMainPortfolioList();
+		model.addAttribute("mainPagePortfolioList",mainPagePortfolioList);
 		return "main";
 	}
 	
@@ -53,7 +63,6 @@ public class HomeController {
 		searchlistMap.put("start", pageProcessing.getStartIndex());
 		searchlistMap.put("end", pageProcessing.getEndIndex());
 		List<SearchListDto> searchList = boardBiz.selectSearchList(searchlistMap);
-		
 		
 		//총 게시물 수
 		model.addAttribute("searchlistcnt",searchlistcnt);

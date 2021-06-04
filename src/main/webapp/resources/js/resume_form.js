@@ -6,11 +6,13 @@ $(function(){
     });
  
 });
- 
+
+let r_no = 0;
+
 function uploadFile(){
-    
-	    var form = $('#resumeProfile')[0];
-	    var formData = new FormData(form);
+	    
+	var formData = new FormData();
+	formData.append('r_img', $('#input_r_img')[0].files[0]); 
     
  
     $.ajax({
@@ -20,6 +22,8 @@ function uploadFile(){
         contentType : false,
         processData : false,
         success:function(data){
+        	const resumeInsertForm = document.getElementById('resumeInsertForm');
+        	resumeInsertForm.r_img_no.value = data;
         	alert("이미지 업로드 성공");
         },
         error:function(msg){
@@ -34,8 +38,33 @@ function uploadFile(){
 /*이력서 데이터 전송*/
 $(document).ready(function(){
 	$("#resumeInsertBtn").click(function(){
-		$(".resumeInsertForm").attr("action","resume_insert.do");
-		$(".resumeInsertForm").submit();	
+		// $("#resumeInsertForm").attr("action","resume_insert.do");
+		// $("#resumeInsertForm").submit();
+		
+		var form = $('#resumeInsertForm')[0];
+	    var formData = new FormData(form);
+    
+ 
+	    $.ajax({
+	    	type : 'POST',
+	        url : 'resume_insert.do',
+	        data : formData,
+	        contentType : false,
+	        processData : false,
+	        success:function(data){
+	        	r_no = data;
+	        	alert("이력서 기본 정보 INSERT 성공"); // 여기서는 1-a: insert만 한다-> 수정시에는 1-a:insert가 아니라 update가 되어 햔다
+	        	// 이제, r_no가 확보되었으니
+	        	// 3. 학력사항 목록 insert를 ajax로 하면서, r_no를 사용하고,
+	        	// 4. 자격사항 목록 insert를 ajax로 하면서, r_no를 사용하고,
+	        	// 5. 교욱 및 사회경험 insert를 ajax로 하면서, r_no를 사용하고,
+	        	// -> 다 끝나면, 이 페이지에서 쫓아내야 한다 -> 왜냐면, 여기서는 방금 작성한 이력서를 수정 못 하기 떔ㄴ이다
+	        },
+	        error:function(msg){
+	        	alert("통신실패");
+			}        
+	    
+	    })	
 	});
 	
 });

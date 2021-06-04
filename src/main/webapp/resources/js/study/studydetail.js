@@ -252,6 +252,8 @@ $(document).ready(function(){
 				  alert('추방 하였습니다');
 				  $('.studyjoinnedlist > .profile_wrap'+m_no).remove();
 				  $('.joinnednum').text( Number($('.joinnednum').text())-1 );
+				  alert($('.st_nowperson').text());
+				  $('.st_nowperson').text( Number($('.st_nowperson').text())-1 );
 			  } else {
 				  alert('알 수 없는 오류로 추방에 실패하였습니다. 관리자에게 문의하세요.');
 			  }
@@ -325,6 +327,8 @@ $(document).ready(function(){
 				  $('.studyjoinapplylist > .profile_wrap'+m_no).remove();
 				  $('.applynum').text( Number($('.applynum').text())-1 );
 				  $('.joinnednum').text( Number($('.joinnednum').text())+1 );
+				  alert($('.st_nowperson').text());
+				  $('.st_nowperson').text( Number($('.st_nowperson').text())+1 );
 			  }
 		  },
 		  error:function(e) {

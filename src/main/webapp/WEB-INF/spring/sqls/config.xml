@@ -63,6 +63,8 @@
 		<typeAlias type="com.itpro.model.dto.resume.CareerDto" alias="CareerDto"/>
 		<typeAlias type="com.itpro.model.dto.note.NoteDto" alias="NoteDto"/>
 		<typeAlias type="com.itpro.model.dto.resume.ResumeProfileDto" alias="ResumeProfileDto"/>
+		<typeAlias type="com.itpro.model.dto.resume.ResumeImgDto" alias="ResumeImgDto"/>
+		<typeAlias type="com.itpro.model.dto.resume.ResumeUploadDto" alias="ResumeUploadDto"/>
 
 		<typeAlias type="com.itpro.model.dto.board.BoardInsertDto" alias="BoardInsertDto"/>
 
@@ -82,6 +84,8 @@
 		<typeAlias type="com.itpro.model.dto.member.PostLookupDto" alias="PostLookupDto"/>
 		<typeAlias type="com.itpro.model.dto.board.SearchListDto" alias="SearchListDto"/>
 		<typeAlias type="com.itpro.model.dto.company.CompanyResumeDto" alias="CompanyResumeDto"/>
+		<typeAlias type="com.itpro.model.dto.mainpage.MainPageBoardDto" alias="MainPageBoardDto"/>
+		<typeAlias type="com.itpro.model.dto.mainpage.MainPagePortfolioDto" alias="MainPagePortfolioDto"/>
 	</typeAliases>
 	
 	<mappers>

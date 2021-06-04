@@ -11,6 +11,8 @@ import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dto.board.BoardDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.board.SearchListDto;
+import com.itpro.model.dto.mainpage.MainPageBoardDto;
+import com.itpro.model.dto.mainpage.MainPagePortfolioDto;
 
 @Service
 public class BoardBizImpl implements BoardBiz {
@@ -40,5 +42,15 @@ public class BoardBizImpl implements BoardBiz {
 	@Override
 	public List<SearchListDto> selectSearchList(Map<String, Object> searchlistMap) {
 		return boardDao.selectSearchList(searchlistMap);
+	}
+
+	@Override
+	public List<MainPageBoardDto> selectMainPageBoardList() {
+		return boardDao.selectMainPageBoardList();
+	}
+
+	@Override
+	public List<MainPagePortfolioDto> selectMainPortfolioList() {
+		return boardDao.selectMainPortfolioList();
 	}
 }

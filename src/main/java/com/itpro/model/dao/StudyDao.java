@@ -29,6 +29,8 @@ public interface StudyDao {
 	public List<StudyJoinInfoDto> studyJoinInfoSelectList(StudyJoinInfoDto studyJoinInfodto);
 	public int studyJoinDelete(StudyJoinInfoDto studyJoinInfoDto);
 	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto);
+	public int studyJoinnedNumUpdate(int bd_no);
+	public int studyDropNumUpdate(int bd_no);
 
 
 }

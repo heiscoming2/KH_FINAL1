@@ -31,7 +31,7 @@ public interface NoteBiz {
 	public int noteDelete(int n_no);
 
 	// 읽은 쪽지 읽은 시간 표시 UPDATE
-	public int updateReadDate();
+	public int updateReadDate(NoteDto updateNoteDto);
 	
 	// 새로 받은 쪽지가 있는지 확인(매번)
 	public Integer countNewNote();

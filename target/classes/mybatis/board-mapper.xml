@@ -67,5 +67,82 @@
 		       ORDER BY RN ASC) 
 		WHERE RN BETWEEN #{start} AND #{end} 
 	</select>
+	
+	<!-- 메인페이지 보드  -->
+	<select id="selectmainpageboardlist" resultType="MainPageBoardDto">
+		SELECT ROWNUM, BC.NAME, B.BD_NO, B.BD_TITLE, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_VIEWCOUNT, 
+			   DECODE(RE.RECOMMANDCOUNT,NULL,0,RE.RECOMMANDCOUNT) RE_RECOMMANDCOUNT
+		FROM BOARD B, IT_MEMBER M, 
+			 (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) RE, BOARDCATEGORY BC
+		WHERE BC.CODE=B.BC_CODE
+		  AND BC.CODE=5
+		  AND B.M_NO=M.M_NO
+		  AND B.BD_NO=RE.BD_NO(+)
+		  AND ROWNUM <![CDATA[<]]> 6
+		UNION ALL
+		SELECT ROWNUM, BC.NAME, B.BD_NO, B.BD_TITLE, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_VIEWCOUNT, 
+			   DECODE(RE.RECOMMANDCOUNT,NULL,0,RE.RECOMMANDCOUNT) RE_RECOMMANDCOUNT
+		FROM BOARD B, IT_MEMBER M, 
+			 (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) RE, BOARDCATEGORY BC
+		WHERE BC.CODE=B.BC_CODE
+		  AND BC.CODE=7
+		  AND B.M_NO=M.M_NO
+		  AND B.BD_NO=RE.BD_NO(+)
+		  AND ROWNUM <![CDATA[<]]> 6
+		UNION ALL
+		SELECT ROWNUM, BC.NAME, B.BD_NO, B.BD_TITLE, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_VIEWCOUNT, 
+			   DECODE(RE.RECOMMANDCOUNT,NULL,0,RE.RECOMMANDCOUNT) RE_RECOMMANDCOUNT
+		FROM BOARD B, IT_MEMBER M, 
+			 (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) RE, BOARDCATEGORY BC
+		WHERE BC.CODE=B.BC_CODE
+		  AND BC.CODE=1
+		  AND B.M_NO=M.M_NO
+		  AND B.BD_NO=RE.BD_NO(+)
+		  AND ROWNUM <![CDATA[<]]> 6  
+		UNION ALL
+		SELECT ROWNUM, BC.NAME, B.BD_NO, B.BD_TITLE, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_VIEWCOUNT, 
+			   DECODE(RE.RECOMMANDCOUNT,NULL,0,RE.RECOMMANDCOUNT) RE_RECOMMANDCOUNT
+		FROM BOARD B, IT_MEMBER M, 
+			 (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) RE, BOARDCATEGORY BC
+		WHERE BC.CODE=B.BC_CODE
+		  AND BC.CODE=3
+		  AND B.M_NO=M.M_NO
+		  AND B.BD_NO=RE.BD_NO(+)
+		  AND ROWNUM <![CDATA[<]]> 6
+	</select>	
+	
+	
+	
+	<!-- 메인페이지 포트폴리오 -->
+	<select id="selectmainpageportfoliolist" resultMap="MainPagePortfolioDto">
+		SELECT M.M_NO, M.M_IMG, M.M_IMG_PATH, M.M_NICKNAME, M.M_BIRTH, 
+	    	   B.BD_NO, B.BD_CONTENT, P.PORT_DEVELOP, 
+	     	   C.CA_TITLE, C.CA_START_DATE, C.CA_END_DATE 
+		  FROM IT_MEMBER M, BOARD B, PORTFOLIO P, CAREER C
+		 WHERE B.M_NO = M.M_NO
+	       AND P.BD_NO = B.BD_NO
+	       AND C.M_NO = B.M_NO
+	</select>
+	
+	<resultMap id="MainPagePortfolioDto" type="MainPagePortfolioDto">
+		<result property="m_no" column="M_NO" />
+		<result property="bd_no" column="BD_NO" />
+	    <result property="m_img" column="M_IMG" />
+	    <result property="m_img_path" column="M_IMG_PATH" />
+	    <result property="m_nickname" column="M_NICKNAME" />
+	    <result property="m_birth" column="M_BIRTH" />
+	    <result property="bd_content" column="BD_CONTENT" />
+	    <result property="port_develop" column="PORT_DEVELOP" />
+	    <collection property="careerdto" resultMap="CareerDto"/>
+	</resultMap>
+	
+	<resultMap id="CareerDto" type="CareerDto">
+	        <result property="ca_title" column="CA_TITLE" />
+	        <result property="ca_start_date" column="CA_START_DATE" />
+	        <result property="ca_end_date" column="CA_END_DATE" />
+	</resultMap>    
+	
+	
+	
 
 </mapper>  

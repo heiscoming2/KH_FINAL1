@@ -9,7 +9,9 @@ import com.itpro.model.dto.resume.EducationDto;
 import com.itpro.model.dto.resume.LicenceDto;
 import com.itpro.model.dto.resume.ResumeDetailDto;
 import com.itpro.model.dto.resume.ResumeDto;
+import com.itpro.model.dto.resume.ResumeImgDto;
 import com.itpro.model.dto.resume.ResumeProfileDto;
+import com.itpro.model.dto.resume.ResumeUploadDto;
 
 public interface ResumeBiz {
 
@@ -29,7 +31,7 @@ public interface ResumeBiz {
 	public List<CareerDto> careerList(int m_no);
 
 	// 이미지 업로드
-	public int profileUpload(ResumeProfileDto resumeProfileDto);
+	public int uploadResumeImg(ResumeImgDto resumeImgDto);
 
 	// 이력서 삭제
 	public int resumeDelete(int r_no);
@@ -38,7 +40,7 @@ public interface ResumeBiz {
 	public int memResumeUpdate(MemberDto memberDto);
 
 	// 이력서 기본 정보 입력
-	public int resumeInsert(ResumeDetailDto resumeDto);
+	public int resumeInsert(ResumeUploadDto dto);
 
 	// 이력서 경력사항 정보 입력
 	public int careerInsert(CareerDto careerDto);
