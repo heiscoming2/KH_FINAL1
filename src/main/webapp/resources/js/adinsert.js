@@ -41,3 +41,44 @@ $(function(){
 });
  
  
+ 
+/* 이미지 업로드 */ 
+ 
+function imageupload(cnt){
+	console.log(projects);
+	var form = $('#pro_file_form_'+cnt)[0];
+	console.log(form);
+    // Create an FormData object  
+    var data = new FormData(form);  
+    data.append('file',$('#pro_file_'+cnt)[0].files[0]);         
+    var pro_no = projects[cnt-1].pro_no;
+    console.log(pro_no);  
+
+    
+    $.ajax({             
+    	type: "POST",
+        enctype: 'multipart/form-data',  
+        url: "multipart.do?pro_no=" + pro_no,  
+        data: data,
+        processData: false,    
+        contentType: false,      
+        cache: false,           
+        timeout: 600000,       
+        success: function (data) { 
+        		alert(data);
+        	if(cnt<num){
+        	//cnt <= num이면 두 번 돈다 
+        		console.log(num+1+"번째");
+        		imageupload(++cnt);
+        	}   else{
+        	location.href = 'projectlist.do';    
+        	}   
+        },          
+        error: function (e) {  
+        	console.log("ERROR : ", e);      
+            alert("fail");  
+        }     
+	});   
+ 
+ }
+ 

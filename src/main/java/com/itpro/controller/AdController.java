@@ -2,6 +2,7 @@ package com.itpro.controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,10 +24,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import com.itpro.model.biz.AdBiz;
 import com.itpro.model.biz.BoardBiz;
@@ -188,56 +192,43 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 		return null;
 	}
 	
+	///////파일 업로드 관련 ////////////////////////
 	
-	@RequestMapping("/kakaopay.do")
+	@RequestMapping(value="/admultipart.do", method=RequestMethod.POST)                                                         
+    public @ResponseBody String multipart(@RequestParam("pro_no") String pro_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
+		logger.info("multipart.do");
+		
+        int res = adBiz.imageuploadupdate(fileName, Integer.parseInt(pro_no));
+        return "{result:"+res+"}";
+    }
+	
+	/////파일 다운로드
+	@RequestMapping(value="/addownload.do")
 	@ResponseBody
-	public String kakaopay() {
-		try {
-			
-			//데이터 받기 
-			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
-			HttpURLConnection con = (HttpURLConnection) url.openConnection(); 
-			con.setRequestMethod("POST");
-			con.setRequestProperty("Authorization", "KakaoAK c1011b15c30c998efa86e461b4aa0995");
-			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8 ");
-			con.setDoOutput(true);
-			String param ="cid=TC0ONETIME&partner_order_id=partner_order_id & partner_user_id=partner_user_id & item_name=초코파이 & quantity=1 & total_amount=2200 & vat_amount=200 & tax_free_amount=0 & approval_url=https://developers.kakao.com/success & fail_url=https://developers.kakao.com/fail & cancel_url=https://developers.kakao.com/cancel";
-			
-			
-			//데이터 주기 (전송)
-			OutputStream giver = con.getOutputStream();
-			DataOutputStream datagiver = new DataOutputStream(giver);
-			datagiver.writeBytes(param);// 데이터를 쥐고 있는 상태. 아직 전달안함.
-			datagiver.flush();
-			datagiver.close();
-			
-			//실제 통신하는 부분
-			int result= con.getResponseCode();
-			
-			InputStream receiver;
-			if(result==200) {
-				receiver =con.getInputStream();
-			}else {
-				receiver= con.getErrorStream();
-			}
-			
-			InputStreamReader reader = new InputStreamReader(receiver);
-			
-			//문자로 형변환
-			BufferedReader typeCasting = new BufferedReader(reader);
-			return typeCasting.readLine();
-					
-			
-			
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
+	public byte[] fileDown(HttpServletRequest request, HttpServletResponse response, String name) throws IOException {
+		//return type이 byte 배열
+		//원래 String return은 views(.jsp) 이름이었음! 하지만 byte는 views return이 아님 -> 페이지 전환이 아닌 데이터 응답 처리임
+		//String name에 파일 이름이 담겨서 넘어오는 거
 		
-		return "{\"result\":\"NO\"}"; 
 		
+		//파일 업로드하는 절대 경로 가지고 오기
+		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
+		
+		//file 객체 만들기
+		File file = new File(path + "/" + name);
+		
+		//FileCopyUtils 
+		byte[] bytes = FileCopyUtils.copyToByteArray(file);
+		String fn = new String(file.getName());
+		
+		//attachment: 다운로드 시 무조건 파일 다운로드 상자가 뜨도록 함
+		response.setHeader("Content-Disposition", "attachment;filename=\"" + fn + "\"");
+		
+		response.setContentLength(bytes.length); //파일 길이
+		response.setContentType("image/jpeg"); //파일 타입
+		
+		return bytes;
 	}
+	
 	
 }

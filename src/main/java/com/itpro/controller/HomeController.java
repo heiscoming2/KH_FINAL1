@@ -77,4 +77,7 @@ public class HomeController {
 		
 		return "searchlist";
 	}	
+	
+	
+	
 }

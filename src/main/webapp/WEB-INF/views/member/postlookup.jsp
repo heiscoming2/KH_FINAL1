@@ -79,7 +79,7 @@
 								</c:if>
 								<td class="bd_no">${postLookupDto.bd_no}</td>
 								<td>${postLookupDto.name } </td>
-								<td><a href="boarddetail.do?bc_code=${postLookupDto.bc_code }&bd_no=${postLookupDto.bd_no}" style="color:black;">${postLookupDto.bd_title }<span class="replycount"> +${postLookupDto.bd_replycount }</span></a></td>
+								<td><a href="boarddetail.do?bc_code=${postLookupDto.bc_code }&bd_no=${postLookupDto.bd_no}&m_no=${writer.m_no}" style="color:black;">${postLookupDto.bd_title }<span class="replycount"> +${postLookupDto.bd_replycount }</span></a></td>
 								<td class="bd_recommandcount"><b>${postLookupDto.bd_recommandcount }</b></td>
 								<td class="bd_viewcount">${postLookupDto.bd_viewcount }</td>
 								<td>
