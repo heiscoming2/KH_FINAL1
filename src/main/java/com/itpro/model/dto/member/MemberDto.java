@@ -33,6 +33,5 @@ public class MemberDto {
 	private String m_regno;// 사업자번호
 	private String m_admin_cert;// 기업회원승인여부
 
-	
 
 }
