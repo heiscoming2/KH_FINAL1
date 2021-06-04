@@ -83,9 +83,8 @@
                   ※ 경력 사항: <br>
                <c:forEach var="career" items="${dto.career }" > 
                ${career.ca_title } 
-              <fmt:formatDate value="${career.ca_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${career.ca_end_date }" pattern="yyyy-MM-dd"/>
+              [<fmt:formatDate value="${career.ca_start_date }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${career.ca_end_date }" pattern="yyyy-MM-dd"/>] <br>
                </c:forEach> <br> 
-             <%--  [${career.ca_start_date } ~ ${career.ca_end_date }]<br>  </c:forEach> <br> --%>
                   ※ 사용 개발 기술: ${dto.port_develop }<br>
                   ※ 프로젝트 링크: ${dto.port_link }<br>
                   ※ 수상 내역: ${dto.port_prize } <br>
