@@ -194,7 +194,7 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	
 	///////파일 업로드 관련 ////////////////////////
 	
-	@RequestMapping(value="/multipart.do", method=RequestMethod.POST)                                                         
+	@RequestMapping(value="/admultipart.do", method=RequestMethod.POST)                                                         
     public @ResponseBody String multipart(@RequestParam("pro_no") String pro_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
 		logger.info("multipart.do");
 		
@@ -203,7 +203,7 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
     }
 	
 	/////파일 다운로드
-	@RequestMapping(value="/download.do")
+	@RequestMapping(value="/addownload.do")
 	@ResponseBody
 	public byte[] fileDown(HttpServletRequest request, HttpServletResponse response, String name) throws IOException {
 		//return type이 byte 배열

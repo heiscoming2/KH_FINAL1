@@ -3,6 +3,8 @@ package com.itpro.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itpro.model.dto.ad.AdDto;
 import com.itpro.model.dto.qna.QnaUpdateDto;
 
@@ -17,5 +19,5 @@ public interface AdDao {
 	public int delete(int bd_no);
 	public int update(AdDto dto);
 	public int getAdListCnt();
-	public int imageuploadupdate(int pro_no, String pro_file);
+	public int imageuploadupdate(MultipartFile fileName, int ad_seq);
 }
