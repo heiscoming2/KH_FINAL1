@@ -66,7 +66,7 @@ var html = `
             
             
            $('#pro_function_'+num).summernote({
-           placeholder: '답글을 작성해주세요.',
+           placeholder: '내용을 작성해주세요.',
            height:150
        });
        
@@ -144,7 +144,7 @@ function imageupload(cnt){
         cache: false,           
         timeout: 600000,       
         success: function (data) { 
-        		alert(data);
+        		alert("글 작성 완료");
         	if(cnt<num){
         	//cnt <= num이면 두 번 돈다 
         		console.log(num+1+"번째");
