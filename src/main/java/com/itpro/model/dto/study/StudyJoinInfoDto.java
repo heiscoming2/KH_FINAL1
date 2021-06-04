@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class StudyJoinInfoDto {
 	
 	private int m_no;

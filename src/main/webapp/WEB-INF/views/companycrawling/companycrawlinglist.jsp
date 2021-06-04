@@ -17,7 +17,7 @@
 	
 	<!-- 본문 시작 -->
 	<div class="joblist_wrap mt-5">
-      <h3>채용 정보</h3>
+      <h3>외부 채용 정보</h3>
       <div class="job_btn_wrap">
         <input type="button" class="btn btn-primary" value="필터/검색" onclick="filter_toggle();">
         <input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='companycrawlinglist.do'">

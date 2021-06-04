@@ -35,7 +35,7 @@
                 <h4>기본정보</h4>
                 <br>
                 <!--이력서 이미지-->
-                <img src="/img/test.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 180px; height: 180px;" alt="이력서 이미지">
+                <img src="/img/test.jpg" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" id="image_section" style="width: 180px; height: 180px;" alt="이력서 이미지">
                 
                 <div class="row g-2"><!--이름-->
                     <div class="col-2"><h5>이 름</h5></div>
@@ -122,7 +122,7 @@
                     <div class="col-2"><h5>사진등록</h5></div>
                     <div class="col-3"> 
                         <input class="form-control form-control-sm" name="r_img" id="input_r_img" type="file">
-                        <input type="hidden" name="r_img_no" type="text" />
+                        <input type="hidden" name="r_img_no" type="text"/>
                     </div>  
                     <div class="col-sm-1">
                         <input type="button" class="btn btn-outline-dark btn-sm" id="uploadBtn" value="업로드">

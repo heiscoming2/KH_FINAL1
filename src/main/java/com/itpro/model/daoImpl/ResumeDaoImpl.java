@@ -111,19 +111,6 @@ public class ResumeDaoImpl implements ResumeDao {
 		return list;
 	}
 
-	/*
-	 * // 이력서 이미지 등록
-	 * 
-	 * @Override public int profileUpload(ResumeProfileDto resumeProfileDto) { int
-	 * res = 0;
-	 * 
-	 * try { res = sqlSession.insert(NAMESPACE + "uploadProfile", resumeProfileDto);
-	 * } catch (Exception e) { System.out.println("[error]:uploadProfile");
-	 * e.printStackTrace(); }
-	 * 
-	 * return res; }
-	 */
-
 	// 이력서 이미지 업로드
 	public int uploadResumeImg(ResumeImgDto resumeImgDto) {
 		

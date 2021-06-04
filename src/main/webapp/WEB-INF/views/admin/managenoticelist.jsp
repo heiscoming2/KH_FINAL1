@@ -48,14 +48,15 @@
 
 
 	<!-- 본문 시작 -->
+	<br><br>
+	<h3 style="text-align:left;">공지사항</h3>
 	<div class="content">
 		<div class="notice_wrap mt-5">
-			<h3>공지사항</h3>
 			<div>
 					<input name="searchbox" type="text" placeholder="검색" value=""
 						class="form-control search-bar" onkeyup="enterKey();"
 						style="width: 200px; display: inline-block;"> <input
-						type="button"  value="검색"
+						type="button"  value="검색" class="btn btn-primary"
 						onclick="selectPage(1);">
 			</div>
 			<div style="position: relative; bottom: 1px;">
@@ -65,8 +66,14 @@
 			</div>
 
 		<form action="" method="post">
-		<table class="main_table">
-			
+		<table class="table table-bordered" style="width:1190px;">
+			<col width="30px">
+			<col width="100px">
+			<col width="500px">
+			<col width="80px">
+			<col width="80px">
+			<col width="80px">
+			<col width="320px">
 			<tr>
 				<th><input type="checkbox" name="all"
 					onclick="allChk(this.checked);"></th>
@@ -97,18 +104,19 @@
 							<td class="bd_viewcount">${noticeDto.bd_viewcount }</td>
 							<td>
 								<div class="notice_profile">
-										${noticeDto.m_nickname }
-								</div>
+										<!-- ${noticeDto.m_nickname }  -->
+										관리자
 									<span class="notice_regdate"> <fmt:formatDate
 											value="${noticeDto.bd_createddate }"
 											pattern="yyyy-MM-dd HH:mm:ss" /></span>
+								</div>
 							</td>
 						<tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			<tr>
-				<td colspan="7"><input type="submit"  name="cmd" value="일괄삭제"></td>
+				<td colspan="7" align="left"><input type="submit"  name="cmd" value="일괄삭제" class="btn btn-primary"></td>
 			</tr>
 		</table>
 	</form>

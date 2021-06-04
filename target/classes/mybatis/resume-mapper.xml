@@ -70,7 +70,7 @@
 	<insert id="uploadResumeImg" parameterType="ResumeImgDto" useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME_IMG(R_NO,R_IMG, R_IMG_PATH)
 		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
-		
+
 		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
             select M_RESUME_IMG_SEQ.CURRVAL FROM DUAL
        </selectKey>
@@ -95,12 +95,12 @@
 		(M_NO, R_NO, R_TITLE, R_POSTCODE, R_ROADADDRESS, 
 		R_JIBUNADDRESS, R_DETAILADDRESS, R_EXTRAADDRESS, R_SELFLETTER, 
 		R_PORTFOLIO, R_IMG_NO, R_REGDATE)
-		
+
 		VALUES
 		(#{m_no}, RESUMENO_SEQ.NEXTVAL, #{r_title}, #{r_postcode}, #{r_roadAddress}, 
 		#{r_jibunAddress}, #{r_detailAddress}, #{r_extraAddress}, #{r_selfletter}, 
 		#{r_portfolio}, #{r_img_no}, SYSDATE)
-		
+
 		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
             select RESUMENO_SEQ.CURRVAL from M_RESUME WHERE ROWNUM = 1
        </selectKey>
