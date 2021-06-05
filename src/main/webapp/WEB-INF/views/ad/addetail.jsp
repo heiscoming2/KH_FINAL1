@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/qnadetail.css" rel="stylesheet">
+<link href="resources/css/addetail.css" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
@@ -19,8 +19,8 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-  <div class="qna_detailwrap mt-5">
-        <h4>QNA</h4>
+  <div class="ad_detailwrap mt-5">
+        <h4>광고문의 상세</h4>
       <!-- QNA 디테일 영역 -->
       <table class="table table-bordered" style="width:100%;">
         <tr>
@@ -53,9 +53,89 @@
 
             <!-- 글 번호 / 제목 영역 시작 -->
              <div style="margin: 10px 0px;">
-              <span class="detail_no">${dto.bd_no }</span> <!-- 글 번호 -->
-              <br>
-              <span class="detail_title">${dto.bd_title }</span> <!-- 글 제목 -->
+             <div class="ad_insertwrap">
+		<form action="adinsert.do" method="post">
+			<input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+			<!--ad 작성 글 영역-->
+			<h3>광고문의 작성</h3>
+			<br>
+			<!-- 프로필이미지, 아이디, 작성일 div -->
+			<div>
+				<img src="https://github.com/mdo.png" alt="mdo" width="35"
+					height="35" class="rounded-circle me-2" style="float: left;">
+				<div style="position: relative; top: 5px;">
+					<a class="d-flex align-items-center text-decoration-none"
+						id="dropdownaUser" style="font-size: 15px;">
+						${sessionScope.login.m_nickname} </a>
+				</div>
+			</div>
+			<!-- 프로필이미지, 아이디, 작성일 div 끝 -->
+			<br> <br>
+		
+			<table class="table ad_inserttable">
+				<tr>
+					<th><span>* </span>제목</th>
+					<td>${dto.bd_title }</td>
+				</tr>
+				<tr>
+					<th><span>* </span>업종</th>
+					<td>${dto.ad_comtype }</td>
+				</tr>
+				<tr>
+					<th><span>* </span>업체명</th>
+					<td>${dto.ad_comname }</td>
+				</tr>
+				<tr>
+					<th><span>* </span>희망광고기간</th>
+					<td>
+						${dto.ad_startdate } ~ ${dto.ad_enddate }
+					</td>
+				</tr>
+				<tr>
+					<th><span>* </span>가격</th>
+					<td>${dto.ad_price }</td>
+				</tr>
+				<tr>
+					<th><span>* </span>광고 파일 다운로드</th>
+					<td><td><input type="button" value="다운로드" onclick='location.href="/upgrade/${item.ad_file_path }"' class="btn-sm btn-dark"></td></td>
+				</tr>
+				<tr>
+					<th><span>* </span>이미지 링크주소</th>
+					<td><input type=text class="form-control" name="ad_url"
+						value="https://"></td>
+				</tr>
+				<tr>
+					<c:choose>
+						<c:when test="${sessionScope.login.m_auth ne 'Y'}">
+							<th><span>* </span>진행상태</th>
+							<td><select class="form-control" name="ad_status"
+								onFocus='this.initialSelect = this.selectedIndex;'
+								onChange='this.selectedIndex = this.initialSelect;'>
+									<option value="1/5" selected>결제대기</option>
+								<%-- 	<option value="2/5">결제진행</option>
+									<option value="3/5">결제완료</option>
+									<option value="4/5">광고게시중</option>
+									<option value="5/5">광고종료</option>--%>
+							</select></td>
+						</c:when>
+						<c:otherwise>
+							<th><span>* </span>진행상태</th>
+							<td><select class="form-control" name="ad_status">
+									<option value="1/5" selected>결제대기</option>
+									<option value="2/5">결제진행</option>
+									<option value="3/5">결제완료</option>
+									<option value="4/5">광고게시중</option>
+									<option value="5/5">광고종료</option>
+							</select></td>
+						</c:otherwise>
+
+					</c:choose>
+				</tr>
+			</table>
+			
+			<textarea id="summernote" name="bd_content"></textarea>
+			<br>
+		</form>
              </div>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
@@ -128,7 +208,7 @@
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
-<script type="text/javascript" src="resources/js/qnadetail.js"></script>
+<script type="text/javascript" src="resources/js/addetail.js"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

@@ -70,7 +70,7 @@ $(document).ready(function(){
 	        processData : false,
 	        success:function(data){
 	        	r_no = data;
-	        	alert("이력서 기본 정보 INSERT 성공"); // 여기서는 1-a: insert만 한다-> 수정시에는 1-a:insert가 아니라 update가 되어 햔다
+	        	// alert("이력서 기본 정보 INSERT 성공");  여기서는 1-a: insert만 한다-> 수정시에는 1-a:insert가 아니라 update가 되어 햔다
 	        	// 이제, r_no가 확보되었으니
 	        	
 				// 3. 학력사항 목록 insert를 ajax로 하면서, r_no를 사용하고,
@@ -82,8 +82,8 @@ $(document).ready(function(){
 	        	// 5. 교욱 및 사회경험 insert를 ajax로 하면서, r_no를 사용하고,
 				careerInsertList();
 
-	        	// -> 다 끝나면, 이 페이지에서 쫓아내야 한다 -> 왜냐면, 여기서는 방금 작성한 이력서를 수정 못 하기 떔ㄴ이다
-				alert('다 됨!');
+	        	// -> 다 끝나면, 이 페이지에서 쫓아내야 한다 -> 왜냐면, 여기서는 방금 작성한 이력서를 수정 못 하기 때문이다
+				//alert('다 됨!');
 				location.href = '/upgrade/resume_list.do';
 	        },
 	        error:function(msg){
@@ -95,7 +95,9 @@ $(document).ready(function(){
 	
 });
 
+/*==============학력, 경력, 경험 리스트(목록) 등록수정삭제==============*/
 
+// tr을 formdata로 만들어줌
 function getFormData(tr) {
 	var formData = new FormData();
 
@@ -110,7 +112,7 @@ function getFormData(tr) {
 	return formData;
 }
 
-// 학력사항 목록 저장
+// 이력서 학력사항 목록 저장
 function educationInsertList() {
 	const list = document.querySelectorAll('#EdFormTable tbody tr.data-insert');
 	for (let i = 0; i < list.length; i++) {
@@ -197,7 +199,7 @@ function educationUpdate(buttonObj) {
 
 
 
-// 자격사항 저장
+// 자격사항 목록 저장
 function licenseInsertList() {
 	const list = document.querySelectorAll('#LiFormTable tbody tr.data-insert');
 	for (let i = 0; i < list.length; i++) {
@@ -235,7 +237,59 @@ function licenseInsert(tr) {
     });
 }
 
-// 교육 및 사회경험 저장
+
+// 이력서 자격사항 정보 삭제
+function licenceDelete(buttonObj) {
+	const td = buttonObj.parentElement;
+	const tr = td.parentElement;
+	var formData = getFormData(tr);
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'licenceDelete.do',
+        data : formData,
+		async: false,
+        contentType : false,
+        processData : false,
+        success:function(data){
+			console.log({data});
+			tr.remove();
+			alert("삭제 성공");
+        },
+        error:function(msg){
+        	// alert("통신실패");
+		}
+    });
+}
+
+// 이력서 자격사항 정보 수정
+function licenceUpdate(buttonObj) {
+	const td = buttonObj.parentElement;
+	const tr = td.parentElement;
+	
+	var formData = getFormData(tr);
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'licenceUpdate.do',
+        data : formData,
+		async: false,
+        contentType : false,
+        processData : false,
+        success:function(data){
+			console.log({data});
+			alert("수정 성공");
+        },
+        error:function(msg){
+        	// alert("통신실패");
+		}
+    });
+}
+
+
+
+
+// 이력서 경험사항 목록 저장
 function careerInsertList() {
 	const list = document.querySelectorAll('#CaFormTable tbody tr.data-insert');
 	for (let i = 0; i < list.length; i++) {
@@ -273,6 +327,53 @@ function careerInsert(tr) {
     });
 }
 
+
+// 이력서 경험사항 목록 정보 삭제
+function careerDelete(buttonObj) {
+	const td = buttonObj.parentElement;
+	const tr = td.parentElement;
+	var formData = getFormData(tr);
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'careerDelete.do',
+        data : formData,
+		async: false,
+        contentType : false,
+        processData : false,
+        success:function(data){
+			console.log({data});
+			tr.remove();
+			alert("삭제 성공");
+        },
+        error:function(msg){
+        	// alert("통신실패");
+		}
+    });
+}
+
+// 이력서 경험사항 목록  정보 수정
+function careerUpdate(buttonObj) {
+	const td = buttonObj.parentElement;
+	const tr = td.parentElement;
+	var formData = getFormData(tr);
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'careerUpdate.do',
+        data : formData,
+		async: false,
+        contentType : false,
+        processData : false,
+        success:function(data){
+			console.log({data});
+			alert("수정 성공");
+        },
+        error:function(msg){
+        	// alert("통신실패");
+		}
+    });
+}
 
 /*============================================================*/
 /*학력사항 추가*/
@@ -418,11 +519,13 @@ $(function () {
     	// 	'<td><input type="date" class="form-control" id="ed_graduation" ></td>'+
     	// 	'<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
     	// '</tr>'
-		'<tr>' +
+		'<tr class="data-insert">' +
 		'	<td><input type="text" class="form-control" name="ca_title" ></td>' +
 		'	<td><input type="date" class="form-control" name="ca_start_date" ></td>' +
 		'	<td><input type="date" class="form-control" name="ca_end_date" ></td>' +
 		'	<td><input type="text" class="form-control" name="ca_content" ></td>' +
+		'	<td></td>'+
+		'	<td></td>'+
 		'</tr>'
 	);
           

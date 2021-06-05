@@ -106,10 +106,6 @@ function cal(){
 					<td><input type=text class="price" size=15 name="ad_price" placeholder="1일당 1만원" readonly="readonly">
 					<input type="button" value="가격책정" onclick="cal()"></td>
 				</tr>
-				<tr>					
-					<th><span>*</span>결제</th>
-					<td><button id="apibtn" type="submit"><img src="resources/images/payment_icon_yellow_small.png"></button></td>
-				</tr>
 				<tr>
 					<th><span>* </span>광고 파일 업로드</th>
 					<td><form id="pro_file_form" enctype="multipart/form-data" method="post"><input type="file" value="첨부 파일" name="pro_file" id="pro_file"></form></td>

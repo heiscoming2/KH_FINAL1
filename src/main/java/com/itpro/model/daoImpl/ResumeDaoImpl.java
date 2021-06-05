@@ -79,7 +79,7 @@ public class ResumeDaoImpl implements ResumeDao {
 		return list;
 	}
 
-	// 이력서 자격사항(list)
+	// 이력서 자격사항 조회(list)
 	@Override
 	public List<LicenceDto> licenceList(int m_no) {
 		List<LicenceDto> list = new ArrayList<>();
@@ -95,7 +95,7 @@ public class ResumeDaoImpl implements ResumeDao {
 		return list;
 	}
 
-	// 이력서 경력사항(list)
+	// 이력서 경력사항 조회(list)
 	@Override
 	public List<CareerDto> careerList(int m_no) {
 		List<CareerDto> list = new ArrayList<>();
@@ -113,15 +113,17 @@ public class ResumeDaoImpl implements ResumeDao {
 
 	// 이력서 이미지 업로드
 	public int uploadResumeImg(ResumeImgDto resumeImgDto) {
-		
+
 		int res = 0;
-		
-		try { 
-			  res = sqlSession.insert(NAMESPACE + "uploadResumeImg", resumeImgDto);
-		  } catch (Exception e) { System.out.println("[error]:uploadResumeImg");
-		  e.printStackTrace(); }
-		  
-		 return res;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "uploadResumeImg", resumeImgDto);
+		} catch (Exception e) {
+			System.out.println("[error]:uploadResumeImg");
+			e.printStackTrace();
+		}
+
+		return res;
 	}
 
 	// 이력서 삭제
@@ -142,9 +144,10 @@ public class ResumeDaoImpl implements ResumeDao {
 	// =============== 이력서 등록 ==========================
 
 	// 이력서 - 회원 기본 정보 수정
+	// 중요: 이력서에서 회원 기본 정보를 수정할 때 사용하는 쿼리로
+	// 회원 정보에서 회원 기본 정보를 수정할 때는 이 쿼리를 사용하지 말아주세요.
 	@Override
 	public int memResumeUpdate(MemberDto memberDto) {
-
 		int res = 0;
 
 		try {
@@ -173,22 +176,22 @@ public class ResumeDaoImpl implements ResumeDao {
 		return res;
 	}
 
-	// 이력서 경력사항 정보 입력
+	// 이력서 기본정보 수정
 	@Override
-	public int careerInsert(CareerDto careerDto) {
+	public int resumeUpdate(ResumeDetailDto dto) {
 		int res = 0;
 
 		try {
-			res = sqlSession.insert(NAMESPACE + "careerInsert", careerDto);
-
+			res = sqlSession.update(NAMESPACE + "resumeUpdate", dto);
 		} catch (Exception e) {
-			System.out.println("[error] : careerInsert");
+			System.out.println("[error]:resumeUpdate");
 			e.printStackTrace();
 		}
 
 		return res;
 	}
-
+	
+	
 
 	// 이력서 학력사항 정보 입력
 	@Override
@@ -205,7 +208,7 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return res;
 	}
-		
+
 	// 이력서 학력사항 정보 수정
 	public int educationUpdate(EducationDto educationDto) {
 		int res = 0;
@@ -219,7 +222,7 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return res;
 	}
-		
+
 	// 이력서 학력사항 정보 삭제
 	public int educationDelete(EducationDto educationDto) {
 		int res = 0;
@@ -233,19 +236,97 @@ public class ResumeDaoImpl implements ResumeDao {
 
 		return res;
 	}
-
-
+	
+	
 
 	// 이력서 자격사항 정보 입력
 	@Override
-	public int licenseInsert(LicenceDto licenceDto) {
+	public int licenceInsert(LicenceDto licenceDto) {
 		int res = 0;
 
 		try {
-			res = sqlSession.insert(NAMESPACE + "licenseInsert", licenceDto);
+			res = sqlSession.insert(NAMESPACE + "licenceInsert", licenceDto);
 
 		} catch (Exception e) {
 			System.out.println("[error] : licenseInsert");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 자격사항 정보 수정
+	@Override
+	public int licenceUpdate(LicenceDto licenceDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.update(NAMESPACE + "licenceUpdate", licenceDto);
+		} catch (Exception e) {
+			System.out.println("[error]:licenceUpdate");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 자격사항 정보 삭제
+	@Override
+	public int licenceDelete(LicenceDto licenceDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "licenceDelete", licenceDto);
+		} catch (Exception e) {
+			System.out.println("[error]:licenceDelete");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+	
+	
+
+	// 이력서 경력사항 정보 입력
+	@Override
+	public int careerInsert(CareerDto careerDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.insert(NAMESPACE + "careerInsert", careerDto);
+
+		} catch (Exception e) {
+			System.out.println("[error] : careerInsert");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 자격사항 정보 수정
+	@Override
+	public int careerUpdate(CareerDto careerDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.update(NAMESPACE + "careerUpdate", careerDto);
+		} catch (Exception e) {
+			System.out.println("[error]:careerUpdate");
+			e.printStackTrace();
+		}
+
+		return res;
+	}
+
+	// 이력서 자격사항 정보 삭제
+	@Override
+	public int careerDelete(CareerDto careerDto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.delete(NAMESPACE + "careerDelete", careerDto);
+		} catch (Exception e) {
+			System.out.println("[error]:careerDelete");
 			e.printStackTrace();
 		}
 

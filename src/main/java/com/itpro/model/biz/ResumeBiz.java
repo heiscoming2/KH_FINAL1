@@ -42,8 +42,8 @@ public interface ResumeBiz {
 	// 이력서 기본 정보 입력
 	public int resumeInsert(ResumeUploadDto dto);
 
-	// 이력서 경력사항 정보 입력
-	public int careerInsert(CareerDto careerDto);
+	// 이력서 기본정보 수정
+	public int resumeUpdate(ResumeDetailDto dto);
 
 
 	// 이력서 학력사항 정보 입력
@@ -57,6 +57,22 @@ public interface ResumeBiz {
 
 
 	// 이력서 자격사항 정보 입력
-	public int licenseInsert(LicenceDto licenceDto);
+	public int licenceInsert(LicenceDto licenceDto);
+
+	// 이력서 자격사항 정보 수정
+	public int licenceUpdate(LicenceDto licenceDto);
+
+	// 이력서 자격사항 정보 삭제
+	public int licenceDelete(LicenceDto licenceDto);
+	
+	
+	// 이력서 경력사항 정보 입력
+	public int careerInsert(CareerDto careerDto);
+
+	// 이력서 경력사항 정보 수정
+	public int careerUpdate(CareerDto careerDto);
+
+	// 이력서 경력사항 정보 삭제
+	public int careerDelete(CareerDto careerDto);
 
 }
