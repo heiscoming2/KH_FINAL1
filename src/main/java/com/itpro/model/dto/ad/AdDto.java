@@ -15,12 +15,11 @@ public class AdDto {
 	
 	//ad 게신판
 	private int ad_seq;
-	private String ad_title;
-	private String ad_name;
+	private String ad_type;
+	private String ad_comname;
 	private String ad_startdate;
 	private String ad_enddate;
-	private String ad_image;
-	private String Stringad_url;
+	private String ad_url;
 	private int ad_price;
 	private String ad_status;
 	
