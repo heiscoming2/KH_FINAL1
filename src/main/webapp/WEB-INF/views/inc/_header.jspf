@@ -53,7 +53,7 @@
 }
 
 .nav-ul > li {
-	margin-right:20px;
+	margin-right:15px;
 }
 </style>
 
@@ -74,6 +74,16 @@
           font-size: 3.5rem;
         }
       }
+      
+      
+      header li {font-size:15px}
+      @media (max-width: 1850px) {
+        header li {
+          font-size: 13px;
+          margin-right:12px;
+        }
+      }
+      
     </style>
 
     
@@ -81,15 +91,12 @@
    
   </head>
   <body>
- 
-
-  
 	
   <header class="p-3 bg-dark text-white">
     <div class="">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-	      	<div style="width:12%; margin-left:6%; display:table-cell;">
-          	  <a href="main.do" class="nav-link px-2 text-white nav-logo" style="font-size:36px; vertical-align:middle;">
+	      	<div style="width:12%; display:table-cell; margin-left:3%;">
+          	  <a href="main.do" class="nav-link px-2 text-white nav-logo" style="font-size:35px; vertical-align:middle;">
           	  <img src="resources/images/mainimages/header.png" style="width:35px; height:49.7px; position:relative; top:-3px; left:5px;">&nbsp;IT PRO</a>
         	</div>
         <div style="width:53%; margin:0 auto;">
