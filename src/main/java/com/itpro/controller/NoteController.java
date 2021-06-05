@@ -39,9 +39,6 @@ public class NoteController {
 
 	@Autowired
 	private NoteBiz biz;
-	
-	@Autowired
-	private MemberBiz memberBiz;
 
 	// 내가 받은 쪽지 목록 조회
 	@RequestMapping(value = "/note_receivelist.do")
@@ -81,7 +78,7 @@ public class NoteController {
 
 	// 쪽지팝업(쪽지 작성창)
 	@RequestMapping(value = "/noteForm.do")
-	public String noteSend(@RequestParam(value="receiver_no", required=false, defaultValue="0") int receiver_no,
+	public String noteSend(@RequestParam(value="m_nickname", required=false, defaultValue="") String m_nickname,
 						   Model model) {
 		logger.info("NOTE FORM");
 		//if 받는 사람이 없는 경우(receiver_no==0)
@@ -90,10 +87,9 @@ public class NoteController {
 		
 		//else 받는 사람이 있는 경우 (게시판 등 프로필을 누르고 쪽지보내기 누른 경우)
 		//receiver_no를 받아와서 받는 사람 닉네임을 불러와 receiver_no와 닉네임을 함께 model에 담아 전송한다.
-		if(receiver_no==0) {
+		if(m_nickname.equals("")) {
 			return "note/note_form";
 		} else {
-			String m_nickname=memberBiz.selectMemberNickname(receiver_no);
 			model.addAttribute("m_nickname",m_nickname);
 			return "note/note_form";
 		}

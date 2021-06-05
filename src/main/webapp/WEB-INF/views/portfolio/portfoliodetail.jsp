@@ -5,13 +5,11 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfoliodetail.css?ver=1.5" rel="stylesheet">
+<link href="resources/css/portfoliodetail.css?ver=1.4" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-<!-- 부트스트랩 아이콘 css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>IT PRO 상세보기</title>
@@ -43,11 +41,10 @@
                   ${dto.member.m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                    <li><a class="dropdown-item" href="postlookup.do?m_no=${dto.member.m_no }">작성 글 조회</a></li>
-                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-                </ul>
+				<jsp:include page="../inc/userDropDownMenu.jsp">
+					<jsp:param name="m_no" value="${dto.member.m_no }"></jsp:param>
+					<jsp:param name="m_nickname" value="${dto.member.m_nickname }"></jsp:param>
+				</jsp:include>
               </div>
               <span class="reg_date">
                 <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
@@ -75,14 +72,14 @@
 
 
             <!-- 글 내용 시작 -->
-            <div style="font-size: 20px; padding:10px 0px;"> 
+            <div style="font-size: 15px; padding:10px 0px;"> 
               	<table class="table portfolio_table" style="width:700px;">
-            	<caption align="top" style="color:#212529;">&nbsp;<b>요약</b><br></caption>
+            	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>포트폴리오 정보</b><br></caption>
             	    <col width="200px;">
             		<col width="500px;">
             		<tr>
 	            		<th><i class="bi bi-person-lines-fill"></i>닉네임</th>
-	            		<td>dto.member.m_nickname</td>
+	            		<td>${dto.member.m_nickname }</td>
             		</tr>
             		<tr>
 	            		<th><i class="bi bi-envelope-open-fill"></i>이메일</th>
