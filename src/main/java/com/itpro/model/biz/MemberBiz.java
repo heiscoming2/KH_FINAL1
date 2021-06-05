@@ -34,7 +34,5 @@ public interface MemberBiz {
 	//작성글 갯수
 	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap);
 	
-	//닉네임만 select
-	public String selectMemberNickname(int receiver_no);
 
 }

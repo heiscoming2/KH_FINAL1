@@ -10,8 +10,6 @@
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-<!-- 부트스트랩 아이콘 css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>IT PRO 상세보기</title>
@@ -45,6 +43,7 @@
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 				<jsp:include page="../inc/userDropDownMenu.jsp">
 					<jsp:param name="m_no" value="${dto.member.m_no }"></jsp:param>
+					<jsp:param name="m_nickname" value="${dto.member.m_nickname }"></jsp:param>
 				</jsp:include>
               </div>
               <span class="reg_date">

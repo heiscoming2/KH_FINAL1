@@ -9,7 +9,6 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
-    <title>Headers · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
 
@@ -53,6 +52,9 @@
   outline: 0;
 }
 
+.nav-ul > li {
+	margin-right:20px;
+}
 </style>
 
     <!-- Bootstrap core CSS -->
@@ -82,31 +84,31 @@
  
 
   
-  <div class="b-example-divider"></div>
 
   <header class="p-3 bg-dark text-white">
-    <div class="container">
+    <div class="">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="main.do" class="nav-link px-2 text-muted" ><img src="https://starbarcafeandhotel.com.au/wp-content/uploads/2020/04/the-star-bar-hero-logo.png"
-                alt="" width="28" height="28" class="d-inline-block align-text-top ">IT PRO</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">     </a></li>
-            <li><a href="noticelist.do" class="nav-link px-2 text-white">공지사항</a></li>
-            <li><a href="portfoliolist.do" class="nav-link px-2 text-white">포트폴리오</a></li>
-          <li><a href="projectlist.do" class="nav-link px-2 text-white"  >프로젝트</a></li>
-          <li><a href="qnalist.do" class="nav-link px-2 text-white">Q & A</a></li>
-          <li><a href="studylist.do" class="nav-link px-2 text-white">스터디모집</a></li>
-          <li><a href="companylist.do" class="nav-link px-2 text-white">채용정보</a></li>
-          <li><a href="companycrawlinglist.do" class="nav-link px-2 text-white">외부채용정보</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">화상면접</a></li>
-          <c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
-          <li><a href="adlist.do" class="nav-link px-2 text-white">광고문의</a></li>
-          </c:if>
-        </ul>
-      
-		
+	      	<div style="width:12%; margin-left:6%; display:table-cell;">
+          	  <a href="main.do" class="nav-link px-2 text-white nav-logo" style="font-size:36px; vertical-align:middle;">
+          	  <img src="resources/images/mainimages/header.png" style="width:35px; height:49.7px; position:relative; top:-3px; left:5px;">&nbsp;IT PRO</a>
+        	</div>
+        <div style="width:53%; margin:0 auto;">
+	        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-ul">
+	            <li><a href="#" class="nav-link px-2 text-white">     </a></li>
+	            <li><a href="noticelist.do" class="nav-link px-2 text-white">공지사항</a></li>
+	            <li><a href="portfoliolist.do" class="nav-link px-2 text-white">포트폴리오</a></li>
+	          <li><a href="projectlist.do" class="nav-link px-2 text-white"  >프로젝트</a></li>
+	          <li><a href="qnalist.do" class="nav-link px-2 text-white">Q & A</a></li>
+	          <li><a href="studylist.do" class="nav-link px-2 text-white">스터디모집</a></li>
+	          <li><a href="companylist.do" class="nav-link px-2 text-white">채용정보</a></li>
+	          <li><a href="companycrawlinglist.do" class="nav-link px-2 text-white">외부채용정보</a></li>
+	          <li><a href="#" class="nav-link px-2 text-white">화상면접</a></li>
+	          <c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
+	          <li><a href="adlist.do" class="nav-link px-2 text-white">광고문의</a></li>
+	          </c:if>
+	        </ul>
+        </div>
+      	<div class="d-flex" style="width:26.78%; margin-left:1.8%; align-items: center;">
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <table>
                 <tr>
@@ -169,6 +171,7 @@
             </table>
             </c:if>
           </form>
+      </div>
       </div>
     </div>
   </header>

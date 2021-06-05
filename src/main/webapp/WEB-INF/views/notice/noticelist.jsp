@@ -74,6 +74,7 @@
 
 										<jsp:include page="../inc/userDropDownMenu.jsp">
 											<jsp:param name="m_no" value="${noticeDto.m_no }"></jsp:param>
+											<jsp:param name="m_nickname" value="${noticeDto.m_nickname }"></jsp:param>
 										</jsp:include>
 										<!-- 프로필 드롭다운 메뉴 종료 -->
 									</div>

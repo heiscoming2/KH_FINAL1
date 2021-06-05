@@ -64,10 +64,5 @@ public class MemberBizImpl implements MemberBiz {
 	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap) {
 		return dao.selectPostLookupCnt(postLookupPageMap);
 	}
-	////닉네임만 select
-	@Override
-	public String selectMemberNickname(int receiver_no) {
-		return dao.selectMemberNickname(receiver_no);
-	}
 
 }

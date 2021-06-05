@@ -138,16 +138,5 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return res;
 	}
-	////닉네임만 select
-	@Override
-	public String selectMemberNickname(int receiver_no) {
-		String m_nickname = null;
-		try {
-			m_nickname = sqlSession.selectOne(NAMESPACE+"SelectMemberNickname",receiver_no);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return m_nickname;
-	}
 
 }

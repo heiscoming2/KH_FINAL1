@@ -129,9 +129,9 @@ $(document).ready(function(){
 								 value.m_nickname+
 								 "</a><br><span>"+value.sj_message+"</span>"+
 								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
-								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"+
-								 "<input type='button' class='btn-sm btn-primary btn-studyjoin' value='수락' " +
+								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_nickname+")'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li></ul>"+
+								 "<br><input type='button' class='btn-sm btn-primary btn-studyjoin' value='수락' " +
 								 "onclick='studyJoinAccept("+value.m_no+","+bd_no+");'>"+
 								 "&nbsp;<input type='button' class='btn-sm btn-danger btn-studyjoin' value='거절' " +
 								 "onclick='studyJoinReject("+value.m_no+","+bd_no+");'><br></div>"
@@ -150,8 +150,8 @@ $(document).ready(function(){
 								 value.m_nickname+
 								 "</a><br><span>"+value.sj_message+"</span>"+
 								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
-								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"
+								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_nickname+")'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li></ul>"
 						 );
 					 });
 					 $('.btn-applynum').attr('onclick','studyJoinApplyListToggle();');
@@ -174,9 +174,9 @@ $(document).ready(function(){
 								 value.m_nickname+
 								 "</a><br><span>"+value.sj_message+"</span>"+
 								 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
-								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"+
-								 "<input type='button' class='btn-sm btn-danger btn-studyjoin' value='추방' " +
+								 "<li><a class='dropdown-item' onclick='noteForm("+value.m_nickname+")'>쪽지보내기</a></li>"+
+								 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li></ul>"+
+								 "<br><input type='button' class='btn-sm btn-danger btn-studyjoin' value='추방' " +
 								 "onclick='studyJoinDrop("+value.m_no+","+bd_no+");'><br></div>"
 						 );
 					 });
@@ -196,9 +196,9 @@ $(document).ready(function(){
 									 value.m_nickname+
 									 "</a><br><span>"+value.sj_message+"</span>"+
 									 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-									 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
-									 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"+
-									 "<input type='button' class='btn-sm btn-danger btn-studyjoin' value='탈퇴' " +
+									 "<li><a class='dropdown-item' onclick='noteForm("+value.m_nickname+")'>쪽지보내기</a></li>"+
+									 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li></ul>"+
+									 "<br><input type='button' class='btn-sm btn-danger btn-studyjoin' value='탈퇴' " +
 									 "onclick='studyJoinWithdraw("+value.m_no+","+bd_no+");'><br></div>"
 							 );
 						 } else {
@@ -212,8 +212,8 @@ $(document).ready(function(){
 									 value.m_nickname+
 									 "</a><br><span>"+value.sj_message+"</span>"+
 									 "<ul class='dropdown-menu text-small shadow' aria-labelledby='dropdownaUser'>"+
-									 "<li><a class='dropdown-item' onclick='noteForm("+value.m_no+")'>쪽지보내기</a></li>"+
-									 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li>"
+									 "<li><a class='dropdown-item' onclick='noteForm("+value.m_nickname+")'>쪽지보내기</a></li>"+
+									 "<li><a class='dropdown-item' href='postlookup.do?m_no="+value.m_no+"'>작성 글 조회</a></li></ul>"
 							);		 
 						 }
 					 });
@@ -226,7 +226,7 @@ $(document).ready(function(){
   
   //쪽지폼 열기
   function noteForm(receiver_no) {
-	  window.open("noteForm.do?receiver_no="+receiver_no, "쪽지 작성 팝업", "width=500, height=500, left=100, top=50");
+	  window.open("noteForm.do?m_nickname="+m_nickname, "쪽지 작성 팝업", "width=500, height=500, left=100, top=50");
   }
   
   //참여인원 조회 토글

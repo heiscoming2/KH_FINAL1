@@ -10,8 +10,6 @@
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-<!-- 부트스트랩 아이콘 css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <title>IT PRO - ${dto.bd_title}</title>
 </head>
 <body>
@@ -199,7 +197,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.8"></script>
+<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.2"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->
