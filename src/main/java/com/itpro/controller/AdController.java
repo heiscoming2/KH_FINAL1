@@ -195,10 +195,10 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	///////파일 업로드 관련 ////////////////////////
 	
 	@RequestMapping(value="/admultipart.do", method=RequestMethod.POST)                                                         
-    public @ResponseBody String multipart(@RequestParam("ad_seq") String ad_seq, @RequestParam("file") MultipartFile fileName) throws IOException {   
+    public @ResponseBody String multipart(@RequestParam("ad_no") String ad_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
 		logger.info("multipart.do");
 		
-        int res = adBiz.imageuploadupdate(fileName, Integer.parseInt(ad_seq));
+        int res = adBiz.imageuploadupdate(fileName, Integer.parseInt(ad_no));
         return "{result:"+res+"}";
     }
 	
