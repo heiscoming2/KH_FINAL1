@@ -95,16 +95,8 @@ $(document).ready(function(){
 	
 });
 
-// 학력사항 목록 저장
-function educationInsertList() {
-	const list = document.querySelectorAll('#EdFormTable tbody tr');
-	for (let i = 0; i < list.length; i++) {
-		const tr = list[i];
-		educationInsert(tr);
-	}	
-}
 
-function educationInsert(tr) {
+function getFormData(tr) {
 	var formData = new FormData();
 
 	const list = tr.querySelectorAll('input, select');
@@ -114,6 +106,21 @@ function educationInsert(tr) {
 		// console.log({name, value});
 		formData.append(name, value); 
 	});
+
+	return formData;
+}
+
+// 학력사항 목록 저장
+function educationInsertList() {
+	const list = document.querySelectorAll('#EdFormTable tbody tr.data-insert');
+	for (let i = 0; i < list.length; i++) {
+		const tr = list[i];
+		educationInsert(tr);
+	}	
+}
+
+function educationInsert(tr) {
+	var formData = getFormData(tr);
  
     $.ajax({
     	type : 'POST',
@@ -131,9 +138,68 @@ function educationInsert(tr) {
     })
 }
 
+// 이력서 학력사항 정보 삭제
+function educationDelete(buttonObj) {
+	const td = buttonObj.parentElement;
+	const tr = td.parentElement;
+	var formData = getFormData(tr);
+	// const input = tr.querySelector('input[name=ed_no]');
+	// const ed_no = input.value;
+	
+	// var formData = new FormData();
+	// formData.append("ed_no", ed_no);
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'educationDelete.do',
+        data : formData,
+		async: false,
+        contentType : false,
+        processData : false,
+        success:function(data){
+			console.log({data});
+			tr.remove();
+			alert("삭제 성공");
+        },
+        error:function(msg){
+        	// alert("통신실패");
+		}
+    });
+}
+
+// 이력서 학력사항 정보 수정
+function educationUpdate(buttonObj) {
+	const td = buttonObj.parentElement;
+	const tr = td.parentElement;
+	// const input = tr.querySelector('input[name=ed_no]');
+	// const ed_no = input.value;
+	
+	// var formData = new FormData();
+	// formData.append("ed_no", ed_no);
+	var formData = getFormData(tr);
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'educationUpdate.do',
+        data : formData,
+		async: false,
+        contentType : false,
+        processData : false,
+        success:function(data){
+			console.log({data});
+			alert("수정 성공");
+        },
+        error:function(msg){
+        	// alert("통신실패");
+		}
+    });
+}
+
+
+
 // 자격사항 저장
 function licenseInsertList() {
-	const list = document.querySelectorAll('#LiFormTable tbody tr');
+	const list = document.querySelectorAll('#LiFormTable tbody tr.data-insert');
 	for (let i = 0; i < list.length; i++) {
 		const tr = list[i];
 		licenseInsert(tr);
@@ -171,7 +237,7 @@ function licenseInsert(tr) {
 
 // 교육 및 사회경험 저장
 function careerInsertList() {
-	const list = document.querySelectorAll('#CaFormTable tbody tr');
+	const list = document.querySelectorAll('#CaFormTable tbody tr.data-insert');
 	for (let i = 0; i < list.length; i++) {
 		const tr = list[i];
 		careerInsert(tr);
@@ -229,7 +295,7 @@ $(function () {
 
     //행추가
     $("#EdFormTable").append(
-    '<tr>'+
+    '<tr class="data-insert">'+
     	'<td><input type="month" class="form-control" name="ed_startdate"></td>'+
     	'<td><input type="month" class="form-control" name="ed_gradudate"></td>'+
     	'<td><input type="text" class="form-control" name="ed_schoolName" ></td>'+
@@ -241,6 +307,7 @@ $(function () {
     			'<option value="고등학교">고등학교</option>'+
     		'</select>'+
     	'</td>'+
+
     	'<td>'+
     		'<select name="ed_graduation"  class="form-select">'+
     			'<option value="졸업">졸업</option>'+
@@ -249,6 +316,8 @@ $(function () {
     			'<option value="재학">재학</option>'+
     		'</select>'+
     	'</td>'+
+		'<td></td>'+
+		'<td></td>'+
     '</tr>');
           
 });
@@ -295,10 +364,12 @@ $(function () {
     //     '<td><input type="text" class="form-control" name="li_title" ></td>'+
     //     '<td><input type="text" class="form-control" name="li_organ" ></td>'+
     // '</tr>'
-	'<tr>'+                 
+	'<tr class="data-insert">'+                 
 	'	<td><input type="text" class="form-control" name="li_title" ></td>'+
 	'	<td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>'+
 	'	<td><input type="text" class="form-control" name="li_organ" ></td>'+
+	'	<td></td>'+
+	'	<td></td>'+
 	'</tr>'
 	);
           

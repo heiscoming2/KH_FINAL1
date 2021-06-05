@@ -156,8 +156,18 @@ public class ResumeController {
 		// 회원번호로 멤버기본 정보 가져옴
 		MemberDto memberDto = memberBiz.selectOne(m_no);
 
+		// 이력서 학력사항 조회(list)
+		List<EducationDto> educationList = biz.educationList(m_no);
+		// 이력서 자격사항 조회(list)
+		List<LicenceDto> licenceList = biz.licenceList(m_no);
+		// 이력서 경력사항 조회(list)
+		List<CareerDto> careerist = biz.careerList(m_no);
+
 		// model
 		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("educationList", educationList);
+		model.addAttribute("licenceList", licenceList);
+		model.addAttribute("careerList", careerist);
 
 		return "resume/resume_form";
 	}
@@ -306,12 +316,15 @@ public class ResumeController {
 		}
 	}
 
-	// 이력서 멀티삭제
-	@RequestMapping
-	public String resumeListDel(int r_no) {
-		logger.info("RESUEM DELETE");
+	// 이력서 개별삭제(ajax)
+	@RequestMapping(value = "/resume_delete_ajax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int resumeDeleteAjax(int r_no) {
+		logger.info("RESUEM DELETE AJAX");
 
-		return null;
+		int res = biz.resumeDelete(r_no);
+
+		return res;
 	}
 
 	// 프로필 이미지 업로드 컨트롤러(이거 이력서별로 올라가니까 이력서 번호로 해야되는거 아냐?)
