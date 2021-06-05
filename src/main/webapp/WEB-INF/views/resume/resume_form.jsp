@@ -111,13 +111,11 @@
                         <input type="text" class="form-control col-6 px-2" name="r_portfolio" placeholder="ex) http://www.itpro.com/user">            
                     </div>
                 </div>
-<!--             </form> -->
             <!--기본정보 입력 form 끝-->
             
             <br>
             
-            <!--이미지 업로드 form-->
-<!--             <form id="resumeProfile"> -->
+            <!--이미지 업로드-->
                 <div class="row g-2">
                     <div class="col-2"><h5>사진등록</h5></div>
                     <div class="col-3"> 
@@ -128,14 +126,12 @@
                         <input type="button" class="btn btn-outline-dark btn-sm" id="uploadBtn" value="업로드">
                     </div>   
                 </div>
-<!--             </form> -->
-            <!--이미지 업로드 form 끝-->
+            <!--이미지 업로드 끝-->
             
         </div><!--이력서 기본정보 div 끝-->     
         <hr>
 
 		<!--학력/교육/자격증/자소서 form-->
-<!--         <form class="resumeInsertForm" method="post"> -->
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>학력사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
@@ -272,6 +268,7 @@
                 <tbody>
                     <c:forEach items="${licenceList}" var="item">
                         <tr class="data-select">
+                            <input type="hidden" name="li_no" value="${item.li_no}" />
                             <td>
                                 <input type="text" class="form-control" name="li_title" value="${item.li_title}">
                             </td>
@@ -283,10 +280,10 @@
                                 <input type="text" class="form-control" name="li_organ" value="${item.li_organ}">
                             </td>
                             <td>
-                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정"/>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="licenceUpdate(this);"/>
                             </td>
                             <td>
-                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제"/>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="licenceDelete(this);"/>
                             </td>
                         </tr>
                     </c:forEach>
@@ -317,21 +314,49 @@
                     <th scope="col">시작일</th>
                     <th scope="col">종료일</th>
                     <th scope="col">세부내용</th>
+                    
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><!--첫째줄-->
-                    <td><input type="text" class="form-control" name="ca_title" ></td>
-                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
-                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
-                    <td><input type="text" class="form-control" name="ca_content" ></td>
-                  </tr>
-                  <!-- <tr>
-                    <td><input type="text" class="form-control" name="ca_title" ></td>
-                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
-                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
-                    <td><input type="text" class="form-control" name="ca_content" ></td>
-                  </tr> -->
+				<c:forEach items="${careerList}" var="item">
+					<tr class="data-select">
+                        <input type="hidden" name="ca_no" value="${item.ca_no}" />
+						<td><input type="text" class="form-control" name="ca_title"	value="${item.ca_title}"></td>
+						<td>
+							<fmt:formatDate value="${item.ca_start_date}" pattern="yyyy-MM-dd" var="ca_start_date" />
+							<input type="date" class="form-control" name="ca_start_date" value="${ca_start_date}">
+						</td>
+						<td>
+							<fmt:formatDate value="${item.ca_end_date}" pattern="yyyy-MM-dd" var="ca_end_date" />
+							<input type="date" class="form-control" name="ca_end_date"  value="${ca_end_date}">
+						</td>
+						<td><input type="text" class="form-control" name="ca_content" value="${item.ca_content}"></td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="careerUpdate(this);" />
+						</td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="careerDelete(this);"/>
+						</td>
+					</tr>
+				</c:forEach>
+					<tr class="data-insert">
+	                    <td><input type="text" class="form-control" name="ca_title" ></td>
+	                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
+	                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
+	                    <td><input type="text" class="form-control" name="ca_content" ></td>
+	                    <td></td>
+	                    <td></td>
+                  	</tr>
+	                <tr class="data-insert">
+	                    <td><input type="text" class="form-control" name="ca_title" ></td>
+	                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
+	                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
+	                    <td><input type="text" class="form-control" name="ca_content" ></td>
+	                    <td></td>
+	                    <td></td>
+	                 </tr> 
                 </tbody>
             </table>
             

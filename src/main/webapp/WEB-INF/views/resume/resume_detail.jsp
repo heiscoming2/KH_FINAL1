@@ -47,7 +47,7 @@
                 <div class="row g-2">
                     <div class="col-2"><h5 class="fw-bold">생년월일</h5></div>
                     <div class="col-3">            
-                        <span class="fs-5"><fmt:formatDate value="${memberDto.m_birth }" pattern="yyyy년 MM월 DD일"/></span>           
+                        <span class="fs-5"><fmt:formatDate value="${memberDto.m_birth }" pattern="yyyy년 MM월 dd일"/></span>           
                     </div>      
                     <div class="col-1"><h5 class="fw-bold">성별</h5></div>
                     <div class="col-1">
@@ -146,7 +146,7 @@
 						<c:forEach items="${licenceList}" var="licenceList">
 							<tr>
 			                    <td>${licenceList.li_title}</td>
-			                    <td><fmt:formatDate value="${licenceList.li_date}" pattern="yyyy년 MM월 DD일"/></td>
+			                    <td><fmt:formatDate value="${licenceList.li_date}" pattern="yyyy년 MM월 dd일"/></td>
 			                    <td>${licenceList.li_organ}</td>
 		                  	</tr>
 						</c:forEach> 
@@ -182,8 +182,8 @@
 						<c:forEach items="${careerList}" var="careerList">
 							<tr>
 			                    <td>${careerList.ca_title}</td>
-			                    <td><fmt:formatDate value="${careerList.ca_start_date}" pattern="yyyy년 MM월 DD일"/></td>
-			                    <td><fmt:formatDate value="${careerList.ca_end_date}" pattern="yyyy년 MM월 DD일"/></td>
+			                    <td><fmt:formatDate value="${careerList.ca_start_date}" pattern="yyyy년 MM월 dd일"/></td>
+			                    <td><fmt:formatDate value="${careerList.ca_end_date}" pattern="yyyy년 MM월 dd일"/></td>
 			                    <td>${careerList.ca_content}</td>
 		                  	</tr>
 						</c:forEach> 

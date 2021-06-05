@@ -14,108 +14,151 @@
 
 	<!-- 이력서 목록 조회 -->
 	<select id="resumeList" resultMap="resumeList">
-		SELECT A.M_NO, R_NO, R_TITLE, R_REGDATE
+		SELECT A.M_NO, R_NO, R_TITLE,
+		R_REGDATE
 		FROM IT_MEMBER A
 		LEFT JOIN M_RESUME B
 		ON A.M_NO=B.M_NO
 		WHERE
 		A.M_NO = #{m_no}
 	</select>
-	
+
 	<!-- 이력서 기본정보 조회(detail) -->
-	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
-		SELECT * FROM M_RESUME M, M_RESUME_IMG B WHERE M.R_NO=B.R_NO(+) and M.R_NO=#{r_no}
+	<select id="resumeDetail" resultType="ResumeDetailDto"
+		parameterType="int">
+		SELECT * FROM M_RESUME M, M_RESUME_IMG B WHERE
+		M.R_NO=B.R_NO(+) and M.R_NO=#{r_no}
 	</select>
-	
+
 	<!-- 이력서 학력사항 조회(list) -->
-	<select id="educationList" resultType="EducationDto" parameterType="int">
-		SELECT * 
-		FROM EDUCATION 
-		WHERE M_NO = #{m_no} 
+	<select id="educationList" resultType="EducationDto"
+		parameterType="int">
+		SELECT *
+		FROM EDUCATION
+		WHERE M_NO = #{m_no}
 		ORDER BY ED_NO
 	</select>
-	
+
 	<!-- 이력서 자격사항 조회(list) -->
-	<select id="licenceList" resultType="LicenceDto" parameterType="int">
-		SELECT * 
-		FROM LICENCE 
+	<select id="licenceList" resultType="LicenceDto"
+		parameterType="int">
+		SELECT *
+		FROM LICENCE
 		WHERE M_NO = #{m_no}
 		ORDER BY LI_NO
 	</select>
-	
+
 	<!-- 이력서 교육 및 사회경험 조회(list) -->
-	<select id="careerList" resultType="CareerDto" parameterType="int">
-		SELECT * 
-		FROM CAREER 
+	<select id="careerList" resultType="CareerDto"
+		parameterType="int">
+		SELECT *
+		FROM CAREER
 		WHERE M_NO = #{m_no}
 		ORDER BY CA_NO
 	</select>
-	
+
 	<!-- 이력서 삭제 -->
 	<delete id="resumeDelete" parameterType="int">
 		DELETE
 		FROM M_RESUME
 		WHERE R_NO = #{r_no}
 	</delete>
-	
+
 	<!-- 이력서 선택 삭제 이거해야대!!!!!!!!!!!!!!! -->
 	<delete id="resumeChkDel" parameterType="int">
 		DELETE
 		FROM M_RESUME
 		WHERE R_NO = #{r_no}
 	</delete>
-	
-	<!--@@@@@@@@@@@@@@이력서 등록@@@@@@@@@@@@@@@@@@@@@  -->
-	<!-- 이력서 사진 업로드  -->
-	<insert id="uploadResumeImg" parameterType="ResumeImgDto" useGeneratedKeys="false" keyProperty="r_no">
+
+	<!-- 이력서 사진 업로드 -->
+	<insert id="uploadResumeImg" parameterType="ResumeImgDto"
+		useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME_IMG(R_NO,R_IMG, R_IMG_PATH)
 		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
 
 		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
-            select M_RESUME_IMG_SEQ.CURRVAL FROM DUAL
-       </selectKey>
-	</insert>	
-	
+			select
+			M_RESUME_IMG_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+
 	<!-- 이력서 회원 기본 정보 수정 -->
 	<update id="memResumeUpdate" parameterType="MemberDto">
 		UPDATE IT_MEMBER
-		SET 
-		  <if test="m_birth != null">
-		  	M_BIRTH=#{m_birth}, 
-		  </if>
-			M_NAME = #{m_name}, 
-			M_GENDER=#{m_gender}, 
-			M_PHONE = #{m_phone}
+		SET
+		<if test="m_birth != null">
+			M_BIRTH=#{m_birth},
+		</if>
+		M_NAME = #{m_name},
+		M_GENDER = #{m_gender},
+		M_PHONE = #{m_phone},
+		M_RESUMECHK = 'Y'
 		WHERE M_NO = #{m_no}
 	</update>
-	
-	<!--이력서 기본정보 수정(이미지가 먼저 들어감)-->
-	<insert id="resumeInsert" parameterType="ResumeUploadDto" useGeneratedKeys="false" keyProperty="r_no">
+
+	<!--이력서 기본정보 등록(이미지가 먼저 들어감) -->
+	<insert id="resumeInsert" parameterType="ResumeUploadDto"
+		useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME
-		(M_NO, R_NO, R_TITLE, R_POSTCODE, R_ROADADDRESS, 
-		R_JIBUNADDRESS, R_DETAILADDRESS, R_EXTRAADDRESS, R_SELFLETTER, 
-		R_PORTFOLIO, R_IMG_NO, R_REGDATE)
+		(M_NO, R_NO, R_TITLE, R_POSTCODE, R_ROADADDRESS,
+		R_JIBUNADDRESS, R_DETAILADDRESS, R_EXTRAADDRESS, R_SELFLETTER, R_PORTFOLIO,
+		R_IMG_NO, R_REGDATE)
 
 		VALUES
-		(#{m_no}, RESUMENO_SEQ.NEXTVAL, #{r_title}, #{r_postcode}, #{r_roadAddress}, 
-		#{r_jibunAddress}, #{r_detailAddress}, #{r_extraAddress}, #{r_selfletter}, 
-		#{r_portfolio}, #{r_img_no}, SYSDATE)
+		(#{m_no}, RESUMENO_SEQ.NEXTVAL, #{r_title}, #{r_postcode}, #{r_roadAddress},
+		#{r_jibunAddress}, #{r_detailAddress}, #{r_extraAddress}, #{r_selfletter}, #{r_portfolio},
+		#{r_img_no}, SYSDATE)
 
 		<selectKey keyProperty="r_no" resultType="int" order="AFTER">
-            select RESUMENO_SEQ.CURRVAL from M_RESUME WHERE ROWNUM = 1
-       </selectKey>
+			select
+			RESUMENO_SEQ.CURRVAL from M_RESUME WHERE ROWNUM = 1
+		</selectKey>
 	</insert>
 
+	<!-- 이력서 기본정보 수정 -->
+	<update id="resumeUpdate" parameterType="ResumeDetailDto">
+		UPDATE M_RESUME
+		SET
+			-- 사진
+			<if test="r_img_no != null">
+				R_IMG_NO = #{r_img_no},
+			</if>
 
-	<!-- 이력서 학력사항 입력 --> 
+			-- 주소
+			R_POSTCODE = #{r_postcode},
+			R_ROADADDRESS = #{r_roadAddress},
+			R_JIBUNADDRESS = #{r_jibunAddress},
+			R_DETAILADDRESS = #{r_detailAddress},
+			R_EXTRAADDRESS = #{r_extraAddress},
+
+			-- 포트폴리오 주소
+			R_PORTFOLIO = #{r_portfolio},
+
+			-- 자기소개서
+			R_SELFLETTER = #{r_selfletter},
+
+			R_REGDATE = SYSDATE
+		WHERE
+			r_no = #{r_no}
+			and m_no = #{m_no}
+	</update>
+
+	
+	
+<!-- ================================================================ -->
+
+	<!-- 이력서 학력사항 입력 -->
 	<insert id="educationInsert" parameterType="EducationDto">
 		INSERT INTO EDUCATION
 		VALUES
-		(#{m_no}, EDUCATION_SEQ.NEXTVAL, #{ed_startdate} , #{ed_gradudate}, #{ed_schoolName},
-		#{ed_graduation}, #{ed_major}, #{ed_school})
+		(#{m_no}, EDUCATION_SEQ.NEXTVAL, #{ed_startdate} ,
+		#{ed_gradudate}, #{ed_schoolName},
+		#{ed_graduation}, #{ed_major},
+		#{ed_school})
 	</insert>
 
-	<!-- 이력서 학력사항 수정 --> 
+	<!-- 이력서 학력사항 수정 -->
 	<update id="educationUpdate" parameterType="EducationDto">
 		UPDATE EDUCATION
 		SET
@@ -126,27 +169,70 @@
 			ed_major = #{ed_major},
 			ed_school = #{ed_school}
 		WHERE
-			ed_no = #{ed_no} and m_no = #{m_no}
+			ed_no = #{ed_no}
+			and M_NO = #{m_no}
 	</update>
 
-	<!-- 이력서 학력사항 삭제 --> 
+	<!-- 이력서 학력사항 삭제 -->
 	<delete id="educationDelete" parameterType="EducationDto">
 		DELETE
 		FROM EDUCATION
-		WHERE ed_no = #{ed_no} and m_no = #{m_no}
+		WHERE ed_no = #{ed_no} and M_NO = #{m_no}
 	</delete>
-	
-	
+
+<!-- ================================================================ -->
+
 	<!-- 이력서 자격증 입력 -->
-	<insert id="licenseInsert" parameterType="LicenceDto">
+	<insert id="licenceInsert" parameterType="LicenceDto">
 		INSERT INTO LICENCE
-		VALUES(#{m_no}, LICENCENO_SEQ.NEXTVAL,#{li_title} , #{li_date}, #{li_organ})
+		VALUES(#{m_no}, LICENCENO_SEQ.NEXTVAL,#{li_title} , #{li_date},
+		#{li_organ})
 	</insert>
-	
+
+	<!-- 이력서 자격사항 수정 -->
+	<update id="licenceUpdate" parameterType="LicenceDto">
+		UPDATE LICENCE
+		SET
+			LI_TITLE = #{li_title},
+			LI_DATE = #{li_date},
+			LI_ORGAN = #{li_organ}
+		WHERE
+			LI_NO = #{li_no} and M_NO = #{m_no}
+	</update>
+
+	<!-- 이력서 자격사항 삭제 -->
+	<delete id="licenceDelete" parameterType="LicenceDto">
+		DELETE
+		FROM LICENCE
+		WHERE LI_NO = #{li_no} and M_NO = #{m_no}
+	</delete>
+
+<!-- ================================================================ -->
+
 	<!-- 이력서 경력 입력 -->
 	<insert id="careerInsert" parameterType="CareerDto">
 		INSERT INTO CAREER
-		VALUES(#{m_no}, CAREERNO_SEQ.NEXTVAL,#{ca_title} , #{ca_content}, #{ca_start_date}, #{ca_end_date})
+		VALUES(#{m_no}, CAREERNO_SEQ.NEXTVAL,#{ca_title} , #{ca_content},
+		#{ca_start_date}, #{ca_end_date})
 	</insert>
+
+	<!-- 이력서 경력사항 수정 -->
+	<update id="careerUpdate" parameterType="CareerDto">
+		UPDATE CAREER
+		SET
+			CA_TITLE = #{ca_title},
+			CA_CONTENT = #{ca_content},
+			CA_START_DATE = #{ca_start_date},
+			CA_END_DATE = #{ca_end_date}
+		WHERE 
+			CA_NO = #{ca_no} and M_NO = #{m_no}
+	</update>
+
+	<!-- 이력서 경력사항 삭제 -->
+	<delete id="careerDelete" parameterType="CareerDto">
+		DELETE
+		FROM CAREER
+		WHERE CA_NO = #{ca_no} and M_NO = #{m_no}
+	</delete>
 
 </mapper>

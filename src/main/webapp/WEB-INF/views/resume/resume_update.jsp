@@ -18,7 +18,8 @@
 <!-- 본문 시작 -->
 
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
-
+    <form id="resumeUpdateForm" onsubmit="resumeUpdateAjax(this); return false;"><!--이력서 기본정보 form-->
+        <input type="hidden" name="r_no" value="${resumeDetailDto.r_no }" />
         <h3>이력서 수정</h3> 	
         <div class="float-end">
             <button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
@@ -28,7 +29,6 @@
         <br><br>
 
         <div class="clearfix"><!--이력서 기본정보 div-->
-            <form><!--이력서 기본정보 form-->
                 <div class="col-8"><!--이력서 제목 작성-->
                     <input type="text" class="form-control form-control-lg" value="${resumeDetailDto.r_title }" placeholder="이력서 제목">
                 </div>
@@ -36,7 +36,8 @@
                 <h4>기본정보</h4>
                 <br>
                 <!--이력서 이미지-->
-                <img src="${resumeDetailDto.r_img_path }${resumeDetailDto.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 180px; height: 180px;" alt="이력서 이미지">
+                <img src="${resumeDetailDto.r_img_path }${resumeDetailDto.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" id="image_section" style="width: 180px; height: 180px;" alt="이력서 이미지">
+                
                 
                 <div class="row g-2"><!--이름-->
                     <div class="col-2"><h5>이 름</h5></div>
@@ -75,7 +76,7 @@
                 <div class="row g-2">
                     <div class="col-2"><h5>주 소</h5></div>
                     <div class="col-3">            
-                        <input class="form-control form-control-sm" type="text" id="sample4_postcode" value="${resumeDetailDto.r_postcode }" placeholder="우편번호">
+                        <input class="form-control form-control-sm" type="text" id="sample4_postcode" name="r_postcode" value="${resumeDetailDto.r_postcode }" placeholder="우편번호">
                     </div>
                     <div class="col-2">
                             <input class="btn btn-outline-dark btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
@@ -84,46 +85,43 @@
                 <div class="row g-2 mt-1">
                     <div class="col-2"></div>
                     <div class="col-3">            
-                        <input class="form-control form-control-sm" type="text" id="sample4_roadAddress" value="${resumeDetailDto.r_roadAddress }" placeholder="도로명주소" readonly>
+                        <input class="form-control form-control-sm" type="text" id="sample4_roadAddress" name="r_roadAddress" value="${resumeDetailDto.r_roadAddress }" placeholder="도로명주소" readonly>
                     </div>
                     <div class="col-3">
-                        <input class="form-control form-control-sm" type="text" id="sample4_jibunAddress" value="${resumeDetailDto.r_jibunAddress }" placeholder="지번주소" readonly>
+                        <input class="form-control form-control-sm" type="text" id="sample4_jibunAddress" name="r_jibunAddress" value="${resumeDetailDto.r_jibunAddress }" placeholder="지번주소" readonly>
                         <span id="guide" style="color:#999;display:none"></span>
                     </div>
                 </div>
                 <div class="row g-2 mt-1">
                     <div class="col-2"></div>
                     <div class="col-3">            
-                        <input class="form-control form-control-sm" type="text" id="sample4_detailAddress" value="${resumeDetailDto.r_detailAddress }" placeholder="상세주소">
+                        <input class="form-control form-control-sm" type="text" id="sample4_detailAddress" name="r_detailAddress" value="${resumeDetailDto.r_detailAddress }" placeholder="상세주소">
                     </div>
                     <div class="col-3">
-                        <input class="form-control form-control-sm" type="text" id="sample4_extraAddress" value="${resumeDetailDto.r_extraAddress }" placeholder="참고항목" readonly>
+                        <input class="form-control form-control-sm" type="text" id="sample4_extraAddress" name="r_extraAddress" value="${resumeDetailDto.r_extraAddress }" placeholder="참고항목" readonly>
                     </div>
                 </div><!--주소 끝-->
                 <br>
                 <div class="row g-2"><!--포트폴리오-->
                     <div class="col-2"><h5>포트폴리오</h5></div>
                     <div class="col-5">            
-                        <input type="text" class="form-control col-6 px-2" value="${resumeDetailDto.r_portfolio }" placeholder="ex) http://www.itpro.com/user">            
+                        <input type="text" class="form-control col-6 px-2" name="r_portfolio" value="${resumeDetailDto.r_portfolio }" placeholder="ex) http://www.itpro.com/user">            
                     </div>
                 </div>
-            </form><!--기본정보 입력 form 끝-->
             <br>
-            <form><!--이미지 업로드 form-->
-                <div class="row g-2">
-                    <div class="col-2"><h5>사진등록</h5></div>
-                    <div class="col-3"> 
-                        <input class="form-control form-control-sm" id="r_img" type="file">                     
-                    </div>  
-                    <div class="col-sm-1">
-                        <input type="submit" class="btn btn-outline-dark btn-sm" value="업로드">
-                    </div>   
-                </div>
-            </form><!--이미지 업로드 form 끝-->
+            <div class="row g-2">
+                <div class="col-2"><h5>사진등록</h5></div>
+                <div class="col-3"> 
+                    <input id="input_r_img" class="form-control form-control-sm" name="r_img" type="file">                     
+                    <input type="hidden" name="r_img_no" type="text"/>
+                </div>  
+                <div class="col-sm-1">
+                    <input type="button" class="btn btn-outline-dark btn-sm" value="업로드" onclick="uploadFile();">
+                </div>   
+            </div>
         </div><!--이력서 기본정보 div 끝-->     
         <hr>
 
-        <form><!--학력/교육/자격증/자소서 form-->
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>학력사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
@@ -266,14 +264,14 @@
             <div>
                 <div class="col-6 mb-3"><sapn><h3>자기소개서</h3></sapn></div>
                 <div class="form-floating">
-                    <textarea class="form-control" style="height: 500px; resize: none;">${resumeDetailDto.r_selfletter }</textarea>
+                    <textarea class="form-control" name="r_selfletter" style="height: 500px; resize: none;">${resumeDetailDto.r_selfletter }</textarea>
                 </div>
             </div>
-        </form><!--학력/교육/자격증/자소서 form 끝-->
         <br><br>
         <div class="d-grid gap-2 col-3 mx-auto"><!--form 2개 같이 submit-->
             <button class="btn-lg btn-primary" type="submit">저장</button>
         </div>
+    </form>
     </div>
 
 
@@ -288,7 +286,7 @@
 <%@include file="../inc/_foot.jspf" %>
 
 <!-- 이력서 폼 스크립트 -->
-<script type="text/javascript" src="./resources/js/resume_form.js"></script> 
+<script type="text/javascript" src="./resources/js/resume_update.js"></script>
 	
 </body>
 </html>
