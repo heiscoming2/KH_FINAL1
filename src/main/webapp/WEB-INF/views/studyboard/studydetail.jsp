@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/studydetail.css?ver=1.4" rel="stylesheet">
+<link href="resources/css/studydetail.css?ver=1.6" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
@@ -83,7 +83,7 @@
 			
             <!-- 필수 입력 정보 노출 시작 -->
             <div style="font-size: 15px; padding:10px 0px;"> 
-            	<table class="table" style="width:700px;">
+            	<table class="table study_table" style="width:700px;">
             	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>인원/위치 정보</b><br></caption>
             		<col width="200px;">
             		<col width="500px;">
@@ -197,7 +197,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.2"></script>
+<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.4"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

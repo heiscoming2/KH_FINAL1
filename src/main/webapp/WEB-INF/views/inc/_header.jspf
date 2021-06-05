@@ -53,7 +53,7 @@
 }
 
 .nav-ul > li {
-	margin-right:20px;
+	margin-right:15px;
 }
 </style>
 
@@ -74,6 +74,18 @@
           font-size: 3.5rem;
         }
       }
+      
+      
+      header li {font-size:15px}
+      @media (max-width: 1850px) {
+        header li {
+          font-size: 13px;
+          margin-right:12px;
+        }
+        
+      }
+ 
+      
     </style>
 
     
@@ -81,18 +93,15 @@
    
   </head>
   <body>
- 
-
-  
-
+	
   <header class="p-3 bg-dark text-white">
     <div class="">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-	      	<div style="width:12%; margin-left:6%; display:table-cell;">
-          	  <a href="main.do" class="nav-link px-2 text-white nav-logo" style="font-size:36px; vertical-align:middle;">
+	      	<div style="width:150px; display:table-cell; margin-left:5%;">
+          	  <a href="main.do" class="nav-link px-2 text-white nav-logo" style="font-size:25px; vertical-align:middle;">
           	  <img src="resources/images/mainimages/header.png" style="width:35px; height:49.7px; position:relative; top:-3px; left:5px;">&nbsp;IT PRO</a>
         	</div>
-        <div style="width:53%; margin:0 auto;">
+        <div style="width:51%; margin:0 auto;">
 	        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-ul">
 	            <li><a href="#" class="nav-link px-2 text-white">     </a></li>
 	            <li><a href="noticelist.do" class="nav-link px-2 text-white">공지사항</a></li>
@@ -108,17 +117,15 @@
 	          </c:if>
 	        </ul>
         </div>
-      	<div class="d-flex" style="width:26.78%; margin-left:1.8%; align-items: center;">
+      	<div class="d-flex" style="width:30%; margin-left:1.8%; align-items: center;">
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
             <table>
                 <tr>
-          <td><input type="search" class="form-control form-control-dark form-search" placeholder="Search..." aria-label="Search" onKeyDown="searchKeyEvent()"></td>
+          <td><input type="search" class="form-control form-control-white form-search" placeholder="검색" aria-label="Search" onKeyDown="searchKeyEvent()"></td>
           <td >&nbsp;&nbsp;&nbsp;</td>
-          <td><a style="cursor:pointer;">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
-          	fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" onclick="searchList()">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg></a></td>
+          <td><a style="cursor:pointer;" onclick="">
+	          	<i class="bi bi-search" style="color:#212529; background-color:#fff; padding:7px 10px; border-radius:10px; position:relative; margin-left:-5px;"></i>
+          </a></td>
         </tr>
 
             </table>

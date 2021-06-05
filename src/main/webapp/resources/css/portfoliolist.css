@@ -92,5 +92,19 @@
 }
 
 
+.bd_recommandcount {
+	color:red;
+	font-size:14px;	
+}
+
+.bd_no {
+	font-size:10px;
+	color:lightgray;
+}
+
+.bd_viewcount {
+	font-size:14px;
+	color:lightgray;
+}
 
 

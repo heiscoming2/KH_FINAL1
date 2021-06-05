@@ -57,19 +57,26 @@
          
             
             <!-- 글 번호 / 제목 영역 시작 -->
-             <div style="margin: 10px 0px;">
-              <span class="detail_no">${list.get(0).bd_no }</span> <!-- 글 번호 -->
+            <hr>
+            <div style="margin: 10px 0px;">
+              <span class="detail_no" onclick="CopyUrlToClipBoard();"></span> <!-- js에서 여기에 주소를 쏴줌 -->
               <br>
               <span class="detail_title">${list.get(0).bd_title }</span> <!-- 글 제목 -->
-             </div>
+            </div>            
+            <hr>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
-             <br>
-            <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='projectupdateform.do?bd_no=${list.get(0).bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
-            </div> <!-- 작성자에게만 보여질 버튼 종료 -->
-
+            <br>
+	        <div style="float:right; position:relative; top:-105px;"> 
+	             <input type="button" value="신고" class="btn btn-danger">
+	            	<c:if test="${sessionScope.login.m_no eq list.get(0).m_no }">
+		              <!-- 모집상태가 y이면 모집완료를 아니면 모집중 버튼을 보이도록한다. (짧게 줄일 수 있을거 같은데.. 나중에 수정) -->
+		              <!-- 모집 버튼 종료 -->
+		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='projectupdateform.do?bd_no=${list.get(0).bd_no}'">
+		              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
+		            </c:if>
+	        </div> 
+	        
             <!-- 필수 입력 정보 노출 시작 -->
             <c:forEach items="${list }" var="item" varStatus="status"> 
             <div style="font-size: 15px; padding:10px 0px;"> 
@@ -174,7 +181,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/projectdetail.js?ver=1.1"></script>
+<script type="text/javascript" src="resources/js/projectdetail.js?ver=1.3"></script>
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.3"></script>
 <!-- 댓글 js -->
