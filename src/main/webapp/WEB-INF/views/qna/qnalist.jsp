@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/qnalist.css">
+<link rel="stylesheet" href="resources/css/qnalist.css?ver=1.3">
 <title>Q&A</title>
 </head>
 <body>
@@ -59,10 +59,10 @@
                   	<c:forEach var="dto" items="${qnaList }">
 							<tr>
 							<!-- 글 번호 시작 --> 
-							<td>${dto.bd_no} </td>
-							<td><a href= "qnadetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
-							<td>+${dto.bd_recommandcount }</td>
-							<td>${dto.bd_viewcount }</td>
+							<td class="bd_no">${dto.bd_no} </td>
+							<td><a href= "qnadetail.do?bd_no=${dto.bd_no}"  style="color:#212529;">${dto.bd_title}</a></td>
+							<td class="bd_recommandcount">+${dto.bd_recommandcount }</td>
+							<td class="bd_viewcount">${dto.bd_viewcount }</td>
 							<td>
 							    <div class="qna_profile">
 								<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 

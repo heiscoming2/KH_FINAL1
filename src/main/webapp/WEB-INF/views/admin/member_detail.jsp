@@ -22,9 +22,9 @@
 	</div>
 
 	<!-- 본문 시작 -->
-	<div class="content">
-	<h3>개인회원 상세</h3>
-	<table class="main_table">
+	<br><br><br>
+	<h3 style="text-align:left;">개인회원 상세</h3>
+	<table class="table table-bordered" style="width:1190px;">
 
 		<tr>
 			<th>별명</th>
@@ -77,13 +77,13 @@
 		</tr>--%>
 		<tr>
 			<td colspan="2" align="right"><input type="button" value="목록"
-				onclick="location.href='member_list.do'"> <input
-				type="button" value="수정"
+				onclick="location.href='member_list.do'" class="btn btn-primary"> <input
+				type="button" value="수정" class="btn btn-primary"
 				onclick="location.href='member_updateform.do?m_no=${dto.m_no}'">
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" value="쪽지보내기" onclick=""></td>
+			<td colspan="2"><input type="button" value="쪽지보내기" onclick="window.open('noteForm.do?m_nickname=${dto.m_nickname}', '쪽지 작성 팝업', 'width=500, height=500, left=100, top=50');" class="btn btn-primary"></td>
 		</tr>
 	</table>
 	<!-- 쪽지보내기 -->

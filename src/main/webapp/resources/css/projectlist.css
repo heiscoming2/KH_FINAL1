@@ -91,8 +91,6 @@
 	border-bottom:1px solid skyblue !important;
 }
 
-
-
 /*  howAsc(정렬) */
 
 .howAsc {
@@ -100,4 +98,25 @@
     margin-bottom: 10px;
 }
 
+.bd_recommandcount {
+	color:red;
+	font-size:14px;	
+}
 
+.bd_no {
+	font-size:10px;
+	color:lightgray;
+}
+
+.bd_viewcount {
+	font-size:14px;
+	color:lightgray;
+}
+
+.bd_no_th > a{
+	margin-left:10px;
+}
+
+.bd_no > a{
+	margin-left:10px;
+}
