@@ -20,16 +20,17 @@
 
 
 			<div style="position: relative; bottom: 1px;">
-				<div class="mb-4">
+				<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='noticelist.do';"> 
+			<c:if test="${sessionScope.login.m_auth eq 'Y' }">
+				<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='noticeinsertform.do'">
+			</c:if>
+				<div class="mb-4" style="float:right;">
 					<form name="form3" method="post" action="noticelist.do">
-						<input name="keyword" value="${map.keyword}" class="form-control" style="width:300px; display:inline-block;"> 
+						<input name="keyword" value="${map.keyword}" class="form-control" style="width:200px; display:inline-block;" placeholder="제목 or 내용"> 
 						<input type="submit" value="검색" class="btn btn-primary">
-						<c:if test="${sessionScope.login.m_auth eq 'Y' }">
-							<input type="button" class="btn btn-success" value="글쓰기"
-								onclick="location.href='noticeinsertform.do'" style="float:right;">
-						</c:if>
 					</form>
 				</div>
+				
 			</div>
 
 		<table class="table notice_table">

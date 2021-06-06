@@ -20,7 +20,12 @@
     	<br> <br>
         <h3>포트폴리오 게시판</h3>
         <div class="portfolio_btnwrap mb-4">
+        	<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='portfoliolist.do';"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='portfolioinsertform.do'">
+		</div>
+		<div style="float:right">
+			<input name="searchbox" type="text" placeholder="제목 or 내용" value="" class="form-control search-bar" onkeyup="enterKey();" style="width: 200px; display: inline-block;">
+			<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
 		</div>
         
         <table class="portfolio_table table">

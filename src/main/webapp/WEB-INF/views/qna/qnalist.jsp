@@ -19,9 +19,13 @@
   		<br> <br>
         <h3>Q&A 게시판</h3>
         <div class="qna_btnwrap mb-4">
+        	<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='qnalist.do';"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='qnainsertform.do'">
 		</div>
-		
+		<div style="float:right">
+			<input name="searchbox" type="text" placeholder="제목 or 내용" value="" class="form-control search-bar" onkeyup="enterKey();" style="width: 200px; display: inline-block;">
+			<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
+		</div>		
 		<!-- <div style="float:right;">
 			<div class="mb-4">
 				<input name="searchbox" type="text" placeholder="검색" value=""

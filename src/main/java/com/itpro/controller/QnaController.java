@@ -55,7 +55,11 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 	private LikeBiz likeBiz;
 	
 	@RequestMapping(value="/qnalist.do")
-		public String qnaList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
+		public String qnaList(Model model, 
+				@RequestParam(value="page", required=false, defaultValue="1") int page, 
+				@RequestParam(value="key", required=false, defaultValue="") String key,
+				HttpSession session) {
+		
 			logger.info("QNA LIST");
 			if(session.getAttribute("login")!=null) {
 				MemberDto login = (MemberDto) session.getAttribute("login");
