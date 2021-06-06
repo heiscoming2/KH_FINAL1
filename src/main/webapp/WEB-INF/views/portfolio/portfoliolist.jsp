@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/portfoliolist.css">
+<link rel="stylesheet" href="resources/css/portfoliolist.css?ver=1.2">
 <title>포트폴리오</title>
 </head>
 <body>
@@ -48,27 +48,28 @@
 					<c:otherwise>
 
                   	<c:forEach var="dto" items="${portfolioList }">
-            			<tr onclick="location.href='portfoliodetail.do?bd_no=${dto.bd_no}&m_no=${dto.m_no}'">
+            			<tr>
 							<!-- 글 번호 시작 --> 
-							<td>${dto.bd_no} </td>
-							<td>${dto.bd_title} </td>
-							<td>${dto.bd_recommandcount} </td>
-							<td>${dto.bd_viewcount} </td>
+							<td class="bd_no">${dto.bd_no} </td>
+							<td><span onclick="location.href='portfoliodetail.do?bd_no=${dto.bd_no}&m_no=${dto.m_no}'" style="cursor:pointer;" style="color:#212529;">${dto.bd_title}</span></td>
+							<td class="bd_recommandcount">${dto.bd_recommandcount} </td>
+							<td class="bd_viewcount">${dto.bd_viewcount} </td>
 							
 							<td>
 							    <div class="portfolio_profile">
 									<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-									<div class="qna_writer"> 
-										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+									<div class="portfolio_writer"> 
+										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" style="cursor:pointer;"> 
 											${dto.m_nickname }
 										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 												<jsp:include page="../inc/userDropDownMenu.jsp">
 													<jsp:param name="m_no" value="${dto.m_no }"></jsp:param>
+													<jsp:param name="m_nickname" value="${dto.m_nickname }"></jsp:param>
 												</jsp:include>
 										<!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 
-									<span class="qna_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
+									<span class="portfolio_regdate"> <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> </span>
 								</div>
 							</td>
 						</tr>	
@@ -78,10 +79,6 @@
 		</table>
 		</div>
             <!-- 게시물 한 줄 종료 -->
-         
-
-        </table>
-     
  
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>

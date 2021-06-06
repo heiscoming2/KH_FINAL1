@@ -5,13 +5,11 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/studydetail.css?vser=1.3" rel="stylesheet">
+<link href="resources/css/studydetail.css?ver=1.6" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-<!-- 부트스트랩 아이콘 css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <title>IT PRO - ${dto.bd_title}</title>
 </head>
 <body>
@@ -84,34 +82,32 @@
 	            <!-- 작성자에게만 보여질 버튼 종료 -->
 			
             <!-- 필수 입력 정보 노출 시작 -->
-            <div style="font-weight:bold; font-size: 20px; padding:10px 0px;"> 
-            	<table class="table" style="width:700px;">
-            	<caption align="top" style="color:#212529;">&nbsp;요약</caption>
+            <div style="font-size: 15px; padding:10px 0px;"> 
+            	<table class="table study_table" style="width:700px;">
+            	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>인원/위치 정보</b><br></caption>
             		<col width="200px;">
             		<col width="500px;">
             		<tr>
-	            		<th><i class="bi bi-person-lines-fill"></i>
-	            		인원수</th>
+	            		<th><i class="bi bi-person-lines-fill"></i>인원수</th>
 	            		<td><span class="st_nowperson">${dto.st_nowperson }</span> / ${dto.st_closeperson }<br></td>
             		</tr>
             		<tr>
-	            		<th><i class="bi bi-pin-map-fill"></i>
-	            		장소</th>
+	            		<th><i class="bi bi-pin-map-fill"></i>장소</th>
 	            		<td>${dto.st_addr1}&nbsp;${dto.st_addr2 }&nbsp;${dto.st_addrdetail }</td>
             		</tr>
             	</table>
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
             <br>
-            
+            <span style="color:#0078FF; font-size:17px;">&nbsp;<b>상세 내용</b><br><br></span>
             <!-- 글 내용 시작 -->
-            <div class="detail_content">
+            <div class="detail_content" style="margin-left:4px;">
 			${dto.bd_content }
               <br>
               <br>
             </div>
             <!-- 글 내용 종료 -->
-            
+            <br>
             
  
            <!-- 참여 승인 대기 인원 시작 (나중에 글 작성자에게만 보여지게 해야된다.) -->
@@ -201,7 +197,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.6"></script>
+<script type="text/javascript" src="resources/js/study/studydetail.js?ver=1.4"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.3"></script>
 <!-- 좋아요 js -->

@@ -28,12 +28,13 @@
 		<!-- 신고관리 -->
 	<div class="content">
 				<div class="item2">
-				<h3>신고관리 : 댓글 상세</h3>
+				<br><br><br>
+				<h3 style="text-align:left;">신고관리 - 댓글 상세</h3>
 				</div>
 				<div class="item2">
 				
 				<form action="" method="post">
-				<table class="main_table">
+				<table class="table table-bordered" style="width:1190px;">
 					<thead>
 						<tr>
 							<th>댓글신고 No.</th>
@@ -70,7 +71,7 @@
 							</c:choose>
 						</tr>
 						<tr>
-							<td colspan="8"><input type="submit"  name="cmd" value="일괄삭제"></td>
+							<td colspan="8"><input type="submit"  name="cmd" value="일괄삭제" class="btn btn-danger"></td>
 						</tr>
 					</tbody>
 				</table>

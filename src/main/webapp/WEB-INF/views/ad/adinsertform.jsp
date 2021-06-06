@@ -66,6 +66,7 @@ function cal(){
 	<div class="ad_insertwrap">
 		<form action="adinsert.do" method="post">
 			<input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+			<input type="hidden" name="m_nickname" value="${dto.m_nickname}">
 			<!--ad 작성 글 영역-->
 			<h3>광고문의 작성</h3>
 			<br>
@@ -85,15 +86,15 @@ function cal(){
 			<table class="table ad_inserttable">
 				<tr>
 					<th><span>* </span>제목</th>
-					<td><input type=text class="form-control" name="ad_title"></td>
+					<td><input type=text class="form-control" name="bd_title"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>업종</th>
-					<td><input type=text class="form-control" name="ad_type"></td>
+					<td><input type=text class="form-control" name="ad_comtype"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>업체명</th>
-					<td><input type=text class="form-control" name="ad_name"></td>
+					<td><input type=text class="form-control" name="ad_comname"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>희망광고기간</th>
@@ -105,10 +106,6 @@ function cal(){
 					<th><span>* </span>가격</th>
 					<td><input type=text class="price" size=15 name="ad_price" placeholder="1일당 1만원" readonly="readonly">
 					<input type="button" value="가격책정" onclick="cal()"></td>
-				</tr>
-				<tr>					
-					<th><span>*</span>결제</th>
-					<td><button id="apibtn" type="submit"><img src="resources/images/payment_icon_yellow_small.png"></button></td>
 				</tr>
 				<tr>
 					<th><span>* </span>광고 파일 업로드</th>

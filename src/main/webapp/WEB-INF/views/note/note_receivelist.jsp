@@ -20,12 +20,12 @@
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
         <button class="btn btn-default" onclick="location.href='note_sendlist.do'">보낸쪽지</button>
         <input type="button" class="btn btn-default" onclick="noteForm();" value="쓰기">
-        <button class="btn btn-default">삭제</button>
+        <input class="btn btn-default" type="button" onclick="receiveListDel();" value="삭제"/>
 
-        <table class="table table-bordered table-hover text-center">
+        <table class="table table-bordered table-hover text-center" id="table-list">
             <thead>
                 <tr class="d-flex">
-                	<th class="col-1"><input type="checkbox"></th>
+                	<th class="col-1">선택</th>
                     <th class="col-3">등록일</th>
                     <th class="col-2">보낸 사람</th>
                     <th class="col-6">제목</th>
@@ -41,7 +41,7 @@
 					<c:otherwise>
 						<c:forEach items="${receiveList }" var="receiveList">
 								<tr class="d-flex">
-								<td class="col-1"><input type="checkbox"></td>
+								<td class="col-1"><input type="checkbox" name="receiveListDel" n_no="${receiveList.n_no }"></td>
 								<td class="col-3"><fmt:formatDate value="${receiveList.n_sendDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td class="col-2">${receiveList.m_nickname }</td>
 								<td class="col-6"><a href="receiveDetail.do?n_no=${receiveList.n_no }" style="color:black;">${receiveList.n_title }</a></td>
@@ -65,6 +65,8 @@
 
 <!-- 쪽지 작성 팝업 스크립트 -->
 <script type="text/javascript" src="resources/js/note_form.js?ver=1.2"></script>
+<!-- 쪽지 삭제 스크립트 -->
+<script type="text/javascript" src="resources/js/note_list.js?ver=1.2"></script>
 	
 </body>
 </html>

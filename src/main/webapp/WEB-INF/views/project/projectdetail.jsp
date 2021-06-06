@@ -5,12 +5,11 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/studydetail.css" rel="stylesheet">
+<link href="resources/css/studydetail.css?ver=1.5" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -40,10 +39,10 @@
                   ${list.get(0).m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-                </ul>
+				<jsp:include page="../inc/userDropDownMenu.jsp">
+					<jsp:param name="m_no" value="${list.get(0).m_no }"></jsp:param>
+					<jsp:param name="m_nickname" value="${list.get(0).m_nickname }"></jsp:param>
+				</jsp:include>
               </span>
               <span class="reg_date">
                 <fmt:formatDate value="${list.get(0).bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
@@ -58,45 +57,72 @@
          
             
             <!-- 글 번호 / 제목 영역 시작 -->
-             <div style="margin: 10px 0px;">
-              <span class="detail_no">${list.get(0).bd_no }</span> <!-- 글 번호 -->
+            <hr>
+            <div style="margin: 10px 0px;">
+              <span class="detail_no" onclick="CopyUrlToClipBoard();"></span> <!-- js에서 여기에 주소를 쏴줌 -->
               <br>
               <span class="detail_title">${list.get(0).bd_title }</span> <!-- 글 제목 -->
-             </div>
+            </div>            
+            <hr>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
-             <br>
-            <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='projectupdateform.do?bd_no=${list.get(0).bd_no}'">
-              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
-            </div> <!-- 작성자에게만 보여질 버튼 종료 -->
-
+            <br>
+	        <div style="float:right; position:relative; top:-105px;"> 
+	             <input type="button" value="신고" class="btn btn-danger">
+	            	<c:if test="${sessionScope.login.m_no eq list.get(0).m_no }">
+		              <!-- 모집상태가 y이면 모집완료를 아니면 모집중 버튼을 보이도록한다. (짧게 줄일 수 있을거 같은데.. 나중에 수정) -->
+		              <!-- 모집 버튼 종료 -->
+		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='projectupdateform.do?bd_no=${list.get(0).bd_no}'">
+		              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
+		            </c:if>
+	        </div> 
+	        
             <!-- 필수 입력 정보 노출 시작 -->
-            <c:forEach items="${list }" var="item" > 
-            <div style="font-weight:bold; font-size: 15px; padding:10px 0px;"> 
-
-            
-            
-            <b>프로젝트</b><br>
-              ※ 프로젝트 제목: ${item.pro_title } <br>
-              ※ 프로젝트 기간: <fmt:formatDate value="${item.pro_start }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item.pro_end  }" pattern="yyyy-MM-dd"/> <br>
-              <%-- ${item.pro_start } ~ ${item.pro_end }<br> --%>
-              ※ 프로젝트 링크: ${item.pro_link }<br>
-              ※ ERD 링크: ${item.pro_erd }<br>
-              ※ 개발 환경: ${item.pro_develop }<br>
-              ※ 개발 목표: ${item.pro_goal } <br>
-              ※ 프로젝트 파일: 
-					<input type="button" value="download" onclick='location.href="/upgrade/${item.pro_file_path }"'>	
+            <c:forEach items="${list }" var="item" varStatus="status"> 
+            <div style="font-size: 15px; padding:10px 0px;"> 
+              	<table class="table portfolio_table" style="width:700px;">
+            	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>프로젝트 ${status.count }</b><br></caption>
+            	    <col width="200px;">
+            		<col width="500px;">
+            		<tr>
+	            		<th><i class="bi bi-person-lines-fill"></i>프로젝트 제목</th>
+	            		<td>${item.pro_title }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-calendar-date"></i>프로젝트 기간</th>
+	            		<td><fmt:formatDate value="${item.pro_start }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item.pro_end  }" pattern="yyyy-MM-dd"/></td>
+            		</tr>
+           			<tr>
+	            		<th><i class="bi bi-link-45deg"></i>프로젝트 링크</th>
+	            		<td>${item.pro_link }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-bounding-box"></i>ERD 링크</th>
+	            		<td>${item.pro_erd }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-clipboard-data"></i>개발 환경</th>
+	            		<td>${item.pro_develop }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-stack"></i>개발 목표</th>
+	            		<td>${item.pro_goal }</td>
+            		</tr>
+            		<tr>
+	            		<th><i class="bi bi-download"></i>프로젝트 파일</th>
+	            		<td><input type="button" value="다운로드" onclick='location.href="/upgrade/${item.pro_file_path }"' class="btn-sm btn-dark"></td>
+            		</tr>
+            	</table>     	
             </div>
             <!-- 필수 입력 정보 노출 종료 -->
-            <br>
-            
             <!-- 글 내용 시작 -->
-            <b>구현 기능</b>
-            <div class="detail_content">
+            <b style="font-size:15px;">&nbsp;구현 기능 상세 설명</b>
+            <br><br>
+            <div class="detail_content" style="margin-left:4px;">
              ${item.pro_function }
-             
-              <br>
+             <c:if test="${!status.last }">
+            <hr>
+            </c:if>
               <br>
             </div>
              </c:forEach>
@@ -133,10 +159,6 @@
 	  <!-- 본문 / 댓글 중간 여백 영역 종료 -->
 		
 
-	  <!-- 댓글 영역 시작 -->
-<%-- 	  <input type="hidden" name="bd_no" value=${dto.bd_no } form="replyinsert">
-	  <%@include file="../reply/_reply.jspf" %>	 --%>
-      <!-- 댓글 영역 끝 -->
       
       <!-- 댓글 영역 시작 -->
 	  <jsp:include page="../reply/reply.jsp">
@@ -159,7 +181,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 스터디 디테일 js -->
-<script type="text/javascript" src="resources/js/projectdetail.js?ver=1.1"></script>
+<script type="text/javascript" src="resources/js/projectdetail.js?ver=1.3"></script>
 <!-- 좋아요 js -->
 <script type="text/javascript" src="resources/js/likebutton.js?ver=1.3"></script>
 <!-- 댓글 js -->

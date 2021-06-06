@@ -12,6 +12,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itpro.model.biz.MemberBiz;
+import com.itpro.model.biz.NoteBiz;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.util.JavaScriptResponse;
 
@@ -22,6 +23,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 	@Autowired
 	private MemberBiz memberBiz;
+	
+	@Autowired
+	private NoteBiz noteBiz;
 	
 	@Autowired
 	JavaScriptResponse javaScriptResponse;
@@ -43,6 +47,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		    request.getRequestURI().contains("/portfolioinsertform.do") ||
 		    request.getRequestURI().contains("/projectinsertform.do") ||
 		    request.getRequestURI().contains("/resumesubmitform.do")
+
 		    ) 
 		    {
 			if (session.getAttribute("login") == null) {
@@ -50,7 +55,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return false;
 			}
 		}
-
+		
+		if(request.getRequestURI().contains("/noteForm.do") ||
+		   request.getRequestURI().contains("/noteSend.do")
+		  ) 
+		  {
+			if(session.getAttribute("login") == null) {
+				PrintWriter out = response.getWriter();
+				out.print("<script type='text/javascript'>");
+				out.print("alert('로그인 후 이용 가능합니다.');");
+				out.print("self.close();");
+				out.print("</script>");
+				return false;			
+			}
+		  }
+		
 		
 		
 		if (request.getRequestURI().contains("/note_receivelist.do")
@@ -66,7 +85,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		 */
 		}
 		
-
 
 		//기업회원 글작성X 시작
 		if (request.getRequestURI().contains("/studyinsertform.do")// 스터디 글쓰기
@@ -138,6 +156,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) {
 		log.info("[Interceptor] : postHndle");
+
+		if (modelAndView == null) {
+			return; // early return
+		}
+
+		HttpSession session = request.getSession();
+
+		MemberDto memberDto = (MemberDto) session.getAttribute("login");
+		if (memberDto == null) {
+			return; // early return // 로그인하지 않았다면 이 함수 종료
+		}
+
+		int m_no = memberDto.getM_no();
+		int countNewNote = noteBiz.countNewNote(m_no);		
+		modelAndView.addObject("countNewNote", countNewNote);
 	}
 
 	// view까지 처리가 끝난 후에 수행

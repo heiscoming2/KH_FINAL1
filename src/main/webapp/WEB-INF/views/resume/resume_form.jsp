@@ -7,6 +7,8 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="./resources/js/resume_address.js"></script> 
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
+<link href="resources/css/resume.css?ver=1.2" rel="stylesheet">
+
 <%@include file="../inc/_head.jspf" %>
 <title>이력서 등록</title>
 </head>
@@ -28,7 +30,7 @@
 
         <div class="clearfix"><!--이력서 기본정보 div-->
             <form id="resumeInsertForm" class="resumeInsertForm" method="post"><!--이력서 기본정보 form-->
-                <div class="col-8"><!--이력서 제목 작성-->
+                <div class="col-7"><!--이력서 제목 작성-->
                     <input type="text" class="form-control form-control-lg" name="r_title" placeholder="이력서 제목">
                 </div>
                 <br>
@@ -111,13 +113,11 @@
                         <input type="text" class="form-control col-6 px-2" name="r_portfolio" placeholder="ex) http://www.itpro.com/user">            
                     </div>
                 </div>
-<!--             </form> -->
             <!--기본정보 입력 form 끝-->
             
             <br>
             
-            <!--이미지 업로드 form-->
-<!--             <form id="resumeProfile"> -->
+            <!--이미지 업로드-->
                 <div class="row g-2">
                     <div class="col-2"><h5>사진등록</h5></div>
                     <div class="col-3"> 
@@ -128,14 +128,12 @@
                         <input type="button" class="btn btn-outline-dark btn-sm" id="uploadBtn" value="업로드">
                     </div>   
                 </div>
-<!--             </form> -->
-            <!--이미지 업로드 form 끝-->
+            <!--이미지 업로드 끝-->
             
         </div><!--이력서 기본정보 div 끝-->     
         <hr>
 
 		<!--학력/교육/자격증/자소서 form-->
-<!--         <form class="resumeInsertForm" method="post"> -->
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>학력사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
@@ -147,57 +145,104 @@
             <table class="table table-borderless table-sm text-center" id="EdFormTable">
                 <thead>
                   <tr>
-                    <th scope="col">입학</th>
-                    <th scope="col">졸업</th>
-                    <th scope="col">학교</th>
-                    <th scope="col">전공</th>
-                    <th scope="col">구분</th>
-                    <th scope="col">졸업여부</th>
+                    <th class="col-1">입학</th>
+                    <th class="col-1">졸업</th>
+                    <th class="col-2">학교</th>
+                    <th class="col-2">전공</th>
+                    <th class="col-2">구분</th>
+
+                    <th class="col-2">졸업여부</th>
+                    <th class="col-1">수정</th>
+                    <th class="col-1">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><!--첫째줄-->
-                    <td><input type="month" class="form-control" name="educationList[0].ed_startdate"></td>
-                    <td><input type="month" class="form-control" name="educationList[0].ed_gradudate"></td>
-                    <td><input type="text" class="form-control" name="educationList[0].ed_schoolName" ></td>
-                    <td><input type="text" class="form-control" name="educationList[0].ed_major" ></td>
-                    <td>
-                        <select class="form-select">
-                        <option value="대학원" name="educationList[0].ed_school">대학원</option>
-                        <option value="대학교" name="educationList[0].ed_school">대학교</option>
-                        <option value="고등학교" name="educationList[0].ed_school">고등학교</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select">
-                        <option value="졸업" name="educationList[0].ed_graduation">졸업</option>
-                        <option value="휴학" name="educationList[0].ed_graduation">휴학</option>
-                        <option value="중퇴" name="educationList[0].ed_graduation">중퇴</option>
-                        <option value="재학" name="educationList[0].ed_graduation">재학</option>
-                        </select>
-                    </td>
+                    <c:forEach items="${educationList}" var="item">
+                        <tr class="data-select">
+                            <input type="hidden" name="ed_no" value="${item.ed_no}" />
+                            <td>
+                                <fmt:formatDate value="${item.ed_startdate}" pattern="yyyy-MM" var="ed_startdate" />
+                                <input type="month" class="form-control" name="ed_startdate" value="${ed_startdate}" />
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.ed_gradudate}" pattern="yyyy-MM" var="ed_gradudate" />
+                                <input type="month" class="form-control" name="ed_gradudate" value="${ed_gradudate}">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="ed_schoolName" value="${item.ed_schoolName}" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="ed_major" value="${item.ed_major}" />
+                            </td>
+                            <td>
+                                <select name="ed_school" class="form-select">
+                                    <option value="대학원" ${item.ed_school == "대학원" ? "selected" : ""}>대학원</option>
+                                    <option value="대학교" ${item.ed_school == "대학교" ? "selected" : ""}>대학교</option>
+                                    <option value="고등학교" ${item.ed_school == "고등학교" ? "selected" : ""}>고등학교</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select name="ed_graduation" class="form-select">
+                                    <option value="졸업" ${item.ed_graduation == "졸업" ? "selected" : ""}>졸업</option>
+                                    <option value="휴학" ${item.ed_graduation == "휴학" ? "selected" : ""}>휴학</option>
+                                    <option value="중퇴" ${item.ed_graduation == "중퇴" ? "selected" : ""}>중퇴</option>
+                                    <option value="졸업예정" ${item.ed_graduation == "졸업예정" ? "selected" : ""}>졸업예정</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="educationUpdate(this);" />
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="educationDelete(this);" />
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <tr class="data-insert"><!--첫째줄-->
+                        <td><input type="month" class="form-control" name="ed_startdate"></td>
+                        <td><input type="month" class="form-control" name="ed_gradudate"></td>
+                        <td><input type="text" class="form-control" name="ed_schoolName" ></td>
+                        <td><input type="text" class="form-control" name="ed_major" ></td>
+                        <td>
+                            <select name="ed_school" class="form-select">
+                                <option value="대학원" >대학원</option>
+                                <option value="대학교">대학교</option>
+                                <option value="고등학교">고등학교</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <select name="ed_graduation" class="form-select">
+                                <option value="졸업">졸업</option>
+                                <option value="휴학">휴학</option>
+                                <option value="중퇴">중퇴</option>
+                                <option value="졸업예정">졸업예정</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="data-insert">
+	                    <td><input type="month" class="form-control" name="ed_startdate"></td>
+	                    <td><input type="month" class="form-control" name="ed_gradudate"></td>
+	                    <td><input type="text" class="form-control" name="ed_schoolName" ></td>
+	                    <td><input type="text" class="form-control" name="ed_major" ></td>
+	                    <td>
+	                        <select class="form-select">
+	                        <option value="대학원" name="ed_school">대학원</option>
+	                        <option value="대학교" name="ed_school">대학교</option>
+	                        <option value="고등학교" name="ed_school">고등학교</option>
+	                        </select>
+	                    </td>
+	                    <td>
+	                        <select class="form-select">
+	                        <option value="졸업" name="ed_graduation">졸업</option>
+	                        <option value="휴학" name="ed_graduation">휴학</option>
+	                        <option value="중퇴" name="ed_graduation">중퇴</option>
+	                        <option value="졸업예정" name="ed_graduation">졸업예정</option>
+	                        </select>
+	                    </td>
                   </tr>
-                  <tr>
-                    <td><input type="month" class="form-control" name="ed_startdate"></td>
-                    <td><input type="month" class="form-control" name="ed_gradudate"></td>
-                    <td><input type="text" class="form-control" name="ed_schoolName" ></td>
-                    <td><input type="text" class="form-control" name="ed_major" ></td>
-                    <td>
-                        <select class="form-select">
-                        <option value="대학원" name="ed_school">대학원</option>
-                        <option value="대학교" name="ed_school">대학교</option>
-                        <option value="고등학교" name="ed_school">고등학교</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select">
-                        <option value="졸업" name="ed_graduation">졸업</option>
-                        <option value="휴학" name="ed_graduation">휴학</option>
-                        <option value="중퇴" name="ed_graduation">중퇴</option>
-                        <option value="재학" name="ed_graduation">재학</option>
-                        </select>
-                    </td>
-                  </tr>                
                 </tbody>
             </table>
             
@@ -218,19 +263,46 @@
                     <th scope="col">자격증</th>
                     <th scope="col">취득년월</th>
                     <th scope="col">발행기관</th>
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>                 
-                    <td><input type="text" class="form-control" name="li_title" ></td>
-                    <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
-                    <td><input type="text" class="form-control" name="li_organ" ></td>
-                  </tr>
-                  <tr>                   
-                    <td><input type="text" class="form-control" name="li_title" ></td>
-                    <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
-                    <td><input type="text" class="form-control" name="li_organ" ></td>
-                  </tr>                                  
+                    <c:forEach items="${licenceList}" var="item">
+                        <tr class="data-select">
+                            <input type="hidden" name="li_no" value="${item.li_no}" />
+                            <td>
+                                <input type="text" class="form-control" name="li_title" value="${item.li_title}">
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.li_date}" pattern="yyyy-MM-dd" var="li_date" />
+                                <input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월" value="${li_date}">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="li_organ" value="${item.li_organ}">
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="licenceUpdate(this);"/>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="licenceDelete(this);"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <tr class="data-insert">
+                        <td><input type="text" class="form-control" name="li_title" ></td>
+                        <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                        <td><input type="text" class="form-control" name="li_organ" ></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="data-insert">
+                        <td><input type="text" class="form-control" name="li_title" ></td>
+                        <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                        <td><input type="text" class="form-control" name="li_organ" ></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
             
@@ -251,21 +323,49 @@
                     <th scope="col">시작일</th>
                     <th scope="col">종료일</th>
                     <th scope="col">세부내용</th>
+                    
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><!--첫째줄-->
-                    <td><input type="text" class="form-control" name="ca_title" ></td>
-                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
-                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
-                    <td><input type="text" class="form-control" name="ca_content" ></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" class="form-control" name="ca_title" ></td>
-                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
-                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
-                    <td><input type="text" class="form-control" name="ca_content" ></td>
-                  </tr>
+				<c:forEach items="${careerList}" var="item">
+					<tr class="data-select">
+                        <input type="hidden" name="ca_no" value="${item.ca_no}" />
+						<td><input type="text" class="form-control" name="ca_title"	value="${item.ca_title}"></td>
+						<td>
+							<fmt:formatDate value="${item.ca_start_date}" pattern="yyyy-MM-dd" var="ca_start_date" />
+							<input type="date" class="form-control" name="ca_start_date" value="${ca_start_date}">
+						</td>
+						<td>
+							<fmt:formatDate value="${item.ca_end_date}" pattern="yyyy-MM-dd" var="ca_end_date" />
+							<input type="date" class="form-control" name="ca_end_date"  value="${ca_end_date}">
+						</td>
+						<td><input type="text" class="form-control" name="ca_content" value="${item.ca_content}"></td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="careerUpdate(this);" />
+						</td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="careerDelete(this);"/>
+						</td>
+					</tr>
+				</c:forEach>
+					<tr class="data-insert">
+	                    <td><input type="text" class="form-control" name="ca_title" ></td>
+	                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
+	                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
+	                    <td><input type="text" class="form-control" name="ca_content" ></td>
+	                    <td></td>
+	                    <td></td>
+                  	</tr>
+	                <tr class="data-insert">
+	                    <td><input type="text" class="form-control" name="ca_title" ></td>
+	                    <td><input type="date" class="form-control" name="ca_start_date" ></td>
+	                    <td><input type="date" class="form-control" name="ca_end_date" ></td>
+	                    <td><input type="text" class="form-control" name="ca_content" ></td>
+	                    <td></td>
+	                    <td></td>
+	                 </tr> 
                 </tbody>
             </table>
             
@@ -280,7 +380,7 @@
             </div>
         </form><!--학력/교육/자격증/자소서 form 끝-->
         <br><br>
-        <div class="d-grid gap-2 col-3 mx-auto"><!--form 2개 같이 submit-->
+        <div class="d-grid gap-2 col-3 mx-auto">
             <button class="btn-lg btn-primary" id="resumeInsertBtn">저장</button>
         </div>
     </div>

@@ -34,7 +34,17 @@ a:visited {
 .navbar-brand {
 	margin-left:100px;
 }
-/* 헤더 item 간격 설정 */
-.navbar-nav .nav-item{
+
+/* 헤더 메뉴 기본 색상 설정 및 hover 효과 */
+.nav_items li a, .logo a {
+	color:#fff !important;
+}
+      
+.nav_items li a:hover, .logo a:hover, .logo i:hover {
+	color:#ffc107 !important;
 }
 
+/* header nav itmes 간격 */
+.nav-ul > li {
+	margin-right:15px !important;
+}

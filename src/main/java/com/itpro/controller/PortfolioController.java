@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.itpro.model.biz.BoardBiz;
@@ -212,5 +214,12 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 		return null;
 	}
 	
-	
+	@RequestMapping(value="/portfoliodeleteAjax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int portfolioDeleteAjax(Model model, int bd_no,HttpServletResponse response) {
+		logger.info("Portfolio DELETE AJAX");
+
+		int res = portfolioBiz.delete(bd_no);
+		return res;
+	}
 }

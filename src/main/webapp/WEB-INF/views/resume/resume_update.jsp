@@ -18,7 +18,8 @@
 <!-- 본문 시작 -->
 
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
-
+    <form id="resumeUpdateForm" onsubmit="resumeUpdateAjax(this); return false;"><!--이력서 기본정보 form-->
+        <input type="hidden" name="r_no" value="${resumeDetailDto.r_no }" />
         <h3>이력서 수정</h3> 	
         <div class="float-end">
             <button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
@@ -28,7 +29,6 @@
         <br><br>
 
         <div class="clearfix"><!--이력서 기본정보 div-->
-            <form><!--이력서 기본정보 form-->
                 <div class="col-8"><!--이력서 제목 작성-->
                     <input type="text" class="form-control form-control-lg" value="${resumeDetailDto.r_title }" placeholder="이력서 제목">
                 </div>
@@ -36,7 +36,8 @@
                 <h4>기본정보</h4>
                 <br>
                 <!--이력서 이미지-->
-                <img src="${resumeDetailDto.r_img_path }${resumeDetailDto.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" style="width: 180px; height: 180px;" alt="이력서 이미지">
+                <img src="${resumeDetailDto.r_img_path }${resumeDetailDto.r_img }" class="img-thumbnail col-md-6 float-md-end mb-3 ms-md-3" id="image_section" style="width: 180px; height: 180px;" alt="이력서 이미지">
+                
                 
                 <div class="row g-2"><!--이름-->
                     <div class="col-2"><h5>이 름</h5></div>
@@ -75,7 +76,7 @@
                 <div class="row g-2">
                     <div class="col-2"><h5>주 소</h5></div>
                     <div class="col-3">            
-                        <input class="form-control form-control-sm" type="text" id="sample4_postcode" value="${resumeDetailDto.r_postcode }" placeholder="우편번호">
+                        <input class="form-control form-control-sm" type="text" id="sample4_postcode" name="r_postcode" value="${resumeDetailDto.r_postcode }" placeholder="우편번호">
                     </div>
                     <div class="col-2">
                             <input class="btn btn-outline-dark btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
@@ -84,46 +85,43 @@
                 <div class="row g-2 mt-1">
                     <div class="col-2"></div>
                     <div class="col-3">            
-                        <input class="form-control form-control-sm" type="text" id="sample4_roadAddress" value="${resumeDetailDto.r_roadAddress }" placeholder="도로명주소" readonly>
+                        <input class="form-control form-control-sm" type="text" id="sample4_roadAddress" name="r_roadAddress" value="${resumeDetailDto.r_roadAddress }" placeholder="도로명주소" readonly>
                     </div>
                     <div class="col-3">
-                        <input class="form-control form-control-sm" type="text" id="sample4_jibunAddress" value="${resumeDetailDto.r_jibunAddress }" placeholder="지번주소" readonly>
+                        <input class="form-control form-control-sm" type="text" id="sample4_jibunAddress" name="r_jibunAddress" value="${resumeDetailDto.r_jibunAddress }" placeholder="지번주소" readonly>
                         <span id="guide" style="color:#999;display:none"></span>
                     </div>
                 </div>
                 <div class="row g-2 mt-1">
                     <div class="col-2"></div>
                     <div class="col-3">            
-                        <input class="form-control form-control-sm" type="text" id="sample4_detailAddress" value="${resumeDetailDto.r_detailAddress }" placeholder="상세주소">
+                        <input class="form-control form-control-sm" type="text" id="sample4_detailAddress" name="r_detailAddress" value="${resumeDetailDto.r_detailAddress }" placeholder="상세주소">
                     </div>
                     <div class="col-3">
-                        <input class="form-control form-control-sm" type="text" id="sample4_extraAddress" value="${resumeDetailDto.r_extraAddress }" placeholder="참고항목" readonly>
+                        <input class="form-control form-control-sm" type="text" id="sample4_extraAddress" name="r_extraAddress" value="${resumeDetailDto.r_extraAddress }" placeholder="참고항목" readonly>
                     </div>
                 </div><!--주소 끝-->
                 <br>
                 <div class="row g-2"><!--포트폴리오-->
                     <div class="col-2"><h5>포트폴리오</h5></div>
                     <div class="col-5">            
-                        <input type="text" class="form-control col-6 px-2" value="${resumeDetailDto.r_portfolio }" placeholder="ex) http://www.itpro.com/user">            
+                        <input type="text" class="form-control col-6 px-2" name="r_portfolio" value="${resumeDetailDto.r_portfolio }" placeholder="ex) http://www.itpro.com/user">            
                     </div>
                 </div>
-            </form><!--기본정보 입력 form 끝-->
             <br>
-            <form><!--이미지 업로드 form-->
-                <div class="row g-2">
-                    <div class="col-2"><h5>사진등록</h5></div>
-                    <div class="col-3"> 
-                        <input class="form-control form-control-sm" id="r_img" type="file">                     
-                    </div>  
-                    <div class="col-sm-1">
-                        <input type="submit" class="btn btn-outline-dark btn-sm" value="업로드">
-                    </div>   
-                </div>
-            </form><!--이미지 업로드 form 끝-->
+            <div class="row g-2">
+                <div class="col-2"><h5>사진등록</h5></div>
+                <div class="col-3"> 
+                    <input id="input_r_img" class="form-control form-control-sm" name="r_img" type="file">                     
+                    <input type="hidden" name="r_img_no" type="text"/>
+                </div>  
+                <div class="col-sm-1">
+                    <input type="button" class="btn btn-outline-dark btn-sm" value="업로드" onclick="uploadFile();">
+                </div>   
+            </div>
         </div><!--이력서 기본정보 div 끝-->     
         <hr>
 
-        <form><!--학력/교육/자격증/자소서 form-->
             <div class="d-flex justify-content-between">
                 <div class="col-6"><sapn><h3>학력사항</h3></sapn></div>
                 <div class="col-1"><!--입력 폼 추가 버튼-->
@@ -135,53 +133,59 @@
             <table class="table table-borderless table-sm text-center" id="EdFormTable">
                 <thead>
                   <tr>
-                    <th scope="col">입학</th>
-                    <th scope="col">졸업</th>
-                    <th scope="col">학교</th>
-                    <th scope="col">전공</th>
-                    <th scope="col">구분</th>
-                    <th scope="col">졸업여부</th>
+                    <th class="col-1">입학</th>
+                    <th class="col-1">졸업</th>
+                    <th class="col-2">학교</th>
+                    <th class="col-2">전공</th>
+                    <th class="col-2">구분</th>
+
+                    <th class="col-2">졸업여부</th>
+                    <th class="col-1">수정</th>
+                    <th class="col-1">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-<!--                   <tr>첫째줄
-                    <td><input type="text" class="form-control" name="ed_startdate" value=""></td>
-                    <td><input type="text" class="form-control" name="ed_gradudate" value=""></td>
-                    <td><input type="text" class="form-control" name="ed_school" ></td>
-                    <td><input type="text" class="form-control" name="ed_graduation" ></td>
-                    <td>
-                        <select class="form-select">
-                        <option value="1">대학원</option>
-                        <option value="2">대학교</option>
-                        <option value="3">고등학교</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select">
-                        <option value="1">졸업</option>
-                        <option value="2">휴학</option>
-                        <option value="3">중퇴</option>
-                        <option value="4">재학</option>
-                        </select>
-                    </td>
-                  </tr> -->
-                  <c:choose>
-					<c:when test="${empty educationList }">
-						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${educationList}" var="educationList">
-							<tr>
-								<td><input type="text" class="form-control" name="ed_date" value="${educationList.ed_startdate}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_gradudate}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_schoolName}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_major}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_school}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_graduation}"></td>
-		                  	</tr>
-						</c:forEach> 
-					</c:otherwise>
-				</c:choose>                 
+                    <c:forEach items="${educationList}" var="item">
+                        <tr class="data-select">
+                            <input type="hidden" name="ed_no" value="${item.ed_no}" />
+                            <td>
+                                <fmt:formatDate value="${item.ed_startdate}" pattern="yyyy-MM" var="ed_startdate" />
+                                <input type="month" class="form-control" name="ed_startdate" value="${ed_startdate}" />
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.ed_gradudate}" pattern="yyyy-MM" var="ed_gradudate" />
+                                <input type="month" class="form-control" name="ed_gradudate" value="${ed_gradudate}">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="ed_schoolName" value="${item.ed_schoolName}" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="ed_major" value="${item.ed_major}" />
+                            </td>
+                            <td>
+                                <select name="ed_school" class="form-select">
+                                    <option value="대학원" ${item.ed_school == "대학원" ? "selected" : ""}>대학원</option>
+                                    <option value="대학교" ${item.ed_school == "대학교" ? "selected" : ""}>대학교</option>
+                                    <option value="고등학교" ${item.ed_school == "고등학교" ? "selected" : ""}>고등학교</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select name="ed_graduation" class="form-select">
+                                    <option value="졸업" ${item.ed_graduation == "졸업" ? "selected" : ""}>졸업</option>
+                                    <option value="휴학" ${item.ed_graduation == "휴학" ? "selected" : ""}>휴학</option>
+                                    <option value="중퇴" ${item.ed_graduation == "중퇴" ? "selected" : ""}>중퇴</option>
+                                    <option value="졸업예정" ${item.ed_graduation == "졸업예정" ? "selected" : ""}>졸업예정</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="educationUpdate(this);" />
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="educationDelete(this);" />
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             
@@ -202,23 +206,32 @@
                     <th scope="col">자격증</th>
                     <th scope="col">취득년월</th>
                     <th scope="col">발행기관</th>
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <c:choose>
-					<c:when test="${empty licenceList }">
-						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${licenceList}" var="licenceList">
-							<tr>
-								<td><input type="text" class="form-control" name="li_date" value="${licenceList.li_date}"></td>
-			                    <td><input type="text" class="form-control" name="li_title" value="${licenceList.li_title}"></td>
-			                    <td><input type="text" class="form-control" name="li_organ" value="${licenceList.li_organ}"></td>
-		                  	</tr>
-						</c:forEach> 
-					</c:otherwise>
-				</c:choose>                  
+                    <c:forEach items="${licenceList}" var="item">
+                        <tr class="data-select">
+                            <input type="hidden" name="li_no" value="${item.li_no}" />
+                            <td>
+                                <input type="text" class="form-control" name="li_title" value="${item.li_title}">
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.li_date}" pattern="yyyy-MM-dd" var="li_date" />
+                                <input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월" value="${li_date}">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="li_organ" value="${item.li_organ}">
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="licenceUpdate(this);"/>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="licenceDelete(this);"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             
@@ -239,26 +252,36 @@
                     <th scope="col">시작일</th>
                     <th scope="col">종료일</th>
                     <th scope="col">세부내용</th>
+                    
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <c:choose>
-					<c:when test="${empty careerList }">
-						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${careerList}" var="careerList">
-							<tr>
-								<td><input type="text" class="form-control" name="ca_title" value="${careerList.ca_title}"></td>
-			                    <td><input type="text" class="form-control" name="ca_start_date" value="${careerList.ca_start_date}"></td>
-			                    <td><input type="text" class="form-control" name="ca_end_date" value="${careerList.ca_end_date}"></td>
-			                    <td><input type="text" class="form-control" name="ca_content" value="${careerList.ca_content}"></td>
-		                  	</tr>
-						</c:forEach> 
-					</c:otherwise>
-				</c:choose>                 
+				<c:forEach items="${careerList}" var="item">
+					<tr class="data-select">
+                        <input type="hidden" name="ca_no" value="${item.ca_no}" />
+						<td><input type="text" class="form-control" name="ca_title"	value="${item.ca_title}"></td>
+						<td>
+							<fmt:formatDate value="${item.ca_start_date}" pattern="yyyy-MM-dd" var="ca_start_date" />
+							<input type="date" class="form-control" name="ca_start_date" value="${ca_start_date}">
+						</td>
+						<td>
+							<fmt:formatDate value="${item.ca_end_date}" pattern="yyyy-MM-dd" var="ca_end_date" />
+							<input type="date" class="form-control" name="ca_end_date"  value="${ca_end_date}">
+						</td>
+						<td><input type="text" class="form-control" name="ca_content" value="${item.ca_content}"></td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="careerUpdate(this);" />
+						</td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="careerDelete(this);"/>
+						</td>
+					</tr>
+				</c:forEach>
                 </tbody>
             </table>
+            
             
 
             <hr><!---자소서 입력 폼---->
@@ -266,14 +289,14 @@
             <div>
                 <div class="col-6 mb-3"><sapn><h3>자기소개서</h3></sapn></div>
                 <div class="form-floating">
-                    <textarea class="form-control" style="height: 500px; resize: none;">${resumeDetailDto.r_selfletter }</textarea>
+                    <textarea class="form-control" name="r_selfletter" style="height: 500px; resize: none;">${resumeDetailDto.r_selfletter }</textarea>
                 </div>
             </div>
-        </form><!--학력/교육/자격증/자소서 form 끝-->
         <br><br>
         <div class="d-grid gap-2 col-3 mx-auto"><!--form 2개 같이 submit-->
             <button class="btn-lg btn-primary" type="submit">저장</button>
         </div>
+    </form>
     </div>
 
 
@@ -288,7 +311,7 @@
 <%@include file="../inc/_foot.jspf" %>
 
 <!-- 이력서 폼 스크립트 -->
-<script type="text/javascript" src="./resources/js/resume_form.js"></script> 
+<script type="text/javascript" src="./resources/js/resume_update.js"></script>
 	
 </body>
 </html>

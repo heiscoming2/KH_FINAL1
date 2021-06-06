@@ -21,10 +21,10 @@
         
         <br><br>
         
-        <table class="table table-bordered table-hover text-center" >
+        <table class="table table-bordered table-hover text-center" id="table-list">
             <thead>
                 <tr class="d-flex">
-                    <th class="col-1"><input type="checkbox"></th>
+                    <th class="col-1">선택</th>
                     <th class="col-6">이력서</th>
                     <th class="col-3">등록일</th>
                     <th class="col-2">수정</th>
@@ -38,9 +38,9 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${resumeList }" var="resumeList">
+						<c:forEach items="${resumeList}" var="resumeList">
 							<tr class="d-flex">
-								<td class="col-1"><input type="checkbox" name="resumeListDel" value="${resumeList.r_no }"></td>
+								<td class="col-1"><input type="checkbox" name="resumeListDel" r_no="${resumeList.r_no }"></td>
 								<td class="col-6"><a href="resume_detail.do?r_no=${resumeList.r_no }" style="color: black;">${resumeList.r_title }</a></td>
 								<td class="col-3"><fmt:formatDate value="${resumeList.r_regdate }" pattern="yyyy-MM-dd"/></td>
 								<td class="col-2">

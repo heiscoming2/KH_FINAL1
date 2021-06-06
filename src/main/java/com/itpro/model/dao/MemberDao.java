@@ -35,5 +35,6 @@ public interface MemberDao {
 	
 	//작성 글 갯수 조회
 	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap);
+	
 
 }

@@ -123,10 +123,10 @@ public class NoteDaoImpl implements NoteDao {
 
 	// 새로 받은 쪽지가 있는지 확인(매번)
 	@Override
-	public Integer countNewNote() {
+	public Integer countNewNote(int n_receiver) {
 		Integer count = 0;
 		try {
-			count = sqlSession.selectOne(NAMESPACE + "countNewNote");
+			count = sqlSession.selectOne(NAMESPACE + "countNewNote", n_receiver);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -86,6 +86,56 @@ public class ResumeBizImpl implements ResumeBiz {
 		return dao.resumeInsert(dto);
 	}
 
+	// 이력서 기본정보 수정
+	@Override
+	public int resumeUpdate(ResumeDetailDto dto) {
+		return dao.resumeUpdate(dto);
+	}
+
+
+	// 이력서 학력사항 정보 입력
+	@Override
+	public int educationInsert(EducationDto educationDto) {
+		return dao.educationInsert(educationDto);
+	}
+		
+	// 이력서 학력사항 정보 수정
+	@Override
+	public int educationUpdate(EducationDto educationDto) {
+		return dao.educationUpdate(educationDto);
+	}
+		
+	// 이력서 학력사항 정보 삭제
+	@Override
+	public int educationDelete(EducationDto educationDto) {
+		return dao.educationDelete(educationDto);
+	}
+
+
+
+	// 이력서 자격사항 정보 입력
+	@Override
+	public int licenceInsert(LicenceDto licenceDto) {
+		
+		return dao.licenceInsert(licenceDto);
+	}
+	
+	// 이력서 자격사항 정보 수정
+	@Override
+	public int licenceUpdate(LicenceDto licenceDto) {
+
+		return dao.licenceUpdate(licenceDto);
+	}
+
+	// 이력서 자격사항 정보 삭제
+	@Override
+	public int licenceDelete(LicenceDto licenceDto) {
+		
+		return dao.licenceDelete(licenceDto);
+	}
+
+	
+	
 	// 이력서 경력사항 정보 입력
 	@Override
 	public int careerInsert(CareerDto careerDto) {
@@ -93,18 +143,17 @@ public class ResumeBizImpl implements ResumeBiz {
 		return dao.careerInsert(careerDto);
 	}
 
-	// 이력서 학력사항 정보 입력
+	//이력서 경력사항 정보 수정
 	@Override
-	public int educationInsert(EducationDto educationDto) {
+	public int careerUpdate(CareerDto careerDto) {
 		
-		return dao.educationInsert(educationDto);
+		return dao.careerUpdate(careerDto);
 	}
 
-	// 이력서 자격사항 정보 입력
+	// 이력서 경력사항 정보 삭제
 	@Override
-	public int licenseInsert(LicenceDto licenceDto) {
+	public int careerDelete(CareerDto careerDto) {
 		
-		return dao.licenseInsert(licenceDto);
+		return dao.careerDelete(careerDto);
 	}
-
 }

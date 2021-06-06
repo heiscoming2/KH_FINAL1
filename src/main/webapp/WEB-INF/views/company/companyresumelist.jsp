@@ -69,7 +69,7 @@
 							</c:if>
 							<c:if test="${dto.ca_status eq 'N' }">
 								<td class="col-2">
-						 			<span style="background-color:#E91E63; border-radius:8px; color:white; padding:10px; margin-right:5px;">
+						 			<span style="background-color:#E91E63; border-radius:8px; color:white; padding:10px; position:relative; top:5px;">
 						 			불합격 지원자
 						 			</span>										
 								</td>

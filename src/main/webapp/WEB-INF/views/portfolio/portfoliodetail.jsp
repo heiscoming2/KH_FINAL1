@@ -5,13 +5,11 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfoliodetail.css?ver=1.5" rel="stylesheet">
+<link href="resources/css/portfoliodetail.css?ver=1.4" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <!-- 좋아요 css -->
 <link href="resources/css/likebutton.css?ver=1.1" rel="stylesheet">
-<!-- 부트스트랩 아이콘 css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>IT PRO 상세보기</title>
@@ -43,11 +41,10 @@
                   ${dto.member.m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                    <li><a class="dropdown-item" href="postlookup.do?m_no=${dto.member.m_no }">작성 글 조회</a></li>
-                    <li><a class="dropdown-item" href="#">이력서 열람</a></li>
-                </ul>
+				<jsp:include page="../inc/userDropDownMenu.jsp">
+					<jsp:param name="m_no" value="${dto.member.m_no }"></jsp:param>
+					<jsp:param name="m_nickname" value="${dto.member.m_nickname }"></jsp:param>
+				</jsp:include>
               </div>
               <span class="reg_date">
                 <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성)
@@ -60,29 +57,36 @@
 
 
             <!-- 글 번호 / 제목 영역 시작 -->
-              <div style="margin: 10px 0px;">
-              <span class="detail_no">${dto.bd_no }</span> <!-- 글 번호 --> <!-- *******dto.board.bd_no -->
+            <hr>
+            <div style="margin: 10px 0px;">
+              <span class="detail_no" onclick="CopyUrlToClipBoard();"></span> <!-- js에서 여기에 주소를 쏴줌 -->
               <br>
               <span class="detail_title">${dto.bd_title }</span> <!-- 글 제목 -->
-             </div>
+            </div>
+            <hr>
             <!-- 글 번호 / 제목 영역 종료 --> 
 
              <br>
-            <div style="float:right;"> <!-- 작성자에게만 보여질 버튼 -->
-              <input type="button" value="수정" class="btn btn-primary" onclick="location.href='portfolioupdateform.do?bd_no=${dto.bd_no}&m_no=${dto.member.m_no}'">
-              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">  <!-- *******dto.board.bd_no -->
-            </div> <!-- 작성자에게만 보여질 버튼 종료 -->
+	        <div style="float:right; position:relative; top:-105px;"> 
+	             <input type="button" value="신고" class="btn btn-danger">
+	            	<c:if test="${sessionScope.login.m_no eq dto.member.m_no }">
+		              <!-- 모집상태가 y이면 모집완료를 아니면 모집중 버튼을 보이도록한다. (짧게 줄일 수 있을거 같은데.. 나중에 수정) -->
+		              <!-- 모집 버튼 종료 -->
+		              <input type="button" value="수정" class="btn btn-primary"  onclick="location.href='portfolioupdateform.do?bd_no=${dto.bd_no}&m_no=${dto.member.m_no}'">
+		              <input type="button" value="삭제" class="btn btn-primary" onclick="delConfirm('${dto.bd_no}');">
+		            </c:if>
+	        </div> 
 
 
             <!-- 글 내용 시작 -->
-            <div style="font-size: 20px; padding:10px 0px;"> 
+            <div style="font-size: 15px; padding:10px 0px;"> 
               	<table class="table portfolio_table" style="width:700px;">
-            	<caption align="top" style="color:#212529;">&nbsp;<b>요약</b><br></caption>
+            	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>포트폴리오 정보</b><br></caption>
             	    <col width="200px;">
             		<col width="500px;">
             		<tr>
 	            		<th><i class="bi bi-person-lines-fill"></i>닉네임</th>
-	            		<td>dto.member.m_nickname</td>
+	            		<td>${dto.member.m_nickname }</td>
             		</tr>
             		<tr>
 	            		<th><i class="bi bi-envelope-open-fill"></i>이메일</th>
@@ -173,7 +177,7 @@
 <script src="resources/js/summernote/summernote-lite.js"></script>
 <script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <!-- 포트폴리오 디테일 js -->
-<script type="text/javascript" src="resources/js/portfoliodetail.js?ver=1.3"></script>
+<script type="text/javascript" src="resources/js/portfoliodetail.js?ver=1.4"></script>
 <!-- 댓글 js -->
 <script type="text/javascript" src="resources/js/reply.js?ver=1.1"></script>
 <!-- 좋아요 js -->

@@ -112,7 +112,6 @@ public class ResumeController {
 
 		// 이력서 기본정보 조회(detail)
 		ResumeDetailDto resumeDetailDto = biz.resumeDetail(r_no);
-
 		// 회원번호로 멤버테이블 정보 가져옴
 		int m_no = resumeDetailDto.getM_no();
 		MemberDto memberDto = memberBiz.selectOne(m_no);
@@ -156,51 +155,230 @@ public class ResumeController {
 		// 회원번호로 멤버기본 정보 가져옴
 		MemberDto memberDto = memberBiz.selectOne(m_no);
 
+		// 이력서 학력사항 조회(list)
+		List<EducationDto> educationList = biz.educationList(m_no);
+		// 이력서 자격사항 조회(list)
+		List<LicenceDto> licenceList = biz.licenceList(m_no);
+		// 이력서 경력사항 조회(list)
+		List<CareerDto> careerist = biz.careerList(m_no);
+
 		// model
 		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("educationList", educationList);
+		model.addAttribute("licenceList", licenceList);
+		model.addAttribute("careerList", careerist);
 
 		return "resume/resume_form";
 	}
 
-	// 이력서 등록	
+	// 이력서 등록
 	@RequestMapping(value = "/resume_insert.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Integer resumeInsert(ResumeUploadDto resumeUploadDto, HttpSession session, EducationDto educationDto) {
 		logger.info("RESUEM INSERT");
-		
+
 		int m_no = 0;
 		if (session.getAttribute("login") != null) {
 			MemberDto login = (MemberDto) session.getAttribute("login");
 			m_no = login.getM_no();
 		}
-		
+
 		// 0. m_no 설정
 		resumeUploadDto.setM_no(m_no);
-		
+
 		// 1. 이력서 기본 정보 등록 - mapper에서 update
 		biz.resumeInsert(resumeUploadDto);
-		
+
 		// 2. 회원정보 업데이트- mapper에서 insert
 		MemberDto memberDto = resumeUploadDto.getMemberDto();
 		biz.memResumeUpdate(memberDto);
-		
+
 		// return: 이력서 번호를 클라이언트에게 리턴한다.
 		int r_no = resumeUploadDto.getR_no();
-		return r_no;		
-
-//		// 학력 정보 등록 - mapper에서 insert
-//		int educationInsert = biz.educationInsert(educationDto);
-		
-//		// 경력 정보 등록 - mapper에서 insert
-//		int careerInsert = biz.careerInsert(careerDto);
-//
-//		// 자격증 정보 등록 - mapper에서 insert
-//		int licenseInsert = biz.licenseInsert(licenceDto);
-
-		// return "resume/resume_list";
+		return r_no;
 	}
 
-	// 이력서 개별삭제
+	// 이력서 기본정보 수정
+	@RequestMapping(value = "/resume_update_ajax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer resumeUpdateAjax(HttpSession session, ResumeDetailDto dto) {
+		logger.info("RESUEM UPDATE");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+		dto.setM_no(m_no);
+
+		int result = biz.resumeUpdate(dto);
+		return result;
+	}
+
+	// 이력서 학력사항 정보 입력
+	@RequestMapping(value = "/educationInsert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int educationInsert(HttpSession session, EducationDto educationDto) {
+		logger.info("educationInsert");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		educationDto.setM_no(m_no);
+
+		int result = biz.educationInsert(educationDto);
+		return result;
+	}
+
+	// 이력서 학력사항 정보 수정
+	@RequestMapping(value = "/educationUpdate.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int educationUpdate(HttpSession session, EducationDto educationDto) {
+		logger.info("educationUpdate");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		educationDto.setM_no(m_no);
+
+		int result = biz.educationUpdate(educationDto);
+		return result;
+	}
+
+	// 이력서 학력사항 정보 삭제
+	@RequestMapping(value = "/educationDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int educationDelete(HttpSession session, EducationDto educationDto) {
+		logger.info("educationDelete");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		educationDto.setM_no(m_no);
+
+		int result = biz.educationDelete(educationDto);
+		return result;
+	}
+
+	// 이력서 자격사항 정보 입력
+	@RequestMapping(value = "/licenceInsert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int licenceInsert(HttpSession session, LicenceDto licenceDto) {
+		logger.info("licenceInsert");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		licenceDto.setM_no(m_no);
+
+		int result = biz.licenceInsert(licenceDto);
+		return result;
+	}
+
+	// 이력서 자격사항 정보 수정
+	@RequestMapping(value = "/licenceUpdate.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int licenceUpdate(HttpSession session, LicenceDto licenceDto) {
+		logger.info("licenceUpdate");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		licenceDto.setM_no(m_no);
+
+		int result = biz.licenceUpdate(licenceDto);
+		return result;
+	}
+
+	// 이력서 자격사항 정보 삭제
+	@RequestMapping(value = "/licenceDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int licenceDelete(HttpSession session, LicenceDto licenceDto) {
+		logger.info("licenceDelete");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		licenceDto.setM_no(m_no);
+
+		int result = biz.licenceDelete(licenceDto);
+		return result;
+	}
+
+	// 이력서 경력사항 정보 입력
+	@RequestMapping(value = "/careerInsert.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int careerInsert(HttpSession session, CareerDto careerDto) {
+		logger.info("careerInsert");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		careerDto.setM_no(m_no);
+
+		int result = biz.careerInsert(careerDto);
+		return result;
+	}
+
+	// 이력서 경력사항 정보 수정
+	@RequestMapping(value = "/careerUpdate.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int careerUpdate(HttpSession session, CareerDto careerDto) {
+		logger.info("careerUpdate");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		careerDto.setM_no(m_no);
+
+		int result = biz.careerUpdate(careerDto);
+		return result;
+	}
+
+	// 이력서 경력사항 정보 삭제
+	@RequestMapping(value = "/careerDelete.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int careerDelete(HttpSession session, CareerDto careerDto) {
+		logger.info("careerDelete");
+
+		int m_no = 0;
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			m_no = login.getM_no();
+		}
+
+		// 회원정보 경력사항 갖고옴
+		careerDto.setM_no(m_no);
+
+		int result = biz.careerDelete(careerDto);
+		return result;
+	}
+
+	// 이력서 삭제
 	@RequestMapping(value = "/resume_delete.do")
 	public String resumeDelete(int r_no) {
 		logger.info("RESUEM DELETE");
@@ -214,12 +392,15 @@ public class ResumeController {
 		}
 	}
 
-	// 이력서 멀티삭제
-	@RequestMapping
-	public String resumeListDel(int r_no) {
-		logger.info("RESUEM DELETE");
+	// 이력서 선택삭제(ajax)
+	@RequestMapping(value = "/resume_delete_ajax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int resumeDeleteAjax(int r_no) {
+		logger.info("RESUEM DELETE AJAX");
 
-		return null;
+		int res = biz.resumeDelete(r_no);
+
+		return res;
 	}
 
 	// 프로필 이미지 업로드 컨트롤러(이거 이력서별로 올라가니까 이력서 번호로 해야되는거 아냐?)
@@ -228,7 +409,7 @@ public class ResumeController {
 	public Integer profileUpload(HttpServletRequest request, MultipartHttpServletRequest mtf)
 			throws IllegalStateException, IOException {
 
-		Map<String, String> map = new HashMap<String, String>();		
+		Map<String, String> map = new HashMap<String, String>();
 
 		MemberDto res = (MemberDto) request.getSession().getAttribute("login");
 		int m_no = res.getM_no();
@@ -259,12 +440,6 @@ public class ResumeController {
 		biz.uploadResumeImg(resumeImgDto);
 		Integer r_no = resumeImgDto.getR_no();
 
-//		map.put("path", "profileimages/" + r_img);
-//		logger.info("==============================");
-//		logger.info("map path:" + map);
-//
-//		return map;
-		
 		return r_no;
 	}
 

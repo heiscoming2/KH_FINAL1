@@ -10,7 +10,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/projectlist.css">
+<link rel="stylesheet" href="resources/css/projectlist.css?ver=1.3">
 <title>프로젝트</title>
 </head>
 <body>
@@ -61,20 +61,21 @@
                   	<c:forEach var="dto" items="${projectList }">
 							<tr>
 							<!-- 글 번호 시작 --> 
-							<td>${dto.bd_no} </td>
-							<td><a href= "projectdetail.do?bd_no=${dto.bd_no}">${dto.bd_title}</a></td>
-							<td>+${dto.bd_recommandcount }</td>
-							<td>${dto.bd_viewcount }</td>
+							<td class="bd_no">${dto.bd_no} </td>
+							<td><a href= "projectdetail.do?bd_no=${dto.bd_no}" style="color:#212529;">${dto.bd_title}</a></td>
+							<td class="bd_recommandcount">+${dto.bd_recommandcount }</td>
+							<td class="bd_viewcount">${dto.bd_viewcount }</td>
 							<td>
 							    <div class="project_profile">
 								<img src="${dto.m_img_path }${dto.m_img}" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-									<div class="study_writer"> 
+									<div class="project_writer"> 
 										<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
 											${dto.m_nickname }
 										</a>
 										<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 												<jsp:include page="../inc/userDropDownMenu.jsp">
 													<jsp:param name="m_no" value="${dto.m_no }"></jsp:param>
+													<jsp:param name="m_nickname" value="${dto.m_nickname }"></jsp:param>
 												</jsp:include>
 										<!-- 프로필 드롭다운 메뉴 종료 -->
 									</div> 

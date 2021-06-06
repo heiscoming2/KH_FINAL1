@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
@@ -180,6 +181,16 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		out.print("location.href='qnalist.do';");
 		out.print("</script>");
 		return null;
+	}
+	
+	// qna 삭제 ajax
+	@RequestMapping(value="/qnadeleteAjax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int qnaDeleteAjax(int bd_no) {
+		logger.info("QNA DELETE AJAX");
+
+		int res = qnaBiz.delete(bd_no);
+		return res; 
 	}
 	
 	/*

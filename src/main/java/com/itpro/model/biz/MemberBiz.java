@@ -33,5 +33,6 @@ public interface MemberBiz {
 	
 	//작성글 갯수
 	public int selectPostLookupCnt(Map<String,Object> postLookupPageMap);
+	
 
 }

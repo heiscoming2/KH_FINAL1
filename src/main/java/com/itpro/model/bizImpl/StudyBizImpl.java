@@ -53,15 +53,11 @@ public class StudyBizImpl implements StudyBiz {
 	@Override
 	@Transactional
 	public int delete(int bd_no) {
-		int deleteres = 0;
-		int replydeleteres = replyDao.deleteWithBoard(bd_no);
-		int likedeleteres = likeDao.deleteWithBoard(bd_no);
-		int studydeleteres = studyDao.delete(bd_no);
+		replyDao.deleteWithBoard(bd_no);
+		likeDao.deleteWithBoard(bd_no);
+		studyDao.delete(bd_no);
 		int boarddeleteres = boardDao.delete(bd_no);
-		if(studydeleteres>0 && boarddeleteres>0 && replydeleteres>0 && likedeleteres>0) {
-			deleteres = 1;
-		}
-		return deleteres; 
+		return boarddeleteres; 
 	}
 
 	@Override

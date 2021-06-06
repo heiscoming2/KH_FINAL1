@@ -22,6 +22,7 @@
 
 <!-- 본문 시작 -->
   <div class="notice_detailwrap mt-5">
+      <div style="width:1190px; margin:0 auto;">
       <h4>공지사항 상세</h4>
       <!-- 공지사항 상세글 영역 -->
       <table class="table table-bordered" style="width:100%;">
@@ -38,9 +39,10 @@
                   ${dto.m_nickname }
                 </a>
                 <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
-                    <li><a class="dropdown-item" href="#">쪽지보내기</a></li>
-                </ul>
+				<jsp:include page="../inc/userDropDownMenu.jsp">
+					<jsp:param name="m_no" value="${dto.m_no }"></jsp:param>
+					<jsp:param name="m_nickname" value="${dto.m_nickname }"></jsp:param>
+				</jsp:include>
               </div>
               <span class="reg_date">
                 <fmt:formatDate value="${dto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/> (작성됨)
@@ -105,10 +107,9 @@
 	
 	 
       <!-- 댓글 영역 시작 -->
-
-     <%@include file="../reply/reply.jsp" %>
-
+    	 <%@include file="../reply/reply.jsp" %>
       <!-- 댓글 영역 끝 -->
+      </div>
   </div>
 
 <!-- 본문 종료 -->
