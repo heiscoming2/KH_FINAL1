@@ -15,7 +15,7 @@ public class AdDto {
 	
 	//ad 게신판
 	private int ad_seq;
-	private String ad_type;
+	private String ad_comtype;
 	private String ad_comname;
 	private String ad_startdate;
 	private String ad_enddate;
