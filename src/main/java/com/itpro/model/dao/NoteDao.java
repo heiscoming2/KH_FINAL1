@@ -35,7 +35,7 @@ public interface NoteDao {
 	public int updateReadDate(NoteDto updateNoteDto);
 
 	// 새로 받은 쪽지가 있는지 확인(매번)
-	public Integer countNewNote();
+	public Integer countNewNote(int n_receiver);
 
 	public int companyApplicationSendNote(Map<String, Object> map);
 

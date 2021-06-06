@@ -101,8 +101,7 @@
             <br>
             <span style="color:#0078FF; font-size:17px;">&nbsp;<b>상세 내용</b><br><br></span>
             <!-- 글 내용 시작 -->
-            <div class="detail_content" style="margin-left:4px;">
-			${dto.bd_content }
+            <div class="detail_content" style="margin-left:4px;">${dto.bd_content }
               <br>
               <br>
             </div>
@@ -184,8 +183,9 @@
   	<!-- 게시글 작성자 M_NO와 세션 M_NO를 히든에 넣어둔다. JS에서 종종 사용될 경우가 있음 -->
 	<input id="bd_mno" type="hidden" value="${dto.m_no }">
 	<input id="session_mno" type="hidden" value="${sessionScope.login.m_no }">
-	
 <!-- 본문 종료 -->
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="studyli">
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>

@@ -14,3 +14,9 @@ function searchKeyEvent() {
 		searchList();
 	}
 }
+
+
+//하이라이트 처리
+$(function() {
+	$('.'+$('.cateli').val()).css('color','#ffc107');
+});

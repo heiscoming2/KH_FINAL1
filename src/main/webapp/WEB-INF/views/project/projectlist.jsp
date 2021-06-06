@@ -10,7 +10,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/projectlist.css?ver=1.3">
+<link rel="stylesheet" href="resources/css/projectlist.css?ver=1.4">
 <title>프로젝트</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
   <div class="project_wrap">
   		<br> <br>
         <h3>프로젝트 게시판</h3>
-        <div class="project_btnwrap">
+        <div class="project_btnwrap mb-4">
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='projectinsertform.do'">
 		</div>
 		
@@ -34,7 +34,7 @@
     	</select>
     	</div>    -->
         
-        <table class="project_table">
+        <table class="project_table table">
 			<col width="80px;">
 			<col width="500px;">
 			<col width="80px;">
@@ -62,7 +62,8 @@
 							<tr>
 							<!-- 글 번호 시작 --> 
 							<td class="bd_no">${dto.bd_no} </td>
-							<td><a href= "projectdetail.do?bd_no=${dto.bd_no}" style="color:#212529;">${dto.bd_title}</a></td>
+							<td><a href= "projectdetail.do?bd_no=${dto.bd_no}" style="color:#212529;">${dto.bd_title}<span class="replycount">${dto.bd_replycount }</span>
+							</a></td>
 							<td class="bd_recommandcount">+${dto.bd_recommandcount }</td>
 							<td class="bd_viewcount">${dto.bd_viewcount }</td>
 							<td>
@@ -92,8 +93,8 @@
             <!-- 게시물 한 줄 종료 -->
 
 
-        </table>
-     
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="projectli">     
  
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>

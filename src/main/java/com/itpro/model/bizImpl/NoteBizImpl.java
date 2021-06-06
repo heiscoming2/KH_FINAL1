@@ -76,8 +76,8 @@ public class NoteBizImpl implements NoteBiz {
 
 	// 새로 받은 쪽지가 있는지 확인(매번)
 	@Override
-	public Integer countNewNote() {
-		return dao.countNewNote();
+	public Integer countNewNote(int n_receiver) {
+		return dao.countNewNote(n_receiver);
 	}
 
 	@Override

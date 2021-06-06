@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
-<link rel="stylesheet" href="resources/css/noticelist.css?ver=1.1">
+<link rel="stylesheet" href="resources/css/noticelist.css?ver=1.6">
 <title>IT PRO 공지사항 목록</title>
 </head>
 <body>
@@ -58,8 +58,9 @@
 							<!-- 글 번호 시작 -->
 							<td class="bd_no"><a>${noticeDto.bd_no}</a></td>
 							<td><a href="noticedetail.do?bd_no=${noticeDto.bd_no }"
-								style="color: black;">${noticeDto.bd_title } <span
-									class="replycount">+${noticeDto.bd_replycount }</span></a></td>
+								style="color: black;">${noticeDto.bd_title }
+								 <span
+									class="replycount">${noticeDto.bd_replycount }</span></a></td>
 							<td class="bd_recommandcount"><b>+${noticeDto.bd_recommandcount }</b></td>
 							<td class="bd_viewcount">${noticeDto.bd_viewcount }</td>
 							<td>
@@ -90,6 +91,8 @@
 
 		</table>
 	</div>	
+
+	
 	<!-- 검색 결과를 히든 태그에 담아둔다. (없으면 null값이 담길것임) 이거를 js에서 받아서 -->
 	<!-- null이 아닌 경우(검색 결과가 있는 경우) 해당하는 내용들을 보여지게끔 처리 -->
 	<c:if test="${noticeSearchDto ne null }">
@@ -99,7 +102,8 @@
 		<input type="hidden" id="h_key" value="${noticeSearchDto.key }">
 	</c:if>
 	<!-- 본문 종료 -->
-
+	<!-- 하이라이트 효과를 주기 위해 사용 -->
+	<input type="hidden" class="cateli" value="noticeli">
 	<!-- 페이징 시작 -->
 	<%@include file="../inc/_page.jspf"%>
 	<!-- 페이징 종료 -->
