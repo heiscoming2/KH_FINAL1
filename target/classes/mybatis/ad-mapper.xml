@@ -6,9 +6,10 @@
 <mapper namespace="Ad">
 	
 	<insert id="insert" parameterType="AdDto">
-		INSERT INTO BOARD 
+		INSERT ALL
+		INTO BOARD 
 		VALUES (
-		BOARDSEQ.NEXTVAL,
+		BD_NO.NEXTVAL,
 		#{bd_title},
 		#{bd_content},
 		SYSDATE,
@@ -16,32 +17,47 @@
 		0,
 		#{bd_writerip},
 		6,
-		#{m_no}) 
+		${m_no}) 
+		INTO AD_REQUEST 
+		VALUES (
+		AD_NO.NEXTVAL,
+		#{ad_comtype},
+		#{ad_comname},
+		#{ad_startdate},
+		#{ad_enddate},
+		#{ad_url},
+		#{ad_price},
+		#{status},
+		#{m_no},
+		#{bd_no})
+		SELECT * FROM DUAL
 	</insert>
 	
 	<select id="selectList" parameterType="hashMap" resultType="AdDto">
         SELECT * FROM 
-               (SELECT ROWNUM RN, B.BD_NO, B.BD_TITLE, 
+                (SELECT ROWNUM RN, B.BD_NO, B.BD_TITLE, 
                DECODE(RE.REPLYCOUNT,NULL,0,RE.REPLYCOUNT) BD_REPLYCOUNT, B.BD_VIEWCOUNT,
                DECODE(BR.RECOMMANDCOUNT,NULL,0,BR.RECOMMANDCOUNT) BD_RECOMMANDCOUNT, M.M_IMG_PATH,
-		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE
-               FROM BOARD B, IT_MEMBER M, 
+		       M.M_IMG,M.M_NICKNAME,B.BD_CREATEDDATE, A.M_NO
+               FROM BOARD B, IT_MEMBER M, AD_REQUEST A,
                      (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
                      (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
 		       WHERE B.BC_CODE=6
 		       AND B.M_NO = M.M_NO
+               AND B.M_NO = A.M_NO
                AND RE.BD_NO(+) = B.BD_NO
-               AND BR.BD_NO(+) = B.BD_NO
-		       ORDER BY B.BD_CREATEDDATE DESC)
+               AND BR.BD_NO(+) = B.BD_NO)
         WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="selectone" resultType="AdDto" parameterType="int">
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		        B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
-		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT 
-		FROM BOARD B, IT_MEMBER M
+		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
+		       A.M_NO, A.AD_COMTYPE, A.AD_COMNAME, A.AD_STARTDATE, A.AD_ENDDATE, AD_PRICE, AD_URL 
+		FROM BOARD B, IT_MEMBER M, AD_REQUEST A
 		WHERE B.M_NO = M.M_NO
+		  AND B.M_NO = A.M_NO
 		  AND B.BD_NO = #{bd_no}
 	</select>
 	
