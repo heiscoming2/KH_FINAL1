@@ -90,8 +90,21 @@ public class StudyController {
 	}
 	
 	@RequestMapping(value="/studyinsert.do")
-	public String studyInsert(HttpServletRequest request, HttpServletResponse response, StudyInsertDto studyDto) {
+	public String studyInsert(HttpServletRequest request, HttpServletResponse response, StudyInsertDto studyDto) throws IOException {
 		log.info("STUDY INSERT");
+		log.info(studyDto.toString());
+		if( studyDto.getBd_title()==null||studyDto.getBd_title().equals("") ||
+		    studyDto.getSt_addr1()==null||studyDto.getSt_addr1().equals("") ||
+		    studyDto.getSt_addr2()==null||studyDto.getSt_addr2().equals("")
+		) {
+		   log.info("여기로와야지...");
+		   PrintWriter out = response.getWriter();
+		   out.print("<script type='text/javascript'>");
+		   out.print("alert('필수 입력 항목을 작성해주세요.');");
+		   out.print("location.href='javascript:history.back(-1);'");
+		   out.print("</script>");
+		   return null;
+		}
 		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 StudyDto에 저장
 		studyDto.setBd_writerip(new ClientInfo().getClientIp(request));
 		studyBiz.studyInsert(studyDto);
