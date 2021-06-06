@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/studylist.css?ver=1.3">
+<link rel="stylesheet" href="resources/css/studylist.css?ver=1.5">
 <title>IT PRO 스터디 글 목록</title>
 </head>
 <body>
@@ -105,7 +105,7 @@
 									<td style="color:#0d6efd;"><b>모집중</b></td>
 									<td class="st_addr1_2">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
 									<td class="st_person">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-									<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:#212529;">${studyDto.bd_title } <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+									<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:#212529;">${studyDto.bd_title } <span class="replycount">${studyDto.bd_replycount }</span></a></td>
 									<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
 									<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
 									<td>

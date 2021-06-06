@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf"%>
-<link rel="stylesheet" href="resources/css/noticelist.css?ver=1.1">
+<link rel="stylesheet" href="resources/css/noticelist.css?ver=1.6">
 <title>IT PRO 공지사항 목록</title>
 </head>
 <body>
@@ -58,8 +58,9 @@
 							<!-- 글 번호 시작 -->
 							<td class="bd_no"><a>${noticeDto.bd_no}</a></td>
 							<td><a href="noticedetail.do?bd_no=${noticeDto.bd_no }"
-								style="color: black;">${noticeDto.bd_title } <span
-									class="replycount">+${noticeDto.bd_replycount }</span></a></td>
+								style="color: black;">${noticeDto.bd_title }
+								 <span
+									class="replycount">${noticeDto.bd_replycount }</span></a></td>
 							<td class="bd_recommandcount"><b>+${noticeDto.bd_recommandcount }</b></td>
 							<td class="bd_viewcount">${noticeDto.bd_viewcount }</td>
 							<td>
