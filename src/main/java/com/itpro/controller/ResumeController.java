@@ -112,7 +112,6 @@ public class ResumeController {
 
 		// 이력서 기본정보 조회(detail)
 		ResumeDetailDto resumeDetailDto = biz.resumeDetail(r_no);
-
 		// 회원번호로 멤버테이블 정보 가져옴
 		int m_no = resumeDetailDto.getM_no();
 		MemberDto memberDto = memberBiz.selectOne(m_no);
@@ -216,7 +215,6 @@ public class ResumeController {
 		return result;
 	}
 
-
 	// 이력서 학력사항 정보 입력
 	@RequestMapping(value = "/educationInsert.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -270,14 +268,12 @@ public class ResumeController {
 		int result = biz.educationDelete(educationDto);
 		return result;
 	}
-	
-	
 
 	// 이력서 자격사항 정보 입력
-	@RequestMapping(value = "/licenseInsert.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/licenceInsert.do", method = RequestMethod.POST)
 	@ResponseBody
-	public int licenseInsert(HttpSession session, LicenceDto licenceDto) {
-		logger.info("licenseInsert");
+	public int licenceInsert(HttpSession session, LicenceDto licenceDto) {
+		logger.info("licenceInsert");
 
 		int m_no = 0;
 		if (session.getAttribute("login") != null) {
@@ -326,8 +322,6 @@ public class ResumeController {
 		int result = biz.licenceDelete(licenceDto);
 		return result;
 	}
-	
-	
 
 	// 이력서 경력사항 정보 입력
 	@RequestMapping(value = "/careerInsert.do", method = RequestMethod.POST)
@@ -377,15 +371,13 @@ public class ResumeController {
 			m_no = login.getM_no();
 		}
 
-		//회원정보 경력사항 갖고옴
+		// 회원정보 경력사항 갖고옴
 		careerDto.setM_no(m_no);
 
 		int result = biz.careerDelete(careerDto);
 		return result;
 	}
 
-	
-	
 	// 이력서 삭제
 	@RequestMapping(value = "/resume_delete.do")
 	public String resumeDelete(int r_no) {

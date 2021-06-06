@@ -24,7 +24,7 @@ public class EducationDto {
 	@DateTimeFormat(pattern = "yyyy-MM")
 	private Date ed_gradudate; //졸업
 	private String ed_schoolName;// 학교명
-	private String ed_graduation;// 졸업, 휴학, 중퇴, 재학
+	private String ed_graduation;// 졸업, 휴학, 중퇴, 졸업예정
 	private String ed_major; // 전공
 	private String ed_school;// 대학원, 대학교, 고등학교
 	

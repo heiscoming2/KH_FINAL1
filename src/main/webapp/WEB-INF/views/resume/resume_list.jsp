@@ -24,7 +24,7 @@
         <table class="table table-bordered table-hover text-center" id="table-list">
             <thead>
                 <tr class="d-flex">
-                    <th class="col-1"></th>
+                    <th class="col-1">선택</th>
                     <th class="col-6">이력서</th>
                     <th class="col-3">등록일</th>
                     <th class="col-2">수정</th>

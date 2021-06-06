@@ -29,6 +29,7 @@ public class ResumeDto {
 	private String r_extraAddress;// 참고항목
 	private String r_selfletter; // 자소서
 	private String r_portfolio; // 포트폴리오 주소
+	private Integer r_img_no;
 	private String r_img; // 이력서 사진
 	private String r_img_path; // 이력서 사진 경로
 	private Date r_regdate; // 이력서 등록일
@@ -44,7 +45,7 @@ public class ResumeDto {
 	private int ed_no;
 	private String ed_date;
 	private String ed_schoolName;// 학교명
-	private String ed_graduation;// 졸업, 휴학, 중퇴, 재학
+	private String ed_graduation;// 졸업, 휴학, 중퇴, 졸업예정
 	private String ed_major; // 전공
 	private String ed_school;// 대학원, 대학교, 고등학교
 

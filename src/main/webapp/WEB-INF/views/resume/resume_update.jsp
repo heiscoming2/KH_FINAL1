@@ -133,53 +133,59 @@
             <table class="table table-borderless table-sm text-center" id="EdFormTable">
                 <thead>
                   <tr>
-                    <th scope="col">입학</th>
-                    <th scope="col">졸업</th>
-                    <th scope="col">학교</th>
-                    <th scope="col">전공</th>
-                    <th scope="col">구분</th>
-                    <th scope="col">졸업여부</th>
+                    <th class="col-1">입학</th>
+                    <th class="col-1">졸업</th>
+                    <th class="col-2">학교</th>
+                    <th class="col-2">전공</th>
+                    <th class="col-2">구분</th>
+
+                    <th class="col-2">졸업여부</th>
+                    <th class="col-1">수정</th>
+                    <th class="col-1">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-<!--                   <tr>첫째줄
-                    <td><input type="text" class="form-control" name="ed_startdate" value=""></td>
-                    <td><input type="text" class="form-control" name="ed_gradudate" value=""></td>
-                    <td><input type="text" class="form-control" name="ed_school" ></td>
-                    <td><input type="text" class="form-control" name="ed_graduation" ></td>
-                    <td>
-                        <select class="form-select">
-                        <option value="1">대학원</option>
-                        <option value="2">대학교</option>
-                        <option value="3">고등학교</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select">
-                        <option value="1">졸업</option>
-                        <option value="2">휴학</option>
-                        <option value="3">중퇴</option>
-                        <option value="4">재학</option>
-                        </select>
-                    </td>
-                  </tr> -->
-                  <c:choose>
-					<c:when test="${empty educationList }">
-						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${educationList}" var="educationList">
-							<tr>
-								<td><input type="text" class="form-control" name="ed_date" value="${educationList.ed_startdate}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_gradudate}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_schoolName}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_major}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_school}"></td>
-			                    <td><input type="text" class="form-control" name="ed_gradudate" value="${educationList.ed_graduation}"></td>
-		                  	</tr>
-						</c:forEach> 
-					</c:otherwise>
-				</c:choose>                 
+                    <c:forEach items="${educationList}" var="item">
+                        <tr class="data-select">
+                            <input type="hidden" name="ed_no" value="${item.ed_no}" />
+                            <td>
+                                <fmt:formatDate value="${item.ed_startdate}" pattern="yyyy-MM" var="ed_startdate" />
+                                <input type="month" class="form-control" name="ed_startdate" value="${ed_startdate}" />
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.ed_gradudate}" pattern="yyyy-MM" var="ed_gradudate" />
+                                <input type="month" class="form-control" name="ed_gradudate" value="${ed_gradudate}">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="ed_schoolName" value="${item.ed_schoolName}" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="ed_major" value="${item.ed_major}" />
+                            </td>
+                            <td>
+                                <select name="ed_school" class="form-select">
+                                    <option value="대학원" ${item.ed_school == "대학원" ? "selected" : ""}>대학원</option>
+                                    <option value="대학교" ${item.ed_school == "대학교" ? "selected" : ""}>대학교</option>
+                                    <option value="고등학교" ${item.ed_school == "고등학교" ? "selected" : ""}>고등학교</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select name="ed_graduation" class="form-select">
+                                    <option value="졸업" ${item.ed_graduation == "졸업" ? "selected" : ""}>졸업</option>
+                                    <option value="휴학" ${item.ed_graduation == "휴학" ? "selected" : ""}>휴학</option>
+                                    <option value="중퇴" ${item.ed_graduation == "중퇴" ? "selected" : ""}>중퇴</option>
+                                    <option value="졸업예정" ${item.ed_graduation == "졸업예정" ? "selected" : ""}>졸업예정</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="educationUpdate(this);" />
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="educationDelete(this);" />
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             
@@ -200,23 +206,32 @@
                     <th scope="col">자격증</th>
                     <th scope="col">취득년월</th>
                     <th scope="col">발행기관</th>
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <c:choose>
-					<c:when test="${empty licenceList }">
-						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${licenceList}" var="licenceList">
-							<tr>
-								<td><input type="text" class="form-control" name="li_date" value="${licenceList.li_date}"></td>
-			                    <td><input type="text" class="form-control" name="li_title" value="${licenceList.li_title}"></td>
-			                    <td><input type="text" class="form-control" name="li_organ" value="${licenceList.li_organ}"></td>
-		                  	</tr>
-						</c:forEach> 
-					</c:otherwise>
-				</c:choose>                  
+                    <c:forEach items="${licenceList}" var="item">
+                        <tr class="data-select">
+                            <input type="hidden" name="li_no" value="${item.li_no}" />
+                            <td>
+                                <input type="text" class="form-control" name="li_title" value="${item.li_title}">
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${item.li_date}" pattern="yyyy-MM-dd" var="li_date" />
+                                <input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월" value="${li_date}">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="li_organ" value="${item.li_organ}">
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="licenceUpdate(this);"/>
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="licenceDelete(this);"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             
@@ -237,26 +252,36 @@
                     <th scope="col">시작일</th>
                     <th scope="col">종료일</th>
                     <th scope="col">세부내용</th>
+                    
+                    <th scope="col">수정</th>
+                    <th scope="col">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <c:choose>
-					<c:when test="${empty careerList }">
-						<tr class="d-flex"><td class="col-12">작성된 내역이 없습니다.</td></tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${careerList}" var="careerList">
-							<tr>
-								<td><input type="text" class="form-control" name="ca_title" value="${careerList.ca_title}"></td>
-			                    <td><input type="text" class="form-control" name="ca_start_date" value="${careerList.ca_start_date}"></td>
-			                    <td><input type="text" class="form-control" name="ca_end_date" value="${careerList.ca_end_date}"></td>
-			                    <td><input type="text" class="form-control" name="ca_content" value="${careerList.ca_content}"></td>
-		                  	</tr>
-						</c:forEach> 
-					</c:otherwise>
-				</c:choose>                 
+				<c:forEach items="${careerList}" var="item">
+					<tr class="data-select">
+                        <input type="hidden" name="ca_no" value="${item.ca_no}" />
+						<td><input type="text" class="form-control" name="ca_title"	value="${item.ca_title}"></td>
+						<td>
+							<fmt:formatDate value="${item.ca_start_date}" pattern="yyyy-MM-dd" var="ca_start_date" />
+							<input type="date" class="form-control" name="ca_start_date" value="${ca_start_date}">
+						</td>
+						<td>
+							<fmt:formatDate value="${item.ca_end_date}" pattern="yyyy-MM-dd" var="ca_end_date" />
+							<input type="date" class="form-control" name="ca_end_date"  value="${ca_end_date}">
+						</td>
+						<td><input type="text" class="form-control" name="ca_content" value="${item.ca_content}"></td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="수정" onclick="careerUpdate(this);" />
+						</td>
+						<td>
+							<input class="btn btn-outline-dark btn-sm" type="button" value="삭제" onclick="careerDelete(this);"/>
+						</td>
+					</tr>
+				</c:forEach>
                 </tbody>
             </table>
+            
             
 
             <hr><!---자소서 입력 폼---->

@@ -34,7 +34,7 @@ public class ResumeDaoImpl implements ResumeDao {
 	// 이력서 목록 조회
 	@Override
 	public List<ResumeDto> resumeList(int m_no) {
-		List<ResumeDto> list = new ArrayList<ResumeDto>(m_no);
+		List<ResumeDto> list = new ArrayList<ResumeDto>();
 
 		try {
 			list = sqlSession.selectList(NAMESPACE + "resumeList", m_no);
@@ -248,7 +248,7 @@ public class ResumeDaoImpl implements ResumeDao {
 			res = sqlSession.insert(NAMESPACE + "licenceInsert", licenceDto);
 
 		} catch (Exception e) {
-			System.out.println("[error] : licenseInsert");
+			System.out.println("[error] : licenceInsert");
 			e.printStackTrace();
 		}
 

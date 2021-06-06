@@ -24,10 +24,10 @@
 	</select>
 
 	<!-- 이력서 기본정보 조회(detail) -->
-	<select id="resumeDetail" resultType="ResumeDetailDto"
-		parameterType="int">
-		SELECT * FROM M_RESUME M, M_RESUME_IMG B WHERE
-		M.R_NO=B.R_NO(+) and M.R_NO=#{r_no}
+	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
+		 SELECT * 
+		 FROM M_RESUME M, M_RESUME_IMG B 
+		 WHERE M.R_NO = B.R_NO(+) and M.R_NO = #{r_no}
 	</select>
 
 	<!-- 이력서 학력사항 조회(list) -->
@@ -59,13 +59,6 @@
 
 	<!-- 이력서 삭제 -->
 	<delete id="resumeDelete" parameterType="int">
-		DELETE
-		FROM M_RESUME
-		WHERE R_NO = #{r_no}
-	</delete>
-
-	<!-- 이력서 선택 삭제 이거해야대!!!!!!!!!!!!!!! -->
-	<delete id="resumeChkDel" parameterType="int">
 		DELETE
 		FROM M_RESUME
 		WHERE R_NO = #{r_no}

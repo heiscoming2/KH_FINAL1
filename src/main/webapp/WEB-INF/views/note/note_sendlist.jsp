@@ -25,7 +25,7 @@
         <table class="table table-bordered table-hover text-center">
             <thead>
                 <tr class="d-flex">
-                    <th class="col-1"><input type="checkbox"></th>
+                    <th class="col-1">선택</th>
                     <th class="col-3">등록일</th>
                     <th class="col-2">받은 사람</th>
                     <th class="col-6">제목</th>

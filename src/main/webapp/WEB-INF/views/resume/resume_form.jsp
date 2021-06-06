@@ -7,6 +7,8 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="./resources/js/resume_address.js"></script> 
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
+<link href="resources/css/resume.css?ver=1.2" rel="stylesheet">
+
 <%@include file="../inc/_head.jspf" %>
 <title>이력서 등록</title>
 </head>
@@ -28,7 +30,7 @@
 
         <div class="clearfix"><!--이력서 기본정보 div-->
             <form id="resumeInsertForm" class="resumeInsertForm" method="post"><!--이력서 기본정보 form-->
-                <div class="col-8"><!--이력서 제목 작성-->
+                <div class="col-7"><!--이력서 제목 작성-->
                     <input type="text" class="form-control form-control-lg" name="r_title" placeholder="이력서 제목">
                 </div>
                 <br>
@@ -143,15 +145,15 @@
             <table class="table table-borderless table-sm text-center" id="EdFormTable">
                 <thead>
                   <tr>
-                    <th scope="col">입학</th>
-                    <th scope="col">졸업</th>
-                    <th scope="col">학교</th>
-                    <th scope="col">전공</th>
-                    <th scope="col">구분</th>
+                    <th class="col-1">입학</th>
+                    <th class="col-1">졸업</th>
+                    <th class="col-2">학교</th>
+                    <th class="col-2">전공</th>
+                    <th class="col-2">구분</th>
 
-                    <th scope="col">졸업여부</th>
-                    <th scope="col">수정</th>
-                    <th scope="col">삭제</th>
+                    <th class="col-2">졸업여부</th>
+                    <th class="col-1">수정</th>
+                    <th class="col-1">삭제</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -185,7 +187,7 @@
                                     <option value="졸업" ${item.ed_graduation == "졸업" ? "selected" : ""}>졸업</option>
                                     <option value="휴학" ${item.ed_graduation == "휴학" ? "selected" : ""}>휴학</option>
                                     <option value="중퇴" ${item.ed_graduation == "중퇴" ? "selected" : ""}>중퇴</option>
-                                    <option value="재학" ${item.ed_graduation == "재학" ? "selected" : ""}>재학</option>
+                                    <option value="졸업예정" ${item.ed_graduation == "졸업예정" ? "selected" : ""}>졸업예정</option>
                                 </select>
                             </td>
                             <td>
@@ -214,33 +216,33 @@
                                 <option value="졸업">졸업</option>
                                 <option value="휴학">휴학</option>
                                 <option value="중퇴">중퇴</option>
-                                <option value="재학">재학</option>
+                                <option value="졸업예정">졸업예정</option>
                             </select>
                         </td>
                         <td></td>
                         <td></td>
                     </tr>
-                  <!-- <tr>
-                    <td><input type="month" class="form-control" name="ed_startdate"></td>
-                    <td><input type="month" class="form-control" name="ed_gradudate"></td>
-                    <td><input type="text" class="form-control" name="ed_schoolName" ></td>
-                    <td><input type="text" class="form-control" name="ed_major" ></td>
-                    <td>
-                        <select class="form-select">
-                        <option value="대학원" name="ed_school">대학원</option>
-                        <option value="대학교" name="ed_school">대학교</option>
-                        <option value="고등학교" name="ed_school">고등학교</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select">
-                        <option value="졸업" name="ed_graduation">졸업</option>
-                        <option value="휴학" name="ed_graduation">휴학</option>
-                        <option value="중퇴" name="ed_graduation">중퇴</option>
-                        <option value="재학" name="ed_graduation">재학</option>
-                        </select>
-                    </td>
-                  </tr> -->
+                    <tr class="data-insert">
+	                    <td><input type="month" class="form-control" name="ed_startdate"></td>
+	                    <td><input type="month" class="form-control" name="ed_gradudate"></td>
+	                    <td><input type="text" class="form-control" name="ed_schoolName" ></td>
+	                    <td><input type="text" class="form-control" name="ed_major" ></td>
+	                    <td>
+	                        <select class="form-select">
+	                        <option value="대학원" name="ed_school">대학원</option>
+	                        <option value="대학교" name="ed_school">대학교</option>
+	                        <option value="고등학교" name="ed_school">고등학교</option>
+	                        </select>
+	                    </td>
+	                    <td>
+	                        <select class="form-select">
+	                        <option value="졸업" name="ed_graduation">졸업</option>
+	                        <option value="휴학" name="ed_graduation">휴학</option>
+	                        <option value="중퇴" name="ed_graduation">중퇴</option>
+	                        <option value="졸업예정" name="ed_graduation">졸업예정</option>
+	                        </select>
+	                    </td>
+                  </tr>
                 </tbody>
             </table>
             
@@ -287,6 +289,13 @@
                             </td>
                         </tr>
                     </c:forEach>
+                    <tr class="data-insert">
+                        <td><input type="text" class="form-control" name="li_title" ></td>
+                        <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
+                        <td><input type="text" class="form-control" name="li_organ" ></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     <tr class="data-insert">
                         <td><input type="text" class="form-control" name="li_title" ></td>
                         <td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>
@@ -371,7 +380,7 @@
             </div>
         </form><!--학력/교육/자격증/자소서 form 끝-->
         <br><br>
-        <div class="d-grid gap-2 col-3 mx-auto"><!--form 2개 같이 submit-->
+        <div class="d-grid gap-2 col-3 mx-auto">
             <button class="btn-lg btn-primary" id="resumeInsertBtn">저장</button>
         </div>
     </div>

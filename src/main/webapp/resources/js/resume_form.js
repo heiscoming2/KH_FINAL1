@@ -54,10 +54,7 @@ $("#input_r_img").change(function(){
 
 /*이력서 데이터 전송*/
 $(document).ready(function(){
-	$("#resumeInsertBtn").click(function(){
-		// $("#resumeInsertForm").attr("action","resume_insert.do");
-		// $("#resumeInsertForm").submit();
-		
+	$("#resumeInsertBtn").click(function(){		
 		var form = $('#resumeInsertForm')[0];
 	    var formData = new FormData(form);
     
@@ -77,13 +74,13 @@ $(document).ready(function(){
 				educationInsertList();
 
 	        	// 4. 자격사항 목록 insert를 ajax로 하면서, r_no를 사용하고,
-				licenseInsertList();
+				licenceInsertList();
 
 	        	// 5. 교욱 및 사회경험 insert를 ajax로 하면서, r_no를 사용하고,
 				careerInsertList();
 
 	        	// -> 다 끝나면, 이 페이지에서 쫓아내야 한다 -> 왜냐면, 여기서는 방금 작성한 이력서를 수정 못 하기 때문이다
-				//alert('다 됨!');
+				alert('이력서 작성이 완료되었습니다.');
 				location.href = '/upgrade/resume_list.do';
 	        },
 	        error:function(msg){
@@ -145,11 +142,7 @@ function educationDelete(buttonObj) {
 	const td = buttonObj.parentElement;
 	const tr = td.parentElement;
 	var formData = getFormData(tr);
-	// const input = tr.querySelector('input[name=ed_no]');
-	// const ed_no = input.value;
 	
-	// var formData = new FormData();
-	// formData.append("ed_no", ed_no);
  
     $.ajax({
     	type : 'POST',
@@ -173,11 +166,7 @@ function educationDelete(buttonObj) {
 function educationUpdate(buttonObj) {
 	const td = buttonObj.parentElement;
 	const tr = td.parentElement;
-	// const input = tr.querySelector('input[name=ed_no]');
-	// const ed_no = input.value;
-	
-	// var formData = new FormData();
-	// formData.append("ed_no", ed_no);
+
 	var formData = getFormData(tr);
  
     $.ajax({
@@ -200,15 +189,15 @@ function educationUpdate(buttonObj) {
 
 
 // 자격사항 목록 저장
-function licenseInsertList() {
+function licenceInsertList() {
 	const list = document.querySelectorAll('#LiFormTable tbody tr.data-insert');
 	for (let i = 0; i < list.length; i++) {
 		const tr = list[i];
-		licenseInsert(tr);
+		licenceInsert(tr);
 	}	
 }
 
-function licenseInsert(tr) {
+function licenceInsert(tr) {
 	// console.log({tr});
 
 	var formData = new FormData();
@@ -223,7 +212,7 @@ function licenseInsert(tr) {
  
     $.ajax({
     	type : 'POST',
-        url : 'licenseInsert.do',
+        url : 'licenceInsert.do',
         data : formData,
 		async: false,
         contentType : false,
@@ -396,7 +385,7 @@ $(function () {
 
     //행추가
     $("#EdFormTable").append(
-    '<tr class="data-insert">'+
+    '<tr class="data-insert" id=addtr'+ count +'>'+
     	'<td><input type="month" class="form-control" name="ed_startdate"></td>'+
     	'<td><input type="month" class="form-control" name="ed_gradudate"></td>'+
     	'<td><input type="text" class="form-control" name="ed_schoolName" ></td>'+
@@ -414,7 +403,7 @@ $(function () {
     			'<option value="졸업">졸업</option>'+
     			'<option value="휴학">휴학</option>'+
     			'<option value="중퇴">중퇴</option>'+
-    			'<option value="재학">재학</option>'+
+    			'<option value="졸업예정">졸업예정</option>'+
     		'</select>'+
     	'</td>'+
 		'<td></td>'+
@@ -430,6 +419,7 @@ if (count < 1) {
 	alert("더이상 삭제할수 없습니다");
 	return;
 }
+
 //마지막 라인 삭제
 $('#addtr' + count).remove();
 
@@ -465,7 +455,8 @@ $(function () {
     //     '<td><input type="text" class="form-control" name="li_title" ></td>'+
     //     '<td><input type="text" class="form-control" name="li_organ" ></td>'+
     // '</tr>'
-	'<tr class="data-insert">'+                 
+    
+	'<tr class="data-insert" id=liaddtr'+ count +'>'+                 
 	'	<td><input type="text" class="form-control" name="li_title" ></td>'+
 	'	<td><input type="date" class="form-control" name="li_date" placeholder="ex) 2010년 03월 - 2013년 02월"></td>'+
 	'	<td><input type="text" class="form-control" name="li_organ" ></td>'+
@@ -519,7 +510,8 @@ $(function () {
     	// 	'<td><input type="date" class="form-control" id="ed_graduation" ></td>'+
     	// 	'<td><input type="text" class="form-control" id="ed_graduation" ></td>'+
     	// '</tr>'
-		'<tr class="data-insert">' +
+    	
+		'<tr class="data-insert" id=caAddtr'+ count +'>' +
 		'	<td><input type="text" class="form-control" name="ca_title" ></td>' +
 		'	<td><input type="date" class="form-control" name="ca_start_date" ></td>' +
 		'	<td><input type="date" class="form-control" name="ca_end_date" ></td>' +
