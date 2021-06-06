@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.google.gson.Gson;
 import com.itpro.model.biz.AdBiz;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
@@ -181,13 +182,13 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	@RequestMapping(value="/addelete.do")
 	public String adDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		logger.info("AD DELETE");
-		int adDeleteRes = adBiz.delete(bd_no);
+		int adDeleteRes = adBiz.addelete(bd_no);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
 		out.print("alert('삭제 되었습니다.');");
-		out.print("location.href='qnalist.do';");
+		out.print("location.href='adlist.do';");
 		out.print("</script>");
 		return null;
 	}
@@ -196,12 +197,26 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	
 	@RequestMapping(value="/admultipart.do", method=RequestMethod.POST)                                                         
     public @ResponseBody String multipart(@RequestParam("ad_no") String ad_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
-		logger.info("multipart.do");
+		logger.info("admultipart.do");
 		
         int res = adBiz.imageuploadupdate(fileName, Integer.parseInt(ad_no));
         return "{result:"+res+"}";
     }
 	
+	
+	//이미지 경로 업데이틑 위해
+		@RequestMapping(value="/adimagepathupdate.do")
+		public @ResponseBody String imagePathUpdate(@RequestParam("ad_no") int ad_no, @RequestParam("img_path") String img_path) {
+			
+			
+			HashMap<String, Integer> res = new HashMap<String, Integer>();
+			
+			int rs = adBiz.imagePathUpdate(ad_no, img_path);
+			res.put("result", rs);
+			
+			return new Gson().toJson(res);
+		}
+		
 	/////파일 다운로드
 	@RequestMapping(value="/addownload.do")
 	@ResponseBody

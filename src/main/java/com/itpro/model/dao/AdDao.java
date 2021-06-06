@@ -16,8 +16,8 @@ public interface AdDao {
 	public List<AdDto> selectList(Map<String,Object> adPageMap);
 	public AdDto selectOne(int bd_no);
 	public int insert(AdDto dto);
-	public int delete(int bd_no);
+	public int addelete(int bd_no);
 	public int update(AdDto dto);
 	public int getAdListCnt();
-	public int imageuploadupdate(int ad_seq, String ad_file);
+	public int imageuploadupdate(int ad_no, String ad_file);
 }

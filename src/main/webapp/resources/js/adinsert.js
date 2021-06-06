@@ -45,20 +45,20 @@ $(function(){
 /* 이미지 업로드 */ 
  
 function imageupload(cnt){
-	console.log(projects);
-	var form = $('#pro_file_form_'+cnt)[0];
+	console.log(ad);
+	var form = $('#ad_file_form_'+cnt)[0];
 	console.log(form);
     // Create an FormData object  
     var data = new FormData(form);  
-    data.append('file',$('#pro_file_'+cnt)[0].files[0]);         
-    var pro_no = projects[cnt-1].pro_no;
-    console.log(pro_no);  
+    data.append('file',$('#ad_file_'+cnt)[0].files[0]);         
+    var ad_no = ads[cnt-1].ad_no;
+    console.log(ad_no);  
 
     
     $.ajax({             
     	type: "POST",
         enctype: 'multipart/form-data',  
-        url: "multipart.do?pro_no=" + pro_no,  
+        url: "admultipart.do?ad_no=" + ad_no,  
         data: data,
         processData: false,    
         contentType: false,      
@@ -71,7 +71,7 @@ function imageupload(cnt){
         		console.log(num+1+"번째");
         		imageupload(++cnt);
         	}   else{
-        	location.href = 'projectlist.do';    
+        	location.href = 'adlist.do';    
         	}   
         },          
         error: function (e) {  

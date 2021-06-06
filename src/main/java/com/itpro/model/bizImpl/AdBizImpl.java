@@ -55,13 +55,13 @@ public class AdBizImpl implements AdBiz {
 
 	@Override
 	@Transactional
-	public int delete(int bd_no) {
+	public int addelete(int bd_no) {
 		int deleteres = 0;
 		int replydeleteres = replyDao.deleteWithBoard(bd_no);
 		int likedeleteres = likeDao.deleteWithBoard(bd_no);
-		int qnadeleteres = adDao.delete(bd_no);
+		int addeleteres = adDao.addelete(bd_no);
 		int boarddeleteres = boardDao.delete(bd_no);
-		if (qnadeleteres > 0 && boarddeleteres > 0 && replydeleteres > 0 && likedeleteres > 0) {
+		if (addeleteres > 0 && boarddeleteres > 0 && replydeleteres > 0 && likedeleteres > 0) {
 			deleteres = 1;
 		}
 		return deleteres;
@@ -86,7 +86,7 @@ public class AdBizImpl implements AdBiz {
 
 	
 	@Override
-	public int imageuploadupdate(MultipartFile fileName, int ad_seq) {
+	public int imageuploadupdate(MultipartFile fileName, int ad_no) {
 		
 		int res = 0;
 		if(fileName.getSize()<=0) {
@@ -97,7 +97,7 @@ public class AdBizImpl implements AdBiz {
        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
        String fileServerName= format.format(new Date());
 
-        File file = new File("C:\\workspace\\STS_Spring01\\KH_FINAL\\src\\main\\webapp\\resources\\images\\ad" +File.separator, fileServerName+originalFileExtension);
+        File file = new File("C:\\Users\\yuong\\git\\KH_FINAL1\\src\\main\\webapp\\resources\\images\\ad" +File.separator, fileServerName+originalFileExtension);
         if(!file.exists()) {
         	file.mkdirs();
         }
@@ -117,12 +117,12 @@ public class AdBizImpl implements AdBiz {
         System.out.println("파일사이즈는 " + fileName.getSize());
         
        
-		return adDao.imageuploadupdate(ad_seq, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
+		return adDao.imageuploadupdate(ad_no, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
 	}
 	
 	@Override
-	public int imagePathUpdate(int ad_seq, String img_path) {
+	public int imagePathUpdate(int ad_no, String img_path) {
 		
-		return adDao.imageuploadupdate(ad_seq, img_path);
+		return adDao.imageuploadupdate(ad_no, img_path);
 	}
 }

@@ -70,7 +70,7 @@ public class AdDaoImpl implements AdDao {
 	}
 
 	@Override
-	public int delete(int bd_no) {
+	public int addelete(int bd_no) {
 		int adDeleteRes = 0;
 		try {
 			adDeleteRes = sqlSession.delete(NAMESPACE+"delete",bd_no);
@@ -105,16 +105,16 @@ public class AdDaoImpl implements AdDao {
 
 	
 	
-	public int imageuploadupdate(int ad_seq, String ad_file) {
+	public int imageuploadupdate(int ad_no, String ad_file) {
 		int result = 0;
-		System.out.println("ad_seq:" + ad_seq);
-		System.out.println("pro_file" + ad_file);
-		Map<String, Object> projectMap = new HashMap<String, Object>();
-		projectMap.put("ad_seq", ad_seq);
-		projectMap.put("pro_file", ad_file);
-		System.out.println("projectMap parameter: " + new Gson().toJson(projectMap));
+		System.out.println("ad_no:" + ad_no);
+		System.out.println("ad_file" + ad_file);
+		Map<String, Object> adMap = new HashMap<String, Object>();
+		adMap.put("ad_no", ad_no);
+		adMap.put("ad_file", ad_file);
+		System.out.println("adMap parameter: " + new Gson().toJson(adMap));
 		try {
-		result = sqlSession.update(NAMESPACE + "imageupload", projectMap);
+		result = sqlSession.update(NAMESPACE + "imageupload", adMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

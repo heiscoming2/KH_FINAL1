@@ -13,7 +13,7 @@ public interface AdBiz {
 	public List<AdDto> selectList(Map<String,Object> adPageMap);
 	public AdDto selectOne(int bd_no);
 	public int insert(AdDto dto);
-	public int delete(int bd_no);
+	public int addelete(int bd_no);
 	public int update(AdDto dto, BoardUpdateDto boardUpdateDto);
 	public int getAdListCnt();
 	public int imageuploadupdate(MultipartFile fileName, int parseInt);
