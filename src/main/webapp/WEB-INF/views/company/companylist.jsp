@@ -169,7 +169,8 @@
 </c:if>
 		
 <!-- 본문 종료 -->
-
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="comli">
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>
 <!-- 페이징 종료 -->

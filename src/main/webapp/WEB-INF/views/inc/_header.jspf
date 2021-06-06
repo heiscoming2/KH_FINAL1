@@ -20,13 +20,13 @@
         <div class="nav_items">
 	        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-ul">
 	          <li><a href="#" class="nav-link px-2"></a></li>
-	          <li><a href="noticelist.do" class="nav-link px-2">공지사항</a></li>
-	          <li><a href="portfoliolist.do" class="nav-link px-2">포트폴리오</a></li>
-	          <li><a href="projectlist.do" class="nav-link px-2"  >프로젝트</a></li>
-	          <li><a href="qnalist.do" class="nav-link px-2">Q & A</a></li>
-	          <li><a href="studylist.do" class="nav-link px-2">스터디모집</a></li>
-	          <li><a href="companylist.do" class="nav-link px-2">채용정보</a></li>
-	          <li><a href="companycrawlinglist.do" class="nav-link px-2">외부채용정보</a></li>
+	          <li><a href="noticelist.do" class="nav-link px-2 noticeli">공지사항</a></li>
+	          <li><a href="portfoliolist.do" class="nav-link px-2 portfolioli">포트폴리오</a></li>
+	          <li><a href="projectlist.do" class="nav-link px-2 projectli">프로젝트</a></li>
+	          <li><a href="qnalist.do" class="nav-link px-2 qnali">Q & A</a></li>
+	          <li><a href="studylist.do" class="nav-link px-2 studyli">스터디모집</a></li>
+	          <li><a href="companylist.do" class="nav-link px-2 comli">채용정보</a></li>
+	          <li><a href="companycrawlinglist.do" class="nav-link px-2 crawcomli">외부채용정보</a></li>
 	          <c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
 	          <li><a href="adlist.do" class="nav-link px-2">광고문의</a></li>
 	          </c:if>

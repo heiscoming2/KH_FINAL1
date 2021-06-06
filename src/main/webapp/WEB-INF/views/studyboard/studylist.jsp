@@ -129,7 +129,7 @@
 									<td style="color:lightgray;">모집완료</td>	
 									<td class="st_addr1_2" style="color:lightgray;">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
 									<td class="st_person" style="color:lightgray;">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-									<td style="color:lightgray;"><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;"><span style="color:lightgray;">${studyDto.bd_title }</span> <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+									<td style="color:lightgray;"><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;"><span style="color:lightgray;">${studyDto.bd_title }</span> <span class="replycount">${studyDto.bd_replycount }</span></a></td>
 									<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
 									<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
 									<td>
@@ -168,6 +168,8 @@
 </c:if>
 		
 <!-- 본문 종료 -->
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="studyli">
 
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>

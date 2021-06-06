@@ -142,6 +142,8 @@
 			</c:otherwise>
       	</c:choose>
       </table>
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="crawcomli">      
       <!-- 페이징 -->
 	<%@include file="../inc/_page.jspf" %>
 	<!-- 페이징 종료 -->

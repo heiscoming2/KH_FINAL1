@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/qnalist.css?ver=1.4">
+<link rel="stylesheet" href="resources/css/qnalist.css?ver=1.5">
 <title>Q&A</title>
 </head>
 <body>
@@ -90,6 +90,8 @@
 		</div>
             <!-- 게시물 한 줄 종료 -->
      
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="qnali">
  
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>

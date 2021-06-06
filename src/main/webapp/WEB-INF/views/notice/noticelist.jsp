@@ -91,6 +91,8 @@
 
 		</table>
 	</div>	
+
+	
 	<!-- 검색 결과를 히든 태그에 담아둔다. (없으면 null값이 담길것임) 이거를 js에서 받아서 -->
 	<!-- null이 아닌 경우(검색 결과가 있는 경우) 해당하는 내용들을 보여지게끔 처리 -->
 	<c:if test="${noticeSearchDto ne null }">
@@ -100,7 +102,8 @@
 		<input type="hidden" id="h_key" value="${noticeSearchDto.key }">
 	</c:if>
 	<!-- 본문 종료 -->
-
+	<!-- 하이라이트 효과를 주기 위해 사용 -->
+	<input type="hidden" class="cateli" value="noticeli">
 	<!-- 페이징 시작 -->
 	<%@include file="../inc/_page.jspf"%>
 	<!-- 페이징 종료 -->

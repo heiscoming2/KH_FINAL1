@@ -93,8 +93,8 @@
             <!-- 게시물 한 줄 종료 -->
 
 
-        </table>
-     
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="projectli">     
  
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>
