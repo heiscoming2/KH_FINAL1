@@ -126,7 +126,7 @@ public class NoteController {
 
 	// 내가 받은 쪽지 읽기
 	@RequestMapping(value = "/receiveDetail.do")
-	public String receiveDetail(Model model, HttpSession session, int n_no, NoteDto updateNoteDto) {
+	public String receiveDetail(Model model, HttpSession session, int n_no) {
 		logger.info("NOTE RECEIVE READ");
 
 		int n_receiver = 0;
@@ -142,11 +142,10 @@ public class NoteController {
 
 		model.addAttribute("noteDto", noteDto);
 
-		// 쪽지 읽은 시간 업데이트 ->읽을때 같이 처리하는거 아닌가요? ㅠ
-		/*
-		 * int readDate = biz.updateReadDate(updateNoteDto);
-		 * model.addAttribute("readDate", readDate);
-		 */
+		//읽은 시간 update
+		if (noteDto.getN_readDate() == null) {
+			biz.updateReadDate(noteDto);
+		}
 
 		return "note/note_receiveDetail";
 	}
@@ -211,6 +210,23 @@ public class NoteController {
 		return res;
 	}
 
+	// 새로 받은 쪽지가 있는지 확인(매번)
+	@RequestMapping(value = "/countNewNote.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer countNewNote(HttpSession session) {
+		logger.info("COUNT NEW NOTE AJAX");
+
+		int n_receiver = 0;
+
+		if (session.getAttribute("login") != null) {
+			MemberDto login = (MemberDto) session.getAttribute("login");
+			n_receiver = login.getM_no();
+		}
+
+		Integer count = biz.countNewNote(n_receiver);
+
+		return count;
+	}
 
 	// 채용 여부 쪽지 자동 발송
 	@RequestMapping(value = "/companyapplicationsendnote.do")

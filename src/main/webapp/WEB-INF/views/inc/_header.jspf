@@ -55,6 +55,10 @@
 	              <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
 	              	<img src="${sessionScope.login.m_img_path }${sessionScope.login.m_img}" style="width:35px; height:35px; border-radius:50%;"/>
 	              	${login.m_nickname }
+					<c:if test="${countNewNote != null and countNewNote > 0}">
+						<span class="badge bg-warning text-dark">${countNewNote}</span>
+						<span class="badge bg-warning text-dark visually-hidden">unread messages</span>	
+					</c:if>
 	              </a>
 	            <!-- 유저 드롭다운 메뉴 시작 -->
 	              <ul class="dropdown-menu">

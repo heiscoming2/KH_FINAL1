@@ -17,7 +17,7 @@
 		SELECT A.M_NO, R_NO, R_TITLE,
 		R_REGDATE
 		FROM IT_MEMBER A
-		LEFT JOIN M_RESUME B
+		INNER JOIN M_RESUME B
 		ON A.M_NO=B.M_NO
 		WHERE
 		A.M_NO = #{m_no}
@@ -27,7 +27,7 @@
 	<select id="resumeDetail" resultType="ResumeDetailDto" parameterType="int">
 		 SELECT * 
 		 FROM M_RESUME M, M_RESUME_IMG B 
-		 WHERE M.R_NO = B.R_NO(+) and M.R_NO = #{r_no}
+		 WHERE M.R_IMG_NO = B.R_NO(+) and M.R_NO = #{r_no}
 	</select>
 
 	<!-- 이력서 학력사항 조회(list) -->

@@ -55,13 +55,9 @@
 		WHERE N_NO = #{n_no}
 	</delete>
 	
-	<!-- 쪽지 선택 삭제 -->
-	<delete id="noteChkDel">
-	
-	</delete>
 	
 	<!-- 새로 받은 쪽지가 있는지 확인(매번) -->
-	<select id="countNewNote" resultType="int">
+	<select id="countNewNote" resultType="int" parameterType="int">
 		SELECT COUNT(*)
 		FROM NOTE
 		WHERE N_RECEIVER = #{n_receiver}
@@ -69,7 +65,7 @@
 	</select>
 
 	<!--내가 받은 쪽지 읽은 시간 표시 UPDATE -->
-	<update id="updateReadDate">
+	<update id="updateReadDate" parameterType="NoteDto">
 		UPDATE NOTE
 		SET N_READDATE = SYSDATE
 		WHERE N_RECEIVER = #{n_receiver}
