@@ -66,6 +66,7 @@ function cal(){
 	<div class="ad_insertwrap">
 		<form action="adinsert.do" method="post">
 			<input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
+			<input type="hidden" name="m_nickname" value="${dto.m_nickname}">
 			<!--ad 작성 글 영역-->
 			<h3>광고문의 작성</h3>
 			<br>
@@ -85,15 +86,15 @@ function cal(){
 			<table class="table ad_inserttable">
 				<tr>
 					<th><span>* </span>제목</th>
-					<td><input type=text class="form-control" name="ad_title"></td>
+					<td><input type=text class="form-control" name="bd_title"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>업종</th>
-					<td><input type=text class="form-control" name="ad_type"></td>
+					<td><input type=text class="form-control" name="ad_comtype"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>업체명</th>
-					<td><input type=text class="form-control" name="ad_name"></td>
+					<td><input type=text class="form-control" name="ad_comname"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>희망광고기간</th>

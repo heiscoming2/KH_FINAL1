@@ -9,7 +9,7 @@
 		INSERT ALL
 		INTO BOARD 
 		VALUES (
-		BD_NO.NEXTVAL,
+		BOARDSEQ.NEXTVAL,
 		#{bd_title},
 		#{bd_content},
 		SYSDATE,
@@ -20,16 +20,17 @@
 		${m_no}) 
 		INTO AD_REQUEST 
 		VALUES (
-		AD_NO.NEXTVAL,
+		AD_SEQ.NEXTVAL,
 		#{ad_comtype},
 		#{ad_comname},
 		#{ad_startdate},
 		#{ad_enddate},
 		#{ad_url},
 		#{ad_price},
-		#{status},
+		#{ad_status},
 		#{m_no},
-		#{bd_no})
+		#{bd_no}
+		)
 		SELECT * FROM DUAL
 	</insert>
 	

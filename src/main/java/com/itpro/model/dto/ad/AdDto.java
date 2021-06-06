@@ -14,7 +14,7 @@ import lombok.ToString;
 public class AdDto {
 	
 	//ad 게신판
-	private int ad_seq;
+	private int ad_no;
 	private String ad_comtype;
 	private String ad_comname;
 	private String ad_startdate;
