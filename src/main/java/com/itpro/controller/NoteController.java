@@ -78,25 +78,22 @@ public class NoteController {
 
 	// 쪽지팝업(쪽지 작성창)
 	@RequestMapping(value = "/noteForm.do")
-	public String noteSend(@RequestParam(value="m_nickname", required=false, defaultValue="") String m_nickname,
-						   Model model) {
+	public String noteSend(@RequestParam(value = "m_nickname", required = false, defaultValue = "") String m_nickname,
+			Model model) {
 		logger.info("NOTE FORM");
-		//if 받는 사람이 없는 경우(receiver_no==0)
-		//쪽지창에서 직접 쪽지보내기를 누른 경우이며
-		//바로 쪽지 창으로 보내주고
-		
-		//else 받는 사람이 있는 경우 (게시판 등 프로필을 누르고 쪽지보내기 누른 경우)
-		//receiver_no를 받아와서 받는 사람 닉네임을 불러와 receiver_no와 닉네임을 함께 model에 담아 전송한다.
-		if(m_nickname.equals("")) {
+		// if 받는 사람이 없는 경우(receiver_no==0)
+		// 쪽지창에서 직접 쪽지보내기를 누른 경우이며
+		// 바로 쪽지 창으로 보내주고
+
+		// else 받는 사람이 있는 경우 (게시판 등 프로필을 누르고 쪽지보내기 누른 경우)
+		// receiver_no를 받아와서 받는 사람 닉네임을 불러와 receiver_no와 닉네임을 함께 model에 담아 전송한다.
+		if (m_nickname.equals("")) {
 			return "note/note_form";
 		} else {
-			model.addAttribute("m_nickname",m_nickname);
+			model.addAttribute("m_nickname", m_nickname);
 			return "note/note_form";
 		}
-		
-		
-		
-		
+
 	}
 
 	// 쪽지 보내기
@@ -104,20 +101,18 @@ public class NoteController {
 	public String noteSend(Model model, NoteDto noteDto, HttpServletResponse response, HttpSession session)
 			throws IOException {
 		logger.info("NOTE SEND");
-		
-		//세션에서 이미 null값이면 튕겨서 여기로 못옴
+
+		// 세션에서 이미 null값이면 튕겨서 여기로 못옴
 		/*
-		if (session.getAttribute("login") != null) {
-			MemberDto login = (MemberDto) session.getAttribute("login");
-			int n_sender = login.getM_no();
-			noteDto.setN_sender(n_sender);
-		}
-		*/
-		
+		 * if (session.getAttribute("login") != null) { MemberDto login = (MemberDto)
+		 * session.getAttribute("login"); int n_sender = login.getM_no();
+		 * noteDto.setN_sender(n_sender); }
+		 */
+
 		MemberDto login = (MemberDto) session.getAttribute("login");
 		int n_sender = login.getM_no();
 		noteDto.setN_sender(n_sender);
-		
+
 		int res = biz.noteSend(noteDto);
 		if (res > 0) {
 			model.addAttribute("message", "");
@@ -146,8 +141,8 @@ public class NoteController {
 		NoteDto noteDto = biz.receiveDetail(map);
 
 		model.addAttribute("noteDto", noteDto);
-		
-		//쪽지 읽은 시간 업데이트 ->읽을때 같이 처리하는거 아닌가요? ㅠ
+
+		// 쪽지 읽은 시간 업데이트 ->읽을때 같이 처리하는거 아닌가요? ㅠ
 		/*
 		 * int readDate = biz.updateReadDate(updateNoteDto);
 		 * model.addAttribute("readDate", readDate);
@@ -194,7 +189,7 @@ public class NoteController {
 	// 쪽지 개별삭제(보낸쪽지)
 	@RequestMapping(value = "/note_sendDelete.do")
 	public String noteSendDelete(int n_no) {
-		logger.info("NOTE RECEIVE DELETE");
+		logger.info("NOTE SEND DELETE");
 
 		int res = biz.noteDelete(n_no);
 		if (res > 0) {
@@ -204,24 +199,33 @@ public class NoteController {
 		}
 
 	}
-	
-	//채용 여부 쪽지 자동 발송
+
+	// 받은쪽지 선택삭제(ajax)
+	@RequestMapping(value = "/note_delete_ajax.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int note_delete_ajax(int n_no) {
+		logger.info("NOTE DELETE AJAX");
+
+		int res = biz.noteDelete(n_no);
+
+		return res;
+	}
+
+
+	// 채용 여부 쪽지 자동 발송
 	@RequestMapping(value = "/companyapplicationsendnote.do")
 	@ResponseBody
-	public boolean companyApplicationSendNote(@RequestParam("r_no") int r_no, 
-			@RequestParam("bd_no") int bd_no, 
+	public boolean companyApplicationSendNote(@RequestParam("r_no") int r_no, @RequestParam("bd_no") int bd_no,
 			@RequestParam("ca_status") char ca_status) {
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("r_no", r_no);
 		map.put("bd_no", bd_no);
 		map.put("ca_status", ca_status);
 		int res = biz.companyApplicationSendNote(map);
-		
-		return res>0?true:false;
-	
+
+		return res > 0 ? true : false;
+
 	}
-	
-	
 
 }
