@@ -36,8 +36,7 @@
 							class="d-flex align-items-center text-decoration-none dropdown-toggle"
 							id="dropdownaUser" data-bs-toggle="dropdown"
 							aria-expanded="false"> ${dto.m_nickname } </a> <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-							<ul class="dropdown-menu text-small shadow"
-								aria-labelledby="dropdownaUser">
+							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
 
 								<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
 								<li><a class="dropdown-item" href="#">이력서 열람</a></li>
@@ -95,11 +94,9 @@
 									</tr>
 									<tr>
 										<th><span>* </span>광고 파일 다운로드</th>
-										<td>
 										<td><input type="button" value="다운로드"
 											onclick='location.href="/upgrade/${item.ad_file_path }"'
 											class="btn-sm btn-dark"></td>
-										</td>
 									</tr>
 									<tr>
 										<th><span>* </span>이미지 링크주소</th>
@@ -181,12 +178,12 @@
 				</td>
 			</tr>
 		</table>
-		<!-- QNA 영역 종료-->
+		<!-- AD 영역 종료-->
 
 		<!-- 본문 / 댓글 중간 여백 영역 시작 -->
 		<div style="width: 100%; display: block; height: 80px;">
 			<input type="button" class="btn btn-primary" value="뒤로가기"
-				style="float: right;" onclick="location.href='qnalist.do'">
+				style="float: right;" onclick="location.href='adlist.do'">
 		</div>
 		<!-- 본문 / 댓글 중간 여백 영역 종료 -->
 

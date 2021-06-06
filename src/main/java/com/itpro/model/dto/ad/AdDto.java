@@ -20,7 +20,7 @@ public class AdDto {
 	private String ad_startdate;
 	private String ad_enddate;
 	private String ad_url;
-	private int ad_price;
+	private String ad_price;
 	private String ad_status;
 	
 	//게시판
