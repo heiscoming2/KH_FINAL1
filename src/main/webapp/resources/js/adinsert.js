@@ -20,37 +20,55 @@ $(document).ready(function() {
 	});
 	
 	
-/*카카오페이 결제*/
 
-$(function(){
-	$('#apibtn').click(function(){
-		$.ajax({
-			url:'/kakaopay.do', 
-			dataType:'json' ,
-			
-			
-			success:function(data){
-				alert(data)
-				
-			} ,
-			error:function(error){
-			alert(error);
-			}
-		});
+ var adsubmits;
+function ad_submit(){
+	var adsubmits = [];
+		var adinsertobj = {};
+		adinsertobj.ad_no = $("#ad_no").val();
+		adinsertobj.ad_comtype = $("#ad_comtype").val();
+		adinsertobj.ad_comname = $("#ad_comname").val();
+		adinsertobj.ad_startdate = $("#ad_startdate").val();
+		adinsertobj.ad_enddate = $("#ad_enddate").val();
+		adinsertobj.ad_url = $("#ad_url").val();
+		adinsertobj.ad_price= $("#ad_price").val();
+		adinsertobj.ad_status = $("#ad_status").val();
+		adinsertobj.m_no = $("#m_no").val();
+		adinsertobj.bd_no = $("#bd_no").val();
+		adinsertobj.bd_title = $("#bd_title").val();
+		adinsertobj.bd_content = $("#bd_content").val();
+		adinsertobj.m_nickname = $("#m_nickname").val();
+		
+		
+		adsubmits.push(adinsertobj);
+	}
+	console.log(adsubmits);
+	var settings = {
+	  "url": "adinsert.do",
+	  "method": "POST",
+	  "headers": {
+    		"Content-Type": "text/plain"
+  		},
+	  "data":JSON.stringify(adsubmits)
+	};
+	
+	$.ajax(settings).done(function (response) {
+	  console.log(response);
+	  projects = JSON.parse(response);
+	  
+	  imageupload(1);
+	  
+	  
 	});
-});
- 
- 
- 
-/* 이미지 업로드 */ 
- 
+
+
 function imageupload(cnt){
-	console.log(ad);
-	var form = $('#ad_file_form_'+cnt)[0];
+	console.log(ads);
+	var form = $('#ad_file_form')[0];
 	console.log(form);
     // Create an FormData object  
     var data = new FormData(form);  
-    data.append('file',$('#ad_file_'+cnt)[0].files[0]);         
+    data.append('file',$('#ad_file')[0].files[0]);         
     var ad_no = ads[cnt-1].ad_no;
     console.log(ad_no);  
 
@@ -65,7 +83,7 @@ function imageupload(cnt){
         cache: false,           
         timeout: 600000,       
         success: function (data) { 
-        		alert(data);
+        		alert("글 작성 완료");
         	if(cnt<num){
         	//cnt <= num이면 두 번 돈다 
         		console.log(num+1+"번째");
@@ -78,7 +96,7 @@ function imageupload(cnt){
         	console.log("ERROR : ", e);      
             alert("fail");  
         }     
-	});   
+	});  
  
  }
  

@@ -3,6 +3,7 @@ package com.itpro.model.bizImpl;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,9 @@ import com.itpro.model.dao.BoardDao;
 import com.itpro.model.dao.LikeDao;
 import com.itpro.model.dao.ReplyDao;
 import com.itpro.model.dto.ad.AdDto;
+import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
+import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.qna.QnaInsertDto;
 import com.itpro.model.dto.qna.QnaUpdateDto;
@@ -49,8 +52,9 @@ public class AdBizImpl implements AdBiz {
 	}
 
 	@Override
-	public int insert(AdDto dto) {
-		return adDao.insert(dto);
+	public List<AdDto> adinsert(ArrayList<AdDto> adDto, BoardInsertDto boardInsertDto) {
+		
+		return adDao.adinsert(adDto, boardInsertDto);
 	}
 
 	@Override
@@ -86,7 +90,7 @@ public class AdBizImpl implements AdBiz {
 
 	
 	@Override
-	public int imageuploadupdate(MultipartFile fileName, int ad_no) {
+	public int adimageuploadupdate(MultipartFile fileName, int ad_no) {
 		
 		int res = 0;
 		if(fileName.getSize()<=0) {
@@ -117,12 +121,12 @@ public class AdBizImpl implements AdBiz {
         System.out.println("파일사이즈는 " + fileName.getSize());
         
        
-		return adDao.imageuploadupdate(ad_no, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
+		return adDao.adimageuploadupdate(ad_no, "\\\\resources\\\\images\\\\ad\\\\"+ fileServerName+originalFileExtension);
 	}
 	
 	@Override
-	public int imagePathUpdate(int ad_no, String img_path) {
+	public int adimagePathUpdate(int ad_no, String img_path) {
 		
-		return adDao.imageuploadupdate(ad_no, img_path);
+		return adDao.adimageuploadupdate(ad_no, img_path);
 	}
 }

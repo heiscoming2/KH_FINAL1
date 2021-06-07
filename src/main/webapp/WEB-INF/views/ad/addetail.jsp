@@ -4,7 +4,7 @@
 <html>
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../inc/_head.jspf"%>
 <link href="resources/css/addetail.css" rel="stylesheet">
 <!-- 썸머노트 CSS -->
@@ -37,7 +37,8 @@
 							class="d-flex align-items-center text-decoration-none dropdown-toggle"
 							id="dropdownaUser" data-bs-toggle="dropdown"
 							aria-expanded="false"> ${dto.m_nickname } </a> <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
-							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownaUser">
+							<ul class="dropdown-menu text-small shadow"
+								aria-labelledby="dropdownaUser">
 
 								<li><a class="dropdown-item" href="#">쪽지보내기</a></li>
 								<li><a class="dropdown-item" href="#">이력서 열람</a></li>
@@ -87,7 +88,9 @@
 									</tr>
 									<tr>
 										<th><span>* </span>희망광고기간</th>
-										<td><fmt:formatDate value="${dto.ad_startdate }" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${dto.ad_enddate }" pattern="yyyy-MM-dd"/></td>
+										<td><fmt:formatDate value="${dto.ad_startdate }"
+												pattern="yyyy-MM-dd" /> ~ <fmt:formatDate
+												value="${dto.ad_enddate }" pattern="yyyy-MM-dd" /></td>
 									</tr>
 									<tr>
 										<th><span>* </span>가격</th>
@@ -95,9 +98,10 @@
 									</tr>
 									<tr>
 										<th><span>* </span>광고 파일 다운로드</th>
-										<td><input type="button" value="다운로드"
-											onclick='location.href="/upgrade/${dto.ad_file_path }"'
-											class="btn-sm btn-dark"></td>
+										<td><form action="addownload" method="post">
+												<input type="hidden" name="name" value=${fileobj.name }>
+												<input type="submit" value="download">
+											</form></td>
 									</tr>
 									<tr>
 										<th><span>* </span>이미지 링크주소</th>
@@ -130,7 +134,7 @@
 
 										</c:choose>
 									</tr>
-									
+
 								</table>
 
 
@@ -142,10 +146,13 @@
 						<br>
 						<div style="float: right;">
 							<!-- 작성자에게만 보여질 버튼 -->
-							<button type="button"><img src="resources/images/kakaoimg.png" alt=""></button>
+							<button type="button">
+								<img src="resources/images/kakaoimg.png" alt="">
+							</button>
 							<input type="button" value="수정" class="btn btn-primary"
 								onclick="location.href='adupdateform.do?bd_no=${dto.bd_no}'">
-							<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='addelete.do?bd_no=${dto.bd_no}'">
+							<input type="button" value="삭제" class="btn btn-primary"
+								onclick="location.href='addelete.do?bd_no=${dto.bd_no}'">
 						</div>
 						<!-- 작성자에게만 보여질 버튼 종료 -->
 
