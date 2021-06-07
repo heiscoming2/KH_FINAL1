@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfolioinsert.css?ver=1.3" rel="stylesheet">
+<link href="resources/css/portfolioinsert.css?ver=1.2" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <title>IT PRO Portfolio 글 수정</title>
@@ -97,7 +97,9 @@
             </tr>
             <tr>
               <th><span>* </span>포트폴리오 소개 </th>
-              <td><input type="text" class="form-control" value="${portfolioDetailDto.bd_content}" name="bd_content"></td>
+               <td><input type="text" class="form-control" value="${portfolioDetailDto.bd_content}" name="bd_content"></td> 
+               
+              
               </tr>
 			
           </table>
