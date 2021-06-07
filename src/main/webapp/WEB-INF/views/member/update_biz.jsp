@@ -5,7 +5,6 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/footerbottom.css" rel="stylesheet">
 <title>정보수정</title>
 </head>
 <body>

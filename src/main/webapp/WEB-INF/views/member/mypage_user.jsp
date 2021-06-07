@@ -5,9 +5,12 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
+<<<<<<< HEAD
 <link href="resources/css/footerbottom.css" rel="stylesheet">
 
 
+=======
+>>>>>>> 52eb96bcee8f830d82576a1e1411228afed3b3cc
 <title>회원마이페이지</title>
 </head>
 <body>
