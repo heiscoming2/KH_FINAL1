@@ -11,6 +11,7 @@
 		FROM NOTE
 		INNER JOIN IT_MEMBER ON IT_MEMBER.m_no = NOTE.N_SENDER
 		WHERE N_RECEIVER = #{n_receiver}
+		ORDER BY NOTE.N_NO DESC
 	</select>
 	
 	<!--내가 보낸쪽지 목록 -->
@@ -19,6 +20,7 @@
 		FROM NOTE
 		INNER JOIN IT_MEMBER ON IT_MEMBER.M_NO = NOTE.N_RECEIVER
 		WHERE N_SENDER = #{n_sender}
+		ORDER BY NOTE.N_NO DESC
 	</select>
 	
 	<!-- 내가 받은쪽지 하나 읽기 -->
