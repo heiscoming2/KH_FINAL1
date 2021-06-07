@@ -119,7 +119,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("projectDeleteRes" + projectDeleteRes);
 		return projectDeleteRes;
 	}
 

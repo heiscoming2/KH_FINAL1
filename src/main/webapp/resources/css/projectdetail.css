@@ -1,0 +1,8 @@
+	.portfolio_table i {
+	 margin-right:10px;
+	}
+	
+	.portfolio_table th,
+	.portfolio_table td{
+		color:#273747 !important;
+	}

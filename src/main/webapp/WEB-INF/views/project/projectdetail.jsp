@@ -80,7 +80,7 @@
             <!-- 필수 입력 정보 노출 시작 -->
             <c:forEach items="${list }" var="item" varStatus="status"> 
             <div style="font-size: 15px; padding:10px 0px;"> 
-              	<table class="table portfolio_table" style="width:700px;">
+              	<table class="table study_table" style="width:700px;">
             	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>프로젝트 ${status.count }</b><br></caption>
             	    <col width="200px;">
             		<col width="500px;">
