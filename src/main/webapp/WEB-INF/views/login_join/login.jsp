@@ -7,6 +7,23 @@
 <%@include file="../inc/_head.jspf" %>
 
 
+<<<<<<< HEAD
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+    border-color: skyblue;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
+    outline: 0 none;
+}
+
+input[type]:hover {
+    border-color: skyblue;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
+    outline: 0 none;
+}
+
+</style>
+
+=======
+>>>>>>> 52eb96bcee8f830d82576a1e1411228afed3b3cc
 <link href="resources/css/login.css" rel="stylesheet">
 <title>로그인</title>
 </head>

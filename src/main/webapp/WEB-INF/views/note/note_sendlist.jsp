@@ -17,7 +17,7 @@
 
 <!-- 본문 시작 -->
 
- 	<div class="container mt-5 mb-5 wrap" style="max-width: 1000px;">
+ 	<div class="container mt-5 mb-5" style="max-width: 1000px;">
  
 		 <h3>보낸 쪽지</h3>
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
