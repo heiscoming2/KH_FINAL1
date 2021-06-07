@@ -8,6 +8,8 @@
 <title>이력서 상세보기</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -59,7 +61,7 @@
 			
         </div>
 </div>
-
+</div>
 <!-- 본문 종료 -->
 <!-- 하이라이트 효과를 주기 위해 사용 -->
 <input type="hidden" class="cateli" value="comli">

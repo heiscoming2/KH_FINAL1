@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<div class="wrap">
 
 <!-- HEADER 시작 -->
 <%@include file="./inc/_header.jspf" %>
@@ -256,7 +257,7 @@
       </div>
     </div>
 <!--게시판 종료-->
-
+</div>
 	<!-- FOOTER 시작 -->
 	<%@include file="./inc/_footer.jspf" %>
 	<!-- FOOTER 종료 -->

@@ -4,31 +4,15 @@
 <html>
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
-<script src="https://kit.fontawesome.com/817a0822ff.js" crossorigin="anonymous"></script>
 
 <%@include file="../inc/_head.jspf" %>
 
-
-<style>
-html {
-height: 100%;
-}
-body {
-margin: 0;
-height: 100%;
-}
-
-.wrap {
-min-height: 60%;
-position: relative;
-}
-
-</style>
 
 <title>회원가입</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
+<div class="wrap">
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
 
@@ -51,7 +35,7 @@ position: relative;
 	        </div>        
         </div>
     </div>
-
+</div>
 
 
 
@@ -63,6 +47,6 @@ position: relative;
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-	
+<script src="https://kit.fontawesome.com/817a0822ff.js" crossorigin="anonymous"></script>
 </body>
 </html>

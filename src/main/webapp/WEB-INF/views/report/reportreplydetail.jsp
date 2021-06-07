@@ -14,6 +14,8 @@
 
 </head>
 <body>
+<div class="wrap">
+
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
@@ -85,17 +87,7 @@
 	<!-- sidebar 시작 -->
 
 	<!-- FOOTER 시작 -->
-	<br>
-<br><br><br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+</div>
 
 	<%@include file="../inc/_footer.jspf"%>
 	<!-- FOOTER 종료 -->

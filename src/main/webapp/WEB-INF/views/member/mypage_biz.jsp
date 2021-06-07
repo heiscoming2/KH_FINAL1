@@ -5,27 +5,13 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-
-<style>
-html {
-height: 100%;
-}
-body {
-margin: 0;
-height: 100%;
-}
-
-.wrap {
-min-height: 50%;
-position: relative;
-}
-
-</style>
+<link href="resources/css/footerbottom.css" rel="stylesheet">
 
 
 <title>기업마이페이지</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -63,7 +49,7 @@ position: relative;
             </a>
           </div>
     </div>
-
+</div>
 
 
 <!-- 본문 종료 -->

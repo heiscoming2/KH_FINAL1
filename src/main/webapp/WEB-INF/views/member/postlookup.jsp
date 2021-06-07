@@ -6,9 +6,11 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 <link href="resources/css/postlookup.css?vser=1.9" rel="stylesheet">
+<link href="resources/css/footerbottom.css" rel="stylesheet">
 <title>IT PRO - 작성 글 관리</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -113,10 +115,10 @@
 				</table>
 			</form>
 			</div>
-	<!-- 스터디 모집 영역 종료 -->		
-
-<!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>
+	<!-- 글 영역 종료 -->		
+</div>
+<!-- 페이징 시작 -->
 <!-- 페이징 종료 -->
 
   	<!-- 사용자 세션/현재 카테고리 -->

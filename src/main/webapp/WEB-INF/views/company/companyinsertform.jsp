@@ -11,6 +11,8 @@
 <title>IT PRO 채용 공고 등록</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -110,6 +112,7 @@
 <!-- 본문 종료 -->
 <!-- 하이라이트 효과를 주기 위해 사용 -->
 <input type="hidden" class="cateli" value="comli">
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->

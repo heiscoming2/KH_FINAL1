@@ -11,6 +11,7 @@
 <title>IT PRO 스터디 모집 글 수정</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -92,12 +93,15 @@
     
     </div> 
 <!-- 본문 종료 -->
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="studyli">
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->
+
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="studyli">
+
+
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>

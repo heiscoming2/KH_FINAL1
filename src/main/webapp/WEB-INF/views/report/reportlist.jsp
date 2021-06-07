@@ -34,6 +34,9 @@
 
 </head>
 <body>
+<div class="wrap">
+
+
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
@@ -108,14 +111,12 @@
 	<!-- sidebar 시작 -->
 
 	<!-- FOOTER 시작 -->
-	<div class="footer">
-
+</div>
 	<%@include file="../inc/_footer.jspf"%>
 	<!-- FOOTER 종료 -->
 
 	<!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 	<%@include file="../inc/_foot.jspf"%>
 
-	</div>
 </body>
 </html>

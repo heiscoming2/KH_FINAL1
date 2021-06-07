@@ -8,6 +8,8 @@
 <title>받은쪽지</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -70,7 +72,7 @@
     
 
 <!-- 본문 종료 -->
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->
