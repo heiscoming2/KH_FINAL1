@@ -214,12 +214,4 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 		return null;
 	}
 	
-	@RequestMapping(value="/portfoliodeleteAjax.do", method = RequestMethod.POST)
-	@ResponseBody
-	public int portfolioDeleteAjax(Model model, int bd_no,HttpServletResponse response) {
-		logger.info("Portfolio DELETE AJAX");
-
-		int res = portfolioBiz.delete(bd_no);
-		return res;
-	}
 }

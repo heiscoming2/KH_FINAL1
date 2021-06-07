@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <footer style="width:auto; height:200px; color: white; background-color:#212529" id="footer">
+    <footer style="width:auto; height:200px; color: white; background-color:#212529" id="footer" >
 	    <div style="text-align:center;">
 	        <br>
 	        <p><h4>IT pro</h4></p>

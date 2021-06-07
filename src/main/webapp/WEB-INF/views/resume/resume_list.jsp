@@ -5,6 +5,23 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
+
+<style>
+html {
+height: 100%;
+}
+body {
+margin: 0;
+height: 100%;
+}
+
+.wrap {
+min-height: 50%;
+position: relative;
+}
+
+</style>
+
 <title>이력서 목록</title>
 </head>
 <body>
@@ -14,7 +31,7 @@
 
 <!-- 본문 시작 -->
 
- <div class="container mt-5 mb-5" style="max-width: 1000px;"> 		
+ <div class="container mt-5 mb-5 wrap" style="max-width: 1000px;"> 		
  		<h3>이력서 목록</h3> 	
         <button class="btn btn-primary" onclick="location.href='resume_form.do'">등록</button>
         <input class="btn btn-danger" type="button" value="삭제" onclick="resumeListDel();">

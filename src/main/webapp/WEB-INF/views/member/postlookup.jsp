@@ -42,7 +42,7 @@
 				float:right; display:inline-block; width:200px;" type="search" placeholder="제목/내용" class="form-control" id="keyword" value="${keyword }">
 	 		</div>
 			<br>
-			<table class="table postlookup_table">
+			<table class="table postlookup_table" id="table-list">
 				<c:if test="${sessionScope.login.m_no eq writer.m_no}">
 				<col width="50px;">
 				</c:if>
@@ -75,7 +75,7 @@
 						<tr>
 								<!-- 글 번호 시작 --> 
 								<c:if test="${sessionScope.login.m_no eq writer.m_no}">
-								<td align="center"><input type="checkbox"></td>
+								<td align="center"><input type="checkbox" name="postListDel" bc_code=${postLookupDto.bc_code } & bd_no=${postLookupDto.bd_no}></td>
 								</c:if>
 								<td class="bd_no">${postLookupDto.bd_no}</td>
 								<td>${postLookupDto.name } </td>
