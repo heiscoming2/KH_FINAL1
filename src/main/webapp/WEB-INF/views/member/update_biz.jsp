@@ -18,8 +18,7 @@
         <div class="row justify-content-center align-items-center">
         <!-- 프로필 이미지 -->
             <div class="float-left col-md-3 col-3">
-                <img src="${selectUser.m_img_path }${selectUser.m_img }" class="img-fluid rounded-circle" alt="프로필 이미지" width="150" height="150">
-                <p><h5>${selectUser.m_nickname }</h5></p>
+                <img src="${selectUser.m_img_path }${selectUser.m_img }" id="image_section" class="rounded-circle" alt="프로필 이미지" width="240" height="250">
             </div>
             <div class="col-md-4 mt-5">
             
@@ -82,7 +81,7 @@
                  	<div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">프로필</label>
                         <div class="col-sm-6">
-                            <input class="form-control form-control-sm" type="file" name="m_img">
+                            <input class="form-control form-control-sm" type="file" name="m_img" id="imgInput">
                         </div>
                         <div class="col-sm-2">
                             <button type="button" class="btn btn-sm btn btn-secondary" id="uploadBtn">저장</button>

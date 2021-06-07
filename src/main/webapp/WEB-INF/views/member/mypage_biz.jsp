@@ -6,22 +6,6 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 
-<style>
-html {
-height: 100%;
-}
-body {
-margin: 0;
-height: 100%;
-}
-
-.wrap {
-min-height: 50%;
-position: relative;
-}
-
-</style>
-
 
 <title>기업마이페이지</title>
 </head>
@@ -34,8 +18,7 @@ position: relative;
 
  <div class="container-sm mt-5 mb-5 wrap" style="max-width: 600px;">
         <div class="mb-4"><!-- 마이페이지 미니 프로필 -->
-            <img src="${login.m_img_path }${login.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"
-              style="float: left;">
+            <img src="${login.m_img_path }${login.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2" style="float: left;">
             <span class="fw-bold"style="display: block; position: relative; top:5px;">${login.m_nickname }</span>
         </div>
         

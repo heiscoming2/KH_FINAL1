@@ -8,20 +8,6 @@
 
 <style>
 
-html {
-height: 100%;
-}
-body {
-margin: 0;
-height: 100%;
-}
-
-.wrap {
-min-height: 50%;
-position: relative;
-}
-
-
 textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
     border-color: skyblue;
     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;

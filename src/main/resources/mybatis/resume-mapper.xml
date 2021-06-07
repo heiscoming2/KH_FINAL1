@@ -65,8 +65,7 @@
 	</delete>
 
 	<!-- 이력서 사진 업로드 -->
-	<insert id="uploadResumeImg" parameterType="ResumeImgDto"
-		useGeneratedKeys="false" keyProperty="r_no">
+	<insert id="uploadResumeImg" parameterType="ResumeImgDto" useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME_IMG(R_NO,R_IMG, R_IMG_PATH)
 		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
 
@@ -91,8 +90,7 @@
 	</update>
 
 	<!--이력서 기본정보 등록(이미지가 먼저 들어감) -->
-	<insert id="resumeInsert" parameterType="ResumeUploadDto"
-		useGeneratedKeys="false" keyProperty="r_no">
+	<insert id="resumeInsert" parameterType="ResumeUploadDto" useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME
 		(M_NO, R_NO, R_TITLE, R_POSTCODE, R_ROADADDRESS,
 		R_JIBUNADDRESS, R_DETAILADDRESS, R_EXTRAADDRESS, R_SELFLETTER, R_PORTFOLIO,

@@ -8,23 +8,6 @@
 
 <%@include file="../inc/_head.jspf" %>
 
-
-<style>
-html {
-height: 100%;
-}
-body {
-margin: 0;
-height: 100%;
-}
-
-.wrap {
-min-height: 60%;
-position: relative;
-}
-
-</style>
-
 <title>회원가입</title>
 </head>
 <body>
