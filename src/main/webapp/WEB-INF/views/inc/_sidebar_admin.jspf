@@ -10,7 +10,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Tables - SB Admin</title>
-<link href="resources/css/sidebar_admin.css" rel="stylesheet" />
+<link href="resources/css/sidebar_admin.css?ver=1.3" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
