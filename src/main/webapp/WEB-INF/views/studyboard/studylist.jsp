@@ -5,10 +5,12 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/studylist.css?ver=1.6">
+<link rel="stylesheet" href="resources/css/studylist.css?ver=1.3">
 <title>IT PRO 스터디 글 목록</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -179,12 +181,15 @@
 </c:if>
 		
 <!-- 본문 종료 -->
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="studyli">
+
 
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>
 <!-- 페이징 종료 -->
+</div>
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="studyli">
+
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>

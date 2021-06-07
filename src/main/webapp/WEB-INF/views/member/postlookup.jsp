@@ -5,10 +5,11 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/postlookup.css?vser=1.9" rel="stylesheet">
+<link href="resources/css/postlookup.css?ser=1.9" rel="stylesheet">
 <title>IT PRO - 작성 글 관리</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -33,7 +34,7 @@
 	 		<br>
 	 		<div class="buttonwrap">
 	 			<c:if test="${sessionScope.login.m_no eq writer.m_no}">
-				<input type="button" value="선택삭제" class="btn btn-danger">
+				<input type="button" value="선택삭제" class="btn btn-danger" onclick="muldel();">
 				</c:if>
 				<input style="float:right; clear:both;" type="button" value="검색" class="btn btn-primary" onclick="selectPage(1)">
 				
@@ -42,74 +43,81 @@
 				float:right; display:inline-block; width:200px;" type="search" placeholder="제목/내용" class="form-control" id="keyword" value="${keyword }">
 	 		</div>
 			<br>
-			<table class="table postlookup_table">
-				<c:if test="${sessionScope.login.m_no eq writer.m_no}">
-				<col width="50px;">
-				</c:if>
-				<col width="80px;">
-				<col width="200px;">
-				<col width="520px;">
-				<col width="80px;">
-				<col width="80px;">
-				<col width="200px;">
-				<tr>
+			<form id="muldelform">
+				<table class="table postlookup_table">
 					<c:if test="${sessionScope.login.m_no eq writer.m_no}">
-					<th class="text-center"><input type="checkbox" class="custom-control custom-checkbox"></th>
+					<col width="50px;">
 					</c:if>
-					<th class="bd_no_th"><a>번호</a></th>
-					<th>카테고리</th>
-					<th>제목</th>
-					<th>추천수</th>
-					<th>조회수</th>
-					<th>작성정보</th>
-				</tr>
-				<!-- 게시물 한 줄 시작-->
-				<c:choose>
-					<c:when test="${empty postLookupList}">
-						<tr>
-							<td colspan="7" align="center">작성한 게시물이 존재하지 않습니다.</td>
-						</tr>			
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="postLookupDto" items="${postLookupList }">
-						<tr>
-								<!-- 글 번호 시작 --> 
-								<c:if test="${sessionScope.login.m_no eq writer.m_no}">
-								<td align="center"><input type="checkbox"></td>
-								</c:if>
-								<td class="bd_no">${postLookupDto.bd_no}</td>
-								<td>${postLookupDto.name } </td>
-								<td><a href="boarddetail.do?bc_code=${postLookupDto.bc_code }&bd_no=${postLookupDto.bd_no}&m_no=${writer.m_no}" style="color:black;">${postLookupDto.bd_title }<span class="replycount"> +${postLookupDto.bd_replycount }</span></a></td>
-								<td class="bd_recommandcount"><b>${postLookupDto.bd_recommandcount }</b></td>
-								<td class="bd_viewcount">${postLookupDto.bd_viewcount }</td>
-								<td>
-								    <div class="postlookup_profile">
-										<img src="${writer.m_img_path }${writer.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
-										<div class="postlookup_writer"> 
-											<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
-												${writer.m_nickname }
-											</a> 
-											<!-- 프로필 드롭다운 메뉴 -->
-											<jsp:include page="../inc/userDropDownMenu.jsp">
-												<jsp:param name="m_no" value="${writer.m_no }"></jsp:param>
-											</jsp:include>
-											<!-- 프로필 드롭다운 메뉴 종료 -->
+					<col width="80px;">
+					<col width="200px;">
+					<col width="520px;">
+					<col width="80px;">
+					<col width="80px;">
+					<col width="200px;">
+					<tr>
+						<c:if test="${sessionScope.login.m_no eq writer.m_no}">
+						<th class="text-center"><input type="checkbox" class="custom-control custom-checkbox" name="all" onclick="allcheck(this.checked);"></th>
+						</c:if>
+						<th class="bd_no_th">번호</th>
+						<th>카테고리</th>
+						<th>제목</th>
+						<th>추천수</th>
+						<th>조회수</th>
+						<th>작성정보</th>
+					</tr>
+					<!-- 게시물 한 줄 시작-->
+					<c:choose>
+						<c:when test="${empty postLookupList}">
+							<tr>
+								<td colspan="7" align="center">작성한 게시물이 존재하지 않습니다.</td>
+							</tr>			
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="postLookupDto" items="${postLookupList }">
+							<tr>
+									<!-- 글 번호 시작 --> 
+									<c:if test="${sessionScope.login.m_no eq writer.m_no}">
+									
+									
+									<td align="center"><input type="checkbox" name="chk"></td>
+									</c:if>
+									<td class="bd_no">${postLookupDto.bd_no}</td>
+									<td>${postLookupDto.name } </td>
+									<td><a href="boarddetail.do?bc_code=${postLookupDto.bc_code }&bd_no=${postLookupDto.bd_no}&m_no=${writer.m_no}" style="color:black;">${postLookupDto.bd_title }<span class="replycount"> +${postLookupDto.bd_replycount }</span></a></td>
+									<td class="bd_recommandcount"><b>${postLookupDto.bd_recommandcount }</b></td>
+									<td class="bd_viewcount">${postLookupDto.bd_viewcount }</td>
+									<td>
+									    <div class="postlookup_profile">
+											<img src="${writer.m_img_path }${writer.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"> 
+											<div class="postlookup_writer"> 
+												<a class="d-flex align-items-center text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown"> 
+													${writer.m_nickname }
+												</a> 
+												<!-- 프로필 드롭다운 메뉴 -->
+												<jsp:include page="../inc/userDropDownMenu.jsp">
+													<jsp:param name="m_no" value="${writer.m_no }"></jsp:param>
+												</jsp:include>
+												<!-- 프로필 드롭다운 메뉴 종료 -->
+											</div>
+											<span class="postlookup_regdate">
+												<fmt:formatDate value="${postLookupDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+											</span>
 										</div>
-										<span class="postlookup_regdate">
-											<fmt:formatDate value="${postLookupDto.bd_createddate }" pattern="yyyy-MM-dd HH:mm:ss"/>
-										</span>
-									</div>
-								</td>
-							<tr>	
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</table>
+										<!-- 멀티삭제를 위해 추가 -->
+										<input type="hidden" name="bd_no" value="${postLookupDto.bd_no }">
+										<input type="hidden" name="bc_code" value="${postLookupDto.bc_code }">
+									</td>
+								<tr>	
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</table>
+			</form>
 			</div>
-	<!-- 스터디 모집 영역 종료 -->		
-
-<!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>
+	<!-- 글 영역 종료 -->		
+</div>
+<!-- 페이징 시작 -->
 <!-- 페이징 종료 -->
 
   	<!-- 사용자 세션/현재 카테고리 -->
@@ -126,7 +134,7 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<script type="text/javascript" src="resources/js/postlookup.js?ver=1.4"></script>
+<script type="text/javascript" src="resources/js/postlookup.js?ver=1.5"></script>
 	
 </body>
 </html>

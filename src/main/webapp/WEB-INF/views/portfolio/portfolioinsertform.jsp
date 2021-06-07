@@ -11,6 +11,7 @@
 <title>IT PRO portfolio 글 쓰기</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -60,7 +61,7 @@
             <tr>
               <th><span>* </span>전화번호 </th>
               <td><input type="tel" class="form-control" value="${dto.member.m_phone }" readonly></td>
-              <!-- <td><input type="checkbox">비공개</td>-->
+              <!--  <td><input type="checkbox" class="custom-control-input" id="customControlAutosizing" onclick="showHidden()">비공개</td>-->
             </tr>
             <tr>
               <th><span>* </span>최종 학력</th>
@@ -82,8 +83,8 @@
               <th><span>* </span>경력사항</th>             
               <td> 
                 <input type=text class="form-control" value="${career.ca_title }" readonly> </td>
-              <td>　　입사일: <input type='text' id="career-date" value="${career.ca_start_date }" readonly/></td>  
-              <td>　　퇴사일: <input type='text' id="career-date" value="${career.ca_end_date }" readonly/></td>       
+              <td>　　　입사일: <input type='text' id="career-date" value="${career.ca_start_date }" readonly/></td>  
+              <td>　　　퇴사일: <input type='text' id="career-date" value="${career.ca_end_date }" readonly/></td>       
               <!-- <td><input type="checkbox">비공개</td>  -->
             </tr>
              </c:forEach>
@@ -102,9 +103,10 @@
             </tr>
              <tr>
               <th><span>* </span>포트폴리오 소개 </th>
-              <td><input type="text" class="form-control" name="bd_content" placeholder="간단한 포트폴리오 내용을 입력해 주세요."></td>
+             <td><input type="text" class="form-control" name="bd_content" placeholder="간단한 포트폴리오 내용을 입력해 주세요."></td>
+            
               </tr>
-
+			 
             
           </table>
 
@@ -126,12 +128,12 @@
     
     </div> 
 <!-- 본문 종료 -->
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="portfolioli">
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="portfolioli">
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>

@@ -15,6 +15,7 @@
 <title>IT PRO 상세보기</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -110,11 +111,11 @@
 						</td>
             		</tr>
             		<tr>
-	            		<th><i class="bi bi-stack"></i>사용개발기술</th>
+	            		<th><i class="bi bi-stack"></i>사용 개발 기술</th>
 	            		<td>${dto.port_develop }</td>
             		</tr>
             		<tr>
-	            		<th><i class="bi bi-link"></i>프로젝트 링크</th>
+	            		<th><i class="bi bi-link"></i>포트폴리오 링크</th>
 	            		<td>${dto.port_link }</td>
             		</tr>
             		<tr>
@@ -164,14 +165,14 @@
 	  
       <!-- 댓글 영역 끝 -->
   </div>
-
+</div>
 <!-- 본문 종료 -->
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="portfolioli">
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="portfolioli">
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>

@@ -8,6 +8,8 @@
 <title>받은쪽지</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -41,6 +43,12 @@
                            </div>
                        </div> 
                        <div class="mb-3 row text-center">
+                           <label class="col-sm-2 col-form-label">읽은시간</label>
+                           <div class="col-sm-10">
+                             <input type="text" readonly class="form-control-plaintext" value="${noteDto.n_readDate}">
+                           </div>
+                       </div> 
+                       <div class="mb-3 row text-center">
                            <label class="col-sm-2 col-form-label">제목</label>
                            <div class="col-sm-10">
                              <input type="text" readonly class="form-control-plaintext" value="${noteDto.n_title}">
@@ -64,7 +72,7 @@
     
 
 <!-- 본문 종료 -->
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->

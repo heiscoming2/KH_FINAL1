@@ -21,6 +21,7 @@
 		ON A.M_NO=B.M_NO
 		WHERE
 		A.M_NO = #{m_no}
+		ORDER BY DESC
 	</select>
 
 	<!-- 이력서 기본정보 조회(detail) -->
@@ -28,6 +29,7 @@
 		 SELECT * 
 		 FROM M_RESUME M, M_RESUME_IMG B 
 		 WHERE M.R_IMG_NO = B.R_NO(+) and M.R_NO = #{r_no}
+		 ORDER BY M.R_NO DESC
 	</select>
 
 	<!-- 이력서 학력사항 조회(list) -->
@@ -65,8 +67,7 @@
 	</delete>
 
 	<!-- 이력서 사진 업로드 -->
-	<insert id="uploadResumeImg" parameterType="ResumeImgDto"
-		useGeneratedKeys="false" keyProperty="r_no">
+	<insert id="uploadResumeImg" parameterType="ResumeImgDto" useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME_IMG(R_NO,R_IMG, R_IMG_PATH)
 		VALUES(M_RESUME_IMG_SEQ.NEXTVAL, #{r_img}, #{r_img_path})
 
@@ -91,8 +92,7 @@
 	</update>
 
 	<!--이력서 기본정보 등록(이미지가 먼저 들어감) -->
-	<insert id="resumeInsert" parameterType="ResumeUploadDto"
-		useGeneratedKeys="false" keyProperty="r_no">
+	<insert id="resumeInsert" parameterType="ResumeUploadDto" useGeneratedKeys="false" keyProperty="r_no">
 		INSERT INTO M_RESUME
 		(M_NO, R_NO, R_TITLE, R_POSTCODE, R_ROADADDRESS,
 		R_JIBUNADDRESS, R_DETAILADDRESS, R_EXTRAADDRESS, R_SELFLETTER, R_PORTFOLIO,

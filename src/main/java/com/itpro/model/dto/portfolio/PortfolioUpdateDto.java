@@ -44,7 +44,7 @@ public class PortfolioUpdateDto {
 	private String ed_major; // 전공
 	private String ed_school;// 대학원, 대학교, 고등학교
 
-	
+	private String is_phone_open; //전화번호 공개여부
 
 	public PortfolioUpdateDto() {
 		super();
@@ -53,6 +53,24 @@ public class PortfolioUpdateDto {
 
 	
 	
+	
+	
+	public String getIs_phone_open() {
+		return is_phone_open;
+	}
+
+
+
+
+
+	public void setIs_phone_open(String is_phone_open) {
+		this.is_phone_open = is_phone_open;
+	}
+
+
+
+
+
 	public int getCa_no() {
 		return ca_no;
 	}

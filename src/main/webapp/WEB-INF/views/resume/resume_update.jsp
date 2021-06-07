@@ -11,6 +11,7 @@
 <title>이력서 수정</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -18,8 +19,7 @@
 <!-- 본문 시작 -->
 
  <div class="container-sm mt-5 mb-5" style="max-width: 1100px;">
-    <form id="resumeUpdateForm" onsubmit="resumeUpdateAjax(this); return false;"><!--이력서 기본정보 form-->
-        <input type="hidden" name="r_no" value="${resumeDetailDto.r_no }" />
+    
         <h3>이력서 수정</h3> 	
         <div class="float-end">
             <button class="btn btn-danger" onclick="location.href='resume_delete.do?r_no=${resumeDetailDto.r_no}'">삭제</button>
@@ -28,6 +28,8 @@
         </div>
         <br><br>
 
+	<form id="resumeUpdateForm" onsubmit="resumeUpdateAjax(this); return false;"><!--이력서 기본정보 form-->
+        <input type="hidden" name="r_no" value="${resumeDetailDto.r_no }" />
         <div class="clearfix"><!--이력서 기본정보 div-->
                 <div class="col-8"><!--이력서 제목 작성-->
                     <input type="text" class="form-control form-control-lg" value="${resumeDetailDto.r_title }" placeholder="이력서 제목">
@@ -49,7 +51,8 @@
                 <div class="row g-2"><!--생년월일-->
                     <div class="col-2"><h5>생년월일</h5></div>
                     <div class="col-3">            
-                        <input type="text" class="form-control col-6 px-2" readonly value="${memberDto.m_birth }">            
+                    	<fmt:formatDate value="${memberDto.m_birth }" pattern="yyyy년 MM월 dd일" var="m_birth" />
+                        <input type="text" class="form-control col-6 px-2" readonly value="${m_birth}"/>            
                     </div>      
                     <div class="col-1"></div>
                     <div class="col-1"><h5>성별</h5></div>
@@ -61,7 +64,7 @@
                 <div class="row g-2"><!--전화번호-->
                     <div class="col-2"><h5>휴대폰</h5></div>
                     <div class="col-5">            
-                        <input type="text" class="form-control col-6 px-2" maxlength="13" placeholder=" -포함 입력" value="${memberDto.m_phone }">            
+                        <input type="text" class="form-control col-6 px-2" readonly value="${memberDto.m_phone }">            
                     </div>
                 </div>
                 <br>
@@ -293,14 +296,14 @@
                 </div>
             </div>
         <br><br>
-        <div class="d-grid gap-2 col-3 mx-auto"><!--form 2개 같이 submit-->
+        <div class="d-grid gap-2 col-3 mx-auto">
             <button class="btn-lg btn-primary" type="submit">저장</button>
         </div>
     </form>
     </div>
 
 
-
+</div>
 <!-- 본문 종료 -->
 
 <!-- FOOTER 시작 -->

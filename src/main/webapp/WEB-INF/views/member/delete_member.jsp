@@ -5,11 +5,12 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<script type="text/javascript" src="./resources/js/login.js"></script> 
 
 <title>회원탈퇴</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -57,7 +58,7 @@
     </div>
 
 
-
+</div>
 <!-- 본문 종료 -->
 
 <!-- FOOTER 시작 -->
@@ -66,6 +67,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
+<script type="text/javascript" src="./resources/js/login.js"></script> 
 	
 </body>
 </html>

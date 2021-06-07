@@ -9,6 +9,8 @@
 <title>샘플 페이지 입니다.</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -22,7 +24,7 @@
 <!-- 본문 종료 -->
 <!-- 하이라이트 효과를 주기 위해 사용 -->
 <input type="hidden" class="cateli" value="crawcomli">      
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->

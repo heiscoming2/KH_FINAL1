@@ -192,15 +192,6 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		return null;
 	}
 	
-	// qna 삭제 ajax
-	@RequestMapping(value="/qnadeleteAjax.do", method = RequestMethod.POST)
-	@ResponseBody
-	public int qnaDeleteAjax(int bd_no) {
-		logger.info("QNA DELETE AJAX");
-
-		int res = qnaBiz.delete(bd_no);
-		return res; 
-	}
 	
 	/*
 	 * @RequestMapping(value="/qnasearch.do") public String qnaSearch(Model model,

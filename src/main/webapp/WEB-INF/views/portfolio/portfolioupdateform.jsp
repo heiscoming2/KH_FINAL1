@@ -5,12 +5,13 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/portfolioinsert.css?ver=1.3" rel="stylesheet">
+<link href="resources/css/portfolioinsert.css?ver=1.2" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
 <title>IT PRO Portfolio 글 수정</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -96,7 +97,9 @@
             </tr>
             <tr>
               <th><span>* </span>포트폴리오 소개 </th>
-              <td><input type="text" class="form-control" value="${portfolioDetailDto.bd_content}" name="bd_content"></td>
+               <td><input type="text" class="form-control" value="${portfolioDetailDto.bd_content}" name="bd_content"></td> 
+               
+              
               </tr>
 			
           </table>
@@ -120,8 +123,7 @@
     
     </div> 
 <!-- 본문 종료 -->
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="portfolioli">
+</div>
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
@@ -129,6 +131,8 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="portfolioli">
 
 <!-- 썸머노트 JS -->
 <script src="resources/js/summernote/summernote-lite.js"></script>
