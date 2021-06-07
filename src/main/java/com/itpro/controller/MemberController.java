@@ -31,6 +31,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.MemberBiz;
@@ -45,6 +49,7 @@ import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
 
 import lombok.extern.slf4j.Slf4j;
+import oracle.sql.ARRAY;
 
 @Controller
 public class MemberController {
@@ -254,6 +259,10 @@ public class MemberController {
 		model.addAttribute("keyword",keyword);
 		return "member/postlookup";
 	}
+	
+
+	
+	
 
 	
 }

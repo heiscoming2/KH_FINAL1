@@ -1,19 +1,28 @@
 package com.itpro.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itpro.model.biz.BoardBiz;
 import com.itpro.util.JavaScriptResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class BoardController {
+	
+	@Autowired
+	private BoardBiz boardBiz;
 	
 	@RequestMapping(value="/boarddetail.do")
 	public String boardDetail(int bc_code, int bd_no,int m_no, HttpServletResponse response) throws IOException {
@@ -36,6 +45,14 @@ public class BoardController {
 		
 	}
 	
-
+	//멀티 딜리트
+	@RequestMapping(value = "/muldel.do")
+	@ResponseBody
+	public int muldel(@RequestBody List<Map<String,Integer>> muldelarr) {
+		log.info("muldel");
+		int res = boardBiz.muldel(muldelarr);
+		return res;
+	}
+	
 
 }

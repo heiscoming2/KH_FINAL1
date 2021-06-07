@@ -11,6 +11,7 @@
 <title>이력서 수정</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -302,7 +303,7 @@
     </div>
 
 
-
+</div>
 <!-- 본문 종료 -->
 
 <!-- FOOTER 시작 -->

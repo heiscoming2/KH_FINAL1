@@ -6,9 +6,16 @@
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9bb2c61a6af994259441d03670b101517393b661
 <title>받은쪽지</title>
 </head>
 <body>
+<div class="wrap">
+
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -56,7 +63,7 @@
 
 
 <!-- 본문 종료 -->
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->

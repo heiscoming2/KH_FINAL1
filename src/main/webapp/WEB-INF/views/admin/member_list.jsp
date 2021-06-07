@@ -9,7 +9,7 @@
 <%@include file="../inc/_head.jspf"%>
 <title>관리자-개인회원관리 페이지</title>
 
-<link href="resources/css/admin.css" rel="stylesheet">
+<link href="resources/css/admin.css?ver=1.2" rel="stylesheet">
 
 
 
@@ -48,6 +48,8 @@
 
 </head>
 <body>
+<div class="wrap">
+
 	<!-- HEADER 시작 -->
 	<%@include file="../inc/_header.jspf"%>
 	<!-- HEADER 종료 -->
@@ -147,16 +149,14 @@
 		<!-- 본문 종료 -->
 
 	</div>
-
+</div>
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 
-	<div class="footer">
 		<%@include file="../inc/_footer.jspf"%>
 
 		<!-- FOOTER 종료 -->
 
 		<%@include file="../inc/_foot.jspf"%>
-	</div>
 </body>
 <!-- FOOTER 시작 -->
 </html>

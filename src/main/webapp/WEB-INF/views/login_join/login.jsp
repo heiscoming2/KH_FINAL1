@@ -5,6 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
+<<<<<<< HEAD
 
 <style>
 
@@ -22,19 +23,23 @@ input[type]:hover {
 
 </style>
 
+=======
+<link href="resources/css/login.css" rel="stylesheet">
+>>>>>>> 9bb2c61a6af994259441d03670b101517393b661
 <title>로그인</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
+
+<div class="wrap">
 <%@include file="../inc/_header.jspf" %>
 
 
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-    <div class="wrap" style="max-width:20rem; margin:80px auto; text-align:center;">
+        <div class="login_wrap"style="max-width:20rem; margin:80px auto; text-align:center;">
         <h2><b>로그인</b></h2>
-        <div>
         <!-- 
             <div class="social_login" style="margin-top:20px;">
             	<div style="position:relative;">
