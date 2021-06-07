@@ -5,7 +5,6 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<<<<<<< HEAD
 
 <style>
 
@@ -23,9 +22,7 @@ input[type]:hover {
 
 </style>
 
-=======
 <link href="resources/css/login.css" rel="stylesheet">
->>>>>>> 9bb2c61a6af994259441d03670b101517393b661
 <title>로그인</title>
 </head>
 <body>
