@@ -18,10 +18,23 @@
     width:150px;
 }
 
-/* 인원수 선택 박스 너비 */
+
+/* input 너비 */
 .portfolio_inserttable input[type=text] {
-    width: 400px;
+    width: 450px;
 }
+
+/* input 박스 너비 */
+.portfolio_inserttable input[type=email] {
+    width: 450px;
+}
+
+/* input 박스 너비 */
+.portfolio_inserttable input[type=tel] {
+    width: 450px;
+}
+
+
 
 /* 필수 입력(*) 강조 */
 .portfolio_inserttable th span {

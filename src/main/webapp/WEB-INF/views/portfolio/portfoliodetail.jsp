@@ -110,11 +110,11 @@
 						</td>
             		</tr>
             		<tr>
-	            		<th><i class="bi bi-stack"></i>사용개발기술</th>
+	            		<th><i class="bi bi-stack"></i>사용 개발 기술</th>
 	            		<td>${dto.port_develop }</td>
             		</tr>
             		<tr>
-	            		<th><i class="bi bi-link"></i>프로젝트 링크</th>
+	            		<th><i class="bi bi-link"></i>포트폴리오 링크</th>
 	            		<td>${dto.port_link }</td>
             		</tr>
             		<tr>
