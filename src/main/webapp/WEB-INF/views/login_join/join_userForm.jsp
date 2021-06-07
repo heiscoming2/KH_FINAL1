@@ -17,9 +17,12 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-  <div class="container">
-        <div class="row d-flex flex-row justify-content-center mt-5 mb-5">
-            <div class="col-lg-4">
+  <div class="container-sm" style="max-width: 1000px;">
+  
+  		<p class="mt-5"><h2>회원가입</h2></p>
+    
+        <div class="row d-flex flex-row justify-content-center mt-3 mb-5">
+            <div class="col-lg-5">
                 <div class="card">
                     <div class="card-body">
                     

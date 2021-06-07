@@ -38,6 +38,9 @@ public class PortfolioDetailDto {
 	private List<CareerDto> career;
 	// 학력사항
 	private EducationDto edu;
+	
+	private String is_phone_open; //전화번호 공개여부
+	
 
 	public PortfolioDetailDto() {
 		super();
@@ -61,7 +64,19 @@ public class PortfolioDetailDto {
 
 
 
+	
 
+
+
+	public String getIs_phone_open() {
+		return is_phone_open;
+	}
+
+
+
+	public void setIs_phone_open(String is_phone_open) {
+		this.is_phone_open = is_phone_open;
+	}
 
 
 

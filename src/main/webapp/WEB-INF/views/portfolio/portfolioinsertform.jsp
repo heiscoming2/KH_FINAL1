@@ -60,7 +60,7 @@
             <tr>
               <th><span>* </span>전화번호 </th>
               <td><input type="tel" class="form-control" value="${dto.member.m_phone }" readonly></td>
-              <!-- <td><input type="checkbox">비공개</td>-->
+              <!--  <td><input type="checkbox" class="custom-control-input" id="customControlAutosizing" onclick="showHidden()">비공개</td>-->
             </tr>
             <tr>
               <th><span>* </span>최종 학력</th>

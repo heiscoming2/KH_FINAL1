@@ -7,6 +7,24 @@
 <script src="https://kit.fontawesome.com/817a0822ff.js" crossorigin="anonymous"></script>
 
 <%@include file="../inc/_head.jspf" %>
+
+
+<style>
+html {
+height: 100%;
+}
+body {
+margin: 0;
+height: 100%;
+}
+
+.wrap {
+min-height: 60%;
+position: relative;
+}
+
+</style>
+
 <title>회원가입</title>
 </head>
 <body>
@@ -15,18 +33,22 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-  <div class="container mt-5 mb-5">
-        <div class="row justify-content-center" style="text-align: center;">
-            <span class="col-md-6"><i class="fas fa-user" style="font-size: 180px;"></i></span>
-            <span class="col-md-6"><i class="fas fa-users" style="font-size: 200px;"></i></span>
-        </div>
-        <div class="row justify-content-center" style="text-align: center;">
-            <span class="col-md-6">
-            	<input type="button" class="btn btn-primary btn-lg mt-2" value="개인회원" onclick="location.href='join_userForm.do'">
-            </span>
-            <span class="col-md-6">
-            	<input type="button" class="btn btn-primary btn-lg mt-2" value="기업회원" onclick="location.href='join_bizForm.do'">
-            </span>
+  <div class="container mt-5 wrap" style="max-width: 1000px;">
+  		<p class="mb-5"><h2>회원가입</h2></p>
+  		
+  		<div class="mt-5">
+	        <div class="row justify-content-center" style="text-align: center;">
+	            <span class="col-md-6"><i class="fas fa-user" style="font-size: 180px;"></i></span>
+	            <span class="col-md-6"><i class="fas fa-users" style="font-size: 200px;"></i></span>
+	        </div>
+	        <div class="row justify-content-center" style="text-align: center;">
+	            <span class="col-md-6">
+	            	<input type="button" class="btn btn-primary btn-lg mt-2" value="개인회원" onclick="location.href='join_userForm.do'">
+	            </span>
+	            <span class="col-md-6">
+	            	<input type="button" class="btn btn-primary btn-lg mt-2" value="기업회원" onclick="location.href='join_bizForm.do'">
+	            </span>
+	        </div>        
         </div>
     </div>
 

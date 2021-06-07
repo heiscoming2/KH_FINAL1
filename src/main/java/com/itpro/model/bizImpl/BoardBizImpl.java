@@ -80,7 +80,6 @@ public class BoardBizImpl implements BoardBiz {
 	public int muldel(List<Map<String, Integer>> muldelarr) {
 		
 		int sum = 0;
-		
 		for(Map<String,Integer> map:muldelarr) {
 			switch(map.get("bc_code")) {
 			case 1 : projectBiz.delete(map.get("bd_no"));
@@ -100,12 +99,10 @@ public class BoardBizImpl implements BoardBiz {
 					 continue;
 			}
 		}
-		
 		if(sum==muldelarr.size()) {
 			return sum;
 		} else {
 			return 0;
 		}
-		
 	}
 }
