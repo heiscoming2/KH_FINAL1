@@ -14,7 +14,7 @@ public class PortfolioInsertDto {
 	private String port_develop; // 사용 개발 기술
 	private String port_link; // 링크
 
-	
+	private String is_phone_open; //전화번호 공개여부
 
 	public PortfolioInsertDto() {
 		super();
@@ -28,6 +28,18 @@ public class PortfolioInsertDto {
 		return "PortfolioInsertDto [bd_no=" + bd_no + ", bd_title=" + bd_title + ", bd_content=" + bd_content
 				+ ", bd_writerip=" + bd_writerip + ", m_no=" + m_no + ", port_prize=" + port_prize + ", port_develop="
 				+ port_develop + ", port_link=" + port_link + "]";
+	}
+
+
+
+	public String getIs_phone_open() {
+		return is_phone_open;
+	}
+
+
+
+	public void setIs_phone_open(String is_phone_open) {
+		this.is_phone_open = is_phone_open;
 	}
 
 
