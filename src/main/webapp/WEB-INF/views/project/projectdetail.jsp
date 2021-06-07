@@ -17,6 +17,7 @@
 
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -80,7 +81,7 @@
             <!-- 필수 입력 정보 노출 시작 -->
             <c:forEach items="${list }" var="item" varStatus="status"> 
             <div style="font-size: 15px; padding:10px 0px;"> 
-              	<table class="table portfolio_table" style="width:700px;">
+              	<table class="table study_table" style="width:700px;">
             	<caption align="top" style="color:#0078FF; font-size:17px;">&nbsp;<b>프로젝트 ${status.count }</b><br></caption>
             	    <col width="200px;">
             		<col width="500px;">
@@ -168,14 +169,14 @@
 	  
       <!-- 댓글 영역 끝 -->
   </div>
-
+</div>
 <!-- 본문 종료 -->
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="projectli">
 
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="projectli">
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>

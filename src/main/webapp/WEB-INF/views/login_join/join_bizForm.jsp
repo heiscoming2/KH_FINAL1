@@ -5,22 +5,22 @@
 <head>
 <!-- 회원가입 폼 css -->
 <link href="resources/css/join_form.css" rel="stylesheet">
-
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
-<script src="https://kit.fontawesome.com/817a0822ff.js" crossorigin="anonymous"></script>
-
 <%@include file="../inc/_head.jspf" %>
 <title>회원가입</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
-<%@include file="../inc/_header.jspf" %>
+<%@include file="../inc/_header.jspf" %> 
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-  <div class="container">
+  <div class="container-sm" style="max-width: 1000px;">  
+  		
+  		<p class="mt-5"><h2>회원가입</h2></p>
         <div class="row d-flex flex-row justify-content-center mt-5 mb-5">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="card">
                     <div class="card-body">
                         
@@ -89,7 +89,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 
 
@@ -104,6 +104,6 @@
 	
 <!-- 기업 회원가입 스크립트 -->
 <script type="text/javascript" src="./resources/js/join_biz_form.js"></script>
-
+<script src="https://kit.fontawesome.com/817a0822ff.js" crossorigin="anonymous"></script>
 </body>
 </html>

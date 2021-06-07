@@ -9,6 +9,7 @@
 <title>IT PRO - 작성 글 관리</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="./inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -124,7 +125,7 @@
 <!-- 페이징 시작 -->
 <%@include file="./inc/_page.jspf" %>
 <!-- 페이징 종료 -->
-
+</div>
   	<!-- 검색 키워드/카테고리 -->
 	<input id="keyword" type="hidden" value="${keyword }">
 	<input id="category" type="hidden" value="${category }">

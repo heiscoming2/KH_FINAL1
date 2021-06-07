@@ -5,16 +5,36 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
+
+
+<style>
+html {
+height: 100%;
+}
+body {
+margin: 0;
+height: 100%;
+}
+
+.wrap {
+min-height: 50%;
+position: relative;
+}
+
+</style>
+
+
 <title>보낸쪽지</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
 
- 	<div class="container mt-5 mb-5" style="max-width: 1000px;">
+ 	<div class="container mt-5 mb-5 wrap" style="max-width: 1000px;">
  
 		 <h3>보낸 쪽지</h3>
         <button class="btn btn-default" onclick="location.href='mypage_user.do'">마이페이지</button>
@@ -55,7 +75,7 @@
     
 
 <!-- 본문 종료 -->
-
+</div>
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->

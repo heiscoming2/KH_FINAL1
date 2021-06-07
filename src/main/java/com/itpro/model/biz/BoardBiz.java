@@ -18,5 +18,6 @@ public interface BoardBiz {
 	public List<SearchListDto> selectSearchList(Map<String, Object> searchlistMap);
 	public List<MainPageBoardDto> selectMainPageBoardList();
 	public List<MainPagePortfolioDto> selectMainPortfolioList();
+	public int muldel(List<Map<String, Integer>> muldelarr);
 	
 }

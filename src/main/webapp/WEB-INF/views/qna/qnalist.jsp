@@ -9,6 +9,7 @@
 <title>Q&A</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
@@ -93,21 +94,21 @@
 		</table>
 		</div>
             <!-- 게시물 한 줄 종료 -->
-     
-<!-- 하이라이트 효과를 주기 위해 사용 -->
-<input type="hidden" class="cateli" value="qnali">
- 
+  
+
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>
 <!-- 페이징 종료 -->
-
+</div>  
 <!-- FOOTER 시작 -->
 <%@include file="../inc/_footer.jspf" %>
 <!-- FOOTER 종료 -->
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
-
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="qnali">
+ 
 <script type=text/javascript src="resources/js/qnalist.js?ver=1.3"></script>
 </body>
 </html>

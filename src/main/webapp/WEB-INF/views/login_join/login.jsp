@@ -5,36 +5,21 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-
-<style>
-
-textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
-    border-color: skyblue;
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
-    outline: 0 none;
-}
-
-input[type]:hover {
-    border-color: skyblue;
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
-    outline: 0 none;
-}
-
-</style>
-
+<link href="resources/css/login.css" rel="stylesheet">
 <title>로그인</title>
 </head>
 <body>
 <!-- HEADER 시작 -->
+
+<div class="wrap">
 <%@include file="../inc/_header.jspf" %>
 
 
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-    <div style="max-width:20rem; margin:80px auto; text-align:center;">
+        <div class="login_wrap"style="max-width:20rem; margin:80px auto; text-align:center;">
         <h2><b>로그인</b></h2>
-        <div>
         <!-- 
             <div class="social_login" style="margin-top:20px;">
             	<div style="position:relative;">

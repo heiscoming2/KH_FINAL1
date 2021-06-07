@@ -65,4 +65,5 @@ public class MemberBizImpl implements MemberBiz {
 		return dao.selectPostLookupCnt(postLookupPageMap);
 	}
 
+
 }

@@ -5,16 +5,20 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
+<link href="resources/css/footerbottom.css" rel="stylesheet">
+
+
 <title>회원마이페이지</title>
 </head>
 <body>
+<div class="wrap">
 <!-- HEADER 시작 -->
 <%@include file="../inc/_header.jspf" %>
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
 		
- <div class="container-sm mt-5 mb-5" style="max-width: 700px;">
+ <div class="container-sm mt-5 mb-5 wrap" style="max-width: 700px;">
 		 
         <div class="mb-4"> <!-- 마이페이지 미니 프로필 -->
             <img src="${login.m_img_path }${login.m_img }" alt="mdo" width="35" height="35" class="rounded-circle me-2"
@@ -54,8 +58,9 @@
                 <p class="mb-1">그동안 작성한 게시글을 확인하고 관리합니다.</p>
             </a>
           </div>
+          
     </div>
-
+</div>
 
 
 <!-- 본문 종료 -->
