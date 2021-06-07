@@ -125,10 +125,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
 
 	@Override
-	public int getProjectListCnt() {
+	public int getProjectListCnt(Map<String, Object> projectPageMap) {
 		int ProjectListCnt = 0;
 		try {
-			ProjectListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+			ProjectListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt",projectPageMap).toString().replace("[","").replace("]", ""));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

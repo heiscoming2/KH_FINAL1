@@ -100,8 +100,8 @@ public class PortfolioBizImpl implements PortfolioBiz{
 	}
 
 	@Override
-	public int getPortfolioListCnt() {
-		return portfolioDao.getPortfolioListCnt();
+	public int getPortfolioListCnt(Map<String, Object> portfolioPageMap) {
+		return portfolioDao.getPortfolioListCnt(portfolioPageMap);
 	}
 
 	@Override

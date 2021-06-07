@@ -14,3 +14,10 @@ function searchKeyEvent() {
 		searchList();
 	}
 }
+
+
+//하이라이트 처리
+//dom이 준비되면 바로 실행됨
+window.addEventListener('DOMContentLoaded',function(){
+	$('.'+$('.cateli').val()).css('color','#ffc107');
+});

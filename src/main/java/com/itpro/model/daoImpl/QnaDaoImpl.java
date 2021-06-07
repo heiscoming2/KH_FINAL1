@@ -91,10 +91,10 @@ public class QnaDaoImpl implements QnaDao {
 	}
 
 	@Override
-	public int getQnaListCnt() {
+	public int getQnaListCnt(Map<String,Object> qnaPageMap) {
 		int qnaListCnt = 0;
 		try {
-			qnaListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+			qnaListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt",qnaPageMap).toString().replace("[","").replace("]", ""));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,9 +14,10 @@ public interface NoticeBiz {
 	public int noticeInsert(NoticeDto noticeDto);
 	public int delete(int bd_no);
 	public int update(NoticeDto noticeDto,BoardUpdateDto boardUpdateDto);
-	public int getNoticeListCnt();
+	public int getNoticeListCnt(Map<String, Object> noticePageMap);
 	public int getNoticeListSearchCnt(NoticeSearchDto noticeSearchDto);
 	public List<NoticeDto> selectSearchList(Map<String, Object> noticeSearchMap);
+	public int getNoticeListCnt();
 	
 }
 	

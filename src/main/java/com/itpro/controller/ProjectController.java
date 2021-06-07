@@ -61,14 +61,20 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 	private LikeBiz likeBiz;
 	
 	@RequestMapping(value="/projectlist.do")
-	public String projectList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
+	public String projectList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, 
+			@RequestParam(value="key", required=false, defaultValue="") String key,
+			HttpSession session) {
+		
 		logger.info("Project LIST");
 		if(session.getAttribute("login")!=null) {
 			MemberDto login = (MemberDto) session.getAttribute("login");
 		}
 		
+		Map<String,Object> projectPageMap = new HashMap<String,Object>();
+		projectPageMap.put("key", key);
+		
 		//페이징을 위해 총 게시물수 count
-		int projectListCnt = projectBiz.getProjectListCnt();
+		int projectListCnt = projectBiz.getProjectListCnt(projectPageMap);
 		System.out.println("projectListCnt : "+projectListCnt);
 		
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
@@ -76,7 +82,6 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 			
 		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
 		//(이 부분은 나중에 PageProcessing 클래스에서 map을 바로 리턴받는 형태로 변경하는게 나을듯)
-		Map<String,Object> projectPageMap = new HashMap<String,Object>();
 		projectPageMap.put("start", pageProcessing.getStartIndex());
 		projectPageMap.put("end", pageProcessing.getEndIndex());
 		System.out.println(pageProcessing.getStartIndex());
@@ -88,6 +93,8 @@ private static final Logger logger = LoggerFactory.getLogger(ProjectController.c
 			
 		//프로젝트 글 목록을 받아 model에 담아준다.
 		model.addAttribute("projectList",projectList);
+		
+		model.addAttribute("key",key);
 		
 		//시간이 안 찍혀서 확인
 		/*for(int i=0; i<projectList.size(); i++) {

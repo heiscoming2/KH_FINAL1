@@ -16,7 +16,7 @@ public interface PortfolioBiz {
 	public int portfolioInsert(PortfolioInsertDto portfolioDto);
 	public int delete(int bd_no);
 	public int update(PortfolioUpdateDto portfolioUpdateDto, BoardUpdateDto boardUpdateDto);
-	public int getPortfolioListCnt();
+	public int getPortfolioListCnt(Map<String, Object> portfolioPageMap);
 	public PortfolioDetailDto insertForm(int m_no);
 
 }

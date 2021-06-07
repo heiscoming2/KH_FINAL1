@@ -20,9 +20,10 @@ public interface NoticeDao {
 	public int noticeInsert(NoticeDto dto);
 	public int delete(int bd_no);
 	public int update(NoticeDto dto);
-	public int getNoticeListCnt();
+	public int getNoticeListCnt(Map<String, Object> noticePageMap);
 	public int getNoticeSearchListCnt(NoticeSearchDto noticeSearchDto);
 	public List<NoticeDto> selectSearchList(Map<String, Object> noticeSearchMap);
+	public int getNoticeListCnt();
 
 
 }

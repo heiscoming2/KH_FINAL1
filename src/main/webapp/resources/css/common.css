@@ -23,6 +23,7 @@ a,
 a:link,
 a:visited {
   text-decoration: none !important;
+  color:black;
 }
 
 /* 페이지에 마우스 올리면 커서 모양, 나중에 boardcommon 을 만들어서 옮기는게 좋을듯....*/
@@ -37,14 +38,19 @@ a:visited {
 
 /* 헤더 메뉴 기본 색상 설정 및 hover 효과 */
 .nav_items li a, .logo a {
-	color:#fff !important;
+	color:#fff;
 }
       
 .nav_items li a:hover, .logo a:hover, .logo i:hover {
-	color:#ffc107 !important;
+	color:#ffc107;
 }
 
 /* header nav itmes 간격 */
 .nav-ul > li {
 	margin-right:15px !important;
+}
+
+.nav-link-a {
+	display: block;
+    padding: .5rem 1rem;	
 }

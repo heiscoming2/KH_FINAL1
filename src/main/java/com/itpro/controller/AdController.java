@@ -1,16 +1,12 @@
 package com.itpro.controller;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,15 +31,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.itpro.file.validate.FileValidator;
 import com.itpro.model.biz.AdBiz;
 import com.itpro.model.biz.BoardBiz;
 import com.itpro.model.biz.LikeBiz;
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.dto.ad.AdDto;
+import com.itpro.model.dto.board.BoardInsertDto;
 import com.itpro.model.dto.board.BoardUpdateDto;
 import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.MemberDto;
+import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.upload.UploadFile;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
 import com.itpro.util.ViewCount;
@@ -61,6 +66,10 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	
 	@Autowired
 	private LikeBiz likeBiz;
+	
+	@Autowired
+	private FileValidator fileValidator;
+	
 	
 	@RequestMapping(value="/adlist.do")
 		public String adList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
@@ -101,15 +110,30 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 		return "ad/adinsertform";
 	}
 	
-	@RequestMapping(value="/adinsert.do", method=RequestMethod.POST)
-	public String adInsert(HttpServletRequest request, HttpServletResponse response, AdDto dto) {
+	@PostMapping(value="/adinsert.do")
+	public @ResponseBody String adinsert(HttpServletRequest request, HttpServletResponse response
+		) {
 		logger.info("AD INSERT");
-		logger.info(dto.toString());
-		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 qnaDto에 저장
-		dto.setBd_writerip(new ClientInfo().getClientIp(request));
-		int res = adBiz.insert(dto);
-		System.out.println("res:"+res);
-		return "redirect:adlist.do";
+
+		String data = null;
+		try {
+			data = request.getReader().readLine();
+			logger.info("ad insert : "+data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<AdDto> adDtoList = new Gson().fromJson(data, new TypeToken<List<AdDto>>(){}.getType());
+		ArrayList<BoardInsertDto> boardDtoList = new Gson().fromJson(data, new TypeToken<List<BoardInsertDto>>(){}.getType());
+
+		boardDtoList.get(0).bd_writerip = (new ClientInfo().getClientIp(request));
+		
+		logger.info("PROJECT INSERT : "+adDtoList.size());
+		logger.info("PROJECT INSERT : "+boardDtoList.size());
+		List<AdDto> resultDtos = adBiz.adinsert(adDtoList, boardDtoList.get(0));
+		return new Gson().toJson(resultDtos);
+		
+		
 
 	}	
 	
@@ -181,13 +205,13 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	@RequestMapping(value="/addelete.do")
 	public String adDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		logger.info("AD DELETE");
-		int adDeleteRes = adBiz.delete(bd_no);
+		int adDeleteRes = adBiz.addelete(bd_no);
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
 		out.print("alert('삭제 되었습니다.');");
-		out.print("location.href='qnalist.do';");
+		out.print("location.href='adlist.do';");
 		out.print("</script>");
 		return null;
 	}
@@ -196,13 +220,28 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	
 	@RequestMapping(value="/admultipart.do", method=RequestMethod.POST)                                                         
     public @ResponseBody String multipart(@RequestParam("ad_no") String ad_no, @RequestParam("file") MultipartFile fileName) throws IOException {   
-		logger.info("multipart.do");
+		logger.info("admultipart.do");
 		
-        int res = adBiz.imageuploadupdate(fileName, Integer.parseInt(ad_no));
+        int res = adBiz.adimageuploadupdate(fileName, Integer.parseInt(ad_no));
         return "{result:"+res+"}";
     }
 	
-	/////파일 다운로드
+	
+	//이미지 경로 업데이틑 위해
+	@RequestMapping(value="/adimagepathupdate.do")
+	public @ResponseBody String imagePathUpdate(@RequestParam("ad_no") int ad_no, @RequestParam("img_path") String img_path) {
+		
+		
+		HashMap<String, Integer> res = new HashMap<String, Integer>();
+		
+		int rs = adBiz.adimagePathUpdate(ad_no, img_path);
+		res.put("result", rs);
+		
+		return new Gson().toJson(res);
+	}
+	
+	
+	
 	@RequestMapping(value="/addownload.do")
 	@ResponseBody
 	public byte[] fileDown(HttpServletRequest request, HttpServletResponse response, String name) throws IOException {
