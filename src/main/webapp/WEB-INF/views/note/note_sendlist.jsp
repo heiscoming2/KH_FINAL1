@@ -7,23 +7,6 @@
 <%@include file="../inc/_head.jspf" %>
 
 
-<style>
-html {
-height: 100%;
-}
-body {
-margin: 0;
-height: 100%;
-}
-
-.wrap {
-min-height: 50%;
-position: relative;
-}
-
-</style>
-
-
 <title>보낸쪽지</title>
 </head>
 <body>

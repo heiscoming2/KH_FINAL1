@@ -7,7 +7,10 @@
 
 <%@include file="../inc/_head.jspf" %>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9bb2c61a6af994259441d03670b101517393b661
 <title>회원가입</title>
 </head>
 <body>
