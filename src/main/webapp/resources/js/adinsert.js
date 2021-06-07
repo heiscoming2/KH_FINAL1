@@ -1,5 +1,29 @@
 /* 썸머노트 jqeury*/
 
+function fileUpload() {
+	
+	var formData = new FormData();
+	formData.append('ad_file', $('#ad_file')[0].files[0]); 
+    
+ 
+    $.ajax({
+    	type : 'POST',
+        url : 'adfileupload.do',
+        data : formData,
+        contentType : false,
+        processData : false,
+        success:function(data){
+        	$('#ad_img').val(data.ad_img);
+        	$('#ad_img_path').val(data.ad_img_path);
+        },
+        error:function(msg){
+        	alert("통신실패");
+		}        
+    
+    })
+
+
+}
 
 function chk_null() {
   alert('test');

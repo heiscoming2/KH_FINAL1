@@ -52,9 +52,9 @@ public class AdBizImpl implements AdBiz {
 	}
 
 	@Override
-	public List<AdDto> adinsert(ArrayList<AdDto> adDto, BoardInsertDto boardInsertDto) {
+	public int adinsert(AdDto adDto) {
 		
-		return adDao.adinsert(adDto, boardInsertDto);
+		return adDao.adinsert(adDto);
 	}
 
 	@Override

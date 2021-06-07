@@ -14,7 +14,7 @@ public interface AdBiz {
 
 	public List<AdDto> selectList(Map<String,Object> adPageMap);
 	public AdDto selectOne(int bd_no);
-	public List<AdDto> adinsert(ArrayList<AdDto> adDto, BoardInsertDto boardInsertDto);
+	public int adinsert(AdDto adDto);
 	public int addelete(int bd_no);
 	public int update(AdDto dto, BoardUpdateDto boardUpdateDto);
 	public int getAdListCnt();

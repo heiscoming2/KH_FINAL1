@@ -30,7 +30,7 @@
 					<!-- 프로필이미지, 아이디, 작성일 영역 시작 -->
 					<div class="profile_wrap">
 						<!-- 프로필 이미지 영역 -->
-						<img src="https://github.com/mdo.png" alt="mdo" width="35"
+						<img src="${dto.m_img_path }${dto.m_img }" alt="mdo" width="35"
 							height="35" class="rounded-circle me-2 profile_img">
 						<!-- 프로필 아이디 표시 영역 -->
 						<span class="profile_id"> <a
@@ -54,23 +54,13 @@
 					</div> <!-- 프로필이미지, 아이디, 작성일 div 종료 --> <!-- 글 번호 / 제목 영역 시작 -->
 					<div style="margin: 10px 0px;">
 						<div class="ad_insertwrap">
-							<form action="adinsert.do" method="post">
+							
 								<input type="hidden" name="m_no"
 									value="${sessionScope.login.m_no}">
 								<!--ad 작성 글 영역-->
-								<h3>광고문의 작성</h3>
 								<br>
 								<!-- 프로필이미지, 아이디, 작성일 div -->
-								<div>
-									<img src="https://github.com/mdo.png" alt="mdo" width="35"
-										height="35" class="rounded-circle me-2" style="float: left;">
-									<div style="position: relative; top: 5px;">
-										<a class="d-flex align-items-center text-decoration-none"
-											id="dropdownaUser" style="font-size: 15px;">
-											${sessionScope.login.m_nickname} </a>
-									</div>
-								</div>
-								<!-- 프로필이미지, 아이디, 작성일 div 끝 -->
+								
 								<br> <br>
 
 								<table class="table ad_inserttable">
@@ -98,8 +88,8 @@
 									</tr>
 									<tr>
 										<th><span>* </span>광고 파일 다운로드</th>
-										<td><form action="addownload" method="post">
-												<input type="hidden" name="name" value=${fileobj.name }>
+										<td><form action="addownload.do" method="post">
+												<input type="hidden" name="name" value="${dto.ad_img_path }${dto.ad_img }">
 												<input type="submit" value="download">
 											</form></td>
 									</tr>
@@ -139,7 +129,7 @@
 
 
 								<br>
-							</form>
+							
 						</div>
 						<!-- 글 번호 / 제목 영역 종료 -->
 
