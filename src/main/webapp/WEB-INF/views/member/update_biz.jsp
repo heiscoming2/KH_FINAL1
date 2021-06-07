@@ -15,7 +15,7 @@
 
 <!-- 본문 시작 -->
 
-  <div class="container row justify-content-center mt-5 mb-5">
+  <div class="container row justify-content-center mt-5 mb-5" style="margin: 0 auto;">
         <div class="row justify-content-center align-items-center">
         <!-- 프로필 이미지 -->
             <div class="float-left col-md-3 col-3">
@@ -80,7 +80,7 @@
                 <!-- 프로필 이미지 폼 -->
                 <form id="profileUpload">
                  	<div class="mb-3 row">
-                        <label class="col-sm-3 col-form-label">프로필</label>
+                        <label class="col-sm-4 col-form-label">프로필</label>
                         <div class="col-sm-6">
                             <input class="form-control form-control-sm" type="file" name="m_img" id="imgInput">
                         </div>
