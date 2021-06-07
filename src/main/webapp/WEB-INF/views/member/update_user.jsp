@@ -15,7 +15,7 @@
 
 <!-- 본문 시작 -->
 
- <div class="container row justify-content-center mt-5 mb-5">
+ <div class="container row justify-content-center mt-5 mb-5" style="margin: 0 auto;">
         <div class="row justify-content-center align-items-center">
         	<!-- 프로필 이미지 -->
             <div class="float-left col-md-3 col-3">
