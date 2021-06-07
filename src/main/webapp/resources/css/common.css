@@ -55,3 +55,6 @@ a:visited {
     padding: .5rem 1rem;	
 }
 
+a:hover {
+	cursor:pointer;	
+}
