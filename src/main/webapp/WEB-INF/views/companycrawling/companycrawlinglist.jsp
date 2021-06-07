@@ -6,7 +6,7 @@
 <head>
 <title>Insert title here</title>
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/companycrawlinglist.css?ver=1.3">
+<link rel="stylesheet" href="resources/css/companycrawlinglist.css?ver=1.4">
 
 </head>
 <body>
@@ -19,7 +19,6 @@
 	<div class="joblist_wrap mt-5">
       <h3>외부 채용 정보</h3>
       <div class="job_btn_wrap">
-        <input type="button" class="btn btn-primary" value="필터/검색" onclick="filter_toggle();">
         <input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='companycrawlinglist.do'">
 	      <div class="admin_btn" style="float:right;">
 	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingwating.do'">
@@ -27,15 +26,12 @@
 	      </div>
       </div>
       
-      <div class="filter_innerwrap mt-3" style="<c:if test='${companyCrawlingSearchDto ne null }'>display:block;</c:if>">
-       <div>
-       	  <table class="filter_table" >
-       	  <tr>
-	          <td>
-	          	  <span>지역선택</span>
-	          </td>
-	          <td style="display:flex;">
-                   <select class="sidoselect form-control" id="sidoselect" onchange="change(this.selectedIndex);">
+      <div class="filter_innerwrap mt-3">
+       <div style="display:flex; justify-content:space-between;" class="filter_table">
+       	<div>
+       		<span>지역선택</span>
+       		<div style="display:flex; justify-content:space-between">
+       			    <select class="sidoselect form-control" id="sidoselect" onchange="change(this.selectedIndex);">
                        <option value=''>전체</option>
                        <option value='서울'>서울</option>
                        <option value='경기'>경기</option> 
@@ -58,45 +54,39 @@
 	  	          <select class="form-control gugunselect" name="gugunselect" id="gugunselect">
 	  	          	   <option value=''>전체</option>
 	  	          </select>
-       	  	  </td>
-       	  </tr>
-       	  <tr>
-       	      <td>
-       	      	  <span>경력선택</span>
-       	      </td>
-       	      <td>
-	  	          <select class="form-control careerselect" id="careerselect">
+       		</div>
+       	</div>
+       	<div>
+       		<span>경력선택</span>
+       		<div>
+       			  <select class="form-control careerselect" id="careerselect" style="width:200px;">
 		          	<option value=4>전체</option>
 		          	<option value="1">무관</option>
 		          	<option value="2">신입</option>
 		          	<option value="3">경력</option>
 		          </select>
-	          </td>   
-       	  </tr>
-       	  <tr>
-       	  	  <td>
-	         	   <span>학력선택</span>
-	          </td>
-	          <td>
-		          <select class="form-control eduselect" id="eduselect">
+       		</div>
+       	</div>
+       	<div>
+       	   <span>학력선택</span>
+       		<div>
+       			  <select class="form-control eduselect" id="eduselect">
 		          	<option value=4>전체</option>
 		          	<option value="1">학력무관</option>
 		          	<option value="2">고등학교 졸업 이하</option>
 		          	<option value="3">대학교 졸업 이하 (2/3년제)</option>
 		          </select>     	  	  
-       	  	  </td>	
-       	  </tr>
-       	  <tr>
-       	  <td colspan="3">
+       		</div>
+       	</div>
         <!-- 검색창 -->
-	    <div class="mb-3">
-	      <input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1)">
+	    <div>
+	      <span>&nbsp;&nbsp;검색어</span>
+	      <div>
 	      <input id="searchbox" type="text" placeholder="회사명 or 채용정보" class="form-control search-bar cc_search"
-	          onkeyup="enterKey();">
+	          onkeyup="enterKey();" style="height:38px;">
+	      <input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1)">
+	      </div>
 	    </div>
-	    </td>
-       	  </tr>
-	    </table>
       </div>
       </div>
       
@@ -142,6 +132,8 @@
 			</c:otherwise>
       	</c:choose>
       </table>
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="crawcomli">      
       <!-- 페이징 -->
 	<%@include file="../inc/_page.jspf" %>
 	<!-- 페이징 종료 -->

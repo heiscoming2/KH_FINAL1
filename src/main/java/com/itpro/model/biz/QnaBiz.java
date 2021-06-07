@@ -17,7 +17,7 @@ public interface QnaBiz {
 	public int qnaInsert(QnaInsertDto qnaDto);
 	public int delete(int bd_no);
 	public int update(QnaUpdateDto qnaUpdateDto, BoardUpdateDto boardUpdateDto);
-	public int getQnaListCnt();
+	public int getQnaListCnt(Map<String, Object> qnaPageMap);
 	/*
 	 * public int getQnaListSearchCnt(QnaSearchDto qnaSearchDto); public
 	 * List<QnaListDto> selectSearchList(Map<String, Object> qnaSearchMap);

@@ -44,25 +44,12 @@
 	font-size:14px;
 }
 
-
-.filter_innerwrap {
-	display:none;
-}
-
-
 .cc_search {
 	width:200px;
 	display:inline-block;
 	padding-bottom:11px;
 }
 
-.filter_innerwrap tr {
-	margin-bottom:5px !important;
-}
-
-.filter_innerwrap td {
-	margin-bottom:5px;
-}
 
 .filter_table {
 	border-spacing:10px 20px;

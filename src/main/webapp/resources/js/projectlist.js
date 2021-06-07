@@ -1,31 +1,22 @@
-
 function selectPage(i) {
-	location.href='projectlist.do?page='+i
+	
+	let $searchbar = $('.search-bar').val();
+	if( ($searchbar==null||$searchbar=="")
+	   ) {
+		location.href='projectlist.do?page='+i;
+	} else {
+		if($searchbar.length==1) {
+			alert('검색어는 두 글자 이상 입력해야 합니다.');
+			return false;
+		}
+		location.href='projectlist.do?page='+i+'&key='+$searchbar;
+	}
 }
 
-
-
-$(function(){
-	if(document.getElementById("h_a1")) {
-
-		//최신순
-		let h_a1 = $('#h_a1').val();
-		
-		$('.howAsc').val($('#h_a1').val());
-		
-		let howAscidx = $('.howAsc option').index($('.howAsc option:selected'));
-		
-		//추천순
-		if(h_a2=='') {
-			$('.gugunselect option:eq(0)').prop("selected",true);
-		} else {
-			$('.gugunselect').val(h_a2);
-		}
-		
-		
-		
-		//필터를 일단 펼쳐준다.
-		loc_filter();
-		
+function enterKey() {
+	//키가 입력될때마다 함수 실행됨,
+	//keyCode==13 (엔터키) 인경우 selectPage 실행되도록 처리
+	if(window.event.keyCode==13) {
+		selectPage(1);
 	}
-});
+}

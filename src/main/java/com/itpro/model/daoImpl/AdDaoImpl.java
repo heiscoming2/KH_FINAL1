@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.itpro.model.dao.AdDao;
 import com.itpro.model.dto.ad.AdDto;
+import com.itpro.model.dto.board.BoardInsertDto;
+import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.qna.QnaDetailDto;
 import com.itpro.model.dto.qna.QnaInsertDto;
 import com.itpro.model.dto.qna.QnaUpdateDto;
@@ -21,37 +23,34 @@ import com.itpro.model.dto.qna.QnaUpdateDto;
 @Repository
 public class AdDaoImpl implements AdDao {
 
-	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	
+
 	private Logger logger = LoggerFactory.getLogger(AdDaoImpl.class);
-	
 
 	@Override
 	public List<AdDto> selectList(Map<String, Object> adPageMap) {
 		List<AdDto> adList = null;
-		
+
 		try {
-			adList = sqlSession.selectList(NAMESPACE+"selectList", adPageMap);
-			
+			adList = sqlSession.selectList(NAMESPACE + "selectList", adPageMap);
+
 			System.out.println("adlist size: " + adList.size());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("[error]: select list");
 		}
 		System.out.println(adList.toString());
 		return adList;
-		
+
 	}
 
 	@Override
 	public AdDto selectOne(int bd_no) {
 		AdDto dto = null;
 		try {
-			dto = sqlSession.selectOne(NAMESPACE+"selectone", bd_no);
+			dto = sqlSession.selectOne(NAMESPACE + "selectone", bd_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,21 +58,32 @@ public class AdDaoImpl implements AdDao {
 	}
 
 	@Override
-	public int insert(AdDto dto) {
-		int res = 0;
+	public List<AdDto> adinsert(List<AdDto> adDto, BoardInsertDto boardInsertDto) {
+
 		try {
-		 res = sqlSession.insert(NAMESPACE+"insert", dto);
+			int bd_no = sqlSession.insert(NAMESPACE + "boardInsert", boardInsertDto);
+
+			System.out.println("bd_no: " + bd_no);
+			System.out.println("bd_no: " + boardInsertDto.getBd_no());
+
+			for (AdDto dto : adDto) {
+				
+				bd_no = boardInsertDto.getBd_no();
+
+				System.out.println("insert:" + sqlSession.insert(NAMESPACE + "insert", dto));
+				System.out.println("dto.ad_no : " + dto.ad_no);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return res;
+		return adDto;
 	}
 
 	@Override
-	public int delete(int bd_no) {
+	public int addelete(int bd_no) {
 		int adDeleteRes = 0;
 		try {
-			adDeleteRes = sqlSession.delete(NAMESPACE+"delete",bd_no);
+			adDeleteRes = sqlSession.delete(NAMESPACE + "delete", bd_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,11 +94,11 @@ public class AdDaoImpl implements AdDao {
 	public int update(AdDto dto) {
 		int adUpdateRes = 0;
 		try {
-			adUpdateRes = sqlSession.update(NAMESPACE+"update", dto);
+			adUpdateRes = sqlSession.update(NAMESPACE + "update", dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return adUpdateRes;
 	}
 
@@ -96,34 +106,29 @@ public class AdDaoImpl implements AdDao {
 	public int getAdListCnt() {
 		int adListCnt = 0;
 		try {
-			adListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+			adListCnt = Integer.parseInt(
+					sqlSession.selectList(NAMESPACE + "selectlistcnt").toString().replace("[", "").replace("]", ""));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return adListCnt;
 	}
 
-	
-	
-	public int imageuploadupdate(int ad_seq, String ad_file) {
+	public int adimageuploadupdate(int ad_no, String ad_file) {
 		int result = 0;
-		System.out.println("ad_seq:" + ad_seq);
-		System.out.println("pro_file" + ad_file);
-		Map<String, Object> projectMap = new HashMap<String, Object>();
-		projectMap.put("ad_seq", ad_seq);
-		projectMap.put("pro_file", ad_file);
-		System.out.println("projectMap parameter: " + new Gson().toJson(projectMap));
+		System.out.println("ad_no:" + ad_no);
+		System.out.println("ad_file" + ad_file);
+		Map<String, Object> adMap = new HashMap<String, Object>();
+		adMap.put("ad_no", ad_no);
+		adMap.put("ad_file", ad_file);
+		System.out.println("adMap parameter: " + new Gson().toJson(adMap));
 		try {
-		result = sqlSession.update(NAMESPACE + "imageupload", projectMap);
+			result = sqlSession.update(NAMESPACE + "imageupload", adMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result; 
+
+		return result;
 	}
-
-	
-
-
 
 }

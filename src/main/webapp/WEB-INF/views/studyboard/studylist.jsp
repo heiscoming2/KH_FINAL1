@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/studylist.css?ver=1.3">
+<link rel="stylesheet" href="resources/css/studylist.css?ver=1.6">
 <title>IT PRO 스터디 글 목록</title>
 </head>
 <body>
@@ -17,15 +17,17 @@
 	<div class="study_wrap mt-5">
 		<h3>스터디 모집</h3>
 		<div class="study_btnwrap mb-4">
-			<input type="button" class="btn btn-primary" value="필터/검색" onclick="loc_filter();"> 
 			<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='studylist.do';"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='studyinsertform.do'">
 		</div>
-		<div class="loc_toggle" style="clear: both; display: none;">
-			 <div>
-			 <span>지역선택</span>
-			 <span class="gugunselect_wrap mb-2">
-                <select class="sidoselect form-control" style="margin-right:10px;" name="st_addr1" onchange="change(this.selectedIndex);">
+		
+		
+      <div class="filter_innerwrap mt-3">
+       <div style="display:flex;" class="filter_table">
+       	<div>
+       		<span>지역선택</span>
+       		<div style="display:flex; justify-content:space-between">
+                <select class="sidoselect form-control" name="st_addr1" onchange="change(this.selectedIndex);">
                        <option value=''>전체</option>
                        <option value='서울'>서울</option>
                        <option value='경기'>경기</option>
@@ -44,32 +46,41 @@
                        <option value='경남'>경남</option>
                        <option value='제주'>제주</option>
                     </select>                                                  
-	  	          <select class="form-control gugunselect" id="gugunselect" name="st_addr2">
+		          &nbsp;&nbsp;
+	  	          <select class="form-control gugunselect" name="gugunselect" id="gugunselect">
 	  	          	   <option value=''>전체</option>
 	  	          </select>
-			</span>
-			</div>
-			<div>
+       		</div>
+       	</div>
+       	<div style="margin-left:30px;">
 			<span>모집여부</span>
-			<span class="status_wrap">
-				<select class="form-control mb-2 status">
+       		<div>
+				<select class="form-control mb-2 status" style="width:200px;">
 					<option value=''>전체</option>
 					<option value='Y'>모집중</option>
 					<option value='N'>모집완료</option>
 				</select>
-			</span>
-			</div>
-			<div style="position:relative; bottom:1px;">
-			<span>검색</span>
-			<div class="mb-4">
-				<input name="searchbox" type="text" placeholder="검색" value=""
+       		</div>
+       	</div>
+        <!-- 검색창 -->
+	    <div style="margin-left:385px;">
+	      <div>
+	      <span>검색어</span>
+	      <div>
+				<input name="searchbox" type="text" placeholder="제목 or 내용" value=""
 					class="form-control search-bar" onkeyup="enterKey();"
 					style="width: 200px; display: inline-block;">
 				<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
-			</div>		
-			</div>
-		</div>
-		<table class="table study_table">
+	      </div>
+	    </div>
+	    </div>
+      </div>
+      </div>
+
+		<!-- 여기까지 날리면됨 -->
+		
+		
+		<table class="table study_table mt-4">
 			<col width="80px;">
 			<col width="80px;">
 			<col width="150px;">
@@ -105,7 +116,7 @@
 									<td style="color:#0d6efd;"><b>모집중</b></td>
 									<td class="st_addr1_2">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
 									<td class="st_person">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-									<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:#212529;">${studyDto.bd_title } <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+									<td><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:#212529;">${studyDto.bd_title } <span class="replycount">${studyDto.bd_replycount }</span></a></td>
 									<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
 									<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
 									<td>
@@ -129,7 +140,7 @@
 									<td style="color:lightgray;">모집완료</td>	
 									<td class="st_addr1_2" style="color:lightgray;">${studyDto.st_addr1 } ${studyDto.st_addr2 }</td>
 									<td class="st_person" style="color:lightgray;">${studyDto.st_nowperson } / ${studyDto.st_closeperson }</td>
-									<td style="color:lightgray;"><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;"><span style="color:lightgray;">${studyDto.bd_title }</span> <span class="replycount">+${studyDto.bd_replycount }</span></a></td>
+									<td style="color:lightgray;"><a href="studydetail.do?bd_no=${studyDto.bd_no }" style="color:black;"><span style="color:lightgray;">${studyDto.bd_title }</span> <span class="replycount">${studyDto.bd_replycount }</span></a></td>
 									<td class="bd_recommandcount"><b>+${studyDto.bd_recommandcount }</b></td>
 									<td class="bd_viewcount">${studyDto.bd_viewcount }</td>
 									<td>
@@ -168,6 +179,8 @@
 </c:if>
 		
 <!-- 본문 종료 -->
+<!-- 하이라이트 효과를 주기 위해 사용 -->
+<input type="hidden" class="cateli" value="studyli">
 
 <!-- 페이징 시작 -->
 <%@include file="../inc/_page.jspf" %>

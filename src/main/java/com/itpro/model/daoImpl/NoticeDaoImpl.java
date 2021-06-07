@@ -78,14 +78,14 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public int getNoticeListCnt() {
-		int NoticeListCnt = 0;
+	public int getNoticeListCnt(Map<String, Object> noticePageMap) {
+		int noticeListCnt = 0;
 		try {
-			NoticeListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+			noticeListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt",noticePageMap).toString().replace("[","").replace("]", ""));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return NoticeListCnt;
+		return noticeListCnt;
 	}
 
 	@Override
@@ -108,6 +108,17 @@ public class NoticeDaoImpl implements NoticeDao {
 			e.printStackTrace();
 		}
 		return noticeList;
+	}
+
+	@Override
+	public int getNoticeListCnt() {
+		int noticeSearchListCnt = 0;
+		try {
+			noticeSearchListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"noticesearchlistcnt").toString().replace("[","").replace("]", ""));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		return noticeSearchListCnt;
 	}
 
 	

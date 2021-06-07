@@ -9,6 +9,7 @@
 <link href="resources/css/adinsert.css?ver=1.2" rel="stylesheet">
 <!-- 썸머노트 CSS -->
 <link href="resources/css/summernote/summernote-lite.css" rel="stylesheet">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <script type="text/javascript">
 	
@@ -64,6 +65,7 @@ function cal(){
 
 	<!-- 본문 시작 -->
 	<div class="ad_insertwrap">
+	
 		<form action="adinsert.do" method="post">
 			<input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
 			<input type="hidden" name="m_nickname" value="${dto.m_nickname}">
@@ -109,7 +111,7 @@ function cal(){
 				</tr>
 				<tr>
 					<th><span>* </span>광고 파일 업로드</th>
-					<td><form id="pro_file_form" enctype="multipart/form-data" method="post"><input type="file" value="첨부 파일" name="pro_file" id="pro_file"></form></td>
+					<td><form id="ad_file_form" enctype="multipart/form-data" method="post"><input type="file" value="첨부 파일" name="ad_file" id="ad_file"></form></td>
 				</tr>
 				<tr>
 					<th><span>* </span>이미지 링크주소</th>
@@ -148,14 +150,14 @@ function cal(){
 			<textarea id="summernote" name="bd_content"></textarea>
 			<br>
 		</form>
-
 			<!-- ad 작성 글 영역 종료-->
 
 			<!-- 취소 / 등록 컨펌 버튼 -->
 			<div style="height: 80px;">
-				<input type="submit" value="등록" class="btn btn-primary" style="float: right; margin-left: 10px;"> 
+				<input type="button" value="등록" class="btn btn-primary" onclick="ad_submit()" style="float: right; margin-left: 10px;"> 
 				<input type="button" value="취소" class="btn btn-primary" onclick="location.href='adlist.do'" style="float: right;">
 			</div>
+		
 
 	</div>
 	<!-- 본문 종료 -->

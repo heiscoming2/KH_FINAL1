@@ -97,7 +97,6 @@ public class StudyController {
 		    studyDto.getSt_addr1()==null||studyDto.getSt_addr1().equals("") ||
 		    studyDto.getSt_addr2()==null||studyDto.getSt_addr2().equals("")
 		) {
-		   log.info("여기로와야지...");
 		   PrintWriter out = response.getWriter();
 		   out.print("<script type='text/javascript'>");
 		   out.print("alert('필수 입력 항목을 작성해주세요.');");

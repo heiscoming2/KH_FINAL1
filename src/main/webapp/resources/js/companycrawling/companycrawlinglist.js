@@ -39,11 +39,6 @@ function enterKey() {
 }
 
 
-
-function filter_toggle() {
-	$(".filter_innerwrap").toggle();
-}
-
 function openDetailUrl(url) {
 	let _width = '1300';
 	let _height = '1000';

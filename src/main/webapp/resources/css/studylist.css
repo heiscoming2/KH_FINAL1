@@ -89,8 +89,13 @@
 }
 
 .replycount {
-	color:#137f13; 
-	font-size:14px;
+	margin-left:3px;
+	background-color:lightgray;
+	padding:3px;
+	color:#212529; 
+	font-weight:bold;
+	font-size:11px;
+	vertical-align:middle;
 }
 
 .st_person {
@@ -114,3 +119,4 @@
 	width:300px;
 }
 
+.sidoselect,.gugunselect{width:150px !important;}
