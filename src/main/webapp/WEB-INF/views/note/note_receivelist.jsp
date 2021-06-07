@@ -5,12 +5,6 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 9bb2c61a6af994259441d03670b101517393b661
 <title>받은쪽지</title>
 </head>
 <body>

@@ -5,27 +5,9 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<<<<<<< HEAD
 
-<style>
 
-textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
-    border-color: skyblue;
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
-    outline: 0 none;
-}
-
-input[type]:hover {
-    border-color: skyblue;
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px skyblue;
-    outline: 0 none;
-}
-
-</style>
-
-=======
 <link href="resources/css/login.css" rel="stylesheet">
->>>>>>> 9bb2c61a6af994259441d03670b101517393b661
 <title>로그인</title>
 </head>
 <body>
