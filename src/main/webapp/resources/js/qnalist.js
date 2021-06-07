@@ -1,5 +1,3 @@
-
-
 function selectPage(i) {
 	
 	let $searchbar = $('.search-bar').val();
@@ -11,6 +9,14 @@ function selectPage(i) {
 			alert('검색어는 두 글자 이상 입력해야 합니다.');
 			return false;
 		}
-		location.href='qnasearch.do?page='+i+'&key='+$searchbar;
+		location.href='qnalist.do?page='+i+'&key='+$searchbar;
+	}
+}
+
+function enterKey() {
+	//키가 입력될때마다 함수 실행됨,
+	//keyCode==13 (엔터키) 인경우 selectPage 실행되도록 처리
+	if(window.event.keyCode==13) {
+		selectPage(1);
 	}
 }

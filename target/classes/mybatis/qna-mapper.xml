@@ -29,6 +29,9 @@
                      (SELECT BD_NO,COUNT(BD_NO) REPLYCOUNT FROM REPLY GROUP BY BD_NO) RE,
                      (SELECT BD_NO,COUNT(BD_NO) RECOMMANDCOUNT FROM BOARDRECOMMAND GROUP BY BD_NO) BR
 		       WHERE B.BC_CODE=2
+		       <if test= '!key.equals("")'>
+		       AND (B.BD_TITLE LIKE '%${key}%' OR B.BD_CONTENT LIKE '%${key}%') 		
+		       </if>
 		       AND B.M_NO = M.M_NO
                AND RE.BD_NO(+) = B.BD_NO
                AND BR.BD_NO(+) = B.BD_NO
@@ -45,10 +48,13 @@
 		  AND B.BD_NO = #{bd_no}
 	</select>
 	
-	<select id="selectlistcnt" resultType="int">
+	<select id="selectlistcnt" parameterType="hashMap" resultType="int">
 		SELECT COUNT(BD_NO)
 		FROM BOARD
 		WHERE BC_CODE=2
+		<if test= '!key.equals("")'>
+		  AND (BD_TITLE LIKE '%${key}%' OR BD_CONTENT LIKE '%${key}%') 		
+		</if>
 	</select>
 	
 	<delete id="delete" parameterType="int">

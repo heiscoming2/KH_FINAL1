@@ -19,9 +19,13 @@
   		<br> <br>
         <h3>Q&A 게시판</h3>
         <div class="qna_btnwrap mb-4">
+        	<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='qnalist.do';"> 
 			<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='qnainsertform.do'">
 		</div>
-		
+		<div style="float:right">
+			<input name="searchbox" type="text" placeholder="제목 or 내용" value="${key }" class="form-control search-bar" onkeyup="enterKey();" style="width: 200px; display: inline-block;">
+			<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
+		</div>		
 		<!-- <div style="float:right;">
 			<div class="mb-4">
 				<input name="searchbox" type="text" placeholder="검색" value=""
@@ -50,7 +54,7 @@
             <tr>
                 <c:choose>
 					<c:when test="${empty qnaList }">
-						<td colspan="4" align="center">
+						<td colspan="5" align="center">
 							조회할 게시물이 존재하지 않습니다.
 						</td>
 					</c:when>
@@ -104,6 +108,6 @@
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
 
-<!-- <script type=text/javascript src="resources/js/qnalist.js?ver=1.1"></script> -->
+<script type=text/javascript src="resources/js/qnalist.js?ver=1.3"></script>
 </body>
 </html>

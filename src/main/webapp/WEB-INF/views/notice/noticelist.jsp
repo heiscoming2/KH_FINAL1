@@ -20,16 +20,15 @@
 
 
 			<div style="position: relative; bottom: 1px;">
-				<div class="mb-4">
-					<form name="form3" method="post" action="noticelist.do">
-						<input name="keyword" value="${map.keyword}" class="form-control" style="width:300px; display:inline-block;"> 
-						<input type="submit" value="검색" class="btn btn-primary">
-						<c:if test="${sessionScope.login.m_auth eq 'Y' }">
-							<input type="button" class="btn btn-success" value="글쓰기"
-								onclick="location.href='noticeinsertform.do'" style="float:right;">
-						</c:if>
-					</form>
+				<input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='noticelist.do';"> 
+			<c:if test="${sessionScope.login.m_auth eq 'Y' }">
+				<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='noticeinsertform.do'">
+			</c:if>
+				<div class="mb-4" style="float:right;">
+						<input name="keyword" value="${key }" class="form-control search-bar" style="width:200px; display:inline-block;" placeholder="제목 or 내용"> 
+						<input type="button" class="btn btn-primary" value="검색" onclick="selectPage(1);">
 				</div>
+				
 			</div>
 
 		<table class="table notice_table">
@@ -92,15 +91,6 @@
 		</table>
 	</div>	
 
-	
-	<!-- 검색 결과를 히든 태그에 담아둔다. (없으면 null값이 담길것임) 이거를 js에서 받아서 -->
-	<!-- null이 아닌 경우(검색 결과가 있는 경우) 해당하는 내용들을 보여지게끔 처리 -->
-	<c:if test="${noticeSearchDto ne null }">
-		<input type="hidden" id="h_a1" value="${noticeSearchDto.a1 }">
-		<input type="hidden" id="h_a2" value="${noticeSearchDto.a2 }">
-		<input type="hidden" id="h_stat" value="${noticeSearchDto.stat }">
-		<input type="hidden" id="h_key" value="${noticeSearchDto.key }">
-	</c:if>
 	<!-- 본문 종료 -->
 	<!-- 하이라이트 효과를 주기 위해 사용 -->
 	<input type="hidden" class="cateli" value="noticeli">
@@ -114,7 +104,7 @@
 
 	<!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 	<%@include file="../inc/_foot.jspf"%>
-	<script type=text/javascript src="resources/js/noticelist.js?ver=1.2"></script>
+	<script type=text/javascript src="resources/js/noticelist.js?ver=1.3"></script>
 
 </body>
 </html>

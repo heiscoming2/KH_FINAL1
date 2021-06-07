@@ -76,9 +76,8 @@ public class NoticeBizImpl implements NoticeBiz {
 	
 
 	@Override
-	public int getNoticeListCnt() {
-		// TODO Auto-generated method stub
-		return noticeDao.getNoticeListCnt();
+	public int getNoticeListCnt(Map<String, Object> noticePageMap) {
+		return noticeDao.getNoticeListCnt(noticePageMap);
 	}
 
 	@Override
@@ -89,6 +88,11 @@ public class NoticeBizImpl implements NoticeBiz {
 	@Override
 	public List<NoticeDto> selectSearchList(Map<String, Object> noticeSearchMap) {
 		return noticeDao.selectSearchList(noticeSearchMap);
+	}
+
+	@Override
+	public int getNoticeListCnt() {
+		return noticeDao.getNoticeListCnt();
 	}
 
 }

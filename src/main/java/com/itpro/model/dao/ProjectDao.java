@@ -20,7 +20,7 @@ public interface ProjectDao {
 	public List<ProjectInsertDto> projectInsert(List<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
-	public int getProjectListCnt();
+	public int getProjectListCnt(Map<String, Object> projectPageMap);
 	public int imageuploadupdate(int pro_no, String pro_file);
 	public int insert(ProjectInsertDto projectInsertDto);
 

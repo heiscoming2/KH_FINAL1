@@ -49,3 +49,8 @@ a:visited {
 .nav-ul > li {
 	margin-right:15px !important;
 }
+
+.nav-link-a {
+	display: block;
+    padding: .5rem 1rem;	
+}
