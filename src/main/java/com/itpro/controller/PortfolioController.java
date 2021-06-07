@@ -59,22 +59,21 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 	
 	
 	@RequestMapping(value="/portfoliolist.do")
-	public String portfolioList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
+	public String portfolioList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, 
+			@RequestParam(value="key", required=false, defaultValue="") String key, HttpSession session) {
 		logger.info("Portfolio LIST");
-		if(session.getAttribute("login")!=null) {
-			MemberDto login = (MemberDto) session.getAttribute("login");
-		}
 		
+		Map<String,Object> portfolioPageMap = new HashMap<String,Object>();
+		portfolioPageMap.put("key",key);
 		
 		//페이징을 위해 총 게시물수 count
-		int portfolioListCnt = portfolioBiz.getPortfolioListCnt();
+		int portfolioListCnt = portfolioBiz.getPortfolioListCnt(portfolioPageMap);
 		System.out.println("portfolioListCnt : "+ portfolioListCnt);
 		
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(portfolioListCnt,page);
 			
 		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
-		Map<String,Object> portfolioPageMap = new HashMap<String,Object>();
 		portfolioPageMap.put("start", pageProcessing.getStartIndex());
 		portfolioPageMap.put("end", pageProcessing.getEndIndex());
 		System.out.println(pageProcessing.getStartIndex());
@@ -86,6 +85,8 @@ private static final Logger logger = LoggerFactory.getLogger(PortfolioController
 			
 		//portfolio 글 목록을 받아 model에 담아준다.
 		model.addAttribute("portfolioList", portfolioList);
+		
+		model.addAttribute("key",key);
 		
 		return "portfolio/portfoliolist";
 	}

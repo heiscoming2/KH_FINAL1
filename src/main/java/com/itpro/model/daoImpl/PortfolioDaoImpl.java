@@ -98,10 +98,10 @@ public class PortfolioDaoImpl implements PortfolioDao {
 	}
 
 	@Override
-	public int getPortfolioListCnt() {
+	public int getPortfolioListCnt(Map<String, Object> portfolioPageMap) {
 		int portfolioListCnt = 0;
 		try {
-			portfolioListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt").toString().replace("[","").replace("]", ""));
+			portfolioListCnt = Integer.parseInt(sqlSession.selectList(NAMESPACE+"selectlistcnt",portfolioPageMap).toString().replace("[","").replace("]", ""));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -22,7 +22,7 @@ public interface ProjectBiz {
 	public List<ProjectInsertDto>  projectInsert(ArrayList<ProjectInsertDto> projectDto, BoardInsertDto boardInsertDto);
 	public int update(ProjectUpdateDto projectDto);
 	public int delete(int bd_no);
-	public int getProjectListCnt();
+	public int getProjectListCnt(Map<String, Object> projectPageMap);
 	public int update(ProjectUpdateDto projectUpdateDto, BoardUpdateDto boardUpdateDto);
 //	public List<ProjectListDto> selectCategoryList(Map<String, Object> projcetCategoryMap);
 	public int imageuploadupdate(MultipartFile fileName, int parseInt);

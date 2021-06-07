@@ -76,8 +76,8 @@ public class QnaBizImpl implements QnaBiz {
 	}
 
 	@Override
-	public int getQnaListCnt() {
-		return qnaDao.getQnaListCnt();
+	public int getQnaListCnt(Map<String,Object> qnaPageMap) {
+		return qnaDao.getQnaListCnt(qnaPageMap);
 	}
 
 	/*

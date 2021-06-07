@@ -64,16 +64,17 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 			if(session.getAttribute("login")!=null) {
 				MemberDto login = (MemberDto) session.getAttribute("login");
 			}
+			Map<String,Object> qnaPageMap = new HashMap<String,Object>();
+			qnaPageMap.put("key",key);
 			
 			//페이징을 위해 총 게시물수 count
-			int qnaListCnt = qnaBiz.getQnaListCnt();
+			int qnaListCnt = qnaBiz.getQnaListCnt(qnaPageMap);
 			System.out.println("qnaListCnt : "+ qnaListCnt);
 			
 			//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 			PageProcessing pageProcessing = new PageProcessing(qnaListCnt,page);
 				
 			//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
-			Map<String,Object> qnaPageMap = new HashMap<String,Object>();
 			qnaPageMap.put("start", pageProcessing.getStartIndex());
 			qnaPageMap.put("end", pageProcessing.getEndIndex());
 			System.out.println(pageProcessing.getStartIndex());
@@ -85,6 +86,10 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 				
 			//qna 글 목록을 받아 model에 담아준다.
 			model.addAttribute("qnaList", qnaList);
+			
+			
+			//검색값
+			model.addAttribute("key",key);
 			
 			return "qna/qnalist";
 		}

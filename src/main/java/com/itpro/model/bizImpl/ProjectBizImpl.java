@@ -80,9 +80,8 @@ public class ProjectBizImpl implements ProjectBiz{
 	}
 
 	@Override
-	public int getProjectListCnt() {
-		// TODO Auto-generated method stub
-		return projectDao.getProjectListCnt();
+	public int getProjectListCnt(Map<String, Object> projectPageMap) {
+		return projectDao.getProjectListCnt(projectPageMap);
 	}
 
 
