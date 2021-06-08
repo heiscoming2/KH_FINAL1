@@ -133,8 +133,8 @@ function cal(){
 							<td><select class="form-control" name="ad_status"
 								onFocus='this.initialSelect = this.selectedIndex;'
 								onChange='this.selectedIndex = this.initialSelect;'>
-									<option value="1/5" selected>결제대기</option>
-								<%-- 	<option value="2/5">결제진행</option>
+									<option value="1/5" > 결제대기</option>
+								 	<%-- <option value="2/5">결제진행</option>
 									<option value="3/5">결제완료</option>
 									<option value="4/5">광고게시중</option>
 									<option value="5/5">광고종료</option>--%>
@@ -142,12 +142,12 @@ function cal(){
 						</c:when>
 						<c:otherwise>
 							<th><span>* </span>진행상태</th>
-							<td><select class="form-control" name="ad_status">
-									<option value="1/5" selected>결제대기</option>
-									<option value="2/5">결제진행</option>
-									<option value="3/5">결제완료</option>
-									<option value="4/5">광고게시중</option>
-									<option value="5/5">광고종료</option>
+							<td><select class="form-control paystatus" name="ad_status">
+									<option value="1/5" <c:if test="${dto.ad_status}">selected</c:if>>결제대기</option>
+									<option value="2/5" <c:if test="${dto.ad_status}">selected</c:if>>결제진행</option>
+									<option value="3/5" <c:if test="${dto.ad_status}">selected</c:if>>결제완료</option>
+									<option value="4/5" <c:if test="${dto.ad_status}">selected</c:if>>광고게시중</option>
+									<option value="5/5" <c:if test="${dto.ad_status}">selected</c:if>>광고종료</option>
 							</select></td>
 						</c:otherwise>
 

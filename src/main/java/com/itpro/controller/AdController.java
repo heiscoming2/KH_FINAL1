@@ -193,9 +193,12 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 		//selectOne 해서 model에 담아준다.
 		AdDto dto = adBiz.selectOne(bd_no);
 		model.addAttribute("dto",dto);
+		
+		
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
+		
 		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);

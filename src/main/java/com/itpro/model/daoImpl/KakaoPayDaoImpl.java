@@ -66,6 +66,19 @@ public class KakaoPayDaoImpl implements KakaoPayDao {
 		return kakaoDeleteRes;
 	}
 
+
+
+	@Override
+	public int adStatusChange(int bd_no) {
+		int res = 0;
+		try {
+			res = sqlSession.update(NAMESPACE+"adStatusChange",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 	
 
 	
