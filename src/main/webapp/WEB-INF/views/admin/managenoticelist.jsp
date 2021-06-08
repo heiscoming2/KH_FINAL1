@@ -52,19 +52,7 @@
 	<br><br>
 	<h3 style="text-align:left;">공지사항</h3>
 	<div class="content">
-		<div class="notice_wrap mt-5">
-			<div>
-					<input name="searchbox" type="text" placeholder="검색" value=""
-						class="form-control search-bar" onkeyup="enterKey();"
-						style="width: 200px; display: inline-block;"> <input
-						type="button"  value="검색" class="btn btn-primary"
-						onclick="selectPage(1);">
-			</div>
-			<div style="position: relative; bottom: 1px;">
-				<div class="mb-4">
-				</div>
-			</div>
-			</div>
+		
 
 		<form action="" method="post">
 		<table class="table table-bordered" style="width:1190px;">
@@ -134,7 +122,7 @@
 
 	<!-- 페이징 시작 -->
 	
-	<%@include file="../inc/_page.jspf"%>
+	
 	<!-- 페이징 종료 -->
 </div>	
 	<!-- FOOTER 시작 -->

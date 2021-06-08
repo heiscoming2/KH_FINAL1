@@ -81,18 +81,21 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/managenoticelist.do")
-	public String managenoticeList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page) {
+	public String managenoticeList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page,
+			@RequestParam(value="key", required=false, defaultValue="") String key ) {
 		logger.info("NOTICE LIST");
 		
-		//페이징을 위해 총 게시물수 count
-		int noticeListCnt = noticeBiz.getNoticeListCnt();
+		Map<String,Object> noticePageMap = new HashMap<String,Object>();
+		noticePageMap.put("key", key);
 		
+		//페이징을 위해 총 게시물수 count
+		int noticeListCnt = noticeBiz.getNoticeListCnt(noticePageMap);
+		System.out.println(noticeListCnt);
 		//게시물수와 선택페이지에 해당하는 페이지 정보값을 dto로 담아둔다.
 		PageProcessing pageProcessing = new PageProcessing(noticeListCnt,page);
 		
 		//리스트를 select 해오는데, startindex와 endindex를 매개변수로 주어 받아온다.
 		//(이 부분은 나중에 PageProcessing 클래스에서 map을 바로 리턴받는 형태로 변경하는게 나을듯)
-		Map<String,Object> noticePageMap = new HashMap<String,Object>();
 		noticePageMap.put("start", pageProcessing.getStartIndex());
 		noticePageMap.put("end", pageProcessing.getEndIndex());
 		List<NoticeDto> noticeList = noticeBiz.selectList(noticePageMap);
@@ -101,6 +104,9 @@ public class NoticeController {
 		model.addAttribute("pageProcessing",pageProcessing);
 		//스터디 글 목록을 받아 model에 담아준다.
 		model.addAttribute("noticeList",noticeList);
+		
+		model.addAttribute("key",key);
+		
 		return "admin/managenoticelist";
 	}
 	
