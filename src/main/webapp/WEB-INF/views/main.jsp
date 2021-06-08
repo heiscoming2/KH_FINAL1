@@ -59,7 +59,7 @@
 					<div onclick="location.href='portfoliodetail.do?bd_no=${mainPagePortfolioList.bd_no}&m_no=${mainPagePortfolioList.m_no}'">
 						<div class="testimonial-box" >
 							<div class="d-flex justify-content-center align-items-center mb-2" >
-								<img src="testimages/testprofile.jpg" alt="" class="user-img mr-2">
+								<img src="${mainPagePortfolioList.m_img_path}${mainPagePortfolioList.m_img}" alt="" class="user-img mr-2">
 								<div>
 									<h6 class="mb-0"><b>&nbsp;&nbsp;&nbsp;${mainPagePortfolioList.m_nickname }</b>
 									</h6>
@@ -256,6 +256,8 @@
         </div>
       </div>
     </div>
+  
+    
 <!--게시판 종료-->
 </div>
 	<!-- FOOTER 시작 -->
@@ -264,6 +266,6 @@
 	
 	<%@include file="./inc/_foot.jspf" %>
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
-	
+
 </body>
 </html>

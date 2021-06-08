@@ -16,7 +16,6 @@ $(document).ready(function(){
   /*모집여부 confirm*/
   function statusChangeConfirm(no) {
 	  let delconfirm = confirm('모집 상태를 전환하시겠습니까?');
-	  console.log(no);
 	  if(delconfirm) {
 		  let bd_no={"bd_no":no};
 		  $.ajax({
@@ -255,7 +254,6 @@ $(document).ready(function(){
 				  alert('추방 하였습니다');
 				  $('.studyjoinnedlist > .profile_wrap'+m_no).remove();
 				  $('.joinnednum').text( Number($('.joinnednum').text())-1 );
-				  alert($('.st_nowperson').text());
 				  $('.st_nowperson').text( Number($('.st_nowperson').text())-1 );
 			  } else {
 				  alert('알 수 없는 오류로 추방에 실패하였습니다. 관리자에게 문의하세요.');
@@ -281,6 +279,7 @@ $(document).ready(function(){
 				  alert('탈퇴 하였습니다');
 				  $('.studyjoinnedlist > .profile_wrap'+m_no).remove();
 				  $('.joinnednum').text( Number($('.joinnednum').text())-1 );
+				  $('.st_nowperson').text( Number($('.st_nowperson').text())-1 );
 			  } else {
 				  alert('알 수 없는 오류로 탈퇴에 실패하였습니다. 관리자에게 문의하세요.');
 			  }
@@ -330,7 +329,6 @@ $(document).ready(function(){
 				  $('.studyjoinapplylist > .profile_wrap'+m_no).remove();
 				  $('.applynum').text( Number($('.applynum').text())-1 );
 				  $('.joinnednum').text( Number($('.joinnednum').text())+1 );
-				  alert($('.st_nowperson').text());
 				  $('.st_nowperson').text( Number($('.st_nowperson').text())+1 );
 			  }
 		  },

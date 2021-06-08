@@ -222,5 +222,18 @@ public class StudyDaoImpl implements StudyDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public int studyJoinCheck(int bd_no) {
+		log.info("studyJoinCheck");
+		int res = 0;
+		try {
+			res = sqlSession.selectOne(NAMESPACE+"studyjoincheck",bd_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(res);
+		return res;
 	}	
 }

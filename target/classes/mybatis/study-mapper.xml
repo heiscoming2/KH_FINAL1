@@ -67,7 +67,7 @@
 		  AND B.M_NO = M.M_NO
 		  AND B.BD_NO = #{bd_no}
 	</select>
-	
+
 	<select id="selectlistcnt" resultType="int">
 		SELECT COUNT(BD_NO)
 		FROM BOARD
@@ -127,7 +127,7 @@
 	               AND BR.BD_NO(+) = B.BD_NO
 	               <if test= '!studySearchDto.a1.equals("")'>
 				   AND S.ST_ADDR1 LIKE '%${studySearchDto.a1}%'
-				   </if> 	
+				   </if>
 				   <if test= '!studySearchDto.a2.equals("")'>
 				   AND S.ST_ADDR2 LIKE '%${studySearchDto.a2}%'
 				   </if>
@@ -184,5 +184,9 @@
 	<update id="studydropnumupdate" parameterType="int">
 		UPDATE STUDY SET ST_NOWPERSON = ST_NOWPERSON-1 WHERE BD_NO=#{bd_no}
 	</update>	
+	
+	<select id="studyjoincheck" parameterType="int" resultType="int">
+		SELECT ST_NOWPERSON FROM STUDY WHERE BD_NO=#{bd_no}
+	</select>
 		
 </mapper>

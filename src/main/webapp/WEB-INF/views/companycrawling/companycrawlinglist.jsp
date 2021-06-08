@@ -22,8 +22,10 @@
       <div class="job_btn_wrap">
         <input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='companycrawlinglist.do'">
 	      <div class="admin_btn" style="float:right;">
+	      	<c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
 	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingwating.do'">
 	        <input type="button" class="btn btn-success" value="전체삭제" onclick="location.href='companycrawlingdelete.do'">
+	      	</c:if>
 	      </div>
       </div>
       

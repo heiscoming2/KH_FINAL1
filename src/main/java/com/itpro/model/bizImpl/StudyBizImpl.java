@@ -129,4 +129,9 @@ public class StudyBizImpl implements StudyBiz {
 		return studyDao.studyJoinnedNumUpdate(bd_no);
 	}
 
+	@Override
+	public int studyJoinCheck(int bd_no) {
+		return studyDao.studyJoinCheck(bd_no);
+	}
+
 }

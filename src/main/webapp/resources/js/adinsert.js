@@ -96,31 +96,8 @@ function imageupload(cnt){
     var ad_no = ads[cnt-1].ad_no;
     console.log(ad_no);  
 
-    
-    $.ajax({             
-    	type: "POST",
-        enctype: 'multipart/form-data',  
-        url: "admultipart.do?ad_no=" + ad_no,  
-        data: data,
-        processData: false,    
-        contentType: false,      
-        cache: false,           
-        timeout: 600000,       
-        success: function (data) { 
-        		alert("글 작성 완료");
-        	if(cnt<num){
-        	//cnt <= num이면 두 번 돈다 
-        		console.log(num+1+"번째");
-        		imageupload(++cnt);
-        	}   else{
-        	location.href = 'adlist.do';    
-        	}   
-        },          
-        error: function (e) {  
-        	console.log("ERROR : ", e);      
-            alert("fail");  
-        }     
-	});  
  
  }
- 
+
+
+
