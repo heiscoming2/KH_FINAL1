@@ -87,9 +87,6 @@ public class CompanyController {
 		log.info("companyresumelist.do");
 		List<CompanyResumeDto> CompanyResumeList = companyBiz.selectCompanyResumeList(m_no);
 		model.addAttribute("CompanyResumeList",CompanyResumeList);
-		for(CompanyResumeDto dto :CompanyResumeList ) {
-			log.info(dto.toString());
-		}
 		return "company/companyresumelist";
 	}
 	
@@ -99,10 +96,6 @@ public class CompanyController {
 			@RequestParam("bd_no") int bd_no, 
 			@RequestParam("ca_status") char ca_status,
 			Model model) throws IOException {
-		log.info("companyapplicationstatuschange.do");
-		log.info("r_no"+Integer.toString(r_no));
-		log.info("bd_no"+Integer.toString(bd_no));
-		log.info("ca_status"+ca_status);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("r_no", r_no);
 		map.put("bd_no", bd_no);
