@@ -5,34 +5,23 @@
   
 <mapper namespace="Ad">
 	
-	<insert id="insert" parameterType="AdDto">
+	
+	
+
+
+	<!--광고 기본정보 등록(이미지가 먼저 들어감) -->
+	<insert id="adinsert" parameterType="AdDto">
 		INSERT ALL
-		INTO BOARD 
-		VALUES (
-		BOARDSEQ.NEXTVAL,
-		#{bd_title},
-		#{bd_content},
-		SYSDATE,
-		NULL,
-		0,
-		#{bd_writerip},
-		6,
-		${m_no}) 
-		INTO AD_REQUEST 
-		VALUES (
-		AD_SEQ.NEXTVAL,
-		#{ad_comtype},
-		#{ad_comname},
-		#{ad_startdate},
-		#{ad_enddate},
-		#{ad_url},
-		#{ad_price},
-		#{ad_status},
-		#{m_no},
-		BOARDSEQ.CURRVAL
-		)
+		INTO AD_REQUEST
+		VALUES
+		(AD_SEQ.NEXTVAL, #{ad_comtype}, #{ad_comname}, #{ad_startdate}, #{ad_enddate},
+		#{ad_url}, #{ad_price}, #{ad_status}, #{ad_img}, #{ad_img_path}, #{m_no}, BOARDSEQ.NEXTVAL)
+		INTO BOARD VALUES
+		(BOARDSEQ.CURRVAL, #{bd_title}, #{bd_content}, SYSDATE, NULL,
+		0, #{bd_writerip}, 6, #{m_no})	
 		SELECT * FROM DUAL
 	</insert>
+
 	
 	<select id="selectList" parameterType="hashMap" resultType="AdDto">
         SELECT * FROM                 
@@ -47,7 +36,8 @@
 		       AND B.BD_NO = A.BD_NO(+)
                AND B.M_NO = M.M_NO
                AND B.BD_NO = RE.BD_NO(+) 
-               AND BR.BD_NO(+) = B.BD_NO)
+               AND BR.BD_NO(+) = B.BD_NO
+               ORDER BY B.BD_NO DESC)
         WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
@@ -55,10 +45,11 @@
 		SELECT M.M_IMG_PATH, M.M_IMG, M.M_NICKNAME, B.BD_CREATEDDATE, B.BD_MODIFYDATE, 
 		        B.BD_WRITERIP, B.BD_NO, B.BD_TITLE, B.BD_CONTENT, 
 		       (SELECT COUNT(BD_NO) FROM BOARDRECOMMAND R WHERE R.BD_NO=${bd_no}) BD_RECOMMANDCOUNT, 
-		       A.M_NO, A.AD_COMTYPE, A.AD_COMNAME, A.AD_STARTDATE, A.AD_ENDDATE, AD_PRICE, AD_URL 
+		       A.M_NO, A.AD_COMTYPE, A.AD_COMNAME, A.AD_STARTDATE, A.AD_ENDDATE, A.AD_PRICE, A.AD_URL,
+		       A.AD_IMG, A.AD_IMG_PATH, A.AD_STATUS
 		FROM BOARD B, IT_MEMBER M, AD_REQUEST A
 		WHERE B.M_NO = M.M_NO
-		  AND B.M_NO = A.M_NO
+		  AND B.BD_NO = A.BD_NO
 		  AND B.BD_NO = #{bd_no}
 	</select>
 	

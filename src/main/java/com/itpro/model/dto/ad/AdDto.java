@@ -17,8 +17,8 @@ public class AdDto {
 	public int ad_no;
 	private String ad_comtype;
 	private String ad_comname;
-	private Date ad_startdate;
-	private Date ad_enddate;
+	private java.sql.Date ad_startdate;
+	private java.sql.Date ad_enddate;
 	private String ad_url;
 	private String ad_price;
 	private String ad_status;
@@ -37,10 +37,14 @@ public class AdDto {
 	// 첨부 파일
 	private String ad_file_path;  // 파일 저장명
 
-	// 회원
-	private String m_img_path; // 프로필 이미지 경로
-	private String m_img; // 프로필 이미지
-	private String m_nickname; // 닉네임
+	//이미지 업로드
+	private String ad_img_no; // 광고 이미지 경로
+	private String ad_img; // 광고 이미지
+	private String ad_img_path; // 저장 경로
+	
+	//회원
 	private int m_no; // 회원 번호
-
+	private String m_nickname;//회원이름 별명
+	private String m_img_path;
+	private String m_img;
 }

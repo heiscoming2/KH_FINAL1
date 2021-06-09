@@ -21,6 +21,13 @@ function selectCate(category) {
 	location.href='postlookup.do?m_no='+m_no+'&category='+category;
 }
 
+//전체선택
+function allcheck(checked) {
+	var chk = document.getElementsByName("chk");
+	for(var i=0; i<chk.length; i++) {
+		chk[i].checked=checked;
+	}
+}
 
 //선택 게시글 삭제
 function muldel() {

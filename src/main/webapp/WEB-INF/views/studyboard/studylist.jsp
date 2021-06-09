@@ -5,7 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link rel="stylesheet" href="resources/css/studylist.css?ver=1.6">
+<link rel="stylesheet" href="resources/css/studylist.css?ver=1.3">
 <title>IT PRO 스터디 글 목록</title>
 </head>
 <body>
@@ -155,6 +155,7 @@
 												<!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 												<jsp:include page="../inc/userDropDownMenu.jsp">
 													<jsp:param name="m_no" value="${studyDto.m_no }"></jsp:param>
+													<jsp:param name="m_nickname" value="${studyDto.m_nickname }"></jsp:param>
 												</jsp:include>
 												<!-- 프로필 드롭다운 메뉴 종료 -->
 											</div> 

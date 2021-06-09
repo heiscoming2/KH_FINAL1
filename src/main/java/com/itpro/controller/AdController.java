@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
 import com.google.gson.Gson;
@@ -45,6 +47,7 @@ import com.itpro.model.dto.like.LikeDto;
 import com.itpro.model.dto.member.MemberDto;
 import com.itpro.model.dto.project.ProjectInsertDto;
 import com.itpro.model.dto.reply.ReplyListDto;
+import com.itpro.model.dto.resume.ResumeImgDto;
 import com.itpro.model.dto.upload.UploadFile;
 import com.itpro.util.ClientInfo;
 import com.itpro.util.PageProcessing;
@@ -74,9 +77,8 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	@RequestMapping(value="/adlist.do")
 		public String adList(Model model, @RequestParam(value="page", required=false, defaultValue="1") int page, HttpSession session) {
 			logger.info("AD LIST");
-			if(session.getAttribute("login")!=null) {
-				MemberDto login = (MemberDto) session.getAttribute("login");
-			}
+			
+		
 			
 			
 			//페이징을 위해 총 게시물수 count
@@ -105,37 +107,66 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 		
 	
 	@RequestMapping(value="/adinsertform.do")
-	public String adInsertForm() {
+	public String adInsertForm(HttpServletRequest request) {
 		logger.info("AD INSERT FORM");
 		return "ad/adinsertform";
 	}
 	
 	@PostMapping(value="/adinsert.do")
-	public @ResponseBody String adinsert(HttpServletRequest request, HttpServletResponse response
-		) {
+	public String adinsert(HttpServletRequest request, HttpServletResponse response, AdDto adDto
+		) throws Exception {
 		logger.info("AD INSERT");
 
-		String data = null;
-		try {
-			data = request.getReader().readLine();
-			logger.info("ad insert : "+data);
-		} catch (IOException e) {
-			e.printStackTrace();
+		adDto.setBd_writerip(new ClientInfo().getClientIp(request));
+		int res = adBiz.adinsert(adDto);
+		
+		if(res==0) {
+			
+			PrintWriter out = response.getWriter();
+			out.print("<script>");
+			out.print("alert('등록에 실패했습니다');");
+			out.print("location.href='adlist.do';");
+			out.print("</script>");
+			return null;
 		}
 		
-		ArrayList<AdDto> adDtoList = new Gson().fromJson(data, new TypeToken<List<AdDto>>(){}.getType());
-		ArrayList<BoardInsertDto> boardDtoList = new Gson().fromJson(data, new TypeToken<List<BoardInsertDto>>(){}.getType());
-
-		boardDtoList.get(0).bd_writerip = (new ClientInfo().getClientIp(request));
-		
-		logger.info("PROJECT INSERT : "+adDtoList.size());
-		logger.info("PROJECT INSERT : "+boardDtoList.size());
-		List<AdDto> resultDtos = adBiz.adinsert(adDtoList, boardDtoList.get(0));
-		return new Gson().toJson(resultDtos);
-		
-		
-
+		return "redirect:adlist.do";
 	}	
+	
+	@RequestMapping(value="/adfileupload.do")
+	@ResponseBody
+	public Map<String,String> adfileupload(HttpServletRequest request, MultipartHttpServletRequest mtf) throws IllegalStateException, IOException {
+		logger.info("adfileupload");
+		
+		// 넘어오는 파일 받음
+		MultipartFile file = mtf.getFile("ad_file");
+		// 파일 실제 이름
+		String originName = file.getOriginalFilename();
+		// 파일 확장자타입
+		String fileType = originName.substring(originName.lastIndexOf("."));
+		
+		// 저장될 파일명
+		String ad_file = UUID.randomUUID() + fileType;
+		// 파일 저장경로
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/images/ad/");
+		
+		File dir = new File(realPath);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		file.transferTo(new File(realPath, ad_file));
+		logger.info("==============================");
+		logger.info("경로:" + realPath + ad_file);
+		
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("ad_img", ad_file);
+		map.put("ad_img_path", "/resources/images/ad/");
+		
+		return map;
+		
+	}
 	
 	
 	@RequestMapping(value="/addetail.do")
@@ -162,9 +193,12 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 		//selectOne 해서 model에 담아준다.
 		AdDto dto = adBiz.selectOne(bd_no);
 		model.addAttribute("dto",dto);
+		
+		
 		//댓글 list받아와 model에 담아준다.
 		List<ReplyListDto> replyListDto = replyBiz.selectList(bd_no);
 		model.addAttribute("replyListDto",replyListDto);
+		
 		
 		//댓글 총 갯수를 받아와 model에 담아준다.
 		int replyCnt = replyBiz.replyCnt(bd_no);
@@ -244,17 +278,16 @@ private static final Logger logger = LoggerFactory.getLogger(AdController.class)
 	
 	@RequestMapping(value="/addownload.do")
 	@ResponseBody
-	public byte[] fileDown(HttpServletRequest request, HttpServletResponse response, String name) throws IOException {
+	public byte[] fileDown(HttpServletRequest request, HttpServletResponse response, @RequestParam("name") String name) throws IOException {
 		//return type이 byte 배열
 		//원래 String return은 views(.jsp) 이름이었음! 하지만 byte는 views return이 아님 -> 페이지 전환이 아닌 데이터 응답 처리임
 		//String name에 파일 이름이 담겨서 넘어오는 거
 		
-		
+		logger.info("name : "+name);
 		//파일 업로드하는 절대 경로 가지고 오기
-		String path = WebUtils.getRealPath(request.getSession().getServletContext(), "/storage");
-		
-		//file 객체 만들기
-		File file = new File(path + "/" + name);
+		String path = request.getSession().getServletContext().getRealPath(name);	//file 객체 만들기
+		logger.info("path : "+path);
+		File file = new File(path);
 		
 		//FileCopyUtils 
 		byte[] bytes = FileCopyUtils.copyToByteArray(file);

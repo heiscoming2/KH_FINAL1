@@ -5,7 +5,6 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<link href="resources/css/footerbottom.css" rel="stylesheet">
 <title>로그인</title>
 </head>
 <body>
@@ -16,12 +15,11 @@
 
 <!-- 본문 시작 -->
 
- <div class="container row justify-content-center mt-5 mb-5">
+ <div class="container row justify-content-center mt-5 mb-5" style="margin: 0 auto;">
         <div class="row justify-content-center align-items-center">
         	<!-- 프로필 이미지 -->
             <div class="float-left col-md-3 col-3">
-                <img src="${selectUser.m_img_path }${selectUser.m_img }" id="image_section"class="img-fluid rounded-circle" alt="프로필 이미지" width="150" height="150">
-                <p><h5>${selectUser.m_nickname }</h5></p>
+                <img src="${selectUser.m_img_path }${selectUser.m_img }" id="image_section" class="rounded-circle" alt="프로필 이미지" width="240" height="250">
             </div>
             
             <div class="col-md-4 mt-5">            	

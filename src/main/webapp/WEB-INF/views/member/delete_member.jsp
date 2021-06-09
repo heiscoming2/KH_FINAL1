@@ -5,7 +5,6 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
-<script type="text/javascript" src="./resources/js/login.js"></script> 
 
 <title>회원탈퇴</title>
 </head>
@@ -68,6 +67,7 @@
 
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
 <%@include file="../inc/_foot.jspf" %>
+<script type="text/javascript" src="./resources/js/login.js"></script> 
 	
 </body>
 </html>

@@ -45,7 +45,7 @@
 	<!-- 기업회원 -->
 	
 	<select id="selectList_com" resultType="ManageMemberDto_com" parameterType="HashMap">
-        SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, B.M_ADMIN_CERT
+        SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, B.M_ADMIN_CERT
         FROM IT_MEMBER A, BIZ_MEMBER B
         WHERE (A.M_NO = B.M_NO(+)) 
         AND (M_TYPE='기업회원')
@@ -62,7 +62,7 @@
 	</select>
 	
 	<select id="selectOne_com" resultType="ManageMemberDto_com" parameterType="int">
-		SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE, A.M_GENDER, A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, A.M_NAME, A.M_BIRTH, A.M_ADDR, B.M_REGNO, B.M_ADMIN_CERT
+		SELECT A.M_NO, A.M_NICKNAME, A.M_TYPE,  A.M_REGDATE, A.M_ACT, A.M_USED, A.M_AUTH, A.M_NAME,  B.M_REGNO, B.M_ADMIN_CERT
 		FROM IT_MEMBER A, BIZ_MEMBER B 
 		WHERE A.M_NO = B.M_NO(+)
 		AND A.M_NO=#{m_no}

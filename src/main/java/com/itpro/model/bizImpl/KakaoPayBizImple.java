@@ -35,5 +35,10 @@ public List<KakaoPayDto> selectList() {
 		return dao.delete(pay_seq);
 	}
 
+	@Override
+	public int adStatusChange(int bd_no) {
+		return dao.adStatusChange(bd_no);
+	}
+
 	
 }

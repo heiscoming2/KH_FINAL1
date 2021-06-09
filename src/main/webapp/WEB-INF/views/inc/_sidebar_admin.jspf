@@ -10,7 +10,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Tables - SB Admin</title>
-<link href="resources/css/sidebar_admin.css" rel="stylesheet" />
+<link href="resources/css/sidebar_admin.css?ver=1.3" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
@@ -107,7 +107,7 @@
 							
 							
 						<!-- 광고관리 부분 -->
-							<a class="nav-link collapsed" href="ad_list.do"
+						<%-- 	<a class="nav-link collapsed" href="ad_list.do"
 							data-toggle="collapse" data-target="#collapseAd"
 							aria-expanded="false" aria-controls="collapsePages">
 								<div class="sb-nav-link-icon">
@@ -146,7 +146,7 @@
 								<div class="sb-nav-link-icon">
 									<i class="fas fa-table"></i>
 								</div> 배너
-						</a>
+						</a>--%>
 					</div>
 				</div>
 

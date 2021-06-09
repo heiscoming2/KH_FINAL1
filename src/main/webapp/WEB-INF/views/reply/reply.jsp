@@ -71,6 +71,7 @@
 	                <!-- 프로필 드롭다운 메뉴(이력서 열람은 나중에 기업회원만 보이게 해야됨) -->
 					<jsp:include page="../inc/userDropDownMenu.jsp">
 						<jsp:param name="m_no" value="${replyListDto.m_no }"></jsp:param>
+						<jsp:param name="m_nickname" value="${replyListDto.m_nickname }"></jsp:param>
 					</jsp:include>
 	                <!-- 게시글 작성자의 회원번호와 댓글 작성자의 회원 번호가 일치하면 작성자를 표시해준다. -->
 	                <c:if test="${dto.m_no eq replyListDto.m_no }">

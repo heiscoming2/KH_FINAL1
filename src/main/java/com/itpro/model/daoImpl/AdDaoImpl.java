@@ -58,25 +58,18 @@ public class AdDaoImpl implements AdDao {
 	}
 
 	@Override
-	public List<AdDto> adinsert(List<AdDto> adDto, BoardInsertDto boardInsertDto) {
+	public int adinsert(AdDto adDto) {
 
+		int res=0;
 		try {
-			int bd_no = sqlSession.insert(NAMESPACE + "boardInsert", boardInsertDto);
-
-			System.out.println("bd_no: " + bd_no);
-			System.out.println("bd_no: " + boardInsertDto.getBd_no());
-
-			for (AdDto dto : adDto) {
-				
-				bd_no = boardInsertDto.getBd_no();
-
-				System.out.println("insert:" + sqlSession.insert(NAMESPACE + "insert", dto));
-				System.out.println("dto.ad_no : " + dto.ad_no);
-			}
+			res = sqlSession.insert(NAMESPACE + "adinsert", adDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return adDto;
+
+		logger.info("res: " + res);
+
+		return res;
 	}
 
 	@Override

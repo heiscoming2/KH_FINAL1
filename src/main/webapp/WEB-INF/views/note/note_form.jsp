@@ -35,7 +35,6 @@
 <!-- 본문 종료 -->
 
 
-
 <!-- foot : 공통적으로 사용될 js 파일이 담김 (jquery,부트스트랩 js) -->
   <%@include file="../inc/_foot.jspf" %>
 	<script src="resources/js/reportInsert.js" type="text/javascript"></script>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 	
-  <header class="p-3 bg-dark text-white">
+  <header class="p-3 text-white" style="background-color:#24292E">
     <div class="">
       <div class="d-flex flex-wrap align-items-center justify-content-lg-start" style="justify-content:space-between !important; align-items:center;">
       

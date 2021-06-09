@@ -79,6 +79,16 @@
 			<th>주소</th>
 			<td>${dto.m_addr }</td>
 		</tr>
+    	<tr>
+			<td colspan="2" align="right">
+				<input type="submit" value="완료" class="btn btn-primary">
+				<input type="button" value="취소" onclick="location.href='member_detail.do?m_no=${dto.m_no}'" class="btn btn-danger">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="쪽지보내기" onclick="" class="btn btn-primary"></td>
+		</tr>
+	</table>
       <%--  <tr>
 			<th>regno</th>
 			<td>${dto.m_regno }</td>
@@ -90,16 +100,6 @@
 				<option value="N">미인증</option>			
 			</select></td></td>
 		</tr> --%>
-    	<tr>
-			<td colspan="2" align="right">
-				<input type="submit" value="완료" class="btn btn-primary">
-				<input type="button" value="취소" onclick="location.href='member_detail.do?m_no=${dto.m_no}'" class="btn btn-danger">
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="button" value="쪽지보내기" onclick="" class="btn btn-primary"></td>
-		</tr>
-	</table>
 </form>
 	<!-- 쪽지보내기 -->
     
@@ -107,6 +107,19 @@
 
 	<!-- 본문 종료 -->
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<!-- FOOTER 시작 -->
 	<%@include file="../inc/_footer.jspf"%>
 	<!-- FOOTER 종료 -->

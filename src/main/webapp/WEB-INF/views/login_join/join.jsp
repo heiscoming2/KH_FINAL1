@@ -7,7 +7,6 @@
 
 <%@include file="../inc/_head.jspf" %>
 
-
 <title>회원가입</title>
 </head>
 <body>
@@ -17,7 +16,7 @@
 <!-- HEADER 종료 -->
 
 <!-- 본문 시작 -->
-  <div class="container mt-5 wrap" style="max-width: 1000px;">
+  <div class="container mt-5" style="max-width: 1000px;">
   		<p class="mb-5"><h2>회원가입</h2></p>
   		
   		<div class="mt-5">

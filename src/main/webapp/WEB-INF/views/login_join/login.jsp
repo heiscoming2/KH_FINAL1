@@ -5,6 +5,7 @@
 <head>
 <!-- head : 공통적으로 사용될 css 파일이 담김 (부트스트랩, common.css) -->
 <%@include file="../inc/_head.jspf" %>
+
 <link href="resources/css/login.css" rel="stylesheet">
 <title>로그인</title>
 </head>

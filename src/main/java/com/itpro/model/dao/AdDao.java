@@ -17,7 +17,7 @@ public interface AdDao {
 
 	public List<AdDto> selectList(Map<String,Object> adPageMap);
 	public AdDto selectOne(int bd_no);
-	public List<AdDto> adinsert(List<AdDto> adDto, BoardInsertDto boardInsertDto);
+	public int adinsert(AdDto adDto);
 	public int addelete(int bd_no);
 	public int update(AdDto dto);
 	public int getAdListCnt();

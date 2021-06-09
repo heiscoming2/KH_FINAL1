@@ -48,6 +48,7 @@ function cal(){
 	console.log(finalprice);
 	
 	$('.price').val(finalprice);
+	$('.ad_price').val(totalprice);
 };
 
 
@@ -71,12 +72,15 @@ function cal(){
 		<form action="adinsert.do" method="post">
 			<input type="hidden" name="m_no" value="${sessionScope.login.m_no}">
 			<input type="hidden" name="m_nickname" value="${dto.m_nickname}">
+			<input type="hidden" name="ad_img" id="ad_img">
+			<input type="hidden" name="ad_img_path" id="ad_img_path">
+			
 			<!--ad 작성 글 영역-->
 			<h3>광고문의 작성</h3>
 			<br>
 			<!-- 프로필이미지, 아이디, 작성일 div -->
 			<div>
-				<img src="https://github.com/mdo.png" alt="mdo" width="35"
+				<img src="${sessionScope.login.m_img_path }${sessionScope.login.m_img}" alt="mdo" width="35"
 					height="35" class="rounded-circle me-2" style="float: left;">
 				<div style="position: relative; top: 5px;">
 					<a class="d-flex align-items-center text-decoration-none"
@@ -88,6 +92,7 @@ function cal(){
 			<br> <br>
 		
 			<table class="table ad_inserttable">
+			
 				<tr>
 					<th><span>* </span>제목</th>
 					<td><input type=text class="form-control" name="bd_title"></td>
@@ -108,12 +113,13 @@ function cal(){
 				</tr>
 				<tr>
 					<th><span>* </span>가격</th>
-					<td><input type=text class="price" size=15 name="ad_price" placeholder="1일당 1만원" readonly="readonly">
+					<td><input type=text class="price" size=15 placeholder="1일당 1만원" readonly="readonly">
+					<input type="hidden" name="ad_price" class="ad_price">
 					<input type="button" value="가격책정" onclick="cal()"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>광고 파일 업로드</th>
-					<td><form id="ad_file_form" enctype="multipart/form-data" method="post"><input type="file" value="첨부 파일" name="ad_file" id="ad_file"></form></td>
+					<td><input type="file" value="첨부 파일" name="ad_file" id="ad_file" onchange="fileUpload();"></td>
 				</tr>
 				<tr>
 					<th><span>* </span>이미지 링크주소</th>
@@ -127,8 +133,8 @@ function cal(){
 							<td><select class="form-control" name="ad_status"
 								onFocus='this.initialSelect = this.selectedIndex;'
 								onChange='this.selectedIndex = this.initialSelect;'>
-									<option value="1/5" selected>결제대기</option>
-								<%-- 	<option value="2/5">결제진행</option>
+									<option value="1/5" > 결제대기</option>
+								 	<%-- <option value="2/5">결제진행</option>
 									<option value="3/5">결제완료</option>
 									<option value="4/5">광고게시중</option>
 									<option value="5/5">광고종료</option>--%>
@@ -136,12 +142,12 @@ function cal(){
 						</c:when>
 						<c:otherwise>
 							<th><span>* </span>진행상태</th>
-							<td><select class="form-control" name="ad_status">
-									<option value="1/5" selected>결제대기</option>
-									<option value="2/5">결제진행</option>
-									<option value="3/5">결제완료</option>
-									<option value="4/5">광고게시중</option>
-									<option value="5/5">광고종료</option>
+							<td><select class="form-control paystatus" name="ad_status">
+									<option value="1/5" <c:if test="${dto.ad_status}">selected</c:if>>결제대기</option>
+									<option value="2/5" <c:if test="${dto.ad_status}">selected</c:if>>결제진행</option>
+									<option value="3/5" <c:if test="${dto.ad_status}">selected</c:if>>결제완료</option>
+									<option value="4/5" <c:if test="${dto.ad_status}">selected</c:if>>광고게시중</option>
+									<option value="5/5" <c:if test="${dto.ad_status}">selected</c:if>>광고종료</option>
 							</select></td>
 						</c:otherwise>
 
@@ -151,14 +157,14 @@ function cal(){
 			
 			<textarea id="summernote" name="bd_content"></textarea>
 			<br>
-		</form>
 			<!-- ad 작성 글 영역 종료-->
 
 			<!-- 취소 / 등록 컨펌 버튼 -->
 			<div style="height: 80px;">
-				<input type="button" value="등록" class="btn btn-primary" onclick="ad_submit()" style="float: right; margin-left: 10px;"> 
+				<input type="submit" value="등록" class="btn btn-primary" onclick="" style="float: right; margin-left: 10px;"> 
 				<input type="button" value="취소" class="btn btn-primary" onclick="location.href='adlist.do'" style="float: right;">
 			</div>
+		</form>
 		
 
 	</div>
@@ -175,7 +181,7 @@ function cal(){
 	<script src="resources/js/summernote/summernote-lite.js"></script>
 	<script src="resources/js/summernote/lang/summernote-ko-KR.js"></script>
 	<!-- ADINSERT 개별 JS -->
-	<script type="text/javascript" src="resources/js/adinsert.js"></script>
+	<script type="text/javascript" src="resources/js/adinsert.js?ver=2.1"></script>
 
 
 </body>
