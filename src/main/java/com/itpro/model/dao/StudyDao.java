@@ -31,6 +31,7 @@ public interface StudyDao {
 	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto);
 	public int studyJoinnedNumUpdate(int bd_no);
 	public int studyDropNumUpdate(int bd_no);
+	public int studyJoinCheck(int bd_no);
 
 
 }

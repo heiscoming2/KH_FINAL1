@@ -28,5 +28,6 @@ public interface StudyBiz {
 	public List<StudyJoinInfoDto> studyJoinInfoSelectList(StudyJoinInfoDto studyJoinInfodto);
 	public int studyJoinDelete(StudyJoinInfoDto studyJoinInfoDto);
 	public int studyJoinAccept(StudyJoinInfoDto studyJoinInfoDto);
+	public int studyJoinCheck(int bd_no);
 	
 }

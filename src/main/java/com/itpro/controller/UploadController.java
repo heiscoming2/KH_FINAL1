@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itpro.model.dto.upload.UploadImageDto;
+import com.itpro.util.JavaScriptResponse;
 
 
 @Controller
@@ -37,6 +38,7 @@ public class UploadController {
 		logger.info("SUMMERNOTE IMAGE UPLOAD");
 		Map<String,String> map = new HashMap<String,String>();
 		
+		
 		//경로설정
 		//*여기 경로에 저장시 서버 클린하면 이미지 다 지워지는 단점이있음
 		//실제 서비스를 한다고하면 외부경로로 변경하고 톰캣에서 설정해서 사용하는게 좋을듯
@@ -45,6 +47,10 @@ public class UploadController {
 		String origin_name = multipartFile.getOriginalFilename();
 		//파일 확장자
 		String type = origin_name.substring(origin_name.lastIndexOf("."));
+		if(!(type.equals(".jpg")||type.equals(".png")||type.equals(".jpeg"))) {
+			return null;
+		}
+			
 		//저장될 파일명 = UUID(랜덤으로 ID만드는거) + 확장자
 		String real_name = UUID.randomUUID()+type;
 		//파일사이즈

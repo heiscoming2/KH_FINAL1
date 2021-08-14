@@ -82,7 +82,7 @@ public class CompanyCrawler {
 		//매 페이지마다 url의 document를 가지고
 		//채용정보와 관련된 엘리먼트만을 추출한다.
 		//그리고 추출한 엘리먼트를 for문을 통해서(각 건의 채용정보를) DTO에 담아서 LIST에 담는다.
-		for(int i=1; i<5; i++) {
+		for(int i=1; i<all_of_page_cnt; i++) {
 			String url = "https://www.saramin.co.kr/zf_user/jobs/list/job-category?page="+i+"&cat_cd=404%2C407%2C408%2C402%2C409%2C416%2C413%2C412%2C411%2C410&search_optional_item=n&search_done=y&panel_count=y%5Cr%5Cn&isAjaxRequest=0&page_count="+post_of_page+"&sort=RL&type=job-category&is_param=1&isSearchResultEmpty=1&isSectionHome=0&searchParamCount=1#searchTitle";
 			try {
 				Document doc=Jsoup.connect(url).get();

@@ -18,14 +18,12 @@
   
   /* 댓글 insert */
   function replyInsert(bd_no,m_no,re_parentno) {
-	  
 	  let re_content;
 	  if(re_parentno==null) {
 		  re_content = $('#replyArea').val(); 
 	  } else {
 		  re_content = $('#rereply'+re_parentno).val();
 	  }
-	  
 	  let replyInsertValue = {
 			  "bd_no":bd_no,
 			  "m_no":m_no,
@@ -71,13 +69,40 @@
 		  });
 	  }
   }
+
+  //댓글 수정
+  function replyUpdate(re_no) {
+	  //let re_content = encodeURIComponent($('#reply'+re_no).summernote('code'));
+	  let re_content = $('#reply'+re_no).summernote('code');
+	  let replyUpdateValue = {
+			  "re_content":re_content,
+			  "re_no":re_no
+	  };
+	  $.ajax({
+		 type:"post",
+		 url:"replyupdate.do",
+		 data:JSON.stringify(replyUpdateValue),
+		 contentType:"application/json",
+		 dataType:"json",
+		 success:function(bool) {
+			 if(bool) {
+				 location.reload();
+			 } else {
+				 alert('댓글 수정 실패');
+			 }
+		 },
+		 error:function() {
+			 alert('오류 발생');
+		 }
+	  });
+  }
+  
   
   /*댓글 수정 시 summernote 호출*/
   /*기존 버튼 삭제 및 새로운 버튼 추가*/
   function replyUpdateForm(re_no) {
   	  
   	  rereplyInsertCancel(re_no);
-  	  
   	  //reretestdiv 의 마진 값을 가져온다.
   	  //썸머노트 마진값을 주기위해
   	  let reretestdiv = $('#rerediv'+re_no).css('margin-left').replace(/[^-\d\.]/g, '');
@@ -114,33 +139,7 @@
   }
   
   
-  //댓글 수정
-  function replyUpdate(re_no) {
-	  //let re_content = encodeURIComponent($('#reply'+re_no).summernote('code'));
-	  let re_content = $('#reply'+re_no).summernote('code');
-	  let replyUpdateValue = {
-			  "re_content":re_content,
-			  "re_no":re_no
-	  };
-	  $.ajax({
-		 type:"post",
-		 url:"replyupdate.do",
-		 data:JSON.stringify(replyUpdateValue),
-		 contentType:"application/json",
-		 dataType:"json",
-		 success:function(bool) {
-			 if(bool) {
-				 location.reload();
-			 } else {
-				 alert('댓글 수정 실패');
-			 }
-		 },
-		 error:function() {
-			 alert('오류 발생');
-		 }
-	  });
-  }
-  
+
   
   
   //대댓글 INSERT FORM

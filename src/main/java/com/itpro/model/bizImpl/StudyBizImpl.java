@@ -63,12 +63,8 @@ public class StudyBizImpl implements StudyBiz {
 	@Override
 	@Transactional
 	public int update(StudyUpdateDto studyUpdateDto,BoardUpdateDto boardUpdateDto) {
-		int res = 0;
-		int studyUpdateRes = studyDao.update(studyUpdateDto);
-		int boardUpdateRes = boardDao.update(boardUpdateDto);
-		if(studyUpdateRes>0 && boardUpdateRes>0) {
-			res = 1;
-		}
+		studyDao.update(studyUpdateDto);
+		int res = boardDao.update(boardUpdateDto);
 		return res; 
 	}
 
@@ -127,6 +123,11 @@ public class StudyBizImpl implements StudyBiz {
 		studyDao.studyJoinAccept(studyJoinInfoDto);
 		int bd_no = studyJoinInfoDto.getBd_no();
 		return studyDao.studyJoinnedNumUpdate(bd_no);
+	}
+
+	@Override
+	public int studyJoinCheck(int bd_no) {
+		return studyDao.studyJoinCheck(bd_no);
 	}
 
 }

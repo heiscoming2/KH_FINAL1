@@ -1,6 +1,5 @@
 package com.itpro.controller;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itpro.model.biz.ReplyBiz;
 import com.itpro.model.dto.reply.ReplyInsertDto;
-import com.itpro.model.dto.reply.ReplyListDto;
 import com.itpro.model.dto.reply.ReplyUpdateDto;
 import com.itpro.util.ClientInfo;
 

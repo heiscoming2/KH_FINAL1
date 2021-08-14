@@ -33,7 +33,6 @@ public class ReplyBizImpl implements ReplyBiz {
 	@Transactional
 	public int insert(ReplyInsertDto replyInsertDto) {
 		
-		
 		//부모 댓글이 0이면 원본 댓글이니까 그냥 INSERT 하면 된다.
 		if(replyInsertDto.getRe_parentno()==0) {
 			return replyDao.insert(replyInsertDto);
@@ -55,9 +54,7 @@ public class ReplyBizImpl implements ReplyBiz {
 				//댓글을 찾는다. 이러다가 0값을 만나게되면 WHILE문을 빠져 나오게되고
 				//최종적으로 형제의 마지막 자손의 RE_NO를 구할 수 있다.
 				//이제 이 값을 통해 UPDATE와 INSERT를 해주면된다.
-				
 				int tmp = 1;
-				
 				//myupperno가 마지막 자손값이 담길 변수임, 일단 형제 값으로 초기화를 먼저 시킨 후 돌림
 				int myupperno = lastsiblingno;
 				while(tmp!=0) {
@@ -66,7 +63,6 @@ public class ReplyBizImpl implements ReplyBiz {
 						myupperno = tmp;
 					}
 				}
-				
 				//while문이 끝나면 막내 형제의 마지막 자손 re_no가(myupperno) 나온다.
 				//막내 형제의 자손이 없다면 lastsiblingno가 re_no가 될것이다.
 				//이제 이 값에 해당하는 같은 그룹의 order보다 큰 애들을 뒤로 밀어주고

@@ -32,54 +32,7 @@
 	 		</div>
 	 		<br>
 	 		<!-- 
-	 		<div>
-	 			<span>선택조건 : </span>
-	 			<span style="background-color:#E91E63; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			제목 <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>
-	 			<span style="background-color:#009688; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			내용 <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>
-	 			<span style="background-color:#6f42c1; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			작성자 <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>
-	 			<span style="background-color:#17a2b8; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			포트폴리오 <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>	 			
-	 			<span style="background-color:#dc3545; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			프로젝트 <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>
-	 			<span style="background-color:#ffc107; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			Q & A <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>
-	 			<span style="background-color:#6c757d; border-radius:8px; color:white; padding:10px; margin-right:5px;">
-	 			스터디모집 <b style="font-size:7px; vertical-align:middle;">X</b>
-	 			</span>		 				 				 			
-	 		</div>
-	 		<br>
-	 		
-	 		<div style="float:left">
-	 			<input style="margin-right:10px; display:inline-block; width:200px;" type="search" placeholder="제목/내용" class="form-control" id="keyword" value="${keyword }">
-	 			<input style="clear:both;" type="button" value="선택 재조회" class="btn btn-primary" onclick="selectPage(1)">
-	 		</div>
-	 		<br>
-			<br>
-			 -->
-			<table class="table postlookup_table">
-				<col width="80px;">
-				<col width="200px;">
-				<col width="570px;">
-				<col width="80px;">
-				<col width="80px;">
-				<col width="200px;">
-				<tr>
-					<th class="bd_no_th"><a>번호</a></th>
-					<th>카테고리</th>
-					<th>제목</th>
-					<th>추천수</th>
-					<th>조회수</th>
-					<th>작성정보</th>
-				</tr>
+
 				<!-- 게시물 한 줄 시작-->
 				<c:choose>
 					<c:when test="${empty searchList}">

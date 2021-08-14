@@ -22,8 +22,10 @@
       <div class="job_btn_wrap">
         <input type="button" class="btn btn-primary" value="전체 조회" onclick="location.href='companycrawlinglist.do'">
 	      <div class="admin_btn" style="float:right;">
+	      	<c:if test="${sessionScope.login.m_auth eq 'Y' or sessionScope.login.m_admin_cert eq 'Y'}">
 	        <input type="button" class="btn btn-success" value="새로고침" onclick="location.href='companycrawlingwating.do'">
 	        <input type="button" class="btn btn-success" value="전체삭제" onclick="location.href='companycrawlingdelete.do'">
+	      	</c:if>
 	      </div>
       </div>
       
@@ -158,7 +160,7 @@
 	<input type="hidden" id="h_searchbox" value="${companyCrawlingSearchDto.src_key }">
 </c:if>
 	
-<script type="text/javascript" src="resources/js/companycrawling/companycrawlinglist.js?ver=1.2"></script>
-<script type="text/javascript" src="resources/js/address.js"></script>
+<script type="text/javascript" src="resources/js/companycrawling/companycrawlinglist.js?ver=1.4"></script>
+<script type="text/javascript" src="resources/js/address.js?ver=1.3"></script>
 </body>
 </html>

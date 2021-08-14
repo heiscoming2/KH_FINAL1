@@ -107,7 +107,9 @@ public class StudyController {
 		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 StudyDto에 저장
 		studyDto.setBd_writerip(new ClientInfo().getClientIp(request));
 		studyBiz.studyInsert(studyDto);
-		return "redirect:studylist.do";
+		int bd_no = studyDto.getBd_no();
+		System.out.println(bd_no);
+		return "redirect:studydetail.do?bd_no="+bd_no;
 	}	
 	
 	@RequestMapping(value="/studydetail.do")
@@ -210,11 +212,17 @@ public class StudyController {
 	@RequestMapping(value="/studydelete.do")
 	public void studyDelete(Model model, int bd_no,HttpServletResponse response) throws IOException {
 		log.info("STUDY DELETE");
-		int studyDeleteRes = studyBiz.delete(bd_no);
-		if(studyDeleteRes>0) {
-			new JavaScriptResponse().jsResponse(response, "삭제 되었습니다.", "studylist.do");
+		
+		int res = studyBiz.studyJoinCheck(bd_no);
+		if(res>1) {
+			new JavaScriptResponse().jsResponse(response, "스터디 참여자가 존재하는 경우 글을 삭제할 수 없습니다.", "studydetail.do?bd_no="+bd_no);
 		} else {
-			new JavaScriptResponse().jsResponse(response, "삭제 실패하였습니다", "studydetail.do?bd_no="+bd_no);
+			int studyDeleteRes = studyBiz.delete(bd_no);
+			if(studyDeleteRes>0) {
+				new JavaScriptResponse().jsResponse(response, "삭제 되었습니다.", "studylist.do");
+			} else {
+				new JavaScriptResponse().jsResponse(response, "삭제 실패하였습니다", "studydetail.do?bd_no="+bd_no);
+			}
 		}
 	}
 	
