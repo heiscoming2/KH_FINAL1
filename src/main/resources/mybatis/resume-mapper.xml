@@ -21,7 +21,7 @@
 		ON A.M_NO=B.M_NO
 		WHERE
 		A.M_NO = #{m_no}
-		ORDER BY DESC
+		ORDER BY R_REGDATE DESC
 	</select>
 
 	<!-- 이력서 기본정보 조회(detail) -->

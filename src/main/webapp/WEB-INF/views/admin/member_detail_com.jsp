@@ -37,10 +37,6 @@
 			<td>${dto.m_type }</td>
 		</tr>
 		<tr>
-			<th>성별</th>
-			<td>${dto.m_gender }</td>
-		</tr>
-		<tr>
 			<th>회원등록일</th>
 			<td>${dto.m_regdate }</td>
 		</tr>
@@ -57,17 +53,10 @@
 			<td>${dto.m_auth }</td>
 		</tr>
 		<tr>
-			<th>셩명</th>
+			<th>성명</th>
 			<td>${dto.m_name }</td>
 		</tr>
-		<tr>
-			<th>생일</th>
-			<td>${dto.m_birth }</td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td>${dto.m_addr }</td>
-		</tr>
+		
 		<tr>
 			<th>사업자등록번호</th>
 			<td>${dto.m_regno }</td>

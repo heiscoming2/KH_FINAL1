@@ -79,7 +79,9 @@
 	    <![CDATA[
 		  AND CC_EDULEVEL <= #{companyCrawlingSearchDto.src_edu}
 		]]>
-		  AND (CC_META LIKE '%${companyCrawlingSearchDto.src_key}%' OR CC_TITLE LIKE '%${companyCrawlingSearchDto.src_key}%' OR CC_NAME LIKE '%${companyCrawlingSearchDto.src_key}%')) RN
+		  AND (CC_META LIKE '%${companyCrawlingSearchDto.src_key}%' OR 
+		  	   CC_TITLE LIKE '%${companyCrawlingSearchDto.src_key}%' OR 
+		  	   CC_NAME LIKE '%${companyCrawlingSearchDto.src_key}%')) RN
           WHERE RN BETWEEN #{start} AND #{end}	
     </select>	
 </mapper>

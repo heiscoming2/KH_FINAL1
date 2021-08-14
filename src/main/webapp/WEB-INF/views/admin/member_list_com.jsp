@@ -121,10 +121,6 @@
 		
 		
 	</table>
-	<!-- 쪽지보내기 -->
-
-	<input type="button" value="쪽지보내기" onclick="" class="btn btn-primary">
-
 
 
 	<!-- 본문 종료 -->

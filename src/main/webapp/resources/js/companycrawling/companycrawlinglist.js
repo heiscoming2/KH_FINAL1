@@ -1,5 +1,4 @@
-$(document).ready(function() {
-	
+window.addEventListener('DOMContentLoaded',function(){
 	//h_addr1 이 null 이 아니라면 검색조건이 있다는거니까 검색 내용으로 채워준다. 
 	if(document.getElementById("h_addr1")) {
 		let h_addr1 = document.getElementById("h_addr1").value;
@@ -30,14 +29,6 @@ $(document).ready(function() {
 });
 
 
-function enterKey() {
-	//키가 입력될때마다 함수 실행됨,
-	//keyCode==13 (엔터키) 인경우 selectPage 실행되도록 처리
-	if(window.event.keyCode==13) {
-		selectPage(1);
-	}
-}
-
 
 function openDetailUrl(url) {
 	let _width = '1300';
@@ -45,6 +36,14 @@ function openDetailUrl(url) {
 	let _left = Math.ceil((window.screen.width - _width) / 2);
 	window.open(url, '', 'width=' + _width + ',left=' + _left + ',height='
 			+ _height);
+}
+
+function enterKey() {
+	//키가 입력될때마다 함수 실행됨,
+	//keyCode==13 (엔터키) 인경우 selectPage 실행되도록 처리
+	if(window.event.keyCode==13) {
+		selectPage(1);
+	}
 }
 
 function selectPage(i) {
@@ -55,14 +54,14 @@ function selectPage(i) {
 	let $eduselect = parseInt($('.eduselect').val());
 	let $cc_search = $('.cc_search').val();
 
-	if (($sidoselect == null || $sidoselect == "")
-	 && ($gugunselect == null || $gugunselect == "" || $gugunselect == "전체")
-	 && ($careerselect == 4)
-	 && ($eduselect == 4)
-	 && ($cc_search == "" || $cc_search == null)) {
+	if (($sidoselect == null || $sidoselect == "") &&
+	    ($gugunselect == null || $gugunselect == "" || $gugunselect == "전체") &&
+	    ($careerselect == 4) &&
+	    ($eduselect == 4) &&
+	    ($cc_search == "" || $cc_search == null)) {
 		location.href = 'companycrawlinglist.do?page=' + i;
 	} else {
-		if($cc_search.length==1) {
+		if($cc_search.length<=1) {
 			alert("검색어는 두 글자 이상 입력해야 합니다.");
 			return false;
 		}

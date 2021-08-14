@@ -144,12 +144,20 @@
 
 		<input type="button" value="쪽지보내기" onclick="" class="btn btn-primary">
 
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 		<!-- 본문 종료 -->
 
 	</div>
 </div>
+
+
+
 	<script type="text/javascript" src="resources/js/slidebar.js?ver=1.1"></script>
 
 		<%@include file="../inc/_footer.jspf"%>

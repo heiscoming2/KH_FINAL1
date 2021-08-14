@@ -107,7 +107,9 @@ public class StudyController {
 		//ClientInfo의 getClientIp에 request를 전달하여 ip 정보를 얻어와 StudyDto에 저장
 		studyDto.setBd_writerip(new ClientInfo().getClientIp(request));
 		studyBiz.studyInsert(studyDto);
-		return "redirect:studylist.do";
+		int bd_no = studyDto.getBd_no();
+		System.out.println(bd_no);
+		return "redirect:studydetail.do?bd_no="+bd_no;
 	}	
 	
 	@RequestMapping(value="/studydetail.do")

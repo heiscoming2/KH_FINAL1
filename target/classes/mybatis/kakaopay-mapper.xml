@@ -28,4 +28,9 @@
 	</delete>
 	
 	
+	<update id="adStatusChange" parameterType="int">
+		UPDATE AD_REQUEST SET AD_STATUS='3/5' WHERE BD_NO=#{bd_no}
+	</update>
+	
+	
 </mapper>

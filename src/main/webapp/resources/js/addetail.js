@@ -9,18 +9,36 @@
   
   /**/
   
-  /*댓글 수정 시 썸머노트 해당 div에 썸머노트 적용*/
-  $(function(){
-  	$('#apibtn').click(function(){
-  		$.ajax({
-  			url:'kakaopay.do',
-  			dataType:'json',
-  			success:function(data){
-  				alert(data);
-  			} ,
-  			error: function(error){
-  			 alert(error);
-  			 }
-  			});
-  		});
-  	});
+ 
+  	
+/* kakaopay */
+
+$(function(){
+
+	$('#apibtn').click(function(){
+		$.ajax({
+			type:'post',
+		 	url:'kakaopay.cls' ,
+		 	dataType:'json' ,
+		 	success:function(data){
+		 		var box = data.next_redirect_pc_url;
+		 		window.open(box,'kakaopay','width=500, height=500 menubar=no, status=no, toolbar=no' );
+		 		
+		 	} ,
+		 	error:function(error){
+		 	alert(error);
+			}
+		});
+	
+	});
+	
+});  	  	
+  	
+  function adstatusChange() {
+ 	let bd_no = $('#bd_no').val(); 	
+ 	location.href='adstatuschange.do?bd_no='+bd_no;
+ }  	
+  	
+  	
+  	
+  	

@@ -7,9 +7,9 @@ public class PageProcessing {
     /** 한 블럭(range)당 페이지 수 **/
     private int rangeSize = 10;
     /** 현재 페이지 **/
-    private int curPage = 1;
+    private int curPage = 0;
     /** 현재 블럭(range) **/
-    private int curRange = 1;
+    private int curRange = 0;
     /** 총 게시글 수 **/
     private int listCnt;
     /** 총 페이지 수 **/
@@ -17,9 +17,9 @@ public class PageProcessing {
     /** 총 블럭(range) 수 **/
     private int rangeCnt;
     /** 시작 페이지 **/
-    private int startPage = 1;
+    private int startPage = 0;
     /** 끝 페이지 **/
-    private int endPage = 1;
+    private int endPage = 0;
     /** 보여줄 페이지의 시작할 글 번호 **/
     private int startIndex = 0;
     /** 보여줄 페이지의 마지막 글 번호 **/
@@ -58,9 +58,6 @@ public class PageProcessing {
         setStartIndex(curPage);
         setEndIndex(curPage);
     }
-    
-    
-    
 
     public int getCurPage() {
 		return curPage;

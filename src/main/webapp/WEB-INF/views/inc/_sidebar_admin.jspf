@@ -107,7 +107,7 @@
 							
 							
 						<!-- 광고관리 부분 -->
-							<a class="nav-link collapsed" href="ad_list.do"
+						<%-- 	<a class="nav-link collapsed" href="ad_list.do"
 							data-toggle="collapse" data-target="#collapseAd"
 							aria-expanded="false" aria-controls="collapsePages">
 								<div class="sb-nav-link-icon">
@@ -146,7 +146,7 @@
 								<div class="sb-nav-link-icon">
 									<i class="fas fa-table"></i>
 								</div> 배너
-						</a>
+						</a>--%>
 					</div>
 				</div>
 

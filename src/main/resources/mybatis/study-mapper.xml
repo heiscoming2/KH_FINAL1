@@ -6,7 +6,6 @@
 <mapper namespace="Study">
 
 
-	<!-- BOARD에서 회원번호(맨 마지막꺼) 나중에 수정해야됨 -->
 	<insert id="insert" parameterType="StudyInsertDto">
 		INSERT ALL
 		INTO BOARD 
@@ -30,6 +29,9 @@
 		1,
 		#{st_closeperson})
 		SELECT * FROM DUAL
+		<selectKey keyProperty="bd_no" resultType="Integer" order="AFTER">
+			SELECT BOARDSEQ.currval FROM dual
+		</selectKey>
 	</insert>
 	
 	

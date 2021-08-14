@@ -13,9 +13,6 @@ $(document).ready(function() {
    });
 });
 
-function chk_null() {
-  alert('test');
-}
 
 function sendFile(file,el) {
 	var form_data = new FormData();
@@ -28,8 +25,15 @@ function sendFile(file,el) {
 		contentType:false,
 		processData:false,
 		success:function(data) {
-			$(el).summernote('editor.insertImage',data.url);
-			alert(data.url);
+			if(data==null) {
+				alert("잘못된 이미지 입니다.");
+			} else {
+				$(el).summernote('editor.insertImage',data.url);
+			}
+		}, 
+		error:function(e) {
+			alert("오류발생");
+			console.log(e);
 		}
 	});
 }
